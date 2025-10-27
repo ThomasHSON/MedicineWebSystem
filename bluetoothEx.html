@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>藍芽掃碼器範例</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <h1>藍芽掃碼器範例</h1>
+  <label for="barcode">請使用藍芽掃碼器掃描條碼：</label>
+  <a href="#" onclick="downloadExcel('http://103.1.221.188:4433/api/inspection/download_excel',jsonData ,'驗收入庫')">下載 Excel 檔案</a>
+  <script>
+    var barcode_value = '';
+    // 監聽頁面的keydown事件
+    window.addEventListener('keydown', function(event) {
+        // 判斷按下的按鍵是否是Tab鍵或Enter鍵
+        if (event.key === 'Tab' || event.key === 'Enter') {
+        // 防止頁面重新載入
+            event.preventDefault();
+            const parsedCode = parseBarcode(barcode_value);
+            
+            // 取得輸入框的值
+            barcode_value = '';
+            // 解析藍牙掃描器返回的數據
+            if(parsedCode != '')
+            {
+                alert(parsedCode);
+                console.log(parsedCode);
+            }         
+        }
+        else
+        {
+            const isValid = /^[a-zA-Z0-9]+$/.test(event.key);
+            const isControlKey = event.keyCode < 48 || event.keyCode > 90;
+            if (isValid && !isControlKey) {
+                // 將解析後的條碼值設定為輸入框的值
+                barcode_value += event.key;
+            } 
+        }
+    });
+
+    // 解析帶有分隔符的字符串
+    function parseBarcode(scannedCode) {
+    const delimiter = /[\n\r]/g;
+    const matches = scannedCode.split(delimiter);
+    return matches[0];
+    }
+
+    let jsonData = {
+    "Data": [
+      {
+        "OD_SN_S": "1120507002",
+        "MIS_CREATEDTTM": "2023/05/07"
+      },
+      {
+        "OD_SN_S": "1120508002",
+        "MIS_CREATEDTTM": "2023/05/08"
+      },
+      {
+        "OD_SN_S": "1120508001",
+        "MIS_CREATEDTTM": "2023/05/08"
+      }
+    ],
+    "Code": 200,
+    "Result": "取得請購日期表成功!"
+    };
+    function downloadExcel(url ,jsonData , filename) {
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(jsonData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1; // 注意月份是從0開始計算的，所以要加1
+      let day = today.getDate();
+      // Creating a download link for the file
+      let downloadLink = document.createElement('a');
+      downloadLink.href = window.URL.createObjectURL(blob);
+      downloadLink.download = `${year}/${month}/${day}_${filename}.xls`;
+      downloadLink.click();
+    })
+    .catch(error => console.error(error));
+  }
+  </script>
+</body>
+</html>

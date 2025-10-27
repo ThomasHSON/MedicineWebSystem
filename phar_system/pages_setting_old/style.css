@@ -1,0 +1,218 @@
+/* @font-face {
+    font-family: 'Noto Sans TC';
+    src: url('../font/Noto_Sans_TC/static/NotoSansTC-Regular.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 80px;
+}
+.main_div {
+    max-width: 760px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.h_title {
+    font-size: 24px;
+    font-weight: 600;
+}
+.header_user {
+    padding-left: 24px;
+}
+
+.header_btn_container {
+    display: flex;
+    margin-right: 40px;
+}
+
+.btn {
+  user-select: none;
+  margin: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid black;
+  color: #F6F7F7;
+  padding: 6px 24px;
+  border-radius: 5px;
+  transition: all 0.2s ease-out;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+.btn:hover {
+  background-color: #6B6B63;
+  transition: all 0.2s ease-out;
+}
+
+.main_div_pages_search_container {
+    margin-bottom: 20px;
+}
+
+#main_div_pages_search_select {
+    width: 60%;
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 2px;
+    letter-spacing: 1px;
+}
+.main_div_page_setting_container {
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #000000;   
+}
+.page_setting_title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.setting_container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 32px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.setting_card {
+    display: flex;
+}
+.setting_param {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.setting_checkbox_container {
+    display: flex;
+    align-items: center;
+}
+.setting_param > label,
+.setting_title {
+    display: block;
+    text-align: left;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+}
+.no_down_space {
+    padding-left: 8px;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}
+.setting_param > input{
+    display: block;
+    padding: 2px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    text-align: center;
+}
+.setting_checkbox_group {
+    display: flex;
+    justify-content: flex-start;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.radio_container {
+    display: grid;
+    grid-template-columns: 100%;
+}
+.radio_item_container,
+.checkbox_container {
+    margin: 0px 12px 12px;
+    display: flex;
+    align-items: center;
+}
+.setting_label {
+    padding-left: 8px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.setting_time_container select {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 2px;
+    letter-spacing: 1px;
+    margin: 0px 4px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+}
+.setting_checkbox_group_notice {
+    text-align: right;
+}
+
+.under-line {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    background-color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    z-index: 9;
+}
+
+@media screen and (max-width: 768px) {
+    .main_div {
+        padding: 20px;
+    }
+    .setting_container {
+        grid-template-columns: 100%;
+        grid-gap: 16px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .main_div {
+        padding: 16px;
+    }
+    .setting_container {
+        grid-template-columns: 100%;
+        align-items: center;
+        grid-gap: 24px;
+    }
+    .setting_card {
+        display: grid;
+        grid-template-columns: 100%;
+        align-items: center;
+    }
+    .setting_param {
+        width: 100%;
+        justify-content: center;
+    }
+    .radio_container,
+    .setting_checkbox_group {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .radio_container {
+        grid-template-columns: 100%;
+    }
+}

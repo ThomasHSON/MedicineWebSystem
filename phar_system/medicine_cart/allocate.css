@@ -1,0 +1,776 @@
+.d_carts_list_contaienr {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  /* grid-template-columns: 33% 33% 33%; */
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nearMiss_log_container_for_cpoe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.d_cart_container {
+  height: 140px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px 2px #0000003e;
+  margin: 20px 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--able-select);
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 140px;
+}
+
+.d_cart_done {
+  cursor: not-allowed;
+  background-color: var(--deliver-color);
+}
+
+.d_carts_notice_contaienr {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.d_carts_notice_color {
+  border: 1px solid #555555;
+  border-radius: 6px;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  margin-right: 16px;
+  background-color: var(--deliver-color);
+}
+.p_sticky {
+  position: sticky;
+}
+.p_bed_header {
+  padding: 12px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0px;
+  position: sticky;
+  width: 100%;
+  background-color: #fff;
+  z-index: 199;
+}
+.pb_name_display {
+  font-size: 20px;
+  font-weight: 600;
+}
+.pb_btn_container {
+  display: flex;
+  /* width: 500px; */
+  justify-content: flex-end;
+}
+.pb_list_btn,
+.ppmcl_btn {
+  position: relative;
+}
+.pb_list_notice {
+  top: -10px;
+  right: -8px;
+  display: block;
+  position: absolute;
+  width: 20px;
+}
+.display_none {
+  display: none;
+}
+
+.p_bed_info_container {
+  width: 100%;
+}
+.pbic_top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+.pbic_disease_container {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(219, 219, 219);
+}
+.p_bed_simple_container,
+.p_bed_detailed_container {
+  width: 100%;
+  min-height: 180px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(219, 219, 219);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pbsc_info {
+  padding: 0px 12px;
+  text-align: left;
+}
+.grid_30_30_30 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 28% 30% 41%;
+  justify-content: space-between;
+}
+.grid_100 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: space-between;
+}
+.pbsc_doctor {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  justify-content: space-between;
+}
+.pbsc_info_bold_font_big {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* 給整個表格加上邊框線 */
+.pbict_table {
+  border-collapse: collapse; /* 確保邊框不會重疊 */
+  width: 100%;
+  /* margin: auto; */
+}
+
+/* 給所有的td元素加上邊框線 */
+.pbict_table td {
+  border: 1px solid black; /* 黑色邊框，1px寬 */
+  padding: 4px 6px; /* 內距為8px */
+}
+
+/* 給表頭的td元素設置不同的背景顏色 */
+.pbict_thead {
+  background-color: #c4c4c4; /* 淺灰色背景 */
+  text-align: center;
+}
+.pbict_table tr td:first-child {
+  width: 100px;
+  text-align: center;
+}
+.pbict_table tr td:nth-child(2) {
+  width: 200px;
+  text-align: center;
+}
+
+.p_bed_med_container {
+  width: 100%;
+}
+.pbm_header_container {
+  padding: 12px 0px;
+  position: sticky;
+  top: 0;
+  background-color: white; /* 確保背景色，避免透明影響 */
+  z-index: 6;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  /* position: relative; */
+  z-index: 198;
+}
+.fixed {
+  position: fixed;
+  max-width: 1120px;
+  margin: 0px auto;
+  padding: 0px 0px;
+}
+.fixed_1 {
+  background-color: white;
+  position: fixed;
+  max-width: 1120px;
+  margin: 0px auto;
+  padding: 20px 0px;
+  z-index: 500;
+}
+.pbm_main_container_fixed {
+  margin-top: 60px;
+}
+.pbm_footer_container {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+.pbmh_light_on_btn {
+  border-radius: 5px;
+  padding: 6px 32px;
+  background-color: rgb(46, 132, 0);
+  transition: all 0.2s;
+  cursor: pointer;
+  color: #ffffff;
+  margin-right: 20px;
+}
+.pbmf_submit_btn {
+  margin-right: 24px;
+}
+.pbmh_light_on_btn:hover {
+  color: black;
+  background-color: #7fe747;
+  transition: all 0.2s;
+}
+.pbmh_pre_btn {
+  position: absolute;
+  left: 0px;
+}
+.pbmh_pre_btn_not_allow {
+  cursor: not-allowed;
+  background-color: #d4d4d4;
+}
+.pbmh_pre_btn_not_allow:hover {
+  background-color: #d4d4d4;
+}
+.pbmh_checked_submit_btn,
+.pbmh_next_btn {
+  margin-right: 0px;
+}
+.pbmh_checked_trigger_label {
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.pbmh_checked_trigger_label:hover {
+  transition: all 0.2s;
+  background-color: #8b8b8b;
+}
+#pbmh_checked_trigger {
+  margin-right: 12px;
+}
+
+.pbm_main_container {
+  margin-top: 12px;
+  border-radius: 12px;
+  background-color: rgb(231, 231, 231);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 10px;
+}
+.med_card_container {
+  border-radius: 5px;
+  border: 1px solid #000000;
+  background-color: rgb(247, 247, 247);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.med_card_container:last-child {
+  margin-bottom: 0px;
+}
+.med_card_container_odd {
+  background-color: #ffffff;
+}
+.med_card_container_ice {
+  background-color: #c4f5fe;
+}
+.med_card_container_injection {
+  background-color: #f8f4d3;
+}
+.med_card_container_oral {
+  background-color: #d7fdd3;
+}
+.card_pub_med_bgc {
+  background-color: #ffebeb;
+}
+.card_disable {
+  background-color: #8f8f8f;
+}
+.med_card_title_container {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.med_card_checkbox_label {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px 5px 5px;
+  cursor: pointer;
+}
+.med_card_checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 25px; /* 調整寬度 */
+  height: 25px; /* 調整高度 */
+  border: 2px solid #000; /* 邊框顏色和大小 */
+  border-radius: 3px; /* 邊框圓角 */
+  position: relative;
+  cursor: pointer;
+}
+.med_card_checkbox:checked {
+  background-color: #4caf50; /* 背景顏色 */
+  border-color: #4caf50; /* 邊框顏色 */
+}
+.med_card_checkbox:checked::before {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 18px; /* 調整勾勾的大小 */
+}
+/* 禁用狀態的樣式 */
+.med_card_checkbox_disabled {
+  border: 2px solid #767676;
+}
+.med_card_checkbox_disabled:checked {
+  background-color: #ddd; /* 禁用狀態的背景顏色 */
+  border-color: #aaa; /* 禁用狀態的邊框顏色 */
+  cursor: not-allowed; /* 禁用狀態的鼠標樣式 */
+}
+
+.med_card_checkbox_disabled:checked::before {
+  color: #aaa; /* 禁用狀態的勾勾顏色 */
+}
+
+.med_card_info_container {
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
+  justify-content: space-between;
+}
+
+.med_card_note_container {
+  /* background-color: #FFF8DC; */
+  padding: 6px 0px;
+  color: #d60101;
+  /* font-weight: 600; */
+  border-radius: 6px;
+  font-size: 1rem;
+  margin: 6px 0px;
+}
+.med_card_main_display_container {
+  flex-grow: 1;
+}
+
+.med_card_code,
+.med_card_ordseq,
+.med_card_name,
+.med_card_cht_name,
+.med_card_unit,
+.med_card_dosage,
+.med_card_route,
+.med_card_freqn {
+  margin-right: 12px;
+  font-weight: 400;
+}
+
+.med_card_name,
+.med_card_qty {
+  font-size: 20px;
+  font-weight: 600;
+}
+.med_card_mid_display_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  cursor: pointer;
+}
+.med_card_light_btn_for_bed {
+  margin-bottom: 12px;
+  padding: 4px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 5px;
+}
+.med_card_qty {
+  width: 80px;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.med_card_open_tigger {
+  padding: 10px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  transform: rotate(-90deg);
+}
+.med_card_open {
+  transform: rotate(90deg);
+  transition: all 0.2s ease-out;
+}
+.no_data_div {
+  font-size: 24px;
+  font-weight: 600;
+}
+.no_med_info_div {
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+}
+.pbd_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.pbd_table td {
+  width: 25%;
+  border: 1px solid black;
+  padding: 2px;
+  text-align: center;
+}
+.pbd_th {
+  background-color: #c4c4c4; /* 這裡設定了背景顏色，你可以替換成其他顏色 */
+}
+.p_red_notice {
+  color: rgb(229, 61, 61);
+  font-weight: 600;
+}
+.p_blue_notice {
+  color: rgb(61, 69, 229);
+  font-weight: 600;
+}
+.med_card_big_bottle_icon {
+  text-align: center;
+  min-width: 48px;
+  max-height: 48px;
+  background-color: #8a8a8a;
+  opacity: 0.6;
+  transition: 0.2s all ease;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 1px #00000067;
+  margin-right: 12px;
+}
+.med_card_big_bottle_icon > img {
+  display: block;
+  height: 40px;
+}
+.med_card_big_bottle_icon:hover {
+  box-shadow: 1px 1px 2px 1px #00000067;
+  transition: 0.2s all ease;
+}
+.med_card_bigB {
+  opacity: 1;
+  background-color: #f7b875;
+  transition: 0.2s all ease;
+}
+.med_more_info_container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 0px 12px 16px;
+}
+.med_detail_info_div {
+  cursor: pointer;
+  padding: 4px 24px;
+  margin: 0px 12px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  box-shadow: 1px 1px 1px 1px #00000067;
+  transition: all 0.2s ease-out;
+  background-color: #464646;
+  color: white;
+}
+.med_card_other_phar {
+  font-weight: 600;
+  min-width: 200px;
+  margin-right: 16px;
+}
+.med_detail_info_div:hover {
+  box-shadow: 1px 1px 4px 1px #00000067;
+  transition: all 0.2s ease-in;
+}
+.med_cart_warnning_container {
+  display: flex;
+  align-items: center;
+  margin: 6px;
+}
+.med_name_card_container,
+.med_card_info_container,
+.med_cart_warnning_container {
+  margin-bottom: 2px;
+}
+.warnning_icon {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #f7b875;
+  color: #2d2d2d;
+  margin: 0px 8px;
+  box-shadow: 1px 1px 2px 1px #0000005f;
+}
+.med_cart_REFRIGERATED_MEDICINE {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #75b0f7;
+  color: #2d2d2d;
+  margin: 0px 8px;
+  box-shadow: 1px 1px 2px 1px #0000005f;
+}
+.not_allow_warnning_icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+}
+.not_allow_warnning_icon::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid #ff0000;
+  border-radius: 50%;
+}
+.not_allow_warnning_icon::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background-color: #ff0000d3;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+.inve_log_card_title {
+  font-weight: 600;
+  border-bottom: 1px solid #000000;
+}
+.inve_log_card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 40% 20%;
+  padding: 6px 0px;
+}
+.inve_log_info {
+  line-height: 20px;
+}
+.s_color {
+  padding: 1px 4px;
+  background-color: #ff9292;
+  font-size: 18px;
+  font-weight: 600;
+}
+.p_status_td {
+  height: 22px;
+}
+
+.dobule_checked_color {
+  background-color: rgb(219 234 254);
+  border-color: rgb(69, 150, 255);
+  /* text-decoration: underline; */
+  /* border: 5px solid #000000; */
+}
+.dobule_checked_color_yellow {
+  background-color: rgb(254 252 232);
+  border-color: rgb(210, 194, 17);
+  /* text-decoration: underline; */
+  /* border: 5px solid #000000; */
+}
+.text_red {
+  color: rgb(229, 61, 61);
+}
+.med_card_cpoe_prescription_container {
+  padding: 8px 28px;
+  display: flex;
+  gap: 28px;
+}
+.med_card_cpoe_style {
+  display: flex;
+}
+.med_inve_log_container {
+  padding: 8px 28px;
+}
+
+@media screen and (max-width: 1200px) {
+  .p_bed_header {
+    flex-direction: column;
+    align-items: start;
+    align-items: flex-start;
+  }
+  .pb_name_display {
+    margin-bottom: 12px;
+  }
+  .p_bed_simple_container,
+  .p_bed_detailed_container {
+    padding: 8px;
+  }
+  .pbict_table tr td:first-child {
+    width: 60px;
+    text-align: center;
+  }
+  .pbict_table tr td:nth-child(2) {
+    width: 100px;
+    text-align: center;
+  }
+  .d_carts_list_contaienr {
+    /* grid-template-columns: 20% 20% 20% 20% 20%; */
+    grid-template-columns: 33% 33% 33%;
+  }
+  .med_detail_info_div {
+    padding: 4px 12px;
+    box-shadow: 1px 1px 4px 1px #00000067;
+  }
+  .fixed {
+    margin-top: 0px;
+    padding: 0px 80px;
+  }
+  .fixed_1 {
+    margin-top: 0px;
+    padding: 20px 40px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .p_bed_header {
+    flex-direction: column;
+  }
+  .pb_btn_container {
+    display: flex;
+    justify-content: start;
+    text-align: center;
+    width: 100%;
+  }
+  .pbic_top {
+    grid-template-columns: 100%;
+    margin-top: 12px;
+  }
+  .p_bed_simple_container {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .p_bed_detailed_container {
+    width: 100%;
+  }
+  .pbm_header_container {
+    margin-top: 12px;
+    justify-content: space-between;
+  }
+  .pbmh_pre_btn,
+  .pbmh_light_on_btn,
+  .pbmh_checked_trigger_label,
+  .pbmh_checked_submit_btn,
+  .pbmh_next_btn {
+    font-size: 16px;
+    position: relative;
+  }
+  .pbmh_light_on_btn,
+  .pbmh_next_btn,
+  .pbmh_checked_trigger_label {
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+    margin: 4px;
+  }
+  .pbmh_checked_trigger_label {
+    width: auto;
+  }
+  .pbm_main_container {
+    padding: 0px;
+  }
+  .med_card_title_container {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 8px 0px 8px 8px;
+  }
+  .med_card_info_container {
+    grid-template-columns: 50% 50%;
+  }
+  .med_card_checkbox_label {
+    width: 15%;
+  }
+  .med_card_main_display_container {
+    width: 85%;
+  }
+  .med_card_big_bottle_icon {
+    margin-right: 0px;
+  }
+  .med_detail_info_div {
+    margin-top: 8px;
+  }
+  .med_more_info_container {
+    justify-content: space-between;
+  }
+  .d_carts_list_contaienr {
+    /* grid-template-columns: 20% 20% 20% 20% 20%; */
+    grid-template-columns: 50% 50%;
+  }
+  .pbm_footer_container {
+    position: relative;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+  .pbmf_submit_btn {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    bottom: -50px;
+    left: 0px;
+    text-align: center;
+    padding: 6px;
+  }
+  .med_card_code,
+  .med_card_ordseq,
+  .med_card_name,
+  .med_card_cht_name,
+  .med_card_unit,
+  .med_card_dosage,
+  .med_card_route,
+  .med_card_freqn {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .med_card_name,
+  .med_card_qty,
+  .med_card_other_phar {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .med_card_other_phar {
+    margin-bottom: 4px;
+  }
+  .med_card_qty {
+    font-size: 20px;
+    flex-direction: row;
+  }
+  .fixed {
+    margin-top: 0px;
+    padding: 0px 40px;
+  }
+  .fixed_1 {
+    margin-top: 0px;
+    padding: 20px 40px;
+  }
+}

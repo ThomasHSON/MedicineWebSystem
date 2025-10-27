@@ -1,0 +1,59 @@
+.popup_insurance_regulations_div {
+    width: 92vw;
+    width: 92svw;
+    height: 92vh;
+    height: 92svh;
+    max-width: 800px;
+    display: flex !important;
+    justify-content: start !important;
+    justify-content: flex-start !important;
+    flex-direction: column;
+}
+
+.ppir_header_container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+.ppir_h_title {
+    padding: 4px 48px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    background-color: rgb(222, 222, 222);
+    color: #000000;
+    border-radius: 5px;
+}
+.ppir_h_close_btn {
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    width: 36px;
+    top: 0px;
+    right: 0px;
+}
+.ppir_main_container {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+}
+.ppir_med_info_container {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+}
+.ppir_main_content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.ppir_footer_container {
+    display: flex;
+}
+.ppir_main_img {
+    width: 100%;
+    object-fit: cover;
+    padding: 16px;
+}
