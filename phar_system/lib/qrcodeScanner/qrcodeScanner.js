@@ -253,6 +253,7 @@ async function getScanResult(videoEl, canvasEl) {
     console.log(result.results[0].code);
 
     let barcodeResult = await getBarCodeSearch(result.results[0].code);
+    console.log(barcodeResult);
     if (barcodeResult.Code == 200) {
       if (Array.isArray(barcodeResult.Data)) {
         qrCodeScanner.getMedResult(barcodeResult.Data);
@@ -317,7 +318,7 @@ async function getBarCodeSearch(barcode) {
       method: "POST",
       body: JSON.stringify(post),
     });
-    console.log("fasdff");
+    // console.log("fasdff");
     return rsp.json();
   } catch (err) {
     console.error(err);

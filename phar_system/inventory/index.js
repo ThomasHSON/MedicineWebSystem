@@ -248,8 +248,8 @@ async function init() {
   );
   qrCodeScanner.init(
     "https://36.230.221.108:3804/barcode",
-    `${api_ip}/api/MED_page/serch_by_BarCode`,
-    `${api_ip}/api/MED_page/add_med_clouds`,
+    `${api_ip}api/MED_page/serch_by_BarCode`,
+    `${api_ip}api/MED_page/add_med_clouds`,
     header_search_text_img_icon,
     medicine_page.Data,
     show_barcode_search
@@ -394,22 +394,20 @@ function Replace_data_by_content(_data) {
   Refresh_rows();
 }
 function show_barcode_search(res) {
+  console.log(res);
   let temp_index = {};
   for (let i = 0; i < data.Data[0].Contents.length; i++) {
     temp_index[`${data.Data[0].Contents[i].CODE}`] = i;
   }
 
-  if (Array.isArray(res.Data)) {
-    res.Data.forEach((element, index) => {
+  if (Array.isArray(res)) {
+    res.forEach((element, index) => {
       if (element.FILE_STATUS != "關檔中") {
         console.log("CODE", element.CODE);
         show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
         header_serch_text.blur();
         return;
-      } else if (
-        element.FILE_STATUS == "關檔中" &&
-        index == response.Data.length - 1
-      ) {
+      } else if (element.FILE_STATUS == "關檔中" && index == res.length - 1) {
         alert("藥品資料已鎖檔，無法進行盤點");
         return;
       }
