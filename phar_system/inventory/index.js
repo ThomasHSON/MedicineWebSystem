@@ -22,6 +22,7 @@ let medicine_page = [];
 Window.load = load;
 var Header_state;
 let ai_api_ip;
+let config_url;
 
 let inventory_checked = "check";
 
@@ -246,8 +247,9 @@ async function init() {
   const header_search_text_img_icon = document.querySelector(
     ".header_search_text_img_icon"
   );
+  config_url = await get_config_url();
   qrCodeScanner.init(
-    "https://36.230.221.108:3804/barcode",
+    `${config_url.ai}/barcode`,
     `${api_ip}api/MED_page/serch_by_BarCode`,
     `${api_ip}api/MED_page/add_med_clouds`,
     header_search_text_img_icon,
