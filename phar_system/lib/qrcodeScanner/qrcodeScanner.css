@@ -191,7 +191,9 @@
   color: #d43636;
 }
 .qcb_input {
+  box-sizing: border-box;
   width: 100%;
+  display: block;
   padding: 0.5rem 1rem;
   color: rgb(75 85 99);
   border-radius: 0.5rem;
