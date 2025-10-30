@@ -26,12 +26,14 @@ const qrCodeScanner = {
   updateMedAPIUrl: null,
 };
 
+// qrCodeScannerInit(掃描條碼API, 條碼搜尋藥品API, 藥品建立條碼API, 相機開啟按鈕綁定, 藥品清單檔案, 條碼搜尋結果func返回)
 function qrCodeScannerInit(
   scan_url,
   search_url,
-  set_func,
+  updateUrl,
+  btnEl,
   medicine_info,
-  updateUrl
+  set_func
 ) {
   const body = document.querySelector("body");
   body.style.position = "relative";
@@ -42,6 +44,9 @@ function qrCodeScannerInit(
   qrCodeScanner.getMedResult = set_func;
   qrCodeScanner.medicine_info = medicine_info;
   qrCodeScanner.updateMedAPIUrl = updateUrl;
+  btnEl.addEventListener("click", () => {
+    cameraOn();
+  });
 }
 
 function qrCodeScannerSet(bodyElement) {
@@ -359,7 +364,7 @@ function qrCodeBuilderSet(bodyElement) {
     let temp_result = await buildBarCodeAPI();
     console.log(temp_result);
     if (temp_result.Code == 200) {
-      qrCodeScanner.getMedResult(temp_result.Data[0]);
+      qrCodeScanner.getMedResult(temp_result.Data);
       button.classList.remove(`${temp_str}button_uncheckable`);
       button.innerHTML = "確認建立";
       barCodeBuildOff();
