@@ -428,7 +428,8 @@ async function serch_CODE_input_enter(barcode) {
   if (medicine_page == undefined) return;
   if (response == undefined) return;
   if (response.Data.length == 0) {
-    alert("查無此藥品");
+    qrCodeScanner.barCodeSetOn(barcode);
+    alert("查無此條碼，請建立藥品條碼");
     return;
   }
 
