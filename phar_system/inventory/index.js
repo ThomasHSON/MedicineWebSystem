@@ -418,17 +418,6 @@ function show_barcode_search(res) {
         if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
       }
     }
-    // res.forEach((element, index) => {
-    //   if (element.FILE_STATUS != "關檔中") {
-    //     console.log("CODE", element.CODE);
-    //     show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
-    //     header_serch_text.blur();
-    //     return;
-    //   } else if (element.FILE_STATUS == "關檔中" && index == res.length - 1) {
-    //     alert("藥品資料已鎖檔，無法進行盤點");
-    //     return;
-    //   }
-    // });
   }
 }
 async function serch_CODE_input_enter(barcode) {
@@ -449,20 +438,21 @@ async function serch_CODE_input_enter(barcode) {
   }
 
   if (Array.isArray(response.Data)) {
-    response.Data.forEach((element, index) => {
+    let temp_count = 0;
+    for (let index = 0; index < response.Data.length; index++) {
+      const element = response.Data[index];
       if (element.FILE_STATUS != "關檔中") {
         console.log("CODE", element.CODE);
         show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
         header_serch_text.blur();
-        return;
-      } else if (
-        element.FILE_STATUS == "關檔中" &&
-        index == response.Data.length - 1
-      ) {
-        alert("藥品資料已鎖檔，無法進行盤點");
-        return;
+        temp_count++;
       }
-    });
+      if (index == response.Data.length - 1) {
+        console.log("asdgfasdf", temp_count);
+        if (temp_count == 0) alert("藥品資料已鎖檔，無法進行盤點");
+        if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
+      }
+    }
   }
   // for (var i = 0; i < data.Data[0].Contents.length; i++) {
   //   const CODE = data.Data[0].Contents[i].CODE;
