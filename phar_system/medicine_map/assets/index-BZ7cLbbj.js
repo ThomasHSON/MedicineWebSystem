@@ -73,25 +73,25 @@ var Nc = {
   },
   jc = Object.assign,
   Sc = {};
-function _r(e, t, n) {
+function Dr(e, t, n) {
   (this.props = e),
     (this.context = t),
     (this.refs = Sc),
     (this.updater = n || Nc);
 }
-_r.prototype.isReactComponent = {};
-_r.prototype.setState = function (e, t) {
+Dr.prototype.isReactComponent = {};
+Dr.prototype.setState = function (e, t) {
   if (typeof e != "object" && typeof e != "function" && e != null)
     throw Error(
       "setState(...): takes an object of state variables to update or a function which returns an object of state variables."
     );
   this.updater.enqueueSetState(this, e, t, "setState");
 };
-_r.prototype.forceUpdate = function (e) {
+Dr.prototype.forceUpdate = function (e) {
   this.updater.enqueueForceUpdate(this, e, "forceUpdate");
 };
 function Cc() {}
-Cc.prototype = _r.prototype;
+Cc.prototype = Dr.prototype;
 function da(e, t, n) {
   (this.props = e),
     (this.context = t),
@@ -100,13 +100,13 @@ function da(e, t, n) {
 }
 var fa = (da.prototype = new Cc());
 fa.constructor = da;
-jc(fa, _r.prototype);
+jc(fa, Dr.prototype);
 fa.isPureReactComponent = !0;
 var ci = Array.isArray,
   kc = Object.prototype.hasOwnProperty,
   pa = { current: null },
-  _c = { key: !0, ref: !0, __self: !0, __source: !0 };
-function Dc(e, t, n) {
+  Dc = { key: !0, ref: !0, __self: !0, __source: !0 };
+function _c(e, t, n) {
   var r,
     o = {},
     l = null,
@@ -115,7 +115,7 @@ function Dc(e, t, n) {
     for (r in (t.ref !== void 0 && (a = t.ref),
     t.key !== void 0 && (l = "" + t.key),
     t))
-      kc.call(t, r) && !_c.hasOwnProperty(r) && (o[r] = t[r]);
+      kc.call(t, r) && !Dc.hasOwnProperty(r) && (o[r] = t[r]);
   var i = arguments.length - 2;
   if (i === 1) o.children = n;
   else if (1 < i) {
@@ -161,7 +161,7 @@ function Ho(e, t) {
     ? hf("" + e.key)
     : t.toString(36);
 }
-function Bs(e, t, n, r, o) {
+function zs(e, t, n, r, o) {
   var l = typeof e;
   (l === "undefined" || l === "boolean") && (e = null);
   var a = !1;
@@ -187,7 +187,7 @@ function Bs(e, t, n, r, o) {
       ci(o)
         ? ((n = ""),
           e != null && (n = e.replace(ui, "$&/") + "/"),
-          Bs(o, t, n, "", function (h) {
+          zs(o, t, n, "", function (h) {
             return h;
           }))
         : o != null &&
@@ -207,11 +207,11 @@ function Bs(e, t, n, r, o) {
     for (var i = 0; i < e.length; i++) {
       l = e[i];
       var c = r + Ho(l, i);
-      a += Bs(l, t, n, c, o);
+      a += zs(l, t, n, c, o);
     }
   else if (((c = pf(e)), typeof c == "function"))
     for (e = c.call(e), i = 0; !(l = e.next()).done; )
-      (l = l.value), (c = r + Ho(l, i++)), (a += Bs(l, t, n, c, o));
+      (l = l.value), (c = r + Ho(l, i++)), (a += zs(l, t, n, c, o));
   else if (l === "object")
     throw (
       ((t = String(e)),
@@ -230,7 +230,7 @@ function js(e, t, n) {
   var r = [],
     o = 0;
   return (
-    Bs(e, r, "", "", function (l) {
+    zs(e, r, "", "", function (l) {
       return t.call(n, l, o++);
     }),
     r
@@ -256,10 +256,10 @@ function gf(e) {
   throw e._result;
 }
 var dt = { current: null },
-  Gs = { transition: null },
+  Fs = { transition: null },
   xf = {
     ReactCurrentDispatcher: dt,
-    ReactCurrentBatchConfig: Gs,
+    ReactCurrentBatchConfig: Fs,
     ReactCurrentOwner: pa,
   };
 function Mc() {
@@ -300,7 +300,7 @@ Ee.Children = {
     return e;
   },
 };
-Ee.Component = _r;
+Ee.Component = Dr;
 Ee.Fragment = rf;
 Ee.Profiler = of;
 Ee.PureComponent = da;
@@ -328,7 +328,7 @@ Ee.cloneElement = function (e, t, n) {
       var i = e.type.defaultProps;
     for (c in t)
       kc.call(t, c) &&
-        !_c.hasOwnProperty(c) &&
+        !Dc.hasOwnProperty(c) &&
         (r[c] = t[c] === void 0 && i !== void 0 ? i[c] : t[c]);
   }
   var c = arguments.length - 2;
@@ -356,9 +356,9 @@ Ee.createContext = function (e) {
     (e.Consumer = e)
   );
 };
-Ee.createElement = Dc;
+Ee.createElement = _c;
 Ee.createFactory = function (e) {
-  var t = Dc.bind(null, e);
+  var t = _c.bind(null, e);
   return (t.type = e), t;
 };
 Ee.createRef = function () {
@@ -375,12 +375,12 @@ Ee.memo = function (e, t) {
   return { $$typeof: df, type: e, compare: t === void 0 ? null : t };
 };
 Ee.startTransition = function (e) {
-  var t = Gs.transition;
-  Gs.transition = {};
+  var t = Fs.transition;
+  Fs.transition = {};
   try {
     e();
   } finally {
-    Gs.transition = t;
+    Fs.transition = t;
   }
 };
 Ee.unstable_act = Mc;
@@ -429,8 +429,8 @@ Ee.useTransition = function () {
 };
 Ee.version = "18.3.1";
 bc.exports = Ee;
-var m = bc.exports;
-const Zs = tf(m);
+var p = bc.exports;
+const Zs = tf(p);
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -439,7 +439,7 @@ const Zs = tf(m);
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */ var yf = m,
+ */ var yf = p,
   vf = Symbol.for("react.element"),
   wf = Symbol.for("react.fragment"),
   bf = Object.prototype.hasOwnProperty,
@@ -470,9 +470,9 @@ Co.jsx = Ec;
 Co.jsxs = Ec;
 wc.exports = Co;
 var s = wc.exports,
-  Pc = { exports: {} },
-  Ct = {},
   Ic = { exports: {} },
+  Ct = {},
+  Pc = { exports: {} },
   Rc = {};
 /**
  * @license React
@@ -483,43 +483,43 @@ var s = wc.exports,
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */ (function (e) {
-  function t(k, Q) {
-    var de = k.length;
-    k.push(Q);
-    e: for (; 0 < de; ) {
-      var X = (de - 1) >>> 1,
-        ne = k[X];
-      if (0 < o(ne, Q)) (k[X] = Q), (k[de] = ne), (de = X);
+  function t(S, Q) {
+    var ie = S.length;
+    S.push(Q);
+    e: for (; 0 < ie; ) {
+      var X = (ie - 1) >>> 1,
+        oe = S[X];
+      if (0 < o(oe, Q)) (S[X] = Q), (S[ie] = oe), (ie = X);
       else break e;
     }
   }
-  function n(k) {
-    return k.length === 0 ? null : k[0];
+  function n(S) {
+    return S.length === 0 ? null : S[0];
   }
-  function r(k) {
-    if (k.length === 0) return null;
-    var Q = k[0],
-      de = k.pop();
-    if (de !== Q) {
-      k[0] = de;
-      e: for (var X = 0, ne = k.length, je = ne >>> 1; X < je; ) {
-        var oe = 2 * (X + 1) - 1,
-          ve = k[oe],
-          $ = oe + 1,
-          le = k[$];
-        if (0 > o(ve, de))
-          $ < ne && 0 > o(le, ve)
-            ? ((k[X] = le), (k[$] = de), (X = $))
-            : ((k[X] = ve), (k[oe] = de), (X = oe));
-        else if ($ < ne && 0 > o(le, de)) (k[X] = le), (k[$] = de), (X = $);
+  function r(S) {
+    if (S.length === 0) return null;
+    var Q = S[0],
+      ie = S.pop();
+    if (ie !== Q) {
+      S[0] = ie;
+      e: for (var X = 0, oe = S.length, Ne = oe >>> 1; X < Ne; ) {
+        var le = 2 * (X + 1) - 1,
+          ye = S[le],
+          U = le + 1,
+          ae = S[U];
+        if (0 > o(ye, ie))
+          U < oe && 0 > o(ae, ye)
+            ? ((S[X] = ae), (S[U] = ie), (X = U))
+            : ((S[X] = ye), (S[le] = ie), (X = le));
+        else if (U < oe && 0 > o(ae, ie)) (S[X] = ae), (S[U] = ie), (X = U);
         else break e;
       }
     }
     return Q;
   }
-  function o(k, Q) {
-    var de = k.sortIndex - Q.sortIndex;
-    return de !== 0 ? de : k.id - Q.id;
+  function o(S, Q) {
+    var ie = S.sortIndex - Q.sortIndex;
+    return ie !== 0 ? ie : S.id - Q.id;
   }
   if (typeof performance == "object" && typeof performance.now == "function") {
     var l = performance;
@@ -536,106 +536,106 @@ var s = wc.exports,
   var c = [],
     h = [],
     d = 1,
-    g = null,
-    p = 3,
-    w = !1,
-    v = !1,
+    x = null,
+    m = 3,
     b = !1,
-    _ = typeof setTimeout == "function" ? setTimeout : null,
+    v = !1,
+    N = !1,
+    E = typeof setTimeout == "function" ? setTimeout : null,
     u = typeof clearTimeout == "function" ? clearTimeout : null,
     f = typeof setImmediate < "u" ? setImmediate : null;
   typeof navigator < "u" &&
     navigator.scheduling !== void 0 &&
     navigator.scheduling.isInputPending !== void 0 &&
     navigator.scheduling.isInputPending.bind(navigator.scheduling);
-  function x(k) {
+  function g(S) {
     for (var Q = n(h); Q !== null; ) {
       if (Q.callback === null) r(h);
-      else if (Q.startTime <= k)
+      else if (Q.startTime <= S)
         r(h), (Q.sortIndex = Q.expirationTime), t(c, Q);
       else break;
       Q = n(h);
     }
   }
-  function j(k) {
-    if (((b = !1), x(k), !v))
-      if (n(c) !== null) (v = !0), M(L);
+  function C(S) {
+    if (((N = !1), g(S), !v))
+      if (n(c) !== null) (v = !0), w(B);
       else {
         var Q = n(h);
-        Q !== null && F(j, Q.startTime - k);
+        Q !== null && O(C, Q.startTime - S);
       }
   }
-  function L(k, Q) {
-    (v = !1), b && ((b = !1), u(N), (N = -1)), (w = !0);
-    var de = p;
+  function B(S, Q) {
+    (v = !1), N && ((N = !1), u(j), (j = -1)), (b = !0);
+    var ie = m;
     try {
       for (
-        x(Q), g = n(c);
-        g !== null && (!(g.expirationTime > Q) || (k && !O()));
+        g(Q), x = n(c);
+        x !== null && (!(x.expirationTime > Q) || (S && !F()));
 
       ) {
-        var X = g.callback;
+        var X = x.callback;
         if (typeof X == "function") {
-          (g.callback = null), (p = g.priorityLevel);
-          var ne = X(g.expirationTime <= Q);
+          (x.callback = null), (m = x.priorityLevel);
+          var oe = X(x.expirationTime <= Q);
           (Q = e.unstable_now()),
-            typeof ne == "function" ? (g.callback = ne) : g === n(c) && r(c),
-            x(Q);
+            typeof oe == "function" ? (x.callback = oe) : x === n(c) && r(c),
+            g(Q);
         } else r(c);
-        g = n(c);
+        x = n(c);
       }
-      if (g !== null) var je = !0;
+      if (x !== null) var Ne = !0;
       else {
-        var oe = n(h);
-        oe !== null && F(j, oe.startTime - Q), (je = !1);
+        var le = n(h);
+        le !== null && O(C, le.startTime - Q), (Ne = !1);
       }
-      return je;
+      return Ne;
     } finally {
-      (g = null), (p = de), (w = !1);
+      (x = null), (m = ie), (b = !1);
     }
   }
-  var P = !1,
-    R = null,
-    N = -1,
-    I = 5,
-    S = -1;
-  function O() {
-    return !(e.unstable_now() - S < I);
+  var I = !1,
+    A = null,
+    j = -1,
+    z = 5,
+    D = -1;
+  function F() {
+    return !(e.unstable_now() - D < z);
   }
   function G() {
-    if (R !== null) {
-      var k = e.unstable_now();
-      S = k;
+    if (A !== null) {
+      var S = e.unstable_now();
+      D = S;
       var Q = !0;
       try {
-        Q = R(!0, k);
+        Q = A(!0, S);
       } finally {
-        Q ? E() : ((P = !1), (R = null));
+        Q ? P() : ((I = !1), (A = null));
       }
-    } else P = !1;
+    } else I = !1;
   }
-  var E;
+  var P;
   if (typeof f == "function")
-    E = function () {
+    P = function () {
       f(G);
     };
   else if (typeof MessageChannel < "u") {
-    var C = new MessageChannel(),
-      Z = C.port2;
-    (C.port1.onmessage = G),
-      (E = function () {
-        Z.postMessage(null);
+    var M = new MessageChannel(),
+      ee = M.port2;
+    (M.port1.onmessage = G),
+      (P = function () {
+        ee.postMessage(null);
       });
   } else
-    E = function () {
-      _(G, 0);
+    P = function () {
+      E(G, 0);
     };
-  function M(k) {
-    (R = k), P || ((P = !0), E());
+  function w(S) {
+    (A = S), I || ((I = !0), P());
   }
-  function F(k, Q) {
-    N = _(function () {
-      k(e.unstable_now());
+  function O(S, Q) {
+    j = E(function () {
+      S(e.unstable_now());
     }, Q);
   }
   (e.unstable_IdlePriority = 5),
@@ -644,47 +644,47 @@ var s = wc.exports,
     (e.unstable_NormalPriority = 3),
     (e.unstable_Profiling = null),
     (e.unstable_UserBlockingPriority = 2),
-    (e.unstable_cancelCallback = function (k) {
-      k.callback = null;
+    (e.unstable_cancelCallback = function (S) {
+      S.callback = null;
     }),
     (e.unstable_continueExecution = function () {
-      v || w || ((v = !0), M(L));
+      v || b || ((v = !0), w(B));
     }),
-    (e.unstable_forceFrameRate = function (k) {
-      0 > k || 125 < k
+    (e.unstable_forceFrameRate = function (S) {
+      0 > S || 125 < S
         ? console.error(
             "forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"
           )
-        : (I = 0 < k ? Math.floor(1e3 / k) : 5);
+        : (z = 0 < S ? Math.floor(1e3 / S) : 5);
     }),
     (e.unstable_getCurrentPriorityLevel = function () {
-      return p;
+      return m;
     }),
     (e.unstable_getFirstCallbackNode = function () {
       return n(c);
     }),
-    (e.unstable_next = function (k) {
-      switch (p) {
+    (e.unstable_next = function (S) {
+      switch (m) {
         case 1:
         case 2:
         case 3:
           var Q = 3;
           break;
         default:
-          Q = p;
+          Q = m;
       }
-      var de = p;
-      p = Q;
+      var ie = m;
+      m = Q;
       try {
-        return k();
+        return S();
       } finally {
-        p = de;
+        m = ie;
       }
     }),
     (e.unstable_pauseExecution = function () {}),
     (e.unstable_requestPaint = function () {}),
-    (e.unstable_runWithPriority = function (k, Q) {
-      switch (k) {
+    (e.unstable_runWithPriority = function (S, Q) {
+      switch (S) {
         case 1:
         case 2:
         case 3:
@@ -692,76 +692,76 @@ var s = wc.exports,
         case 5:
           break;
         default:
-          k = 3;
+          S = 3;
       }
-      var de = p;
-      p = k;
+      var ie = m;
+      m = S;
       try {
         return Q();
       } finally {
-        p = de;
+        m = ie;
       }
     }),
-    (e.unstable_scheduleCallback = function (k, Q, de) {
+    (e.unstable_scheduleCallback = function (S, Q, ie) {
       var X = e.unstable_now();
       switch (
-        (typeof de == "object" && de !== null
-          ? ((de = de.delay),
-            (de = typeof de == "number" && 0 < de ? X + de : X))
-          : (de = X),
-        k)
+        (typeof ie == "object" && ie !== null
+          ? ((ie = ie.delay),
+            (ie = typeof ie == "number" && 0 < ie ? X + ie : X))
+          : (ie = X),
+        S)
       ) {
         case 1:
-          var ne = -1;
+          var oe = -1;
           break;
         case 2:
-          ne = 250;
+          oe = 250;
           break;
         case 5:
-          ne = 1073741823;
+          oe = 1073741823;
           break;
         case 4:
-          ne = 1e4;
+          oe = 1e4;
           break;
         default:
-          ne = 5e3;
+          oe = 5e3;
       }
       return (
-        (ne = de + ne),
-        (k = {
+        (oe = ie + oe),
+        (S = {
           id: d++,
           callback: Q,
-          priorityLevel: k,
-          startTime: de,
-          expirationTime: ne,
+          priorityLevel: S,
+          startTime: ie,
+          expirationTime: oe,
           sortIndex: -1,
         }),
-        de > X
-          ? ((k.sortIndex = de),
-            t(h, k),
+        ie > X
+          ? ((S.sortIndex = ie),
+            t(h, S),
             n(c) === null &&
-              k === n(h) &&
-              (b ? (u(N), (N = -1)) : (b = !0), F(j, de - X)))
-          : ((k.sortIndex = ne), t(c, k), v || w || ((v = !0), M(L))),
-        k
+              S === n(h) &&
+              (N ? (u(j), (j = -1)) : (N = !0), O(C, ie - X)))
+          : ((S.sortIndex = oe), t(c, S), v || b || ((v = !0), w(B))),
+        S
       );
     }),
-    (e.unstable_shouldYield = O),
-    (e.unstable_wrapCallback = function (k) {
-      var Q = p;
+    (e.unstable_shouldYield = F),
+    (e.unstable_wrapCallback = function (S) {
+      var Q = m;
       return function () {
-        var de = p;
-        p = Q;
+        var ie = m;
+        m = Q;
         try {
-          return k.apply(this, arguments);
+          return S.apply(this, arguments);
         } finally {
-          p = de;
+          m = ie;
         }
       };
     });
 })(Rc);
-Ic.exports = Rc;
-var Sf = Ic.exports;
+Pc.exports = Rc;
+var Sf = Pc.exports;
 /**
  * @license React
  * react-dom.production.min.js
@@ -770,9 +770,9 @@ var Sf = Ic.exports;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */ var Cf = m,
+ */ var Cf = p,
   St = Sf;
-function J(e) {
+function te(e) {
   for (
     var t = "https://reactjs.org/docs/error-decoder.html?invariant=" + e, n = 1;
     n < arguments.length;
@@ -805,7 +805,7 @@ var on = !(
     /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,
   di = {},
   fi = {};
-function _f(e) {
+function Df(e) {
   return yl.call(fi, e)
     ? !0
     : yl.call(di, e)
@@ -814,7 +814,7 @@ function _f(e) {
     ? (fi[e] = !0)
     : ((di[e] = !0), !1);
 }
-function Df(e, t, n, r) {
+function _f(e, t, n, r) {
   if (n !== null && n.type === 0) return !1;
   switch (typeof t) {
     case "function":
@@ -831,7 +831,7 @@ function Df(e, t, n, r) {
   }
 }
 function Mf(e, t, n, r) {
-  if (t === null || typeof t > "u" || Df(e, t, n, r)) return !0;
+  if (t === null || typeof t > "u" || _f(e, t, n, r)) return !0;
   if (r) return !1;
   if (n !== null)
     switch (n.type) {
@@ -944,7 +944,7 @@ function xa(e, t, n, r) {
       (t[1] !== "n" && t[1] !== "N")) &&
     (Mf(t, n, o, r) && (n = null),
     r || o === null
-      ? _f(t) && (n === null ? e.removeAttribute(t) : e.setAttribute(t, "" + n))
+      ? Df(t) && (n === null ? e.removeAttribute(t) : e.setAttribute(t, "" + n))
       : o.mustUseProperty
       ? (e[o.propertyName] = n === null ? (o.type === 3 ? !1 : "") : n)
       : ((t = o.attributeName),
@@ -976,9 +976,9 @@ function Rr(e) {
     : ((e = (pi && e[pi]) || e["@@iterator"]),
       typeof e == "function" ? e : null);
 }
-var Fe = Object.assign,
+var Ge = Object.assign,
   Vo;
-function Br(e) {
+function zr(e) {
   if (Vo === void 0)
     try {
       throw Error();
@@ -994,7 +994,7 @@ function Br(e) {
   );
 }
 var Wo = !1;
-function Qo(e, t) {
+function qo(e, t) {
   if (!e || Wo) return "";
   Wo = !0;
   var n = Error.prepareStackTrace;
@@ -1069,26 +1069,26 @@ function Qo(e, t) {
   } finally {
     (Wo = !1), (Error.prepareStackTrace = n);
   }
-  return (e = e ? e.displayName || e.name : "") ? Br(e) : "";
+  return (e = e ? e.displayName || e.name : "") ? zr(e) : "";
 }
 function Ef(e) {
   switch (e.tag) {
     case 5:
-      return Br(e.type);
+      return zr(e.type);
     case 16:
-      return Br("Lazy");
+      return zr("Lazy");
     case 13:
-      return Br("Suspense");
+      return zr("Suspense");
     case 19:
-      return Br("SuspenseList");
+      return zr("SuspenseList");
     case 0:
     case 2:
     case 15:
-      return (e = Qo(e.type, !1)), e;
+      return (e = qo(e.type, !1)), e;
     case 11:
-      return (e = Qo(e.type.render, !1)), e;
+      return (e = qo(e.type.render, !1)), e;
     case 1:
-      return (e = Qo(e.type, !0)), e;
+      return (e = qo(e.type, !0)), e;
     default:
       return "";
   }
@@ -1138,7 +1138,7 @@ function Nl(e) {
     }
   return null;
 }
-function Pf(e) {
+function If(e) {
   var t = e.type;
   switch (e.tag) {
     case 24:
@@ -1192,7 +1192,7 @@ function Pf(e) {
   }
   return null;
 }
-function _n(e) {
+function Dn(e) {
   switch (typeof e) {
     case "boolean":
     case "number":
@@ -1213,7 +1213,7 @@ function Lc(e) {
     (t === "checkbox" || t === "radio")
   );
 }
-function If(e) {
+function Pf(e) {
   var t = Lc(e) ? "checked" : "value",
     n = Object.getOwnPropertyDescriptor(e.constructor.prototype, t),
     r = "" + e[t];
@@ -1251,7 +1251,7 @@ function If(e) {
   }
 }
 function Cs(e) {
-  e._valueTracker || (e._valueTracker = If(e));
+  e._valueTracker || (e._valueTracker = Pf(e));
 }
 function Uc(e) {
   if (!e) return !1;
@@ -1276,7 +1276,7 @@ function eo(e) {
 }
 function jl(e, t) {
   var n = t.checked;
-  return Fe({}, t, {
+  return Ge({}, t, {
     defaultChecked: void 0,
     defaultValue: void 0,
     value: void 0,
@@ -1286,7 +1286,7 @@ function jl(e, t) {
 function mi(e, t) {
   var n = t.defaultValue == null ? "" : t.defaultValue,
     r = t.checked != null ? t.checked : t.defaultChecked;
-  (n = _n(t.value != null ? t.value : n)),
+  (n = Dn(t.value != null ? t.value : n)),
     (e._wrapperState = {
       initialChecked: r,
       initialValue: n,
@@ -1296,12 +1296,12 @@ function mi(e, t) {
           : t.value != null,
     });
 }
-function zc(e, t) {
+function Bc(e, t) {
   (t = t.checked), t != null && xa(e, "checked", t, !1);
 }
 function Sl(e, t) {
-  zc(e, t);
-  var n = _n(t.value),
+  Bc(e, t);
+  var n = Dn(t.value),
     r = t.type;
   if (n != null)
     r === "number"
@@ -1313,7 +1313,7 @@ function Sl(e, t) {
   }
   t.hasOwnProperty("value")
     ? Cl(e, t.type, n)
-    : t.hasOwnProperty("defaultValue") && Cl(e, t.type, _n(t.defaultValue)),
+    : t.hasOwnProperty("defaultValue") && Cl(e, t.type, Dn(t.defaultValue)),
     t.checked == null &&
       t.defaultChecked != null &&
       (e.defaultChecked = !!t.defaultChecked);
@@ -1343,7 +1343,7 @@ function Cl(e, t, n) {
       ? (e.defaultValue = "" + e._wrapperState.initialValue)
       : e.defaultValue !== "" + n && (e.defaultValue = "" + n));
 }
-var Gr = Array.isArray;
+var Fr = Array.isArray;
 function pr(e, t, n, r) {
   if (((e = e.options), t)) {
     t = {};
@@ -1353,7 +1353,7 @@ function pr(e, t, n, r) {
         e[n].selected !== o && (e[n].selected = o),
         o && r && (e[n].defaultSelected = !0);
   } else {
-    for (n = "" + _n(n), t = null, o = 0; o < e.length; o++) {
+    for (n = "" + Dn(n), t = null, o = 0; o < e.length; o++) {
       if (e[o].value === n) {
         (e[o].selected = !0), r && (e[o].defaultSelected = !0);
         return;
@@ -1364,8 +1364,8 @@ function pr(e, t, n, r) {
   }
 }
 function kl(e, t) {
-  if (t.dangerouslySetInnerHTML != null) throw Error(J(91));
-  return Fe({}, t, {
+  if (t.dangerouslySetInnerHTML != null) throw Error(te(91));
+  return Ge({}, t, {
     value: void 0,
     defaultValue: void 0,
     children: "" + e._wrapperState.initialValue,
@@ -1375,20 +1375,20 @@ function gi(e, t) {
   var n = t.value;
   if (n == null) {
     if (((n = t.children), (t = t.defaultValue), n != null)) {
-      if (t != null) throw Error(J(92));
-      if (Gr(n)) {
-        if (1 < n.length) throw Error(J(93));
+      if (t != null) throw Error(te(92));
+      if (Fr(n)) {
+        if (1 < n.length) throw Error(te(93));
         n = n[0];
       }
       t = n;
     }
     t == null && (t = ""), (n = t);
   }
-  e._wrapperState = { initialValue: _n(n) };
+  e._wrapperState = { initialValue: Dn(n) };
 }
-function Bc(e, t) {
-  var n = _n(t.value),
-    r = _n(t.defaultValue);
+function zc(e, t) {
+  var n = Dn(t.value),
+    r = Dn(t.defaultValue);
   n != null &&
     ((n = "" + n),
     n !== e.value && (e.value = n),
@@ -1399,7 +1399,7 @@ function xi(e) {
   var t = e.textContent;
   t === e._wrapperState.initialValue && t !== "" && t !== null && (e.value = t);
 }
-function Gc(e) {
+function Fc(e) {
   switch (e) {
     case "svg":
       return "http://www.w3.org/2000/svg";
@@ -1409,15 +1409,15 @@ function Gc(e) {
       return "http://www.w3.org/1999/xhtml";
   }
 }
-function _l(e, t) {
+function Dl(e, t) {
   return e == null || e === "http://www.w3.org/1999/xhtml"
-    ? Gc(t)
+    ? Fc(t)
     : e === "http://www.w3.org/2000/svg" && t === "foreignObject"
     ? "http://www.w3.org/1999/xhtml"
     : e;
 }
 var ks,
-  Fc = (function (e) {
+  Gc = (function (e) {
     return typeof MSApp < "u" && MSApp.execUnsafeLocalFunction
       ? function (t, n, r, o) {
           MSApp.execUnsafeLocalFunction(function () {
@@ -1517,7 +1517,7 @@ function Vc(e, t) {
       n === "float" && (n = "cssFloat"), r ? e.setProperty(n, o) : (e[n] = o);
     }
 }
-var Tf = Fe(
+var Tf = Ge(
   { menuitem: !0 },
   {
     area: !0,
@@ -1537,19 +1537,19 @@ var Tf = Fe(
     wbr: !0,
   }
 );
-function Dl(e, t) {
+function _l(e, t) {
   if (t) {
     if (Tf[e] && (t.children != null || t.dangerouslySetInnerHTML != null))
-      throw Error(J(137, e));
+      throw Error(te(137, e));
     if (t.dangerouslySetInnerHTML != null) {
-      if (t.children != null) throw Error(J(60));
+      if (t.children != null) throw Error(te(60));
       if (
         typeof t.dangerouslySetInnerHTML != "object" ||
         !("__html" in t.dangerouslySetInnerHTML)
       )
-        throw Error(J(61));
+        throw Error(te(61));
     }
-    if (t.style != null && typeof t.style != "object") throw Error(J(62));
+    if (t.style != null && typeof t.style != "object") throw Error(te(62));
   }
 }
 function Ml(e, t) {
@@ -1576,38 +1576,38 @@ function ba(e) {
     e.nodeType === 3 ? e.parentNode : e
   );
 }
-var Pl = null,
+var Il = null,
   mr = null,
   hr = null;
 function yi(e) {
   if ((e = ws(e))) {
-    if (typeof Pl != "function") throw Error(J(280));
+    if (typeof Il != "function") throw Error(te(280));
     var t = e.stateNode;
-    t && ((t = Eo(t)), Pl(e.stateNode, e.type, t));
+    t && ((t = Eo(t)), Il(e.stateNode, e.type, t));
   }
 }
 function Wc(e) {
   mr ? (hr ? hr.push(e) : (hr = [e])) : (mr = e);
 }
-function Qc() {
+function qc() {
   if (mr) {
     var e = mr,
       t = hr;
     if (((hr = mr = null), yi(e), t)) for (e = 0; e < t.length; e++) yi(t[e]);
   }
 }
-function Yc(e, t) {
+function Qc(e, t) {
   return e(t);
 }
-function qc() {}
-var Yo = !1;
+function Yc() {}
+var Qo = !1;
 function Xc(e, t, n) {
-  if (Yo) return e(t, n);
-  Yo = !0;
+  if (Qo) return e(t, n);
+  Qo = !0;
   try {
-    return Yc(e, t, n);
+    return Qc(e, t, n);
   } finally {
-    (Yo = !1), (mr !== null || hr !== null) && (qc(), Qc());
+    (Qo = !1), (mr !== null || hr !== null) && (Yc(), qc());
   }
 }
 function ns(e, t) {
@@ -1642,22 +1642,22 @@ function ns(e, t) {
       e = !1;
   }
   if (e) return null;
-  if (n && typeof n != "function") throw Error(J(231, t, typeof n));
+  if (n && typeof n != "function") throw Error(te(231, t, typeof n));
   return n;
 }
-var Il = !1;
+var Pl = !1;
 if (on)
   try {
     var Tr = {};
     Object.defineProperty(Tr, "passive", {
       get: function () {
-        Il = !0;
+        Pl = !0;
       },
     }),
       window.addEventListener("test", Tr, Tr),
       window.removeEventListener("test", Tr, Tr);
   } catch {
-    Il = !1;
+    Pl = !1;
   }
 function Af(e, t, n, r, o, l, a, i, c) {
   var h = Array.prototype.slice.call(arguments, 3);
@@ -1684,7 +1684,7 @@ function Lf(e, t, n, r, o, l, a, i, c) {
     if (Wr) {
       var h = to;
       (Wr = !1), (to = null);
-    } else throw Error(J(198));
+    } else throw Error(te(198));
     no || ((no = !0), (Rl = h));
   }
 }
@@ -1711,12 +1711,12 @@ function Kc(e) {
   return null;
 }
 function vi(e) {
-  if (Wn(e) !== e) throw Error(J(188));
+  if (Wn(e) !== e) throw Error(te(188));
 }
 function Uf(e) {
   var t = e.alternate;
   if (!t) {
-    if (((t = Wn(e)), t === null)) throw Error(J(188));
+    if (((t = Wn(e)), t === null)) throw Error(te(188));
     return t !== e ? null : e;
   }
   for (var n = e, r = t; ; ) {
@@ -1736,7 +1736,7 @@ function Uf(e) {
         if (l === r) return vi(o), t;
         l = l.sibling;
       }
-      throw Error(J(188));
+      throw Error(te(188));
     }
     if (n.return !== r.return) (n = o), (r = l);
     else {
@@ -1763,12 +1763,12 @@ function Uf(e) {
           }
           i = i.sibling;
         }
-        if (!a) throw Error(J(189));
+        if (!a) throw Error(te(189));
       }
     }
-    if (n.alternate !== r) throw Error(J(190));
+    if (n.alternate !== r) throw Error(te(190));
   }
-  if (n.tag !== 3) throw Error(J(188));
+  if (n.tag !== 3) throw Error(te(188));
   return n.stateNode.current === n ? e : t;
 }
 function Jc(e) {
@@ -1785,14 +1785,14 @@ function Zc(e) {
 }
 var eu = St.unstable_scheduleCallback,
   wi = St.unstable_cancelCallback,
-  zf = St.unstable_shouldYield,
-  Bf = St.unstable_requestPaint,
+  Bf = St.unstable_shouldYield,
+  zf = St.unstable_requestPaint,
   We = St.unstable_now,
-  Gf = St.unstable_getCurrentPriorityLevel,
+  Ff = St.unstable_getCurrentPriorityLevel,
   Na = St.unstable_ImmediatePriority,
   tu = St.unstable_UserBlockingPriority,
   ro = St.unstable_NormalPriority,
-  Ff = St.unstable_LowPriority,
+  Gf = St.unstable_LowPriority,
   nu = St.unstable_IdlePriority,
   ko = null,
   Kt = null;
@@ -1802,15 +1802,15 @@ function Hf(e) {
       Kt.onCommitFiberRoot(ko, e, void 0, (e.current.flags & 128) === 128);
     } catch {}
 }
-var Gt = Math.clz32 ? Math.clz32 : Qf,
+var Ft = Math.clz32 ? Math.clz32 : qf,
   Vf = Math.log,
   Wf = Math.LN2;
-function Qf(e) {
+function qf(e) {
   return (e >>>= 0), e === 0 ? 32 : (31 - ((Vf(e) / Wf) | 0)) | 0;
 }
-var _s = 64,
-  Ds = 4194304;
-function Fr(e) {
+var Ds = 64,
+  _s = 4194304;
+function Gr(e) {
   switch (e & -e) {
     case 1:
       return 1;
@@ -1868,8 +1868,8 @@ function so(e, t) {
     a = n & 268435455;
   if (a !== 0) {
     var i = a & ~o;
-    i !== 0 ? (r = Fr(i)) : ((l &= a), l !== 0 && (r = Fr(l)));
-  } else (a = n & ~o), a !== 0 ? (r = Fr(a)) : l !== 0 && (r = Fr(l));
+    i !== 0 ? (r = Gr(i)) : ((l &= a), l !== 0 && (r = Gr(l)));
+  } else (a = n & ~o), a !== 0 ? (r = Gr(a)) : l !== 0 && (r = Gr(l));
   if (r === 0) return 0;
   if (
     t !== 0 &&
@@ -1880,10 +1880,10 @@ function so(e, t) {
     return t;
   if ((r & 4 && (r |= n & 16), (t = e.entangledLanes), t !== 0))
     for (e = e.entanglements, t &= r; 0 < t; )
-      (n = 31 - Gt(t)), (o = 1 << n), (r |= e[n]), (t &= ~o);
+      (n = 31 - Ft(t)), (o = 1 << n), (r |= e[n]), (t &= ~o);
   return r;
 }
-function Yf(e, t) {
+function Qf(e, t) {
   switch (e) {
     case 1:
     case 2:
@@ -1924,7 +1924,7 @@ function Yf(e, t) {
       return -1;
   }
 }
-function qf(e, t) {
+function Yf(e, t) {
   for (
     var n = e.suspendedLanes,
       r = e.pingedLanes,
@@ -1933,11 +1933,11 @@ function qf(e, t) {
     0 < l;
 
   ) {
-    var a = 31 - Gt(l),
+    var a = 31 - Ft(l),
       i = 1 << a,
       c = o[a];
     c === -1
-      ? (!(i & n) || i & r) && (o[a] = Yf(i, t))
+      ? (!(i & n) || i & r) && (o[a] = Qf(i, t))
       : c <= t && (e.expiredLanes |= i),
       (l &= ~i);
   }
@@ -1949,10 +1949,10 @@ function Tl(e) {
   );
 }
 function ru() {
-  var e = _s;
-  return (_s <<= 1), !(_s & 4194240) && (_s = 64), e;
+  var e = Ds;
+  return (Ds <<= 1), !(Ds & 4194240) && (Ds = 64), e;
 }
-function qo(e) {
+function Yo(e) {
   for (var t = [], n = 0; 31 > n; n++) t.push(e);
   return t;
 }
@@ -1960,7 +1960,7 @@ function ys(e, t, n) {
   (e.pendingLanes |= t),
     t !== 536870912 && ((e.suspendedLanes = 0), (e.pingedLanes = 0)),
     (e = e.eventTimes),
-    (t = 31 - Gt(t)),
+    (t = 31 - Ft(t)),
     (e[t] = n);
 }
 function Xf(e, t) {
@@ -1974,7 +1974,7 @@ function Xf(e, t) {
     (t = e.entanglements);
   var r = e.eventTimes;
   for (e = e.expirationTimes; 0 < n; ) {
-    var o = 31 - Gt(n),
+    var o = 31 - Ft(n),
       l = 1 << o;
     (t[o] = 0), (r[o] = -1), (e[o] = -1), (n &= ~l);
   }
@@ -1982,7 +1982,7 @@ function Xf(e, t) {
 function ja(e, t) {
   var n = (e.entangledLanes |= t);
   for (e = e.entanglements; n; ) {
-    var r = 31 - Gt(n),
+    var r = 31 - Ft(n),
       o = 1 << r;
     (o & t) | (e[r] & t) && (e[r] |= t), (n &= ~o);
   }
@@ -2086,7 +2086,7 @@ function cu(e) {
   }
   e.blockedOn = null;
 }
-function Fs(e) {
+function Gs(e) {
   if (e.blockedOn !== null) return !1;
   for (var t = e.targetContainers; 0 < t.length; ) {
     var n = Ol(e.domEventName, e.eventSystemFlags, t[0], e.nativeEvent);
@@ -2100,13 +2100,13 @@ function Fs(e) {
   return !0;
 }
 function Ni(e, t, n) {
-  Fs(e) && n.delete(t);
+  Gs(e) && n.delete(t);
 }
 function Zf() {
   (Al = !1),
-    vn !== null && Fs(vn) && (vn = null),
-    wn !== null && Fs(wn) && (wn = null),
-    bn !== null && Fs(bn) && (bn = null),
+    vn !== null && Gs(vn) && (vn = null),
+    wn !== null && Gs(wn) && (wn = null),
+    bn !== null && Gs(bn) && (bn = null),
     rs.forEach(Ni),
     ss.forEach(Ni);
 }
@@ -2274,13 +2274,13 @@ function uu(e) {
     case "pointerleave":
       return 4;
     case "message":
-      switch (Gf()) {
+      switch (Ff()) {
         case Na:
           return 1;
         case tu:
           return 4;
         case ro:
-        case Ff:
+        case Gf:
           return 16;
         case nu:
           return 536870912;
@@ -2344,7 +2344,7 @@ function kt(e) {
     );
   }
   return (
-    Fe(t.prototype, {
+    Ge(t.prototype, {
       preventDefault: function () {
         this.defaultPrevented = !0;
         var n = this.nativeEvent;
@@ -2368,7 +2368,7 @@ function kt(e) {
     t
   );
 }
-var Dr = {
+var _r = {
     eventPhase: 0,
     bubbles: 0,
     cancelable: 0,
@@ -2378,13 +2378,13 @@ var Dr = {
     defaultPrevented: 0,
     isTrusted: 0,
   },
-  _a = kt(Dr),
-  vs = Fe({}, Dr, { view: 0, detail: 0 }),
+  Da = kt(_r),
+  vs = Ge({}, _r, { view: 0, detail: 0 }),
   np = kt(vs),
   Xo,
   Ko,
   $r,
-  _o = Fe({}, vs, {
+  Do = Ge({}, vs, {
     screenX: 0,
     screenY: 0,
     clientX: 0,
@@ -2395,7 +2395,7 @@ var Dr = {
     shiftKey: 0,
     altKey: 0,
     metaKey: 0,
-    getModifierState: Da,
+    getModifierState: _a,
     button: 0,
     buttons: 0,
     relatedTarget: function (e) {
@@ -2419,20 +2419,20 @@ var Dr = {
       return "movementY" in e ? e.movementY : Ko;
     },
   }),
-  Si = kt(_o),
-  rp = Fe({}, _o, { dataTransfer: 0 }),
+  Si = kt(Do),
+  rp = Ge({}, Do, { dataTransfer: 0 }),
   sp = kt(rp),
-  op = Fe({}, vs, { relatedTarget: 0 }),
+  op = Ge({}, vs, { relatedTarget: 0 }),
   Jo = kt(op),
-  lp = Fe({}, Dr, { animationName: 0, elapsedTime: 0, pseudoElement: 0 }),
+  lp = Ge({}, _r, { animationName: 0, elapsedTime: 0, pseudoElement: 0 }),
   ap = kt(lp),
-  ip = Fe({}, Dr, {
+  ip = Ge({}, _r, {
     clipboardData: function (e) {
       return "clipboardData" in e ? e.clipboardData : window.clipboardData;
     },
   }),
   cp = kt(ip),
-  up = Fe({}, Dr, { data: 0 }),
+  up = Ge({}, _r, { data: 0 }),
   Ci = kt(up),
   dp = {
     Esc: "Escape",
@@ -2496,10 +2496,10 @@ function mp(e) {
   var t = this.nativeEvent;
   return t.getModifierState ? t.getModifierState(e) : (e = pp[e]) ? !!t[e] : !1;
 }
-function Da() {
+function _a() {
   return mp;
 }
-var hp = Fe({}, vs, {
+var hp = Ge({}, vs, {
     key: function (e) {
       if (e.key) {
         var t = dp[e.key] || e.key;
@@ -2519,7 +2519,7 @@ var hp = Fe({}, vs, {
     metaKey: 0,
     repeat: 0,
     locale: 0,
-    getModifierState: Da,
+    getModifierState: _a,
     charCode: function (e) {
       return e.type === "keypress" ? Vs(e) : 0;
     },
@@ -2535,7 +2535,7 @@ var hp = Fe({}, vs, {
     },
   }),
   gp = kt(hp),
-  xp = Fe({}, _o, {
+  xp = Ge({}, Do, {
     pointerId: 0,
     width: 0,
     height: 0,
@@ -2548,7 +2548,7 @@ var hp = Fe({}, vs, {
     isPrimary: 0,
   }),
   ki = kt(xp),
-  yp = Fe({}, vs, {
+  yp = Ge({}, vs, {
     touches: 0,
     targetTouches: 0,
     changedTouches: 0,
@@ -2556,12 +2556,12 @@ var hp = Fe({}, vs, {
     metaKey: 0,
     ctrlKey: 0,
     shiftKey: 0,
-    getModifierState: Da,
+    getModifierState: _a,
   }),
   vp = kt(yp),
-  wp = Fe({}, Dr, { propertyName: 0, elapsedTime: 0, pseudoElement: 0 }),
+  wp = Ge({}, _r, { propertyName: 0, elapsedTime: 0, pseudoElement: 0 }),
   bp = kt(wp),
-  Np = Fe({}, _o, {
+  Np = Ge({}, Do, {
     deltaX: function (e) {
       return "deltaX" in e ? e.deltaX : "wheelDeltaX" in e ? -e.wheelDeltaX : 0;
     },
@@ -2580,12 +2580,12 @@ var hp = Fe({}, vs, {
   jp = kt(Np),
   Sp = [9, 13, 27, 32],
   Ma = on && "CompositionEvent" in window,
-  Qr = null;
-on && "documentMode" in document && (Qr = document.documentMode);
-var Cp = on && "TextEvent" in window && !Qr,
-  fu = on && (!Ma || (Qr && 8 < Qr && 11 >= Qr)),
-  _i = " ",
-  Di = !1;
+  qr = null;
+on && "documentMode" in document && (qr = document.documentMode);
+var Cp = on && "TextEvent" in window && !qr,
+  fu = on && (!Ma || (qr && 8 < qr && 11 >= qr)),
+  Di = " ",
+  _i = !1;
 function pu(e, t) {
   switch (e) {
     case "keyup":
@@ -2609,14 +2609,14 @@ function kp(e, t) {
     case "compositionend":
       return mu(t);
     case "keypress":
-      return t.which !== 32 ? null : ((Di = !0), _i);
+      return t.which !== 32 ? null : ((_i = !0), Di);
     case "textInput":
-      return (e = t.data), e === _i && Di ? null : e;
+      return (e = t.data), e === Di && _i ? null : e;
     default:
       return null;
   }
 }
-function _p(e, t) {
+function Dp(e, t) {
   if (rr)
     return e === "compositionend" || (!Ma && pu(e, t))
       ? ((e = du()), (Hs = ka = xn = null), (rr = !1), e)
@@ -2636,7 +2636,7 @@ function _p(e, t) {
       return null;
   }
 }
-var Dp = {
+var _p = {
   color: !0,
   date: !0,
   datetime: !0,
@@ -2655,21 +2655,21 @@ var Dp = {
 };
 function Mi(e) {
   var t = e && e.nodeName && e.nodeName.toLowerCase();
-  return t === "input" ? !!Dp[e.type] : t === "textarea";
+  return t === "input" ? !!_p[e.type] : t === "textarea";
 }
 function hu(e, t, n, r) {
   Wc(r),
     (t = ao(t, "onChange")),
     0 < t.length &&
-      ((n = new _a("onChange", "change", null, n, r)),
+      ((n = new Da("onChange", "change", null, n, r)),
       e.push({ event: n, listeners: t }));
 }
-var Yr = null,
+var Qr = null,
   ls = null;
 function Mp(e) {
   ku(e, 0);
 }
-function Do(e) {
+function _o(e) {
   var t = lr(e);
   if (Uc(t)) return e;
 }
@@ -2690,29 +2690,29 @@ if (on) {
   } else Zo = !1;
   gu = Zo && (!document.documentMode || 9 < document.documentMode);
 }
-function Pi() {
-  Yr && (Yr.detachEvent("onpropertychange", xu), (ls = Yr = null));
+function Ii() {
+  Qr && (Qr.detachEvent("onpropertychange", xu), (ls = Qr = null));
 }
 function xu(e) {
-  if (e.propertyName === "value" && Do(ls)) {
+  if (e.propertyName === "value" && _o(ls)) {
     var t = [];
     hu(t, ls, e, ba(e)), Xc(Mp, t);
   }
 }
-function Pp(e, t, n) {
+function Ip(e, t, n) {
   e === "focusin"
-    ? (Pi(), (Yr = t), (ls = n), Yr.attachEvent("onpropertychange", xu))
-    : e === "focusout" && Pi();
+    ? (Ii(), (Qr = t), (ls = n), Qr.attachEvent("onpropertychange", xu))
+    : e === "focusout" && Ii();
 }
-function Ip(e) {
+function Pp(e) {
   if (e === "selectionchange" || e === "keyup" || e === "keydown")
-    return Do(ls);
+    return _o(ls);
 }
 function Rp(e, t) {
-  if (e === "click") return Do(t);
+  if (e === "click") return _o(t);
 }
 function Tp(e, t) {
-  if (e === "input" || e === "change") return Do(t);
+  if (e === "input" || e === "change") return _o(t);
 }
 function Ap(e, t) {
   return (e === t && (e !== 0 || 1 / e === 1 / t)) || (e !== e && t !== t);
@@ -2731,12 +2731,12 @@ function as(e, t) {
   }
   return !0;
 }
-function Ii(e) {
+function Pi(e) {
   for (; e && e.firstChild; ) e = e.firstChild;
   return e;
 }
 function Ri(e, t) {
-  var n = Ii(e);
+  var n = Pi(e);
   e = 0;
   for (var r; n; ) {
     if (n.nodeType === 3) {
@@ -2754,7 +2754,7 @@ function Ri(e, t) {
       }
       n = void 0;
     }
-    n = Ii(n);
+    n = Pi(n);
   }
 }
 function yu(e, t) {
@@ -2855,7 +2855,7 @@ function Op(e) {
 var $p = on && "documentMode" in document && 11 >= document.documentMode,
   sr = null,
   $l = null,
-  qr = null,
+  Yr = null,
   Ll = !1;
 function Ti(e, t, n) {
   var r = n.window === n ? n.document : n.nodeType === 9 ? n : n.ownerDocument;
@@ -2875,15 +2875,15 @@ function Ti(e, t, n) {
           focusNode: r.focusNode,
           focusOffset: r.focusOffset,
         })),
-    (qr && as(qr, r)) ||
-      ((qr = r),
+    (Yr && as(Yr, r)) ||
+      ((Yr = r),
       (r = ao($l, "onSelect")),
       0 < r.length &&
-        ((t = new _a("onSelect", "select", null, t, n)),
+        ((t = new Da("onSelect", "select", null, t, n)),
         e.push({ event: t, listeners: r }),
         (t.target = sr))));
 }
-function Ps(e, t) {
+function Is(e, t) {
   var n = {};
   return (
     (n[e.toLowerCase()] = t.toLowerCase()),
@@ -2893,10 +2893,10 @@ function Ps(e, t) {
   );
 }
 var or = {
-    animationend: Ps("Animation", "AnimationEnd"),
-    animationiteration: Ps("Animation", "AnimationIteration"),
-    animationstart: Ps("Animation", "AnimationStart"),
-    transitionend: Ps("Transition", "TransitionEnd"),
+    animationend: Is("Animation", "AnimationEnd"),
+    animationiteration: Is("Animation", "AnimationIteration"),
+    animationstart: Is("Animation", "AnimationStart"),
+    transitionend: Is("Transition", "TransitionEnd"),
   },
   tl = {},
   wu = {};
@@ -2971,7 +2971,7 @@ var Hr =
     "abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting".split(
       " "
     ),
-  zp = new Set("cancel close invalid load scroll toggle".split(" ").concat(Hr));
+  Bp = new Set("cancel close invalid load scroll toggle".split(" ").concat(Hr));
 function Oi(e, t, n) {
   var r = e.type || "unknown-event";
   (e.currentTarget = n), Lf(r, t, void 0, e), (e.currentTarget = null);
@@ -3009,27 +3009,27 @@ function ku(e, t) {
   if (no) throw ((e = Rl), (no = !1), (Rl = null), e);
 }
 function $e(e, t) {
-  var n = t[Fl];
-  n === void 0 && (n = t[Fl] = new Set());
+  var n = t[Gl];
+  n === void 0 && (n = t[Gl] = new Set());
   var r = e + "__bubble";
-  n.has(r) || (_u(t, e, 2, !1), n.add(r));
+  n.has(r) || (Du(t, e, 2, !1), n.add(r));
 }
 function sl(e, t, n) {
   var r = 0;
-  t && (r |= 4), _u(n, e, r, t);
+  t && (r |= 4), Du(n, e, r, t);
 }
-var Is = "_reactListening" + Math.random().toString(36).slice(2);
+var Ps = "_reactListening" + Math.random().toString(36).slice(2);
 function is(e) {
-  if (!e[Is]) {
-    (e[Is] = !0),
+  if (!e[Ps]) {
+    (e[Ps] = !0),
       Tc.forEach(function (n) {
-        n !== "selectionchange" && (zp.has(n) || sl(n, !1, e), sl(n, !0, e));
+        n !== "selectionchange" && (Bp.has(n) || sl(n, !1, e), sl(n, !0, e));
       });
     var t = e.nodeType === 9 ? e : e.ownerDocument;
-    t === null || t[Is] || ((t[Is] = !0), sl("selectionchange", !1, t));
+    t === null || t[Ps] || ((t[Ps] = !0), sl("selectionchange", !1, t));
   }
 }
-function _u(e, t, n, r) {
+function Du(e, t, n, r) {
   switch (uu(t)) {
     case 1:
       var o = ep;
@@ -3042,7 +3042,7 @@ function _u(e, t, n, r) {
   }
   (n = o.bind(null, t, n, e)),
     (o = void 0),
-    !Il ||
+    !Pl ||
       (t !== "touchstart" && t !== "touchmove" && t !== "wheel") ||
       (o = !0),
     r
@@ -3087,28 +3087,28 @@ function ol(e, t, n, r, o) {
   Xc(function () {
     var h = l,
       d = ba(n),
-      g = [];
+      x = [];
     e: {
-      var p = Cu.get(e);
-      if (p !== void 0) {
-        var w = _a,
+      var m = Cu.get(e);
+      if (m !== void 0) {
+        var b = Da,
           v = e;
         switch (e) {
           case "keypress":
             if (Vs(n) === 0) break e;
           case "keydown":
           case "keyup":
-            w = gp;
+            b = gp;
             break;
           case "focusin":
-            (v = "focus"), (w = Jo);
+            (v = "focus"), (b = Jo);
             break;
           case "focusout":
-            (v = "blur"), (w = Jo);
+            (v = "blur"), (b = Jo);
             break;
           case "beforeblur":
           case "afterblur":
-            w = Jo;
+            b = Jo;
             break;
           case "click":
             if (n.button === 2) break e;
@@ -3120,7 +3120,7 @@ function ol(e, t, n, r, o) {
           case "mouseout":
           case "mouseover":
           case "contextmenu":
-            w = Si;
+            b = Si;
             break;
           case "drag":
           case "dragend":
@@ -3130,32 +3130,32 @@ function ol(e, t, n, r, o) {
           case "dragover":
           case "dragstart":
           case "drop":
-            w = sp;
+            b = sp;
             break;
           case "touchcancel":
           case "touchend":
           case "touchmove":
           case "touchstart":
-            w = vp;
+            b = vp;
             break;
           case bu:
           case Nu:
           case ju:
-            w = ap;
+            b = ap;
             break;
           case Su:
-            w = bp;
+            b = bp;
             break;
           case "scroll":
-            w = np;
+            b = np;
             break;
           case "wheel":
-            w = jp;
+            b = jp;
             break;
           case "copy":
           case "cut":
           case "paste":
-            w = cp;
+            b = cp;
             break;
           case "gotpointercapture":
           case "lostpointercapture":
@@ -3165,134 +3165,134 @@ function ol(e, t, n, r, o) {
           case "pointerout":
           case "pointerover":
           case "pointerup":
-            w = ki;
+            b = ki;
         }
-        var b = (t & 4) !== 0,
-          _ = !b && e === "scroll",
-          u = b ? (p !== null ? p + "Capture" : null) : p;
-        b = [];
-        for (var f = h, x; f !== null; ) {
-          x = f;
-          var j = x.stateNode;
+        var N = (t & 4) !== 0,
+          E = !N && e === "scroll",
+          u = N ? (m !== null ? m + "Capture" : null) : m;
+        N = [];
+        for (var f = h, g; f !== null; ) {
+          g = f;
+          var C = g.stateNode;
           if (
-            (x.tag === 5 &&
-              j !== null &&
-              ((x = j),
-              u !== null && ((j = ns(f, u)), j != null && b.push(cs(f, j, x)))),
-            _)
+            (g.tag === 5 &&
+              C !== null &&
+              ((g = C),
+              u !== null && ((C = ns(f, u)), C != null && N.push(cs(f, C, g)))),
+            E)
           )
             break;
           f = f.return;
         }
-        0 < b.length &&
-          ((p = new w(p, v, null, n, d)), g.push({ event: p, listeners: b }));
+        0 < N.length &&
+          ((m = new b(m, v, null, n, d)), x.push({ event: m, listeners: N }));
       }
     }
     if (!(t & 7)) {
       e: {
         if (
-          ((p = e === "mouseover" || e === "pointerover"),
-          (w = e === "mouseout" || e === "pointerout"),
-          p &&
+          ((m = e === "mouseover" || e === "pointerover"),
+          (b = e === "mouseout" || e === "pointerout"),
+          m &&
             n !== El &&
             (v = n.relatedTarget || n.fromElement) &&
             (An(v) || v[ln]))
         )
           break e;
         if (
-          (w || p) &&
-          ((p =
+          (b || m) &&
+          ((m =
             d.window === d
               ? d
-              : (p = d.ownerDocument)
-              ? p.defaultView || p.parentWindow
+              : (m = d.ownerDocument)
+              ? m.defaultView || m.parentWindow
               : window),
-          w
+          b
             ? ((v = n.relatedTarget || n.toElement),
-              (w = h),
+              (b = h),
               (v = v ? An(v) : null),
               v !== null &&
-                ((_ = Wn(v)), v !== _ || (v.tag !== 5 && v.tag !== 6)) &&
+                ((E = Wn(v)), v !== E || (v.tag !== 5 && v.tag !== 6)) &&
                 (v = null))
-            : ((w = null), (v = h)),
-          w !== v)
+            : ((b = null), (v = h)),
+          b !== v)
         ) {
           if (
-            ((b = Si),
-            (j = "onMouseLeave"),
+            ((N = Si),
+            (C = "onMouseLeave"),
             (u = "onMouseEnter"),
             (f = "mouse"),
             (e === "pointerout" || e === "pointerover") &&
-              ((b = ki),
-              (j = "onPointerLeave"),
+              ((N = ki),
+              (C = "onPointerLeave"),
               (u = "onPointerEnter"),
               (f = "pointer")),
-            (_ = w == null ? p : lr(w)),
-            (x = v == null ? p : lr(v)),
-            (p = new b(j, f + "leave", w, n, d)),
-            (p.target = _),
-            (p.relatedTarget = x),
-            (j = null),
+            (E = b == null ? m : lr(b)),
+            (g = v == null ? m : lr(v)),
+            (m = new N(C, f + "leave", b, n, d)),
+            (m.target = E),
+            (m.relatedTarget = g),
+            (C = null),
             An(d) === h &&
-              ((b = new b(u, f + "enter", v, n, d)),
-              (b.target = x),
-              (b.relatedTarget = _),
-              (j = b)),
-            (_ = j),
-            w && v)
+              ((N = new N(u, f + "enter", v, n, d)),
+              (N.target = g),
+              (N.relatedTarget = E),
+              (C = N)),
+            (E = C),
+            b && v)
           )
             t: {
-              for (b = w, u = v, f = 0, x = b; x; x = er(x)) f++;
-              for (x = 0, j = u; j; j = er(j)) x++;
-              for (; 0 < f - x; ) (b = er(b)), f--;
-              for (; 0 < x - f; ) (u = er(u)), x--;
+              for (N = b, u = v, f = 0, g = N; g; g = er(g)) f++;
+              for (g = 0, C = u; C; C = er(C)) g++;
+              for (; 0 < f - g; ) (N = er(N)), f--;
+              for (; 0 < g - f; ) (u = er(u)), g--;
               for (; f--; ) {
-                if (b === u || (u !== null && b === u.alternate)) break t;
-                (b = er(b)), (u = er(u));
+                if (N === u || (u !== null && N === u.alternate)) break t;
+                (N = er(N)), (u = er(u));
               }
-              b = null;
+              N = null;
             }
-          else b = null;
-          w !== null && $i(g, p, w, b, !1),
-            v !== null && _ !== null && $i(g, _, v, b, !0);
+          else N = null;
+          b !== null && $i(x, m, b, N, !1),
+            v !== null && E !== null && $i(x, E, v, N, !0);
         }
       }
       e: {
         if (
-          ((p = h ? lr(h) : window),
-          (w = p.nodeName && p.nodeName.toLowerCase()),
-          w === "select" || (w === "input" && p.type === "file"))
+          ((m = h ? lr(h) : window),
+          (b = m.nodeName && m.nodeName.toLowerCase()),
+          b === "select" || (b === "input" && m.type === "file"))
         )
-          var L = Ep;
-        else if (Mi(p))
-          if (gu) L = Tp;
+          var B = Ep;
+        else if (Mi(m))
+          if (gu) B = Tp;
           else {
-            L = Ip;
-            var P = Pp;
+            B = Pp;
+            var I = Ip;
           }
         else
-          (w = p.nodeName) &&
-            w.toLowerCase() === "input" &&
-            (p.type === "checkbox" || p.type === "radio") &&
-            (L = Rp);
-        if (L && (L = L(e, h))) {
-          hu(g, L, n, d);
+          (b = m.nodeName) &&
+            b.toLowerCase() === "input" &&
+            (m.type === "checkbox" || m.type === "radio") &&
+            (B = Rp);
+        if (B && (B = B(e, h))) {
+          hu(x, B, n, d);
           break e;
         }
-        P && P(e, p, h),
+        I && I(e, m, h),
           e === "focusout" &&
-            (P = p._wrapperState) &&
-            P.controlled &&
-            p.type === "number" &&
-            Cl(p, "number", p.value);
+            (I = m._wrapperState) &&
+            I.controlled &&
+            m.type === "number" &&
+            Cl(m, "number", m.value);
       }
-      switch (((P = h ? lr(h) : window), e)) {
+      switch (((I = h ? lr(h) : window), e)) {
         case "focusin":
-          (Mi(P) || P.contentEditable === "true") &&
-            ((sr = P), ($l = h), (qr = null));
+          (Mi(I) || I.contentEditable === "true") &&
+            ((sr = I), ($l = h), (Yr = null));
           break;
         case "focusout":
-          qr = $l = sr = null;
+          Yr = $l = sr = null;
           break;
         case "mousedown":
           Ll = !0;
@@ -3300,55 +3300,55 @@ function ol(e, t, n, r, o) {
         case "contextmenu":
         case "mouseup":
         case "dragend":
-          (Ll = !1), Ti(g, n, d);
+          (Ll = !1), Ti(x, n, d);
           break;
         case "selectionchange":
           if ($p) break;
         case "keydown":
         case "keyup":
-          Ti(g, n, d);
+          Ti(x, n, d);
       }
-      var R;
+      var A;
       if (Ma)
         e: {
           switch (e) {
             case "compositionstart":
-              var N = "onCompositionStart";
+              var j = "onCompositionStart";
               break e;
             case "compositionend":
-              N = "onCompositionEnd";
+              j = "onCompositionEnd";
               break e;
             case "compositionupdate":
-              N = "onCompositionUpdate";
+              j = "onCompositionUpdate";
               break e;
           }
-          N = void 0;
+          j = void 0;
         }
       else
         rr
-          ? pu(e, n) && (N = "onCompositionEnd")
-          : e === "keydown" && n.keyCode === 229 && (N = "onCompositionStart");
-      N &&
+          ? pu(e, n) && (j = "onCompositionEnd")
+          : e === "keydown" && n.keyCode === 229 && (j = "onCompositionStart");
+      j &&
         (fu &&
           n.locale !== "ko" &&
-          (rr || N !== "onCompositionStart"
-            ? N === "onCompositionEnd" && rr && (R = du())
+          (rr || j !== "onCompositionStart"
+            ? j === "onCompositionEnd" && rr && (A = du())
             : ((xn = d),
               (ka = "value" in xn ? xn.value : xn.textContent),
               (rr = !0))),
-        (P = ao(h, N)),
-        0 < P.length &&
-          ((N = new Ci(N, e, null, n, d)),
-          g.push({ event: N, listeners: P }),
-          R ? (N.data = R) : ((R = mu(n)), R !== null && (N.data = R)))),
-        (R = Cp ? kp(e, n) : _p(e, n)) &&
+        (I = ao(h, j)),
+        0 < I.length &&
+          ((j = new Ci(j, e, null, n, d)),
+          x.push({ event: j, listeners: I }),
+          A ? (j.data = A) : ((A = mu(n)), A !== null && (j.data = A)))),
+        (A = Cp ? kp(e, n) : Dp(e, n)) &&
           ((h = ao(h, "onBeforeInput")),
           0 < h.length &&
             ((d = new Ci("onBeforeInput", "beforeinput", null, n, d)),
-            g.push({ event: d, listeners: h }),
-            (d.data = R)));
+            x.push({ event: d, listeners: h }),
+            (d.data = A)));
     }
-    ku(g, t);
+    ku(x, t);
   });
 }
 function cs(e, t, n) {
@@ -3391,24 +3391,24 @@ function $i(e, t, n, r, o) {
   }
   a.length !== 0 && e.push({ event: t, listeners: a });
 }
-var Bp = /\r\n?/g,
-  Gp = /\u0000|\uFFFD/g;
+var zp = /\r\n?/g,
+  Fp = /\u0000|\uFFFD/g;
 function Li(e) {
   return (typeof e == "string" ? e : "" + e)
     .replace(
-      Bp,
+      zp,
       `
 `
     )
-    .replace(Gp, "");
+    .replace(Fp, "");
 }
 function Rs(e, t, n) {
-  if (((t = Li(t)), Li(e) !== t && n)) throw Error(J(425));
+  if (((t = Li(t)), Li(e) !== t && n)) throw Error(te(425));
 }
 function io() {}
 var Ul = null,
-  zl = null;
-function Bl(e, t) {
+  Bl = null;
+function zl(e, t) {
   return (
     e === "textarea" ||
     e === "noscript" ||
@@ -3419,8 +3419,8 @@ function Bl(e, t) {
       t.dangerouslySetInnerHTML.__html != null)
   );
 }
-var Gl = typeof setTimeout == "function" ? setTimeout : void 0,
-  Fp = typeof clearTimeout == "function" ? clearTimeout : void 0,
+var Fl = typeof setTimeout == "function" ? setTimeout : void 0,
+  Gp = typeof clearTimeout == "function" ? clearTimeout : void 0,
   Ui = typeof Promise == "function" ? Promise : void 0,
   Hp =
     typeof queueMicrotask == "function"
@@ -3429,7 +3429,7 @@ var Gl = typeof setTimeout == "function" ? setTimeout : void 0,
       ? function (e) {
           return Ui.resolve(null).then(e).catch(Vp);
         }
-      : Gl;
+      : Fl;
 function Vp(e) {
   setTimeout(function () {
     throw e;
@@ -3463,7 +3463,7 @@ function Nn(e) {
   }
   return e;
 }
-function zi(e) {
+function Bi(e) {
   e = e.previousSibling;
   for (var t = 0; e; ) {
     if (e.nodeType === 8) {
@@ -3481,9 +3481,9 @@ var Mr = Math.random().toString(36).slice(2),
   Xt = "__reactFiber$" + Mr,
   us = "__reactProps$" + Mr,
   ln = "__reactContainer$" + Mr,
-  Fl = "__reactEvents$" + Mr,
+  Gl = "__reactEvents$" + Mr,
   Wp = "__reactListeners$" + Mr,
-  Qp = "__reactHandles$" + Mr;
+  qp = "__reactHandles$" + Mr;
 function An(e) {
   var t = e[Xt];
   if (t) return t;
@@ -3493,9 +3493,9 @@ function An(e) {
         ((n = t.alternate),
         t.child !== null || (n !== null && n.child !== null))
       )
-        for (e = zi(e); e !== null; ) {
+        for (e = Bi(e); e !== null; ) {
           if ((n = e[Xt])) return n;
-          e = zi(e);
+          e = Bi(e);
         }
       return t;
     }
@@ -3511,7 +3511,7 @@ function ws(e) {
 }
 function lr(e) {
   if (e.tag === 5 || e.tag === 6) return e.stateNode;
-  throw Error(J(33));
+  throw Error(te(33));
 }
 function Eo(e) {
   return e[us] || null;
@@ -3527,13 +3527,13 @@ function Le(e) {
 function Oe(e, t) {
   ar++, (Hl[ar] = e.current), (e.current = t);
 }
-var Dn = {},
-  at = En(Dn),
-  gt = En(!1),
-  zn = Dn;
+var _n = {},
+  at = En(_n),
+  xt = En(!1),
+  Bn = _n;
 function wr(e, t) {
   var n = e.type.contextTypes;
-  if (!n) return Dn;
+  if (!n) return _n;
   var r = e.stateNode;
   if (r && r.__reactInternalMemoizedUnmaskedChildContext === t)
     return r.__reactInternalMemoizedMaskedChildContext;
@@ -3548,56 +3548,56 @@ function wr(e, t) {
     o
   );
 }
-function xt(e) {
+function yt(e) {
   return (e = e.childContextTypes), e != null;
 }
 function co() {
-  Le(gt), Le(at);
+  Le(xt), Le(at);
 }
-function Bi(e, t, n) {
-  if (at.current !== Dn) throw Error(J(168));
-  Oe(at, t), Oe(gt, n);
+function zi(e, t, n) {
+  if (at.current !== _n) throw Error(te(168));
+  Oe(at, t), Oe(xt, n);
 }
-function Du(e, t, n) {
+function _u(e, t, n) {
   var r = e.stateNode;
   if (((t = t.childContextTypes), typeof r.getChildContext != "function"))
     return n;
   r = r.getChildContext();
-  for (var o in r) if (!(o in t)) throw Error(J(108, Pf(e) || "Unknown", o));
-  return Fe({}, n, r);
+  for (var o in r) if (!(o in t)) throw Error(te(108, If(e) || "Unknown", o));
+  return Ge({}, n, r);
 }
 function uo(e) {
   return (
     (e =
-      ((e = e.stateNode) && e.__reactInternalMemoizedMergedChildContext) || Dn),
-    (zn = at.current),
+      ((e = e.stateNode) && e.__reactInternalMemoizedMergedChildContext) || _n),
+    (Bn = at.current),
     Oe(at, e),
-    Oe(gt, gt.current),
+    Oe(xt, xt.current),
     !0
   );
 }
-function Gi(e, t, n) {
+function Fi(e, t, n) {
   var r = e.stateNode;
-  if (!r) throw Error(J(169));
+  if (!r) throw Error(te(169));
   n
-    ? ((e = Du(e, t, zn)),
+    ? ((e = _u(e, t, Bn)),
       (r.__reactInternalMemoizedMergedChildContext = e),
-      Le(gt),
+      Le(xt),
       Le(at),
       Oe(at, e))
-    : Le(gt),
-    Oe(gt, n);
+    : Le(xt),
+    Oe(xt, n);
 }
 var en = null,
-  Po = !1,
+  Io = !1,
   al = !1;
 function Mu(e) {
   en === null ? (en = [e]) : en.push(e);
 }
-function Yp(e) {
-  (Po = !0), Mu(e);
+function Qp(e) {
+  (Io = !0), Mu(e);
 }
-function Pn() {
+function In() {
   if (!al && en !== null) {
     al = !0;
     var e = 0,
@@ -3609,9 +3609,9 @@ function Pn() {
         do r = r(!0);
         while (r !== null);
       }
-      (en = null), (Po = !1);
+      (en = null), (Io = !1);
     } catch (o) {
-      throw (en !== null && (en = en.slice(e + 1)), eu(Na, Pn), o);
+      throw (en !== null && (en = en.slice(e + 1)), eu(Na, In), o);
     } finally {
       (Te = t), (al = !1);
     }
@@ -3622,49 +3622,49 @@ var ir = [],
   cr = 0,
   fo = null,
   po = 0,
-  Dt = [],
+  _t = [],
   Mt = 0,
-  Bn = null,
+  zn = null,
   nn = 1,
   rn = "";
 function Rn(e, t) {
   (ir[cr++] = po), (ir[cr++] = fo), (fo = e), (po = t);
 }
 function Eu(e, t, n) {
-  (Dt[Mt++] = nn), (Dt[Mt++] = rn), (Dt[Mt++] = Bn), (Bn = e);
+  (_t[Mt++] = nn), (_t[Mt++] = rn), (_t[Mt++] = zn), (zn = e);
   var r = nn;
   e = rn;
-  var o = 32 - Gt(r) - 1;
+  var o = 32 - Ft(r) - 1;
   (r &= ~(1 << o)), (n += 1);
-  var l = 32 - Gt(t) + o;
+  var l = 32 - Ft(t) + o;
   if (30 < l) {
     var a = o - (o % 5);
     (l = (r & ((1 << a) - 1)).toString(32)),
       (r >>= a),
       (o -= a),
-      (nn = (1 << (32 - Gt(t) + o)) | (n << o) | r),
+      (nn = (1 << (32 - Ft(t) + o)) | (n << o) | r),
       (rn = l + e);
   } else (nn = (1 << l) | (n << o) | r), (rn = e);
 }
-function Pa(e) {
+function Ia(e) {
   e.return !== null && (Rn(e, 1), Eu(e, 1, 0));
 }
-function Ia(e) {
+function Pa(e) {
   for (; e === fo; )
     (fo = ir[--cr]), (ir[cr] = null), (po = ir[--cr]), (ir[cr] = null);
-  for (; e === Bn; )
-    (Bn = Dt[--Mt]),
-      (Dt[Mt] = null),
-      (rn = Dt[--Mt]),
-      (Dt[Mt] = null),
-      (nn = Dt[--Mt]),
-      (Dt[Mt] = null);
+  for (; e === zn; )
+    (zn = _t[--Mt]),
+      (_t[Mt] = null),
+      (rn = _t[--Mt]),
+      (_t[Mt] = null),
+      (nn = _t[--Mt]),
+      (_t[Mt] = null);
 }
 var jt = null,
-  bt = null,
+  Nt = null,
   Ue = !1,
-  Bt = null;
-function Pu(e, t) {
+  zt = null;
+function Iu(e, t) {
   var n = Et(5, null, null, 0);
   (n.elementType = "DELETED"),
     (n.stateNode = t),
@@ -3672,7 +3672,7 @@ function Pu(e, t) {
     (t = e.deletions),
     t === null ? ((e.deletions = [n]), (e.flags |= 16)) : t.push(n);
 }
-function Fi(e, t) {
+function Gi(e, t) {
   switch (e.tag) {
     case 5:
       var n = e.type;
@@ -3682,19 +3682,19 @@ function Fi(e, t) {
             ? null
             : t),
         t !== null
-          ? ((e.stateNode = t), (jt = e), (bt = Nn(t.firstChild)), !0)
+          ? ((e.stateNode = t), (jt = e), (Nt = Nn(t.firstChild)), !0)
           : !1
       );
     case 6:
       return (
         (t = e.pendingProps === "" || t.nodeType !== 3 ? null : t),
-        t !== null ? ((e.stateNode = t), (jt = e), (bt = null), !0) : !1
+        t !== null ? ((e.stateNode = t), (jt = e), (Nt = null), !0) : !1
       );
     case 13:
       return (
         (t = t.nodeType !== 8 ? null : t),
         t !== null
-          ? ((n = Bn !== null ? { id: nn, overflow: rn } : null),
+          ? ((n = zn !== null ? { id: nn, overflow: rn } : null),
             (e.memoizedState = {
               dehydrated: t,
               treeContext: n,
@@ -3705,7 +3705,7 @@ function Fi(e, t) {
             (n.return = e),
             (e.child = n),
             (jt = e),
-            (bt = null),
+            (Nt = null),
             !0)
           : !1
       );
@@ -3718,19 +3718,19 @@ function Vl(e) {
 }
 function Wl(e) {
   if (Ue) {
-    var t = bt;
+    var t = Nt;
     if (t) {
       var n = t;
-      if (!Fi(e, t)) {
-        if (Vl(e)) throw Error(J(418));
+      if (!Gi(e, t)) {
+        if (Vl(e)) throw Error(te(418));
         t = Nn(n.nextSibling);
         var r = jt;
-        t && Fi(e, t)
-          ? Pu(r, n)
+        t && Gi(e, t)
+          ? Iu(r, n)
           : ((e.flags = (e.flags & -4097) | 2), (Ue = !1), (jt = e));
       }
     } else {
-      if (Vl(e)) throw Error(J(418));
+      if (Vl(e)) throw Error(te(418));
       (e.flags = (e.flags & -4097) | 2), (Ue = !1), (jt = e);
     }
   }
@@ -3748,22 +3748,22 @@ function Ts(e) {
     ((t = e.tag !== 3) &&
       !(t = e.tag !== 5) &&
       ((t = e.type),
-      (t = t !== "head" && t !== "body" && !Bl(e.type, e.memoizedProps))),
-    t && (t = bt))
+      (t = t !== "head" && t !== "body" && !zl(e.type, e.memoizedProps))),
+    t && (t = Nt))
   ) {
-    if (Vl(e)) throw (Iu(), Error(J(418)));
-    for (; t; ) Pu(e, t), (t = Nn(t.nextSibling));
+    if (Vl(e)) throw (Pu(), Error(te(418)));
+    for (; t; ) Iu(e, t), (t = Nn(t.nextSibling));
   }
   if ((Hi(e), e.tag === 13)) {
     if (((e = e.memoizedState), (e = e !== null ? e.dehydrated : null), !e))
-      throw Error(J(317));
+      throw Error(te(317));
     e: {
       for (e = e.nextSibling, t = 0; e; ) {
         if (e.nodeType === 8) {
           var n = e.data;
           if (n === "/$") {
             if (t === 0) {
-              bt = Nn(e.nextSibling);
+              Nt = Nn(e.nextSibling);
               break e;
             }
             t--;
@@ -3771,31 +3771,31 @@ function Ts(e) {
         }
         e = e.nextSibling;
       }
-      bt = null;
+      Nt = null;
     }
-  } else bt = jt ? Nn(e.stateNode.nextSibling) : null;
+  } else Nt = jt ? Nn(e.stateNode.nextSibling) : null;
   return !0;
 }
-function Iu() {
-  for (var e = bt; e; ) e = Nn(e.nextSibling);
+function Pu() {
+  for (var e = Nt; e; ) e = Nn(e.nextSibling);
 }
 function br() {
-  (bt = jt = null), (Ue = !1);
+  (Nt = jt = null), (Ue = !1);
 }
 function Ra(e) {
-  Bt === null ? (Bt = [e]) : Bt.push(e);
+  zt === null ? (zt = [e]) : zt.push(e);
 }
-var qp = un.ReactCurrentBatchConfig;
+var Yp = un.ReactCurrentBatchConfig;
 function Lr(e, t, n) {
   if (
     ((e = n.ref), e !== null && typeof e != "function" && typeof e != "object")
   ) {
     if (n._owner) {
       if (((n = n._owner), n)) {
-        if (n.tag !== 1) throw Error(J(309));
+        if (n.tag !== 1) throw Error(te(309));
         var r = n.stateNode;
       }
-      if (!r) throw Error(J(147, e));
+      if (!r) throw Error(te(147, e));
       var o = r,
         l = "" + e;
       return t !== null &&
@@ -3810,8 +3810,8 @@ function Lr(e, t, n) {
           (t._stringRef = l),
           t);
     }
-    if (typeof e != "string") throw Error(J(284));
-    if (!n._owner) throw Error(J(290, e));
+    if (typeof e != "string") throw Error(te(284));
+    if (!n._owner) throw Error(te(290, e));
   }
   return e;
 }
@@ -3819,7 +3819,7 @@ function As(e, t) {
   throw (
     ((e = Object.prototype.toString.call(t)),
     Error(
-      J(
+      te(
         31,
         e === "[object Object]"
           ? "object with keys {" + Object.keys(t).join(", ") + "}"
@@ -3835,8 +3835,8 @@ function Vi(e) {
 function Ru(e) {
   function t(u, f) {
     if (e) {
-      var x = u.deletions;
-      x === null ? ((u.deletions = [f]), (u.flags |= 16)) : x.push(f);
+      var g = u.deletions;
+      g === null ? ((u.deletions = [f]), (u.flags |= 16)) : g.push(f);
     }
   }
   function n(u, f) {
@@ -3852,13 +3852,13 @@ function Ru(e) {
   function o(u, f) {
     return (u = kn(u, f)), (u.index = 0), (u.sibling = null), u;
   }
-  function l(u, f, x) {
+  function l(u, f, g) {
     return (
-      (u.index = x),
+      (u.index = g),
       e
-        ? ((x = u.alternate),
-          x !== null
-            ? ((x = x.index), x < f ? ((u.flags |= 2), f) : x)
+        ? ((g = u.alternate),
+          g !== null
+            ? ((g = g.index), g < f ? ((u.flags |= 2), f) : g)
             : ((u.flags |= 2), f))
         : ((u.flags |= 1048576), f)
     );
@@ -3866,249 +3866,249 @@ function Ru(e) {
   function a(u) {
     return e && u.alternate === null && (u.flags |= 2), u;
   }
-  function i(u, f, x, j) {
+  function i(u, f, g, C) {
     return f === null || f.tag !== 6
-      ? ((f = ml(x, u.mode, j)), (f.return = u), f)
-      : ((f = o(f, x)), (f.return = u), f);
+      ? ((f = ml(g, u.mode, C)), (f.return = u), f)
+      : ((f = o(f, g)), (f.return = u), f);
   }
-  function c(u, f, x, j) {
-    var L = x.type;
-    return L === nr
-      ? d(u, f, x.props.children, j, x.key)
+  function c(u, f, g, C) {
+    var B = g.type;
+    return B === nr
+      ? d(u, f, g.props.children, C, g.key)
       : f !== null &&
-        (f.elementType === L ||
-          (typeof L == "object" &&
-            L !== null &&
-            L.$$typeof === pn &&
-            Vi(L) === f.type))
-      ? ((j = o(f, x.props)), (j.ref = Lr(u, f, x)), (j.return = u), j)
-      : ((j = Js(x.type, x.key, x.props, null, u.mode, j)),
-        (j.ref = Lr(u, f, x)),
-        (j.return = u),
-        j);
+        (f.elementType === B ||
+          (typeof B == "object" &&
+            B !== null &&
+            B.$$typeof === pn &&
+            Vi(B) === f.type))
+      ? ((C = o(f, g.props)), (C.ref = Lr(u, f, g)), (C.return = u), C)
+      : ((C = Js(g.type, g.key, g.props, null, u.mode, C)),
+        (C.ref = Lr(u, f, g)),
+        (C.return = u),
+        C);
   }
-  function h(u, f, x, j) {
+  function h(u, f, g, C) {
     return f === null ||
       f.tag !== 4 ||
-      f.stateNode.containerInfo !== x.containerInfo ||
-      f.stateNode.implementation !== x.implementation
-      ? ((f = hl(x, u.mode, j)), (f.return = u), f)
-      : ((f = o(f, x.children || [])), (f.return = u), f);
+      f.stateNode.containerInfo !== g.containerInfo ||
+      f.stateNode.implementation !== g.implementation
+      ? ((f = hl(g, u.mode, C)), (f.return = u), f)
+      : ((f = o(f, g.children || [])), (f.return = u), f);
   }
-  function d(u, f, x, j, L) {
+  function d(u, f, g, C, B) {
     return f === null || f.tag !== 7
-      ? ((f = Un(x, u.mode, j, L)), (f.return = u), f)
-      : ((f = o(f, x)), (f.return = u), f);
+      ? ((f = Un(g, u.mode, C, B)), (f.return = u), f)
+      : ((f = o(f, g)), (f.return = u), f);
   }
-  function g(u, f, x) {
+  function x(u, f, g) {
     if ((typeof f == "string" && f !== "") || typeof f == "number")
-      return (f = ml("" + f, u.mode, x)), (f.return = u), f;
+      return (f = ml("" + f, u.mode, g)), (f.return = u), f;
     if (typeof f == "object" && f !== null) {
       switch (f.$$typeof) {
         case Ss:
           return (
-            (x = Js(f.type, f.key, f.props, null, u.mode, x)),
-            (x.ref = Lr(u, null, f)),
-            (x.return = u),
-            x
+            (g = Js(f.type, f.key, f.props, null, u.mode, g)),
+            (g.ref = Lr(u, null, f)),
+            (g.return = u),
+            g
           );
         case tr:
-          return (f = hl(f, u.mode, x)), (f.return = u), f;
+          return (f = hl(f, u.mode, g)), (f.return = u), f;
         case pn:
-          var j = f._init;
-          return g(u, j(f._payload), x);
+          var C = f._init;
+          return x(u, C(f._payload), g);
       }
-      if (Gr(f) || Rr(f))
-        return (f = Un(f, u.mode, x, null)), (f.return = u), f;
+      if (Fr(f) || Rr(f))
+        return (f = Un(f, u.mode, g, null)), (f.return = u), f;
       As(u, f);
     }
     return null;
   }
-  function p(u, f, x, j) {
-    var L = f !== null ? f.key : null;
-    if ((typeof x == "string" && x !== "") || typeof x == "number")
-      return L !== null ? null : i(u, f, "" + x, j);
-    if (typeof x == "object" && x !== null) {
-      switch (x.$$typeof) {
+  function m(u, f, g, C) {
+    var B = f !== null ? f.key : null;
+    if ((typeof g == "string" && g !== "") || typeof g == "number")
+      return B !== null ? null : i(u, f, "" + g, C);
+    if (typeof g == "object" && g !== null) {
+      switch (g.$$typeof) {
         case Ss:
-          return x.key === L ? c(u, f, x, j) : null;
+          return g.key === B ? c(u, f, g, C) : null;
         case tr:
-          return x.key === L ? h(u, f, x, j) : null;
+          return g.key === B ? h(u, f, g, C) : null;
         case pn:
-          return (L = x._init), p(u, f, L(x._payload), j);
+          return (B = g._init), m(u, f, B(g._payload), C);
       }
-      if (Gr(x) || Rr(x)) return L !== null ? null : d(u, f, x, j, null);
-      As(u, x);
+      if (Fr(g) || Rr(g)) return B !== null ? null : d(u, f, g, C, null);
+      As(u, g);
     }
     return null;
   }
-  function w(u, f, x, j, L) {
-    if ((typeof j == "string" && j !== "") || typeof j == "number")
-      return (u = u.get(x) || null), i(f, u, "" + j, L);
-    if (typeof j == "object" && j !== null) {
-      switch (j.$$typeof) {
+  function b(u, f, g, C, B) {
+    if ((typeof C == "string" && C !== "") || typeof C == "number")
+      return (u = u.get(g) || null), i(f, u, "" + C, B);
+    if (typeof C == "object" && C !== null) {
+      switch (C.$$typeof) {
         case Ss:
-          return (u = u.get(j.key === null ? x : j.key) || null), c(f, u, j, L);
+          return (u = u.get(C.key === null ? g : C.key) || null), c(f, u, C, B);
         case tr:
-          return (u = u.get(j.key === null ? x : j.key) || null), h(f, u, j, L);
+          return (u = u.get(C.key === null ? g : C.key) || null), h(f, u, C, B);
         case pn:
-          var P = j._init;
-          return w(u, f, x, P(j._payload), L);
+          var I = C._init;
+          return b(u, f, g, I(C._payload), B);
       }
-      if (Gr(j) || Rr(j)) return (u = u.get(x) || null), d(f, u, j, L, null);
-      As(f, j);
+      if (Fr(C) || Rr(C)) return (u = u.get(g) || null), d(f, u, C, B, null);
+      As(f, C);
     }
     return null;
   }
-  function v(u, f, x, j) {
+  function v(u, f, g, C) {
     for (
-      var L = null, P = null, R = f, N = (f = 0), I = null;
-      R !== null && N < x.length;
-      N++
+      var B = null, I = null, A = f, j = (f = 0), z = null;
+      A !== null && j < g.length;
+      j++
     ) {
-      R.index > N ? ((I = R), (R = null)) : (I = R.sibling);
-      var S = p(u, R, x[N], j);
-      if (S === null) {
-        R === null && (R = I);
+      A.index > j ? ((z = A), (A = null)) : (z = A.sibling);
+      var D = m(u, A, g[j], C);
+      if (D === null) {
+        A === null && (A = z);
         break;
       }
-      e && R && S.alternate === null && t(u, R),
-        (f = l(S, f, N)),
-        P === null ? (L = S) : (P.sibling = S),
-        (P = S),
-        (R = I);
+      e && A && D.alternate === null && t(u, A),
+        (f = l(D, f, j)),
+        I === null ? (B = D) : (I.sibling = D),
+        (I = D),
+        (A = z);
     }
-    if (N === x.length) return n(u, R), Ue && Rn(u, N), L;
-    if (R === null) {
-      for (; N < x.length; N++)
-        (R = g(u, x[N], j)),
-          R !== null &&
-            ((f = l(R, f, N)), P === null ? (L = R) : (P.sibling = R), (P = R));
-      return Ue && Rn(u, N), L;
+    if (j === g.length) return n(u, A), Ue && Rn(u, j), B;
+    if (A === null) {
+      for (; j < g.length; j++)
+        (A = x(u, g[j], C)),
+          A !== null &&
+            ((f = l(A, f, j)), I === null ? (B = A) : (I.sibling = A), (I = A));
+      return Ue && Rn(u, j), B;
     }
-    for (R = r(u, R); N < x.length; N++)
-      (I = w(R, u, N, x[N], j)),
-        I !== null &&
-          (e && I.alternate !== null && R.delete(I.key === null ? N : I.key),
-          (f = l(I, f, N)),
-          P === null ? (L = I) : (P.sibling = I),
-          (P = I));
+    for (A = r(u, A); j < g.length; j++)
+      (z = b(A, u, j, g[j], C)),
+        z !== null &&
+          (e && z.alternate !== null && A.delete(z.key === null ? j : z.key),
+          (f = l(z, f, j)),
+          I === null ? (B = z) : (I.sibling = z),
+          (I = z));
     return (
       e &&
-        R.forEach(function (O) {
-          return t(u, O);
+        A.forEach(function (F) {
+          return t(u, F);
         }),
-      Ue && Rn(u, N),
-      L
+      Ue && Rn(u, j),
+      B
     );
   }
-  function b(u, f, x, j) {
-    var L = Rr(x);
-    if (typeof L != "function") throw Error(J(150));
-    if (((x = L.call(x)), x == null)) throw Error(J(151));
+  function N(u, f, g, C) {
+    var B = Rr(g);
+    if (typeof B != "function") throw Error(te(150));
+    if (((g = B.call(g)), g == null)) throw Error(te(151));
     for (
-      var P = (L = null), R = f, N = (f = 0), I = null, S = x.next();
-      R !== null && !S.done;
-      N++, S = x.next()
+      var I = (B = null), A = f, j = (f = 0), z = null, D = g.next();
+      A !== null && !D.done;
+      j++, D = g.next()
     ) {
-      R.index > N ? ((I = R), (R = null)) : (I = R.sibling);
-      var O = p(u, R, S.value, j);
-      if (O === null) {
-        R === null && (R = I);
+      A.index > j ? ((z = A), (A = null)) : (z = A.sibling);
+      var F = m(u, A, D.value, C);
+      if (F === null) {
+        A === null && (A = z);
         break;
       }
-      e && R && O.alternate === null && t(u, R),
-        (f = l(O, f, N)),
-        P === null ? (L = O) : (P.sibling = O),
-        (P = O),
-        (R = I);
+      e && A && F.alternate === null && t(u, A),
+        (f = l(F, f, j)),
+        I === null ? (B = F) : (I.sibling = F),
+        (I = F),
+        (A = z);
     }
-    if (S.done) return n(u, R), Ue && Rn(u, N), L;
-    if (R === null) {
-      for (; !S.done; N++, S = x.next())
-        (S = g(u, S.value, j)),
-          S !== null &&
-            ((f = l(S, f, N)), P === null ? (L = S) : (P.sibling = S), (P = S));
-      return Ue && Rn(u, N), L;
+    if (D.done) return n(u, A), Ue && Rn(u, j), B;
+    if (A === null) {
+      for (; !D.done; j++, D = g.next())
+        (D = x(u, D.value, C)),
+          D !== null &&
+            ((f = l(D, f, j)), I === null ? (B = D) : (I.sibling = D), (I = D));
+      return Ue && Rn(u, j), B;
     }
-    for (R = r(u, R); !S.done; N++, S = x.next())
-      (S = w(R, u, N, S.value, j)),
-        S !== null &&
-          (e && S.alternate !== null && R.delete(S.key === null ? N : S.key),
-          (f = l(S, f, N)),
-          P === null ? (L = S) : (P.sibling = S),
-          (P = S));
+    for (A = r(u, A); !D.done; j++, D = g.next())
+      (D = b(A, u, j, D.value, C)),
+        D !== null &&
+          (e && D.alternate !== null && A.delete(D.key === null ? j : D.key),
+          (f = l(D, f, j)),
+          I === null ? (B = D) : (I.sibling = D),
+          (I = D));
     return (
       e &&
-        R.forEach(function (G) {
+        A.forEach(function (G) {
           return t(u, G);
         }),
-      Ue && Rn(u, N),
-      L
+      Ue && Rn(u, j),
+      B
     );
   }
-  function _(u, f, x, j) {
+  function E(u, f, g, C) {
     if (
-      (typeof x == "object" &&
-        x !== null &&
-        x.type === nr &&
-        x.key === null &&
-        (x = x.props.children),
-      typeof x == "object" && x !== null)
+      (typeof g == "object" &&
+        g !== null &&
+        g.type === nr &&
+        g.key === null &&
+        (g = g.props.children),
+      typeof g == "object" && g !== null)
     ) {
-      switch (x.$$typeof) {
+      switch (g.$$typeof) {
         case Ss:
           e: {
-            for (var L = x.key, P = f; P !== null; ) {
-              if (P.key === L) {
-                if (((L = x.type), L === nr)) {
-                  if (P.tag === 7) {
-                    n(u, P.sibling),
-                      (f = o(P, x.props.children)),
+            for (var B = g.key, I = f; I !== null; ) {
+              if (I.key === B) {
+                if (((B = g.type), B === nr)) {
+                  if (I.tag === 7) {
+                    n(u, I.sibling),
+                      (f = o(I, g.props.children)),
                       (f.return = u),
                       (u = f);
                     break e;
                   }
                 } else if (
-                  P.elementType === L ||
-                  (typeof L == "object" &&
-                    L !== null &&
-                    L.$$typeof === pn &&
-                    Vi(L) === P.type)
+                  I.elementType === B ||
+                  (typeof B == "object" &&
+                    B !== null &&
+                    B.$$typeof === pn &&
+                    Vi(B) === I.type)
                 ) {
-                  n(u, P.sibling),
-                    (f = o(P, x.props)),
-                    (f.ref = Lr(u, P, x)),
+                  n(u, I.sibling),
+                    (f = o(I, g.props)),
+                    (f.ref = Lr(u, I, g)),
                     (f.return = u),
                     (u = f);
                   break e;
                 }
-                n(u, P);
+                n(u, I);
                 break;
-              } else t(u, P);
-              P = P.sibling;
+              } else t(u, I);
+              I = I.sibling;
             }
-            x.type === nr
-              ? ((f = Un(x.props.children, u.mode, j, x.key)),
+            g.type === nr
+              ? ((f = Un(g.props.children, u.mode, C, g.key)),
                 (f.return = u),
                 (u = f))
-              : ((j = Js(x.type, x.key, x.props, null, u.mode, j)),
-                (j.ref = Lr(u, f, x)),
-                (j.return = u),
-                (u = j));
+              : ((C = Js(g.type, g.key, g.props, null, u.mode, C)),
+                (C.ref = Lr(u, f, g)),
+                (C.return = u),
+                (u = C));
           }
           return a(u);
         case tr:
           e: {
-            for (P = x.key; f !== null; ) {
-              if (f.key === P)
+            for (I = g.key; f !== null; ) {
+              if (f.key === I)
                 if (
                   f.tag === 4 &&
-                  f.stateNode.containerInfo === x.containerInfo &&
-                  f.stateNode.implementation === x.implementation
+                  f.stateNode.containerInfo === g.containerInfo &&
+                  f.stateNode.implementation === g.implementation
                 ) {
                   n(u, f.sibling),
-                    (f = o(f, x.children || [])),
+                    (f = o(f, g.children || [])),
                     (f.return = u),
                     (u = f);
                   break e;
@@ -4119,25 +4119,25 @@ function Ru(e) {
               else t(u, f);
               f = f.sibling;
             }
-            (f = hl(x, u.mode, j)), (f.return = u), (u = f);
+            (f = hl(g, u.mode, C)), (f.return = u), (u = f);
           }
           return a(u);
         case pn:
-          return (P = x._init), _(u, f, P(x._payload), j);
+          return (I = g._init), E(u, f, I(g._payload), C);
       }
-      if (Gr(x)) return v(u, f, x, j);
-      if (Rr(x)) return b(u, f, x, j);
-      As(u, x);
+      if (Fr(g)) return v(u, f, g, C);
+      if (Rr(g)) return N(u, f, g, C);
+      As(u, g);
     }
-    return (typeof x == "string" && x !== "") || typeof x == "number"
-      ? ((x = "" + x),
+    return (typeof g == "string" && g !== "") || typeof g == "number"
+      ? ((g = "" + g),
         f !== null && f.tag === 6
-          ? (n(u, f.sibling), (f = o(f, x)), (f.return = u), (u = f))
-          : (n(u, f), (f = ml(x, u.mode, j)), (f.return = u), (u = f)),
+          ? (n(u, f.sibling), (f = o(f, g)), (f.return = u), (u = f))
+          : (n(u, f), (f = ml(g, u.mode, C)), (f.return = u), (u = f)),
         a(u))
       : n(u, f);
   }
-  return _;
+  return E;
 }
 var Nr = Ru(!0),
   Tu = Ru(!1),
@@ -4152,7 +4152,7 @@ function Oa(e) {
   var t = mo.current;
   Le(mo), (e._currentValue = t);
 }
-function Ql(e, t, n) {
+function ql(e, t, n) {
   for (; e !== null; ) {
     var r = e.alternate;
     if (
@@ -4177,7 +4177,7 @@ function Tt(e) {
   var t = e._currentValue;
   if (Ta !== e)
     if (((e = { context: e, memoizedValue: t, next: null }), ur === null)) {
-      if (ho === null) throw Error(J(308));
+      if (ho === null) throw Error(te(308));
       (ur = e), (ho.dependencies = { lanes: 0, firstContext: e });
     } else ur = ur.next = e;
   return t;
@@ -4239,7 +4239,7 @@ function sn(e, t) {
 function jn(e, t, n) {
   var r = e.updateQueue;
   if (r === null) return null;
-  if (((r = r.shared), Ie & 2)) {
+  if (((r = r.shared), Pe & 2)) {
     var o = r.pending;
     return (
       o === null ? (t.next = t) : ((t.next = o.next), (o.next = t)),
@@ -4316,16 +4316,16 @@ function go(e, t, n, r) {
         (d.lastBaseUpdate = c)));
   }
   if (l !== null) {
-    var g = o.baseState;
+    var x = o.baseState;
     (a = 0), (d = h = c = null), (i = l);
     do {
-      var p = i.lane,
-        w = i.eventTime;
-      if ((r & p) === p) {
+      var m = i.lane,
+        b = i.eventTime;
+      if ((r & m) === m) {
         d !== null &&
           (d = d.next =
             {
-              eventTime: w,
+              eventTime: b,
               lane: 0,
               tag: i.tag,
               payload: i.payload,
@@ -4334,25 +4334,25 @@ function go(e, t, n, r) {
             });
         e: {
           var v = e,
-            b = i;
-          switch (((p = t), (w = n), b.tag)) {
+            N = i;
+          switch (((m = t), (b = n), N.tag)) {
             case 1:
-              if (((v = b.payload), typeof v == "function")) {
-                g = v.call(w, g, p);
+              if (((v = N.payload), typeof v == "function")) {
+                x = v.call(b, x, m);
                 break e;
               }
-              g = v;
+              x = v;
               break e;
             case 3:
               v.flags = (v.flags & -65537) | 128;
             case 0:
               if (
-                ((v = b.payload),
-                (p = typeof v == "function" ? v.call(w, g, p) : v),
-                p == null)
+                ((v = N.payload),
+                (m = typeof v == "function" ? v.call(b, x, m) : v),
+                m == null)
               )
                 break e;
-              g = Fe({}, g, p);
+              x = Ge({}, x, m);
               break e;
             case 2:
               mn = !0;
@@ -4361,30 +4361,30 @@ function go(e, t, n, r) {
         i.callback !== null &&
           i.lane !== 0 &&
           ((e.flags |= 64),
-          (p = o.effects),
-          p === null ? (o.effects = [i]) : p.push(i));
+          (m = o.effects),
+          m === null ? (o.effects = [i]) : m.push(i));
       } else
-        (w = {
-          eventTime: w,
-          lane: p,
+        (b = {
+          eventTime: b,
+          lane: m,
           tag: i.tag,
           payload: i.payload,
           callback: i.callback,
           next: null,
         }),
-          d === null ? ((h = d = w), (c = g)) : (d = d.next = w),
-          (a |= p);
+          d === null ? ((h = d = b), (c = x)) : (d = d.next = b),
+          (a |= m);
       if (((i = i.next), i === null)) {
         if (((i = o.shared.pending), i === null)) break;
-        (p = i),
-          (i = p.next),
-          (p.next = null),
-          (o.lastBaseUpdate = p),
+        (m = i),
+          (i = m.next),
+          (m.next = null),
+          (o.lastBaseUpdate = m),
           (o.shared.pending = null);
       }
     } while (!0);
     if (
-      (d === null && (c = g),
+      (d === null && (c = x),
       (o.baseState = c),
       (o.firstBaseUpdate = h),
       (o.lastBaseUpdate = d),
@@ -4395,17 +4395,17 @@ function go(e, t, n, r) {
       do (a |= o.lane), (o = o.next);
       while (o !== t);
     } else l === null && (o.shared.lanes = 0);
-    (Fn |= a), (e.lanes = a), (e.memoizedState = g);
+    (Gn |= a), (e.lanes = a), (e.memoizedState = x);
   }
 }
-function Qi(e, t, n) {
+function qi(e, t, n) {
   if (((e = t.effects), (t.effects = null), e !== null))
     for (t = 0; t < e.length; t++) {
       var r = e[t],
         o = r.callback;
       if (o !== null) {
         if (((r.callback = null), (r = n), typeof o != "function"))
-          throw Error(J(191, o));
+          throw Error(te(191, o));
         o.call(r);
       }
     }
@@ -4415,20 +4415,20 @@ var bs = {},
   ds = En(bs),
   fs = En(bs);
 function $n(e) {
-  if (e === bs) throw Error(J(174));
+  if (e === bs) throw Error(te(174));
   return e;
 }
 function Ua(e, t) {
   switch ((Oe(fs, t), Oe(ds, e), Oe(Jt, bs), (e = t.nodeType), e)) {
     case 9:
     case 11:
-      t = (t = t.documentElement) ? t.namespaceURI : _l(null, "");
+      t = (t = t.documentElement) ? t.namespaceURI : Dl(null, "");
       break;
     default:
       (e = e === 8 ? t.parentNode : t),
         (t = e.namespaceURI || null),
         (e = e.tagName),
-        (t = _l(t, e));
+        (t = Dl(t, e));
   }
   Le(Jt), Oe(Jt, t);
 }
@@ -4438,13 +4438,13 @@ function jr() {
 function $u(e) {
   $n(fs.current);
   var t = $n(Jt.current),
-    n = _l(t, e.type);
+    n = Dl(t, e.type);
   t !== n && (Oe(ds, e), Oe(Jt, n));
 }
-function za(e) {
+function Ba(e) {
   ds.current === e && (Le(Jt), Le(ds));
 }
-var Be = En(0);
+var ze = En(0);
 function xo(e) {
   for (var t = e; t !== null; ) {
     if (t.tag === 13) {
@@ -4470,15 +4470,15 @@ function xo(e) {
   return null;
 }
 var il = [];
-function Ba() {
+function za() {
   for (var e = 0; e < il.length; e++)
     il[e]._workInProgressVersionPrimary = null;
   il.length = 0;
 }
-var Qs = un.ReactCurrentDispatcher,
+var qs = un.ReactCurrentDispatcher,
   cl = un.ReactCurrentBatchConfig,
-  Gn = 0,
-  Ge = null,
+  Fn = 0,
+  Fe = null,
   Xe = null,
   Ze = null,
   yo = !1,
@@ -4486,51 +4486,51 @@ var Qs = un.ReactCurrentDispatcher,
   ps = 0,
   Xp = 0;
 function st() {
-  throw Error(J(321));
+  throw Error(te(321));
 }
-function Ga(e, t) {
+function Fa(e, t) {
   if (t === null) return !1;
   for (var n = 0; n < t.length && n < e.length; n++)
     if (!Ht(e[n], t[n])) return !1;
   return !0;
 }
-function Fa(e, t, n, r, o, l) {
+function Ga(e, t, n, r, o, l) {
   if (
-    ((Gn = l),
-    (Ge = t),
+    ((Fn = l),
+    (Fe = t),
     (t.memoizedState = null),
     (t.updateQueue = null),
     (t.lanes = 0),
-    (Qs.current = e === null || e.memoizedState === null ? em : tm),
+    (qs.current = e === null || e.memoizedState === null ? em : tm),
     (e = n(r, o)),
     Xr)
   ) {
     l = 0;
     do {
-      if (((Xr = !1), (ps = 0), 25 <= l)) throw Error(J(301));
+      if (((Xr = !1), (ps = 0), 25 <= l)) throw Error(te(301));
       (l += 1),
         (Ze = Xe = null),
         (t.updateQueue = null),
-        (Qs.current = nm),
+        (qs.current = nm),
         (e = n(r, o));
     } while (Xr);
   }
   if (
-    ((Qs.current = vo),
+    ((qs.current = vo),
     (t = Xe !== null && Xe.next !== null),
-    (Gn = 0),
-    (Ze = Xe = Ge = null),
+    (Fn = 0),
+    (Ze = Xe = Fe = null),
     (yo = !1),
     t)
   )
-    throw Error(J(300));
+    throw Error(te(300));
   return e;
 }
 function Ha() {
   var e = ps !== 0;
   return (ps = 0), e;
 }
-function qt() {
+function Yt() {
   var e = {
     memoizedState: null,
     baseState: null,
@@ -4538,17 +4538,17 @@ function qt() {
     queue: null,
     next: null,
   };
-  return Ze === null ? (Ge.memoizedState = Ze = e) : (Ze = Ze.next = e), Ze;
+  return Ze === null ? (Fe.memoizedState = Ze = e) : (Ze = Ze.next = e), Ze;
 }
 function At() {
   if (Xe === null) {
-    var e = Ge.alternate;
+    var e = Fe.alternate;
     e = e !== null ? e.memoizedState : null;
   } else e = Xe.next;
-  var t = Ze === null ? Ge.memoizedState : Ze.next;
+  var t = Ze === null ? Fe.memoizedState : Ze.next;
   if (t !== null) (Ze = t), (Xe = e);
   else {
-    if (e === null) throw Error(J(310));
+    if (e === null) throw Error(te(310));
     (Xe = e),
       (e = {
         memoizedState: Xe.memoizedState,
@@ -4557,7 +4557,7 @@ function At() {
         queue: Xe.queue,
         next: null,
       }),
-      Ze === null ? (Ge.memoizedState = Ze = e) : (Ze = Ze.next = e);
+      Ze === null ? (Fe.memoizedState = Ze = e) : (Ze = Ze.next = e);
   }
   return Ze;
 }
@@ -4567,7 +4567,7 @@ function ms(e, t) {
 function ul(e) {
   var t = At(),
     n = t.queue;
-  if (n === null) throw Error(J(311));
+  if (n === null) throw Error(te(311));
   n.lastRenderedReducer = e;
   var r = Xe,
     o = r.baseQueue,
@@ -4586,7 +4586,7 @@ function ul(e) {
       h = l;
     do {
       var d = h.lane;
-      if ((Gn & d) === d)
+      if ((Fn & d) === d)
         c !== null &&
           (c = c.next =
             {
@@ -4598,16 +4598,16 @@ function ul(e) {
             }),
           (r = h.hasEagerState ? h.eagerState : e(r, h.action));
       else {
-        var g = {
+        var x = {
           lane: d,
           action: h.action,
           hasEagerState: h.hasEagerState,
           eagerState: h.eagerState,
           next: null,
         };
-        c === null ? ((i = c = g), (a = r)) : (c = c.next = g),
-          (Ge.lanes |= d),
-          (Fn |= d);
+        c === null ? ((i = c = x), (a = r)) : (c = c.next = x),
+          (Fe.lanes |= d),
+          (Gn |= d);
       }
       h = h.next;
     } while (h !== null && h !== l);
@@ -4620,7 +4620,7 @@ function ul(e) {
   }
   if (((e = n.interleaved), e !== null)) {
     o = e;
-    do (l = o.lane), (Ge.lanes |= l), (Fn |= l), (o = o.next);
+    do (l = o.lane), (Fe.lanes |= l), (Gn |= l), (o = o.next);
     while (o !== e);
   } else o === null && (n.lanes = 0);
   return [t.memoizedState, n.dispatch];
@@ -4628,7 +4628,7 @@ function ul(e) {
 function dl(e) {
   var t = At(),
     n = t.queue;
-  if (n === null) throw Error(J(311));
+  if (n === null) throw Error(te(311));
   n.lastRenderedReducer = e;
   var r = n.dispatch,
     o = n.pending,
@@ -4647,45 +4647,45 @@ function dl(e) {
 }
 function Lu() {}
 function Uu(e, t) {
-  var n = Ge,
+  var n = Fe,
     r = At(),
     o = t(),
     l = !Ht(r.memoizedState, o);
   if (
     (l && ((r.memoizedState = o), (ht = !0)),
     (r = r.queue),
-    Va(Gu.bind(null, n, r, e), [e]),
+    Va(Fu.bind(null, n, r, e), [e]),
     r.getSnapshot !== t || l || (Ze !== null && Ze.memoizedState.tag & 1))
   ) {
     if (
       ((n.flags |= 2048),
-      hs(9, Bu.bind(null, n, r, o, t), void 0, null),
+      hs(9, zu.bind(null, n, r, o, t), void 0, null),
       et === null)
     )
-      throw Error(J(349));
-    Gn & 30 || zu(n, t, o);
+      throw Error(te(349));
+    Fn & 30 || Bu(n, t, o);
   }
   return o;
 }
-function zu(e, t, n) {
+function Bu(e, t, n) {
   (e.flags |= 16384),
     (e = { getSnapshot: t, value: n }),
-    (t = Ge.updateQueue),
+    (t = Fe.updateQueue),
     t === null
       ? ((t = { lastEffect: null, stores: null }),
-        (Ge.updateQueue = t),
+        (Fe.updateQueue = t),
         (t.stores = [e]))
       : ((n = t.stores), n === null ? (t.stores = [e]) : n.push(e));
 }
-function Bu(e, t, n, r) {
-  (t.value = n), (t.getSnapshot = r), Fu(t) && Hu(e);
+function zu(e, t, n, r) {
+  (t.value = n), (t.getSnapshot = r), Gu(t) && Hu(e);
 }
-function Gu(e, t, n) {
+function Fu(e, t, n) {
   return n(function () {
-    Fu(t) && Hu(e);
+    Gu(t) && Hu(e);
   });
 }
-function Fu(e) {
+function Gu(e) {
   var t = e.getSnapshot;
   e = e.value;
   try {
@@ -4697,10 +4697,10 @@ function Fu(e) {
 }
 function Hu(e) {
   var t = an(e, 1);
-  t !== null && Ft(t, e, 1, -1);
+  t !== null && Gt(t, e, 1, -1);
 }
-function Yi(e) {
-  var t = qt();
+function Qi(e) {
+  var t = Yt();
   return (
     typeof e == "function" && (e = e()),
     (t.memoizedState = t.baseState = e),
@@ -4713,17 +4713,17 @@ function Yi(e) {
       lastRenderedState: e,
     }),
     (t.queue = e),
-    (e = e.dispatch = Zp.bind(null, Ge, e)),
+    (e = e.dispatch = Zp.bind(null, Fe, e)),
     [t.memoizedState, e]
   );
 }
 function hs(e, t, n, r) {
   return (
     (e = { tag: e, create: t, destroy: n, deps: r, next: null }),
-    (t = Ge.updateQueue),
+    (t = Fe.updateQueue),
     t === null
       ? ((t = { lastEffect: null, stores: null }),
-        (Ge.updateQueue = t),
+        (Fe.updateQueue = t),
         (t.lastEffect = e.next = e))
       : ((n = t.lastEffect),
         n === null
@@ -4735,37 +4735,37 @@ function hs(e, t, n, r) {
 function Vu() {
   return At().memoizedState;
 }
-function Ys(e, t, n, r) {
-  var o = qt();
-  (Ge.flags |= e),
+function Qs(e, t, n, r) {
+  var o = Yt();
+  (Fe.flags |= e),
     (o.memoizedState = hs(1 | t, n, void 0, r === void 0 ? null : r));
 }
-function Io(e, t, n, r) {
+function Po(e, t, n, r) {
   var o = At();
   r = r === void 0 ? null : r;
   var l = void 0;
   if (Xe !== null) {
     var a = Xe.memoizedState;
-    if (((l = a.destroy), r !== null && Ga(r, a.deps))) {
+    if (((l = a.destroy), r !== null && Fa(r, a.deps))) {
       o.memoizedState = hs(t, n, l, r);
       return;
     }
   }
-  (Ge.flags |= e), (o.memoizedState = hs(1 | t, n, l, r));
+  (Fe.flags |= e), (o.memoizedState = hs(1 | t, n, l, r));
 }
-function qi(e, t) {
-  return Ys(8390656, 8, e, t);
+function Yi(e, t) {
+  return Qs(8390656, 8, e, t);
 }
 function Va(e, t) {
-  return Io(2048, 8, e, t);
+  return Po(2048, 8, e, t);
 }
 function Wu(e, t) {
-  return Io(4, 2, e, t);
+  return Po(4, 2, e, t);
+}
+function qu(e, t) {
+  return Po(4, 4, e, t);
 }
 function Qu(e, t) {
-  return Io(4, 4, e, t);
-}
-function Yu(e, t) {
   if (typeof t == "function")
     return (
       (e = e()),
@@ -4783,9 +4783,9 @@ function Yu(e, t) {
       }
     );
 }
-function qu(e, t, n) {
+function Yu(e, t, n) {
   return (
-    (n = n != null ? n.concat([e]) : null), Io(4, 4, Yu.bind(null, t, e), n)
+    (n = n != null ? n.concat([e]) : null), Po(4, 4, Qu.bind(null, t, e), n)
   );
 }
 function Wa() {}
@@ -4793,7 +4793,7 @@ function Xu(e, t) {
   var n = At();
   t = t === void 0 ? null : t;
   var r = n.memoizedState;
-  return r !== null && t !== null && Ga(t, r[1])
+  return r !== null && t !== null && Fa(t, r[1])
     ? r[0]
     : ((n.memoizedState = [e, t]), e);
 }
@@ -4801,13 +4801,13 @@ function Ku(e, t) {
   var n = At();
   t = t === void 0 ? null : t;
   var r = n.memoizedState;
-  return r !== null && t !== null && Ga(t, r[1])
+  return r !== null && t !== null && Fa(t, r[1])
     ? r[0]
     : ((e = e()), (n.memoizedState = [e, t]), e);
 }
 function Ju(e, t, n) {
-  return Gn & 21
-    ? (Ht(n, t) || ((n = ru()), (Ge.lanes |= n), (Fn |= n), (e.baseState = !0)),
+  return Fn & 21
+    ? (Ht(n, t) || ((n = ru()), (Fe.lanes |= n), (Gn |= n), (e.baseState = !0)),
       t)
     : (e.baseState && ((e.baseState = !1), (ht = !0)), (e.memoizedState = n));
 }
@@ -4840,7 +4840,7 @@ function Jp(e, t, n) {
     td(t, n);
   else if (((n = Au(e, t, n, r)), n !== null)) {
     var o = ut();
-    Ft(n, e, r, o), nd(n, t, r);
+    Gt(n, e, r, o), nd(n, t, r);
   }
 }
 function Zp(e, t, n) {
@@ -4869,12 +4869,12 @@ function Zp(e, t, n) {
       } finally {
       }
     (n = Au(e, t, o, r)),
-      n !== null && ((o = ut()), Ft(n, e, r, o), nd(n, t, r));
+      n !== null && ((o = ut()), Gt(n, e, r, o), nd(n, t, r));
   }
 }
 function ed(e) {
   var t = e.alternate;
-  return e === Ge || (t !== null && t === Ge);
+  return e === Fe || (t !== null && t === Fe);
 }
 function td(e, t) {
   Xr = yo = !0;
@@ -4911,30 +4911,30 @@ var vo = {
   em = {
     readContext: Tt,
     useCallback: function (e, t) {
-      return (qt().memoizedState = [e, t === void 0 ? null : t]), e;
+      return (Yt().memoizedState = [e, t === void 0 ? null : t]), e;
     },
     useContext: Tt,
-    useEffect: qi,
+    useEffect: Yi,
     useImperativeHandle: function (e, t, n) {
       return (
         (n = n != null ? n.concat([e]) : null),
-        Ys(4194308, 4, Yu.bind(null, t, e), n)
+        Qs(4194308, 4, Qu.bind(null, t, e), n)
       );
     },
     useLayoutEffect: function (e, t) {
-      return Ys(4194308, 4, e, t);
+      return Qs(4194308, 4, e, t);
     },
     useInsertionEffect: function (e, t) {
-      return Ys(4, 2, e, t);
+      return Qs(4, 2, e, t);
     },
     useMemo: function (e, t) {
-      var n = qt();
+      var n = Yt();
       return (
         (t = t === void 0 ? null : t), (e = e()), (n.memoizedState = [e, t]), e
       );
     },
     useReducer: function (e, t, n) {
-      var r = qt();
+      var r = Yt();
       return (
         (t = n !== void 0 ? n(t) : t),
         (r.memoizedState = r.baseState = t),
@@ -4947,52 +4947,52 @@ var vo = {
           lastRenderedState: t,
         }),
         (r.queue = e),
-        (e = e.dispatch = Jp.bind(null, Ge, e)),
+        (e = e.dispatch = Jp.bind(null, Fe, e)),
         [r.memoizedState, e]
       );
     },
     useRef: function (e) {
-      var t = qt();
+      var t = Yt();
       return (e = { current: e }), (t.memoizedState = e);
     },
-    useState: Yi,
+    useState: Qi,
     useDebugValue: Wa,
     useDeferredValue: function (e) {
-      return (qt().memoizedState = e);
+      return (Yt().memoizedState = e);
     },
     useTransition: function () {
-      var e = Yi(!1),
+      var e = Qi(!1),
         t = e[0];
-      return (e = Kp.bind(null, e[1])), (qt().memoizedState = e), [t, e];
+      return (e = Kp.bind(null, e[1])), (Yt().memoizedState = e), [t, e];
     },
     useMutableSource: function () {},
     useSyncExternalStore: function (e, t, n) {
-      var r = Ge,
-        o = qt();
+      var r = Fe,
+        o = Yt();
       if (Ue) {
-        if (n === void 0) throw Error(J(407));
+        if (n === void 0) throw Error(te(407));
         n = n();
       } else {
-        if (((n = t()), et === null)) throw Error(J(349));
-        Gn & 30 || zu(r, t, n);
+        if (((n = t()), et === null)) throw Error(te(349));
+        Fn & 30 || Bu(r, t, n);
       }
       o.memoizedState = n;
       var l = { value: n, getSnapshot: t };
       return (
         (o.queue = l),
-        qi(Gu.bind(null, r, l, e), [e]),
+        Yi(Fu.bind(null, r, l, e), [e]),
         (r.flags |= 2048),
-        hs(9, Bu.bind(null, r, l, n, t), void 0, null),
+        hs(9, zu.bind(null, r, l, n, t), void 0, null),
         n
       );
     },
     useId: function () {
-      var e = qt(),
+      var e = Yt(),
         t = et.identifierPrefix;
       if (Ue) {
         var n = rn,
           r = nn;
-        (n = (r & ~(1 << (32 - Gt(r) - 1))).toString(32) + n),
+        (n = (r & ~(1 << (32 - Ft(r) - 1))).toString(32) + n),
           (t = ":" + t + "R" + n),
           (n = ps++),
           0 < n && (t += "H" + n.toString(32)),
@@ -5007,9 +5007,9 @@ var vo = {
     useCallback: Xu,
     useContext: Tt,
     useEffect: Va,
-    useImperativeHandle: qu,
+    useImperativeHandle: Yu,
     useInsertionEffect: Wu,
-    useLayoutEffect: Qu,
+    useLayoutEffect: qu,
     useMemo: Ku,
     useReducer: ul,
     useRef: Vu,
@@ -5036,9 +5036,9 @@ var vo = {
     useCallback: Xu,
     useContext: Tt,
     useEffect: Va,
-    useImperativeHandle: qu,
+    useImperativeHandle: Yu,
     useInsertionEffect: Wu,
-    useLayoutEffect: Qu,
+    useLayoutEffect: qu,
     useMemo: Ku,
     useReducer: dl,
     useRef: Vu,
@@ -5062,16 +5062,16 @@ var vo = {
   };
 function Ut(e, t) {
   if (e && e.defaultProps) {
-    (t = Fe({}, t)), (e = e.defaultProps);
+    (t = Ge({}, t)), (e = e.defaultProps);
     for (var n in e) t[n] === void 0 && (t[n] = e[n]);
     return t;
   }
   return t;
 }
-function Yl(e, t, n, r) {
+function Ql(e, t, n, r) {
   (t = e.memoizedState),
     (n = n(r, t)),
-    (n = n == null ? t : Fe({}, t, n)),
+    (n = n == null ? t : Ge({}, t, n)),
     (e.memoizedState = n),
     e.lanes === 0 && (e.updateQueue.baseState = n);
 }
@@ -5087,7 +5087,7 @@ var Ro = {
     (l.payload = t),
       n != null && (l.callback = n),
       (t = jn(e, l, o)),
-      t !== null && (Ft(t, e, o, r), Ws(t, e, o));
+      t !== null && (Gt(t, e, o, r), Ws(t, e, o));
   },
   enqueueReplaceState: function (e, t, n) {
     e = e._reactInternals;
@@ -5098,7 +5098,7 @@ var Ro = {
       (l.payload = t),
       n != null && (l.callback = n),
       (t = jn(e, l, o)),
-      t !== null && (Ft(t, e, o, r), Ws(t, e, o));
+      t !== null && (Gt(t, e, o, r), Ws(t, e, o));
   },
   enqueueForceUpdate: function (e, t) {
     e = e._reactInternals;
@@ -5108,7 +5108,7 @@ var Ro = {
     (o.tag = 2),
       t != null && (o.callback = t),
       (t = jn(e, o, r)),
-      t !== null && (Ft(t, e, r, n), Ws(t, e, r));
+      t !== null && (Gt(t, e, r, n), Ws(t, e, r));
   },
 };
 function Xi(e, t, n, r, o, l, a) {
@@ -5123,14 +5123,14 @@ function Xi(e, t, n, r, o, l, a) {
 }
 function rd(e, t, n) {
   var r = !1,
-    o = Dn,
+    o = _n,
     l = t.contextType;
   return (
     typeof l == "object" && l !== null
       ? (l = Tt(l))
-      : ((o = xt(t) ? zn : at.current),
+      : ((o = yt(t) ? Bn : at.current),
         (r = t.contextTypes),
-        (l = (r = r != null) ? wr(e, o) : Dn)),
+        (l = (r = r != null) ? wr(e, o) : _n)),
     (t = new t(n, l)),
     (e.memoizedState = t.state !== null && t.state !== void 0 ? t.state : null),
     (t.updater = Ro),
@@ -5151,16 +5151,16 @@ function Ki(e, t, n, r) {
       t.UNSAFE_componentWillReceiveProps(n, r),
     t.state !== e && Ro.enqueueReplaceState(t, t.state, null);
 }
-function ql(e, t, n, r) {
+function Yl(e, t, n, r) {
   var o = e.stateNode;
   (o.props = n), (o.state = e.memoizedState), (o.refs = {}), La(e);
   var l = t.contextType;
   typeof l == "object" && l !== null
     ? (o.context = Tt(l))
-    : ((l = xt(t) ? zn : at.current), (o.context = wr(e, l))),
+    : ((l = yt(t) ? Bn : at.current), (o.context = wr(e, l))),
     (o.state = e.memoizedState),
     (l = t.getDerivedStateFromProps),
-    typeof l == "function" && (Yl(e, t, l, n), (o.state = e.memoizedState)),
+    typeof l == "function" && (Ql(e, t, l, n), (o.state = e.memoizedState)),
     typeof t.getDerivedStateFromProps == "function" ||
       typeof o.getSnapshotBeforeUpdate == "function" ||
       (typeof o.UNSAFE_componentWillMount != "function" &&
@@ -5290,14 +5290,14 @@ function tc(e, t, n, r, o) {
   var l = t.ref;
   return (
     xr(t, o),
-    (r = Fa(e, t, n, r, l, o)),
+    (r = Ga(e, t, n, r, l, o)),
     (n = Ha()),
     e !== null && !ht
       ? ((t.updateQueue = e.updateQueue),
         (t.flags &= -2053),
         (e.lanes &= ~o),
         cn(e, t, o))
-      : (Ue && n && Pa(t), (t.flags |= 1), ct(e, t, r, o), t.child)
+      : (Ue && n && Ia(t), (t.flags |= 1), ct(e, t, r, o), t.child)
   );
 }
 function nc(e, t, n, r, o) {
@@ -5346,8 +5346,8 @@ function ad(e, t, n) {
   if (r.mode === "hidden")
     if (!(t.mode & 1))
       (t.memoizedState = { baseLanes: 0, cachePool: null, transitions: null }),
-        Oe(fr, wt),
-        (wt |= n);
+        Oe(fr, bt),
+        (bt |= n);
     else {
       if (!(n & 1073741824))
         return (
@@ -5359,19 +5359,19 @@ function ad(e, t, n) {
             transitions: null,
           }),
           (t.updateQueue = null),
-          Oe(fr, wt),
-          (wt |= e),
+          Oe(fr, bt),
+          (bt |= e),
           null
         );
       (t.memoizedState = { baseLanes: 0, cachePool: null, transitions: null }),
         (r = l !== null ? l.baseLanes : n),
-        Oe(fr, wt),
-        (wt |= r);
+        Oe(fr, bt),
+        (bt |= r);
     }
   else
     l !== null ? ((r = l.baseLanes | n), (t.memoizedState = null)) : (r = n),
-      Oe(fr, wt),
-      (wt |= r);
+      Oe(fr, bt),
+      (bt |= r);
   return ct(e, t, o, n), t.child;
 }
 function id(e, t) {
@@ -5380,27 +5380,27 @@ function id(e, t) {
     ((t.flags |= 512), (t.flags |= 2097152));
 }
 function Kl(e, t, n, r, o) {
-  var l = xt(n) ? zn : at.current;
+  var l = yt(n) ? Bn : at.current;
   return (
     (l = wr(t, l)),
     xr(t, o),
-    (n = Fa(e, t, n, r, l, o)),
+    (n = Ga(e, t, n, r, l, o)),
     (r = Ha()),
     e !== null && !ht
       ? ((t.updateQueue = e.updateQueue),
         (t.flags &= -2053),
         (e.lanes &= ~o),
         cn(e, t, o))
-      : (Ue && r && Pa(t), (t.flags |= 1), ct(e, t, n, o), t.child)
+      : (Ue && r && Ia(t), (t.flags |= 1), ct(e, t, n, o), t.child)
   );
 }
 function rc(e, t, n, r, o) {
-  if (xt(n)) {
+  if (yt(n)) {
     var l = !0;
     uo(t);
   } else l = !1;
   if ((xr(t, o), t.stateNode === null))
-    qs(e, t), rd(t, n, r), ql(t, n, r, o), (r = !0);
+    Ys(e, t), rd(t, n, r), Yl(t, n, r, o), (r = !0);
   else if (e === null) {
     var a = t.stateNode,
       i = t.memoizedProps;
@@ -5409,24 +5409,24 @@ function rc(e, t, n, r, o) {
       h = n.contextType;
     typeof h == "object" && h !== null
       ? (h = Tt(h))
-      : ((h = xt(n) ? zn : at.current), (h = wr(t, h)));
+      : ((h = yt(n) ? Bn : at.current), (h = wr(t, h)));
     var d = n.getDerivedStateFromProps,
-      g =
+      x =
         typeof d == "function" ||
         typeof a.getSnapshotBeforeUpdate == "function";
-    g ||
+    x ||
       (typeof a.UNSAFE_componentWillReceiveProps != "function" &&
         typeof a.componentWillReceiveProps != "function") ||
       ((i !== r || c !== h) && Ki(t, a, r, h)),
       (mn = !1);
-    var p = t.memoizedState;
-    (a.state = p),
+    var m = t.memoizedState;
+    (a.state = m),
       go(t, r, a, o),
       (c = t.memoizedState),
-      i !== r || p !== c || gt.current || mn
-        ? (typeof d == "function" && (Yl(t, n, d, r), (c = t.memoizedState)),
-          (i = mn || Xi(t, n, i, r, p, c, h))
-            ? (g ||
+      i !== r || m !== c || xt.current || mn
+        ? (typeof d == "function" && (Ql(t, n, d, r), (c = t.memoizedState)),
+          (i = mn || Xi(t, n, i, r, m, c, h))
+            ? (x ||
                 (typeof a.UNSAFE_componentWillMount != "function" &&
                   typeof a.componentWillMount != "function") ||
                 (typeof a.componentWillMount == "function" &&
@@ -5449,27 +5449,27 @@ function rc(e, t, n, r, o) {
       (i = t.memoizedProps),
       (h = t.type === t.elementType ? i : Ut(t.type, i)),
       (a.props = h),
-      (g = t.pendingProps),
-      (p = a.context),
+      (x = t.pendingProps),
+      (m = a.context),
       (c = n.contextType),
       typeof c == "object" && c !== null
         ? (c = Tt(c))
-        : ((c = xt(n) ? zn : at.current), (c = wr(t, c)));
-    var w = n.getDerivedStateFromProps;
+        : ((c = yt(n) ? Bn : at.current), (c = wr(t, c)));
+    var b = n.getDerivedStateFromProps;
     (d =
-      typeof w == "function" ||
+      typeof b == "function" ||
       typeof a.getSnapshotBeforeUpdate == "function") ||
       (typeof a.UNSAFE_componentWillReceiveProps != "function" &&
         typeof a.componentWillReceiveProps != "function") ||
-      ((i !== g || p !== c) && Ki(t, a, r, c)),
+      ((i !== x || m !== c) && Ki(t, a, r, c)),
       (mn = !1),
-      (p = t.memoizedState),
-      (a.state = p),
+      (m = t.memoizedState),
+      (a.state = m),
       go(t, r, a, o);
     var v = t.memoizedState;
-    i !== g || p !== v || gt.current || mn
-      ? (typeof w == "function" && (Yl(t, n, w, r), (v = t.memoizedState)),
-        (h = mn || Xi(t, n, h, r, p, v, c) || !1)
+    i !== x || m !== v || xt.current || mn
+      ? (typeof b == "function" && (Ql(t, n, b, r), (v = t.memoizedState)),
+        (h = mn || Xi(t, n, h, r, m, v, c) || !1)
           ? (d ||
               (typeof a.UNSAFE_componentWillUpdate != "function" &&
                 typeof a.componentWillUpdate != "function") ||
@@ -5480,10 +5480,10 @@ function rc(e, t, n, r, o) {
             typeof a.componentDidUpdate == "function" && (t.flags |= 4),
             typeof a.getSnapshotBeforeUpdate == "function" && (t.flags |= 1024))
           : (typeof a.componentDidUpdate != "function" ||
-              (i === e.memoizedProps && p === e.memoizedState) ||
+              (i === e.memoizedProps && m === e.memoizedState) ||
               (t.flags |= 4),
             typeof a.getSnapshotBeforeUpdate != "function" ||
-              (i === e.memoizedProps && p === e.memoizedState) ||
+              (i === e.memoizedProps && m === e.memoizedState) ||
               (t.flags |= 1024),
             (t.memoizedProps = r),
             (t.memoizedState = v)),
@@ -5492,10 +5492,10 @@ function rc(e, t, n, r, o) {
         (a.context = c),
         (r = h))
       : (typeof a.componentDidUpdate != "function" ||
-          (i === e.memoizedProps && p === e.memoizedState) ||
+          (i === e.memoizedProps && m === e.memoizedState) ||
           (t.flags |= 4),
         typeof a.getSnapshotBeforeUpdate != "function" ||
-          (i === e.memoizedProps && p === e.memoizedState) ||
+          (i === e.memoizedProps && m === e.memoizedState) ||
           (t.flags |= 1024),
         (r = !1));
   }
@@ -5504,7 +5504,7 @@ function rc(e, t, n, r, o) {
 function Jl(e, t, n, r, o, l) {
   id(e, t);
   var a = (t.flags & 128) !== 0;
-  if (!r && !a) return o && Gi(t, n, !1), cn(e, t, l);
+  if (!r && !a) return o && Fi(t, n, !1), cn(e, t, l);
   (r = t.stateNode), (sm.current = t);
   var i =
     a && typeof n.getDerivedStateFromError != "function" ? null : r.render();
@@ -5514,15 +5514,15 @@ function Jl(e, t, n, r, o, l) {
       ? ((t.child = Nr(t, e.child, null, l)), (t.child = Nr(t, null, i, l)))
       : ct(e, t, i, l),
     (t.memoizedState = r.state),
-    o && Gi(t, n, !0),
+    o && Fi(t, n, !0),
     t.child
   );
 }
 function cd(e) {
   var t = e.stateNode;
   t.pendingContext
-    ? Bi(e, t.pendingContext, t.pendingContext !== t.context)
-    : t.context && Bi(e, t.context, !1),
+    ? zi(e, t.pendingContext, t.pendingContext !== t.context)
+    : t.context && zi(e, t.context, !1),
     Ua(e, t.containerInfo);
 }
 function sc(e, t, n, r, o) {
@@ -5534,7 +5534,7 @@ function ea(e) {
 }
 function ud(e, t, n) {
   var r = t.pendingProps,
-    o = Be.current,
+    o = ze.current,
     l = !1,
     a = (t.flags & 128) !== 0,
     i;
@@ -5544,7 +5544,7 @@ function ud(e, t, n) {
     i
       ? ((l = !0), (t.flags &= -129))
       : (e === null || e.memoizedState !== null) && (o |= 1),
-    Oe(Be, o & 1),
+    Oe(ze, o & 1),
     e === null)
   )
     return (
@@ -5574,7 +5574,7 @@ function ud(e, t, n) {
               (t.child.memoizedState = ea(n)),
               (t.memoizedState = Zl),
               e)
-            : Qa(t, a))
+            : qa(t, a))
     );
   if (((o = e.memoizedState), o !== null && ((i = o.dehydrated), i !== null)))
     return om(e, t, a, r, i, o, n);
@@ -5625,7 +5625,7 @@ function ud(e, t, n) {
     r
   );
 }
-function Qa(e, t) {
+function qa(e, t) {
   return (
     (t = Oo({ mode: "visible", children: t }, e.mode, 0, null)),
     (t.return = e),
@@ -5636,7 +5636,7 @@ function Os(e, t, n, r) {
   return (
     r !== null && Ra(r),
     Nr(t, e.child, null, n),
-    (e = Qa(t, t.pendingProps.children)),
+    (e = qa(t, t.pendingProps.children)),
     (e.flags |= 2),
     (t.memoizedState = null),
     e
@@ -5645,7 +5645,7 @@ function Os(e, t, n, r) {
 function om(e, t, n, r, o, l, a) {
   if (n)
     return t.flags & 256
-      ? ((t.flags &= -257), (r = fl(Error(J(422)))), Os(e, t, a, r))
+      ? ((t.flags &= -257), (r = fl(Error(te(422)))), Os(e, t, a, r))
       : t.memoizedState !== null
       ? ((t.child = e.child), (t.flags |= 128), null)
       : ((l = r.fallback),
@@ -5664,7 +5664,9 @@ function om(e, t, n, r, o, l, a) {
   if (!(t.mode & 1)) return Os(e, t, a, null);
   if (o.data === "$!") {
     if (((r = o.nextSibling && o.nextSibling.dataset), r)) var i = r.dgst;
-    return (r = i), (l = Error(J(419))), (r = fl(l, r, void 0)), Os(e, t, a, r);
+    return (
+      (r = i), (l = Error(te(419))), (r = fl(l, r, void 0)), Os(e, t, a, r)
+    );
   }
   if (((i = (a & e.childLanes) !== 0), ht || i)) {
     if (((r = et), r !== null)) {
@@ -5707,9 +5709,9 @@ function om(e, t, n, r, o, l, a) {
       (o = o & (r.suspendedLanes | a) ? 0 : o),
         o !== 0 &&
           o !== l.retryLane &&
-          ((l.retryLane = o), an(e, o), Ft(r, e, o, -1));
+          ((l.retryLane = o), an(e, o), Gt(r, e, o, -1));
     }
-    return Za(), (r = fl(Error(J(421)))), Os(e, t, a, r);
+    return Za(), (r = fl(Error(te(421)))), Os(e, t, a, r);
   }
   return o.data === "$?"
     ? ((t.flags |= 128),
@@ -5718,25 +5720,25 @@ function om(e, t, n, r, o, l, a) {
       (o._reactRetry = t),
       null)
     : ((e = l.treeContext),
-      (bt = Nn(o.nextSibling)),
+      (Nt = Nn(o.nextSibling)),
       (jt = t),
       (Ue = !0),
-      (Bt = null),
+      (zt = null),
       e !== null &&
-        ((Dt[Mt++] = nn),
-        (Dt[Mt++] = rn),
-        (Dt[Mt++] = Bn),
+        ((_t[Mt++] = nn),
+        (_t[Mt++] = rn),
+        (_t[Mt++] = zn),
         (nn = e.id),
         (rn = e.overflow),
-        (Bn = t)),
-      (t = Qa(t, r.children)),
+        (zn = t)),
+      (t = qa(t, r.children)),
       (t.flags |= 4096),
       t);
 }
 function oc(e, t, n) {
   e.lanes |= t;
   var r = e.alternate;
-  r !== null && (r.lanes |= t), Ql(e.return, t, n);
+  r !== null && (r.lanes |= t), ql(e.return, t, n);
 }
 function pl(e, t, n, r, o) {
   var l = e.memoizedState;
@@ -5760,7 +5762,7 @@ function dd(e, t, n) {
   var r = t.pendingProps,
     o = r.revealOrder,
     l = r.tail;
-  if ((ct(e, t, r.children, n), (r = Be.current), r & 2))
+  if ((ct(e, t, r.children, n), (r = ze.current), r & 2))
     (r = (r & 1) | 2), (t.flags |= 128);
   else {
     if (e !== null && e.flags & 128)
@@ -5780,7 +5782,7 @@ function dd(e, t, n) {
       }
     r &= 1;
   }
-  if ((Oe(Be, r), !(t.mode & 1))) t.memoizedState = null;
+  if ((Oe(ze, r), !(t.mode & 1))) t.memoizedState = null;
   else
     switch (o) {
       case "forwards":
@@ -5812,7 +5814,7 @@ function dd(e, t, n) {
     }
   return t.child;
 }
-function qs(e, t) {
+function Ys(e, t) {
   !(t.mode & 1) &&
     e !== null &&
     ((e.alternate = null), (t.alternate = null), (t.flags |= 2));
@@ -5820,11 +5822,11 @@ function qs(e, t) {
 function cn(e, t, n) {
   if (
     (e !== null && (t.dependencies = e.dependencies),
-    (Fn |= t.lanes),
+    (Gn |= t.lanes),
     !(n & t.childLanes))
   )
     return null;
-  if (e !== null && t.child !== e.child) throw Error(J(153));
+  if (e !== null && t.child !== e.child) throw Error(te(153));
   if (t.child !== null) {
     for (
       e = t.child, n = kn(e, e.pendingProps), t.child = n, n.return = t;
@@ -5845,7 +5847,7 @@ function lm(e, t, n) {
       $u(t);
       break;
     case 1:
-      xt(t.type) && uo(t);
+      yt(t.type) && uo(t);
       break;
     case 4:
       Ua(t, t.stateNode.containerInfo);
@@ -5858,13 +5860,13 @@ function lm(e, t, n) {
     case 13:
       if (((r = t.memoizedState), r !== null))
         return r.dehydrated !== null
-          ? (Oe(Be, Be.current & 1), (t.flags |= 128), null)
+          ? (Oe(ze, ze.current & 1), (t.flags |= 128), null)
           : n & t.child.childLanes
           ? ud(e, t, n)
-          : (Oe(Be, Be.current & 1),
+          : (Oe(ze, ze.current & 1),
             (e = cn(e, t, n)),
             e !== null ? e.sibling : null);
-      Oe(Be, Be.current & 1);
+      Oe(ze, ze.current & 1);
       break;
     case 19:
       if (((r = (n & t.childLanes) !== 0), e.flags & 128)) {
@@ -5875,7 +5877,7 @@ function lm(e, t, n) {
         ((o = t.memoizedState),
         o !== null &&
           ((o.rendering = null), (o.tail = null), (o.lastEffect = null)),
-        Oe(Be, Be.current),
+        Oe(ze, ze.current),
         r)
       )
         break;
@@ -5913,8 +5915,8 @@ pd = function (e, t, n, r) {
         (o = jl(e, o)), (r = jl(e, r)), (l = []);
         break;
       case "select":
-        (o = Fe({}, o, { value: void 0 })),
-          (r = Fe({}, r, { value: void 0 })),
+        (o = Ge({}, o, { value: void 0 })),
+          (r = Ge({}, r, { value: void 0 })),
           (l = []);
         break;
       case "textarea":
@@ -5925,7 +5927,7 @@ pd = function (e, t, n, r) {
           typeof r.onClick == "function" &&
           (e.onclick = io);
     }
-    Dl(n, r);
+    _l(n, r);
     var a;
     n = null;
     for (h in o)
@@ -6024,7 +6026,7 @@ function ot(e) {
 }
 function am(e, t, n) {
   var r = t.pendingProps;
-  switch ((Ia(t), t.tag)) {
+  switch ((Pa(t), t.tag)) {
     case 2:
     case 16:
     case 15:
@@ -6037,14 +6039,14 @@ function am(e, t, n) {
     case 14:
       return ot(t), null;
     case 1:
-      return xt(t.type) && co(), ot(t), null;
+      return yt(t.type) && co(), ot(t), null;
     case 3:
       return (
         (r = t.stateNode),
         jr(),
-        Le(gt),
+        Le(xt),
         Le(at),
-        Ba(),
+        za(),
         r.pendingContext &&
           ((r.context = r.pendingContext), (r.pendingContext = null)),
         (e === null || e.child === null) &&
@@ -6052,20 +6054,20 @@ function am(e, t, n) {
             ? (t.flags |= 4)
             : e === null ||
               (e.memoizedState.isDehydrated && !(t.flags & 256)) ||
-              ((t.flags |= 1024), Bt !== null && (ca(Bt), (Bt = null)))),
+              ((t.flags |= 1024), zt !== null && (ca(zt), (zt = null)))),
         ta(e, t),
         ot(t),
         null
       );
     case 5:
-      za(t);
+      Ba(t);
       var o = $n(fs.current);
       if (((n = t.type), e !== null && t.stateNode != null))
         pd(e, t, n, r, o),
           e.ref !== t.ref && ((t.flags |= 512), (t.flags |= 2097152));
       else {
         if (!r) {
-          if (t.stateNode === null) throw Error(J(166));
+          if (t.stateNode === null) throw Error(te(166));
           return ot(t), null;
         }
         if (((e = $n(Jt.current)), Ts(t))) {
@@ -6105,7 +6107,7 @@ function am(e, t, n) {
             case "textarea":
               gi(r, l), $e("invalid", r);
           }
-          Dl(n, l), (o = null);
+          _l(n, l), (o = null);
           for (var a in l)
             if (l.hasOwnProperty(a)) {
               var i = l[a];
@@ -6141,7 +6143,7 @@ function am(e, t, n) {
           (r = o), (t.updateQueue = r), r !== null && (t.flags |= 4);
         } else {
           (a = o.nodeType === 9 ? o : o.ownerDocument),
-            e === "http://www.w3.org/1999/xhtml" && (e = Gc(n)),
+            e === "http://www.w3.org/1999/xhtml" && (e = Fc(n)),
             e === "http://www.w3.org/1999/xhtml"
               ? n === "script"
                 ? ((e = a.createElement("div")),
@@ -6194,7 +6196,7 @@ function am(e, t, n) {
                 break;
               case "select":
                 (e._wrapperState = { wasMultiple: !!r.multiple }),
-                  (o = Fe({}, r, { value: void 0 })),
+                  (o = Ge({}, r, { value: void 0 })),
                   $e("invalid", e);
                 break;
               case "textarea":
@@ -6203,14 +6205,14 @@ function am(e, t, n) {
               default:
                 o = r;
             }
-            Dl(n, o), (i = o);
+            _l(n, o), (i = o);
             for (l in i)
               if (i.hasOwnProperty(l)) {
                 var c = i[l];
                 l === "style"
                   ? Vc(e, c)
                   : l === "dangerouslySetInnerHTML"
-                  ? ((c = c ? c.__html : void 0), c != null && Fc(e, c))
+                  ? ((c = c ? c.__html : void 0), c != null && Gc(e, c))
                   : l === "children"
                   ? typeof c == "string"
                     ? (n !== "textarea" || c !== "") && ts(e, c)
@@ -6230,7 +6232,7 @@ function am(e, t, n) {
                 Cs(e), xi(e);
                 break;
               case "option":
-                r.value != null && e.setAttribute("value", "" + _n(r.value));
+                r.value != null && e.setAttribute("value", "" + Dn(r.value));
                 break;
               case "select":
                 (e.multiple = !!r.multiple),
@@ -6265,7 +6267,7 @@ function am(e, t, n) {
     case 6:
       if (e && t.stateNode != null) md(e, t, e.memoizedProps, r);
       else {
-        if (typeof r != "string" && t.stateNode === null) throw Error(J(166));
+        if (typeof r != "string" && t.stateNode === null) throw Error(te(166));
         if (((n = $n(fs.current)), $n(Jt.current), Ts(t))) {
           if (
             ((r = t.stateNode),
@@ -6290,27 +6292,27 @@ function am(e, t, n) {
       return ot(t), null;
     case 13:
       if (
-        (Le(Be),
+        (Le(ze),
         (r = t.memoizedState),
         e === null ||
           (e.memoizedState !== null && e.memoizedState.dehydrated !== null))
       ) {
-        if (Ue && bt !== null && t.mode & 1 && !(t.flags & 128))
-          Iu(), br(), (t.flags |= 98560), (l = !1);
+        if (Ue && Nt !== null && t.mode & 1 && !(t.flags & 128))
+          Pu(), br(), (t.flags |= 98560), (l = !1);
         else if (((l = Ts(t)), r !== null && r.dehydrated !== null)) {
           if (e === null) {
-            if (!l) throw Error(J(318));
+            if (!l) throw Error(te(318));
             if (
               ((l = t.memoizedState),
               (l = l !== null ? l.dehydrated : null),
               !l)
             )
-              throw Error(J(317));
+              throw Error(te(317));
             l[Xt] = t;
           } else
             br(), !(t.flags & 128) && (t.memoizedState = null), (t.flags |= 4);
           ot(t), (l = !1);
-        } else Bt !== null && (ca(Bt), (Bt = null)), (l = !0);
+        } else zt !== null && (ca(zt), (zt = null)), (l = !0);
         if (!l) return t.flags & 65536 ? t : null;
       }
       return t.flags & 128
@@ -6320,7 +6322,7 @@ function am(e, t, n) {
             r &&
             ((t.child.flags |= 8192),
             t.mode & 1 &&
-              (e === null || Be.current & 1 ? Ke === 0 && (Ke = 3) : Za())),
+              (e === null || ze.current & 1 ? Ke === 0 && (Ke = 3) : Za())),
           t.updateQueue !== null && (t.flags |= 4),
           ot(t),
           null);
@@ -6331,9 +6333,9 @@ function am(e, t, n) {
     case 10:
       return Oa(t.type._context), ot(t), null;
     case 17:
-      return xt(t.type) && co(), ot(t), null;
+      return yt(t.type) && co(), ot(t), null;
     case 19:
-      if ((Le(Be), (l = t.memoizedState), l === null)) return ot(t), null;
+      if ((Le(ze), (l = t.memoizedState), l === null)) return ot(t), null;
       if (((r = (t.flags & 128) !== 0), (a = l.rendering), a === null))
         if (r) Ur(l, !1);
         else {
@@ -6383,7 +6385,7 @@ function am(e, t, n) {
                                 firstContext: e.firstContext,
                               })),
                     (n = n.sibling);
-                return Oe(Be, (Be.current & 1) | 2), t.child;
+                return Oe(ze, (ze.current & 1) | 2), t.child;
               }
               e = e.sibling;
             }
@@ -6419,8 +6421,8 @@ function am(e, t, n) {
           (l.tail = t.sibling),
           (l.renderingStartTime = We()),
           (t.sibling = null),
-          (n = Be.current),
-          Oe(Be, r ? (n & 1) | 2 : n & 1),
+          (n = ze.current),
+          Oe(ze, r ? (n & 1) | 2 : n & 1),
           t)
         : (ot(t), null);
     case 22:
@@ -6430,7 +6432,7 @@ function am(e, t, n) {
         (r = t.memoizedState !== null),
         e !== null && (e.memoizedState !== null) !== r && (t.flags |= 8192),
         r && t.mode & 1
-          ? wt & 1073741824 && (ot(t), t.subtreeFlags & 6 && (t.flags |= 8192))
+          ? bt & 1073741824 && (ot(t), t.subtreeFlags & 6 && (t.flags |= 8192))
           : ot(t),
         null
       );
@@ -6439,39 +6441,39 @@ function am(e, t, n) {
     case 25:
       return null;
   }
-  throw Error(J(156, t.tag));
+  throw Error(te(156, t.tag));
 }
 function im(e, t) {
-  switch ((Ia(t), t.tag)) {
+  switch ((Pa(t), t.tag)) {
     case 1:
       return (
-        xt(t.type) && co(),
+        yt(t.type) && co(),
         (e = t.flags),
         e & 65536 ? ((t.flags = (e & -65537) | 128), t) : null
       );
     case 3:
       return (
         jr(),
-        Le(gt),
+        Le(xt),
         Le(at),
-        Ba(),
+        za(),
         (e = t.flags),
         e & 65536 && !(e & 128) ? ((t.flags = (e & -65537) | 128), t) : null
       );
     case 5:
-      return za(t), null;
+      return Ba(t), null;
     case 13:
       if (
-        (Le(Be), (e = t.memoizedState), e !== null && e.dehydrated !== null)
+        (Le(ze), (e = t.memoizedState), e !== null && e.dehydrated !== null)
       ) {
-        if (t.alternate === null) throw Error(J(340));
+        if (t.alternate === null) throw Error(te(340));
         br();
       }
       return (
         (e = t.flags), e & 65536 ? ((t.flags = (e & -65537) | 128), t) : null
       );
     case 19:
-      return Le(Be), null;
+      return Le(ze), null;
     case 4:
       return jr(), null;
     case 10:
@@ -6488,7 +6490,7 @@ function im(e, t) {
 var $s = !1,
   lt = !1,
   cm = typeof WeakSet == "function" ? WeakSet : Set,
-  fe = null;
+  me = null;
 function dr(e, t) {
   var n = e.ref;
   if (n !== null)
@@ -6532,29 +6534,29 @@ function um(e, t) {
             c = -1,
             h = 0,
             d = 0,
-            g = e,
-            p = null;
+            x = e,
+            m = null;
           t: for (;;) {
             for (
-              var w;
-              g !== n || (o !== 0 && g.nodeType !== 3) || (i = a + o),
-                g !== l || (r !== 0 && g.nodeType !== 3) || (c = a + r),
-                g.nodeType === 3 && (a += g.nodeValue.length),
-                (w = g.firstChild) !== null;
+              var b;
+              x !== n || (o !== 0 && x.nodeType !== 3) || (i = a + o),
+                x !== l || (r !== 0 && x.nodeType !== 3) || (c = a + r),
+                x.nodeType === 3 && (a += x.nodeValue.length),
+                (b = x.firstChild) !== null;
 
             )
-              (p = g), (g = w);
+              (m = x), (x = b);
             for (;;) {
-              if (g === e) break t;
+              if (x === e) break t;
               if (
-                (p === n && ++h === o && (i = a),
-                p === l && ++d === r && (c = a),
-                (w = g.nextSibling) !== null)
+                (m === n && ++h === o && (i = a),
+                m === l && ++d === r && (c = a),
+                (b = x.nextSibling) !== null)
               )
                 break;
-              (g = p), (p = g.parentNode);
+              (x = m), (m = x.parentNode);
             }
-            g = w;
+            x = b;
           }
           n = i === -1 || c === -1 ? null : { start: i, end: c };
         } else n = null;
@@ -6562,15 +6564,15 @@ function um(e, t) {
     n = n || { start: 0, end: 0 };
   } else n = null;
   for (
-    zl = { focusedElem: e, selectionRange: n }, oo = !1, fe = t;
-    fe !== null;
+    Bl = { focusedElem: e, selectionRange: n }, oo = !1, me = t;
+    me !== null;
 
   )
-    if (((t = fe), (e = t.child), (t.subtreeFlags & 1028) !== 0 && e !== null))
-      (e.return = t), (fe = e);
+    if (((t = me), (e = t.child), (t.subtreeFlags & 1028) !== 0 && e !== null))
+      (e.return = t), (me = e);
     else
-      for (; fe !== null; ) {
-        t = fe;
+      for (; me !== null; ) {
+        t = me;
         try {
           var v = t.alternate;
           if (t.flags & 1024)
@@ -6581,23 +6583,23 @@ function um(e, t) {
                 break;
               case 1:
                 if (v !== null) {
-                  var b = v.memoizedProps,
-                    _ = v.memoizedState,
+                  var N = v.memoizedProps,
+                    E = v.memoizedState,
                     u = t.stateNode,
                     f = u.getSnapshotBeforeUpdate(
-                      t.elementType === t.type ? b : Ut(t.type, b),
-                      _
+                      t.elementType === t.type ? N : Ut(t.type, N),
+                      E
                     );
                   u.__reactInternalSnapshotBeforeUpdate = f;
                 }
                 break;
               case 3:
-                var x = t.stateNode.containerInfo;
-                x.nodeType === 1
-                  ? (x.textContent = "")
-                  : x.nodeType === 9 &&
-                    x.documentElement &&
-                    x.removeChild(x.documentElement);
+                var g = t.stateNode.containerInfo;
+                g.nodeType === 1
+                  ? (g.textContent = "")
+                  : g.nodeType === 9 &&
+                    g.documentElement &&
+                    g.removeChild(g.documentElement);
                 break;
               case 5:
               case 6:
@@ -6605,16 +6607,16 @@ function um(e, t) {
               case 17:
                 break;
               default:
-                throw Error(J(163));
+                throw Error(te(163));
             }
-        } catch (j) {
-          He(t, t.return, j);
+        } catch (C) {
+          He(t, t.return, C);
         }
         if (((e = t.sibling), e !== null)) {
-          (e.return = t.return), (fe = e);
+          (e.return = t.return), (me = e);
           break;
         }
-        fe = t.return;
+        me = t.return;
       }
   return (v = lc), (lc = !1), v;
 }
@@ -6668,7 +6670,7 @@ function hd(e) {
     e.tag === 5 &&
       ((t = e.stateNode),
       t !== null &&
-        (delete t[Xt], delete t[us], delete t[Fl], delete t[Wp], delete t[Qp])),
+        (delete t[Xt], delete t[us], delete t[Gl], delete t[Wp], delete t[qp])),
     (e.stateNode = null),
     (e.return = null),
     (e.dependencies = null),
@@ -6722,7 +6724,7 @@ function oa(e, t, n) {
     for (oa(e, t, n), e = e.sibling; e !== null; ) oa(e, t, n), (e = e.sibling);
 }
 var tt = null,
-  zt = !1;
+  Bt = !1;
 function fn(e, t, n) {
   for (n = n.child; n !== null; ) xd(e, t, n), (n = n.sibling);
 }
@@ -6736,13 +6738,13 @@ function xd(e, t, n) {
       lt || dr(n, t);
     case 6:
       var r = tt,
-        o = zt;
+        o = Bt;
       (tt = null),
         fn(e, t, n),
         (tt = r),
-        (zt = o),
+        (Bt = o),
         tt !== null &&
-          (zt
+          (Bt
             ? ((e = tt),
               (n = n.stateNode),
               e.nodeType === 8 ? e.parentNode.removeChild(n) : e.removeChild(n))
@@ -6750,7 +6752,7 @@ function xd(e, t, n) {
       break;
     case 18:
       tt !== null &&
-        (zt
+        (Bt
           ? ((e = tt),
             (n = n.stateNode),
             e.nodeType === 8
@@ -6761,12 +6763,12 @@ function xd(e, t, n) {
       break;
     case 4:
       (r = tt),
-        (o = zt),
+        (o = Bt),
         (tt = n.stateNode.containerInfo),
-        (zt = !0),
+        (Bt = !0),
         fn(e, t, n),
         (tt = r),
-        (zt = o);
+        (Bt = o);
       break;
     case 0:
     case 11:
@@ -6839,19 +6841,19 @@ function Lt(e, t) {
         e: for (; i !== null; ) {
           switch (i.tag) {
             case 5:
-              (tt = i.stateNode), (zt = !1);
+              (tt = i.stateNode), (Bt = !1);
               break e;
             case 3:
-              (tt = i.stateNode.containerInfo), (zt = !0);
+              (tt = i.stateNode.containerInfo), (Bt = !0);
               break e;
             case 4:
-              (tt = i.stateNode.containerInfo), (zt = !0);
+              (tt = i.stateNode.containerInfo), (Bt = !0);
               break e;
           }
           i = i.return;
         }
-        if (tt === null) throw Error(J(160));
-        xd(l, a, o), (tt = null), (zt = !1);
+        if (tt === null) throw Error(te(160));
+        xd(l, a, o), (tt = null), (Bt = !1);
         var c = o.alternate;
         c !== null && (c.return = null), (o.return = null);
       } catch (h) {
@@ -6869,34 +6871,34 @@ function yd(e, t) {
     case 11:
     case 14:
     case 15:
-      if ((Lt(t, e), Qt(e), r & 4)) {
+      if ((Lt(t, e), qt(e), r & 4)) {
         try {
           Kr(3, e, e.return), To(3, e);
-        } catch (b) {
-          He(e, e.return, b);
+        } catch (N) {
+          He(e, e.return, N);
         }
         try {
           Kr(5, e, e.return);
-        } catch (b) {
-          He(e, e.return, b);
+        } catch (N) {
+          He(e, e.return, N);
         }
       }
       break;
     case 1:
-      Lt(t, e), Qt(e), r & 512 && n !== null && dr(n, n.return);
+      Lt(t, e), qt(e), r & 512 && n !== null && dr(n, n.return);
       break;
     case 5:
       if (
         (Lt(t, e),
-        Qt(e),
+        qt(e),
         r & 512 && n !== null && dr(n, n.return),
         e.flags & 32)
       ) {
         var o = e.stateNode;
         try {
           ts(o, "");
-        } catch (b) {
-          He(e, e.return, b);
+        } catch (N) {
+          He(e, e.return, N);
         }
       }
       if (r & 4 && ((o = e.stateNode), o != null)) {
@@ -6906,71 +6908,71 @@ function yd(e, t) {
           c = e.updateQueue;
         if (((e.updateQueue = null), c !== null))
           try {
-            i === "input" && l.type === "radio" && l.name != null && zc(o, l),
+            i === "input" && l.type === "radio" && l.name != null && Bc(o, l),
               Ml(i, a);
             var h = Ml(i, l);
             for (a = 0; a < c.length; a += 2) {
               var d = c[a],
-                g = c[a + 1];
+                x = c[a + 1];
               d === "style"
-                ? Vc(o, g)
+                ? Vc(o, x)
                 : d === "dangerouslySetInnerHTML"
-                ? Fc(o, g)
+                ? Gc(o, x)
                 : d === "children"
-                ? ts(o, g)
-                : xa(o, d, g, h);
+                ? ts(o, x)
+                : xa(o, d, x, h);
             }
             switch (i) {
               case "input":
                 Sl(o, l);
                 break;
               case "textarea":
-                Bc(o, l);
+                zc(o, l);
                 break;
               case "select":
-                var p = o._wrapperState.wasMultiple;
+                var m = o._wrapperState.wasMultiple;
                 o._wrapperState.wasMultiple = !!l.multiple;
-                var w = l.value;
-                w != null
-                  ? pr(o, !!l.multiple, w, !1)
-                  : p !== !!l.multiple &&
+                var b = l.value;
+                b != null
+                  ? pr(o, !!l.multiple, b, !1)
+                  : m !== !!l.multiple &&
                     (l.defaultValue != null
                       ? pr(o, !!l.multiple, l.defaultValue, !0)
                       : pr(o, !!l.multiple, l.multiple ? [] : "", !1));
             }
             o[us] = l;
-          } catch (b) {
-            He(e, e.return, b);
+          } catch (N) {
+            He(e, e.return, N);
           }
       }
       break;
     case 6:
-      if ((Lt(t, e), Qt(e), r & 4)) {
-        if (e.stateNode === null) throw Error(J(162));
+      if ((Lt(t, e), qt(e), r & 4)) {
+        if (e.stateNode === null) throw Error(te(162));
         (o = e.stateNode), (l = e.memoizedProps);
         try {
           o.nodeValue = l;
-        } catch (b) {
-          He(e, e.return, b);
+        } catch (N) {
+          He(e, e.return, N);
         }
       }
       break;
     case 3:
       if (
-        (Lt(t, e), Qt(e), r & 4 && n !== null && n.memoizedState.isDehydrated)
+        (Lt(t, e), qt(e), r & 4 && n !== null && n.memoizedState.isDehydrated)
       )
         try {
           os(t.containerInfo);
-        } catch (b) {
-          He(e, e.return, b);
+        } catch (N) {
+          He(e, e.return, N);
         }
       break;
     case 4:
-      Lt(t, e), Qt(e);
+      Lt(t, e), qt(e);
       break;
     case 13:
       Lt(t, e),
-        Qt(e),
+        qt(e),
         (o = e.child),
         o.flags & 8192 &&
           ((l = o.memoizedState !== null),
@@ -6984,107 +6986,107 @@ function yd(e, t) {
       if (
         ((d = n !== null && n.memoizedState !== null),
         e.mode & 1 ? ((lt = (h = lt) || d), Lt(t, e), (lt = h)) : Lt(t, e),
-        Qt(e),
+        qt(e),
         r & 8192)
       ) {
         if (
           ((h = e.memoizedState !== null),
           (e.stateNode.isHidden = h) && !d && e.mode & 1)
         )
-          for (fe = e, d = e.child; d !== null; ) {
-            for (g = fe = d; fe !== null; ) {
-              switch (((p = fe), (w = p.child), p.tag)) {
+          for (me = e, d = e.child; d !== null; ) {
+            for (x = me = d; me !== null; ) {
+              switch (((m = me), (b = m.child), m.tag)) {
                 case 0:
                 case 11:
                 case 14:
                 case 15:
-                  Kr(4, p, p.return);
+                  Kr(4, m, m.return);
                   break;
                 case 1:
-                  dr(p, p.return);
-                  var v = p.stateNode;
+                  dr(m, m.return);
+                  var v = m.stateNode;
                   if (typeof v.componentWillUnmount == "function") {
-                    (r = p), (n = p.return);
+                    (r = m), (n = m.return);
                     try {
                       (t = r),
                         (v.props = t.memoizedProps),
                         (v.state = t.memoizedState),
                         v.componentWillUnmount();
-                    } catch (b) {
-                      He(r, n, b);
+                    } catch (N) {
+                      He(r, n, N);
                     }
                   }
                   break;
                 case 5:
-                  dr(p, p.return);
+                  dr(m, m.return);
                   break;
                 case 22:
-                  if (p.memoizedState !== null) {
-                    uc(g);
+                  if (m.memoizedState !== null) {
+                    uc(x);
                     continue;
                   }
               }
-              w !== null ? ((w.return = p), (fe = w)) : uc(g);
+              b !== null ? ((b.return = m), (me = b)) : uc(x);
             }
             d = d.sibling;
           }
-        e: for (d = null, g = e; ; ) {
-          if (g.tag === 5) {
+        e: for (d = null, x = e; ; ) {
+          if (x.tag === 5) {
             if (d === null) {
-              d = g;
+              d = x;
               try {
-                (o = g.stateNode),
+                (o = x.stateNode),
                   h
                     ? ((l = o.style),
                       typeof l.setProperty == "function"
                         ? l.setProperty("display", "none", "important")
                         : (l.display = "none"))
-                    : ((i = g.stateNode),
-                      (c = g.memoizedProps.style),
+                    : ((i = x.stateNode),
+                      (c = x.memoizedProps.style),
                       (a =
                         c != null && c.hasOwnProperty("display")
                           ? c.display
                           : null),
                       (i.style.display = Hc("display", a)));
-              } catch (b) {
-                He(e, e.return, b);
+              } catch (N) {
+                He(e, e.return, N);
               }
             }
-          } else if (g.tag === 6) {
+          } else if (x.tag === 6) {
             if (d === null)
               try {
-                g.stateNode.nodeValue = h ? "" : g.memoizedProps;
-              } catch (b) {
-                He(e, e.return, b);
+                x.stateNode.nodeValue = h ? "" : x.memoizedProps;
+              } catch (N) {
+                He(e, e.return, N);
               }
           } else if (
-            ((g.tag !== 22 && g.tag !== 23) ||
-              g.memoizedState === null ||
-              g === e) &&
-            g.child !== null
+            ((x.tag !== 22 && x.tag !== 23) ||
+              x.memoizedState === null ||
+              x === e) &&
+            x.child !== null
           ) {
-            (g.child.return = g), (g = g.child);
+            (x.child.return = x), (x = x.child);
             continue;
           }
-          if (g === e) break e;
-          for (; g.sibling === null; ) {
-            if (g.return === null || g.return === e) break e;
-            d === g && (d = null), (g = g.return);
+          if (x === e) break e;
+          for (; x.sibling === null; ) {
+            if (x.return === null || x.return === e) break e;
+            d === x && (d = null), (x = x.return);
           }
-          d === g && (d = null), (g.sibling.return = g.return), (g = g.sibling);
+          d === x && (d = null), (x.sibling.return = x.return), (x = x.sibling);
         }
       }
       break;
     case 19:
-      Lt(t, e), Qt(e), r & 4 && ic(e);
+      Lt(t, e), qt(e), r & 4 && ic(e);
       break;
     case 21:
       break;
     default:
-      Lt(t, e), Qt(e);
+      Lt(t, e), qt(e);
   }
 }
-function Qt(e) {
+function qt(e) {
   var t = e.flags;
   if (t & 2) {
     try {
@@ -7096,7 +7098,7 @@ function Qt(e) {
           }
           n = n.return;
         }
-        throw Error(J(160));
+        throw Error(te(160));
       }
       switch (r.tag) {
         case 5:
@@ -7112,7 +7114,7 @@ function Qt(e) {
           sa(e, i, a);
           break;
         default:
-          throw Error(J(161));
+          throw Error(te(161));
       }
     } catch (c) {
       He(e, e.return, c);
@@ -7122,11 +7124,11 @@ function Qt(e) {
   t & 4096 && (e.flags &= -4097);
 }
 function dm(e, t, n) {
-  (fe = e), vd(e);
+  (me = e), vd(e);
 }
 function vd(e, t, n) {
-  for (var r = (e.mode & 1) !== 0; fe !== null; ) {
-    var o = fe,
+  for (var r = (e.mode & 1) !== 0; me !== null; ) {
+    var o = me,
       l = o.child;
     if (o.tag === 22 && r) {
       var a = o.memoizedState !== null || $s;
@@ -7136,25 +7138,25 @@ function vd(e, t, n) {
         i = $s;
         var h = lt;
         if ((($s = a), (lt = c) && !h))
-          for (fe = o; fe !== null; )
-            (a = fe),
+          for (me = o; me !== null; )
+            (a = me),
               (c = a.child),
               a.tag === 22 && a.memoizedState !== null
                 ? dc(o)
                 : c !== null
-                ? ((c.return = a), (fe = c))
+                ? ((c.return = a), (me = c))
                 : dc(o);
-        for (; l !== null; ) (fe = l), vd(l), (l = l.sibling);
-        (fe = o), ($s = i), (lt = h);
+        for (; l !== null; ) (me = l), vd(l), (l = l.sibling);
+        (me = o), ($s = i), (lt = h);
       }
       cc(e);
     } else
-      o.subtreeFlags & 8772 && l !== null ? ((l.return = o), (fe = l)) : cc(e);
+      o.subtreeFlags & 8772 && l !== null ? ((l.return = o), (me = l)) : cc(e);
   }
 }
 function cc(e) {
-  for (; fe !== null; ) {
-    var t = fe;
+  for (; me !== null; ) {
+    var t = me;
     if (t.flags & 8772) {
       var n = t.alternate;
       try {
@@ -7181,7 +7183,7 @@ function cc(e) {
                   );
                 }
               var l = t.updateQueue;
-              l !== null && Qi(t, l, r);
+              l !== null && qi(t, l, r);
               break;
             case 3:
               var a = t.updateQueue;
@@ -7194,7 +7196,7 @@ function cc(e) {
                     case 1:
                       n = t.child.stateNode;
                   }
-                Qi(t, a, n);
+                qi(t, a, n);
               }
               break;
             case 5:
@@ -7226,8 +7228,8 @@ function cc(e) {
                 if (h !== null) {
                   var d = h.memoizedState;
                   if (d !== null) {
-                    var g = d.dehydrated;
-                    g !== null && os(g);
+                    var x = d.dehydrated;
+                    x !== null && os(x);
                   }
                 }
               }
@@ -7240,42 +7242,42 @@ function cc(e) {
             case 25:
               break;
             default:
-              throw Error(J(163));
+              throw Error(te(163));
           }
         lt || (t.flags & 512 && ra(t));
-      } catch (p) {
-        He(t, t.return, p);
+      } catch (m) {
+        He(t, t.return, m);
       }
     }
     if (t === e) {
-      fe = null;
+      me = null;
       break;
     }
     if (((n = t.sibling), n !== null)) {
-      (n.return = t.return), (fe = n);
+      (n.return = t.return), (me = n);
       break;
     }
-    fe = t.return;
+    me = t.return;
   }
 }
 function uc(e) {
-  for (; fe !== null; ) {
-    var t = fe;
+  for (; me !== null; ) {
+    var t = me;
     if (t === e) {
-      fe = null;
+      me = null;
       break;
     }
     var n = t.sibling;
     if (n !== null) {
-      (n.return = t.return), (fe = n);
+      (n.return = t.return), (me = n);
       break;
     }
-    fe = t.return;
+    me = t.return;
   }
 }
 function dc(e) {
-  for (; fe !== null; ) {
-    var t = fe;
+  for (; me !== null; ) {
+    var t = me;
     try {
       switch (t.tag) {
         case 0:
@@ -7317,32 +7319,32 @@ function dc(e) {
       He(t, t.return, c);
     }
     if (t === e) {
-      fe = null;
+      me = null;
       break;
     }
     var i = t.sibling;
     if (i !== null) {
-      (i.return = t.return), (fe = i);
+      (i.return = t.return), (me = i);
       break;
     }
-    fe = t.return;
+    me = t.return;
   }
 }
 var fm = Math.ceil,
   wo = un.ReactCurrentDispatcher,
-  Ya = un.ReactCurrentOwner,
-  Pt = un.ReactCurrentBatchConfig,
-  Ie = 0,
+  Qa = un.ReactCurrentOwner,
+  It = un.ReactCurrentBatchConfig,
+  Pe = 0,
   et = null,
-  Qe = null,
+  qe = null,
   nt = 0,
-  wt = 0,
+  bt = 0,
   fr = En(0),
   Ke = 0,
   gs = null,
-  Fn = 0,
+  Gn = 0,
   Ao = 0,
-  qa = 0,
+  Ya = 0,
   Jr = null,
   mt = null,
   Xa = 0,
@@ -7359,38 +7361,38 @@ var fm = Math.ceil,
   Xs = -1,
   Ks = 0;
 function ut() {
-  return Ie & 6 ? We() : Xs !== -1 ? Xs : (Xs = We());
+  return Pe & 6 ? We() : Xs !== -1 ? Xs : (Xs = We());
 }
 function Cn(e) {
   return e.mode & 1
-    ? Ie & 2 && nt !== 0
+    ? Pe & 2 && nt !== 0
       ? nt & -nt
-      : qp.transition !== null
+      : Yp.transition !== null
       ? (Ks === 0 && (Ks = ru()), Ks)
       : ((e = Te),
         e !== 0 || ((e = window.event), (e = e === void 0 ? 16 : uu(e.type))),
         e)
     : 1;
 }
-function Ft(e, t, n, r) {
-  if (50 < Zr) throw ((Zr = 0), (aa = null), Error(J(185)));
+function Gt(e, t, n, r) {
+  if (50 < Zr) throw ((Zr = 0), (aa = null), Error(te(185)));
   ys(e, n, r),
-    (!(Ie & 2) || e !== et) &&
-      (e === et && (!(Ie & 2) && (Ao |= n), Ke === 4 && gn(e, nt)),
-      yt(e, r),
-      n === 1 && Ie === 0 && !(t.mode & 1) && ((Cr = We() + 500), Po && Pn()));
+    (!(Pe & 2) || e !== et) &&
+      (e === et && (!(Pe & 2) && (Ao |= n), Ke === 4 && gn(e, nt)),
+      vt(e, r),
+      n === 1 && Pe === 0 && !(t.mode & 1) && ((Cr = We() + 500), Io && In()));
 }
-function yt(e, t) {
+function vt(e, t) {
   var n = e.callbackNode;
-  qf(e, t);
+  Yf(e, t);
   var r = so(e, e === et ? nt : 0);
   if (r === 0)
     n !== null && wi(n), (e.callbackNode = null), (e.callbackPriority = 0);
   else if (((t = r & -r), e.callbackPriority !== t)) {
     if ((n != null && wi(n), t === 1))
-      e.tag === 0 ? Yp(fc.bind(null, e)) : Mu(fc.bind(null, e)),
+      e.tag === 0 ? Qp(fc.bind(null, e)) : Mu(fc.bind(null, e)),
         Hp(function () {
-          !(Ie & 6) && Pn();
+          !(Pe & 6) && In();
         }),
         (n = null);
     else {
@@ -7410,13 +7412,13 @@ function yt(e, t) {
         default:
           n = ro;
       }
-      n = _d(n, wd.bind(null, e));
+      n = Dd(n, wd.bind(null, e));
     }
     (e.callbackPriority = t), (e.callbackNode = n);
   }
 }
 function wd(e, t) {
-  if (((Xs = -1), (Ks = 0), Ie & 6)) throw Error(J(327));
+  if (((Xs = -1), (Ks = 0), Pe & 6)) throw Error(te(327));
   var n = e.callbackNode;
   if (yr() && e.callbackNode !== n) return null;
   var r = so(e, e === et ? nt : 0);
@@ -7424,8 +7426,8 @@ function wd(e, t) {
   if (r & 30 || r & e.expiredLanes || t) t = jo(e, r);
   else {
     t = r;
-    var o = Ie;
-    Ie |= 2;
+    var o = Pe;
+    Pe |= 2;
     var l = Nd();
     (et !== e || nt !== t) && ((Zt = null), (Cr = We() + 500), Ln(e, t));
     do
@@ -7438,14 +7440,14 @@ function wd(e, t) {
     while (!0);
     Aa(),
       (wo.current = l),
-      (Ie = o),
-      Qe !== null ? (t = 0) : ((et = null), (nt = 0), (t = Ke));
+      (Pe = o),
+      qe !== null ? (t = 0) : ((et = null), (nt = 0), (t = Ke));
   }
   if (t !== 0) {
     if (
       (t === 2 && ((o = Tl(e)), o !== 0 && ((r = o), (t = ia(e, o)))), t === 1)
     )
-      throw ((n = gs), Ln(e, 0), gn(e, r), yt(e, We()), n);
+      throw ((n = gs), Ln(e, 0), gn(e, r), vt(e, We()), n);
     if (t === 6) gn(e, r);
     else {
       if (
@@ -7456,11 +7458,11 @@ function wd(e, t) {
           t === 2 && ((l = Tl(e)), l !== 0 && ((r = l), (t = ia(e, l)))),
           t === 1))
       )
-        throw ((n = gs), Ln(e, 0), gn(e, r), yt(e, We()), n);
+        throw ((n = gs), Ln(e, 0), gn(e, r), vt(e, We()), n);
       switch (((e.finishedWork = o), (e.finishedLanes = r), t)) {
         case 0:
         case 1:
-          throw Error(J(345));
+          throw Error(te(345));
         case 2:
           Tn(e, mt, Zt);
           break;
@@ -7473,7 +7475,7 @@ function wd(e, t) {
               ut(), (e.pingedLanes |= e.suspendedLanes & o);
               break;
             }
-            e.timeoutHandle = Gl(Tn.bind(null, e, mt, Zt), t);
+            e.timeoutHandle = Fl(Tn.bind(null, e, mt, Zt), t);
             break;
           }
           Tn(e, mt, Zt);
@@ -7481,7 +7483,7 @@ function wd(e, t) {
         case 4:
           if ((gn(e, r), (r & 4194240) === r)) break;
           for (t = e.eventTimes, o = -1; 0 < r; ) {
-            var a = 31 - Gt(r);
+            var a = 31 - Ft(r);
             (l = 1 << a), (a = t[a]), a > o && (o = a), (r &= ~l);
           }
           if (
@@ -7503,7 +7505,7 @@ function wd(e, t) {
                 : 1960 * fm(r / 1960)) - r),
             10 < r)
           ) {
-            e.timeoutHandle = Gl(Tn.bind(null, e, mt, Zt), r);
+            e.timeoutHandle = Fl(Tn.bind(null, e, mt, Zt), r);
             break;
           }
           Tn(e, mt, Zt);
@@ -7512,11 +7514,11 @@ function wd(e, t) {
           Tn(e, mt, Zt);
           break;
         default:
-          throw Error(J(329));
+          throw Error(te(329));
       }
     }
   }
-  return yt(e, We()), e.callbackNode === n ? wd.bind(null, e) : null;
+  return vt(e, We()), e.callbackNode === n ? wd.bind(null, e) : null;
 }
 function ia(e, t) {
   var n = Jr;
@@ -7561,7 +7563,7 @@ function pm(e) {
 }
 function gn(e, t) {
   for (
-    t &= ~qa,
+    t &= ~Ya,
       t &= ~Ao,
       e.suspendedLanes |= t,
       e.pingedLanes &= ~t,
@@ -7569,79 +7571,79 @@ function gn(e, t) {
     0 < t;
 
   ) {
-    var n = 31 - Gt(t),
+    var n = 31 - Ft(t),
       r = 1 << n;
     (e[n] = -1), (t &= ~r);
   }
 }
 function fc(e) {
-  if (Ie & 6) throw Error(J(327));
+  if (Pe & 6) throw Error(te(327));
   yr();
   var t = so(e, 0);
-  if (!(t & 1)) return yt(e, We()), null;
+  if (!(t & 1)) return vt(e, We()), null;
   var n = jo(e, t);
   if (e.tag !== 0 && n === 2) {
     var r = Tl(e);
     r !== 0 && ((t = r), (n = ia(e, r)));
   }
-  if (n === 1) throw ((n = gs), Ln(e, 0), gn(e, t), yt(e, We()), n);
-  if (n === 6) throw Error(J(345));
+  if (n === 1) throw ((n = gs), Ln(e, 0), gn(e, t), vt(e, We()), n);
+  if (n === 6) throw Error(te(345));
   return (
     (e.finishedWork = e.current.alternate),
     (e.finishedLanes = t),
     Tn(e, mt, Zt),
-    yt(e, We()),
+    vt(e, We()),
     null
   );
 }
 function Ka(e, t) {
-  var n = Ie;
-  Ie |= 1;
+  var n = Pe;
+  Pe |= 1;
   try {
     return e(t);
   } finally {
-    (Ie = n), Ie === 0 && ((Cr = We() + 500), Po && Pn());
+    (Pe = n), Pe === 0 && ((Cr = We() + 500), Io && In());
   }
 }
 function Hn(e) {
-  yn !== null && yn.tag === 0 && !(Ie & 6) && yr();
-  var t = Ie;
-  Ie |= 1;
-  var n = Pt.transition,
+  yn !== null && yn.tag === 0 && !(Pe & 6) && yr();
+  var t = Pe;
+  Pe |= 1;
+  var n = It.transition,
     r = Te;
   try {
-    if (((Pt.transition = null), (Te = 1), e)) return e();
+    if (((It.transition = null), (Te = 1), e)) return e();
   } finally {
-    (Te = r), (Pt.transition = n), (Ie = t), !(Ie & 6) && Pn();
+    (Te = r), (It.transition = n), (Pe = t), !(Pe & 6) && In();
   }
 }
 function Ja() {
-  (wt = fr.current), Le(fr);
+  (bt = fr.current), Le(fr);
 }
 function Ln(e, t) {
   (e.finishedWork = null), (e.finishedLanes = 0);
   var n = e.timeoutHandle;
-  if ((n !== -1 && ((e.timeoutHandle = -1), Fp(n)), Qe !== null))
-    for (n = Qe.return; n !== null; ) {
+  if ((n !== -1 && ((e.timeoutHandle = -1), Gp(n)), qe !== null))
+    for (n = qe.return; n !== null; ) {
       var r = n;
-      switch ((Ia(r), r.tag)) {
+      switch ((Pa(r), r.tag)) {
         case 1:
           (r = r.type.childContextTypes), r != null && co();
           break;
         case 3:
-          jr(), Le(gt), Le(at), Ba();
+          jr(), Le(xt), Le(at), za();
           break;
         case 5:
-          za(r);
+          Ba(r);
           break;
         case 4:
           jr();
           break;
         case 13:
-          Le(Be);
+          Le(ze);
           break;
         case 19:
-          Le(Be);
+          Le(ze);
           break;
         case 10:
           Oa(r.type._context);
@@ -7654,11 +7656,11 @@ function Ln(e, t) {
     }
   if (
     ((et = e),
-    (Qe = e = kn(e.current, null)),
-    (nt = wt = t),
+    (qe = e = kn(e.current, null)),
+    (nt = bt = t),
     (Ke = 0),
     (gs = null),
-    (qa = Ao = Fn = 0),
+    (Ya = Ao = Gn = 0),
     (mt = Jr = null),
     On !== null)
   ) {
@@ -7679,24 +7681,24 @@ function Ln(e, t) {
 }
 function bd(e, t) {
   do {
-    var n = Qe;
+    var n = qe;
     try {
-      if ((Aa(), (Qs.current = vo), yo)) {
-        for (var r = Ge.memoizedState; r !== null; ) {
+      if ((Aa(), (qs.current = vo), yo)) {
+        for (var r = Fe.memoizedState; r !== null; ) {
           var o = r.queue;
           o !== null && (o.pending = null), (r = r.next);
         }
         yo = !1;
       }
       if (
-        ((Gn = 0),
-        (Ze = Xe = Ge = null),
+        ((Fn = 0),
+        (Ze = Xe = Fe = null),
         (Xr = !1),
         (ps = 0),
-        (Ya.current = null),
+        (Qa.current = null),
         n === null || n.return === null)
       ) {
-        (Ke = 1), (gs = t), (Qe = null);
+        (Ke = 1), (gs = t), (qe = null);
         break;
       }
       e: {
@@ -7711,26 +7713,26 @@ function bd(e, t) {
         ) {
           var h = c,
             d = i,
-            g = d.tag;
-          if (!(d.mode & 1) && (g === 0 || g === 11 || g === 15)) {
-            var p = d.alternate;
-            p
-              ? ((d.updateQueue = p.updateQueue),
-                (d.memoizedState = p.memoizedState),
-                (d.lanes = p.lanes))
+            x = d.tag;
+          if (!(d.mode & 1) && (x === 0 || x === 11 || x === 15)) {
+            var m = d.alternate;
+            m
+              ? ((d.updateQueue = m.updateQueue),
+                (d.memoizedState = m.memoizedState),
+                (d.lanes = m.lanes))
               : ((d.updateQueue = null), (d.memoizedState = null));
           }
-          var w = Zi(a);
-          if (w !== null) {
-            (w.flags &= -257),
-              ec(w, a, i, l, t),
-              w.mode & 1 && Ji(l, h, t),
-              (t = w),
+          var b = Zi(a);
+          if (b !== null) {
+            (b.flags &= -257),
+              ec(b, a, i, l, t),
+              b.mode & 1 && Ji(l, h, t),
+              (t = b),
               (c = h);
             var v = t.updateQueue;
             if (v === null) {
-              var b = new Set();
-              b.add(c), (t.updateQueue = b);
+              var N = new Set();
+              N.add(c), (t.updateQueue = N);
             } else v.add(c);
             break e;
           } else {
@@ -7738,13 +7740,13 @@ function bd(e, t) {
               Ji(l, h, t), Za();
               break e;
             }
-            c = Error(J(426));
+            c = Error(te(426));
           }
         } else if (Ue && i.mode & 1) {
-          var _ = Zi(a);
-          if (_ !== null) {
-            !(_.flags & 65536) && (_.flags |= 256),
-              ec(_, a, i, l, t),
+          var E = Zi(a);
+          if (E !== null) {
+            !(E.flags & 65536) && (E.flags |= 256),
+              ec(E, a, i, l, t),
               Ra(Sr(c, i));
             break e;
           }
@@ -7763,17 +7765,17 @@ function bd(e, t) {
             case 1:
               i = c;
               var f = l.type,
-                x = l.stateNode;
+                g = l.stateNode;
               if (
                 !(l.flags & 128) &&
                 (typeof f.getDerivedStateFromError == "function" ||
-                  (x !== null &&
-                    typeof x.componentDidCatch == "function" &&
-                    (Sn === null || !Sn.has(x))))
+                  (g !== null &&
+                    typeof g.componentDidCatch == "function" &&
+                    (Sn === null || !Sn.has(g))))
               ) {
                 (l.flags |= 65536), (t &= -t), (l.lanes |= t);
-                var j = od(l, i, t);
-                Wi(l, j);
+                var C = od(l, i, t);
+                Wi(l, C);
                 break e;
               }
           }
@@ -7781,8 +7783,8 @@ function bd(e, t) {
         } while (l !== null);
       }
       Sd(n);
-    } catch (L) {
-      (t = L), Qe === n && n !== null && (Qe = n = n.return);
+    } catch (B) {
+      (t = B), qe === n && n !== null && (qe = n = n.return);
       continue;
     }
     break;
@@ -7794,11 +7796,11 @@ function Nd() {
 }
 function Za() {
   (Ke === 0 || Ke === 3 || Ke === 2) && (Ke = 4),
-    et === null || (!(Fn & 268435455) && !(Ao & 268435455)) || gn(et, nt);
+    et === null || (!(Gn & 268435455) && !(Ao & 268435455)) || gn(et, nt);
 }
 function jo(e, t) {
-  var n = Ie;
-  Ie |= 2;
+  var n = Pe;
+  Pe |= 2;
   var r = Nd();
   (et !== e || nt !== t) && ((Zt = null), Ln(e, t));
   do
@@ -7809,20 +7811,20 @@ function jo(e, t) {
       bd(e, o);
     }
   while (!0);
-  if ((Aa(), (Ie = n), (wo.current = r), Qe !== null)) throw Error(J(261));
+  if ((Aa(), (Pe = n), (wo.current = r), qe !== null)) throw Error(te(261));
   return (et = null), (nt = 0), Ke;
 }
 function mm() {
-  for (; Qe !== null; ) jd(Qe);
+  for (; qe !== null; ) jd(qe);
 }
 function hm() {
-  for (; Qe !== null && !zf(); ) jd(Qe);
+  for (; qe !== null && !Bf(); ) jd(qe);
 }
 function jd(e) {
-  var t = kd(e.alternate, e, wt);
+  var t = kd(e.alternate, e, bt);
   (e.memoizedProps = e.pendingProps),
-    t === null ? Sd(e) : (Qe = t),
-    (Ya.current = null);
+    t === null ? Sd(e) : (qe = t),
+    (Qa.current = null);
 }
 function Sd(e) {
   var t = e;
@@ -7830,84 +7832,84 @@ function Sd(e) {
     var n = t.alternate;
     if (((e = t.return), t.flags & 32768)) {
       if (((n = im(n, t)), n !== null)) {
-        (n.flags &= 32767), (Qe = n);
+        (n.flags &= 32767), (qe = n);
         return;
       }
       if (e !== null)
         (e.flags |= 32768), (e.subtreeFlags = 0), (e.deletions = null);
       else {
-        (Ke = 6), (Qe = null);
+        (Ke = 6), (qe = null);
         return;
       }
-    } else if (((n = am(n, t, wt)), n !== null)) {
-      Qe = n;
+    } else if (((n = am(n, t, bt)), n !== null)) {
+      qe = n;
       return;
     }
     if (((t = t.sibling), t !== null)) {
-      Qe = t;
+      qe = t;
       return;
     }
-    Qe = t = e;
+    qe = t = e;
   } while (t !== null);
   Ke === 0 && (Ke = 5);
 }
 function Tn(e, t, n) {
   var r = Te,
-    o = Pt.transition;
+    o = It.transition;
   try {
-    (Pt.transition = null), (Te = 1), gm(e, t, n, r);
+    (It.transition = null), (Te = 1), gm(e, t, n, r);
   } finally {
-    (Pt.transition = o), (Te = r);
+    (It.transition = o), (Te = r);
   }
   return null;
 }
 function gm(e, t, n, r) {
   do yr();
   while (yn !== null);
-  if (Ie & 6) throw Error(J(327));
+  if (Pe & 6) throw Error(te(327));
   n = e.finishedWork;
   var o = e.finishedLanes;
   if (n === null) return null;
   if (((e.finishedWork = null), (e.finishedLanes = 0), n === e.current))
-    throw Error(J(177));
+    throw Error(te(177));
   (e.callbackNode = null), (e.callbackPriority = 0);
   var l = n.lanes | n.childLanes;
   if (
     (Xf(e, l),
-    e === et && ((Qe = et = null), (nt = 0)),
+    e === et && ((qe = et = null), (nt = 0)),
     (!(n.subtreeFlags & 2064) && !(n.flags & 2064)) ||
       Ls ||
       ((Ls = !0),
-      _d(ro, function () {
+      Dd(ro, function () {
         return yr(), null;
       })),
     (l = (n.flags & 15990) !== 0),
     n.subtreeFlags & 15990 || l)
   ) {
-    (l = Pt.transition), (Pt.transition = null);
+    (l = It.transition), (It.transition = null);
     var a = Te;
     Te = 1;
-    var i = Ie;
-    (Ie |= 4),
-      (Ya.current = null),
+    var i = Pe;
+    (Pe |= 4),
+      (Qa.current = null),
       um(e, n),
       yd(n, e),
-      Op(zl),
+      Op(Bl),
       (oo = !!Ul),
-      (zl = Ul = null),
+      (Bl = Ul = null),
       (e.current = n),
       dm(n),
-      Bf(),
-      (Ie = i),
+      zf(),
+      (Pe = i),
       (Te = a),
-      (Pt.transition = l);
+      (It.transition = l);
   } else e.current = n;
   if (
     (Ls && ((Ls = !1), (yn = e), (No = o)),
     (l = e.pendingLanes),
     l === 0 && (Sn = null),
     Hf(n.stateNode),
-    yt(e, We()),
+    vt(e, We()),
     t !== null)
   )
     for (r = e.onRecoverableError, n = 0; n < t.length; n++)
@@ -7917,74 +7919,74 @@ function gm(e, t, n, r) {
     No & 1 && e.tag !== 0 && yr(),
     (l = e.pendingLanes),
     l & 1 ? (e === aa ? Zr++ : ((Zr = 0), (aa = e))) : (Zr = 0),
-    Pn(),
+    In(),
     null
   );
 }
 function yr() {
   if (yn !== null) {
     var e = su(No),
-      t = Pt.transition,
+      t = It.transition,
       n = Te;
     try {
-      if (((Pt.transition = null), (Te = 16 > e ? 16 : e), yn === null))
+      if (((It.transition = null), (Te = 16 > e ? 16 : e), yn === null))
         var r = !1;
       else {
-        if (((e = yn), (yn = null), (No = 0), Ie & 6)) throw Error(J(331));
-        var o = Ie;
-        for (Ie |= 4, fe = e.current; fe !== null; ) {
-          var l = fe,
+        if (((e = yn), (yn = null), (No = 0), Pe & 6)) throw Error(te(331));
+        var o = Pe;
+        for (Pe |= 4, me = e.current; me !== null; ) {
+          var l = me,
             a = l.child;
-          if (fe.flags & 16) {
+          if (me.flags & 16) {
             var i = l.deletions;
             if (i !== null) {
               for (var c = 0; c < i.length; c++) {
                 var h = i[c];
-                for (fe = h; fe !== null; ) {
-                  var d = fe;
+                for (me = h; me !== null; ) {
+                  var d = me;
                   switch (d.tag) {
                     case 0:
                     case 11:
                     case 15:
                       Kr(8, d, l);
                   }
-                  var g = d.child;
-                  if (g !== null) (g.return = d), (fe = g);
+                  var x = d.child;
+                  if (x !== null) (x.return = d), (me = x);
                   else
-                    for (; fe !== null; ) {
-                      d = fe;
-                      var p = d.sibling,
-                        w = d.return;
+                    for (; me !== null; ) {
+                      d = me;
+                      var m = d.sibling,
+                        b = d.return;
                       if ((hd(d), d === h)) {
-                        fe = null;
+                        me = null;
                         break;
                       }
-                      if (p !== null) {
-                        (p.return = w), (fe = p);
+                      if (m !== null) {
+                        (m.return = b), (me = m);
                         break;
                       }
-                      fe = w;
+                      me = b;
                     }
                 }
               }
               var v = l.alternate;
               if (v !== null) {
-                var b = v.child;
-                if (b !== null) {
+                var N = v.child;
+                if (N !== null) {
                   v.child = null;
                   do {
-                    var _ = b.sibling;
-                    (b.sibling = null), (b = _);
-                  } while (b !== null);
+                    var E = N.sibling;
+                    (N.sibling = null), (N = E);
+                  } while (N !== null);
                 }
               }
-              fe = l;
+              me = l;
             }
           }
-          if (l.subtreeFlags & 2064 && a !== null) (a.return = l), (fe = a);
+          if (l.subtreeFlags & 2064 && a !== null) (a.return = l), (me = a);
           else
-            e: for (; fe !== null; ) {
-              if (((l = fe), l.flags & 2048))
+            e: for (; me !== null; ) {
+              if (((l = me), l.flags & 2048))
                 switch (l.tag) {
                   case 0:
                   case 11:
@@ -7993,20 +7995,20 @@ function yr() {
                 }
               var u = l.sibling;
               if (u !== null) {
-                (u.return = l.return), (fe = u);
+                (u.return = l.return), (me = u);
                 break e;
               }
-              fe = l.return;
+              me = l.return;
             }
         }
         var f = e.current;
-        for (fe = f; fe !== null; ) {
-          a = fe;
-          var x = a.child;
-          if (a.subtreeFlags & 2064 && x !== null) (x.return = a), (fe = x);
+        for (me = f; me !== null; ) {
+          a = me;
+          var g = a.child;
+          if (a.subtreeFlags & 2064 && g !== null) (g.return = a), (me = g);
           else
-            e: for (a = f; fe !== null; ) {
-              if (((i = fe), i.flags & 2048))
+            e: for (a = f; me !== null; ) {
+              if (((i = me), i.flags & 2048))
                 try {
                   switch (i.tag) {
                     case 0:
@@ -8014,23 +8016,23 @@ function yr() {
                     case 15:
                       To(9, i);
                   }
-                } catch (L) {
-                  He(i, i.return, L);
+                } catch (B) {
+                  He(i, i.return, B);
                 }
               if (i === a) {
-                fe = null;
+                me = null;
                 break e;
               }
-              var j = i.sibling;
-              if (j !== null) {
-                (j.return = i.return), (fe = j);
+              var C = i.sibling;
+              if (C !== null) {
+                (C.return = i.return), (me = C);
                 break e;
               }
-              fe = i.return;
+              me = i.return;
             }
         }
         if (
-          ((Ie = o), Pn(), Kt && typeof Kt.onPostCommitFiberRoot == "function")
+          ((Pe = o), In(), Kt && typeof Kt.onPostCommitFiberRoot == "function")
         )
           try {
             Kt.onPostCommitFiberRoot(ko, e);
@@ -8039,7 +8041,7 @@ function yr() {
       }
       return r;
     } finally {
-      (Te = n), (Pt.transition = t);
+      (Te = n), (It.transition = t);
     }
   }
   return !1;
@@ -8049,7 +8051,7 @@ function pc(e, t, n) {
     (t = sd(e, t, 1)),
     (e = jn(e, t, 1)),
     (t = ut()),
-    e !== null && (ys(e, 1, t), yt(e, t));
+    e !== null && (ys(e, 1, t), vt(e, t));
 }
 function He(e, t, n) {
   if (e.tag === 3) pc(e, e, n);
@@ -8069,7 +8071,7 @@ function He(e, t, n) {
             (e = od(t, e, 1)),
             (t = jn(t, e, 1)),
             (e = ut()),
-            t !== null && (ys(t, 1, e), yt(t, e));
+            t !== null && (ys(t, 1, e), vt(t, e));
           break;
         }
       }
@@ -8085,16 +8087,16 @@ function xm(e, t, n) {
       (nt & n) === n &&
       (Ke === 4 || (Ke === 3 && (nt & 130023424) === nt && 500 > We() - Xa)
         ? Ln(e, 0)
-        : (qa |= n)),
-    yt(e, t);
+        : (Ya |= n)),
+    vt(e, t);
 }
 function Cd(e, t) {
   t === 0 &&
     (e.mode & 1
-      ? ((t = Ds), (Ds <<= 1), !(Ds & 130023424) && (Ds = 4194304))
+      ? ((t = _s), (_s <<= 1), !(_s & 130023424) && (_s = 4194304))
       : (t = 1));
   var n = ut();
-  (e = an(e, t)), e !== null && (ys(e, t, n), yt(e, n));
+  (e = an(e, t)), e !== null && (ys(e, t, n), vt(e, n));
 }
 function ym(e) {
   var t = e.memoizedState,
@@ -8113,14 +8115,14 @@ function vm(e, t) {
       r = e.stateNode;
       break;
     default:
-      throw Error(J(314));
+      throw Error(te(314));
   }
   r !== null && r.delete(t), Cd(e, n);
 }
 var kd;
 kd = function (e, t, n) {
   if (e !== null)
-    if (e.memoizedProps !== t.pendingProps || gt.current) ht = !0;
+    if (e.memoizedProps !== t.pendingProps || xt.current) ht = !0;
     else {
       if (!(e.lanes & n) && !(t.flags & 128)) return (ht = !1), lm(e, t, n);
       ht = !!(e.flags & 131072);
@@ -8129,9 +8131,9 @@ kd = function (e, t, n) {
   switch (((t.lanes = 0), t.tag)) {
     case 2:
       var r = t.type;
-      qs(e, t), (e = t.pendingProps);
+      Ys(e, t), (e = t.pendingProps);
       var o = wr(t, at.current);
-      xr(t, n), (o = Fa(null, t, r, e, o, n));
+      xr(t, n), (o = Ga(null, t, r, e, o, n));
       var l = Ha();
       return (
         (t.flags |= 1),
@@ -8142,23 +8144,23 @@ kd = function (e, t, n) {
           ? ((t.tag = 1),
             (t.memoizedState = null),
             (t.updateQueue = null),
-            xt(r) ? ((l = !0), uo(t)) : (l = !1),
+            yt(r) ? ((l = !0), uo(t)) : (l = !1),
             (t.memoizedState =
               o.state !== null && o.state !== void 0 ? o.state : null),
             La(t),
             (o.updater = Ro),
             (t.stateNode = o),
             (o._reactInternals = t),
-            ql(t, r, e, n),
+            Yl(t, r, e, n),
             (t = Jl(null, t, r, !0, l, n)))
-          : ((t.tag = 0), Ue && l && Pa(t), ct(null, t, o, n), (t = t.child)),
+          : ((t.tag = 0), Ue && l && Ia(t), ct(null, t, o, n), (t = t.child)),
         t
       );
     case 16:
       r = t.elementType;
       e: {
         switch (
-          (qs(e, t),
+          (Ys(e, t),
           (e = t.pendingProps),
           (o = r._init),
           (r = o(r._payload)),
@@ -8180,7 +8182,7 @@ kd = function (e, t, n) {
             t = nc(null, t, r, Ut(r.type, e), n);
             break e;
         }
-        throw Error(J(306, r, ""));
+        throw Error(te(306, r, ""));
       }
       return t;
     case 0:
@@ -8199,7 +8201,7 @@ kd = function (e, t, n) {
       );
     case 3:
       e: {
-        if ((cd(t), e === null)) throw Error(J(387));
+        if ((cd(t), e === null)) throw Error(te(387));
         (r = t.pendingProps),
           (l = t.memoizedState),
           (o = l.element),
@@ -8219,17 +8221,17 @@ kd = function (e, t, n) {
             (t.memoizedState = l),
             t.flags & 256)
           ) {
-            (o = Sr(Error(J(423)), t)), (t = sc(e, t, r, n, o));
+            (o = Sr(Error(te(423)), t)), (t = sc(e, t, r, n, o));
             break e;
           } else if (r !== o) {
-            (o = Sr(Error(J(424)), t)), (t = sc(e, t, r, n, o));
+            (o = Sr(Error(te(424)), t)), (t = sc(e, t, r, n, o));
             break e;
           } else
             for (
-              bt = Nn(t.stateNode.containerInfo.firstChild),
+              Nt = Nn(t.stateNode.containerInfo.firstChild),
                 jt = t,
                 Ue = !0,
-                Bt = null,
+                zt = null,
                 n = Tu(t, null, r, n),
                 t.child = n;
               n;
@@ -8254,7 +8256,7 @@ kd = function (e, t, n) {
         (o = t.pendingProps),
         (l = e !== null ? e.memoizedProps : null),
         (a = o.children),
-        Bl(r, o) ? (a = null) : l !== null && Bl(r, l) && (t.flags |= 32),
+        zl(r, o) ? (a = null) : l !== null && zl(r, l) && (t.flags |= 32),
         id(e, t),
         ct(e, t, a, n),
         t.child
@@ -8295,7 +8297,7 @@ kd = function (e, t, n) {
           l !== null)
         )
           if (Ht(l.value, a)) {
-            if (l.children === o.children && !gt.current) {
+            if (l.children === o.children && !xt.current) {
               t = cn(e, t, n);
               break e;
             }
@@ -8321,7 +8323,7 @@ kd = function (e, t, n) {
                     (l.lanes |= n),
                       (c = l.alternate),
                       c !== null && (c.lanes |= n),
-                      Ql(l.return, n, t),
+                      ql(l.return, n, t),
                       (i.lanes |= n);
                     break;
                   }
@@ -8329,11 +8331,11 @@ kd = function (e, t, n) {
                 }
               } else if (l.tag === 10) a = l.type === t.type ? null : l.child;
               else if (l.tag === 18) {
-                if (((a = l.return), a === null)) throw Error(J(341));
+                if (((a = l.return), a === null)) throw Error(te(341));
                 (a.lanes |= n),
                   (i = a.alternate),
                   i !== null && (i.lanes |= n),
-                  Ql(a, n, t),
+                  ql(a, n, t),
                   (a = l.sibling);
               } else a = l.child;
               if (a !== null) a.return = l;
@@ -8379,12 +8381,12 @@ kd = function (e, t, n) {
         (r = t.type),
         (o = t.pendingProps),
         (o = t.elementType === r ? o : Ut(r, o)),
-        qs(e, t),
+        Ys(e, t),
         (t.tag = 1),
-        xt(r) ? ((e = !0), uo(t)) : (e = !1),
+        yt(r) ? ((e = !0), uo(t)) : (e = !1),
         xr(t, n),
         rd(t, r, o),
-        ql(t, r, o, n),
+        Yl(t, r, o, n),
         Jl(null, t, r, !0, e, n)
       );
     case 19:
@@ -8392,9 +8394,9 @@ kd = function (e, t, n) {
     case 22:
       return ad(e, t, n);
   }
-  throw Error(J(156, t.tag));
+  throw Error(te(156, t.tag));
 };
-function _d(e, t) {
+function Dd(e, t) {
   return eu(e, t);
 }
 function wm(e, t, n, r) {
@@ -8506,7 +8508,7 @@ function Js(e, t, n, r, o, l) {
               (a = 16), (r = null);
               break e;
           }
-        throw Error(J(130, e == null ? e : typeof e, ""));
+        throw Error(te(130, e == null ? e : typeof e, ""));
     }
   return (
     (t = Et(a, n, t, o)), (t.elementType = e), (t.type = r), (t.lanes = l), t
@@ -8550,8 +8552,8 @@ function Nm(e, t, n, r, o) {
     (this.timeoutHandle = -1),
     (this.callbackNode = this.pendingContext = this.context = null),
     (this.callbackPriority = 0),
-    (this.eventTimes = qo(0)),
-    (this.expirationTimes = qo(-1)),
+    (this.eventTimes = Yo(0)),
+    (this.expirationTimes = Yo(-1)),
     (this.entangledLanes =
       this.finishedLanes =
       this.mutableReadLanes =
@@ -8560,7 +8562,7 @@ function Nm(e, t, n, r, o) {
       this.suspendedLanes =
       this.pendingLanes =
         0),
-    (this.entanglements = qo(0)),
+    (this.entanglements = Yo(0)),
     (this.identifierPrefix = r),
     (this.onRecoverableError = o),
     (this.mutableSourceEagerHydrationData = null);
@@ -8593,11 +8595,11 @@ function jm(e, t, n) {
     implementation: n,
   };
 }
-function Dd(e) {
-  if (!e) return Dn;
+function _d(e) {
+  if (!e) return _n;
   e = e._reactInternals;
   e: {
-    if (Wn(e) !== e || e.tag !== 1) throw Error(J(170));
+    if (Wn(e) !== e || e.tag !== 1) throw Error(te(170));
     var t = e;
     do {
       switch (t.tag) {
@@ -8605,25 +8607,25 @@ function Dd(e) {
           t = t.stateNode.context;
           break e;
         case 1:
-          if (xt(t.type)) {
+          if (yt(t.type)) {
             t = t.stateNode.__reactInternalMemoizedMergedChildContext;
             break e;
           }
       }
       t = t.return;
     } while (t !== null);
-    throw Error(J(171));
+    throw Error(te(171));
   }
   if (e.tag === 1) {
     var n = e.type;
-    if (xt(n)) return Du(e, n, t);
+    if (yt(n)) return _u(e, n, t);
   }
   return t;
 }
 function Md(e, t, n, r, o, l, a, i, c) {
   return (
     (e = ti(n, r, !0, e, o, l, a, i, c)),
-    (e.context = Dd(null)),
+    (e.context = _d(null)),
     (n = e.current),
     (r = ut()),
     (o = Cn(n)),
@@ -8632,7 +8634,7 @@ function Md(e, t, n, r, o, l, a, i, c) {
     jn(n, l, o),
     (e.current.lanes = o),
     ys(e, o, r),
-    yt(e, r),
+    vt(e, r),
     e
   );
 }
@@ -8641,14 +8643,14 @@ function $o(e, t, n, r) {
     l = ut(),
     a = Cn(o);
   return (
-    (n = Dd(n)),
+    (n = _d(n)),
     t.context === null ? (t.context = n) : (t.pendingContext = n),
     (t = sn(l, a)),
     (t.payload = { element: e }),
     (r = r === void 0 ? null : r),
     r !== null && (t.callback = r),
     (e = jn(o, t, a)),
-    e !== null && (Ft(e, o, a, l), Ws(e, o, a)),
+    e !== null && (Gt(e, o, a, l), Ws(e, o, a)),
     a
   );
 }
@@ -8684,7 +8686,7 @@ function ri(e) {
 }
 Lo.prototype.render = ri.prototype.render = function (e) {
   var t = this._internalRoot;
-  if (t === null) throw Error(J(409));
+  if (t === null) throw Error(te(409));
   $o(e, t, null, null);
 };
 Lo.prototype.unmount = ri.prototype.unmount = function () {
@@ -8759,7 +8761,7 @@ function Cm(e, t, n, r, o) {
     c
   );
 }
-function zo(e, t, n, r, o) {
+function Bo(e, t, n, r, o) {
   var l = n._reactRootContainer;
   if (l) {
     var a = l;
@@ -8779,9 +8781,9 @@ ou = function (e) {
     case 3:
       var t = e.stateNode;
       if (t.current.memoizedState.isDehydrated) {
-        var n = Fr(t.pendingLanes);
+        var n = Gr(t.pendingLanes);
         n !== 0 &&
-          (ja(t, n | 1), yt(t, We()), !(Ie & 6) && ((Cr = We() + 500), Pn()));
+          (ja(t, n | 1), vt(t, We()), !(Pe & 6) && ((Cr = We() + 500), In()));
       }
       break;
     case 13:
@@ -8789,7 +8791,7 @@ ou = function (e) {
         var r = an(e, 1);
         if (r !== null) {
           var o = ut();
-          Ft(r, e, 1, o);
+          Gt(r, e, 1, o);
         }
       }),
         ni(e, 1);
@@ -8800,7 +8802,7 @@ Sa = function (e) {
     var t = an(e, 134217728);
     if (t !== null) {
       var n = ut();
-      Ft(t, e, 134217728, n);
+      Gt(t, e, 134217728, n);
     }
     ni(e, 134217728);
   }
@@ -8811,7 +8813,7 @@ lu = function (e) {
       n = an(e, t);
     if (n !== null) {
       var r = ut();
-      Ft(n, e, t, r);
+      Gt(n, e, t, r);
     }
     ni(e, t);
   }
@@ -8827,7 +8829,7 @@ iu = function (e, t) {
     Te = n;
   }
 };
-Pl = function (e, t, n) {
+Il = function (e, t, n) {
   switch (t) {
     case "input":
       if ((Sl(e, n), (t = n.name), n.type === "radio" && t != null)) {
@@ -8843,33 +8845,33 @@ Pl = function (e, t, n) {
           var r = n[t];
           if (r !== e && r.form === e.form) {
             var o = Eo(r);
-            if (!o) throw Error(J(90));
+            if (!o) throw Error(te(90));
             Uc(r), Sl(r, o);
           }
         }
       }
       break;
     case "textarea":
-      Bc(e, n);
+      zc(e, n);
       break;
     case "select":
       (t = n.value), t != null && pr(e, !!n.multiple, t, !1);
   }
 };
-Yc = Ka;
-qc = Hn;
-var km = { usingClientEntryPoint: !1, Events: [ws, lr, Eo, Wc, Qc, Ka] },
-  zr = {
+Qc = Ka;
+Yc = Hn;
+var km = { usingClientEntryPoint: !1, Events: [ws, lr, Eo, Wc, qc, Ka] },
+  Br = {
     findFiberByHostInstance: An,
     bundleType: 0,
     version: "18.3.1",
     rendererPackageName: "react-dom",
   },
-  _m = {
-    bundleType: zr.bundleType,
-    version: zr.version,
-    rendererPackageName: zr.rendererPackageName,
-    rendererConfig: zr.rendererConfig,
+  Dm = {
+    bundleType: Br.bundleType,
+    version: Br.version,
+    rendererPackageName: Br.rendererPackageName,
+    rendererConfig: Br.rendererConfig,
     overrideHookState: null,
     overrideHookStateDeletePath: null,
     overrideHookStateRenamePath: null,
@@ -8883,7 +8885,7 @@ var km = { usingClientEntryPoint: !1, Events: [ws, lr, Eo, Wc, Qc, Ka] },
     findHostInstanceByFiber: function (e) {
       return (e = Jc(e)), e === null ? null : e.stateNode;
     },
-    findFiberByHostInstance: zr.findFiberByHostInstance || Sm,
+    findFiberByHostInstance: Br.findFiberByHostInstance || Sm,
     findHostInstancesForRefresh: null,
     scheduleRefresh: null,
     scheduleRoot: null,
@@ -8895,17 +8897,17 @@ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u") {
   var Us = __REACT_DEVTOOLS_GLOBAL_HOOK__;
   if (!Us.isDisabled && Us.supportsFiber)
     try {
-      (ko = Us.inject(_m)), (Kt = Us);
+      (ko = Us.inject(Dm)), (Kt = Us);
     } catch {}
 }
 Ct.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = km;
 Ct.createPortal = function (e, t) {
   var n = 2 < arguments.length && arguments[2] !== void 0 ? arguments[2] : null;
-  if (!si(t)) throw Error(J(200));
+  if (!si(t)) throw Error(te(200));
   return jm(e, t, null, n);
 };
 Ct.createRoot = function (e, t) {
-  if (!si(e)) throw Error(J(299));
+  if (!si(e)) throw Error(te(299));
   var n = !1,
     r = "",
     o = Ed;
@@ -8926,19 +8928,19 @@ Ct.findDOMNode = function (e) {
   var t = e._reactInternals;
   if (t === void 0)
     throw typeof e.render == "function"
-      ? Error(J(188))
-      : ((e = Object.keys(e).join(",")), Error(J(268, e)));
+      ? Error(te(188))
+      : ((e = Object.keys(e).join(",")), Error(te(268, e)));
   return (e = Jc(t)), (e = e === null ? null : e.stateNode), e;
 };
 Ct.flushSync = function (e) {
   return Hn(e);
 };
 Ct.hydrate = function (e, t, n) {
-  if (!Uo(t)) throw Error(J(200));
-  return zo(null, e, t, !0, n);
+  if (!Uo(t)) throw Error(te(200));
+  return Bo(null, e, t, !0, n);
 };
 Ct.hydrateRoot = function (e, t, n) {
-  if (!si(e)) throw Error(J(405));
+  if (!si(e)) throw Error(te(405));
   var r = (n != null && n.hydratedSources) || null,
     o = !1,
     l = "",
@@ -8963,14 +8965,14 @@ Ct.hydrateRoot = function (e, t, n) {
   return new Lo(t);
 };
 Ct.render = function (e, t, n) {
-  if (!Uo(t)) throw Error(J(200));
-  return zo(null, e, t, !1, n);
+  if (!Uo(t)) throw Error(te(200));
+  return Bo(null, e, t, !1, n);
 };
 Ct.unmountComponentAtNode = function (e) {
-  if (!Uo(e)) throw Error(J(40));
+  if (!Uo(e)) throw Error(te(40));
   return e._reactRootContainer
     ? (Hn(function () {
-        zo(null, null, e, !1, function () {
+        Bo(null, null, e, !1, function () {
           (e._reactRootContainer = null), (e[ln] = null);
         });
       }),
@@ -8979,12 +8981,12 @@ Ct.unmountComponentAtNode = function (e) {
 };
 Ct.unstable_batchedUpdates = Ka;
 Ct.unstable_renderSubtreeIntoContainer = function (e, t, n, r) {
-  if (!Uo(n)) throw Error(J(200));
-  if (e == null || e._reactInternals === void 0) throw Error(J(38));
-  return zo(e, t, n, !1, r);
+  if (!Uo(n)) throw Error(te(200));
+  if (e == null || e._reactInternals === void 0) throw Error(te(38));
+  return Bo(e, t, n, !1, r);
 };
 Ct.version = "18.3.1-next-f1338f8080-20240426";
-function Pd() {
+function Id() {
   if (
     !(
       typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ > "u" ||
@@ -8992,16 +8994,16 @@ function Pd() {
     )
   )
     try {
-      __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(Pd);
+      __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(Id);
     } catch (e) {
       console.error(e);
     }
 }
-Pd(), (Pc.exports = Ct);
-var Dm = Pc.exports,
-  Id,
-  gc = Dm;
-(Id = gc.createRoot), gc.hydrateRoot;
+Id(), (Ic.exports = Ct);
+var _m = Ic.exports,
+  Pd,
+  gc = _m;
+(Pd = gc.createRoot), gc.hydrateRoot;
 class Mm {
   constructor() {
     (this.config = null), (this.isConfigLoaded = !1);
@@ -9369,6 +9371,12 @@ class Mm {
       body: JSON.stringify(n),
     });
   }
+  async getAllStaffInfo() {
+    return this.request("/api/person_page/get_all", {
+      method: "POST",
+      body: JSON.stringify({}),
+    });
+  }
 }
 const ke = new Mm();
 class Em {
@@ -9412,7 +9420,7 @@ class Em {
               : (i = [0, 0]),
               (o.contents[a] = {
                 GUID: l.GUID,
-                MASTER_GUID: l.Master_GUID,
+                Master_GUID: l.Master_GUID,
                 name: `櫃體${a}`,
                 type: "parent_container",
                 class: 1,
@@ -9427,7 +9435,7 @@ class Em {
                 l.sub_section.forEach((c, h) => {
                   let d = {
                     GUID: c.GUID,
-                    MASTER_GUID: c.Master_GUID,
+                    Master_GUID: c.Master_GUID,
                     name: c.name,
                     type: "sub_container",
                     class: 2,
@@ -9438,18 +9446,18 @@ class Em {
                     oriMaxCol: 0,
                   };
                   o.contents[a].contents[h] = d;
-                  let g = 0;
+                  let x = 0;
                   Array.isArray(c.shelf) &&
-                    c.shelf.forEach((p, w) => {
+                    c.shelf.forEach((m, b) => {
                       let v = {
-                        GUID: p.GUID,
-                        MASTER_GUID: p.Master_GUID,
-                        name: `層架_${w}`,
+                        GUID: m.GUID,
+                        Master_GUID: m.Master_GUID,
+                        name: `層架_${b}`,
                         class: 3,
-                        gird_position: p.position,
-                        serverName: p.serverName || "",
-                        serverType: p.serverType || "",
-                        type: p.type,
+                        gird_position: m.position,
+                        serverName: m.serverName || "",
+                        serverType: m.serverType || "",
+                        type: m.type,
                         contents: [],
                       };
                       if (
@@ -9457,33 +9465,33 @@ class Em {
                           (v.serverName = t.sys_ServerSetting.name),
                         v.serverType &&
                           (v.serverType = t.sys_ServerSetting.type),
-                        p.type == "dispensing_shelves" || p.type == "shelf")
+                        m.type == "dispensing_shelves" || m.type == "shelf")
                       )
-                        p.type == "shelf" && (v.type = "dispensing_shelves"),
-                          Array.isArray(p.medMapBox) &&
-                            p.medMapBox.forEach((_, u) => {
+                        m.type == "shelf" && (v.type = "dispensing_shelves"),
+                          Array.isArray(m.medMapBox) &&
+                            m.medMapBox.forEach((E, u) => {
                               let f = {
-                                  GUID: _.GUID,
-                                  MASTER_GUID: _.Master_GUID,
+                                  GUID: E.GUID,
+                                  Master_GUID: E.Master_GUID,
                                   name: "藥盒",
                                   class: 4,
-                                  gird_position: _.position,
-                                  ip: _.ip_box,
+                                  gird_position: E.position,
+                                  ip: E.ip_box,
                                   box_type: "",
-                                  width: _.width,
-                                  height: _.height,
-                                  serverType: _.serverType,
-                                  serverName: _.serverName,
+                                  width: E.width,
+                                  height: E.height,
+                                  serverType: E.serverType,
+                                  serverName: E.serverName,
                                   med_info: [],
                                   type: "med_box",
                                 },
-                                x = {},
-                                j = p.position.split(","),
-                                L = _.position.split(",");
-                              if (_.storage) {
+                                g = {},
+                                C = m.position.split(","),
+                                B = E.position.split(",");
+                              if (E.storage) {
                                 switch (
-                                  ((f.device_type = _.storage.DeviceType),
-                                  (f.storage = _.storage),
+                                  ((f.device_type = E.storage.DeviceType),
+                                  (f.storage = E.storage),
                                   +f.device_type)
                                 ) {
                                   case 10:
@@ -9496,118 +9504,118 @@ class Em {
                                     f.box_type = "4.2";
                                     break;
                                 }
-                                (x.name = _.storage.Name),
-                                  (x.code = _.storage.Code),
-                                  (x.cht_name = _.storage.ChineseName),
-                                  (x.SKDIACODE = _.storage.SKDIACODE),
-                                  (x.qty = _.storage.StorageName),
-                                  (x.stockCol = `${+j[0] + 1}`),
-                                  (x.stockRow = ""),
-                                  (x.stock = `${+L[1] + 1}`);
+                                (g.name = E.storage.Name),
+                                  (g.code = E.storage.Code),
+                                  (g.cht_name = E.storage.ChineseName),
+                                  (g.SKDIACODE = E.storage.SKDIACODE),
+                                  (g.qty = E.storage.StorageName),
+                                  (g.stockCol = `${+C[0] + 1}`),
+                                  (g.stockRow = ""),
+                                  (g.stock = `${+B[1] + 1}`);
                               } else
                                 (f.device_type = 10),
                                   (f.box_type = "2.9"),
-                                  (x.name = ""),
-                                  (x.code = ""),
-                                  (x.cht_name = ""),
-                                  (x.stockCol = `${+j[0] + 1}`),
-                                  (x.stockRow = ""),
-                                  (x.stock = `${+L[1] + 1}`);
-                              o.contents[a].med_list.push(x),
-                                (f.med_info[0] = x),
+                                  (g.name = ""),
+                                  (g.code = ""),
+                                  (g.cht_name = ""),
+                                  (g.stockCol = `${+C[0] + 1}`),
+                                  (g.stockRow = ""),
+                                  (g.stock = `${+B[1] + 1}`);
+                              o.contents[a].med_list.push(g),
+                                (f.med_info[0] = g),
                                 v.contents.push(f);
                             });
                       else {
                         (v.type = "store_shelves"),
-                          (v.ip = p.ip_light),
-                          (v.width = p.width),
-                          (v.height = p.height);
-                        const _ = p.medMapStock.sort((u, f) => {
-                          const [x] = u.location.split(",").map(Number),
-                            [j] = f.location.split(",").map(Number);
-                          return x - j;
+                          (v.ip = m.ip_light),
+                          (v.width = m.width),
+                          (v.height = m.height);
+                        const E = m.medMapStock.sort((u, f) => {
+                          const [g] = u.location.split(",").map(Number),
+                            [C] = f.location.split(",").map(Number);
+                          return g - C;
                         });
-                        (v.medMapStock = _),
-                          (v.name = p.name),
-                          _.forEach((u, f) => {
-                            let x = p.position.split(",");
+                        (v.medMapStock = E),
+                          (v.name = m.name),
+                          E.forEach((u, f) => {
+                            let g = m.position.split(",");
                             if (u.code) {
-                              let j = {};
-                              (j.name = u.name),
-                                (j.code = u.code),
-                                (j.cht_name = ""),
-                                (j.SKDIACODE = u.material_no),
-                                (j.qty = u.qty),
-                                (j.stockCol = `${+x[0] + 1}`),
-                                (j.stockRow = `${+x[1] + 1}`),
-                                (j.stock = `${f + 1}`),
-                                o.contents[a].med_list.push(j);
+                              let C = {};
+                              (C.name = u.name),
+                                (C.code = u.code),
+                                (C.cht_name = ""),
+                                (C.SKDIACODE = u.material_no),
+                                (C.qty = u.qty),
+                                (C.stockCol = `${+g[0] + 1}`),
+                                (C.stockRow = `${+g[1] + 1}`),
+                                (C.stock = `${f + 1}`),
+                                o.contents[a].med_list.push(C);
                             }
                           });
                       }
-                      let b = p.position.split(",")[1];
-                      g < +b &&
-                        ((g = +b), (o.contents[a].contents[h].oriMaxCol = +g)),
+                      let N = m.position.split(",")[1];
+                      x < +N &&
+                        ((x = +N), (o.contents[a].contents[h].oriMaxCol = +x)),
                         o.contents[a].contents[h].contents.push(v);
                     }),
                     Array.isArray(c.drawer) &&
-                      c.drawer.forEach((p, w) => {
+                      c.drawer.forEach((m, b) => {
                         let v = {
-                          GUID: p.GUID,
-                          MASTER_GUID: p.Master_GUID,
-                          name: `抽屜 ${w}`,
+                          GUID: m.GUID,
+                          Master_GUID: m.Master_GUID,
+                          name: `抽屜 ${b}`,
                           class: 3,
-                          gird_position: p.position,
-                          ip: p.ip_drawer,
-                          serverName: p.serverName,
-                          serverType: p.serverType,
+                          gird_position: m.position,
+                          ip: m.ip_drawer,
+                          serverName: m.serverName,
+                          serverType: m.serverType,
                         };
                         v.serverName &&
                           (v.serverName = t.sys_ServerSetting.name),
                           v.serverType &&
                             (v.serverType = t.sys_ServerSetting.type),
-                          p.drawer
-                            ? ((v.drawer = p.drawer),
-                              p.drawer.Boxes &&
+                          m.drawer
+                            ? ((v.drawer = m.drawer),
+                              m.drawer.Boxes &&
                                 ((v.type = "grid_draw"),
-                                (v.name = p.drawer.Name),
+                                (v.name = m.drawer.Name),
                                 (v.Boxes = []),
-                                Array.isArray(p.drawer.Boxes)
-                                  ? p.drawer.Boxes.forEach((u, f) => {
-                                      let x = [];
+                                Array.isArray(m.drawer.Boxes)
+                                  ? m.drawer.Boxes.forEach((u, f) => {
+                                      let g = [];
                                       Array.isArray(u) &&
-                                        u.forEach((j, L) => {
-                                          let P = {
-                                            Row: j.Row,
-                                            Column: j.Column,
+                                        u.forEach((C, B) => {
+                                          let I = {
+                                            Row: C.Row,
+                                            Column: C.Column,
                                             Width: 1,
                                             Height: 1,
-                                            Slave: j.Slave,
-                                            SlaveBox_Row: j.SlaveBox_Row,
-                                            SlaveBox_Column: j.SlaveBox_Column,
+                                            Slave: C.Slave,
+                                            SlaveBox_Row: C.SlaveBox_Row,
+                                            SlaveBox_Column: C.SlaveBox_Column,
                                             MasterBox_Column:
-                                              j.MasterBox_Column,
-                                            MasterBox_Row: j.MasterBox_Row,
-                                            Name: j.Name,
-                                            Code: j.Code,
-                                            ChineseName: j.ChineseName,
-                                            GUID: j.GUID,
+                                              C.MasterBox_Column,
+                                            MasterBox_Row: C.MasterBox_Row,
+                                            Name: C.Name,
+                                            Code: C.Code,
+                                            ChineseName: C.ChineseName,
+                                            GUID: C.GUID,
                                           };
-                                          x.push(P),
-                                            j.Code &&
+                                          g.push(I),
+                                            C.Code &&
                                               o.contents[a].med_list.push(
-                                                j.Code
+                                                C.Code
                                               );
                                         }),
-                                        v.Boxes.push(x);
+                                        v.Boxes.push(g);
                                     })
-                                  : (v.Boxes = p.drawer.Boxes)))
+                                  : (v.Boxes = m.drawer.Boxes)))
                             : ((v.type = "list_draw"),
-                              (v.name = `清單抽屜 ${w}`));
-                        let b = p.position.split(",")[1];
-                        g < +b &&
-                          ((g = +b),
-                          (o.contents[a].contents[h].oriMaxCol = +g)),
+                              (v.name = `清單抽屜 ${b}`));
+                        let N = m.position.split(",")[1];
+                        x < +N &&
+                          ((x = +N),
+                          (o.contents[a].contents[h].oriMaxCol = +x)),
                           o.contents[a].contents[h].contents.push(v);
                       });
                 });
@@ -9634,13 +9642,13 @@ class Em {
         depth: ((h = t.dimensions) == null ? void 0 : h.depth) || t.depth || 30,
       },
       med_box: t.med_box || t.medBox || t.medicine_boxes || [],
-      MASTER_GUID: r,
+      Master_GUID: r,
     };
     return (
       t.components &&
         Array.isArray(t.components) &&
-        (o.components = t.components.map((d, g) =>
-          this.convertSingleComponent(d, g, o.GUID)
+        (o.components = t.components.map((d, x) =>
+          this.convertSingleComponent(d, x, o.GUID)
         )),
       Object.keys(t).forEach((d) => {
         [
@@ -9726,70 +9734,70 @@ class Em {
     return console.log("📊 資料轉換報告:", r), r;
   }
 }
-const It = new Em(),
-  Pm = Object.freeze(
+const Pt = new Em(),
+  Im = Object.freeze(
     Object.defineProperty(
-      { __proto__: null, default: It },
+      { __proto__: null, default: Pt },
       Symbol.toStringTag,
       { value: "Module" }
     )
   ),
-  Rd = m.createContext(void 0),
-  Im = ({ children: e }) => {
-    const [t, n] = m.useState(!1),
-      [r, o] = m.useState(null),
-      [l, a] = m.useState(!1),
-      [i, c] = m.useState(null),
-      [h, d] = m.useState(null),
-      [g, p] = m.useState("medicine"),
-      [w, v] = m.useState(!1),
-      [b, _] = m.useState(0),
-      [u, f] = m.useState({ message: "", type: "success", isVisible: !1 }),
-      [x, j] = m.useState(!1),
-      [L, P] = m.useState(null),
-      [R, N] = m.useState("edit"),
-      [I, S] = m.useState(!1),
-      [O, G] = m.useState(null),
-      [E, C] = m.useState(!1),
-      [Z, M] = m.useState(null),
-      [F, k] = m.useState(!1),
-      [Q, de] = m.useState(!1),
-      [X, ne] = m.useState(null),
-      [je, oe] = m.useState(!1),
-      [ve, $] = m.useState(null),
-      [le, pe] = m.useState(!1),
-      [T, se] = m.useState(null),
-      [Se, U] = m.useState(!1),
-      [ee, ye] = m.useState(null),
-      [z, D] = m.useState(null),
-      [A, H] = m.useState("add"),
-      [re, ae] = m.useState(!1),
-      [xe, be] = m.useState([]),
-      [Ne, _e] = m.useState([]),
-      [ce, me] = m.useState(!1),
-      [we, De] = m.useState(!1),
-      [Ve, Ce] = m.useState(""),
-      [qe, ze] = m.useState(!1),
-      [vt, it] = m.useState(""),
-      [In, Vt] = m.useState(!1),
-      [Go, y] = m.useState(null),
-      [W, Y] = m.useState(null),
-      B = () => {
+  Rd = p.createContext(void 0),
+  Pm = ({ children: e }) => {
+    const [t, n] = p.useState(!1),
+      [r, o] = p.useState(null),
+      [l, a] = p.useState(!1),
+      [i, c] = p.useState(null),
+      [h, d] = p.useState(null),
+      [x, m] = p.useState("medicine"),
+      [b, v] = p.useState(!1),
+      [N, E] = p.useState(0),
+      [u, f] = p.useState({ message: "", type: "success", isVisible: !1 }),
+      [g, C] = p.useState(!1),
+      [B, I] = p.useState(null),
+      [A, j] = p.useState("edit"),
+      [z, D] = p.useState(!1),
+      [F, G] = p.useState(null),
+      [P, M] = p.useState(!1),
+      [ee, w] = p.useState(null),
+      [O, S] = p.useState(!1),
+      [Q, ie] = p.useState(!1),
+      [X, oe] = p.useState(null),
+      [Ne, le] = p.useState(!1),
+      [ye, U] = p.useState(null),
+      [ae, R] = p.useState(!1),
+      [J, ce] = p.useState(null),
+      [Se, L] = p.useState(!1),
+      [_, re] = p.useState(null),
+      [T, k] = p.useState(null),
+      [$, V] = p.useState("add"),
+      [se, ue] = p.useState(!1),
+      [ve, be] = p.useState([]),
+      [je, De] = p.useState([]),
+      [fe, he] = p.useState(!1),
+      [we, _e] = p.useState(!1),
+      [Ve, Ce] = p.useState(""),
+      [Ye, Be] = p.useState(!1),
+      [wt, it] = p.useState(""),
+      [Pn, Vt] = p.useState(!1),
+      [Fo, y] = p.useState(null),
+      [q, Y] = p.useState(null),
+      H = () => {
         sessionStorage.removeItem("user_session"), n(!1), o(null);
       },
-      te = m.useCallback(() => {
-        _((Me) => Me + 1);
+      ne = p.useCallback(() => {
+        E((Me) => Me + 1);
       }, []),
-      V = m.useCallback((Me, _t) => {
-        f({ message: Me, type: _t, isVisible: !0 });
+      W = p.useCallback((Me, Dt) => {
+        f({ message: Me, type: Dt, isVisible: !0 });
       }, []),
-      ue = m.useCallback(() => {
+      pe = p.useCallback(() => {
         f((Me) => ({ ...Me, isVisible: !1 }));
       }, []),
-      ie = (Me) => {
-        P(Me), N("edit"), j(!0);
+      de = (Me) => {
+        I(Me), j("edit"), C(!0);
       },
-      K = () => {
+      Z = () => {
         const Me = {
           GUID: `new_medbox_${Date.now()}`,
           name: "",
@@ -9799,106 +9807,106 @@ const It = new Em(),
           med_info: [],
           parentShelf: null,
         };
-        P(Me), N("add"), j(!0);
+        I(Me), j("add"), C(!0);
       },
-      q = () => {
-        j(!1), P(null), N("edit");
+      K = () => {
+        C(!1), I(null), j("edit");
       },
-      ge = (Me) => {
-        G(Me), S(!0);
+      xe = (Me) => {
+        G(Me), D(!0);
       },
-      he = () => {
-        S(!1), G(null);
+      ge = () => {
+        D(!1), G(null);
       },
-      Pe = (Me) => {
-        M(Me), C(!0);
+      Ie = (Me) => {
+        w(Me), M(!0);
       },
       Re = () => {
-        C(!1), M(null);
+        M(!1), w(null);
       },
       Ot = (Me) => {
-        ne(Me), de(!0);
+        oe(Me), ie(!0);
       },
-      Qn = () => {
-        de(!1), ne(null);
+      qn = () => {
+        ie(!1), oe(null);
       },
       Er = (Me) => {
-        $(Me), oe(!0);
+        U(Me), le(!0);
       },
       Wt = () => {
-        oe(!1), $(null);
+        le(!1), U(null);
       },
-      Pr = (Me) => {
-        se(Me), pe(!0);
+      Ir = (Me) => {
+        ce(Me), R(!0);
       },
-      Ir = () => {
-        pe(!1), se(null);
+      Pr = () => {
+        R(!1), ce(null);
       },
-      Bd = (Me) => {
-        ye(Me), D(null), H("add"), U(!0);
+      zd = (Me) => {
+        re(Me), k(null), V("add"), L(!0);
       },
-      Gd = (Me, _t) => {
-        ye(Me), D(_t), H("edit"), U(!0);
+      Fd = (Me, Dt) => {
+        re(Me), k(Dt), V("edit"), L(!0);
       },
-      Fd = () => {
-        U(!1), ye(null), D(null), H("add");
+      Gd = () => {
+        L(!1), re(null), k(null), V("add");
       },
       Hd = () => {
-        ae(!0);
+        ue(!0);
       },
       Vd = () => {
-        ae(!1);
+        ue(!1);
       },
       Wd = (Me = "") => {
-        Ce(Me), De(!0);
-      },
-      Qd = () => {
-        De(!1);
-      },
-      Yd = (Me) => {
-        it(Me), ze(!0);
+        Ce(Me), _e(!0);
       },
       qd = () => {
-        ze(!1), it("");
+        _e(!1);
       },
-      Xd = (Me, _t) => {
-        y(Me), Y(_t || null), Vt(!0);
+      Qd = (Me) => {
+        it(Me), Be(!0);
+      },
+      Yd = () => {
+        Be(!1), it("");
+      },
+      Xd = (Me, Dt) => {
+        y(Me), Y(Dt || null), Vt(!0);
       },
       Kd = () => {
         Vt(!1), y(null), Y(null);
       },
-      Jd = m.useCallback(async () => {
+      Jd = p.useCallback(async () => {
         if (!i) {
           console.warn("沒有選擇部門分類，無法重新載入資料");
           return;
         }
-        console.log("🔄 重新載入藥品地圖資料，部門類型:", i), k(!0);
+        console.log("🔄 重新載入藥品地圖資料，部門類型:", i), S(!0);
         try {
           const Me = await ke.getMedMapByDepartment(i);
           if (Me.Code === 200 && Me.Data) {
             console.log("📡 重新載入成功:", Me.Data);
-            const _t = It.convertMedMapApiToFakeData(Me.Data);
-            if (!It.validateConvertedData(_t)) {
+            const Dt = Pt.convertMedMapApiToFakeData(Me.Data);
+            if (!Pt.validateConvertedData(Dt)) {
               console.error("❌ 轉換後的資料驗證失敗"), d(null);
               return;
             }
-            d(_t), console.log("✅ 地圖資料已重新載入");
+            d(Dt), console.log("✅ 地圖資料已重新載入");
           } else console.error("❌ API 回傳錯誤:", Me), d(null);
         } catch (Me) {
           console.error("💥 重新載入藥品地圖資料失敗:", Me), d(null);
         } finally {
-          k(!1);
+          S(!1);
         }
-      }, [i, k, d]),
-      Zd = m.useCallback((Me, _t) => {
+      }, [i, S, d]),
+      Zd = p.useCallback((Me, Dt) => {
         d(
-          (Yn) =>
-            Yn &&
-            Yn.map((li) => {
-              const qn = { ...li };
+          (Qn) =>
+            Qn &&
+            Qn.map((li) => {
+              const Yn = { ...li };
               return (
-                qn.contents &&
-                  (qn.contents = qn.contents.map((Xn) => {
+                Yn.contents &&
+                  (Yn.contents = Yn.contents.map((Xn) => {
                     const Kn = { ...Xn };
                     return (
                       Kn.contents &&
@@ -9911,7 +9919,7 @@ const It = new Em(),
                                   const $t = { ...dn };
                                   return (
                                     $t.medMapStock || ($t.medMapStock = []),
-                                    ($t.medMapStock = [...$t.medMapStock, _t]),
+                                    ($t.medMapStock = [...$t.medMapStock, Dt]),
                                     $t
                                   );
                                 }
@@ -9923,17 +9931,17 @@ const It = new Em(),
                       Kn
                     );
                   })),
-                qn
+                Yn
               );
             })
         );
       }, []),
-      ef = m.useCallback((Me, _t, Yn) => {
+      ef = p.useCallback((Me, Dt, Qn) => {
         d(
           (Ns) =>
             Ns &&
-            Ns.map((qn) => {
-              const Xn = { ...qn };
+            Ns.map((Yn) => {
+              const Xn = { ...Yn };
               return (
                 Xn.contents &&
                   (Xn.contents = Xn.contents.map((Kn) => {
@@ -9948,8 +9956,8 @@ const It = new Em(),
                                 if ($t.GUID === Me && $t.medMapStock) {
                                   const ai = { ...$t };
                                   return (
-                                    (ai.medMapStock = $t.medMapStock.map((Fo) =>
-                                      Fo.GUID === _t ? { ...Fo, ...Yn } : Fo
+                                    (ai.medMapStock = $t.medMapStock.map((Go) =>
+                                      Go.GUID === Dt ? { ...Go, ...Qn } : Go
                                     )),
                                     ai
                                   );
@@ -9973,111 +9981,111 @@ const It = new Em(),
         setIsAuthenticated: n,
         currentUser: r,
         setCurrentUser: o,
-        logout: B,
+        logout: H,
         sidebarOpen: l,
         setSidebarOpen: a,
         selectedDepartmentType: i,
         setSelectedDepartmentType: c,
-        isAdminMode: w,
+        isAdminMode: b,
         setIsAdminMode: v,
         apiDepartmentData: h,
         setApiDepartmentData: d,
-        viewMode: g,
-        setViewMode: p,
-        refreshTrigger: b,
-        triggerRefresh: te,
+        viewMode: x,
+        setViewMode: m,
+        refreshTrigger: N,
+        triggerRefresh: ne,
         addStockToShelf: Zd,
         notification: u,
-        showNotification: V,
-        hideNotification: ue,
-        medBoxModalOpen: x,
-        setMedBoxModalOpen: j,
-        selectedMedBox: L,
-        setSelectedMedBox: P,
-        openMedBoxModal: ie,
-        closeMedBoxModal: q,
-        modalMode: R,
-        setModalMode: N,
-        openAddMedBoxModal: K,
-        listDrawModalOpen: I,
-        setListDrawModalOpen: S,
-        selectedListDraw: O,
+        showNotification: W,
+        hideNotification: pe,
+        medBoxModalOpen: g,
+        setMedBoxModalOpen: C,
+        selectedMedBox: B,
+        setSelectedMedBox: I,
+        openMedBoxModal: de,
+        closeMedBoxModal: K,
+        modalMode: A,
+        setModalMode: j,
+        openAddMedBoxModal: Z,
+        listDrawModalOpen: z,
+        setListDrawModalOpen: D,
+        selectedListDraw: F,
         setSelectedListDraw: G,
-        openListDrawModal: ge,
-        closeListDrawModal: he,
-        gridDrawModalOpen: E,
-        setGridDrawModalOpen: C,
-        selectedGridDraw: Z,
-        setSelectedGridDraw: M,
-        openGridDrawModal: Pe,
+        openListDrawModal: xe,
+        closeListDrawModal: ge,
+        gridDrawModalOpen: P,
+        setGridDrawModalOpen: M,
+        selectedGridDraw: ee,
+        setSelectedGridDraw: w,
+        openGridDrawModal: Ie,
         closeGridDrawModal: Re,
-        isLoadingMedMap: F,
-        setIsLoadingMedMap: k,
+        isLoadingMedMap: O,
+        setIsLoadingMedMap: S,
         addParentContainerModalOpen: Q,
-        setAddParentContainerModalOpen: de,
+        setAddParentContainerModalOpen: ie,
         selectedDepartmentForAdd: X,
-        setSelectedDepartmentForAdd: ne,
+        setSelectedDepartmentForAdd: oe,
         openAddParentContainerModal: Ot,
-        closeAddParentContainerModal: Qn,
-        addShelfDrawContainerModalOpen: je,
-        setAddShelfDrawContainerModalOpen: oe,
-        selectedSubContainerForAdd: ve,
-        setSelectedSubContainerForAdd: $,
+        closeAddParentContainerModal: qn,
+        addShelfDrawContainerModalOpen: Ne,
+        setAddShelfDrawContainerModalOpen: le,
+        selectedSubContainerForAdd: ye,
+        setSelectedSubContainerForAdd: U,
         openAddShelfDrawContainerModal: Er,
         closeAddShelfDrawContainerModal: Wt,
-        addSubContainerModalOpen: le,
-        setAddSubContainerModalOpen: pe,
-        selectedParentContainerForAdd: T,
-        setSelectedParentContainerForAdd: se,
-        openAddSubContainerModal: Pr,
-        closeAddSubContainerModal: Ir,
+        addSubContainerModalOpen: ae,
+        setAddSubContainerModalOpen: R,
+        selectedParentContainerForAdd: J,
+        setSelectedParentContainerForAdd: ce,
+        openAddSubContainerModal: Ir,
+        closeAddSubContainerModal: Pr,
         addStoreItemModalOpen: Se,
-        setAddStoreItemModalOpen: U,
-        selectedStoreShelfForAdd: ee,
-        setSelectedStoreShelfForAdd: ye,
-        selectedStockItemForEdit: z,
-        setSelectedStockItemForEdit: D,
-        storeItemModalMode: A,
-        setStoreItemModalMode: H,
-        openAddStoreItemModal: Bd,
-        openEditStoreItemModal: Gd,
-        closeAddStoreItemModal: Fd,
+        setAddStoreItemModalOpen: L,
+        selectedStoreShelfForAdd: _,
+        setSelectedStoreShelfForAdd: re,
+        selectedStockItemForEdit: T,
+        setSelectedStockItemForEdit: k,
+        storeItemModalMode: $,
+        setStoreItemModalMode: V,
+        openAddStoreItemModal: zd,
+        openEditStoreItemModal: Fd,
+        closeAddStoreItemModal: Gd,
         updateStockInShelf: ef,
-        addDepartmentModalOpen: re,
-        setAddDepartmentModalOpen: ae,
-        allDepartmentsList: xe,
+        addDepartmentModalOpen: se,
+        setAddDepartmentModalOpen: ue,
+        allDepartmentsList: ve,
         setAllDepartmentsList: be,
         openAddDepartmentModal: Hd,
         closeAddDepartmentModal: Vd,
         reloadMedMapData: Jd,
         qrCodeScannerModalOpen: we,
         qrCodeScannerMode: Ve,
-        setQRCodeScannerModalOpen: De,
+        setQRCodeScannerModalOpen: _e,
         openQRCodeScannerModal: Wd,
-        closeQRCodeScannerModal: Qd,
-        addBarcodeModalOpen: qe,
-        setAddBarcodeModalOpen: ze,
-        openAddBarcodeModal: Yd,
-        closeAddBarcodeModal: qd,
-        initialBarcodeValue: vt,
-        containerDetailModalOpen: In,
+        closeQRCodeScannerModal: qd,
+        addBarcodeModalOpen: Ye,
+        setAddBarcodeModalOpen: Be,
+        openAddBarcodeModal: Qd,
+        closeAddBarcodeModal: Yd,
+        initialBarcodeValue: wt,
+        containerDetailModalOpen: Pn,
         setContainerDetailModalOpen: Vt,
-        selectedContainerForDetail: Go,
+        selectedContainerForDetail: Fo,
         setSelectedContainerForDetail: y,
-        highlightedMedicineCode: W,
+        highlightedMedicineCode: q,
         setHighlightedMedicineCode: Y,
         openContainerDetailModal: Xd,
         closeContainerDetailModal: Kd,
-        medicineList: Ne,
-        setMedicineList: _e,
-        isLoadingMedicines: ce,
-        setIsLoadingMedicines: me,
+        medicineList: je,
+        setMedicineList: De,
+        isLoadingMedicines: fe,
+        setIsLoadingMedicines: he,
       },
       children: e,
     });
   },
   Je = () => {
-    const e = m.useContext(Rd);
+    const e = p.useContext(Rd);
     if (e === void 0)
       throw new Error("useDrugMap must be used within a DrugMapProvider");
     return e;
@@ -10247,9 +10255,9 @@ const It = new Em(),
       "login.loggingIn": "Logging in...",
     },
   },
-  Td = m.createContext(void 0),
+  Td = p.createContext(void 0),
   Tm = ({ children: e }) => {
-    const [t, n] = m.useState("zh-TW"),
+    const [t, n] = p.useState("zh-TW"),
       r = (o) => Rm[t][o] || o;
     return s.jsx(Td.Provider, {
       value: { language: t, setLanguage: n, t: r },
@@ -10257,7 +10265,7 @@ const It = new Em(),
     });
   },
   pt = () => {
-    const e = m.useContext(Td);
+    const e = p.useContext(Td);
     if (e === void 0)
       throw new Error("useLanguage must be used within a LanguageProvider");
     return e;
@@ -10289,7 +10297,7 @@ const It = new Em(),
       .toLowerCase()
       .trim(),
   Ae = (e, t) => {
-    const n = m.forwardRef(
+    const n = p.forwardRef(
       (
         {
           color: r = "currentColor",
@@ -10302,7 +10310,7 @@ const It = new Em(),
         },
         d
       ) =>
-        m.createElement(
+        p.createElement(
           "svg",
           {
             ref: d,
@@ -10315,7 +10323,7 @@ const It = new Em(),
             ...h,
           },
           [
-            ...t.map(([g, p]) => m.createElement(g, p)),
+            ...t.map(([x, m]) => p.createElement(x, m)),
             ...(Array.isArray(c) ? c : [c]),
           ]
         )
@@ -10409,7 +10417,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const zm = Ae("ChevronUp", [
+ */ const Bm = Ae("ChevronUp", [
   ["path", { d: "m18 15-6-6-6 6", key: "153udz" }],
 ]);
 /**
@@ -10417,7 +10425,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Bm = Ae("EyeOff", [
+ */ const zm = Ae("EyeOff", [
   ["path", { d: "M9.88 9.88a3 3 0 1 0 4.24 4.24", key: "1jxqfv" }],
   [
     "path",
@@ -10440,7 +10448,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Gm = Ae("Eye", [
+ */ const Fm = Ae("Eye", [
   [
     "path",
     { d: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z", key: "rwhkz3" },
@@ -10452,7 +10460,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Fm = Ae("Globe", [
+ */ const Gm = Ae("Globe", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   [
     "path",
@@ -10593,7 +10601,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Qm = Ae("Pill", [
+ */ const qm = Ae("Pill", [
   [
     "path",
     {
@@ -10608,7 +10616,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Nt = Ae("Plus", [
+ */ const gt = Ae("Plus", [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }],
 ]);
@@ -10626,6 +10634,18 @@ const It = new Em(),
     },
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }],
+]);
+/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */ const Qm = Ae("Trash2", [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }],
 ]);
 /**
  * @license lucide-react v0.344.0 - ISC
@@ -10669,7 +10689,7 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const qm = Ae("XCircle", [
+ */ const Xm = Ae("XCircle", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
   ["path", { d: "m9 9 6 6", key: "z0biqf" }],
@@ -10679,11 +10699,11 @@ const It = new Em(),
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Ye = Ae("X", [
+ */ const Qe = Ae("X", [
     ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }],
   ]),
-  Xm = () => {
+  Km = () => {
     const { sidebarOpen: e, setSidebarOpen: t } = Je(),
       { t: n } = pt();
     return s.jsx("div", {
@@ -10719,7 +10739,7 @@ const It = new Em(),
       }),
     });
   },
-  Km = () => {
+  Jm = () => {
     const {
         viewMode: e,
         setViewMode: t,
@@ -10731,17 +10751,17 @@ const It = new Em(),
         allDepartmentsList: i,
       } = Je(),
       { language: c, setLanguage: h, t: d } = pt(),
-      [g, p] = Zs.useState(!1),
-      w = () => {
+      [x, m] = Zs.useState(!1),
+      b = () => {
         h(c === "zh-TW" ? "en" : "zh-TW");
       },
       v = Zs.useMemo(() => {
         if (!o || !i || !a) return !1;
-        const b = a.map((f) => f.name);
+        const N = a.map((f) => f.name);
         return (
           i
             .filter((f) => f["department_type "] === o)
-            .filter((f) => !b.includes(f.name)).length > 0
+            .filter((f) => !N.includes(f.name)).length > 0
         );
       }, [o, i, a]);
     return s.jsx("div", {
@@ -10768,7 +10788,7 @@ const It = new Em(),
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:scale-102"
                       }`,
                       children: [
-                        s.jsx(Qm, { className: "w-4 h-4" }),
+                        s.jsx(qm, { className: "w-4 h-4" }),
                         s.jsx("span", {
                           className: "text-sm font-medium",
                           children: d("topbar.medicine"),
@@ -10793,11 +10813,11 @@ const It = new Em(),
                   ],
                 }),
                 s.jsx("button", {
-                  onClick: () => p(!g),
+                  onClick: () => m(!x),
                   className:
                     "lg:hidden flex items-center justify-center p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors",
-                  children: g
-                    ? s.jsx(zm, { className: "w-4 h-4" })
+                  children: x
+                    ? s.jsx(Bm, { className: "w-4 h-4" })
                     : s.jsx(Od, { className: "w-4 h-4" }),
                 }),
               ],
@@ -10808,7 +10828,7 @@ const It = new Em(),
             lg:flex lg:opacity-100 lg:max-h-none
             transition-all duration-300 ease-in-out overflow-hidden
             ${
-              g
+              x
                 ? "flex opacity-100 max-h-96"
                 : "hidden opacity-0 max-h-0 lg:flex lg:opacity-100 lg:max-h-none"
             }
@@ -10826,7 +10846,7 @@ const It = new Em(),
                         className:
                           "w-full lg:w-auto flex justify-center items-center space-x-2 px-3 py-1.5 text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors border border-green-700",
                         children: [
-                          s.jsx(Nt, { className: "w-4 h-4" }),
+                          s.jsx(gt, { className: "w-4 h-4" }),
                           s.jsx("span", {
                             className: "text-sm font-medium",
                             children: "新增部門",
@@ -10839,11 +10859,11 @@ const It = new Em(),
                     ],
                   }),
                 s.jsxs("button", {
-                  onClick: w,
+                  onClick: b,
                   className:
                     "w-full lg:w-auto flex justify-center items-center space-x-2 px-3 py-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors border",
                   children: [
-                    s.jsx(Fm, { className: "w-4 h-4" }),
+                    s.jsx(Gm, { className: "w-4 h-4" }),
                     s.jsx("span", {
                       className: "text-sm font-medium",
                       children: d("topbar.language"),
@@ -10881,29 +10901,151 @@ const It = new Em(),
       }),
     });
   },
-  Jm = ({ isOpen: e, onClose: t }) => {
-    const [n, r] = m.useState("");
-    m.useEffect(() => {
+  Zm = [
+    {
+      name: "藍色",
+      value: "blue",
+      bgr: "255,0,0",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+    {
+      name: "綠色",
+      value: "green",
+      bgr: "0,255,0",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+    {
+      name: "紅色",
+      value: "red",
+      bgr: "0,0,255",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+    {
+      name: "黃色",
+      value: "yellow",
+      bgr: "0,255,255",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+    {
+      name: "紫色",
+      value: "purple",
+      bgr: "255,0,255",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+    {
+      name: "青色",
+      value: "cyan",
+      bgr: "255,255,0",
+      bgColor: "white",
+      textColor: "text-black",
+    },
+  ],
+  eh = ({ isOpen: e, onClose: t }) => {
+    const [n, r] = p.useState("blue"),
+      [o, l] = p.useState(1),
+      [a, i] = p.useState(60),
+      [c, h] = p.useState(""),
+      [d, x] = p.useState(""),
+      [m, b] = p.useState([]),
+      [v, N] = p.useState([]),
+      [E, u] = p.useState([]),
+      [f, g] = p.useState(!1),
+      [C, B] = p.useState(!1),
+      I = p.useRef(null),
+      A = p.useRef(null),
+      j = p.useRef(null),
+      z = p.useRef(null);
+    p.useEffect(() => {
       if (e) {
-        const a = localStorage.getItem("medMap_setting");
-        if (a)
+        const w = localStorage.getItem("medMap_setting");
+        if (w)
           try {
-            const i = JSON.parse(a);
-            i.light_sec && r(i.light_sec);
-          } catch (i) {
-            console.error("讀取設定失敗:", i);
+            const O = JSON.parse(w);
+            r(O.light_color || "blue"),
+              l(O.brightness !== void 0 ? O.brightness : 1),
+              i(O.light_sec !== void 0 ? O.light_sec : 60),
+              h(O.default_person || ""),
+              x(O.default_person_id || "");
+          } catch (O) {
+            console.error("讀取設定失敗:", O),
+              r("blue"),
+              l(1),
+              i(60),
+              h(""),
+              x("");
           }
+        else r("blue"), l(1), i(60), h(""), x("");
+        D();
       }
-    }, [e]);
-    const o = () => {
-        const a = { light_sec: n };
-        localStorage.setItem("medMap_setting", JSON.stringify(a)),
-          console.log("設定已儲存:", a),
-          t();
+    }, [e]),
+      p.useEffect(() => {
+        const w = (O) => {
+          j.current &&
+            !j.current.contains(O.target) &&
+            I.current &&
+            !I.current.contains(O.target) &&
+            g(!1),
+            z.current &&
+              !z.current.contains(O.target) &&
+              A.current &&
+              !A.current.contains(O.target) &&
+              B(!1);
+        };
+        return (
+          document.addEventListener("mousedown", w),
+          () => document.removeEventListener("mousedown", w)
+        );
+      }, []);
+    const D = async () => {
+        try {
+          const w = await ke.getAllStaffInfo();
+          w.Code === 200 && w.Data && b(w.Data);
+        } catch (w) {
+          console.error("獲取人員資料失敗:", w);
+        }
       },
-      l = (a) => {
-        const i = a.target.value;
-        (i === "" || /^\d+$/.test(i)) && r(i);
+      F = (w) => {
+        if ((h(w), w.trim() === "")) {
+          N([]), g(!1);
+          return;
+        }
+        const O = m.filter(
+          (S) => S.name && S.name.toLowerCase().includes(w.toLowerCase())
+        );
+        N(O), g(O.length > 0);
+      },
+      G = (w) => {
+        if ((x(w), w.trim() === "")) {
+          u([]), B(!1);
+          return;
+        }
+        const O = m.filter(
+          (S) => S.ID && S.ID.toLowerCase().includes(w.toLowerCase())
+        );
+        u(O), B(O.length > 0);
+      },
+      P = (w) => {
+        h(w.name), x(w.ID), g(!1);
+      },
+      M = (w) => {
+        h(w.name), x(w.ID), B(!1);
+      },
+      ee = () => {
+        const w = {
+          light_color: n,
+          brightness: o,
+          light_sec: a,
+          default_person: c,
+          default_person_id: d,
+        };
+        localStorage.setItem("medMap_setting", JSON.stringify(w)),
+          console.log("設定已儲存:", w),
+          t();
       };
     return e
       ? s.jsxs("div", {
@@ -10915,11 +11057,11 @@ const It = new Em(),
             }),
             s.jsxs("div", {
               className:
-                "relative bg-white rounded-xl shadow-2xl w-full max-w-md",
+                "relative bg-white rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto",
               children: [
                 s.jsxs("div", {
                   className:
-                    "flex items-center justify-between p-6 border-b border-gray-200",
+                    "flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white z-10",
                   children: [
                     s.jsx("h2", {
                       className: "text-xl font-semibold text-gray-900",
@@ -10929,43 +11071,264 @@ const It = new Em(),
                       onClick: t,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-5 h-5" }),
+                      children: s.jsx(Qe, { className: "w-5 h-5" }),
                     }),
                   ],
                 }),
-                s.jsx("div", {
-                  className: "p-6",
-                  children: s.jsx("div", {
-                    className: "space-y-4",
-                    children: s.jsxs("div", {
+                s.jsxs("div", {
+                  className: "p-6 space-y-6",
+                  children: [
+                    s.jsxs("div", {
                       children: [
                         s.jsx("label", {
-                          htmlFor: "light-seconds",
                           className:
-                            "block text-sm font-medium text-gray-700 mb-2",
-                          children: "亮燈秒數設定",
+                            "block text-sm font-medium text-gray-700 mb-3",
+                          children: "預設撥補/申領人員",
                         }),
-                        s.jsx("input", {
-                          id: "light-seconds",
-                          type: "text",
-                          inputMode: "numeric",
-                          value: n,
-                          onChange: l,
-                          placeholder: "請輸入秒數",
-                          className:
-                            "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+                        s.jsxs("div", {
+                          className: "grid grid-cols-2 gap-3",
+                          children: [
+                            s.jsxs("div", {
+                              className: "relative",
+                              children: [
+                                s.jsx("label", {
+                                  className: "block text-xs text-gray-600 mb-1",
+                                  children: "人員名稱",
+                                }),
+                                s.jsx("input", {
+                                  ref: I,
+                                  type: "text",
+                                  value: c,
+                                  onChange: (w) => F(w.target.value),
+                                  onFocus: () => {
+                                    c.trim() && F(c);
+                                  },
+                                  placeholder: "請輸入人員名稱",
+                                  className:
+                                    "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+                                }),
+                                f &&
+                                  s.jsx("div", {
+                                    ref: j,
+                                    className:
+                                      "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto",
+                                    children: v.map((w, O) =>
+                                      s.jsxs(
+                                        "div",
+                                        {
+                                          onClick: () => P(w),
+                                          className:
+                                            "px-4 py-2 hover:bg-blue-50 cursor-pointer transition-colors",
+                                          children: [
+                                            s.jsx("div", {
+                                              className:
+                                                "font-medium text-gray-900",
+                                              children: w.name,
+                                            }),
+                                            s.jsx("div", {
+                                              className:
+                                                "text-xs text-gray-500",
+                                              children: w.ID,
+                                            }),
+                                          ],
+                                        },
+                                        O
+                                      )
+                                    ),
+                                  }),
+                              ],
+                            }),
+                            s.jsxs("div", {
+                              className: "relative",
+                              children: [
+                                s.jsx("label", {
+                                  className: "block text-xs text-gray-600 mb-1",
+                                  children: "人員 ID",
+                                }),
+                                s.jsx("input", {
+                                  ref: A,
+                                  type: "text",
+                                  value: d,
+                                  onChange: (w) => G(w.target.value),
+                                  onFocus: () => {
+                                    d.trim() && G(d);
+                                  },
+                                  placeholder: "請輸入人員 ID",
+                                  className:
+                                    "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+                                }),
+                                C &&
+                                  s.jsx("div", {
+                                    ref: z,
+                                    className:
+                                      "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto",
+                                    children: E.map((w, O) =>
+                                      s.jsxs(
+                                        "div",
+                                        {
+                                          onClick: () => M(w),
+                                          className:
+                                            "px-4 py-2 hover:bg-blue-50 cursor-pointer transition-colors",
+                                          children: [
+                                            s.jsx("div", {
+                                              className:
+                                                "font-medium text-gray-900",
+                                              children: w.ID,
+                                            }),
+                                            s.jsx("div", {
+                                              className:
+                                                "text-xs text-gray-500",
+                                              children: w.name,
+                                            }),
+                                          ],
+                                        },
+                                        O
+                                      )
+                                    ),
+                                  }),
+                              ],
+                            }),
+                          ],
                         }),
                         s.jsx("p", {
-                          className: "mt-1 text-xs text-gray-500",
-                          children: "設定亮燈持續時間（秒）",
+                          className: "mt-2 text-xs text-gray-500",
+                          children: "設定後將自動填入撥補/申領表單中",
                         }),
                       ],
                     }),
-                  }),
+                    s.jsxs("div", {
+                      children: [
+                        s.jsx("label", {
+                          className:
+                            "block text-sm font-medium text-gray-700 mb-3",
+                          children: "亮燈顏色 (BGR)",
+                        }),
+                        s.jsx("div", {
+                          className: "grid grid-cols-3 gap-3",
+                          children: Zm.map((w) =>
+                            s.jsxs(
+                              "button",
+                              {
+                                onClick: () => r(w.value),
+                                className: `
+                    relative p-3 rounded-lg border-2 transition-all
+                    ${w.bgColor} ${w.textColor}
+                    ${
+                      n === w.value
+                        ? "border-gray-900 shadow-lg scale-105"
+                        : "border-gray-300 hover:border-gray-400 hover:shadow-md"
+                    }
+                  `,
+                                children: [
+                                  s.jsxs("div", {
+                                    className: "text-center",
+                                    children: [
+                                      s.jsx("div", {
+                                        className: "font-semibold text-sm mb-1",
+                                        children: w.name,
+                                      }),
+                                      s.jsx("div", {
+                                        className: "text-xs opacity-90",
+                                        children: w.bgr,
+                                      }),
+                                    ],
+                                  }),
+                                  n === w.value &&
+                                    s.jsx("div", {
+                                      className:
+                                        "absolute top-1 right-1 w-3 h-3 bg-white rounded-full border-2 border-gray-900",
+                                    }),
+                                ],
+                              },
+                              w.value
+                            )
+                          ),
+                        }),
+                      ],
+                    }),
+                    s.jsxs("div", {
+                      children: [
+                        s.jsxs("label", {
+                          className:
+                            "block text-sm font-medium text-gray-700 mb-2",
+                          children: ["亮度: ", o.toFixed(1)],
+                        }),
+                        s.jsxs("div", {
+                          className: "relative",
+                          children: [
+                            s.jsx("input", {
+                              type: "range",
+                              min: "0",
+                              max: "1",
+                              step: "0.1",
+                              value: o,
+                              onChange: (w) => l(parseFloat(w.target.value)),
+                              className:
+                                "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600",
+                              style: {
+                                background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${
+                                  o * 100
+                                }%, #e5e7eb ${o * 100}%, #e5e7eb 100%)`,
+                              },
+                            }),
+                            s.jsxs("div", {
+                              className:
+                                "flex justify-between text-xs text-gray-500 mt-1",
+                              children: [
+                                s.jsx("span", { children: "0" }),
+                                s.jsx("span", { children: "0.5" }),
+                                s.jsx("span", { children: "1" }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    s.jsxs("div", {
+                      children: [
+                        s.jsxs("label", {
+                          className:
+                            "block text-sm font-medium text-gray-700 mb-2",
+                          children: ["自動滅燈時間 (秒): ", a],
+                        }),
+                        s.jsxs("div", {
+                          className: "relative",
+                          children: [
+                            s.jsx("input", {
+                              type: "range",
+                              min: "1",
+                              max: "120",
+                              step: "1",
+                              value: a,
+                              onChange: (w) => i(parseInt(w.target.value)),
+                              className:
+                                "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600",
+                              style: {
+                                background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${
+                                  ((a - 1) / 119) * 100
+                                }%, #e5e7eb ${
+                                  ((a - 1) / 119) * 100
+                                }%, #e5e7eb 100%)`,
+                              },
+                            }),
+                            s.jsxs("div", {
+                              className:
+                                "flex justify-between text-xs text-gray-500 mt-1",
+                              children: [
+                                s.jsx("span", { children: "5秒" }),
+                                s.jsx("span", { children: "60秒" }),
+                                s.jsx("span", { children: "120秒" }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
                 s.jsxs("div", {
                   className:
-                    "flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 rounded-b-xl",
+                    "flex justify-end gap-3 p-4 border-t border-gray-200 bg-gray-50 rounded-b-xl sticky bottom-0",
                   children: [
                     s.jsx("button", {
                       onClick: t,
@@ -10974,7 +11337,7 @@ const It = new Em(),
                       children: "取消",
                     }),
                     s.jsx("button", {
-                      onClick: o,
+                      onClick: ee,
                       className:
                         "px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors",
                       children: "儲存",
@@ -10987,7 +11350,7 @@ const It = new Em(),
         })
       : null;
   },
-  Zm = () => {
+  th = () => {
     const {
         sidebarOpen: e,
         setSidebarOpen: t,
@@ -11001,64 +11364,64 @@ const It = new Em(),
         setIsAdminMode: h,
       } = Je(),
       { t: d } = pt(),
-      [g, p] = m.useState(new Set()),
-      [w, v] = m.useState([]),
-      [b, _] = m.useState(!0),
-      [u, f] = m.useState([]),
-      [x, j] = m.useState(!1),
-      L = () => {
+      [x, m] = p.useState(new Set()),
+      [b, v] = p.useState([]),
+      [N, E] = p.useState(!0),
+      [u, f] = p.useState([]),
+      [g, C] = p.useState(!1),
+      B = () => {
         c
           ? h(!1)
           : prompt("請輸入後台密碼：") === "66437068"
           ? h(!0)
           : alert("密碼錯誤，無法開啟後台模式");
       };
-    m.useEffect(() => {
+    p.useEffect(() => {
       (async () => {
-        _(!0);
+        E(!0);
         try {
-          const O = await ke.getDepartments();
-          O.Code === 200 && O.Data
-            ? (console.log(O.Data), v(O.Data), i(O.Data))
-            : (console.error("API returned error:", O), v([]), i([]));
-        } catch (O) {
-          console.error("Failed to fetch department data:", O), v([]), i([]);
+          const F = await ke.getDepartments();
+          F.Code === 200 && F.Data
+            ? (console.log(F.Data), v(F.Data), i(F.Data))
+            : (console.error("API returned error:", F), v([]), i([]));
+        } catch (F) {
+          console.error("Failed to fetch department data:", F), v([]), i([]);
         } finally {
-          _(!1);
+          E(!1);
         }
       })();
     }, []);
-    const P = w.reduce((S, O) => {
-        const G = O["department_type "];
-        return S[G] || (S[G] = []), S[G].push(O), S;
+    const I = b.reduce((D, F) => {
+        const G = F["department_type "];
+        return D[G] || (D[G] = []), D[G].push(F), D;
       }, {}),
-      R = (S) => {
-        const O = new Set(g);
-        O.has(S) ? O.delete(S) : O.add(S), p(O);
+      A = (D) => {
+        const F = new Set(x);
+        F.has(D) ? F.delete(D) : F.add(D), m(F);
       },
-      N = async (S) => {
-        console.log("🏢 選擇部門:", S), r(S), await I(S), t(!1);
+      j = async (D) => {
+        console.log("🏢 選擇部門:", D), r(D), await z(D), t(!1);
       },
-      I = async (S) => {
-        console.log("🚀 開始取得藥品地圖資料，部門類型:", S), a(!0);
+      z = async (D) => {
+        console.log("🚀 開始取得藥品地圖資料，部門類型:", D), a(!0);
         try {
-          const O = await ke.getMedMapByDepartment(S);
-          if (O.Code === 200 && O.Data) {
-            console.log("📡 API 回傳成功:", O.Data);
-            const G = It.convertMedMapApiToFakeData(O.Data);
-            if (!It.validateConvertedData(G)) {
+          const F = await ke.getMedMapByDepartment(D);
+          if (F.Code === 200 && F.Data) {
+            console.log("📡 API 回傳成功:", F.Data);
+            const G = Pt.convertMedMapApiToFakeData(F.Data);
+            if (!Pt.validateConvertedData(G)) {
               console.error("❌ 轉換後的資料驗證失敗"), f([]);
               return;
             }
-            const C = It.generateConversionReport(O.Data, G);
+            const M = Pt.generateConversionReport(F.Data, G);
             f(G),
               o(G),
               console.log("💾 已暫存轉換後的資料到狀態中"),
               console.log("📊 最終轉換結果:", G),
-              console.log("📋 轉換報告:", C);
-          } else console.error("❌ API 回傳錯誤:", O), f([]), o(null);
-        } catch (O) {
-          console.error("💥 取得藥品地圖資料失敗:", O), f([]), o(null);
+              console.log("📋 轉換報告:", M);
+          } else console.error("❌ API 回傳錯誤:", F), f([]), o(null);
+        } catch (F) {
+          console.error("💥 取得藥品地圖資料失敗:", F), f([]), o(null);
         } finally {
           a(!1);
         }
@@ -11112,7 +11475,7 @@ const It = new Em(),
               }),
               s.jsx("div", {
                 className: "flex-1 overflow-y-auto p-4",
-                children: b
+                children: N
                   ? s.jsx("div", {
                       className: "flex items-center justify-center py-8",
                       children: s.jsx("div", {
@@ -11128,17 +11491,17 @@ const It = new Em(),
                             "text-base font-semibold text-gray-700 mb-4",
                           children: d("sidebar.departmentCategories"),
                         }),
-                        Object.entries(P).map(([S, O]) =>
+                        Object.entries(I).map(([D, F]) =>
                           s.jsxs(
                             "div",
                             {
                               className: "space-y-1",
                               children: [
                                 s.jsxs("button", {
-                                  onClick: () => N(S),
+                                  onClick: () => j(D),
                                   disabled: l,
                                   className: `w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 border ${
-                                    n === S
+                                    n === D
                                       ? "bg-blue-50 text-blue-700 border-blue-200 shadow-sm"
                                       : "text-gray-700 hover:bg-gray-50 hover:shadow-sm border-transparent"
                                   } ${
@@ -11148,7 +11511,7 @@ const It = new Em(),
                                     s.jsxs("div", {
                                       className: "flex items-center space-x-3",
                                       children: [
-                                        S === "B1F"
+                                        D === "B1F"
                                           ? s.jsx(Ad, { className: "w-4 h-4" })
                                           : s.jsx(Ym, { className: "w-4 h-4" }),
                                         s.jsxs("div", {
@@ -11156,13 +11519,13 @@ const It = new Em(),
                                           children: [
                                             s.jsx("div", {
                                               className: "font-medium",
-                                              children: S,
+                                              children: D,
                                             }),
                                             s.jsxs("div", {
                                               className:
                                                 "text-xs text-gray-500",
                                               children: [
-                                                O.length,
+                                                F.length,
                                                 " ",
                                                 d("sidebar.departments"),
                                               ],
@@ -11173,20 +11536,20 @@ const It = new Em(),
                                     }),
                                     s.jsx("div", {
                                       onClick: (G) => {
-                                        G.stopPropagation(), R(S);
+                                        G.stopPropagation(), A(D);
                                       },
                                       className:
                                         "p-1 hover:bg-gray-200/50 rounded transition-colors",
-                                      children: g.has(S)
+                                      children: x.has(D)
                                         ? s.jsx(Od, { className: "w-4 h-4" })
                                         : s.jsx(Um, { className: "w-4 h-4" }),
                                     }),
                                   ],
                                 }),
-                                g.has(S) &&
+                                x.has(D) &&
                                   s.jsx("div", {
                                     className: "ml-6 space-y-2",
-                                    children: O.map((G) =>
+                                    children: F.map((G) =>
                                       s.jsx(
                                         "div",
                                         {
@@ -11218,7 +11581,7 @@ const It = new Em(),
                                   }),
                               ],
                             },
-                            S
+                            D
                           )
                         ),
                       ],
@@ -11243,7 +11606,7 @@ const It = new Em(),
                           id: "admin-mode-toggle",
                           role: "switch",
                           "aria-checked": c,
-                          onClick: L,
+                          onClick: B,
                           className: `relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                             c ? "bg-blue-600" : "bg-gray-300"
                           }`,
@@ -11256,7 +11619,7 @@ const It = new Em(),
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: () => j(!0),
+                      onClick: () => C(!0),
                       className:
                         "p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors",
                       title: "設定",
@@ -11268,11 +11631,11 @@ const It = new Em(),
             ],
           }),
         }),
-        s.jsx(Jm, { isOpen: x, onClose: () => j(!1) }),
+        s.jsx(eh, { isOpen: g, onClose: () => C(!1) }),
       ],
     });
   },
-  eh = () => {
+  nh = () => {
     const { t: e } = pt();
     return s.jsx("div", {
       className: "fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30",
@@ -11286,62 +11649,62 @@ const It = new Em(),
       }),
     });
   },
-  th = ({
+  rh = ({
     component: e,
     scale: t,
     isLocked: n,
     isHighlighted: r = !1,
     onContainerClick: o,
   }) => {
-    const l = m.useRef(null),
+    const l = p.useRef(null),
       { t: a } = pt(),
       {
         apiDepartmentData: i,
         setApiDepartmentData: c,
         showNotification: h,
       } = Je(),
-      [d, g] = m.useState(!1),
-      [p, w] = m.useState({ x: 0, y: 0 }),
-      [v, b] = m.useState(e.position),
-      [_, u] = m.useState(!1),
-      [f, x] = m.useState(null),
-      [j, L] = m.useState({ x: 0, y: 0 }),
-      [P, R] = m.useState({ x: 0, y: 0 }),
-      N = m.useCallback(
-        async ($, le) => {
+      [d, x] = p.useState(!1),
+      [m, b] = p.useState({ x: 0, y: 0 }),
+      [v, N] = p.useState(e.position),
+      [E, u] = p.useState(!1),
+      [f, g] = p.useState(null),
+      [C, B] = p.useState({ x: 0, y: 0 }),
+      [I, A] = p.useState({ x: 0, y: 0 }),
+      j = p.useCallback(
+        async (U, ae) => {
           if (!i) return;
-          console.log("🔄 更新組件位置:", $, le);
-          const pe = JSON.parse(JSON.stringify(i)),
-            T = (Se) => {
-              for (const U of Se) {
-                if (U.GUID === $)
+          console.log("🔄 更新組件位置:", U, ae);
+          const R = JSON.parse(JSON.stringify(i)),
+            J = (Se) => {
+              for (const L of Se) {
+                if (L.GUID === U)
                   return (
-                    (U.position = { x: le.x.toFixed(3), y: le.y.toFixed(3) }),
+                    (L.position = { x: ae.x.toFixed(3), y: ae.y.toFixed(3) }),
                     console.log(
                       "✅ 組件位置已更新:",
-                      U.name,
-                      le.x.toFixed(3),
-                      le.y.toFixed(3)
+                      L.name,
+                      ae.x.toFixed(3),
+                      ae.y.toFixed(3)
                     ),
                     !0
                   );
                 if (
-                  (U.components &&
-                    Array.isArray(U.components) &&
-                    T(U.components)) ||
-                  (U.contents && Array.isArray(U.contents) && T(U.contents))
+                  (L.components &&
+                    Array.isArray(L.components) &&
+                    J(L.components)) ||
+                  (L.contents && Array.isArray(L.contents) && J(L.contents))
                 )
                   return !0;
               }
               return !1;
             };
-          if (T(pe)) {
-            c(pe), console.log("💾 全域資料已更新");
+          if (J(R)) {
+            c(R), console.log("💾 全域資料已更新");
             try {
               console.log("📡 開始同步後端位置資料...");
               const Se = await ke.updateContainerPosition({
-                GUID: $,
-                absolute_position: `${le.x.toFixed(3)},${le.y.toFixed(3)}`,
+                GUID: U,
+                absolute_position: `${ae.x.toFixed(3)},${ae.y.toFixed(3)}`,
               });
               Se.Code === 200
                 ? (console.log("✅ 後端位置同步成功", Se),
@@ -11352,182 +11715,182 @@ const It = new Em(),
               console.error("💥 後端位置同步發生錯誤:", Se),
                 h("位置更新失敗: 網路錯誤", "error");
             }
-          } else console.warn("⚠️ 未找到要更新的組件:", $);
+          } else console.warn("⚠️ 未找到要更新的組件:", U);
         },
         [i, c, h]
       ),
-      { position: I, dimensions: S, name: O, type: G } = e,
-      E = m.useCallback(
-        ($) => {
-          const le = l.current;
-          if (le)
-            if ((R({ x: $.clientX, y: $.clientY }), n)) {
-              $.preventDefault(),
-                $.stopPropagation(),
-                le.setPointerCapture($.pointerId);
-              const pe = le.getBoundingClientRect(),
-                T = $.clientX - pe.left,
-                se = $.clientY - pe.top;
-              w({ x: T, y: se }), g(!0), u(!1);
+      { position: z, dimensions: D, name: F, type: G } = e,
+      P = p.useCallback(
+        (U) => {
+          const ae = l.current;
+          if (ae)
+            if ((A({ x: U.clientX, y: U.clientY }), n)) {
+              U.preventDefault(),
+                U.stopPropagation(),
+                ae.setPointerCapture(U.pointerId);
+              const R = ae.getBoundingClientRect(),
+                J = U.clientX - R.left,
+                ce = U.clientY - R.top;
+              b({ x: J, y: ce }), x(!0), u(!1);
             } else u(!1);
         },
         [n]
       ),
-      C = m.useCallback(() => {
+      M = p.useCallback(() => {
         if (!i) return [];
-        const $ = [],
-          le = (pe) => {
-            for (const T of pe)
-              T.GUID !== e.GUID &&
-                T.position &&
-                $.push({
-                  GUID: T.GUID,
-                  position: T.position,
-                  dimensions: T.dimensions,
+        const U = [],
+          ae = (R) => {
+            for (const J of R)
+              J.GUID !== e.GUID &&
+                J.position &&
+                U.push({
+                  GUID: J.GUID,
+                  position: J.position,
+                  dimensions: J.dimensions,
                 }),
-                T.components && Array.isArray(T.components) && le(T.components),
-                T.contents && Array.isArray(T.contents) && le(T.contents);
+                J.components && Array.isArray(J.components) && ae(J.components),
+                J.contents && Array.isArray(J.contents) && ae(J.contents);
           };
-        return le(i), $;
+        return ae(i), U;
       }, [i, e.GUID]),
-      Z = m.useCallback(
-        ($, le) => {
-          const T = C();
-          let se = $,
-            Se = le;
-          for (const U of T) {
-            const ee = parseFloat(U.position.x),
-              ye = parseFloat(U.position.y);
+      ee = p.useCallback(
+        (U, ae) => {
+          const J = M();
+          let ce = U,
+            Se = ae;
+          for (const L of J) {
+            const _ = parseFloat(L.position.x),
+              re = parseFloat(L.position.y);
             if (
-              (Math.abs($ - ee) < 20 && (se = ee),
-              Math.abs(le - ye) < 20 && (Se = ye),
-              U.dimensions && e.dimensions)
+              (Math.abs(U - _) < 20 && (ce = _),
+              Math.abs(ae - re) < 20 && (Se = re),
+              L.dimensions && e.dimensions)
             ) {
-              const z = ee + parseFloat(U.dimensions.width),
-                D = $ + parseFloat(e.dimensions.width);
-              Math.abs(D - z) < 20 && (se = z - parseFloat(e.dimensions.width));
-              const A = ye + parseFloat(U.dimensions.depth),
-                H = le + parseFloat(e.dimensions.depth);
-              Math.abs(H - A) < 20 && (Se = A - parseFloat(e.dimensions.depth));
+              const T = _ + parseFloat(L.dimensions.width),
+                k = U + parseFloat(e.dimensions.width);
+              Math.abs(k - T) < 20 && (ce = T - parseFloat(e.dimensions.width));
+              const $ = re + parseFloat(L.dimensions.depth),
+                V = ae + parseFloat(e.dimensions.depth);
+              Math.abs(V - $) < 20 && (Se = $ - parseFloat(e.dimensions.depth));
             }
           }
-          return { x: se, y: Se };
+          return { x: ce, y: Se };
         },
-        [C, e.dimensions]
+        [M, e.dimensions]
       ),
-      M = m.useCallback(
-        ($) => {
-          const le = Math.abs($.clientX - P.x),
-            pe = Math.abs($.clientY - P.y);
-          if (((le > 5 || pe > 5) && u(!0), !d || !n)) return;
-          $.preventDefault(), $.stopPropagation();
-          const T = l.current;
-          if (!T) return;
-          const se = T.closest("[data-canvas-content]");
-          if (!se) return;
-          const Se = se.getBoundingClientRect(),
-            U = ($.clientX - Se.left - p.x) / t,
-            ee = ($.clientY - Se.top - p.y) / t,
-            ye = Z(U, ee);
-          b(ye);
+      w = p.useCallback(
+        (U) => {
+          const ae = Math.abs(U.clientX - I.x),
+            R = Math.abs(U.clientY - I.y);
+          if (((ae > 5 || R > 5) && u(!0), !d || !n)) return;
+          U.preventDefault(), U.stopPropagation();
+          const J = l.current;
+          if (!J) return;
+          const ce = J.closest("[data-canvas-content]");
+          if (!ce) return;
+          const Se = ce.getBoundingClientRect(),
+            L = (U.clientX - Se.left - m.x) / t,
+            _ = (U.clientY - Se.top - m.y) / t,
+            re = ee(L, _);
+          N(re);
         },
-        [d, p, t, n, Z, P]
+        [d, m, t, n, ee, I]
       ),
-      F = m.useCallback(
-        ($) => {
-          const le = Math.abs($.clientX - P.x),
-            pe = Math.abs($.clientY - P.y),
-            T = le > 5 || pe > 5;
+      O = p.useCallback(
+        (U) => {
+          const ae = Math.abs(U.clientX - I.x),
+            R = Math.abs(U.clientY - I.y),
+            J = ae > 5 || R > 5;
           if (n) {
             if (!d) return;
-            $.preventDefault(), $.stopPropagation();
-            const se = l.current;
-            se && se.releasePointerCapture($.pointerId),
-              g(!1),
-              T ? N(e.GUID, v) : o && o(e),
+            U.preventDefault(), U.stopPropagation();
+            const ce = l.current;
+            ce && ce.releasePointerCapture(U.pointerId),
+              x(!1),
+              J ? j(e.GUID, v) : o && o(e),
               u(!1);
           } else
-            !T && o && ($.preventDefault(), $.stopPropagation(), o(e)), u(!1);
+            !J && o && (U.preventDefault(), U.stopPropagation(), o(e)), u(!1);
         },
-        [d, n, o, e, N, v, P]
+        [d, n, o, e, j, v, I]
       ),
-      k = m.useCallback(
-        ($) => {
-          const le = l.current;
-          if (!le) return;
-          const pe = $.touches[0];
-          if (pe && (L({ x: pe.clientX, y: pe.clientY }), n)) {
-            $.preventDefault(), $.stopPropagation(), x(pe.identifier);
-            const T = le.getBoundingClientRect(),
-              se = pe.clientX - T.left,
-              Se = pe.clientY - T.top;
-            w({ x: se, y: Se }), g(!0);
+      S = p.useCallback(
+        (U) => {
+          const ae = l.current;
+          if (!ae) return;
+          const R = U.touches[0];
+          if (R && (B({ x: R.clientX, y: R.clientY }), n)) {
+            U.preventDefault(), U.stopPropagation(), g(R.identifier);
+            const J = ae.getBoundingClientRect(),
+              ce = R.clientX - J.left,
+              Se = R.clientY - J.top;
+            b({ x: ce, y: Se }), x(!0);
           }
         },
         [n]
       ),
-      Q = m.useCallback(
-        ($) => {
+      Q = p.useCallback(
+        (U) => {
           if (!d || !n || f === null) return;
-          $.preventDefault(), $.stopPropagation();
-          const le = l.current;
-          if (!le) return;
-          const pe = Array.from($.touches).find((ye) => ye.identifier === f);
-          if (!pe) return;
-          const T = le.closest("[data-canvas-content]");
-          if (!T) return;
-          const se = T.getBoundingClientRect(),
-            Se = (pe.clientX - se.left - p.x) / t,
-            U = (pe.clientY - se.top - p.y) / t,
-            ee = Z(Se, U);
-          b(ee);
+          U.preventDefault(), U.stopPropagation();
+          const ae = l.current;
+          if (!ae) return;
+          const R = Array.from(U.touches).find((re) => re.identifier === f);
+          if (!R) return;
+          const J = ae.closest("[data-canvas-content]");
+          if (!J) return;
+          const ce = J.getBoundingClientRect(),
+            Se = (R.clientX - ce.left - m.x) / t,
+            L = (R.clientY - ce.top - m.y) / t,
+            _ = ee(Se, L);
+          N(_);
         },
-        [d, p, t, n, f, Z]
+        [d, m, t, n, f, ee]
       ),
-      de = m.useCallback(
-        ($) => {
-          const le = Array.from($.changedTouches)[0];
-          if (!le) return;
-          const pe = Math.abs(le.clientX - j.x),
-            T = Math.abs(le.clientY - j.y),
-            se = pe > 10 || T > 10;
+      ie = p.useCallback(
+        (U) => {
+          const ae = Array.from(U.changedTouches)[0];
+          if (!ae) return;
+          const R = Math.abs(ae.clientX - C.x),
+            J = Math.abs(ae.clientY - C.y),
+            ce = R > 10 || J > 10;
           if (n) {
             if (
               !d ||
               f === null ||
-              !Array.from($.changedTouches).some((U) => U.identifier === f)
+              !Array.from(U.changedTouches).some((L) => L.identifier === f)
             )
               return;
-            $.preventDefault(),
-              $.stopPropagation(),
-              g(!1),
-              x(null),
-              L({ x: 0, y: 0 }),
-              se ? N(e.GUID, v) : o && o(e);
+            U.preventDefault(),
+              U.stopPropagation(),
+              x(!1),
+              g(null),
+              B({ x: 0, y: 0 }),
+              ce ? j(e.GUID, v) : o && o(e);
           } else
-            !se && o && ($.preventDefault(), $.stopPropagation(), o(e)),
-              L({ x: 0, y: 0 });
+            !ce && o && (U.preventDefault(), U.stopPropagation(), o(e)),
+              B({ x: 0, y: 0 });
         },
-        [d, n, f, N, e, v, j, o]
+        [d, n, f, j, e, v, C, o]
       ),
-      X = m.useCallback(
-        ($) => {
+      X = p.useCallback(
+        (U) => {
           !d ||
             !n ||
             f === null ||
-            !Array.from($.changedTouches).some((pe) => pe.identifier === f) ||
-            ($.preventDefault(),
-            $.stopPropagation(),
-            b(e.position),
-            g(!1),
-            x(null),
-            L({ x: 0, y: 0 }));
+            !Array.from(U.changedTouches).some((R) => R.identifier === f) ||
+            (U.preventDefault(),
+            U.stopPropagation(),
+            N(e.position),
+            x(!1),
+            g(null),
+            B({ x: 0, y: 0 }));
         },
         [d, n, f, e.position]
       ),
-      ne = ($) => {
+      oe = (U) => {
         if (r) return "bg-green-100 border-green-500";
-        switch ($) {
+        switch (U) {
           case "調劑台":
             return "bg-gray-100 border-gray-400";
           case "藥庫":
@@ -11538,9 +11901,9 @@ const It = new Em(),
             return "bg-gray-50 border-gray-400";
         }
       },
-      je = ($) => {
+      Ne = (U) => {
         if (r) return "highlight-breathe-green";
-        switch ($) {
+        switch (U) {
           case "調劑台":
             return "bg-gray-300 text-gray-900";
           case "藥庫":
@@ -11551,9 +11914,9 @@ const It = new Em(),
             return "bg-gray-200 text-gray-800";
         }
       },
-      oe = ($) => {
+      le = (U) => {
         if (r) return "bg-green-600 text-white";
-        switch ($) {
+        switch (U) {
           case "調劑台":
             return "bg-gray-700 text-white";
           case "藥庫":
@@ -11564,20 +11927,20 @@ const It = new Em(),
             return "bg-gray-600 text-white";
         }
       },
-      ve = ($) => {
-        const le =
-          $ === "調劑台"
+      ye = (U) => {
+        const ae =
+          U === "調劑台"
             ? "type.dispensingStation"
-            : $ === "藥庫"
+            : U === "藥庫"
             ? "type.warehouse"
-            : $ === "parent_container"
+            : U === "parent_container"
             ? "櫃體"
-            : "type." + $;
-        return a(le) || $;
+            : "type." + U;
+        return a(ae) || U;
       };
     return s.jsx("div", {
       ref: l,
-      className: `flex flex-col absolute border-2 rounded-lg shadow-lg hover:shadow-xl ${ne(
+      className: `flex flex-col absolute border-2 rounded-lg shadow-lg hover:shadow-xl ${oe(
         G
       )} overflow-hidden ${n ? "cursor-move" : "cursor-default"} ${
         d ? "shadow-2xl z-50" : ""
@@ -11593,15 +11956,15 @@ const It = new Em(),
           ? "none"
           : "transform 0.2s ease-out, box-shadow 0.2s ease-out",
       },
-      onPointerDown: E,
-      onPointerMove: M,
-      onPointerUp: F,
-      onTouchStart: k,
+      onPointerDown: P,
+      onPointerMove: w,
+      onPointerUp: O,
+      onTouchStart: S,
       onTouchMove: Q,
-      onTouchEnd: de,
+      onTouchEnd: ie,
       onTouchCancel: X,
       children: s.jsx("div", {
-        className: `w-full min-w-[400px] h-auto flex items-start flex-1 justify-between p-2 border-b border-gray-200 ${je(
+        className: `w-full min-w-[400px] h-auto flex items-start flex-1 justify-between p-2 border-b border-gray-200 ${Ne(
           G
         )}`,
         children: s.jsx("div", {
@@ -11611,11 +11974,11 @@ const It = new Em(),
             children: [
               s.jsx("div", {
                 className: "font-semibold text-lg truncate",
-                children: O,
+                children: F,
               }),
               s.jsx("div", {
-                className: `text-sm truncate py-1 px-3 rounded-2xl ${oe(G)}`,
-                children: ve(G),
+                className: `text-sm truncate py-1 px-3 rounded-2xl ${le(G)}`,
+                children: ye(G),
               }),
             ],
           }),
@@ -11623,117 +11986,117 @@ const It = new Em(),
       }),
     });
   },
-  Bo = ({ isOpen: e, onClose: t, onScanSuccess: n, mode: r }) => {
+  zo = ({ isOpen: e, onClose: t, onScanSuccess: n, mode: r }) => {
     const { showNotification: o, openAddBarcodeModal: l } = Je();
     console.log("🔍 QRCodeScannerModal props:", {
       isOpen: e,
       mode: r,
       hasOnScanSuccess: !!n,
     });
-    const a = m.useRef(null),
-      i = m.useRef(null),
-      c = m.useRef(null),
-      h = m.useRef(null),
-      d = m.useRef(null),
-      [g, p] = m.useState(!1),
-      [w, v] = m.useState(""),
-      [b, _] = m.useState(0),
-      [u, f] = m.useState(null),
-      [x, j] = m.useState(!1);
-    m.useEffect(() => {
-      const O = () => {
+    const a = p.useRef(null),
+      i = p.useRef(null),
+      c = p.useRef(null),
+      h = p.useRef(null),
+      d = p.useRef(null),
+      [x, m] = p.useState(!1),
+      [b, v] = p.useState(""),
+      [N, E] = p.useState(0),
+      [u, f] = p.useState(null),
+      [g, C] = p.useState(!1);
+    p.useEffect(() => {
+      const F = () => {
         const G = window.innerWidth < 680;
-        j(G);
+        C(G);
       };
       return (
-        O(),
-        window.addEventListener("resize", O),
-        () => window.removeEventListener("resize", O)
+        F(),
+        window.addEventListener("resize", F),
+        () => window.removeEventListener("resize", F)
       );
     }, []);
-    const L = async () => {
+    const B = async () => {
         try {
           v("");
-          const O = await navigator.mediaDevices.getUserMedia({
+          const F = await navigator.mediaDevices.getUserMedia({
             video: {
               facingMode: "environment",
               width: { ideal: 1920 },
               height: { ideal: 1080 },
             },
           });
-          (c.current = O),
+          (c.current = F),
             a.current &&
-              ((a.current.srcObject = O),
+              ((a.current.srcObject = F),
               await a.current.play(),
               console.log("✅ Camera started, setting isScanning to true"),
-              p(!0));
-        } catch (O) {
-          console.error("無法開啟相機:", O),
+              m(!0));
+        } catch (F) {
+          console.error("無法開啟相機:", F),
             v("無法開啟相機，請確認相機權限已開啟");
         }
       },
-      P = () => {
+      I = () => {
         h.current && (clearInterval(h.current), (h.current = null)),
           c.current &&
-            (c.current.getTracks().forEach((O) => O.stop()),
+            (c.current.getTracks().forEach((F) => F.stop()),
             (c.current = null)),
           a.current && (a.current.srcObject = null),
-          p(!1);
+          m(!1);
       },
-      R = async () => {
+      A = async () => {
         if (
           (console.log("🔄 captureAndScan called"),
           console.log("📹 videoRef.current:", !!a.current),
           console.log("🖼️ canvasRef.current:", !!i.current),
-          console.log("▶️ isScanning:", g),
-          !a.current || !i.current || !g)
+          console.log("▶️ isScanning:", x),
+          !a.current || !i.current || !x)
         ) {
           console.log("❌ Early return: missing refs or not scanning");
           return;
         }
-        const O = Date.now();
-        if (O - b < 1e3) {
+        const F = Date.now();
+        if (F - N < 1e3) {
           console.log("⏱️ Throttled: too soon since last scan");
           return;
         }
-        _(O);
+        E(F);
         const G = a.current,
-          E = i.current,
-          C = E.getContext("2d");
+          P = i.current,
+          M = P.getContext("2d");
         if (
           (console.log("🎥 video.readyState:", G.readyState),
           console.log("🎥 HAVE_ENOUGH_DATA:", G.HAVE_ENOUGH_DATA),
-          !C || G.readyState !== G.HAVE_ENOUGH_DATA)
+          !M || G.readyState !== G.HAVE_ENOUGH_DATA)
         ) {
           console.log("❌ Video not ready or no context");
           return;
         }
-        (E.width = G.videoWidth),
-          (E.height = G.videoHeight),
-          C.drawImage(G, 0, 0, E.width, E.height),
-          E.toBlob(
-            async (Z) => {
-              if (!Z) return;
-              const M = new File([Z], "scan.jpg", { type: "image/jpeg" });
+        (P.width = G.videoWidth),
+          (P.height = G.videoHeight),
+          M.drawImage(G, 0, 0, P.width, P.height),
+          P.toBlob(
+            async (ee) => {
+              if (!ee) return;
+              const w = new File([ee], "scan.jpg", { type: "image/jpeg" });
               try {
                 console.log("📸 截取圖片並掃描...");
-                const F = await ke.scanBarcode(M);
-                if (!F.results || F.results.length === 0) {
+                const O = await ke.scanBarcode(w);
+                if (!O.results || O.results.length === 0) {
                   console.log("⚠️ 未辨識到條碼");
                   return;
                 }
-                const k = F.results[0];
-                if (!k.code) {
+                const S = O.results[0];
+                if (!S.code) {
                   console.log("⚠️ 辨識到條碼但無法讀取內容");
                   return;
                 }
-                console.log("✅ 成功辨識條碼:", k.code),
-                  console.log("📋 條碼類型:", k.type),
-                  console.log("📊 信心度:", k.conf),
-                  P(),
+                console.log("✅ 成功辨識條碼:", S.code),
+                  console.log("📋 條碼類型:", S.type),
+                  console.log("📊 信心度:", S.conf),
+                  I(),
                   t();
                 try {
-                  const Q = await ke.searchByBarCode(k.code);
+                  const Q = await ke.searchByBarCode(S.code);
                   console.log("🔍 條碼搜尋結果:", Q),
                     Q.Code === 200
                       ? (console.log("✅ 找到藥品資料:", Q.Data),
@@ -11741,87 +12104,87 @@ const It = new Em(),
                         o("找到藥品資料", "success"),
                         n
                           ? (console.log("✅ onScanSuccess 存在，開始調用"),
-                            n(k.code, Q.Data),
+                            n(S.code, Q.Data),
                             console.log("✅ onScanSuccess 調用完成"))
                           : console.warn("⚠️ onScanSuccess 不存在"))
                       : Q.Code === -200 && Q.Result === "查無資料"
                       ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                         o("查無條碼資料，請建立條碼", "warning"),
-                        l(k.code))
+                        l(S.code))
                       : (console.log("❌ 搜尋失敗:", Q.Result),
                         o(Q.Result || "搜尋失敗", "error"));
                 } catch (Q) {
                   console.error("條碼搜尋錯誤:", Q),
                     o("搜尋失敗，請稍後再試", "error");
                 }
-              } catch (F) {
-                console.error("掃描錯誤:", F);
+              } catch (O) {
+                console.error("掃描錯誤:", O);
               }
             },
             "image/jpeg",
             1
           );
       },
-      N = () => {
+      j = () => {
         h.current && clearInterval(h.current),
           (h.current = setInterval(() => {
-            R();
+            A();
           }, 1e3));
       };
-    m.useEffect(
+    p.useEffect(
       () => (
-        e ? L() : P(),
+        e ? B() : I(),
         () => {
-          P();
+          I();
         }
       ),
       [e]
     ),
-      m.useEffect(() => {
-        g && !h.current
-          ? (console.log("🚀 isScanning became true, starting interval"), N())
-          : !g &&
+      p.useEffect(() => {
+        x && !h.current
+          ? (console.log("🚀 isScanning became true, starting interval"), j())
+          : !x &&
             h.current &&
             (console.log("🛑 isScanning became false, stopping interval"),
             h.current && (clearInterval(h.current), (h.current = null)));
-      }, [g]);
-    const I = () => {
-        P(), t();
+      }, [x]);
+    const z = () => {
+        I(), t();
       },
-      S = async (O) => {
+      D = async (F) => {
         if (!c.current || !d.current) return;
         const G = d.current.getBoundingClientRect(),
-          E = (O.clientX - G.left) / G.width,
-          C = (O.clientY - G.top) / G.height;
-        console.log("🎯 點擊聚焦位置:", { x: E, y: C }),
-          f({ x: O.clientX - G.left, y: O.clientY - G.top }),
+          P = (F.clientX - G.left) / G.width,
+          M = (F.clientY - G.top) / G.height;
+        console.log("🎯 點擊聚焦位置:", { x: P, y: M }),
+          f({ x: F.clientX - G.left, y: F.clientY - G.top }),
           setTimeout(() => f(null), 1e3);
         try {
-          const Z = c.current.getVideoTracks()[0],
-            M = Z.getCapabilities();
+          const ee = c.current.getVideoTracks()[0],
+            w = ee.getCapabilities();
           if (
-            (console.log("📹 相機能力:", M),
-            !M.focusMode || !M.focusMode.includes("manual"))
+            (console.log("📹 相機能力:", w),
+            !w.focusMode || !w.focusMode.includes("manual"))
           ) {
             console.log("⚠️ 此相機不支援手動聚焦");
             return;
           }
-          const F = {
+          const O = {
             advanced: [
               {
                 focusMode: "manual",
                 focusDistance: 0,
-                pointsOfInterest: [{ x: E, y: C }],
+                pointsOfInterest: [{ x: P, y: M }],
               },
             ],
           };
-          await Z.applyConstraints(F), console.log("✅ 聚焦成功");
-        } catch (Z) {
-          console.log("⚠️ 聚焦失敗 (可能不支援):", Z);
+          await ee.applyConstraints(O), console.log("✅ 聚焦成功");
+        } catch (ee) {
+          console.log("⚠️ 聚焦失敗 (可能不支援):", ee);
         }
       };
     return e
-      ? x
+      ? g
         ? s.jsxs("div", {
             className: "fixed inset-0 bg-black z-50 flex flex-col",
             children: [
@@ -11840,10 +12203,10 @@ const It = new Em(),
                     ],
                   }),
                   s.jsx("button", {
-                    onClick: I,
+                    onClick: z,
                     className:
                       "p-2 hover:bg-gray-700 rounded-lg transition-colors",
-                    children: s.jsx(Ye, { className: "w-6 h-6 text-white" }),
+                    children: s.jsx(Qe, { className: "w-6 h-6 text-white" }),
                   }),
                 ],
               }),
@@ -11853,7 +12216,7 @@ const It = new Em(),
                   s.jsxs("div", {
                     ref: d,
                     className: "absolute inset-0 bg-black cursor-crosshair",
-                    onClick: S,
+                    onClick: D,
                     children: [
                       s.jsx("video", {
                         ref: a,
@@ -11900,13 +12263,13 @@ const It = new Em(),
               s.jsxs("div", {
                 className: "p-4 bg-gray-900 bg-opacity-90",
                 children: [
-                  w &&
+                  b &&
                     s.jsx("div", {
                       className:
                         "bg-red-500 bg-opacity-20 border border-red-500 rounded-lg px-3 py-2 mb-3",
                       children: s.jsx("p", {
                         className: "text-red-200 text-sm",
-                        children: w,
+                        children: b,
                       }),
                     }),
                   s.jsxs("div", {
@@ -11958,10 +12321,10 @@ const It = new Em(),
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: I,
+                      onClick: z,
                       className:
                         "p-2 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, {
+                      children: s.jsx(Qe, {
                         className: "w-6 h-6 text-gray-600",
                       }),
                     }),
@@ -11970,13 +12333,13 @@ const It = new Em(),
                 s.jsxs("div", {
                   className: "flex-1 overflow-y-auto p-4",
                   children: [
-                    w &&
+                    b &&
                       s.jsx("div", {
                         className:
                           "bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-4",
                         children: s.jsx("p", {
                           className: "text-red-600 text-sm",
-                          children: w,
+                          children: b,
                         }),
                       }),
                     s.jsxs("div", {
@@ -11987,7 +12350,7 @@ const It = new Em(),
                           className:
                             "relative bg-black rounded-xl overflow-hidden cursor-crosshair",
                           style: { aspectRatio: "16/9" },
-                          onClick: S,
+                          onClick: D,
                           children: s.jsx("video", {
                             ref: a,
                             className: "w-full h-full object-cover",
@@ -12023,9 +12386,9 @@ const It = new Em(),
           })
       : null;
   },
-  nh = ({ children: e }) => {
-    const t = m.useRef(null),
-      n = m.useRef(null),
+  sh = ({ children: e }) => {
+    const t = p.useRef(null),
+      n = p.useRef(null),
       {
         selectedDepartmentType: r,
         apiDepartmentData: o,
@@ -12035,330 +12398,330 @@ const It = new Em(),
         setHighlightedMedicineCode: c,
       } = Je(),
       { t: h } = pt(),
-      [d, g] = m.useState({ x: 0, y: 0, scale: 1 }),
-      [p, w] = m.useState(!1),
-      [v, b] = m.useState(!1),
-      [_, u] = m.useState({ x: 0, y: 0 }),
-      [f, x] = m.useState(!1),
-      [j, L] = m.useState(!1),
-      [P, R] = m.useState(""),
-      [N, I] = m.useState([]),
-      [S, O] = m.useState(null),
+      [d, x] = p.useState({ x: 0, y: 0, scale: 1 }),
+      [m, b] = p.useState(!1),
+      [v, N] = p.useState(!1),
+      [E, u] = p.useState({ x: 0, y: 0 }),
+      [f, g] = p.useState(!1),
+      [C, B] = p.useState(!1),
+      [I, A] = p.useState(""),
+      [j, z] = p.useState([]),
+      [D, F] = p.useState(null),
       G = () => {
         try {
-          const z = localStorage.getItem("med_map_anchor");
-          return z ? JSON.parse(z) : [];
-        } catch (z) {
+          const T = localStorage.getItem("med_map_anchor");
+          return T ? JSON.parse(T) : [];
+        } catch (T) {
           return (
-            console.error("Error reading canvas states from localStorage:", z),
+            console.error("Error reading canvas states from localStorage:", T),
             []
           );
         }
       },
-      E = (z, D, A, H) => {
+      P = (T, k, $, V) => {
         try {
-          const re = G(),
-            ae = re.findIndex(
-              (be) => be.department === z && be.canvasType === D
+          const se = G(),
+            ue = se.findIndex(
+              (be) => be.department === T && be.canvasType === k
             ),
-            xe = { department: z, canvasType: D, scale: A, position: H };
-          ae >= 0 ? (re[ae] = xe) : re.push(xe),
-            localStorage.setItem("med_map_anchor", JSON.stringify(re));
-        } catch (re) {
-          console.error("Error saving canvas state to localStorage:", re);
+            ve = { department: T, canvasType: k, scale: $, position: V };
+          ue >= 0 ? (se[ue] = ve) : se.push(ve),
+            localStorage.setItem("med_map_anchor", JSON.stringify(se));
+        } catch (se) {
+          console.error("Error saving canvas state to localStorage:", se);
         }
       },
-      C = (z, D) =>
-        G().find((H) => H.department === z && H.canvasType === D) || null;
-    m.useEffect(() => {
+      M = (T, k) =>
+        G().find((V) => V.department === T && V.canvasType === k) || null;
+    p.useEffect(() => {
       if (r) {
-        const z = C(r, "InfiniteCanvas");
-        if (z) g({ x: z.position.x, y: z.position.y, scale: z.scale });
+        const T = M(r, "InfiniteCanvas");
+        if (T) x({ x: T.position.x, y: T.position.y, scale: T.scale });
         else {
-          const D = { x: 0, y: 0, scale: 1 };
-          g(D), E(r, "InfiniteCanvas", D.scale, D);
+          const k = { x: 0, y: 0, scale: 1 };
+          x(k), P(r, "InfiniteCanvas", k.scale, k);
         }
       }
     }, [r]),
-      m.useEffect(() => {
+      p.useEffect(() => {
         if (!r) return;
-        const z = setTimeout(() => {
-          E(r, "InfiniteCanvas", d.scale, { x: d.x, y: d.y });
+        const T = setTimeout(() => {
+          P(r, "InfiniteCanvas", d.scale, { x: d.x, y: d.y });
         }, 500);
-        return () => clearTimeout(z);
+        return () => clearTimeout(T);
       }, [d, r]),
-      m.useEffect(() => {
-        const z = (A) => {
-            A.code === "Space" && !A.repeat && (A.preventDefault(), x(!0));
+      p.useEffect(() => {
+        const T = ($) => {
+            $.code === "Space" && !$.repeat && ($.preventDefault(), g(!0));
           },
-          D = (A) => {
-            A.code === "Space" && (A.preventDefault(), x(!1), w(!1));
+          k = ($) => {
+            $.code === "Space" && ($.preventDefault(), g(!1), b(!1));
           };
         return (
-          window.addEventListener("keydown", z),
-          window.addEventListener("keyup", D),
+          window.addEventListener("keydown", T),
+          window.addEventListener("keyup", k),
           () => {
-            window.removeEventListener("keydown", z),
-              window.removeEventListener("keyup", D);
+            window.removeEventListener("keydown", T),
+              window.removeEventListener("keyup", k);
           }
         );
       }, []);
-    const Z = m.useCallback(
-        (z) => {
-          var A;
+    const ee = p.useCallback(
+        (T) => {
+          var $;
           if (v) return;
           if (
-            (z.ctrlKey && !navigator.userAgent.includes("Mac")) ||
-            (z.metaKey && navigator.userAgent.includes("Mac"))
+            (T.ctrlKey && !navigator.userAgent.includes("Mac")) ||
+            (T.metaKey && navigator.userAgent.includes("Mac"))
           ) {
-            z.preventDefault(), z.stopPropagation();
-            const H =
-              (A = t.current) == null ? void 0 : A.getBoundingClientRect();
-            if (!H) return;
-            const re = z.clientX - H.left,
-              ae = z.clientY - H.top,
-              xe = z.deltaY > 0 ? 0.9 : 1.1,
-              be = Math.max(0.1, Math.min(5, d.scale * xe)),
-              Ne = be / d.scale,
-              _e = re - (re - d.x) * Ne,
-              ce = ae - (ae - d.y) * Ne;
-            g({ x: _e, y: ce, scale: be });
+            T.preventDefault(), T.stopPropagation();
+            const V =
+              ($ = t.current) == null ? void 0 : $.getBoundingClientRect();
+            if (!V) return;
+            const se = T.clientX - V.left,
+              ue = T.clientY - V.top,
+              ve = T.deltaY > 0 ? 0.9 : 1.1,
+              be = Math.max(0.1, Math.min(5, d.scale * ve)),
+              je = be / d.scale,
+              De = se - (se - d.x) * je,
+              fe = ue - (ue - d.y) * je;
+            x({ x: De, y: fe, scale: be });
           }
         },
         [d, v]
       ),
-      M = m.useCallback(
-        (z) => {
+      w = p.useCallback(
+        (T) => {
           v ||
             !f ||
-            (w(!0), u({ x: z.clientX, y: z.clientY }), z.preventDefault());
+            (b(!0), u({ x: T.clientX, y: T.clientY }), T.preventDefault());
         },
         [v, f]
       ),
-      F = m.useCallback(
-        (z) => {
-          if (!p || v) return;
-          const D = z.clientX - _.x,
-            A = z.clientY - _.y;
-          g((H) => ({ ...H, x: H.x + D, y: H.y + A })),
-            u({ x: z.clientX, y: z.clientY });
+      O = p.useCallback(
+        (T) => {
+          if (!m || v) return;
+          const k = T.clientX - E.x,
+            $ = T.clientY - E.y;
+          x((V) => ({ ...V, x: V.x + k, y: V.y + $ })),
+            u({ x: T.clientX, y: T.clientY });
         },
-        [p, _, v]
+        [m, E, v]
       ),
-      k = m.useCallback(() => {
-        w(!1);
+      S = p.useCallback(() => {
+        b(!1);
       }, []),
-      Q = m.useCallback(
-        (z) => {
+      Q = p.useCallback(
+        (T) => {
           if (!o) return [];
-          const D = [],
-            A = (H) => {
-              for (const re of H)
-                re.med_list &&
-                  Array.isArray(re.med_list) &&
-                  re.med_list.some((xe) => xe.code == z) &&
-                  (console.log("✅ 找到藥品所在櫃體:", re.name, re.GUID),
-                  D.push(re.GUID)),
-                  re.components &&
-                    Array.isArray(re.components) &&
-                    A(re.components),
-                  re.contents && Array.isArray(re.contents) && A(re.contents);
+          const k = [],
+            $ = (V) => {
+              for (const se of V)
+                se.med_list &&
+                  Array.isArray(se.med_list) &&
+                  se.med_list.some((ve) => ve.code == T) &&
+                  (console.log("✅ 找到藥品所在櫃體:", se.name, se.GUID),
+                  k.push(se.GUID)),
+                  se.components &&
+                    Array.isArray(se.components) &&
+                    $(se.components),
+                  se.contents && Array.isArray(se.contents) && $(se.contents);
             };
-          return A(o), D;
+          return $(o), k;
         },
         [o]
       ),
-      de = m.useCallback(() => {
+      ie = p.useCallback(() => {
         try {
-          const D = localStorage.getItem("medMap_setting");
-          if (D) {
-            const H = JSON.parse(D).light_sec;
-            if (H != null && H !== "") {
-              const re = Number(H);
-              if (!isNaN(re) && re > 0) return re * 1e3;
+          const k = localStorage.getItem("medMap_setting");
+          if (k) {
+            const V = JSON.parse(k).light_sec;
+            if (V != null && V !== "") {
+              const se = Number(V);
+              if (!isNaN(se) && se > 0) return se * 1e3;
             }
           }
-        } catch (D) {
-          console.error("讀取亮燈設定失敗:", D);
+        } catch (k) {
+          console.error("讀取亮燈設定失敗:", k);
         }
         return 6e4;
       }, []),
-      X = m.useCallback(
-        (z) => {
-          if (!z.trim()) return;
+      X = p.useCallback(
+        (T) => {
+          if (!T.trim()) return;
           n.current && (clearTimeout(n.current), (n.current = null)),
-            console.log("🔍 搜尋藥碼:", z);
-          const D = Q(z);
-          if (D.length > 0) {
-            const A = de();
-            console.log(`🎯 高亮 ${D.length} 個櫃體:`, D),
-              console.log(`⏱️ 亮燈時長: ${A}ms (${A / 1e3}秒)`),
-              I(D),
-              O(z),
-              c(z),
+            console.log("🔍 搜尋藥碼:", T);
+          const k = Q(T);
+          if (k.length > 0) {
+            const $ = ie();
+            console.log(`🎯 高亮 ${k.length} 個櫃體:`, k),
+              console.log(`⏱️ 亮燈時長: ${$}ms (${$ / 1e3}秒)`),
+              z(k),
+              F(T),
+              c(T),
               (n.current = setTimeout(() => {
                 console.log("⏱️ 恢復原本顏色"),
-                  I([]),
-                  O(null),
+                  z([]),
+                  F(null),
                   c(null),
                   (n.current = null);
-              }, A));
+              }, $));
           } else
-            console.log("❌ 未找到包含此藥品的櫃體"), I([]), O(null), c(null);
+            console.log("❌ 未找到包含此藥品的櫃體"), z([]), F(null), c(null);
         },
-        [Q, de, c]
+        [Q, ie, c]
       ),
-      ne = (z, D) => {
-        var H, re;
+      oe = (T, k) => {
+        var V, se;
         console.log("📍 藥品定位模式 - 掃描到藥品:", {
-          barcode: z,
-          medicineData: D,
+          barcode: T,
+          medicineData: k,
         });
-        const A =
-          ((H = D[0]) == null ? void 0 : H.CODE) ||
-          ((re = D[0]) == null ? void 0 : re.code);
-        L(!1), X(A);
+        const $ =
+          ((V = k[0]) == null ? void 0 : V.CODE) ||
+          ((se = k[0]) == null ? void 0 : se.code);
+        B(!1), X($);
       },
-      je = async (z) => {
-        var D, A;
-        if (z.key === "Enter") {
-          if ((z.preventDefault(), !P.trim())) {
+      Ne = async (T) => {
+        var k, $;
+        if (T.key === "Enter") {
+          if ((T.preventDefault(), !I.trim())) {
             l("請輸入條碼", "warning");
             return;
           }
           try {
-            console.log("🔍 搜尋條碼:", P);
-            const H = await ke.searchByBarCode(P);
+            console.log("🔍 搜尋條碼:", I);
+            const V = await ke.searchByBarCode(I);
             if (
-              (console.log("📋 條碼搜尋回應:", H),
-              H.Code === 200 && H.Data && H.Data.length > 0)
+              (console.log("📋 條碼搜尋回應:", V),
+              V.Code === 200 && V.Data && V.Data.length > 0)
             ) {
-              const re =
-                ((D = H.Data[0]) == null ? void 0 : D.CODE) ||
-                ((A = H.Data[0]) == null ? void 0 : A.code);
-              console.log("✅ 找到藥品資料:", H.Data),
+              const se =
+                ((k = V.Data[0]) == null ? void 0 : k.CODE) ||
+                (($ = V.Data[0]) == null ? void 0 : $.code);
+              console.log("✅ 找到藥品資料:", V.Data),
                 l("找到藥品，開始亮燈", "success"),
-                X(re);
+                X(se);
             } else
-              H.Code === -200 && H.Result === "查無資料"
+              V.Code === -200 && V.Result === "查無資料"
                 ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                   l("查無條碼資料，請建立條碼", "warning"),
-                  a(P))
-                : (console.log("❌ 搜尋失敗:", H.Result),
-                  l(H.Result || "搜尋失敗", "error"));
-          } catch (H) {
-            console.error("條碼搜尋錯誤:", H),
+                  a(I))
+                : (console.log("❌ 搜尋失敗:", V.Result),
+                  l(V.Result || "搜尋失敗", "error"));
+          } catch (V) {
+            console.error("條碼搜尋錯誤:", V),
               l("搜尋失敗，請稍後再試", "error");
           }
         }
       };
-    m.useEffect(
+    p.useEffect(
       () => () => {
         n.current && clearTimeout(n.current);
       },
       []
     );
-    const [oe, ve] = m.useState(null),
-      [$, le] = m.useState({ x: 0, y: 0 }),
-      pe = (z) => {
-        if (z.length < 2) return null;
-        const D = z[0],
-          A = z[1];
+    const [le, ye] = p.useState(null),
+      [U, ae] = p.useState({ x: 0, y: 0 }),
+      R = (T) => {
+        if (T.length < 2) return null;
+        const k = T[0],
+          $ = T[1];
         return Math.sqrt(
-          Math.pow(A.clientX - D.clientX, 2) +
-            Math.pow(A.clientY - D.clientY, 2)
+          Math.pow($.clientX - k.clientX, 2) +
+            Math.pow($.clientY - k.clientY, 2)
         );
       },
-      T = (z) => {
-        if (z.length === 1) return { x: z[0].clientX, y: z[0].clientY };
-        const D = z[0],
-          A = z[1];
+      J = (T) => {
+        if (T.length === 1) return { x: T[0].clientX, y: T[0].clientY };
+        const k = T[0],
+          $ = T[1];
         return {
-          x: (D.clientX + A.clientX) / 2,
-          y: (D.clientY + A.clientY) / 2,
+          x: (k.clientX + $.clientX) / 2,
+          y: (k.clientY + $.clientY) / 2,
         };
       },
-      se = m.useCallback(
-        (z) => {
+      ce = p.useCallback(
+        (T) => {
           if (!v) {
-            if (z.touches.length === 2) {
-              const D = pe(z.touches),
-                A = T(z.touches);
-              ve(D), le(A);
-            } else if (z.touches.length === 1) {
-              const D = z.touches[0];
-              u({ x: D.clientX, y: D.clientY }), w(!0);
+            if (T.touches.length === 2) {
+              const k = R(T.touches),
+                $ = J(T.touches);
+              ye(k), ae($);
+            } else if (T.touches.length === 1) {
+              const k = T.touches[0];
+              u({ x: k.clientX, y: k.clientY }), b(!0);
             }
           }
         },
         [v]
       ),
-      Se = m.useCallback(
-        (z) => {
-          var D;
+      Se = p.useCallback(
+        (T) => {
+          var k;
           if (!v) {
-            if ((z.preventDefault(), z.touches.length === 2 && oe !== null)) {
-              const A = pe(z.touches),
-                H = T(z.touches);
-              if (A && oe) {
-                const re =
-                  (D = t.current) == null ? void 0 : D.getBoundingClientRect();
-                if (!re) return;
-                const ae = A / oe,
-                  xe = Math.max(0.1, Math.min(5, d.scale * ae)),
-                  be = H.x - re.left,
-                  Ne = H.y - re.top,
-                  _e = xe / d.scale,
-                  ce = be - (be - d.x) * _e,
-                  me = Ne - (Ne - d.y) * _e;
-                g({ x: ce, y: me, scale: xe }), ve(A), le(H);
+            if ((T.preventDefault(), T.touches.length === 2 && le !== null)) {
+              const $ = R(T.touches),
+                V = J(T.touches);
+              if ($ && le) {
+                const se =
+                  (k = t.current) == null ? void 0 : k.getBoundingClientRect();
+                if (!se) return;
+                const ue = $ / le,
+                  ve = Math.max(0.1, Math.min(5, d.scale * ue)),
+                  be = V.x - se.left,
+                  je = V.y - se.top,
+                  De = ve / d.scale,
+                  fe = be - (be - d.x) * De,
+                  he = je - (je - d.y) * De;
+                x({ x: fe, y: he, scale: ve }), ye($), ae(V);
               }
-            } else if (z.touches.length === 1 && p) {
-              const A = z.touches[0],
-                H = A.clientX - _.x,
-                re = A.clientY - _.y;
-              g((ae) => ({ ...ae, x: ae.x + H, y: ae.y + re })),
-                u({ x: A.clientX, y: A.clientY });
+            } else if (T.touches.length === 1 && m) {
+              const $ = T.touches[0],
+                V = $.clientX - E.x,
+                se = $.clientY - E.y;
+              x((ue) => ({ ...ue, x: ue.x + V, y: ue.y + se })),
+                u({ x: $.clientX, y: $.clientY });
             }
           }
         },
-        [d, oe, p, _, v]
+        [d, le, m, E, v]
       ),
-      U = m.useCallback(() => {
-        ve(null), w(!1);
+      L = p.useCallback(() => {
+        ye(null), b(!1);
       }, []);
-    m.useEffect(() => {
-      const z = t.current;
-      if (z)
+    p.useEffect(() => {
+      const T = t.current;
+      if (T)
         return (
-          z.addEventListener("wheel", Z, { passive: !1 }),
-          () => z.removeEventListener("wheel", Z)
+          T.addEventListener("wheel", ee, { passive: !1 }),
+          () => T.removeEventListener("wheel", ee)
         );
-    }, [Z]),
-      m.useCallback(() => {
-        g({ x: 0, y: 0, scale: 1 });
+    }, [ee]),
+      p.useCallback(() => {
+        x({ x: 0, y: 0, scale: 1 });
       }, []);
-    const ye = (() => {
+    const re = (() => {
       if (!o || o.length === 0) return [];
-      const z = o,
-        D = [];
-      for (const A of z)
-        if (A.type === "調劑台" || A.type === "藥庫")
-          for (const H of A.contents)
-            D.push({
-              GUID: H.GUID,
-              type: H.type,
-              name: `${H.name}`,
-              position: H.position,
-              dimensions: H.dimensions,
-              med_list: H.med_list,
-              serverName: H.serverName,
-              serverType: H.serverType,
-              MASTER_GUID: A.GUID,
-              contents: H.contents || [],
+      const T = o,
+        k = [];
+      for (const $ of T)
+        if ($.type === "調劑台" || $.type === "藥庫")
+          for (const V of $.contents)
+            k.push({
+              GUID: V.GUID,
+              type: V.type,
+              name: `${V.name}`,
+              position: V.position,
+              dimensions: V.dimensions,
+              med_list: V.med_list,
+              serverName: V.serverName,
+              serverType: V.serverType,
+              Master_GUID: $.GUID,
+              contents: V.contents || [],
             });
-        else A.componets && A.componets.length > 0 && D.push(...A.componets);
-      return D;
+        else $.componets && $.componets.length > 0 && k.push(...$.componets);
+      return k;
     })();
     return s.jsxs("div", {
       className: "relative w-full h-full overflow-hidden bg-gray-50",
@@ -12372,15 +12735,15 @@ const It = new Em(),
             children: [
               s.jsx("input", {
                 type: "text",
-                value: P,
-                onChange: (z) => R(z.target.value),
-                onKeyPress: je,
+                value: I,
+                onChange: (T) => A(T.target.value),
+                onKeyPress: Ne,
                 placeholder: "輸入條碼或掃描...",
                 className:
                   "px-4 py-2 w-50 focus:outline-none text-gray-700 disabled:opacity-50",
               }),
               s.jsx("button", {
-                onClick: () => L(!0),
+                onClick: () => B(!0),
                 className: "p-2",
                 title: "掃描條碼",
                 children: s.jsx(kr, { className: "w-6 h-6 text-blue-600" }),
@@ -12391,7 +12754,7 @@ const It = new Em(),
         s.jsx("div", {
           className: "absolute bottom-4 right-4 z-10 flex gap-2",
           children: s.jsx("button", {
-            onClick: () => b(!v),
+            onClick: () => N(!v),
             className: `p-3 rounded-lg shadow-lg transition-colors ${
               v
                 ? "bg-red-500 text-white hover:bg-red-600"
@@ -12407,14 +12770,14 @@ const It = new Em(),
           ref: t,
           className: `w-full h-full relative ${
             f && !v ? "cursor-grab" : "cursor-default"
-          } ${p ? "cursor-grabbing" : ""}`,
-          onMouseDown: M,
-          onMouseMove: F,
-          onMouseUp: k,
-          onMouseLeave: k,
-          onTouchStart: se,
+          } ${m ? "cursor-grabbing" : ""}`,
+          onMouseDown: w,
+          onMouseMove: O,
+          onMouseUp: S,
+          onMouseLeave: S,
+          onTouchStart: ce,
           onTouchMove: Se,
-          onTouchEnd: U,
+          onTouchEnd: L,
           children: s.jsxs("div", {
             className: "absolute inset-0 origin-top-left",
             style: {
@@ -12440,20 +12803,20 @@ const It = new Em(),
                 className: "relative",
                 "data-canvas-content": !0,
                 children: [
-                  ye.map((z) =>
+                  re.map((T) =>
                     s.jsx(
-                      th,
+                      rh,
                       {
-                        component: z,
+                        component: T,
                         scale: d.scale,
                         isLocked: v,
-                        isHighlighted: N.includes(z.GUID),
-                        onContainerClick: (D) => {
-                          console.log("🖱️ 點擊櫃體，傳遞亮燈藥品代碼:", S),
-                            i(D, S);
+                        isHighlighted: j.includes(T.GUID),
+                        onContainerClick: (k) => {
+                          console.log("🖱️ 點擊櫃體，傳遞亮燈藥品代碼:", D),
+                            i(k, D);
                         },
                       },
-                      z.GUID
+                      T.GUID
                     )
                   ),
                   e,
@@ -12462,16 +12825,16 @@ const It = new Em(),
             ],
           }),
         }),
-        s.jsx(Bo, {
-          isOpen: j,
-          onClose: () => L(!1),
-          onScanSuccess: ne,
+        s.jsx(zo, {
+          isOpen: C,
+          onClose: () => B(!1),
+          onScanSuccess: oe,
           mode: "med_light_location_mode",
         }),
       ],
     });
   },
-  zs = ({ content: e, isAdminMode: t }) => {
+  Bs = ({ content: e, isAdminMode: t }) => {
     const {
         openMedBoxModal: n,
         openAddMedBoxModal: r,
@@ -12482,65 +12845,67 @@ const It = new Em(),
         openAddStoreItemModal: c,
         setSelectedMedBox: h,
         setModalMode: d,
-        setMedBoxModalOpen: g,
-        showNotification: p,
-        triggerRefresh: w,
+        setMedBoxModalOpen: x,
+        showNotification: m,
+        triggerRefresh: b,
       } = Je(),
       { t: v } = pt(),
-      [b, _] = m.useState(!1),
-      [u, f] = m.useState(""),
-      [x, j] = m.useState(!1),
-      [L, P] = m.useState(e.name);
-    m.useEffect(() => {
-      P(e.name);
+      [N, E] = p.useState(!1),
+      [u, f] = p.useState(""),
+      [g, C] = p.useState(!1),
+      [B, I] = p.useState(e.name);
+    p.useEffect(() => {
+      I(e.name);
     }, [e.name]);
-    const R = (C) => {
-        C.stopPropagation(), f(e.name || ""), _(!0);
+    const A = (M) => {
+        M.stopPropagation(), f(e.name || ""), E(!0);
       },
-      N = (C) => {
-        C.stopPropagation(), _(!1), f("");
+      j = (M) => {
+        M.stopPropagation(), E(!1), f("");
       },
-      I = async (C) => {
-        if ((C.stopPropagation(), !u.trim())) {
-          p("名稱不能為空", "error");
+      z = async (M) => {
+        if ((M.stopPropagation(), !u.trim())) {
+          m("名稱不能為空", "error");
           return;
         }
         if (u === e.name) {
-          _(!1);
+          E(!1);
           return;
         }
-        j(!0);
+        C(!0);
         try {
-          const Z = [
+          const ee = [
             {
               GUID: e.GUID,
               name: u.trim(),
-              MASTER_GUID: e.MASTER_GUID,
+              Master_GUID: e.Master_GUID,
               position: e.gird_position,
               serverName: e.serverName,
               serverType: e.serverType,
             },
           ];
-          let M;
+          let w;
           if (e.type === "store_shelves" || e.type === "dispensing_shelves")
-            M = await ke.updateMedMapShelf(Z);
-          else if (e.type === "sub_container") M = await ke.updateSubSection(Z);
+            w = await ke.updateMedMapShelf(ee);
+          else if (e.type === "sub_container")
+            w = await ke.updateSubSection(ee);
           else {
-            p("不支援的容器類型", "error"), j(!1);
+            m("不支援的容器類型", "error"), C(!1);
             return;
           }
-          if (M.Code === 200) {
-            const F = u.trim();
-            (e.name = F), P(F), p("名稱更新成功", "success"), _(!1), w();
-          } else p(M.Result || "更新失敗", "error");
-        } catch (Z) {
-          console.error("更新名稱失敗:", Z), p("更新失敗，請稍後再試", "error");
+          if (w.Code === 200) {
+            const O = u.trim();
+            (e.name = O), I(O), m("名稱更新成功", "success"), E(!1), b();
+          } else m(w.Result || "更新失敗", "error");
+        } catch (ee) {
+          console.error("更新名稱失敗:", ee),
+            m("更新失敗，請稍後再試", "error");
         } finally {
-          j(!1);
+          C(!1);
         }
       },
-      S = (C) => {
-        switch (C) {
+      D = (M) => {
+        switch (M) {
           case "parent_container":
             return "bg-pink-100";
           case "sub_container":
@@ -12557,8 +12922,8 @@ const It = new Em(),
             return "bg-gray-100";
         }
       },
-      O = (C) => {
-        switch (C) {
+      F = (M) => {
+        switch (M) {
           case "parent_container":
             return "border-pink-200";
           case "sub_container":
@@ -12575,8 +12940,8 @@ const It = new Em(),
             return "border-gray-200";
         }
       },
-      G = (C) => {
-        switch (C) {
+      G = (M) => {
+        switch (M) {
           case "parent_container":
             return "bg-pink-400";
           case "sub_container":
@@ -12593,8 +12958,8 @@ const It = new Em(),
             return "bg-gray-200";
         }
       },
-      E = (C) => {
-        switch (C) {
+      P = (M) => {
+        switch (M) {
           case "parent_container":
             return v("type.parentContainer");
           case "sub_container":
@@ -12610,36 +12975,36 @@ const It = new Em(),
           case "med_box":
             return v("type.medBox");
           default:
-            return C;
+            return M;
         }
       };
     switch (e.type) {
       case "sub_container":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6 flex-1",
               children: [
-                b
+                N
                   ? s.jsxs("div", {
                       className: "flex items-center space-x-2 flex-1",
                       children: [
                         s.jsx("input", {
                           type: "text",
                           value: u,
-                          onChange: (C) => f(C.target.value),
-                          onClick: (C) => C.stopPropagation(),
+                          onChange: (M) => f(M.target.value),
+                          onClick: (M) => M.stopPropagation(),
                           className:
                             "text-base font-semibold text-gray-800 border-2 border-blue-400 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500",
-                          disabled: x,
+                          disabled: g,
                           autoFocus: !0,
                         }),
                         s.jsx("button", {
-                          onClick: I,
-                          disabled: x,
+                          onClick: z,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-green-100 rounded transition-colors disabled:opacity-50",
                           title: "更新",
@@ -12648,12 +13013,12 @@ const It = new Em(),
                           }),
                         }),
                         s.jsx("button", {
-                          onClick: N,
-                          disabled: x,
+                          onClick: j,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-red-100 rounded transition-colors disabled:opacity-50",
                           title: "取消",
-                          children: s.jsx(Ye, {
+                          children: s.jsx(Qe, {
                             className: "w-5 h-5 text-red-600",
                           }),
                         }),
@@ -12664,10 +13029,10 @@ const It = new Em(),
                         s.jsx("span", {
                           className:
                             "text-base font-semibold text-gray-800 whitespace-nowrap",
-                          children: L,
+                          children: B,
                         }),
                         s.jsx("button", {
-                          onClick: R,
+                          onClick: A,
                           className:
                             "p-1 hover:bg-black/10 rounded transition-colors",
                           title: "編輯名稱",
@@ -12678,35 +13043,35 @@ const It = new Em(),
                       ],
                     }),
                 e.type != "parent_container" &&
-                  !b &&
+                  !N &&
                   s.jsx("span", {
                     className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                       e.type
                     )}`,
-                    children: E(e.type),
+                    children: P(e.type),
                   }),
               ],
             }),
             e.type !== "none" &&
-              !b &&
+              !N &&
               s.jsx("div", {
                 className: "flex items-center space-x-1",
                 children: s.jsx("button", {
                   className: "p-1 hover:bg-black/10 rounded transition-colors",
-                  onClick: (C) => {
-                    C.stopPropagation(), a(e);
+                  onClick: (M) => {
+                    M.stopPropagation(), a(e);
                   },
                   title: v("modal.add"),
-                  children: s.jsx(Nt, { className: "w-6 h-6 text-green-700" }),
+                  children: s.jsx(gt, { className: "w-6 h-6 text-green-700" }),
                 }),
               }),
           ],
         });
       case "parent_container":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -12721,7 +13086,7 @@ const It = new Em(),
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                         e.type
                       )}`,
-                      children: E(e.type),
+                      children: P(e.type),
                     })
                   : null,
               ],
@@ -12731,20 +13096,20 @@ const It = new Em(),
                 className: "flex items-center space-x-1",
                 children: s.jsx("button", {
                   className: "p-1 hover:bg-black/10 rounded transition-colors",
-                  onClick: (C) => {
-                    C.stopPropagation(), i(e);
+                  onClick: (M) => {
+                    M.stopPropagation(), i(e);
                   },
                   title: v("modal.add"),
-                  children: s.jsx(Nt, { className: "w-6 h-6 text-green-700" }),
+                  children: s.jsx(gt, { className: "w-6 h-6 text-green-700" }),
                 }),
               }),
           ],
         });
       case "med_box":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsx("div", {
               className: "flex items-center mr-4",
@@ -12754,7 +13119,7 @@ const It = new Em(),
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                         e.type
                       )}`,
-                      children: E(e.type),
+                      children: P(e.type),
                     })
                   : null,
             }),
@@ -12762,8 +13127,8 @@ const It = new Em(),
               className: "flex items-center space-x-1",
               children: s.jsx("button", {
                 className: "p-1 hover:bg-black/10 rounded transition-colors",
-                onClick: (C) => {
-                  C.stopPropagation(), n(e);
+                onClick: (M) => {
+                  M.stopPropagation(), n(e);
                 },
                 title: v("modal.settings"),
                 children: s.jsx(tn, { className: "w-6 h-6 text-gray-600" }),
@@ -12773,30 +13138,30 @@ const It = new Em(),
         });
       case "dispensing_shelves":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6 flex-1",
               children: [
-                b
+                N
                   ? s.jsxs("div", {
                       className: "flex items-center space-x-2 flex-1",
                       children: [
                         s.jsx("input", {
                           type: "text",
                           value: u,
-                          onChange: (C) => f(C.target.value),
-                          onClick: (C) => C.stopPropagation(),
+                          onChange: (M) => f(M.target.value),
+                          onClick: (M) => M.stopPropagation(),
                           className:
                             "text-base font-semibold text-gray-800 border-2 border-blue-400 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500",
-                          disabled: x,
+                          disabled: g,
                           autoFocus: !0,
                         }),
                         s.jsx("button", {
-                          onClick: I,
-                          disabled: x,
+                          onClick: z,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-green-100 rounded transition-colors disabled:opacity-50",
                           title: "更新",
@@ -12805,12 +13170,12 @@ const It = new Em(),
                           }),
                         }),
                         s.jsx("button", {
-                          onClick: N,
-                          disabled: x,
+                          onClick: j,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-red-100 rounded transition-colors disabled:opacity-50",
                           title: "取消",
-                          children: s.jsx(Ye, {
+                          children: s.jsx(Qe, {
                             className: "w-5 h-5 text-red-600",
                           }),
                         }),
@@ -12821,10 +13186,10 @@ const It = new Em(),
                         s.jsx("span", {
                           className:
                             "text-base font-semibold text-gray-800 whitespace-nowrap",
-                          children: L,
+                          children: B,
                         }),
                         s.jsx("button", {
-                          onClick: R,
+                          onClick: A,
                           className:
                             "p-1 hover:bg-black/10 rounded transition-colors",
                           title: "編輯名稱",
@@ -12835,12 +13200,12 @@ const It = new Em(),
                       ],
                     }),
                 e.type != "parent_container" &&
-                  !b &&
+                  !N &&
                   s.jsx("span", {
                     className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                       e.type
                     )}`,
-                    children: E(e.type),
+                    children: P(e.type),
                   }),
               ],
             }),
@@ -12849,9 +13214,9 @@ const It = new Em(),
               children: [
                 s.jsx("button", {
                   className: "p-1 hover:bg-black/10 rounded transition-colors",
-                  onClick: (C) => {
-                    C.stopPropagation();
-                    const Z = {
+                  onClick: (M) => {
+                    M.stopPropagation();
+                    const ee = {
                       GUID: `new_medbox_${Date.now()}`,
                       name: "",
                       box_type: "",
@@ -12860,14 +13225,14 @@ const It = new Em(),
                       med_info: [],
                       parentShelf: e,
                     };
-                    h(Z), d("add"), g(!0);
+                    h(ee), d("add"), x(!0);
                   },
                   title: v("modal.add"),
-                  children: s.jsx(Nt, { className: "w-6 h-6 text-green-700" }),
+                  children: s.jsx(gt, { className: "w-6 h-6 text-green-700" }),
                 }),
                 s.jsx("button", {
                   className: "p-1 hover:bg-black/10 rounded transition-colors",
-                  onClick: (C) => {},
+                  onClick: (M) => {},
                   title: v("modal.settings"),
                   children: s.jsx(tn, { className: "w-6 h-6 text-gray-600" }),
                 }),
@@ -12877,30 +13242,30 @@ const It = new Em(),
         });
       case "store_shelves":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6 flex-1",
               children: [
-                b
+                N
                   ? s.jsxs("div", {
                       className: "flex items-center space-x-2 flex-1",
                       children: [
                         s.jsx("input", {
                           type: "text",
                           value: u,
-                          onChange: (C) => f(C.target.value),
-                          onClick: (C) => C.stopPropagation(),
+                          onChange: (M) => f(M.target.value),
+                          onClick: (M) => M.stopPropagation(),
                           className:
                             "text-base font-semibold text-gray-800 border-2 border-blue-400 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500",
-                          disabled: x,
+                          disabled: g,
                           autoFocus: !0,
                         }),
                         s.jsx("button", {
-                          onClick: I,
-                          disabled: x,
+                          onClick: z,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-green-100 rounded transition-colors disabled:opacity-50",
                           title: "更新",
@@ -12909,12 +13274,12 @@ const It = new Em(),
                           }),
                         }),
                         s.jsx("button", {
-                          onClick: N,
-                          disabled: x,
+                          onClick: j,
+                          disabled: g,
                           className:
                             "p-1 hover:bg-red-100 rounded transition-colors disabled:opacity-50",
                           title: "取消",
-                          children: s.jsx(Ye, {
+                          children: s.jsx(Qe, {
                             className: "w-5 h-5 text-red-600",
                           }),
                         }),
@@ -12925,10 +13290,10 @@ const It = new Em(),
                         s.jsx("span", {
                           className:
                             "text-base font-semibold text-gray-800 whitespace-nowrap",
-                          children: L,
+                          children: B,
                         }),
                         s.jsx("button", {
-                          onClick: R,
+                          onClick: A,
                           className:
                             "p-1 hover:bg-black/10 rounded transition-colors",
                           title: "編輯名稱",
@@ -12939,12 +13304,12 @@ const It = new Em(),
                       ],
                     }),
                 e.type != "parent_container" &&
-                  !b &&
+                  !N &&
                   s.jsx("span", {
                     className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                       e.type
                     )}`,
-                    children: E(e.type),
+                    children: P(e.type),
                   }),
               ],
             }),
@@ -12952,20 +13317,20 @@ const It = new Em(),
               className: "flex items-center space-x-1",
               children: s.jsx("button", {
                 className: "p-1 hover:bg-black/10 rounded transition-colors",
-                onClick: (C) => {
-                  C.stopPropagation(), c(e);
+                onClick: (M) => {
+                  M.stopPropagation(), c(e);
                 },
                 title: v("modal.add"),
-                children: s.jsx(Nt, { className: "w-6 h-6 text-green-700" }),
+                children: s.jsx(gt, { className: "w-6 h-6 text-green-700" }),
               }),
             }),
           ],
         });
       case "list_draw":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -12980,15 +13345,15 @@ const It = new Em(),
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                         e.type
                       )}`,
-                      children: E(e.type),
+                      children: P(e.type),
                     })
                   : null,
               ],
             }),
             s.jsx("button", {
               className: "p-1 hover:bg-black/10 rounded transition-colors",
-              onClick: (C) => {
-                C.stopPropagation(), o(e);
+              onClick: (M) => {
+                M.stopPropagation(), o(e);
               },
               title: v("modal.settings"),
               children: s.jsx(tn, { className: "w-6 h-6 text-gray-600" }),
@@ -12997,9 +13362,9 @@ const It = new Em(),
         });
       case "grid_draw":
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -13014,15 +13379,15 @@ const It = new Em(),
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                         e.type
                       )}`,
-                      children: E(e.type),
+                      children: P(e.type),
                     })
                   : null,
               ],
             }),
             s.jsx("button", {
               className: "p-1 hover:bg-black/10 rounded transition-colors",
-              onClick: (C) => {
-                C.stopPropagation(), l(e);
+              onClick: (M) => {
+                M.stopPropagation(), l(e);
               },
               title: v("modal.settings"),
               children: s.jsx(tn, { className: "w-6 h-6 text-gray-600" }),
@@ -13031,9 +13396,9 @@ const It = new Em(),
         });
       default:
         return s.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${S(
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${D(
             e.type || 0
-          )} ${O(e.type || 0)}`,
+          )} ${F(e.type || 0)}`,
           children: [
             s.jsx("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -13043,7 +13408,7 @@ const It = new Em(),
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${G(
                         e.type
                       )}`,
-                      children: E(e.type),
+                      children: P(e.type),
                     })
                   : null,
             }),
@@ -13057,8 +13422,8 @@ const It = new Em(),
         });
     }
   },
-  zd = m.forwardRef(({ children: e }, t) => {
-    const n = m.useRef(null),
+  Bd = p.forwardRef(({ children: e }, t) => {
+    const n = p.useRef(null),
       {
         selectedDepartmentType: r,
         apiDepartmentData: o,
@@ -13068,18 +13433,18 @@ const It = new Em(),
         openQRCodeScannerModal: c,
         openAddBarcodeModal: h,
         showNotification: d,
-        isAdminMode: g,
+        isAdminMode: x,
       } = Je(),
-      [p, w] = m.useState({ x: 0, y: 0, scale: 1 }),
-      [v, b] = m.useState(!1),
-      [_, u] = m.useState(!1),
-      [f, x] = m.useState({ x: 0, y: 0 }),
-      [j, L] = m.useState(!1),
-      [P, R] = m.useState(""),
-      [N, I] = m.useState(!1),
-      [S, O] = m.useState(null),
-      [G, E] = m.useState(!1),
-      [C, Z] = m.useState({
+      [m, b] = p.useState({ x: 0, y: 0, scale: 1 }),
+      [v, N] = p.useState(!1),
+      [E, u] = p.useState(!1),
+      [f, g] = p.useState({ x: 0, y: 0 }),
+      [C, B] = p.useState(!1),
+      [I, A] = p.useState(""),
+      [j, z] = p.useState(!1),
+      [D, F] = p.useState(null),
+      [G, P] = p.useState(!1),
+      [M, ee] = p.useState({
         isDragging: !1,
         draggedContainer: null,
         draggedElement: null,
@@ -13091,15 +13456,15 @@ const It = new Em(),
         isMobileDrag: !1,
         originalData: null,
       }),
-      [M, F] = m.useState(null),
-      k = m.useRef({}),
+      [w, O] = p.useState(null),
+      S = p.useRef({}),
       Q = () =>
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
         ) ||
         "ontouchstart" in window ||
         navigator.maxTouchPoints > 0,
-      de = 8,
+      ie = 8,
       X = () => {
         try {
           const y = localStorage.getItem("med_map_anchor");
@@ -13111,39 +13476,39 @@ const It = new Em(),
           );
         }
       },
-      ne = (y, W, Y, B) => {
+      oe = (y, q, Y, H) => {
         try {
-          const te = X(),
-            V = te.findIndex(
-              (ie) => ie.department === y && ie.canvasType === W
+          const ne = X(),
+            W = ne.findIndex(
+              (de) => de.department === y && de.canvasType === q
             ),
-            ue = { department: y, canvasType: W, scale: Y, position: B };
-          V >= 0 ? (te[V] = ue) : te.push(ue),
-            localStorage.setItem("med_map_anchor", JSON.stringify(te));
-        } catch (te) {
-          console.error("Error saving canvas state to localStorage:", te);
+            pe = { department: y, canvasType: q, scale: Y, position: H };
+          W >= 0 ? (ne[W] = pe) : ne.push(pe),
+            localStorage.setItem("med_map_anchor", JSON.stringify(ne));
+        } catch (ne) {
+          console.error("Error saving canvas state to localStorage:", ne);
         }
       },
-      je = (y, W) =>
-        X().find((B) => B.department === y && B.canvasType === W) || null;
-    m.useEffect(() => {
+      Ne = (y, q) =>
+        X().find((H) => H.department === y && H.canvasType === q) || null;
+    p.useEffect(() => {
       if (r) {
-        const y = je(r, "drugCanvas");
-        if (y) w({ x: y.position.x, y: y.position.y, scale: y.scale });
+        const y = Ne(r, "drugCanvas");
+        if (y) b({ x: y.position.x, y: y.position.y, scale: y.scale });
         else {
-          const W = { x: 0, y: 0, scale: 1 };
-          w(W), ne(r, "drugCanvas", W.scale, W);
+          const q = { x: 0, y: 0, scale: 1 };
+          b(q), oe(r, "drugCanvas", q.scale, q);
         }
       }
     }, [r]),
-      m.useEffect(() => {
+      p.useEffect(() => {
         if (!r) return;
         const y = setTimeout(() => {
-          ne(r, "drugCanvas", p.scale, { x: p.x, y: p.y });
+          oe(r, "drugCanvas", m.scale, { x: m.x, y: m.y });
         }, 500);
         return () => clearTimeout(y);
-      }, [p, r]);
-    const oe = (y) =>
+      }, [m, r]);
+    const le = (y) =>
         [
           "parent_container",
           "sub_container",
@@ -13153,7 +13518,7 @@ const It = new Em(),
           "list_draw",
           "med_box",
         ].includes(y),
-      ve = (y) =>
+      ye = (y) =>
         ({
           parent_container: ["parent_container", "調劑台", "藥庫"],
           sub_container: ["parent_container", "sub_container"],
@@ -13187,391 +13552,391 @@ const It = new Em(),
           ],
           med_box: ["med_box", "dispensing_shelves"],
         }[y] || []),
-      $ = (y) => {
-        const [W, Y] = y.split(",").map(Number);
-        return { row: W || 0, col: Y || 0 };
+      U = (y) => {
+        const [q, Y] = y.split(",").map(Number);
+        return { row: q || 0, col: Y || 0 };
       },
-      le = (y, W) => `${y},${W}`,
-      pe = (y, W) => {
-        const Y = (te, V = null) => {
-            if (te.GUID === y) return { container: te, parent: V };
-            if (te.contents)
-              for (const ue of te.contents) {
-                const ie = Y(ue, te);
-                if (ie) return ie;
+      ae = (y, q) => `${y},${q}`,
+      R = (y, q) => {
+        const Y = (ne, W = null) => {
+            if (ne.GUID === y) return { container: ne, parent: W };
+            if (ne.contents)
+              for (const pe of ne.contents) {
+                const de = Y(pe, ne);
+                if (de) return de;
               }
             return null;
           },
-          B = De();
-        for (const te of B) {
-          const V = Y(te);
-          if (V) return V;
+          H = _e();
+        for (const ne of H) {
+          const W = Y(ne);
+          if (W) return W;
         }
         return null;
       },
-      T = (y, W) => {
+      J = (y, q) => {
         if (!y.contents) return;
-        const { sortedContents: Y, maxRow: B, maxCol: te } = Ve(y.contents),
-          V = W;
-        if (!V) return;
-        const ue = $(V.gird_position);
-        console.log(B), console.log(te), console.log(V), console.log(ue);
-        for (let ie = 0; ie < Y.length; ie++) {
-          const K = Y[ie],
-            q = $(K.gird_position);
-          if (q.row === ue.row && q.col > ue.col)
-            (K.gird_position = le(q.row, q.col - 1)),
-              (k.current[K.GUID] = {
-                GUID: K.GUID,
-                MASTER_GUID: y.GUID,
-                position: `${q.row},${q.col - 1}`,
+        const { sortedContents: Y, maxRow: H, maxCol: ne } = Ve(y.contents),
+          W = q;
+        if (!W) return;
+        const pe = U(W.gird_position);
+        console.log(H), console.log(ne), console.log(W), console.log(pe);
+        for (let de = 0; de < Y.length; de++) {
+          const Z = Y[de],
+            K = U(Z.gird_position);
+          if (K.row === pe.row && K.col > pe.col)
+            (Z.gird_position = ae(K.row, K.col - 1)),
+              (S.current[Z.GUID] = {
+                GUID: Z.GUID,
+                Master_GUID: y.GUID,
+                position: `${K.row},${K.col - 1}`,
                 serverName: y.serverName,
                 serverType: y.serverType,
-                type: K.type,
+                type: Z.type,
               });
-          else if (q.row > ue.row) {
-            const ge = q.col === 0 ? te : q.col - 1,
-              he = q.col === 0 ? q.row - 1 : q.row;
-            (K.gird_position = le(he, ge)),
-              (k.current[K.GUID] = {
-                GUID: K.GUID,
-                MASTER_GUID: y.GUID,
-                position: `${he},${ge}`,
+          else if (K.row > pe.row) {
+            const xe = K.col === 0 ? ne : K.col - 1,
+              ge = K.col === 0 ? K.row - 1 : K.row;
+            (Z.gird_position = ae(ge, xe)),
+              (S.current[Z.GUID] = {
+                GUID: Z.GUID,
+                Master_GUID: y.GUID,
+                position: `${ge},${xe}`,
                 serverName: y.serverName,
                 serverType: y.serverType,
-                type: K.type,
+                type: Z.type,
               });
           }
         }
         return console.log("移除更新其餘容器", Y), Y;
       },
-      se = (y, W, Y, B, te) => {
+      ce = (y, q, Y, H, ne) => {
         y.contents || (y.contents = []);
-        let V = Math.max(
+        let W = Math.max(
             1,
-            ...y.contents.map((K) => $(K.gird_position || "0,0").col + 1)
+            ...y.contents.map((Z) => U(Z.gird_position || "0,0").col + 1)
           ),
-          ue = Math.max(
+          pe = Math.max(
             1,
-            ...y.contents.map((K) => $(K.gird_position || "0,0").row + 1)
+            ...y.contents.map((Z) => U(Z.gird_position || "0,0").row + 1)
           );
         console.log("--------", y),
-          console.log("目標容器最大列", V),
-          console.log("目標容器最大行", ue),
+          console.log("目標容器最大列", W),
+          console.log("目標容器最大行", pe),
           (y.type == "sub_container" ||
             y.type == "parent_container" ||
             y.type == "調劑台" ||
             y.type == "藥庫") &&
-            (V = +y.oriMaxCol + 1),
-          te != null &&
-            te === "right" &&
-            W.type !== "med_box" &&
-            B == V &&
+            (W = +y.oriMaxCol + 1),
+          ne != null &&
+            ne === "right" &&
+            q.type !== "med_box" &&
+            H == W &&
             ((Y = Y + 1),
-            y.contents.filter((q) => `${Y},0` == q.gird_position).length > 0
-              ? (B = V - 1)
-              : (B = 0)),
+            y.contents.filter((K) => `${Y},0` == K.gird_position).length > 0
+              ? (H = W - 1)
+              : (H = 0)),
           console.log(Y),
-          console.log(B);
-        const ie = y.contents.filter((K) => {
-          const q = $(K.gird_position || "0,0");
-          return q.row > Y || (q.row === Y && q.col >= B);
+          console.log(H);
+        const de = y.contents.filter((Z) => {
+          const K = U(Z.gird_position || "0,0");
+          return K.row > Y || (K.row === Y && K.col >= H);
         });
-        ie.sort((K, q) => {
-          const ge = $(K.gird_position || "0,0"),
-            he = $(q.gird_position || "0,0");
-          return ge.row !== he.row ? he.row - ge.row : he.col - ge.col;
+        de.sort((Z, K) => {
+          const xe = U(Z.gird_position || "0,0"),
+            ge = U(K.gird_position || "0,0");
+          return xe.row !== ge.row ? ge.row - xe.row : ge.col - xe.col;
         }),
-          console.log("會做變更的目標容器", ie),
-          ie.forEach((K) => {
-            const q = $(K.gird_position || "0,0");
-            let ge = q.row,
-              he = q.col;
-            K.type === "med_box" || he < V - 1
-              ? (he += 1)
-              : ((ge += 1), (he = 0)),
-              (K.gird_position = `${ge},${he}`),
-              (k.current[K.GUID] = {
-                GUID: K.GUID,
-                MASTER_GUID: y.GUID,
-                position: `${ge},${he}`,
+          console.log("會做變更的目標容器", de),
+          de.forEach((Z) => {
+            const K = U(Z.gird_position || "0,0");
+            let xe = K.row,
+              ge = K.col;
+            Z.type === "med_box" || ge < W - 1
+              ? (ge += 1)
+              : ((xe += 1), (ge = 0)),
+              (Z.gird_position = `${xe},${ge}`),
+              (S.current[Z.GUID] = {
+                GUID: Z.GUID,
+                Master_GUID: y.GUID,
+                position: `${xe},${ge}`,
                 serverName: y.serverName,
                 serverType: y.serverType,
-                type: K.type,
+                type: Z.type,
               }),
               console.log(
-                `Shifted container ${K.GUID} from ${q.row},${q.col} to ${ge},${he}`
+                `Shifted container ${Z.GUID} from ${K.row},${K.col} to ${xe},${ge}`
               );
           }),
-          y.contents.length == 0 && ((Y = 0), (B = 0)),
-          (W.gird_position = `${Y},${B}`),
-          (W.MASTER_GUID = y.GUID),
-          console.log(`Inserted container ${W.GUID} at position ${Y},${B}`),
-          y.contents.push(W),
-          (k.current[W.GUID] = {
-            GUID: W.GUID,
-            MASTER_GUID: y.GUID,
-            position: `${Y},${B}`,
+          y.contents.length == 0 && ((Y = 0), (H = 0)),
+          (q.gird_position = `${Y},${H}`),
+          (q.Master_GUID = y.GUID),
+          console.log(`Inserted container ${q.GUID} at position ${Y},${H}`),
+          y.contents.push(q),
+          (S.current[q.GUID] = {
+            GUID: q.GUID,
+            Master_GUID: y.GUID,
+            position: `${Y},${H}`,
             serverName: y.serverName,
             serverType: y.serverType,
-            type: W.type,
+            type: q.type,
           }),
-          W.type === "dispensing_shelves" &&
-            W.contents &&
-            W.contents.forEach((K) => {
-              K.type === "med_box" &&
-                (k.current[K.GUID] = {
-                  GUID: K.GUID,
-                  MASTER_GUID: K.MASTER_GUID,
-                  position: K.gird_position,
+          q.type === "dispensing_shelves" &&
+            q.contents &&
+            q.contents.forEach((Z) => {
+              Z.type === "med_box" &&
+                (S.current[Z.GUID] = {
+                  GUID: Z.GUID,
+                  Master_GUID: Z.Master_GUID,
+                  position: Z.gird_position,
                   serverName: y.serverName,
                   serverType: y.serverType,
-                  type: K.type,
+                  type: Z.type,
                 });
             });
       },
-      Se = (y, W, Y) => {
-        const B = y.getBoundingClientRect(),
-          te = B.left + B.width / 2,
-          V = B.top + B.height / 2,
-          ue = W - te,
-          ie = Y - V;
-        return Math.abs(ue) > Math.abs(ie)
-          ? ue > 0
+      Se = (y, q, Y) => {
+        const H = y.getBoundingClientRect(),
+          ne = H.left + H.width / 2,
+          W = H.top + H.height / 2,
+          pe = q - ne,
+          de = Y - W;
+        return Math.abs(pe) > Math.abs(de)
+          ? pe > 0
             ? "right"
             : "left"
-          : ie > 0
+          : de > 0
           ? "bottom"
           : "top";
       },
-      U = (y, W, Y) => {
-        if (!_ || !oe(y.type)) return;
-        (k.current = {}), Y.preventDefault(), Y.stopPropagation();
-        const B = Q(),
-          te =
+      L = (y, q, Y) => {
+        if (!E || !le(y.type)) return;
+        (S.current = {}), Y.preventDefault(), Y.stopPropagation();
+        const H = Q(),
+          ne =
             "touches" in Y
               ? Y.touches[0].clientX
               : ("pointerId" in Y, Y.clientX),
-          V =
+          W =
             "touches" in Y
               ? Y.touches[0].clientY
               : ("pointerId" in Y, Y.clientY),
-          ue = W.getBoundingClientRect(),
-          ie = { x: te - ue.left, y: V - ue.top },
-          K = pe(y.GUID);
-        if (!K) return;
-        console.log("拖曳目標", y), console.log("拖曳目標", K);
-        const q = W.cloneNode(!0);
+          pe = q.getBoundingClientRect(),
+          de = { x: ne - pe.left, y: W - pe.top },
+          Z = R(y.GUID);
+        if (!Z) return;
+        console.log("拖曳目標", y), console.log("拖曳目標", Z);
+        const K = q.cloneNode(!0);
         if (
-          ((q.style.position = "fixed"),
-          (q.style.left = `${te - ie.x}px`),
-          (q.style.top = `${V - ie.y}px`),
-          (q.style.width = `${ue.width}px`),
-          (q.style.height = `${ue.height}px`),
-          (q.style.zIndex = "9999"),
-          (q.style.opacity = "0.8"),
-          (q.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
-          (q.style.pointerEvents = "none"),
-          document.body.appendChild(q),
-          B)
+          ((K.style.position = "fixed"),
+          (K.style.left = `${ne - de.x}px`),
+          (K.style.top = `${W - de.y}px`),
+          (K.style.width = `${pe.width}px`),
+          (K.style.height = `${pe.height}px`),
+          (K.style.zIndex = "9999"),
+          (K.style.opacity = "0.8"),
+          (K.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
+          (K.style.pointerEvents = "none"),
+          document.body.appendChild(K),
+          H)
         ) {
-          const ge = K.parent.contents.findIndex((Pe) => Pe.GUID === y.GUID);
-          K.parent.contents.splice(ge, 1), console.log(ge), K.parent;
-          const he = T(K.parent, y);
-          (K.parent.contents = he),
-            console.log(K.parent),
-            Z({
+          const xe = Z.parent.contents.findIndex((Ie) => Ie.GUID === y.GUID);
+          Z.parent.contents.splice(xe, 1), console.log(xe), Z.parent;
+          const ge = J(Z.parent, y);
+          (Z.parent.contents = ge),
+            console.log(Z.parent),
+            ee({
               isDragging: !0,
               draggedContainer: y,
-              draggedElement: W,
-              floatingElement: q,
-              originalParent: K.parent,
+              draggedElement: q,
+              floatingElement: K,
+              originalParent: Z.parent,
               originalPosition: y.gird_position,
-              originalIndex: ge,
-              mouseOffset: ie,
+              originalIndex: xe,
+              mouseOffset: de,
               isMobileDrag: !1,
               originalData: null,
             });
         } else {
-          const ge = K.parent.contents.findIndex((Re) => Re.GUID === y.GUID);
-          K.parent.contents.splice(ge, 1), console.log(ge);
-          const he = K.parent,
-            Pe = T(K.parent, y);
-          (K.parent.contents = Pe),
-            console.log(K.parent),
-            Z({
+          const xe = Z.parent.contents.findIndex((Re) => Re.GUID === y.GUID);
+          Z.parent.contents.splice(xe, 1), console.log(xe);
+          const ge = Z.parent,
+            Ie = J(Z.parent, y);
+          (Z.parent.contents = Ie),
+            console.log(Z.parent),
+            ee({
               isDragging: !0,
               draggedContainer: y,
-              draggedElement: W,
-              floatingElement: q,
-              originalParent: he,
+              draggedElement: q,
+              floatingElement: K,
+              originalParent: ge,
               originalPosition: y.gird_position,
-              originalIndex: ge,
-              mouseOffset: ie,
+              originalIndex: xe,
+              mouseOffset: de,
               isMobileDrag: !1,
               originalData: null,
             });
         }
       },
-      ee = (y) => {
-        if (!C.isDragging || !C.floatingElement) return;
-        const W = "touches" in y ? y.touches[0].clientX : y.clientX,
+      _ = (y) => {
+        if (!M.isDragging || !M.floatingElement) return;
+        const q = "touches" in y ? y.touches[0].clientX : y.clientX,
           Y = "touches" in y ? y.touches[0].clientY : y.clientY;
-        (C.floatingElement.style.left = `${W - C.mouseOffset.x}px`),
-          (C.floatingElement.style.top = `${Y - C.mouseOffset.y}px`);
-        const B = document.elementFromPoint(W, Y),
-          te = B == null ? void 0 : B.closest("[data-container-guid]");
-        if (te) {
-          const V = te.getAttribute("data-container-guid"),
-            ue = pe(V);
-          if (ue && ve(C.draggedContainer.type).includes(ue.container.type)) {
-            const K = Se(te, W, Y);
+        (M.floatingElement.style.left = `${q - M.mouseOffset.x}px`),
+          (M.floatingElement.style.top = `${Y - M.mouseOffset.y}px`);
+        const H = document.elementFromPoint(q, Y),
+          ne = H == null ? void 0 : H.closest("[data-container-guid]");
+        if (ne) {
+          const W = ne.getAttribute("data-container-guid"),
+            pe = R(W);
+          if (pe && ye(M.draggedContainer.type).includes(pe.container.type)) {
+            const Z = Se(ne, q, Y);
             if (
-              C.draggedContainer.type === "med_box" &&
-              !["left", "right"].includes(K)
+              M.draggedContainer.type === "med_box" &&
+              !["left", "right"].includes(Z)
             ) {
-              F(null);
+              O(null);
               return;
             }
-            F({ container: ue.container, direction: K, element: te });
+            O({ container: pe.container, direction: Z, element: ne });
             return;
           }
         }
-        F(null);
+        O(null);
       },
-      ye = async (y) => {
-        if (!C.isDragging) return;
-        C.floatingElement && document.body.removeChild(C.floatingElement);
-        let W = null,
+      re = async (y) => {
+        if (!M.isDragging) return;
+        M.floatingElement && document.body.removeChild(M.floatingElement);
+        let q = null,
           Y = null,
-          B = null;
+          H = null;
         if (
-          (console.log("Drop Target:", M),
-          console.log("Is Mobile Drag:", C.isMobileDrag),
-          C.isMobileDrag)
+          (console.log("Drop Target:", w),
+          console.log("Is Mobile Drag:", M.isMobileDrag),
+          M.isMobileDrag)
         )
-          if (M) {
-            (W = M.direction), (B = M.container);
-            const te = pe(C.draggedContainer.GUID);
-            if (te) {
-              const ge = te.parent.contents.findIndex(
-                (Pe) => Pe.GUID === C.draggedContainer.GUID
+          if (w) {
+            (q = w.direction), (H = w.container);
+            const ne = R(M.draggedContainer.GUID);
+            if (ne) {
+              const xe = ne.parent.contents.findIndex(
+                (Ie) => Ie.GUID === M.draggedContainer.GUID
               );
-              te.parent.contents.splice(ge, 1);
-              const he = T(te.parent, C.draggedContainer);
-              te.parent.contents = he;
+              ne.parent.contents.splice(xe, 1);
+              const ge = J(ne.parent, M.draggedContainer);
+              ne.parent.contents = ge;
             }
-            const V = $(M.container.gird_position || "0,0");
-            let ue = V.row,
-              ie = V.col;
-            switch (M.direction) {
+            const W = U(w.container.gird_position || "0,0");
+            let pe = W.row,
+              de = W.col;
+            switch (w.direction) {
               case "top":
-                ue = Math.max(0, V.row);
+                pe = Math.max(0, W.row);
                 break;
               case "bottom":
-                ue = V.row + 1;
+                pe = W.row + 1;
                 break;
               case "left":
-                ie = Math.max(0, V.col);
+                de = Math.max(0, W.col);
                 break;
               case "right":
-                ie = V.col + 1;
+                de = W.col + 1;
                 break;
             }
-            const K = pe(M.container.MASTER_GUID || M.container.GUID);
-            let q = (K == null ? void 0 : K.container) || M.container;
+            const Z = R(w.container.Master_GUID || w.container.GUID);
+            let K = (Z == null ? void 0 : Z.container) || w.container;
             if (
-              (C.draggedContainer.class != M.class && (q = M),
-              C.draggedContainer.type === "med_box" &&
-                M.container.type !== "med_box")
+              (M.draggedContainer.class != w.class && (K = w),
+              M.draggedContainer.type === "med_box" &&
+                w.container.type !== "med_box")
             )
               if (
                 (console.log("藥盒移動目標到層架上"),
-                (q = M.container),
-                q.contents.length > 0)
+                (K = w.container),
+                K.contents.length > 0)
               ) {
-                let ge = 0,
-                  he = 0;
-                q.contents.forEach((Pe) => {
-                  const Re = $(Pe.gird_position || "0,0").row,
-                    Ot = $(Pe.gird_position || "0,0").col;
-                  ge > Re && (ge = Re), he > Ot && (he = Ot);
+                let xe = 0,
+                  ge = 0;
+                K.contents.forEach((Ie) => {
+                  const Re = U(Ie.gird_position || "0,0").row,
+                    Ot = U(Ie.gird_position || "0,0").col;
+                  xe > Re && (xe = Re), ge > Ot && (ge = Ot);
                 });
-                for (let Pe = 0; Pe <= he; Pe++)
-                  for (let Re = 0; Re <= ge; Re++) {
-                    const Ot = `${Pe},${Re}`;
-                    q.contents.filter((Er) => Er.grid_position === Ot)
-                      .length === 0 && ((ue = Pe), (ie = Re));
+                for (let Ie = 0; Ie <= ge; Ie++)
+                  for (let Re = 0; Re <= xe; Re++) {
+                    const Ot = `${Ie},${Re}`;
+                    K.contents.filter((Er) => Er.grid_position === Ot)
+                      .length === 0 && ((pe = Ie), (de = Re));
                   }
-              } else (ue = 0), (ie = 0);
-            (Y = q), se(q, C.draggedContainer, ue, ie, M.direction);
-          } else (W = null), (B = null), (Y = C.originalParent);
-        else if (M) {
-          (W = M.direction), (B = M.container);
-          const te = $(M.container.gird_position || "0,0");
-          let V = te.row,
-            ue = te.col;
-          switch (M.direction) {
+              } else (pe = 0), (de = 0);
+            (Y = K), ce(K, M.draggedContainer, pe, de, w.direction);
+          } else (q = null), (H = null), (Y = M.originalParent);
+        else if (w) {
+          (q = w.direction), (H = w.container);
+          const ne = U(w.container.gird_position || "0,0");
+          let W = ne.row,
+            pe = ne.col;
+          switch (w.direction) {
             case "top":
-              V = Math.max(0, te.row);
+              W = Math.max(0, ne.row);
               break;
             case "bottom":
-              V = te.row + 1;
+              W = ne.row + 1;
               break;
             case "left":
-              ue = Math.max(0, te.col);
+              pe = Math.max(0, ne.col);
               break;
             case "right":
-              ue = te.col + 1;
+              pe = ne.col + 1;
               break;
           }
-          const ie = pe(M.container.MASTER_GUID || M.container.GUID);
-          console.log("------目標容器", M),
-            console.log("------拖曳容器", C.draggedContainer);
-          let K = (ie == null ? void 0 : ie.container) || M.container;
+          const de = R(w.container.Master_GUID || w.container.GUID);
+          console.log("------目標容器", w),
+            console.log("------拖曳容器", M.draggedContainer);
+          let Z = (de == null ? void 0 : de.container) || w.container;
           if (
-            (console.log(C.draggedContainer.class),
-            console.log(M.container.class),
-            console.log(C.draggedContainer.class != M.container.class),
-            C.draggedContainer.class != M.container.class &&
-              ((K = M.container),
+            (console.log(M.draggedContainer.class),
+            console.log(w.container.class),
+            console.log(M.draggedContainer.class != w.container.class),
+            M.draggedContainer.class != w.container.class &&
+              ((Z = w.container),
               console.log("------這邊顯示放到上層容器現象"),
-              console.log("------目標容器", M),
-              console.log("------拖曳容器", C.draggedContainer),
-              console.log("------目標父容器", K)),
-            C.draggedContainer.type === "med_box" &&
-              M.container.type !== "med_box")
+              console.log("------目標容器", w),
+              console.log("------拖曳容器", M.draggedContainer),
+              console.log("------目標父容器", Z)),
+            M.draggedContainer.type === "med_box" &&
+              w.container.type !== "med_box")
           )
             if (
               (console.log("藥盒移動目標到層架上"),
-              (K = M.container),
-              K.contents.length > 0)
+              (Z = w.container),
+              Z.contents.length > 0)
             ) {
-              let q = 0,
-                ge = 0;
-              K.contents.forEach((he) => {
-                const Pe = $(he.gird_position || "0,0").row,
-                  Re = $(he.gird_position || "0,0").col;
-                q > Pe && (q = Pe), ge > Re && (ge = Re);
+              let K = 0,
+                xe = 0;
+              Z.contents.forEach((ge) => {
+                const Ie = U(ge.gird_position || "0,0").row,
+                  Re = U(ge.gird_position || "0,0").col;
+                K > Ie && (K = Ie), xe > Re && (xe = Re);
               });
-              for (let he = 0; he <= ge; he++)
-                for (let Pe = 0; Pe <= q; Pe++) {
-                  const Re = `${he},${Pe}`;
-                  K.contents.filter((Qn) => Qn.grid_position === Re).length ===
-                    0 && ((V = he), (ue = Pe));
+              for (let ge = 0; ge <= xe; ge++)
+                for (let Ie = 0; Ie <= K; Ie++) {
+                  const Re = `${ge},${Ie}`;
+                  Z.contents.filter((qn) => qn.grid_position === Re).length ===
+                    0 && ((W = ge), (pe = Ie));
                 }
-            } else (V = 0), (ue = 0);
-          (Y = K), se(K, C.draggedContainer, V, ue, M.direction);
+            } else (W = 0), (pe = 0);
+          (Y = Z), ce(Z, M.draggedContainer, W, pe, w.direction);
         } else {
-          (W = null),
-            (B = null),
-            (Y = C.originalParent),
-            (C.draggedContainer.gird_position = C.originalPosition);
-          const te = $(C.originalPosition || "0,0").row,
-            V = $(C.originalPosition || "0,0").col;
-          se(C.originalParent, C.draggedContainer, te, V, null);
+          (q = null),
+            (H = null),
+            (Y = M.originalParent),
+            (M.draggedContainer.gird_position = M.originalPosition);
+          const ne = U(M.originalPosition || "0,0").row,
+            W = U(M.originalPosition || "0,0").col;
+          ce(M.originalParent, M.draggedContainer, ne, W, null);
         }
-        Z({
+        ee({
           isDragging: !1,
           draggedContainer: null,
           draggedElement: null,
@@ -13583,238 +13948,238 @@ const It = new Em(),
           isMobileDrag: !1,
           originalData: null,
         }),
-          F(null),
-          console.log("Drop Direction:", W),
+          O(null),
+          console.log("Drop Direction:", q),
           console.log("Parent Object:", Y),
-          console.log("Target Object:", B),
-          console.log("API更新資料：", k),
-          await rh(k);
+          console.log("Target Object:", H),
+          console.log("API更新資料：", S),
+          await oh(S);
       };
-    m.useEffect(() => {
-      if (C.isDragging)
+    p.useEffect(() => {
+      if (M.isDragging)
         if (Q()) {
-          const W = (te) => {
-              te.preventDefault(), ee(te);
+          const q = (ne) => {
+              ne.preventDefault(), _(ne);
             },
-            Y = (te) => ye(),
-            B = (te) => ye();
+            Y = (ne) => re(),
+            H = (ne) => re();
           return (
-            document.addEventListener("pointermove", W, { passive: !1 }),
+            document.addEventListener("pointermove", q, { passive: !1 }),
             document.addEventListener("pointerup", Y),
-            document.addEventListener("pointercancel", B),
+            document.addEventListener("pointercancel", H),
             () => {
-              document.removeEventListener("pointermove", W),
+              document.removeEventListener("pointermove", q),
                 document.removeEventListener("pointerup", Y),
-                document.removeEventListener("pointercancel", B);
+                document.removeEventListener("pointercancel", H);
             }
           );
         } else {
-          const W = (V) => ee(V),
-            Y = (V) => ye(),
-            B = (V) => {
-              V.preventDefault(), ee(V);
+          const q = (W) => _(W),
+            Y = (W) => re(),
+            H = (W) => {
+              W.preventDefault(), _(W);
             },
-            te = (V) => ye();
+            ne = (W) => re();
           return (
-            document.addEventListener("mousemove", W),
+            document.addEventListener("mousemove", q),
             document.addEventListener("mouseup", Y),
-            document.addEventListener("touchmove", B, { passive: !1 }),
-            document.addEventListener("touchend", te),
+            document.addEventListener("touchmove", H, { passive: !1 }),
+            document.addEventListener("touchend", ne),
             () => {
-              document.removeEventListener("mousemove", W),
+              document.removeEventListener("mousemove", q),
                 document.removeEventListener("mouseup", Y),
-                document.removeEventListener("touchmove", B),
-                document.removeEventListener("touchend", te);
+                document.removeEventListener("touchmove", H),
+                document.removeEventListener("touchend", ne);
             }
           );
         }
-    }, [C.isDragging, M]),
-      m.useEffect(() => {
+    }, [M.isDragging, w]),
+      p.useEffect(() => {
         const y = (Y) => {
-            Y.code === "Space" && !Y.repeat && (Y.preventDefault(), L(!0));
+            Y.code === "Space" && !Y.repeat && (Y.preventDefault(), B(!0));
           },
-          W = (Y) => {
-            Y.code === "Space" && (Y.preventDefault(), L(!1), b(!1));
+          q = (Y) => {
+            Y.code === "Space" && (Y.preventDefault(), B(!1), N(!1));
           };
         return (
           window.addEventListener("keydown", y),
-          window.addEventListener("keyup", W),
+          window.addEventListener("keyup", q),
           () => {
             window.removeEventListener("keydown", y),
-              window.removeEventListener("keyup", W);
+              window.removeEventListener("keyup", q);
           }
         );
       }, []);
-    const z = m.useCallback(
+    const T = p.useCallback(
         (y) => {
           var Y;
-          if (_) return;
+          if (E) return;
           if (y.ctrlKey || y.metaKey) {
             y.preventDefault(), y.stopPropagation();
-            const B =
+            const H =
               (Y = n.current) == null ? void 0 : Y.getBoundingClientRect();
-            if (!B) return;
-            const te = y.clientX - B.left,
-              V = y.clientY - B.top,
-              ue = y.deltaY > 0 ? 0.9 : 1.1,
-              ie = Math.max(0.1, Math.min(5, p.scale * ue)),
-              K = ie / p.scale,
-              q = te - (te - p.x) * K,
-              ge = V - (V - p.y) * K;
-            w({ x: q, y: ge, scale: ie });
+            if (!H) return;
+            const ne = y.clientX - H.left,
+              W = y.clientY - H.top,
+              pe = y.deltaY > 0 ? 0.9 : 1.1,
+              de = Math.max(0.1, Math.min(5, m.scale * pe)),
+              Z = de / m.scale,
+              K = ne - (ne - m.x) * Z,
+              xe = W - (W - m.y) * Z;
+            b({ x: K, y: xe, scale: de });
           }
         },
-        [p, _]
+        [m, E]
       ),
-      D = m.useCallback(
+      k = p.useCallback(
         (y) => {
-          _ ||
-            !j ||
-            (b(!0),
-            x({ x: y.clientX, y: y.clientY }),
-            O({ x: y.clientX, y: y.clientY }),
-            E(!1),
+          E ||
+            !C ||
+            (N(!0),
+            g({ x: y.clientX, y: y.clientY }),
+            F({ x: y.clientX, y: y.clientY }),
+            P(!1),
             y.preventDefault());
         },
-        [_, j]
+        [E, C]
       ),
-      A = m.useCallback(
+      $ = p.useCallback(
         (y) => {
-          if (!v || _) return;
-          const W = y.clientX - f.x,
+          if (!v || E) return;
+          const q = y.clientX - f.x,
             Y = y.clientY - f.y;
-          if (S) {
-            const B = Math.abs(y.clientX - S.x),
-              te = Math.abs(y.clientY - S.y);
-            (B > 5 || te > 5) && E(!0);
+          if (D) {
+            const H = Math.abs(y.clientX - D.x),
+              ne = Math.abs(y.clientY - D.y);
+            (H > 5 || ne > 5) && P(!0);
           }
-          w((B) => ({ ...B, x: B.x + W, y: B.y + Y })),
-            x({ x: y.clientX, y: y.clientY });
+          b((H) => ({ ...H, x: H.x + q, y: H.y + Y })),
+            g({ x: y.clientX, y: y.clientY });
         },
-        [v, f, _, S]
+        [v, f, E, D]
       ),
-      H = m.useCallback(() => {
-        b(!1), O(null);
+      V = p.useCallback(() => {
+        N(!1), F(null);
       }, []),
-      [re, ae] = m.useState(null),
-      [xe, be] = m.useState({ x: 0, y: 0 }),
-      Ne = (y) => {
+      [se, ue] = p.useState(null),
+      [ve, be] = p.useState({ x: 0, y: 0 }),
+      je = (y) => {
         if (y.length < 2) return null;
-        const W = y[0],
+        const q = y[0],
           Y = y[1];
         return Math.sqrt(
-          Math.pow(Y.clientX - W.clientX, 2) +
-            Math.pow(Y.clientY - W.clientY, 2)
+          Math.pow(Y.clientX - q.clientX, 2) +
+            Math.pow(Y.clientY - q.clientY, 2)
         );
       },
-      _e = (y) => {
+      De = (y) => {
         if (y.length === 1) return { x: y[0].clientX, y: y[0].clientY };
-        const W = y[0],
+        const q = y[0],
           Y = y[1];
         return {
-          x: (W.clientX + Y.clientX) / 2,
-          y: (W.clientY + Y.clientY) / 2,
+          x: (q.clientX + Y.clientX) / 2,
+          y: (q.clientY + Y.clientY) / 2,
         };
       },
-      ce = m.useCallback(
+      fe = p.useCallback(
         (y) => {
-          if (!_) {
+          if (!E) {
             if (y.touches.length === 2) {
-              const W = Ne(y.touches),
-                Y = _e(y.touches);
-              ae(W), be(Y);
+              const q = je(y.touches),
+                Y = De(y.touches);
+              ue(q), be(Y);
             } else if (y.touches.length === 1) {
-              const W = y.touches[0];
-              x({ x: W.clientX, y: W.clientY }), b(!0);
+              const q = y.touches[0];
+              g({ x: q.clientX, y: q.clientY }), N(!0);
             }
           }
         },
-        [_]
+        [E]
       ),
-      me = m.useCallback(
+      he = p.useCallback(
         (y) => {
-          var W;
-          if (!_) {
-            if ((y.preventDefault(), y.touches.length === 2 && re !== null)) {
-              const Y = Ne(y.touches),
-                B = _e(y.touches);
-              if (Y && re) {
-                const te =
-                  (W = n.current) == null ? void 0 : W.getBoundingClientRect();
-                if (!te) return;
-                const V = Y / re,
-                  ue = Math.max(0.1, Math.min(5, p.scale * V)),
-                  ie = B.x - te.left,
-                  K = B.y - te.top,
-                  q = ue / p.scale,
-                  ge = ie - (ie - p.x) * q,
-                  he = K - (K - p.y) * q;
-                w({ x: ge, y: he, scale: ue }), ae(Y), be(B);
+          var q;
+          if (!E) {
+            if ((y.preventDefault(), y.touches.length === 2 && se !== null)) {
+              const Y = je(y.touches),
+                H = De(y.touches);
+              if (Y && se) {
+                const ne =
+                  (q = n.current) == null ? void 0 : q.getBoundingClientRect();
+                if (!ne) return;
+                const W = Y / se,
+                  pe = Math.max(0.1, Math.min(5, m.scale * W)),
+                  de = H.x - ne.left,
+                  Z = H.y - ne.top,
+                  K = pe / m.scale,
+                  xe = de - (de - m.x) * K,
+                  ge = Z - (Z - m.y) * K;
+                b({ x: xe, y: ge, scale: pe }), ue(Y), be(H);
               }
             } else if (y.touches.length === 1 && v) {
               const Y = y.touches[0],
-                B = Y.clientX - f.x,
-                te = Y.clientY - f.y;
-              w((V) => ({ ...V, x: V.x + B, y: V.y + te })),
-                x({ x: Y.clientX, y: Y.clientY });
+                H = Y.clientX - f.x,
+                ne = Y.clientY - f.y;
+              b((W) => ({ ...W, x: W.x + H, y: W.y + ne })),
+                g({ x: Y.clientX, y: Y.clientY });
             }
           }
         },
-        [p, re, v, f, _]
+        [m, se, v, f, E]
       ),
-      we = m.useCallback(() => {
-        ae(null), b(!1);
+      we = p.useCallback(() => {
+        ue(null), N(!1);
       }, []);
-    m.useEffect(() => {
+    p.useEffect(() => {
       const y = n.current;
       if (y)
         return (
-          y.addEventListener("wheel", z, { passive: !1 }),
-          () => y.removeEventListener("wheel", z)
+          y.addEventListener("wheel", T, { passive: !1 }),
+          () => y.removeEventListener("wheel", T)
         );
-    }, [z]);
-    const De = () => (!o || o.length === 0 ? [] : o),
+    }, [T]);
+    const _e = () => (!o || o.length === 0 ? [] : o),
       Ve = (y) => {
         if (!y || y.length === 0)
           return { sortedContents: [], maxRow: 0, maxCol: 0 };
-        const W = y.map((V) => ({
-            ...V,
-            gridPos: $(V.gird_position || "0,0"),
+        const q = y.map((W) => ({
+            ...W,
+            gridPos: U(W.gird_position || "0,0"),
           })),
-          Y = Math.max(...W.map((V) => V.gridPos.row), 0),
-          B = Math.max(...W.map((V) => V.gridPos.col), 0);
+          Y = Math.max(...q.map((W) => W.gridPos.row), 0),
+          H = Math.max(...q.map((W) => W.gridPos.col), 0);
         return {
-          sortedContents: W.sort((V, ue) =>
-            V.gridPos.row !== ue.gridPos.row
-              ? V.gridPos.row - ue.gridPos.row
-              : V.gridPos.col - ue.gridPos.col
+          sortedContents: q.sort((W, pe) =>
+            W.gridPos.row !== pe.gridPos.row
+              ? W.gridPos.row - pe.gridPos.row
+              : W.gridPos.col - pe.gridPos.col
           ),
           maxRow: Y,
-          maxCol: B,
+          maxCol: H,
         };
       },
-      Ce = De(),
-      qe = Math.max(...Ce.map((y) => $(y.gird_position || "0,0").row), 0),
-      ze = Math.max(...Ce.map((y) => $(y.gird_position || "0,0").col), 0),
-      vt = (y) => {
-        const W = (B) => {
+      Ce = _e(),
+      Ye = Math.max(...Ce.map((y) => U(y.gird_position || "0,0").row), 0),
+      Be = Math.max(...Ce.map((y) => U(y.gird_position || "0,0").col), 0),
+      wt = (y) => {
+        const q = (H) => {
             if (
-              B.width &&
-              Array.isArray(B.width) &&
-              typeof B.width_index == "number" &&
-              B.width_index >= 0 &&
-              B.width_index < B.width.length
+              H.width &&
+              Array.isArray(H.width) &&
+              typeof H.width_index == "number" &&
+              H.width_index >= 0 &&
+              H.width_index < H.width.length
             ) {
-              const V = parseFloat(B.width[B.width_index]);
-              if (!isNaN(V)) {
-                const ue = V * 20;
-                return Math.max(200, ue);
+              const W = parseFloat(H.width[H.width_index]);
+              if (!isNaN(W)) {
+                const pe = W * 20;
+                return Math.max(200, pe);
               }
             }
             return 200;
           },
-          Y = (B) => {
-            switch (B) {
+          Y = (H) => {
+            switch (H) {
               case "parent_container":
                 return "bg-pink-50 border-pink-300";
               case "sub_container":
@@ -13834,7 +14199,7 @@ const It = new Em(),
         switch (y.type) {
           case "med_box":
             return (
-              W(y),
+              q(y),
               s.jsxs(
                 "div",
                 {
@@ -13849,40 +14214,40 @@ const It = new Em(),
                   children: [
                     s.jsx("div", {
                       onMouseDown:
-                        _ && oe(y.type) && !Q()
-                          ? (B) =>
-                              U(
+                        E && le(y.type) && !Q()
+                          ? (H) =>
+                              L(
                                 y,
-                                B.currentTarget.closest(
+                                H.currentTarget.closest(
                                   "[data-container-guid]"
                                 ),
-                                B
+                                H
                               )
                           : void 0,
                       onTouchStart:
-                        _ && oe(y.type) && !Q()
-                          ? (B) =>
-                              U(
+                        E && le(y.type) && !Q()
+                          ? (H) =>
+                              L(
                                 y,
-                                B.currentTarget.closest(
+                                H.currentTarget.closest(
                                   "[data-container-guid]"
                                 ),
-                                B
+                                H
                               )
                           : void 0,
                       onPointerDown:
-                        _ && oe(y.type) && Q()
-                          ? (B) =>
-                              U(
+                        E && le(y.type) && Q()
+                          ? (H) =>
+                              L(
                                 y,
-                                B.currentTarget.closest(
+                                H.currentTarget.closest(
                                   "[data-container-guid]"
                                 ),
-                                B
+                                H
                               )
                           : void 0,
-                      className: _ && oe(y.type) ? "cursor-move" : "",
-                      children: s.jsx(zs, { content: y, isAdminMode: g }),
+                      className: E && le(y.type) ? "cursor-move" : "",
+                      children: s.jsx(Bs, { content: y, isAdminMode: x }),
                     }),
                     s.jsx("div", { className: "flex-1 p-1", children: it(y) }),
                   ],
@@ -13902,34 +14267,34 @@ const It = new Em(),
                 children: [
                   s.jsx("div", {
                     onMouseDown:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onTouchStart:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onPointerDown:
-                      _ && oe(y.type) && Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
-                    className: _ && oe(y.type) ? "cursor-move" : "",
-                    children: s.jsx(zs, { content: y, isAdminMode: g }),
+                    className: E && le(y.type) ? "cursor-move" : "",
+                    children: s.jsx(Bs, { content: y, isAdminMode: x }),
                   }),
                   s.jsx("div", { className: "flex-1  p-1", children: it(y) }),
                 ],
@@ -13951,34 +14316,34 @@ const It = new Em(),
                 children: [
                   s.jsx("div", {
                     onMouseDown:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onTouchStart:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onPointerDown:
-                      _ && oe(y.type) && Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
-                    className: _ && oe(y.type) ? "cursor-move" : "",
-                    children: s.jsx(zs, { content: y, isAdminMode: g }),
+                    className: E && le(y.type) ? "cursor-move" : "",
+                    children: s.jsx(Bs, { content: y, isAdminMode: x }),
                   }),
                   s.jsx("div", {
                     className: "flex-1 p-1 flex items-center",
@@ -14005,34 +14370,34 @@ const It = new Em(),
                 children: [
                   s.jsx("div", {
                     onMouseDown:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onTouchStart:
-                      _ && oe(y.type) && !Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && !Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
                     onPointerDown:
-                      _ && oe(y.type) && Q()
-                        ? (B) =>
-                            U(
+                      E && le(y.type) && Q()
+                        ? (H) =>
+                            L(
                               y,
-                              B.currentTarget.closest("[data-container-guid]"),
-                              B
+                              H.currentTarget.closest("[data-container-guid]"),
+                              H
                             )
                         : void 0,
-                    className: _ && oe(y.type) ? "cursor-move" : "",
-                    children: s.jsx(zs, { content: y, isAdminMode: g }),
+                    className: E && le(y.type) ? "cursor-move" : "",
+                    children: s.jsx(Bs, { content: y, isAdminMode: x }),
                   }),
                   s.jsx("div", { className: "flex-1 p-1", children: it(y) }),
                 ],
@@ -14042,55 +14407,55 @@ const It = new Em(),
         }
       },
       it = (y) => {
-        const W = (Y, B, te) => {
-          const V = Array(B + 1)
+        const q = (Y, H, ne) => {
+          const W = Array(H + 1)
               .fill(null)
-              .map(() => Array(te + 1).fill(!1)),
-            ue = {};
+              .map(() => Array(ne + 1).fill(!1)),
+            pe = {};
           return (
-            Y.forEach((ie) => {
-              const K = $(ie.gird_position || "0,0");
-              (ue[`${K.row},${K.col}`] = ie), (V[K.row][K.col] = !0);
+            Y.forEach((de) => {
+              const Z = U(de.gird_position || "0,0");
+              (pe[`${Z.row},${Z.col}`] = de), (W[Z.row][Z.col] = !0);
             }),
             s.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: s.jsx("tbody", {
-                children: Array.from({ length: B + 1 }, (ie, K) =>
+                children: Array.from({ length: H + 1 }, (de, Z) =>
                   s.jsx(
                     "tr",
                     {
                       className: "h-full",
-                      style: { height: `${100 / (B + 1)}%`, minHeight: "80px" },
-                      children: Array.from({ length: te + 1 }, (q, ge) => {
-                        const he = `${K},${ge}`,
-                          Pe = ue[he];
-                        return Pe
+                      style: { height: `${100 / (H + 1)}%`, minHeight: "80px" },
+                      children: Array.from({ length: ne + 1 }, (K, xe) => {
+                        const ge = `${Z},${xe}`,
+                          Ie = pe[ge];
+                        return Ie
                           ? s.jsxs(
                               "td",
                               {
                                 className: "align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (te + 1)}%`,
-                                  height: `${100 / (B + 1)}%`,
+                                  width: `${100 / (ne + 1)}%`,
+                                  height: `${100 / (H + 1)}%`,
                                   minHeight: "80px",
                                   border: "none",
                                   position: "relative",
                                 },
                                 children: [
-                                  vt(Pe),
-                                  (M == null ? void 0 : M.container.GUID) ===
-                                    Pe.GUID &&
+                                  wt(Ie),
+                                  (w == null ? void 0 : w.container.GUID) ===
+                                    Ie.GUID &&
                                     s.jsx("div", {
                                       className:
                                         "absolute inset-0 pointer-events-none",
                                       children: s.jsx("div", {
                                         className: `absolute bg-blue-400 opacity-50 ${
-                                          M.direction === "top"
+                                          w.direction === "top"
                                             ? "top-0 left-0 right-0 h-1"
-                                            : M.direction === "bottom"
+                                            : w.direction === "bottom"
                                             ? "bottom-0 left-0 right-0 h-1"
-                                            : M.direction === "left"
+                                            : w.direction === "left"
                                             ? "left-0 top-0 bottom-0 w-1"
                                             : "right-0 top-0 bottom-0 w-1"
                                         }`,
@@ -14098,15 +14463,15 @@ const It = new Em(),
                                     }),
                                 ],
                               },
-                              ge
+                              xe
                             )
                           : s.jsx(
                               "td",
                               {
                                 className: "p-1 align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (te + 1)}%`,
-                                  height: `${100 / (B + 1)}%`,
+                                  width: `${100 / (ne + 1)}%`,
+                                  height: `${100 / (H + 1)}%`,
                                   minHeight: "80px",
                                   border: "none",
                                 },
@@ -14116,11 +14481,11 @@ const It = new Em(),
                                   children: "空位",
                                 }),
                               },
-                              ge
+                              xe
                             );
                       }),
                     },
-                    K
+                    Z
                   )
                 ),
               }),
@@ -14132,11 +14497,11 @@ const It = new Em(),
           case "sub_container":
             if (y.contents && y.contents.length > 0) {
               const {
-                sortedContents: q,
-                maxRow: ge,
-                maxCol: he,
+                sortedContents: K,
+                maxRow: xe,
+                maxCol: ge,
               } = Ve(y.contents);
-              return W(q, ge, he);
+              return q(K, xe, ge);
             } else
               return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -14146,11 +14511,11 @@ const It = new Em(),
           case "dispensing_shelves":
             if (y.contents && y.contents.length > 0) {
               const {
-                sortedContents: q,
-                maxRow: ge,
-                maxCol: he,
+                sortedContents: K,
+                maxRow: xe,
+                maxCol: ge,
               } = Ve(y.contents);
-              return W(q, ge, he);
+              return q(K, xe, ge);
             } else
               return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -14169,37 +14534,37 @@ const It = new Em(),
               });
           case "store_shelves":
             if (y.medMapStock && y.medMapStock.length > 0) {
-              const q = y.medMapStock,
-                ge = q.length,
-                he = ge > 0 ? 100 / ge : 100,
-                Pe = y.width ? y.width * 5 : 500;
+              const K = y.medMapStock,
+                xe = K.length,
+                ge = xe > 0 ? 100 / xe : 100,
+                Ie = y.width ? y.width * 5 : 500;
               return s.jsx("div", {
                 className: "flex h-full",
-                style: { minWidth: `${Pe}px` },
-                children: q.map((Re, Ot) => {
-                  const [Qn, Er] = Re.location.split(",").map(Number);
+                style: { minWidth: `${Ie}px` },
+                children: K.map((Re, Ot) => {
+                  const [qn, Er] = Re.location.split(",").map(Number);
                   return s.jsxs(
                     "div",
                     {
                       className:
                         "border-r border-gray-300 last:border-r-0 p-1 flex flex-col justify-center items-center cursor-pointer hover:bg-yellow-50 transition-colors",
-                      style: { width: `${he}%` },
+                      style: { width: `${ge}%` },
                       onMouseDown: (Wt) => {
-                        O({ x: Wt.clientX, y: Wt.clientY }), E(!1);
+                        F({ x: Wt.clientX, y: Wt.clientY }), P(!1);
                       },
                       onMouseUp: (Wt) => {
-                        if (!G && S) {
-                          const Pr = Math.abs(Wt.clientX - S.x),
-                            Ir = Math.abs(Wt.clientY - S.y);
-                          Pr <= 5 && Ir <= 5 && i(y, Re);
+                        if (!G && D) {
+                          const Ir = Math.abs(Wt.clientX - D.x),
+                            Pr = Math.abs(Wt.clientY - D.y);
+                          Ir <= 5 && Pr <= 5 && i(y, Re);
                         }
-                        O(null), E(!1);
+                        F(null), P(!1);
                       },
                       onMouseMove: (Wt) => {
-                        if (S) {
-                          const Pr = Math.abs(Wt.clientX - S.x),
-                            Ir = Math.abs(Wt.clientY - S.y);
-                          (Pr > 5 || Ir > 5) && E(!0);
+                        if (D) {
+                          const Ir = Math.abs(Wt.clientX - D.x),
+                            Pr = Math.abs(Wt.clientY - D.y);
+                          (Ir > 5 || Pr > 5) && P(!0);
                         }
                       },
                       children: [
@@ -14214,7 +14579,7 @@ const It = new Em(),
                         }),
                         s.jsxs("div", {
                           className: "text-sm text-gray-500 mt-1",
-                          children: ["位置: ", Qn, "-", Er],
+                          children: ["位置: ", qn, "-", Er],
                         }),
                       ],
                     },
@@ -14224,11 +14589,11 @@ const It = new Em(),
               });
             } else if (y.contents && y.contents.length > 0) {
               const {
-                sortedContents: q,
-                maxRow: ge,
-                maxCol: he,
+                sortedContents: K,
+                maxRow: xe,
+                maxCol: ge,
               } = Ve(y.contents);
-              return W(q, ge, he);
+              return q(K, xe, ge);
             } else
               return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -14248,11 +14613,11 @@ const It = new Em(),
           case "none":
             if (y.contents && y.contents.length > 0) {
               const {
-                sortedContents: q,
-                maxRow: ge,
-                maxCol: he,
+                sortedContents: K,
+                maxRow: xe,
+                maxCol: ge,
               } = Ve(y.contents);
-              return W(q, ge, he);
+              return q(K, xe, ge);
             } else
               return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -14271,27 +14636,27 @@ const It = new Em(),
               });
           case "grid_draw":
             const Y = Math.max(
-                ...y.Boxes.flat().map((q) => +q.Row + +q.Height - 1)
+                ...y.Boxes.flat().map((K) => +K.Row + +K.Height - 1)
               ),
-              B = Math.max(
-                ...y.Boxes.flat().map((q) => +q.Column + +q.Width - 1)
+              H = Math.max(
+                ...y.Boxes.flat().map((K) => +K.Column + +K.Width - 1)
               ),
-              te = Y + 1,
-              V = B + 1,
-              ue = y.Boxes.flat(),
-              ie = Array(te)
+              ne = Y + 1,
+              W = H + 1,
+              pe = y.Boxes.flat(),
+              de = Array(ne)
                 .fill(null)
-                .map(() => Array(V).fill(!1)),
-              K = {};
+                .map(() => Array(W).fill(!1)),
+              Z = {};
             return (
-              ue.forEach((q) => {
-                q.Slave || (K[`${q.Row},${q.Column}`] = q);
+              pe.forEach((K) => {
+                K.Slave || (Z[`${K.Row},${K.Column}`] = K);
               }),
-              ue.forEach((q) => {
-                if (!q.Slave && (q.Width > 1 || q.Height > 1))
-                  for (let ge = q.Row; ge < q.Row + q.Height; ge++)
-                    for (let he = q.Column; he < q.Column + q.Width; he++)
-                      (ge !== q.Row || he !== q.Column) && (ie[ge][he] = !0);
+              pe.forEach((K) => {
+                if (!K.Slave && (K.Width > 1 || K.Height > 1))
+                  for (let xe = K.Row; xe < K.Row + K.Height; xe++)
+                    for (let ge = K.Column; ge < K.Column + K.Width; ge++)
+                      (xe !== K.Row || ge !== K.Column) && (de[xe][ge] = !0);
               }),
               s.jsxs("div", {
                 className:
@@ -14364,7 +14729,7 @@ const It = new Em(),
             return y.contents && y.contents.length > 0
               ? s.jsx("div", {
                   className: "space-y-2",
-                  children: y.contents.map((q) => vt(q)),
+                  children: y.contents.map((K) => wt(K)),
                 })
               : s.jsx("div", {
                   className:
@@ -14376,13 +14741,13 @@ const It = new Em(),
                 });
         }
       },
-      In = (y) => {
+      Pn = (y) => {
         if (
-          ($(y.gird_position || "0,0"),
+          (U(y.gird_position || "0,0"),
           y.type !== "調劑台" && y.type !== "藥庫")
         )
           return null;
-        const W = (Y) => {
+        const q = (Y) => {
           if (!Y || Y.length === 0)
             return s.jsx("table", {
               className: "w-full h-full border-none",
@@ -14401,50 +14766,50 @@ const It = new Em(),
                 }),
               }),
             });
-          const { sortedContents: B, maxRow: te, maxCol: V } = Ve(Y),
-            ue = Array(te + 1)
+          const { sortedContents: H, maxRow: ne, maxCol: W } = Ve(Y),
+            pe = Array(ne + 1)
               .fill(null)
-              .map(() => Array(V + 1).fill(!1)),
-            ie = {};
+              .map(() => Array(W + 1).fill(!1)),
+            de = {};
           return (
-            B.forEach((K) => {
-              const q = $(K.gird_position || "0,0");
-              (ie[`${q.row},${q.col}`] = K), (ue[q.row][q.col] = !0);
+            H.forEach((Z) => {
+              const K = U(Z.gird_position || "0,0");
+              (de[`${K.row},${K.col}`] = Z), (pe[K.row][K.col] = !0);
             }),
             s.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: s.jsx("tbody", {
-                children: Array.from({ length: te + 1 }, (K, q) =>
+                children: Array.from({ length: ne + 1 }, (Z, K) =>
                   s.jsx(
                     "tr",
                     {
                       className: "h-full",
-                      children: Array.from({ length: V + 1 }, (ge, he) => {
-                        const Pe = `${q},${he}`,
-                          Re = ie[Pe];
+                      children: Array.from({ length: W + 1 }, (xe, ge) => {
+                        const Ie = `${K},${ge}`,
+                          Re = de[Ie];
                         return Re
                           ? s.jsx(
                               "td",
                               {
                                 className: "p-1 align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (V + 1)}%`,
-                                  height: `${100 / (te + 1)}%`,
+                                  width: `${100 / (W + 1)}%`,
+                                  height: `${100 / (ne + 1)}%`,
                                   minHeight: "120px",
                                   border: "none",
                                 },
-                                children: vt(Re),
+                                children: wt(Re),
                               },
-                              he
+                              ge
                             )
                           : s.jsx(
                               "td",
                               {
                                 className: "p-1 align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (V + 1)}%`,
-                                  height: `${100 / (te + 1)}%`,
+                                  width: `${100 / (W + 1)}%`,
+                                  height: `${100 / (ne + 1)}%`,
                                   minHeight: "120px",
                                   border: "1px dashed #e5e7eb",
                                 },
@@ -14454,11 +14819,11 @@ const It = new Em(),
                                   children: "空位",
                                 }),
                               },
-                              he
+                              ge
                             );
                       }),
                     },
-                    q
+                    K
                   )
                 ),
               }),
@@ -14500,7 +14865,7 @@ const It = new Em(),
                             : console.warn("⚠️ 未找到對應的部門資料");
                       },
                       title: "新增",
-                      children: s.jsx(Nt, {
+                      children: s.jsx(gt, {
                         className: "w-6 h-6 text-green-700",
                       }),
                     }),
@@ -14509,18 +14874,18 @@ const It = new Em(),
               }),
               s.jsx("div", {
                 className: `flex-1 bg-orange-50 ${
-                  (M == null ? void 0 : M.container.GUID) === y.GUID
+                  (w == null ? void 0 : w.container.GUID) === y.GUID
                     ? "ring-2 ring-blue-400 ring-inset"
                     : ""
                 }`,
-                children: W(y.contents || []),
+                children: q(y.contents || []),
               }),
             ],
           },
           y.GUID
         );
       },
-      Vt = m.useCallback(
+      Vt = p.useCallback(
         (y) => {
           if (
             (console.log("🎯 locateDrugOnCanvas 被調用，藥品資料:", y),
@@ -14534,135 +14899,135 @@ const It = new Em(),
             });
             return;
           }
-          const W = y[0].CODE || y[0].code;
-          if ((console.log("🎯 提取的藥碼:", W), !W)) {
+          const q = y[0].CODE || y[0].code;
+          if ((console.log("🎯 提取的藥碼:", q), !q)) {
             console.warn("⚠️ 無法定位藥品：缺少藥碼");
             return;
           }
-          console.log("🎯 開始定位藥品:", W);
-          const Y = (te) => {
-              for (const V of te) {
-                if (V.type === "grid_draw" && V.Boxes) {
-                  for (const ue of V.Boxes)
-                    for (const ie of ue)
-                      if (ie.Code === W) {
-                        const K = document.querySelector(
-                          `[data-container-guid="${V.GUID}"]`
+          console.log("🎯 開始定位藥品:", q);
+          const Y = (ne) => {
+              for (const W of ne) {
+                if (W.type === "grid_draw" && W.Boxes) {
+                  for (const pe of W.Boxes)
+                    for (const de of pe)
+                      if (de.Code === q) {
+                        const Z = document.querySelector(
+                          `[data-container-guid="${W.GUID}"]`
                         );
-                        if (K)
+                        if (Z)
                           return (
-                            console.log("✅ 找到藥品容器 (grid_draw):", V),
-                            { element: K, bounds: K.getBoundingClientRect() }
+                            console.log("✅ 找到藥品容器 (grid_draw):", W),
+                            { element: Z, bounds: Z.getBoundingClientRect() }
                           );
                       }
                 }
                 if (
-                  V.type === "list_draw" &&
-                  V.drugs &&
-                  V.drugs.some((ie) => ie.code === W)
+                  W.type === "list_draw" &&
+                  W.drugs &&
+                  W.drugs.some((de) => de.code === q)
                 ) {
-                  const ie = document.querySelector(
-                    `[data-container-guid="${V.GUID}"]`
+                  const de = document.querySelector(
+                    `[data-container-guid="${W.GUID}"]`
                   );
-                  if (ie)
+                  if (de)
                     return (
-                      console.log("✅ 找到藥品容器 (list_draw):", V),
-                      { element: ie, bounds: ie.getBoundingClientRect() }
+                      console.log("✅ 找到藥品容器 (list_draw):", W),
+                      { element: de, bounds: de.getBoundingClientRect() }
                     );
                 }
                 if (
-                  (V.type === "store_shelves" ||
-                    V.type === "dispensing_shelves") &&
-                  V.medMapStock &&
-                  V.medMapStock.some(
-                    (ie) => ie.code === W || ie.material_no === W
+                  (W.type === "store_shelves" ||
+                    W.type === "dispensing_shelves") &&
+                  W.medMapStock &&
+                  W.medMapStock.some(
+                    (de) => de.code === q || de.material_no === q
                   )
                 ) {
-                  const ie = document.querySelector(
-                    `[data-container-guid="${V.GUID}"]`
+                  const de = document.querySelector(
+                    `[data-container-guid="${W.GUID}"]`
                   );
-                  if (ie)
+                  if (de)
                     return (
-                      console.log("✅ 找到藥品容器 (store_shelves):", V),
-                      { element: ie, bounds: ie.getBoundingClientRect() }
+                      console.log("✅ 找到藥品容器 (store_shelves):", W),
+                      { element: de, bounds: de.getBoundingClientRect() }
                     );
                 }
                 if (
-                  V.type === "med_box" &&
-                  V.med_info &&
-                  V.med_info.length > 0 &&
-                  V.med_info.some((ie) => ie.code === W)
+                  W.type === "med_box" &&
+                  W.med_info &&
+                  W.med_info.length > 0 &&
+                  W.med_info.some((de) => de.code === q)
                 ) {
-                  const ie = document.querySelector(
-                    `[data-container-guid="${V.GUID}"]`
+                  const de = document.querySelector(
+                    `[data-container-guid="${W.GUID}"]`
                   );
-                  if (ie)
+                  if (de)
                     return (
-                      console.log("✅ 找到藥品容器 (med_box):", V),
-                      { element: ie, bounds: ie.getBoundingClientRect() }
+                      console.log("✅ 找到藥品容器 (med_box):", W),
+                      { element: de, bounds: de.getBoundingClientRect() }
                     );
                 }
-                if (V.contents && V.contents.length > 0) {
-                  const ue = Y(V.contents);
-                  if (ue) return ue;
+                if (W.contents && W.contents.length > 0) {
+                  const pe = Y(W.contents);
+                  if (pe) return pe;
                 }
               }
               return null;
             },
-            B = Y(o);
-          if (B) {
-            const te = n.current.getBoundingClientRect(),
-              V = B.bounds,
-              ue = (V.left + V.right) / 2,
-              ie = (V.top + V.bottom) / 2,
-              K = (ue - te.left - p.x) / p.scale,
-              q = (ie - te.top - p.y) / p.scale,
-              ge = te.width / 2,
-              he = te.height / 2,
-              Pe = ge - K * p.scale,
-              Re = he - q * p.scale;
-            w((Ot) => ({ ...Ot, x: Pe, y: Re })),
+            H = Y(o);
+          if (H) {
+            const ne = n.current.getBoundingClientRect(),
+              W = H.bounds,
+              pe = (W.left + W.right) / 2,
+              de = (W.top + W.bottom) / 2,
+              Z = (pe - ne.left - m.x) / m.scale,
+              K = (de - ne.top - m.y) / m.scale,
+              xe = ne.width / 2,
+              ge = ne.height / 2,
+              Ie = xe - Z * m.scale,
+              Re = ge - K * m.scale;
+            b((Ot) => ({ ...Ot, x: Ie, y: Re })),
               console.log("✅ 定位完成", {
-                elementScreenCenter: { x: ue, y: ie },
-                elementCanvasPos: { x: K, y: q },
-                screenCenter: { x: ge, y: he },
-                newTransform: { x: Pe, y: Re },
+                elementScreenCenter: { x: pe, y: de },
+                elementCanvasPos: { x: Z, y: K },
+                screenCenter: { x: xe, y: ge },
+                newTransform: { x: Ie, y: Re },
               }),
-              d(`已定位到藥品：${y.CHT_NAME || y.NAME || W}`, "success");
+              d(`已定位到藥品：${y.CHT_NAME || y.NAME || q}`, "success");
           } else
             console.warn("❌ 未找到藥品容器"),
               d("未找到該藥品的儲存位置", "error");
         },
-        [o, p, d]
+        [o, m, d]
       );
-    m.useImperativeHandle(
+    p.useImperativeHandle(
       t,
       () => (
         console.log("🔧 useImperativeHandle 設置 ref 方法"), { locateDrug: Vt }
       )
     );
-    const Go = async (y) => {
-      if (y.key === "Enter" && P.trim() && !N) {
-        y.preventDefault(), I(!0);
+    const Fo = async (y) => {
+      if (y.key === "Enter" && I.trim() && !j) {
+        y.preventDefault(), z(!0);
         try {
-          console.log("🔍 搜尋條碼:", P);
-          const W = await ke.searchByBarCode(P.trim());
-          console.log("📋 條碼搜尋回應:", W),
-            W.Code === 200
-              ? (console.log("✅ 找到藥品資料:", W.Data),
+          console.log("🔍 搜尋條碼:", I);
+          const q = await ke.searchByBarCode(I.trim());
+          console.log("📋 條碼搜尋回應:", q),
+            q.Code === 200
+              ? (console.log("✅ 找到藥品資料:", q.Data),
                 d("找到藥品資料", "success"),
-                Vt(W.Data))
-              : W.Code === -200 && W.Result === "查無資料"
+                Vt(q.Data))
+              : q.Code === -200 && q.Result === "查無資料"
               ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                 d("查無資料，請建立條碼", "error"),
-                h(P.trim()),
-                R(""))
-              : (console.log("❌ 搜尋失敗:", W.Result),
-                d(W.Result || "搜尋失敗", "error"));
-        } catch (W) {
-          console.error("條碼搜尋錯誤:", W), d("搜尋失敗，請稍後再試", "error");
+                h(I.trim()),
+                A(""))
+              : (console.log("❌ 搜尋失敗:", q.Result),
+                d(q.Result || "搜尋失敗", "error"));
+        } catch (q) {
+          console.error("條碼搜尋錯誤:", q), d("搜尋失敗，請稍後再試", "error");
         } finally {
-          I(!1);
+          z(!1);
         }
       }
     };
@@ -14678,19 +15043,19 @@ const It = new Em(),
             children: [
               s.jsx("input", {
                 type: "text",
-                value: P,
-                onChange: (y) => R(y.target.value),
-                onKeyDown: Go,
+                value: I,
+                onChange: (y) => A(y.target.value),
+                onKeyDown: Fo,
                 placeholder: "輸入條碼或掃描...",
                 className:
                   "px-4 py-2 w-50 focus:outline-none text-gray-700 disabled:opacity-50",
-                disabled: N,
+                disabled: j,
               }),
               s.jsx("button", {
                 onClick: () => c("track_Drug_mode"),
                 className: "p-2",
                 title: "掃描條碼",
-                disabled: N,
+                disabled: j,
                 children: s.jsx(kr, { className: "w-6 h-6 text-blue-600" }),
               }),
             ],
@@ -14699,14 +15064,14 @@ const It = new Em(),
         s.jsx("div", {
           className: "absolute bottom-4 right-4 z-10 flex gap-2",
           children: s.jsx("button", {
-            onClick: () => u(!_),
+            onClick: () => u(!E),
             className: `rounded-lg shadow-lg p-2 transition-colors ${
-              _
+              E
                 ? "bg-red-500 text-white hover:bg-red-600"
                 : "bg-white text-gray-700 hover:bg-gray-50"
             }`,
-            title: _ ? "Unlock Canvas" : "Lock Canvas",
-            children: _
+            title: E ? "Unlock Canvas" : "Lock Canvas",
+            children: E
               ? s.jsx(Ld, { className: "w-6 h-6" })
               : s.jsx(Ud, { className: "w-6 h-6" }),
           }),
@@ -14714,19 +15079,19 @@ const It = new Em(),
         s.jsx("div", {
           ref: n,
           className: `w-full h-full relative ${
-            j && !_ ? "cursor-grab" : "cursor-default"
+            C && !E ? "cursor-grab" : "cursor-default"
           } ${v ? "cursor-grabbing" : ""}`,
-          onMouseDown: D,
-          onMouseMove: A,
-          onMouseUp: H,
-          onMouseLeave: H,
-          onTouchStart: ce,
-          onTouchMove: me,
+          onMouseDown: k,
+          onMouseMove: $,
+          onMouseUp: V,
+          onMouseLeave: V,
+          onTouchStart: fe,
+          onTouchMove: he,
           onTouchEnd: we,
           children: s.jsxs("div", {
             className: "absolute inset-0 origin-top-left",
             style: {
-              transform: `translate(${p.x}px, ${p.y}px) scale(${p.scale})`,
+              transform: `translate(${m.x}px, ${m.y}px) scale(${m.scale})`,
               transformOrigin: "0 0",
             },
             children: [
@@ -14737,21 +15102,21 @@ const It = new Em(),
                   className: "h-full",
                   style: {
                     borderCollapse: "separate",
-                    borderSpacing: `${de}px`,
+                    borderSpacing: `${ie}px`,
                     minWidth: "fit-content",
                     minHeight: "fit-content",
                   },
                   children: s.jsx("tbody", {
-                    children: Array.from({ length: qe + 1 }, (y, W) =>
+                    children: Array.from({ length: Ye + 1 }, (y, q) =>
                       s.jsx(
                         "tr",
                         {
-                          children: Array.from({ length: ze + 1 }, (Y, B) => {
-                            const te = Ce.find((V) => {
-                              const ue = $(V.gird_position || "0,0");
-                              return ue.row === W && ue.col === B;
+                          children: Array.from({ length: Be + 1 }, (Y, H) => {
+                            const ne = Ce.find((W) => {
+                              const pe = U(W.gird_position || "0,0");
+                              return pe.row === q && pe.col === H;
                             });
-                            return te
+                            return ne
                               ? s.jsx(
                                   "td",
                                   {
@@ -14761,9 +15126,9 @@ const It = new Em(),
                                       minHeight: "120px",
                                       border: "none",
                                     },
-                                    children: In(te),
+                                    children: Pn(ne),
                                   },
-                                  B
+                                  H
                                 )
                               : s.jsx(
                                   "td",
@@ -14779,11 +15144,11 @@ const It = new Em(),
                                         "w-full h-full flex items-center justify-center text-gray-400 text-base",
                                     }),
                                   },
-                                  B
+                                  H
                                 );
                           }),
                         },
-                        W
+                        q
                       )
                     ),
                   }),
@@ -14796,8 +15161,8 @@ const It = new Em(),
       ],
     });
   });
-zd.displayName = "DrugCanvas";
-const rh = async (e) => {
+Bd.displayName = "DrugCanvas";
+const oh = async (e) => {
     if ((console.log(e), Object.keys(e.current).length === 0)) {
       console.log("沒有需要更新的容器資料");
       return;
@@ -14811,7 +15176,7 @@ const rh = async (e) => {
       const a = {
         GUID: l.GUID,
         position: l.position,
-        MASTER_GUID: l.MASTER_GUID,
+        Master_GUID: l.Master_GUID,
         serverName: l.serverName,
         serverType: l.serverType,
       };
@@ -14868,7 +15233,7 @@ const rh = async (e) => {
         i = 0;
       const c = [];
       l.forEach((h) => {
-        var d, g;
+        var d, x;
         if (h.error)
           (i += h.count),
             c.push(`${h.type}: ${h.error.message || "網路錯誤"}`),
@@ -14877,9 +15242,9 @@ const rh = async (e) => {
           (a += h.count), console.log(`✅ ${h.type} API 成功:`, h.response);
         else {
           i += h.count;
-          const p =
-            ((g = h.response) == null ? void 0 : g.Result) || "未知錯誤";
-          c.push(`${h.type}: ${p}`),
+          const m =
+            ((x = h.response) == null ? void 0 : x.Result) || "未知錯誤";
+          c.push(`${h.type}: ${m}`),
             console.error(`❌ ${h.type} API 失敗:`, h.response);
         }
       });
@@ -14889,12 +15254,12 @@ const rh = async (e) => {
       console.log("完成更新");
     }
   },
-  sh = "modulepreload",
-  oh = function (e) {
+  lh = "modulepreload",
+  ah = function (e) {
     return "/" + e;
   },
   yc = {},
-  lh = function (t, n, r) {
+  ih = function (t, n, r) {
     let o = Promise.resolve();
     if (n && n.length > 0) {
       document.getElementsByTagName("link");
@@ -14904,25 +15269,25 @@ const rh = async (e) => {
           (a == null ? void 0 : a.getAttribute("nonce"));
       o = Promise.allSettled(
         n.map((c) => {
-          if (((c = oh(c)), c in yc)) return;
+          if (((c = ah(c)), c in yc)) return;
           yc[c] = !0;
           const h = c.endsWith(".css"),
             d = h ? '[rel="stylesheet"]' : "";
           if (document.querySelector(`link[href="${c}"]${d}`)) return;
-          const g = document.createElement("link");
+          const x = document.createElement("link");
           if (
-            ((g.rel = h ? "stylesheet" : sh),
-            h || (g.as = "script"),
-            (g.crossOrigin = ""),
-            (g.href = c),
-            i && g.setAttribute("nonce", i),
-            document.head.appendChild(g),
+            ((x.rel = h ? "stylesheet" : lh),
+            h || (x.as = "script"),
+            (x.crossOrigin = ""),
+            (x.href = c),
+            i && x.setAttribute("nonce", i),
+            document.head.appendChild(x),
             h)
           )
-            return new Promise((p, w) => {
-              g.addEventListener("load", p),
-                g.addEventListener("error", () =>
-                  w(new Error(`Unable to preload CSS for ${c}`))
+            return new Promise((m, b) => {
+              x.addEventListener("load", m),
+                x.addEventListener("error", () =>
+                  b(new Error(`Unable to preload CSS for ${c}`))
                 );
             });
         })
@@ -14938,12 +15303,12 @@ const rh = async (e) => {
       return t().catch(l);
     });
   },
-  Yt = [
+  Qt = [
     { name: "2.13吋", box_type: "2.13", width: ["7.5"], unit: "cm" },
     { name: "2.9吋", type: "2.9", width: ["10", "15", "20"], unit: "cm" },
     { name: "4.2吋", type: "4.2", width: ["11", "16"], unit: "cm" },
   ],
-  ah = () => {
+  ch = () => {
     const {
         medBoxModalOpen: e,
         closeMedBoxModal: t,
@@ -14957,57 +15322,57 @@ const rh = async (e) => {
         medicineList: h,
       } = Je(),
       { t: d } = pt(),
-      [g, p] = m.useState(0),
-      [w, v] = m.useState({}),
-      [b, _] = m.useState(""),
-      [u, f] = m.useState(""),
-      [x, j] = m.useState("N"),
-      [L, P] = m.useState([]),
-      [R, N] = m.useState(!1),
-      [I, S] = m.useState(!1),
-      [O, G] = m.useState(null),
-      [E, C] = m.useState(null),
-      [Z, M] = m.useState(!1),
-      [F, k] = m.useState(!1);
-    m.useEffect(() => {
+      [x, m] = p.useState(0),
+      [b, v] = p.useState({}),
+      [N, E] = p.useState(""),
+      [u, f] = p.useState(""),
+      [g, C] = p.useState("N"),
+      [B, I] = p.useState([]),
+      [A, j] = p.useState(!1),
+      [z, D] = p.useState(!1),
+      [F, G] = p.useState(null),
+      [P, M] = p.useState(null),
+      [ee, w] = p.useState(!1),
+      [O, S] = p.useState(!1);
+    p.useEffect(() => {
       if (n && e)
         if (c === "add") {
-          p(0);
-          const U = {};
-          Yt.forEach((ee, ye) => {
-            U[ye] = 0;
+          m(0);
+          const L = {};
+          Qt.forEach((_, re) => {
+            L[re] = 0;
           }),
-            v(U),
-            _(""),
-            S(!1),
+            v(L),
+            E(""),
+            D(!1),
             Q();
         } else {
-          const U = Yt.findIndex(
-            (ee) => ee.box_type === n.box_type || ee.type === n.box_type
+          const L = Qt.findIndex(
+            (_) => _.box_type === n.box_type || _.type === n.box_type
           );
-          if ((console.log(n), U >= 0)) {
-            p(U);
-            const ye = Yt[U].width.findIndex((D) => {
-                var A;
+          if ((console.log(n), L >= 0)) {
+            m(L);
+            const re = Qt[L].width.findIndex((k) => {
+                var $;
                 return (
-                  D === ((A = n.width) == null ? void 0 : A[n.width_index || 0])
+                  k === (($ = n.width) == null ? void 0 : $[n.width_index || 0])
                 );
               }),
-              z = {};
-            Yt.forEach((D, A) => {
-              A === U ? (z[A] = ye >= 0 ? ye : 0) : (z[A] = 0);
+              T = {};
+            Qt.forEach((k, $) => {
+              $ === L ? (T[$] = re >= 0 ? re : 0) : (T[$] = 0);
             }),
-              v(z);
+              v(T);
           } else {
-            p(0);
-            const ee = {};
-            Yt.forEach((ye, z) => {
-              ee[z] = 0;
+            m(0);
+            const _ = {};
+            Qt.forEach((re, T) => {
+              _[T] = 0;
             }),
-              v(ee);
+              v(_);
           }
-          _(n.ip || ""),
-            C({
+          E(n.ip || ""),
+            M({
               box_type: n.box_type,
               width: n.width,
               width_index: n.width_index,
@@ -15019,211 +15384,211 @@ const rh = async (e) => {
     const Q = () => {
         n && n.parentShelf && G(n.parentShelf);
       },
-      de = (U) => {
-        if (!U || !U.contents || U.contents.length === 0) return "0,0";
-        let ee = -1,
-          ye = 0;
+      ie = (L) => {
+        if (!L || !L.contents || L.contents.length === 0) return "0,0";
+        let _ = -1,
+          re = 0;
         return (
-          U.contents.forEach((z) => {
-            if (z.gird_position) {
-              const [D, A] = z.gird_position.split(",").map(Number);
-              A > ee && ((ee = A), (ye = D));
+          L.contents.forEach((T) => {
+            if (T.gird_position) {
+              const [k, $] = T.gird_position.split(",").map(Number);
+              $ > _ && ((_ = $), (re = k));
             }
           }),
-          `${ye},${ee + 1}`
+          `${re},${_ + 1}`
         );
       },
       X = () => {
-        if (!E || c !== "edit") return !1;
-        const U = Yt[g],
-          ee = w[g] || 0,
-          ye = U.box_type || U.type || U.name;
+        if (!P || c !== "edit") return !1;
+        const L = Qt[x],
+          _ = b[x] || 0,
+          re = L.box_type || L.type || L.name;
         return (
-          E.box_type !== ye ||
-          E.width_index !== ee ||
-          E.ip !== b ||
-          JSON.stringify(E.storage) !==
+          P.box_type !== re ||
+          P.width_index !== _ ||
+          P.ip !== N ||
+          JSON.stringify(P.storage) !==
             JSON.stringify(n == null ? void 0 : n.storage)
         );
       },
-      ne = (U) => {
-        p(U);
+      oe = (L) => {
+        m(L);
       },
-      je = (U, ee) => {
-        v((ye) => ({ ...ye, [U]: ee }));
+      Ne = (L, _) => {
+        v((re) => ({ ...re, [L]: _ }));
       },
-      oe = () => {
-        n && (c === "add" ? $() : le());
+      le = () => {
+        n && (c === "add" ? U() : ae());
       },
-      ve = () => {
+      ye = () => {
         t();
       },
-      $ = async () => {
-        if (!n || !O) {
+      U = async () => {
+        if (!n || !F) {
           a("缺少必要資料，無法新增藥盒", "error");
           return;
         }
-        S(!0);
+        D(!0);
         try {
-          const U = Yt[g],
-            ee = w[g] || 0,
-            ye = U.width[ee],
-            z = de(O),
-            D = {
-              Master_GUID: O.GUID,
-              position: z,
-              width: ye.toString(),
+          const L = Qt[x],
+            _ = b[x] || 0,
+            re = L.width[_],
+            T = ie(F),
+            k = {
+              Master_GUID: F.GUID,
+              position: T,
+              width: re.toString(),
               height: "60",
-              ip_box: b,
-              serverName: O.serverName || "",
-              serverType: O.serverType || "",
+              ip_box: N,
+              serverName: F.serverName || "",
+              serverType: F.serverType || "",
             };
-          console.log("🚀 發送新增藥盒 API 請求:", D);
-          const A = await ke.addMedMapBox(D);
-          A.Code === 200
-            ? (a("藥盒新增成功", "success"), t(), await pe())
-            : a(`藥盒新增失敗：${A.Result || "未知錯誤"}`, "error");
-        } catch (U) {
-          console.error("Add med box failed:", U),
+          console.log("🚀 發送新增藥盒 API 請求:", k);
+          const $ = await ke.addMedMapBox(k);
+          $.Code === 200
+            ? (a("藥盒新增成功", "success"), t(), await R())
+            : a(`藥盒新增失敗：${$.Result || "未知錯誤"}`, "error");
+        } catch (L) {
+          console.error("Add med box failed:", L),
             a("藥盒新增失敗：網路錯誤", "error");
         } finally {
-          S(!1);
+          D(!1);
         }
       },
-      le = async () => {
-        var U;
+      ae = async () => {
+        var L;
         if (!n || !X()) {
           a("沒有資料變更", "error");
           return;
         }
-        M(!0);
+        w(!0);
         try {
-          const ee = Yt[g],
-            ye = w[g] || 0,
-            z = ee.width[ye],
-            D = ee.box_type || ee.type || ee.name,
-            A = E.box_type !== D || E.width_index !== ye || E.ip !== b,
-            H =
-              JSON.stringify(E.storage) !==
+          const _ = Qt[x],
+            re = b[x] || 0,
+            T = _.width[re],
+            k = _.box_type || _.type || _.name,
+            $ = P.box_type !== k || P.width_index !== re || P.ip !== N,
+            V =
+              JSON.stringify(P.storage) !==
               JSON.stringify(n == null ? void 0 : n.storage),
-            re = [];
-          if (A) {
+            se = [];
+          if ($) {
             const be = {
               GUID: n.GUID,
-              Master_GUID: n.MASTER_GUID,
+              Master_GUID: n.Master_GUID,
               position: n.gird_position,
-              ip_light: b,
+              ip_light: N,
               serverName: n.serverName,
               serverType: n.serverType,
             };
-            re.push(ke.updateMedMapBox([be]));
+            se.push(ke.updateMedMapBox([be]));
           }
-          H &&
-            re.push(
+          V &&
+            se.push(
               ke.updateEpd266Storages(n.serverName || "", n.serverType || "", [
                 n.storage,
               ])
             );
-          const ae = await Promise.all(re);
-          if (ae.every((be) => be.Code === 200))
-            a("藥盒更新成功", "success"), t(), await pe();
+          const ue = await Promise.all(se);
+          if (ue.every((be) => be.Code === 200))
+            a("藥盒更新成功", "success"), t(), await R();
           else {
-            const be = ae.filter((Ne) => Ne.Code !== 200);
+            const be = ue.filter((je) => je.Code !== 200);
             a(
               `藥盒更新失敗：${
-                ((U = be[0]) == null ? void 0 : U.Result) || "未知錯誤"
+                ((L = be[0]) == null ? void 0 : L.Result) || "未知錯誤"
               }`,
               "error"
             );
           }
-        } catch (ee) {
-          console.error("Update med box failed:", ee),
+        } catch (_) {
+          console.error("Update med box failed:", _),
             a("藥盒更新失敗：網路錯誤", "error");
         } finally {
-          M(!1);
+          w(!1);
         }
       },
-      pe = async () => {
+      R = async () => {
         if (!r) {
           console.warn("⚠️ 沒有選中的部門類型，無法重新獲取資料");
           return;
         }
         console.log("🔄 重新獲取藥品地圖資料，部門類型:", r), l(!0);
         try {
-          const U = await ke.getMedMapByDepartment(r);
-          if (U.Code === 200 && U.Data) {
+          const L = await ke.getMedMapByDepartment(r);
+          if (L.Code === 200 && L.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const ee = await lh(() => Promise.resolve().then(() => Pm), void 0),
-              ye = ee.default.convertMedMapApiToFakeData(U.Data);
-            if (!ee.default.validateConvertedData(ye)) {
+            const _ = await ih(() => Promise.resolve().then(() => Im), void 0),
+              re = _.default.convertMedMapApiToFakeData(L.Data);
+            if (!_.default.validateConvertedData(re)) {
               console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error");
               return;
             }
-            o(ye), console.log("✅ 藥品地圖資料已更新");
+            o(re), console.log("✅ 藥品地圖資料已更新");
           } else
-            console.error("❌ API 回傳錯誤:", U),
+            console.error("❌ API 回傳錯誤:", L),
               a("資料更新失敗：API 錯誤", "error");
-        } catch (U) {
-          console.error("💥 重新獲取藥品地圖資料失敗:", U),
+        } catch (L) {
+          console.error("💥 重新獲取藥品地圖資料失敗:", L),
             a("資料更新失敗：網路錯誤", "error");
         } finally {
           l(!1);
         }
       },
-      T = async () => {
-        N(!0);
+      J = async () => {
+        j(!0);
         try {
-          const U = u.toLowerCase().trim();
-          let ee = h;
-          U &&
-            (ee = ee.filter((ye) => {
-              var z, D, A;
+          const L = u.toLowerCase().trim();
+          let _ = h;
+          L &&
+            (_ = _.filter((re) => {
+              var T, k, $;
               return (
-                ((z = ye.CODE) == null
+                ((T = re.CODE) == null
                   ? void 0
-                  : z.toLowerCase().includes(U)) ||
-                ((D = ye.NAME) == null
+                  : T.toLowerCase().includes(L)) ||
+                ((k = re.NAME) == null
                   ? void 0
-                  : D.toLowerCase().includes(U)) ||
-                ((A = ye.CHT_NAME) == null
+                  : k.toLowerCase().includes(L)) ||
+                (($ = re.CHT_NAME) == null
                   ? void 0
-                  : A.toLowerCase().includes(U))
+                  : $.toLowerCase().includes(L))
               );
             })),
-            x !== "N" && (ee = ee.filter((ye) => ye.DRUGKIND === x)),
-            P(ee);
-        } catch (U) {
-          console.error("Search failed:", U), P([]);
+            g !== "N" && (_ = _.filter((re) => re.DRUGKIND === g)),
+            I(_);
+        } catch (L) {
+          console.error("Search failed:", L), I([]);
         } finally {
-          N(!1);
+          j(!1);
         }
       },
-      se = (U, ee) => {
-        console.log("📸 掃描成功，藥品資料:", ee), k(!1), Se(ee);
+      ce = (L, _) => {
+        console.log("📸 掃描成功，藥品資料:", _), S(!1), Se(_);
       },
-      Se = async (U) => {
+      Se = async (L) => {
         if (n)
           try {
-            console.log("🚀 開始更新藥盒藥品代碼:", U.CODE);
-            const ee = await ke.updateEpd266Medcode(
+            console.log("🚀 開始更新藥盒藥品代碼:", L.CODE);
+            const _ = await ke.updateEpd266Medcode(
               n.serverName || "",
               n.serverType || "",
-              U.CODE,
+              L.CODE,
               n.storage || {}
             );
-            ee.Code === 200
-              ? (console.log("✅ 藥品代碼更新成功:", ee.Data),
-                (n.storage = ee.Data),
+            _.Code === 200
+              ? (console.log("✅ 藥品代碼更新成功:", _.Data),
+                (n.storage = _.Data),
                 (n.med_info = [
-                  { name: U.NAME, cht_name: U.CHT_NAME, code: U.CODE },
+                  { name: L.NAME, cht_name: L.CHT_NAME, code: L.CODE },
                 ]),
                 a("藥品更新成功", "success"),
                 i())
-              : (console.error("❌ 藥品代碼更新失敗:", ee),
-                a(`藥品更新失敗：${ee.Result || "未知錯誤"}`, "error"));
-          } catch (ee) {
-            console.error("💥 藥品代碼更新發生錯誤:", ee),
+              : (console.error("❌ 藥品代碼更新失敗:", _),
+                a(`藥品更新失敗：${_.Result || "未知錯誤"}`, "error"));
+          } catch (_) {
+            console.error("💥 藥品代碼更新發生錯誤:", _),
               a("藥品更新失敗：網路錯誤", "error");
           }
       };
@@ -15234,13 +15599,13 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: ve,
+              onClick: ye,
             }),
             s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
-              onClick: (U) => U.stopPropagation(),
+              onClick: (L) => L.stopPropagation(),
               children: [
                 s.jsxs("div", {
                   className:
@@ -15261,10 +15626,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: ve,
+                      onClick: ye,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -15286,7 +15651,7 @@ const rh = async (e) => {
                               className: "flex items-center",
                               children: s.jsx("input", {
                                 type: "text",
-                                onChange: (U) => _(U.target.value),
+                                onChange: (L) => E(L.target.value),
                                 placeholder:
                                   (n == null ? void 0 : n.ip) ||
                                   (n == null ? void 0 : n.name) ||
@@ -15311,12 +15676,12 @@ const rh = async (e) => {
                               }),
                               s.jsx("div", {
                                 className: "flex gap-4 justify-between",
-                                children: Yt.map((U, ee) =>
+                                children: Qt.map((L, _) =>
                                   s.jsxs(
                                     "label",
                                     {
                                       className: `flex items-center px-4 py-2 border-2 rounded-lg cursor-pointer transition-all ${
-                                        g === ee
+                                        x === _
                                           ? "border-blue-500 bg-blue-50"
                                           : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                                       }`,
@@ -15324,9 +15689,9 @@ const rh = async (e) => {
                                         s.jsx("input", {
                                           type: "radio",
                                           name: "boxType",
-                                          value: ee,
-                                          checked: g === ee,
-                                          onChange: () => ne(ee),
+                                          value: _,
+                                          checked: x === _,
+                                          onChange: () => oe(_),
                                           className:
                                             "w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 hidden",
                                         }),
@@ -15334,12 +15699,12 @@ const rh = async (e) => {
                                           children: s.jsx("div", {
                                             className:
                                               "text-sm font-medium text-gray-900",
-                                            children: U.name,
+                                            children: L.name,
                                           }),
                                         }),
                                       ],
                                     },
-                                    ee
+                                    _
                                   )
                                 ),
                               }),
@@ -15353,30 +15718,30 @@ const rh = async (e) => {
                                   "text-base font-medium text-gray-900",
                                 children: d("form.widthSelection"),
                               }),
-                              Yt.map((U, ee) =>
+                              Qt.map((L, _) =>
                                 s.jsx(
                                   "div",
                                   {
                                     className: `flex gap-4 ${
-                                      g === ee ? "block" : "hidden"
+                                      x === _ ? "block" : "hidden"
                                     }`,
-                                    children: U.width.map((ye, z) =>
+                                    children: L.width.map((re, T) =>
                                       s.jsxs(
                                         "label",
                                         {
                                           className: `flex items-center justify-center px-4 py-2 border-2 rounded-lg cursor-pointer transition-all ${
-                                            g === ee && (w[ee] || 0) === z
+                                            x === _ && (b[_] || 0) === T
                                               ? "border-green-500 bg-green-50"
                                               : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                                           }`,
                                           children: [
                                             s.jsx("input", {
                                               type: "radio",
-                                              name: `width-${ee}`,
-                                              value: z,
+                                              name: `width-${_}`,
+                                              value: T,
                                               checked:
-                                                g === ee && (w[ee] || 0) === z,
-                                              onChange: () => je(ee, z),
+                                                x === _ && (b[_] || 0) === T,
+                                              onChange: () => Ne(_, T),
                                               className:
                                                 "w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500 hidden",
                                             }),
@@ -15385,16 +15750,16 @@ const rh = async (e) => {
                                               children: s.jsxs("div", {
                                                 className:
                                                   "text-sm font-semibold text-gray-900",
-                                                children: [ye, " ", U.unit],
+                                                children: [re, " ", L.unit],
                                               }),
                                             }),
                                           ],
                                         },
-                                        `${ee}-${z}`
+                                        `${_}-${T}`
                                       )
                                     ),
                                   },
-                                  ee
+                                  _
                                 )
                               ),
                             ],
@@ -15419,7 +15784,7 @@ const rh = async (e) => {
                                     n.med_info &&
                                     n.med_info.length > 0
                                       ? s.jsx("div", {
-                                          children: n.med_info.map((U, ee) =>
+                                          children: n.med_info.map((L, _) =>
                                             s.jsxs(
                                               "div",
                                               {
@@ -15440,7 +15805,7 @@ const rh = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          U.code ||
+                                                          L.code ||
                                                           d("status.notSet"),
                                                       }),
                                                     ],
@@ -15459,7 +15824,7 @@ const rh = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          U.name ||
+                                                          L.name ||
                                                           d("status.notSet"),
                                                       }),
                                                     ],
@@ -15478,14 +15843,14 @@ const rh = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          U.cht_name ||
+                                                          L.cht_name ||
                                                           d("status.notSet"),
                                                       }),
                                                     ],
                                                   }),
                                                 ],
                                               },
-                                              ee
+                                              _
                                             )
                                           ),
                                         })
@@ -15535,7 +15900,7 @@ const rh = async (e) => {
                                     children: d("form.drugSearch"),
                                   }),
                                   s.jsx("button", {
-                                    onClick: () => k(!0),
+                                    onClick: () => S(!0),
                                     className:
                                       "p-2 hover:bg-gray-100 rounded-full transition-colors",
                                     title: "掃描條碼",
@@ -15551,14 +15916,14 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "text",
                                     value: u,
-                                    onChange: (U) => f(U.target.value),
+                                    onChange: (L) => f(L.target.value),
                                     placeholder: d("placeholder.drugSearch"),
                                     className:
                                       "border rounded px-3 py-1 flex-1 min-w-0 focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
                                   s.jsxs("select", {
-                                    value: x,
-                                    onChange: (U) => j(U.target.value),
+                                    value: g,
+                                    onChange: (L) => C(L.target.value),
                                     className:
                                       "border rounded px-2 py-1 focus:border-blue-500 focus:outline-none transition-colors",
                                     title: "管制級別",
@@ -15586,12 +15951,12 @@ const rh = async (e) => {
                                     ],
                                   }),
                                   s.jsxs("button", {
-                                    onClick: T,
-                                    disabled: R,
+                                    onClick: J,
+                                    disabled: A,
                                     className:
                                       "bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition-colors whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2",
                                     children: [
-                                      R &&
+                                      A &&
                                         s.jsx(Rt, {
                                           className: "w-4 h-4 animate-spin",
                                         }),
@@ -15603,7 +15968,7 @@ const rh = async (e) => {
                               s.jsx("div", {
                                 className:
                                   "bg-white border rounded p-3 min-h-[220px] max-h-[220px] overflow-y-auto",
-                                children: R
+                                children: A
                                   ? s.jsxs("div", {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
@@ -15615,10 +15980,10 @@ const rh = async (e) => {
                                         d("status.searching"),
                                       ],
                                     })
-                                  : L.length > 0
+                                  : B.length > 0
                                   ? s.jsx("div", {
                                       className: "space-y-1",
-                                      children: L.map((U, ee) =>
+                                      children: B.map((L, _) =>
                                         s.jsxs(
                                           "div",
                                           {
@@ -15631,32 +15996,32 @@ const rh = async (e) => {
                                                   s.jsx("div", {
                                                     className:
                                                       "text-sm font-medium text-gray-900 truncate",
-                                                    children: U.NAME,
+                                                    children: L.NAME,
                                                   }),
                                                   s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-500 truncate",
-                                                    children: U.CHT_NAME,
+                                                    children: L.CHT_NAME,
                                                   }),
                                                   s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-400 font-mono",
-                                                    children: U.CODE,
+                                                    children: L.CODE,
                                                   }),
                                                 ],
                                               }),
                                               s.jsx("button", {
-                                                onClick: () => Se(U),
+                                                onClick: () => Se(L),
                                                 className:
                                                   "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                                 title: d("button.add"),
-                                                children: s.jsx(Nt, {
+                                                children: s.jsx(gt, {
                                                   className: "w-4 h-4",
                                                 }),
                                               }),
                                             ],
                                           },
-                                          U.GUID || ee
+                                          L.GUID || _
                                         )
                                       ),
                                     })
@@ -15664,7 +16029,7 @@ const rh = async (e) => {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
                                       children: d(
-                                        u || x !== "N"
+                                        u || g !== "N"
                                           ? "status.noSearchResults"
                                           : "status.searchResults"
                                       ),
@@ -15682,24 +16047,24 @@ const rh = async (e) => {
                     "flex items-center justify-end space-x-3 py-2 px-4 border-t border-gray-200",
                   children: [
                     s.jsx("button", {
-                      onClick: ve,
-                      disabled: I || Z,
+                      onClick: ye,
+                      disabled: z || ee,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
                       children: d("button.cancel"),
                     }),
                     s.jsxs("button", {
-                      onClick: oe,
-                      disabled: I || Z,
+                      onClick: le,
+                      disabled: z || ee,
                       className:
                         "px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center space-x-2",
                       children: [
-                        (I || Z) &&
+                        (z || ee) &&
                           s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
                         s.jsx("span", {
-                          children: I
+                          children: z
                             ? "新增中..."
-                            : Z
+                            : ee
                             ? "更新中..."
                             : d(c === "add" ? "button.add" : "button.save"),
                         }),
@@ -15709,16 +16074,16 @@ const rh = async (e) => {
                 }),
               ],
             }),
-            s.jsx(Bo, {
-              isOpen: F,
-              onClose: () => k(!1),
-              onScanSuccess: se,
+            s.jsx(zo, {
+              isOpen: O,
+              onClose: () => S(!1),
+              onScanSuccess: ce,
               mode: "set_med_box_med_mode",
             }),
           ],
         });
   },
-  ih = () => {
+  uh = () => {
     const {
         listDrawModalOpen: e,
         closeListDrawModal: t,
@@ -15726,42 +16091,42 @@ const rh = async (e) => {
         triggerRefresh: r,
       } = Je(),
       { t: o } = pt(),
-      [l, a] = m.useState(""),
-      [i, c] = m.useState([]),
-      [h, d] = m.useState(""),
-      [g, p] = m.useState("N"),
-      [w, v] = m.useState([]),
-      [b, _] = m.useState(!1);
-    m.useEffect(() => {
+      [l, a] = p.useState(""),
+      [i, c] = p.useState([]),
+      [h, d] = p.useState(""),
+      [x, m] = p.useState("N"),
+      [b, v] = p.useState([]),
+      [N, E] = p.useState(!1);
+    p.useEffect(() => {
       n && e && (a(n.name || ""), c(n.med_info || []));
     }, [n, e]);
-    const u = (P) => {
-        c((R) => R.filter((N) => N.code !== P));
+    const u = (I) => {
+        c((A) => A.filter((j) => j.code !== I));
       },
       f = async () => {
-        _(!0);
+        E(!0);
         try {
-          const P = await ke.searchMedicine(h, g);
-          v(P);
-        } catch (P) {
-          console.error("Search failed:", P), v([]);
+          const I = await ke.searchMedicine(h, x);
+          v(I);
+        } catch (I) {
+          console.error("Search failed:", I), v([]);
         } finally {
-          _(!1);
+          E(!1);
         }
       },
-      x = (P) => {
-        const R = {
-          id: P.GUID || `${Date.now()}_${Math.random()}`,
-          name: P.NAME,
-          cht_name: P.CHT_NAME,
-          code: P.CODE,
+      g = (I) => {
+        const A = {
+          id: I.GUID || `${Date.now()}_${Math.random()}`,
+          name: I.NAME,
+          cht_name: I.CHT_NAME,
+          code: I.CODE,
         };
-        c((N) => (N.some((S) => S.code === R.code) ? N : [...N, R]));
+        c((j) => (j.some((D) => D.code === A.code) ? j : [...j, A]));
       },
-      j = () => {
+      C = () => {
         n && ((n.name = l), (n.med_info = i), r(), t());
       },
-      L = () => {
+      B = () => {
         t();
       };
     return !e || !n
@@ -15771,13 +16136,13 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: L,
+              onClick: B,
             }),
             s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
-              onClick: (P) => P.stopPropagation(),
+              onClick: (I) => I.stopPropagation(),
               children: [
                 s.jsxs("div", {
                   className:
@@ -15794,10 +16159,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: L,
+                      onClick: B,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -15816,7 +16181,7 @@ const rh = async (e) => {
                           s.jsx("input", {
                             type: "text",
                             value: l,
-                            onChange: (P) => a(P.target.value),
+                            onChange: (I) => a(I.target.value),
                             placeholder:
                               (n == null ? void 0 : n.name) ||
                               o("placeholder.drawerName"),
@@ -15839,7 +16204,7 @@ const rh = async (e) => {
                                 ? s.jsx("div", {
                                     className:
                                       "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2",
-                                    children: i.map((P) =>
+                                    children: i.map((I) =>
                                       s.jsx(
                                         "div",
                                         {
@@ -15853,12 +16218,12 @@ const rh = async (e) => {
                                                 className: "flex-1 min-w-0",
                                                 children: s.jsxs("div", {
                                                   children: [
-                                                    P.code &&
+                                                    I.code &&
                                                       s.jsx("div", {
                                                         children: s.jsx("div", {
                                                           className:
                                                             "text-sm text-gray-900 font-mono",
-                                                          children: P.code,
+                                                          children: I.code,
                                                         }),
                                                       }),
                                                     s.jsx("div", {
@@ -15866,7 +16231,7 @@ const rh = async (e) => {
                                                         className:
                                                           "text-sm text-gray-900 font-medium",
                                                         children:
-                                                          P.name ||
+                                                          I.name ||
                                                           o("status.notSet"),
                                                       }),
                                                     }),
@@ -15875,7 +16240,7 @@ const rh = async (e) => {
                                                         className:
                                                           "text-sm text-gray-900",
                                                         children:
-                                                          P.cht_name ||
+                                                          I.cht_name ||
                                                           o("status.notSet"),
                                                       }),
                                                     }),
@@ -15883,18 +16248,18 @@ const rh = async (e) => {
                                                 }),
                                               }),
                                               s.jsx("button", {
-                                                onClick: () => u(P.code),
+                                                onClick: () => u(I.code),
                                                 className:
                                                   "ml-3 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0",
                                                 title: o("button.remove"),
-                                                children: s.jsx(Ye, {
+                                                children: s.jsx(Qe, {
                                                   className: "w-5 h-5",
                                                 }),
                                               }),
                                             ],
                                           }),
                                         },
-                                        P.id
+                                        I.id
                                       )
                                     ),
                                   })
@@ -15931,14 +16296,14 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "text",
                                     value: h,
-                                    onChange: (P) => d(P.target.value),
+                                    onChange: (I) => d(I.target.value),
                                     placeholder: o("placeholder.drugSearch"),
                                     className:
                                       "border rounded px-3 py-1 flex-1 min-w-0 focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
                                   s.jsxs("select", {
-                                    value: g,
-                                    onChange: (P) => p(P.target.value),
+                                    value: x,
+                                    onChange: (I) => m(I.target.value),
                                     className:
                                       "border rounded px-2 py-1 focus:border-blue-500 focus:outline-none transition-colors",
                                     title: "管制級別",
@@ -15967,11 +16332,11 @@ const rh = async (e) => {
                                   }),
                                   s.jsxs("button", {
                                     onClick: f,
-                                    disabled: b,
+                                    disabled: N,
                                     className:
                                       "bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition-colors whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2",
                                     children: [
-                                      b &&
+                                      N &&
                                         s.jsx(Rt, {
                                           className: "w-4 h-4 animate-spin",
                                         }),
@@ -15983,7 +16348,7 @@ const rh = async (e) => {
                               s.jsx("div", {
                                 className:
                                   "bg-white border rounded p-3 min-h-[300px] max-h-[300px] overflow-y-auto",
-                                children: b
+                                children: N
                                   ? s.jsxs("div", {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
@@ -15995,10 +16360,10 @@ const rh = async (e) => {
                                         o("status.searching"),
                                       ],
                                     })
-                                  : w.length > 0
+                                  : b.length > 0
                                   ? s.jsx("div", {
                                       className: "space-y-1",
-                                      children: w.map((P, R) =>
+                                      children: b.map((I, A) =>
                                         s.jsxs(
                                           "div",
                                           {
@@ -16011,32 +16376,32 @@ const rh = async (e) => {
                                                   s.jsx("div", {
                                                     className:
                                                       "text-sm font-medium text-gray-900 truncate",
-                                                    children: P.NAME,
+                                                    children: I.NAME,
                                                   }),
                                                   s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-500 truncate",
-                                                    children: P.CHT_NAME,
+                                                    children: I.CHT_NAME,
                                                   }),
                                                   s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-400 font-mono",
-                                                    children: P.CODE,
+                                                    children: I.CODE,
                                                   }),
                                                 ],
                                               }),
                                               s.jsx("button", {
-                                                onClick: () => x(P),
+                                                onClick: () => g(I),
                                                 className:
                                                   "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                                 title: o("button.add"),
-                                                children: s.jsx(Nt, {
+                                                children: s.jsx(gt, {
                                                   className: "w-4 h-4",
                                                 }),
                                               }),
                                             ],
                                           },
-                                          P.GUID || R
+                                          I.GUID || A
                                         )
                                       ),
                                     })
@@ -16044,7 +16409,7 @@ const rh = async (e) => {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
                                       children: o(
-                                        h || g !== "N"
+                                        h || x !== "N"
                                           ? "status.noSearchResults"
                                           : "status.searchResults"
                                       ),
@@ -16062,13 +16427,13 @@ const rh = async (e) => {
                     "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                   children: [
                     s.jsx("button", {
-                      onClick: L,
+                      onClick: B,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
                       children: o("button.cancel"),
                     }),
                     s.jsx("button", {
-                      onClick: j,
+                      onClick: C,
                       className:
                         "px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors",
                       children: o("button.save"),
@@ -16080,7 +16445,7 @@ const rh = async (e) => {
           ],
         });
   },
-  ch = () => {
+  dh = () => {
     const {
         gridDrawModalOpen: e,
         closeGridDrawModal: t,
@@ -16092,56 +16457,56 @@ const rh = async (e) => {
         medicineList: i,
       } = Je(),
       { t: c } = pt(),
-      [h, d] = m.useState(""),
-      [g, p] = m.useState(null),
-      [w, v] = m.useState(!1),
-      [b, _] = m.useState(!1),
-      [u, f] = m.useState(null),
-      [x, j] = m.useState(""),
-      [L, P] = m.useState("N"),
-      [R, N] = m.useState([]),
-      [I, S] = m.useState(!1),
-      [O, G] = m.useState(0),
-      [E, C] = m.useState({ x: 0, y: 0 });
-    m.useEffect(() => {
+      [h, d] = p.useState(""),
+      [x, m] = p.useState(null),
+      [b, v] = p.useState(!1),
+      [N, E] = p.useState(!1),
+      [u, f] = p.useState(null),
+      [g, C] = p.useState(""),
+      [B, I] = p.useState("N"),
+      [A, j] = p.useState([]),
+      [z, D] = p.useState(!1),
+      [F, G] = p.useState(0),
+      [P, M] = p.useState({ x: 0, y: 0 });
+    p.useEffect(() => {
       if (n && e)
         if ((d(n.name || ""), n.drawer)) {
-          if (!w) {
+          if (!b) {
             console.log("🔄 備份原始 drawer 資料:", n);
-            const D = JSON.parse(JSON.stringify(n.drawer));
-            p(D), v(!0), console.log("✅ 備份完成，備份資料:", D);
+            const k = JSON.parse(JSON.stringify(n.drawer));
+            m(k), v(!0), console.log("✅ 備份完成，備份資料:", k);
           }
-        } else console.log("⚠️ 沒有 drawer 資料可備份"), p(null), v(!1);
-    }, [n, e, w]),
-      m.useEffect(() => {
-        e || (v(!1), p(null), f(null));
+        } else console.log("⚠️ 沒有 drawer 資料可備份"), m(null), v(!1);
+    }, [n, e, b]),
+      p.useEffect(() => {
+        e || (v(!1), m(null), f(null));
       }, [e]);
-    const Z = () => {
-        n && ye();
+    const ee = () => {
+        n && re();
       },
-      M = () => {
+      w = () => {
         if (
           (console.log("🔄 開始恢復原始資料..."),
-          console.log("原始備份資料:", g),
+          console.log("原始備份資料:", x),
           console.log("當前 selectedGridDraw:", n),
-          n && g && w)
+          n && x && b)
         ) {
           console.log("📦 恢復 drawer 資料...");
-          const D = JSON.parse(JSON.stringify(g));
-          if (((n.drawer = D), o)) {
-            const A = (re) => {
-                re.forEach((ae) => {
-                  ae.GUID === n.GUID &&
+          const k = JSON.parse(JSON.stringify(x));
+          if (((n.drawer = k), o)) {
+            const $ = (se) => {
+                se.forEach((ue) => {
+                  ue.GUID === n.GUID &&
                     (console.log("🎯 找到目標格線抽屜，更新資料"),
-                    (ae.drawer = D)),
-                    ae.contents && Array.isArray(ae.contents) && A(ae.contents),
-                    ae.components &&
-                      Array.isArray(ae.components) &&
-                      A(ae.components);
+                    (ue.drawer = k)),
+                    ue.contents && Array.isArray(ue.contents) && $(ue.contents),
+                    ue.components &&
+                      Array.isArray(ue.components) &&
+                      $(ue.components);
                 });
               },
-              H = JSON.parse(JSON.stringify(o));
-            A(H), l(H), console.log("🔄 已更新全域資料狀態");
+              V = JSON.parse(JSON.stringify(o));
+            $(V), l(V), console.log("🔄 已更新全域資料狀態");
           }
           console.log("✅ 資料已恢復:", n.drawer);
         } else
@@ -16149,335 +16514,335 @@ const rh = async (e) => {
             "⚠️ 無法恢復資料 - selectedGridDraw、originalDrawerData 或 hasBackup 為空"
           ),
             console.log("selectedGridDraw:", !!n),
-            console.log("originalDrawerData:", !!g),
-            console.log("hasBackup:", w);
-        f(null), v(!1), p(null), r(), t();
+            console.log("originalDrawerData:", !!x),
+            console.log("hasBackup:", b);
+        f(null), v(!1), m(null), r(), t();
       },
-      F = (D, A) => {
+      O = (k, $) => {
         if (!u) return !1;
-        const H = Math.min(u.startRow, u.endRow),
-          re = Math.max(u.startRow, u.endRow),
-          ae = Math.min(u.startCol, u.endCol),
-          xe = Math.max(u.startCol, u.endCol);
-        return D >= H && D <= re && A >= ae && A <= xe;
+        const V = Math.min(u.startRow, u.endRow),
+          se = Math.max(u.startRow, u.endRow),
+          ue = Math.min(u.startCol, u.endCol),
+          ve = Math.max(u.startCol, u.endCol);
+        return k >= V && k <= se && $ >= ue && $ <= ve;
       },
-      k = (D) => {
-        var _e;
+      S = (k) => {
+        var De;
         if (
-          !((_e = n == null ? void 0 : n.drawer) != null && _e.Boxes) ||
-          D.Slave
+          !((De = n == null ? void 0 : n.drawer) != null && De.Boxes) ||
+          k.Slave
         )
           return { width: 1, height: 1 };
-        const H = n.drawer.Boxes.flat().filter(
-          (ce) =>
-            ce.Slave &&
-            ce.MasterBox_Row === D.Row &&
-            ce.MasterBox_Column === D.Column
+        const V = n.drawer.Boxes.flat().filter(
+          (fe) =>
+            fe.Slave &&
+            fe.MasterBox_Row === k.Row &&
+            fe.MasterBox_Column === k.Column
         );
-        if (H.length === 0) return { width: 1, height: 1 };
-        const re = [D, ...H],
-          ae = Math.min(...re.map((ce) => ce.Row)),
-          xe = Math.max(...re.map((ce) => ce.Row)),
-          be = Math.min(...re.map((ce) => ce.Column));
+        if (V.length === 0) return { width: 1, height: 1 };
+        const se = [k, ...V],
+          ue = Math.min(...se.map((fe) => fe.Row)),
+          ve = Math.max(...se.map((fe) => fe.Row)),
+          be = Math.min(...se.map((fe) => fe.Column));
         return {
-          width: Math.max(...re.map((ce) => ce.Column)) - be + 1,
-          height: xe - ae + 1,
+          width: Math.max(...se.map((fe) => fe.Column)) - be + 1,
+          height: ve - ue + 1,
         };
       },
       Q = () => {
         var be;
         if (!u || !((be = n == null ? void 0 : n.drawer) != null && be.Boxes))
           return [];
-        const D = n.drawer.Boxes.flat(),
-          A = Math.min(u.startRow, u.endRow),
-          H = Math.max(u.startRow, u.endRow),
-          re = Math.min(u.startCol, u.endCol),
-          ae = Math.max(u.startCol, u.endCol),
-          xe = [];
+        const k = n.drawer.Boxes.flat(),
+          $ = Math.min(u.startRow, u.endRow),
+          V = Math.max(u.startRow, u.endRow),
+          se = Math.min(u.startCol, u.endCol),
+          ue = Math.max(u.startCol, u.endCol),
+          ve = [];
         return (
-          D.forEach((Ne) => {
-            if (!Ne.Slave) {
-              const _e = k(Ne),
-                ce = Ne.Row + _e.height - 1,
-                me = Ne.Column + _e.width - 1;
-              Ne.Row >= A &&
-                ce <= H &&
-                Ne.Column >= re &&
-                me <= ae &&
-                xe.push(Ne);
+          k.forEach((je) => {
+            if (!je.Slave) {
+              const De = S(je),
+                fe = je.Row + De.height - 1,
+                he = je.Column + De.width - 1;
+              je.Row >= $ &&
+                fe <= V &&
+                je.Column >= se &&
+                he <= ue &&
+                ve.push(je);
             }
           }),
-          xe
+          ve
         );
       },
-      de = (D, A, H, re) => {
-        var me;
-        if (!u || !((me = n == null ? void 0 : n.drawer) != null && me.Boxes))
+      ie = (k, $, V, se) => {
+        var he;
+        if (!u || !((he = n == null ? void 0 : n.drawer) != null && he.Boxes))
           return !1;
-        const ae = n.drawer.Boxes.flat();
-        let xe = !0,
-          be = D,
-          Ne = A,
-          _e = H,
-          ce = re;
-        for (; xe; )
-          (xe = !1),
-            ae.forEach((we) => {
+        const ue = n.drawer.Boxes.flat();
+        let ve = !0,
+          be = k,
+          je = $,
+          De = V,
+          fe = se;
+        for (; ve; )
+          (ve = !1),
+            ue.forEach((we) => {
               if (!we.Slave) {
-                const De = k(we),
-                  Ve = we.Row + De.height - 1,
-                  Ce = we.Column + De.width - 1;
-                !(we.Row > Ne || Ve < be || we.Column > ce || Ce < _e) &&
-                  (we.Row < be && ((be = we.Row), (xe = !0)),
-                  Ve > Ne && ((Ne = Ve), (xe = !0)),
-                  we.Column < _e && ((_e = we.Column), (xe = !0)),
-                  Ce > ce && ((ce = Ce), (xe = !0)));
+                const _e = S(we),
+                  Ve = we.Row + _e.height - 1,
+                  Ce = we.Column + _e.width - 1;
+                !(we.Row > je || Ve < be || we.Column > fe || Ce < De) &&
+                  (we.Row < be && ((be = we.Row), (ve = !0)),
+                  Ve > je && ((je = Ve), (ve = !0)),
+                  we.Column < De && ((De = we.Column), (ve = !0)),
+                  Ce > fe && ((fe = Ce), (ve = !0)));
               }
             });
-        return { minRow: be, maxRow: Ne, minCol: _e, maxCol: ce };
+        return { minRow: be, maxRow: je, minCol: De, maxCol: fe };
       },
       X = () => {
-        var xe;
-        if (!u || !((xe = n == null ? void 0 : n.drawer) != null && xe.Boxes))
+        var ve;
+        if (!u || !((ve = n == null ? void 0 : n.drawer) != null && ve.Boxes))
           return !1;
-        const D = Math.min(u.startRow, u.endRow),
-          A = Math.max(u.startRow, u.endRow),
-          H = Math.min(u.startCol, u.endCol),
-          re = Math.max(u.startCol, u.endCol),
-          ae = n.drawer.Boxes.flat();
-        for (let be = D; be <= A; be++)
-          for (let Ne = H; Ne <= re; Ne++) {
-            let _e = !1;
-            for (const ce of ae)
-              if (!ce.Slave) {
-                const me = k(ce),
-                  we = ce.Row + me.height - 1,
-                  De = ce.Column + me.width - 1;
-                if (be >= ce.Row && be <= we && Ne >= ce.Column && Ne <= De) {
-                  _e = !0;
+        const k = Math.min(u.startRow, u.endRow),
+          $ = Math.max(u.startRow, u.endRow),
+          V = Math.min(u.startCol, u.endCol),
+          se = Math.max(u.startCol, u.endCol),
+          ue = n.drawer.Boxes.flat();
+        for (let be = k; be <= $; be++)
+          for (let je = V; je <= se; je++) {
+            let De = !1;
+            for (const fe of ue)
+              if (!fe.Slave) {
+                const he = S(fe),
+                  we = fe.Row + he.height - 1,
+                  _e = fe.Column + he.width - 1;
+                if (be >= fe.Row && be <= we && je >= fe.Column && je <= _e) {
+                  De = !0;
                   break;
                 }
               }
-            if (!_e) return !1;
+            if (!De) return !1;
           }
         return !0;
       },
-      ne = () => {
-        var me, we;
-        const D = Q();
+      oe = () => {
+        var he, we;
+        const k = Q();
         if (!u) return { canMerge: !1, canUnmerge: !1 };
-        if (D.length === 0) return { canMerge: !1, canUnmerge: !1 };
-        const A =
+        if (k.length === 0) return { canMerge: !1, canUnmerge: !1 };
+        const $ =
             ((we =
-              (me = n == null ? void 0 : n.drawer) == null
+              (he = n == null ? void 0 : n.drawer) == null
                 ? void 0
-                : me.Boxes) == null
+                : he.Boxes) == null
               ? void 0
               : we.flat()) || [],
-          H = D.some(
-            (De) =>
-              A.filter(
+          V = k.some(
+            (_e) =>
+              $.filter(
                 (Ce) =>
                   Ce.Slave &&
-                  Ce.MasterBox_Row === De.Row &&
-                  Ce.MasterBox_Column === De.Column
+                  Ce.MasterBox_Row === _e.Row &&
+                  Ce.MasterBox_Column === _e.Column
               ).length > 0
           ),
-          re = Math.min(u.startRow, u.endRow),
-          ae = Math.max(u.startRow, u.endRow),
-          xe = Math.min(u.startCol, u.endCol),
+          se = Math.min(u.startRow, u.endRow),
+          ue = Math.max(u.startRow, u.endRow),
+          ve = Math.min(u.startCol, u.endCol),
           be = Math.max(u.startCol, u.endCol),
-          Ne = A.some(
-            (De) =>
-              De.Slave &&
-              De.Row >= re &&
-              De.Row <= ae &&
-              De.Column >= xe &&
-              De.Column <= be
+          je = $.some(
+            (_e) =>
+              _e.Slave &&
+              _e.Row >= se &&
+              _e.Row <= ue &&
+              _e.Column >= ve &&
+              _e.Column <= be
           );
-        return { canMerge: D.length > 1 && X(), canUnmerge: H || Ne };
+        return { canMerge: k.length > 1 && X(), canUnmerge: V || je };
       },
-      { canMerge: je, canUnmerge: oe } = ne(),
-      ve = async () => {
-        S(!0);
+      { canMerge: Ne, canUnmerge: le } = oe(),
+      ye = async () => {
+        D(!0);
         try {
-          const D = x.toLowerCase().trim();
-          let A = i;
-          D &&
-            (A = A.filter((H) => {
-              var re, ae, xe;
+          const k = g.toLowerCase().trim();
+          let $ = i;
+          k &&
+            ($ = $.filter((V) => {
+              var se, ue, ve;
               return (
-                ((re = H.CODE) == null
+                ((se = V.CODE) == null
                   ? void 0
-                  : re.toLowerCase().includes(D)) ||
-                ((ae = H.NAME) == null
+                  : se.toLowerCase().includes(k)) ||
+                ((ue = V.NAME) == null
                   ? void 0
-                  : ae.toLowerCase().includes(D)) ||
-                ((xe = H.CHT_NAME) == null
+                  : ue.toLowerCase().includes(k)) ||
+                ((ve = V.CHT_NAME) == null
                   ? void 0
-                  : xe.toLowerCase().includes(D))
+                  : ve.toLowerCase().includes(k))
               );
             })),
-            L !== "N" && (A = A.filter((H) => H.DRUGKIND === L)),
-            N(A);
-        } catch (D) {
-          console.error("Search failed:", D), N([]);
+            B !== "N" && ($ = $.filter((V) => V.DRUGKIND === B)),
+            j($);
+        } catch (k) {
+          console.error("Search failed:", k), j([]);
         } finally {
-          S(!1);
+          D(!1);
         }
       },
-      $ = async (D) => {
-        var H;
-        if (!u || !((H = n == null ? void 0 : n.drawer) != null && H.Boxes))
+      U = async (k) => {
+        var V;
+        if (!u || !((V = n == null ? void 0 : n.drawer) != null && V.Boxes))
           return;
-        const A = Q();
-        if (A.length !== 0)
+        const $ = Q();
+        if ($.length !== 0)
           try {
-            const re = {
+            const se = {
               ServerName: n.serverName,
               ServerType: n.serverType,
-              ValueAry: [`guid=${A[0].GUID}`, `code=${D.CODE}`],
+              ValueAry: [`guid=${$[0].GUID}`, `code=${k.CODE}`],
               Data: n.drawer,
             };
-            console.log("🚀 發送更新藥品 API 請求:", re);
-            const ae = await ke.request("/api/device/update_drawer_medcode", {
+            console.log("🚀 發送更新藥品 API 請求:", se);
+            const ue = await ke.request("/api/device/update_drawer_medcode", {
               method: "POST",
-              body: JSON.stringify(re),
+              body: JSON.stringify(se),
             });
             if (
-              (console.log("📡 更新藥品 API 回應:", ae),
-              ae.Code === 200 && ae.Data)
+              (console.log("📡 更新藥品 API 回應:", ue),
+              ue.Code === 200 && ue.Data)
             ) {
               if (
-                ((n.drawer = ae.Data),
-                ae.Data.Boxes && (n.Boxes = ae.Data.Boxes),
+                ((n.drawer = ue.Data),
+                ue.Data.Boxes && (n.Boxes = ue.Data.Boxes),
                 console.log("✅ 藥品資料更新成功"),
                 o)
               ) {
-                const xe = (Ne) => {
-                    Ne.forEach((_e) => {
-                      _e.GUID === n.GUID &&
+                const ve = (je) => {
+                    je.forEach((De) => {
+                      De.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
-                        (_e.drawer = n.drawer),
-                        n.Boxes && (_e.Boxes = n.Boxes)),
-                        _e.contents &&
-                          Array.isArray(_e.contents) &&
-                          xe(_e.contents),
-                        _e.components &&
-                          Array.isArray(_e.components) &&
-                          xe(_e.components);
+                        (De.drawer = n.drawer),
+                        n.Boxes && (De.Boxes = n.Boxes)),
+                        De.contents &&
+                          Array.isArray(De.contents) &&
+                          ve(De.contents),
+                        De.components &&
+                          Array.isArray(De.components) &&
+                          ve(De.components);
                     });
                   },
                   be = JSON.parse(JSON.stringify(o));
-                xe(be), l(be);
+                ve(be), l(be);
               }
               f(null), r();
             } else
-              console.error("❌ 藥品更新失敗:", ae),
-                a(`藥品更新失敗：${ae.Result || "未知錯誤"}`, "error");
-          } catch (re) {
-            console.error("💥 藥品更新 API 調用失敗:", re),
+              console.error("❌ 藥品更新失敗:", ue),
+                a(`藥品更新失敗：${ue.Result || "未知錯誤"}`, "error");
+          } catch (se) {
+            console.error("💥 藥品更新 API 調用失敗:", se),
               a("藥品更新失敗：網路錯誤", "error");
           }
       },
-      le = (D, A, H) => {
-        H.preventDefault(),
-          H.stopPropagation(),
-          "touches" in H &&
+      ae = (k, $, V) => {
+        V.preventDefault(),
+          V.stopPropagation(),
+          "touches" in V &&
             (G(Date.now()),
-            C({ x: H.touches[0].clientX, y: H.touches[0].clientY })),
-          _(!0),
-          f({ startRow: D, startCol: A, endRow: D, endCol: A });
+            M({ x: V.touches[0].clientX, y: V.touches[0].clientY })),
+          E(!0),
+          f({ startRow: k, startCol: $, endRow: k, endCol: $ });
       },
-      pe = (D, A) => {
-        if (!b || !u) return;
-        const H = Math.min(u.startRow, D),
-          re = Math.max(u.startRow, D),
-          ae = Math.min(u.startCol, A),
-          xe = Math.max(u.startCol, A),
-          be = de(H, re, ae, xe);
+      R = (k, $) => {
+        if (!N || !u) return;
+        const V = Math.min(u.startRow, k),
+          se = Math.max(u.startRow, k),
+          ue = Math.min(u.startCol, $),
+          ve = Math.max(u.startCol, $),
+          be = ie(V, se, ue, ve);
         be &&
-          f((Ne) =>
-            Ne
+          f((je) =>
+            je
               ? {
-                  startRow: Ne.startRow,
-                  startCol: Ne.startCol,
-                  endRow: D >= Ne.startRow ? be.maxRow : be.minRow,
-                  endCol: A >= Ne.startCol ? be.maxCol : be.minCol,
+                  startRow: je.startRow,
+                  startCol: je.startCol,
+                  endRow: k >= je.startRow ? be.maxRow : be.minRow,
+                  endCol: $ >= je.startCol ? be.maxCol : be.minCol,
                 }
               : null
           );
       },
-      T = () => {
-        if (b && (_(!1), u && n != null && n.Boxes)) {
-          const D = Math.min(u.startRow, u.endRow),
-            A = Math.max(u.startRow, u.endRow),
-            H = Math.min(u.startCol, u.endCol),
-            re = Math.max(u.startCol, u.endCol),
-            ae = de(D, A, H, re);
-          ae &&
+      J = () => {
+        if (N && (E(!1), u && n != null && n.Boxes)) {
+          const k = Math.min(u.startRow, u.endRow),
+            $ = Math.max(u.startRow, u.endRow),
+            V = Math.min(u.startCol, u.endCol),
+            se = Math.max(u.startCol, u.endCol),
+            ue = ie(k, $, V, se);
+          ue &&
             f({
-              startRow: ae.minRow,
-              startCol: ae.minCol,
-              endRow: ae.maxRow,
-              endCol: ae.maxCol,
+              startRow: ue.minRow,
+              startCol: ue.minCol,
+              endRow: ue.maxRow,
+              endCol: ue.maxCol,
             });
         }
       },
-      se = () => {
-        var D;
-        !je ||
-          !((D = n == null ? void 0 : n.drawer) != null && D.Boxes) ||
+      ce = () => {
+        var k;
+        !Ne ||
+          !((k = n == null ? void 0 : n.drawer) != null && k.Boxes) ||
           !u ||
-          ee();
+          _();
       },
       Se = () => {
-        var D;
-        !oe ||
-          !((D = n == null ? void 0 : n.drawer) != null && D.Boxes) ||
+        var k;
+        !le ||
+          !((k = n == null ? void 0 : n.drawer) != null && k.Boxes) ||
           !u ||
-          (console.log(u), U());
+          (console.log(u), L());
       },
-      U = async () => {
-        var D;
-        if (!(!u || !((D = n == null ? void 0 : n.drawer) != null && D.Boxes)))
+      L = async () => {
+        var k;
+        if (!(!u || !((k = n == null ? void 0 : n.drawer) != null && k.Boxes)))
           try {
-            const A = Math.min(u.startRow, u.endRow),
-              H = Math.max(u.startRow, u.endRow),
-              re = Math.min(u.startCol, u.endCol),
-              ae = Math.max(u.startCol, u.endCol),
+            const $ = Math.min(u.startRow, u.endRow),
+              V = Math.max(u.startRow, u.endRow),
+              se = Math.min(u.startCol, u.endCol),
+              ue = Math.max(u.startCol, u.endCol),
               be = n.drawer.Boxes.flat().filter(
                 (we) =>
-                  we.Row >= A &&
-                  we.Row <= H &&
-                  we.Column >= re &&
-                  we.Column <= ae
+                  we.Row >= $ &&
+                  we.Row <= V &&
+                  we.Column >= se &&
+                  we.Column <= ue
               ),
-              Ne = [],
-              _e = [];
+              je = [],
+              De = [];
             be.forEach((we) => {
-              Ne.push(we.Column.toString()), _e.push(we.Row.toString());
+              je.push(we.Column.toString()), De.push(we.Row.toString());
             });
-            const ce = {
+            const fe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${Ne.join(",")}`,
-                `SelectRows=${_e.join(",")}`,
+                `SelectColumns=${je.join(",")}`,
+                `SelectRows=${De.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
             };
-            console.log("🚀 發送 API 請求:", ce);
-            const me = await ke.request("/api/device/separate_drawer_boxes", {
+            console.log("🚀 發送 API 請求:", fe);
+            const he = await ke.request("/api/device/separate_drawer_boxes", {
               method: "POST",
-              body: JSON.stringify(ce),
+              body: JSON.stringify(fe),
             });
-            if ((console.log("📡 API 回應:", me), me.Code === 200 && me.Data)) {
+            if ((console.log("📡 API 回應:", he), he.Code === 200 && he.Data)) {
               if (
-                me.Data.Boxes &&
-                Array.isArray(me.Data.Boxes) &&
-                ((n.Boxes = me.Data.Boxes),
-                (n.drawer = me.Data),
+                he.Data.Boxes &&
+                Array.isArray(he.Data.Boxes) &&
+                ((n.Boxes = he.Data.Boxes),
+                (n.drawer = he.Data),
                 console.log("✅ 資料已更新"),
                 o)
               ) {
@@ -16494,14 +16859,14 @@ const rh = async (e) => {
                           we(Ce.components);
                     });
                   },
-                  De = JSON.parse(JSON.stringify(o));
-                we(De), l(De);
+                  _e = JSON.parse(JSON.stringify(o));
+                we(_e), l(_e);
               }
             } else
-              console.error("❌ API 回應錯誤:", me),
-                a(`取消合併失敗：${me.Result || "未知錯誤"}`, "error");
-          } catch (A) {
-            console.error("💥 API 調用失敗:", A),
+              console.error("❌ API 回應錯誤:", he),
+                a(`取消合併失敗：${he.Result || "未知錯誤"}`, "error");
+          } catch ($) {
+            console.error("💥 API 調用失敗:", $),
               a("取消合併失敗：網路錯誤", "error");
           } finally {
             console.log("更新後資料：", n),
@@ -16510,46 +16875,46 @@ const rh = async (e) => {
               r();
           }
       },
-      ee = async () => {
-        var D;
-        if (!(!u || !((D = n == null ? void 0 : n.drawer) != null && D.Boxes)))
+      _ = async () => {
+        var k;
+        if (!(!u || !((k = n == null ? void 0 : n.drawer) != null && k.Boxes)))
           try {
-            const A = Math.min(u.startRow, u.endRow),
-              H = Math.max(u.startRow, u.endRow),
-              re = Math.min(u.startCol, u.endCol),
-              ae = Math.max(u.startCol, u.endCol),
+            const $ = Math.min(u.startRow, u.endRow),
+              V = Math.max(u.startRow, u.endRow),
+              se = Math.min(u.startCol, u.endCol),
+              ue = Math.max(u.startCol, u.endCol),
               be = n.drawer.Boxes.flat().filter(
                 (we) =>
-                  we.Row >= A &&
-                  we.Row <= H &&
-                  we.Column >= re &&
-                  we.Column <= ae
+                  we.Row >= $ &&
+                  we.Row <= V &&
+                  we.Column >= se &&
+                  we.Column <= ue
               ),
-              Ne = [],
-              _e = [];
+              je = [],
+              De = [];
             be.forEach((we) => {
-              Ne.push(we.Column.toString()), _e.push(we.Row.toString());
+              je.push(we.Column.toString()), De.push(we.Row.toString());
             });
-            const ce = {
+            const fe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${Ne.join(",")}`,
-                `SelectRows=${_e.join(",")}`,
+                `SelectColumns=${je.join(",")}`,
+                `SelectRows=${De.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
             };
-            console.log("🚀 發送 API 請求:", ce);
-            const me = await ke.request("/api/device/combine_drawer_boxes", {
+            console.log("🚀 發送 API 請求:", fe);
+            const he = await ke.request("/api/device/combine_drawer_boxes", {
               method: "POST",
-              body: JSON.stringify(ce),
+              body: JSON.stringify(fe),
             });
-            if ((console.log("📡 API 回應:", me), me.Code === 200 && me.Data)) {
+            if ((console.log("📡 API 回應:", he), he.Code === 200 && he.Data)) {
               if (
-                me.Data.Boxes &&
-                Array.isArray(me.Data.Boxes) &&
-                ((n.Boxes = me.Data.Boxes),
-                (n.drawer = me.Data),
+                he.Data.Boxes &&
+                Array.isArray(he.Data.Boxes) &&
+                ((n.Boxes = he.Data.Boxes),
+                (n.drawer = he.Data),
                 console.log("✅ 資料已更新"),
                 o)
               ) {
@@ -16566,14 +16931,14 @@ const rh = async (e) => {
                           we(Ce.components);
                     });
                   },
-                  De = JSON.parse(JSON.stringify(o));
-                we(De), l(De);
+                  _e = JSON.parse(JSON.stringify(o));
+                we(_e), l(_e);
               }
             } else
-              console.error("❌ API 回應錯誤:", me),
-                a(`取消合併失敗：${me.Result || "未知錯誤"}`, "error");
-          } catch (A) {
-            console.error("💥 API 調用失敗:", A),
+              console.error("❌ API 回應錯誤:", he),
+                a(`取消合併失敗：${he.Result || "未知錯誤"}`, "error");
+          } catch ($) {
+            console.error("💥 API 調用失敗:", $),
               a("取消合併失敗：網路錯誤", "error");
           } finally {
             console.log("更新後資料：", n),
@@ -16582,55 +16947,55 @@ const rh = async (e) => {
               r();
           }
       },
-      ye = async () => {
+      re = async () => {
         if (n)
           try {
             n.name = h;
-            const D = {
+            const k = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               Data: [n.drawer],
             };
-            console.log("🚀 發送確認更新 API 請求:", D);
-            const A = await ke.request("/api/device/update_epd583_drawers", {
+            console.log("🚀 發送確認更新 API 請求:", k);
+            const $ = await ke.request("/api/device/update_epd583_drawers", {
               method: "POST",
-              body: JSON.stringify(D),
+              body: JSON.stringify(k),
             });
-            if ((console.log("📡 確認更新 API 回應:", A), A.Code === 200)) {
+            if ((console.log("📡 確認更新 API 回應:", $), $.Code === 200)) {
               if (
                 (console.log("✅ 抽屜資料更新成功"),
                 a("抽屜資料更新成功", "success"),
                 o)
               ) {
-                const H = (ae) => {
-                    ae.forEach((xe) => {
-                      xe.GUID === n.GUID &&
+                const V = (ue) => {
+                    ue.forEach((ve) => {
+                      ve.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新名稱"),
-                        (xe.name = n.name)),
-                        xe.contents &&
-                          Array.isArray(xe.contents) &&
-                          H(xe.contents),
-                        xe.components &&
-                          Array.isArray(xe.components) &&
-                          H(xe.components);
+                        (ve.name = n.name)),
+                        ve.contents &&
+                          Array.isArray(ve.contents) &&
+                          V(ve.contents),
+                        ve.components &&
+                          Array.isArray(ve.components) &&
+                          V(ve.components);
                     });
                   },
-                  re = JSON.parse(JSON.stringify(o));
-                H(re), l(re);
+                  se = JSON.parse(JSON.stringify(o));
+                V(se), l(se);
               }
-              v(!1), p(null), r(), t();
+              v(!1), m(null), r(), t();
             } else
-              console.error("❌ 抽屜資料更新失敗:", A),
-                a(`抽屜資料更新失敗：${A.Result || "未知錯誤"}`, "error");
-          } catch (D) {
-            console.error("💥 抽屜資料更新 API 調用失敗:", D),
+              console.error("❌ 抽屜資料更新失敗:", $),
+                a(`抽屜資料更新失敗：${$.Result || "未知錯誤"}`, "error");
+          } catch (k) {
+            console.error("💥 抽屜資料更新 API 調用失敗:", k),
               a("抽屜資料更新失敗：網路錯誤", "error");
           }
       },
-      z = () => {
-        var _e;
+      T = () => {
+        var De;
         if (
-          !((_e = n == null ? void 0 : n.drawer) != null && _e.Boxes) ||
+          !((De = n == null ? void 0 : n.drawer) != null && De.Boxes) ||
           n.drawer.Boxes.length === 0
         )
           return s.jsx("div", {
@@ -16653,110 +17018,110 @@ const rh = async (e) => {
               ],
             }),
           });
-        const D = n.drawer.Boxes.flat(),
-          A = (ce) => {
-            if (ce.Slave) return { width: 1, height: 1 };
-            const me = D.filter(
-              (ze) =>
-                ze.Slave &&
-                ze.MasterBox_Row === ce.Row &&
-                ze.MasterBox_Column === ce.Column
+        const k = n.drawer.Boxes.flat(),
+          $ = (fe) => {
+            if (fe.Slave) return { width: 1, height: 1 };
+            const he = k.filter(
+              (Be) =>
+                Be.Slave &&
+                Be.MasterBox_Row === fe.Row &&
+                Be.MasterBox_Column === fe.Column
             );
-            if (me.length === 0) return { width: 1, height: 1 };
-            const we = [ce, ...me],
-              De = Math.min(...we.map((ze) => ze.Row)),
-              Ve = Math.max(...we.map((ze) => ze.Row)),
-              Ce = Math.min(...we.map((ze) => ze.Column));
+            if (he.length === 0) return { width: 1, height: 1 };
+            const we = [fe, ...he],
+              _e = Math.min(...we.map((Be) => Be.Row)),
+              Ve = Math.max(...we.map((Be) => Be.Row)),
+              Ce = Math.min(...we.map((Be) => Be.Column));
             return {
-              width: Math.max(...we.map((ze) => ze.Column)) - Ce + 1,
-              height: Ve - De + 1,
+              width: Math.max(...we.map((Be) => Be.Column)) - Ce + 1,
+              height: Ve - _e + 1,
             };
           },
-          H = Math.max(...D.map((ce) => ce.Row + 1 - 1)),
-          re = Math.max(...D.map((ce) => ce.Column + 1 - 1)),
-          ae = H + 1,
-          xe = re + 1,
-          be = Array(ae)
+          V = Math.max(...k.map((fe) => fe.Row + 1 - 1)),
+          se = Math.max(...k.map((fe) => fe.Column + 1 - 1)),
+          ue = V + 1,
+          ve = se + 1,
+          be = Array(ue)
             .fill(null)
-            .map(() => Array(xe).fill(!1)),
-          Ne = {};
+            .map(() => Array(ve).fill(!1)),
+          je = {};
         return (
-          D.forEach((ce) => {
-            if (!ce.Slave) {
-              const me = A(ce);
-              (Ne[`${ce.Row},${ce.Column}`] = ce),
-                (ce.calculatedWidth = me.width),
-                (ce.calculatedHeight = me.height);
+          k.forEach((fe) => {
+            if (!fe.Slave) {
+              const he = $(fe);
+              (je[`${fe.Row},${fe.Column}`] = fe),
+                (fe.calculatedWidth = he.width),
+                (fe.calculatedHeight = he.height);
             }
           }),
-          D.forEach((ce) => {
+          k.forEach((fe) => {
             if (
-              !ce.Slave &&
-              (ce.calculatedWidth > 1 || ce.calculatedHeight > 1)
+              !fe.Slave &&
+              (fe.calculatedWidth > 1 || fe.calculatedHeight > 1)
             )
-              for (let me = ce.Row; me < ce.Row + ce.calculatedHeight; me++)
+              for (let he = fe.Row; he < fe.Row + fe.calculatedHeight; he++)
                 for (
-                  let we = ce.Column;
-                  we < ce.Column + ce.calculatedWidth;
+                  let we = fe.Column;
+                  we < fe.Column + fe.calculatedWidth;
                   we++
                 )
-                  (me !== ce.Row || we !== ce.Column) && (be[me][we] = !0);
+                  (he !== fe.Row || we !== fe.Column) && (be[he][we] = !0);
           }),
           s.jsx("div", {
             className: "rounded-lg",
             children: s.jsx("table", {
               className: "w-full",
               children: s.jsx("tbody", {
-                children: Array.from({ length: ae }, (ce, me) =>
+                children: Array.from({ length: ue }, (fe, he) =>
                   s.jsx(
                     "tr",
                     {
-                      children: Array.from({ length: xe }, (we, De) => {
-                        if (be[me][De]) return null;
-                        const Ve = `${me},${De}`,
-                          Ce = Ne[Ve];
+                      children: Array.from({ length: ve }, (we, _e) => {
+                        if (be[he][_e]) return null;
+                        const Ve = `${he},${_e}`,
+                          Ce = je[Ve];
                         return Ce
                           ? s.jsx(
                               "td",
                               {
                                 className: `border border-gray-400 pt-1 pl-1 align-top cursor-pointer select-none ${
-                                  F(me, De)
+                                  O(he, _e)
                                     ? "bg-blue-200"
                                     : "bg-white hover:bg-gray-100"
                                 }`,
                                 style: {
-                                  width: `${100 / xe}%`,
+                                  width: `${100 / ve}%`,
                                   minHeight: "40px",
                                   height: `${50 * Ce.calculatedHeight}px`,
                                   maxHeight: `${50 * Ce.calculatedHeight}px`,
                                 },
                                 colSpan: Ce.calculatedWidth,
                                 rowSpan: Ce.calculatedHeight,
-                                onMouseDown: (qe) => le(me, De, qe),
-                                onMouseEnter: () => pe(me, De),
-                                onMouseUp: T,
-                                onTouchStart: (qe) => le(me, De, qe),
-                                onTouchMove: (qe) => {
-                                  if ((qe.preventDefault(), !b)) return;
-                                  const ze = qe.touches[0],
-                                    vt = document.elementFromPoint(
-                                      ze.clientX,
-                                      ze.clientY
+                                onMouseDown: (Ye) => ae(he, _e, Ye),
+                                onMouseEnter: () => R(he, _e),
+                                onMouseUp: J,
+                                onTouchStart: (Ye) => ae(he, _e, Ye),
+                                onTouchMove: (Ye) => {
+                                  if ((Ye.preventDefault(), !N)) return;
+                                  const Be = Ye.touches[0],
+                                    wt = document.elementFromPoint(
+                                      Be.clientX,
+                                      Be.clientY
                                     ),
-                                    it = vt == null ? void 0 : vt.closest("td");
+                                    it = wt == null ? void 0 : wt.closest("td");
                                   if (it) {
-                                    const In = parseInt(
+                                    const Pn = parseInt(
                                         it.getAttribute("data-row") || "0"
                                       ),
                                       Vt = parseInt(
                                         it.getAttribute("data-col") || "0"
                                       );
-                                    pe(In, Vt);
+                                    R(Pn, Vt);
                                   }
                                 },
-                                onTouchEnd: T,
-                                "data-row": me,
-                                "data-col": De,
+                                onTouchEnd: J,
+                                "data-row": he,
+                                "data-col": _e,
                                 children: s.jsx("div", {
                                   className: "h-full flex flex-col",
                                   children:
@@ -16790,57 +17155,57 @@ const rh = async (e) => {
                                         }),
                                 }),
                               },
-                              De
+                              _e
                             )
                           : s.jsx(
                               "td",
                               {
                                 className: `border border-gray-300 p-2 align-top cursor-pointer select-none ${
-                                  F(me, De)
+                                  O(he, _e)
                                     ? "border-1 border-blue-500 bg-blue-100"
                                     : "bg-gray-50 hover:bg-gray-100"
                                 }`,
                                 style: {
-                                  width: `${100 / xe}%`,
+                                  width: `${100 / ve}%`,
                                   minWidth: "80px",
                                   minHeight: "80px",
                                 },
-                                onMouseDown: (qe) => le(me, De, qe),
-                                onMouseEnter: () => pe(me, De),
-                                onMouseUp: T,
-                                onTouchStart: (qe) => le(me, De, qe),
-                                onTouchMove: (qe) => {
-                                  if ((qe.preventDefault(), !b)) return;
-                                  const ze = qe.touches[0],
-                                    vt = document.elementFromPoint(
-                                      ze.clientX,
-                                      ze.clientY
+                                onMouseDown: (Ye) => ae(he, _e, Ye),
+                                onMouseEnter: () => R(he, _e),
+                                onMouseUp: J,
+                                onTouchStart: (Ye) => ae(he, _e, Ye),
+                                onTouchMove: (Ye) => {
+                                  if ((Ye.preventDefault(), !N)) return;
+                                  const Be = Ye.touches[0],
+                                    wt = document.elementFromPoint(
+                                      Be.clientX,
+                                      Be.clientY
                                     ),
-                                    it = vt == null ? void 0 : vt.closest("td");
+                                    it = wt == null ? void 0 : wt.closest("td");
                                   if (it) {
-                                    const In = parseInt(
+                                    const Pn = parseInt(
                                         it.getAttribute("data-row") || "0"
                                       ),
                                       Vt = parseInt(
                                         it.getAttribute("data-col") || "0"
                                       );
-                                    pe(In, Vt);
+                                    R(Pn, Vt);
                                   }
                                 },
-                                onTouchEnd: T,
-                                "data-row": me,
-                                "data-col": De,
+                                onTouchEnd: J,
+                                "data-row": he,
+                                "data-col": _e,
                                 children: s.jsx("div", {
                                   className:
                                     "h-full flex items-center justify-center text-gray-400 text-xs",
                                   children: c("status.notAdded"),
                                 }),
                               },
-                              De
+                              _e
                             );
                       }),
                     },
-                    me
+                    he
                   )
                 ),
               }),
@@ -16855,13 +17220,13 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: M,
+              onClick: w,
             }),
             s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
-              onClick: (D) => D.stopPropagation(),
+              onClick: (k) => k.stopPropagation(),
               children: [
                 s.jsxs("div", {
                   className:
@@ -16878,10 +17243,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: M,
+                      onClick: w,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -16902,7 +17267,7 @@ const rh = async (e) => {
                             s.jsx("input", {
                               type: "text",
                               value: h,
-                              onChange: (D) => d(D.target.value),
+                              onChange: (k) => d(k.target.value),
                               disabled: !0,
                               placeholder:
                                 (n == null ? void 0 : n.name) ||
@@ -16912,7 +17277,7 @@ const rh = async (e) => {
                             }),
                           ],
                         }),
-                        s.jsx("div", { className: "space-y-1", children: z() }),
+                        s.jsx("div", { className: "space-y-1", children: T() }),
                       ],
                     }),
                     s.jsxs("div", {
@@ -16924,10 +17289,10 @@ const rh = async (e) => {
                             className: "grid grid-cols-1 gap-2 items-strat",
                             children: [
                               s.jsx("button", {
-                                onClick: se,
-                                disabled: !je,
+                                onClick: ce,
+                                disabled: !Ne,
                                 className: `px-4 py-2 rounded transition-colors ${
-                                  je
+                                  Ne
                                     ? "bg-blue-600 text-white hover:bg-blue-700"
                                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                 }`,
@@ -16935,9 +17300,9 @@ const rh = async (e) => {
                               }),
                               s.jsx("button", {
                                 onClick: Se,
-                                disabled: !oe,
+                                disabled: !le,
                                 className: `px-4 py-2 rounded transition-colors ${
-                                  oe
+                                  le
                                     ? "bg-red-600 text-white hover:bg-red-700"
                                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                 }`,
@@ -16949,9 +17314,9 @@ const rh = async (e) => {
                         s.jsx("div", {
                           className: "space-y-2 w-[30%]",
                           children: (() => {
-                            const D = Q(),
-                              A = D.find((H) => !H.Slave);
-                            return A && (A.Code || A.Name || A.ChineseName)
+                            const k = Q(),
+                              $ = k.find((V) => !V.Slave);
+                            return $ && ($.Code || $.Name || $.ChineseName)
                               ? s.jsxs("div", {
                                   className:
                                     "border border-blue-200 rounded-lg p-2 space-y-1 h-full",
@@ -16965,7 +17330,7 @@ const rh = async (e) => {
                                         }),
                                         s.jsx("div", {
                                           className: "text-base text-gray-900",
-                                          children: A.Code || "-",
+                                          children: $.Code || "-",
                                         }),
                                       ],
                                     }),
@@ -16978,7 +17343,7 @@ const rh = async (e) => {
                                         }),
                                         s.jsx("div", {
                                           className: "text-base text-gray-900",
-                                          children: A.Name || "-",
+                                          children: $.Name || "-",
                                         }),
                                       ],
                                     }),
@@ -16991,7 +17356,7 @@ const rh = async (e) => {
                                         }),
                                         s.jsx("div", {
                                           className: "text-base text-gray-900",
-                                          children: A.ChineseName || "-",
+                                          children: $.ChineseName || "-",
                                         }),
                                       ],
                                     }),
@@ -17004,7 +17369,7 @@ const rh = async (e) => {
                                     className:
                                       "text-gray-500 h-full w-full flex justify-center items-center",
                                     children:
-                                      u && D.length > 0
+                                      u && k.length > 0
                                         ? c("status.selectedCellsNoDrug")
                                         : c("status.selectCellsForDrug"),
                                   }),
@@ -17019,15 +17384,15 @@ const rh = async (e) => {
                               children: [
                                 s.jsx("input", {
                                   type: "text",
-                                  value: x,
-                                  onChange: (D) => j(D.target.value),
+                                  value: g,
+                                  onChange: (k) => C(k.target.value),
                                   placeholder: c("placeholder.drugSearch"),
                                   className:
                                     "border rounded px-3 py-1 flex-1 min-w-0 focus:border-blue-500 focus:outline-none transition-colors",
                                 }),
                                 s.jsxs("select", {
-                                  value: L,
-                                  onChange: (D) => P(D.target.value),
+                                  value: B,
+                                  onChange: (k) => I(k.target.value),
                                   className:
                                     "border rounded px-2 py-1 focus:border-blue-500 focus:outline-none transition-colors",
                                   title: "管制級別",
@@ -17055,12 +17420,12 @@ const rh = async (e) => {
                                   ],
                                 }),
                                 s.jsxs("button", {
-                                  onClick: ve,
-                                  disabled: I,
+                                  onClick: ye,
+                                  disabled: z,
                                   className:
                                     "bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition-colors whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2",
                                   children: [
-                                    I &&
+                                    z &&
                                       s.jsx(Rt, {
                                         className: "w-4 h-4 animate-spin",
                                       }),
@@ -17072,7 +17437,7 @@ const rh = async (e) => {
                             s.jsx("div", {
                               className:
                                 "bg-white border rounded p-3 min-h-[150px] max-h-[150px] overflow-y-auto",
-                              children: I
+                              children: z
                                 ? s.jsxs("div", {
                                     className:
                                       "text-gray-500 text-center flex items-center justify-center h-full",
@@ -17083,10 +17448,10 @@ const rh = async (e) => {
                                       c("status.searching"),
                                     ],
                                   })
-                                : R.length > 0
+                                : A.length > 0
                                 ? s.jsx("div", {
                                     className: "space-y-1",
-                                    children: R.map((D, A) =>
+                                    children: A.map((k, $) =>
                                       s.jsxs(
                                         "div",
                                         {
@@ -17099,32 +17464,32 @@ const rh = async (e) => {
                                                 s.jsx("div", {
                                                   className:
                                                     "text-sm font-medium text-gray-900 truncate",
-                                                  children: D.NAME,
+                                                  children: k.NAME,
                                                 }),
                                                 s.jsx("div", {
                                                   className:
                                                     "text-xs text-gray-500 truncate",
-                                                  children: D.CHT_NAME,
+                                                  children: k.CHT_NAME,
                                                 }),
                                                 s.jsx("div", {
                                                   className:
                                                     "text-xs text-gray-400 font-mono",
-                                                  children: D.CODE,
+                                                  children: k.CODE,
                                                 }),
                                               ],
                                             }),
                                             s.jsx("button", {
-                                              onClick: () => $(D),
+                                              onClick: () => U(k),
                                               className:
                                                 "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                               title: c("button.add"),
-                                              children: s.jsx(Nt, {
+                                              children: s.jsx(gt, {
                                                 className: "w-4 h-4",
                                               }),
                                             }),
                                           ],
                                         },
-                                        D.GUID || A
+                                        k.GUID || $
                                       )
                                     ),
                                   })
@@ -17132,7 +17497,7 @@ const rh = async (e) => {
                                     className:
                                       "text-gray-500 text-center flex items-center justify-center h-full",
                                     children: c(
-                                      x || L !== "N"
+                                      g || B !== "N"
                                         ? "status.noSearchResults"
                                         : "status.searchResults"
                                     ),
@@ -17147,13 +17512,13 @@ const rh = async (e) => {
                         "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                       children: [
                         s.jsx("button", {
-                          onClick: M,
+                          onClick: w,
                           className:
                             "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
                           children: c("button.cancel"),
                         }),
                         s.jsx("button", {
-                          onClick: Z,
+                          onClick: ee,
                           className:
                             "px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors",
                           children: c("button.save"),
@@ -17164,17 +17529,17 @@ const rh = async (e) => {
                 }),
                 s.jsx("div", {
                   className: "fixed inset-0 pointer-events-none",
-                  onMouseUp: T,
-                  onMouseLeave: T,
-                  onTouchEnd: T,
-                  onTouchCancel: T,
+                  onMouseUp: J,
+                  onMouseLeave: J,
+                  onTouchEnd: J,
+                  onTouchCancel: J,
                 }),
               ],
             }),
           ],
         });
   },
-  uh = () => {
+  fh = () => {
     var G;
     const {
         addParentContainerModalOpen: e,
@@ -17188,134 +17553,134 @@ const rh = async (e) => {
         setSidebarOpen: c,
       } = Je(),
       { t: h } = pt(),
-      [d, g] = m.useState(null),
-      [p, w] = m.useState(0),
-      [v, b] = m.useState(0),
-      [_, u] = m.useState(!1);
-    m.useEffect(() => {
-      e && (g(null), w(0), b(0), u(!1));
+      [d, x] = p.useState(null),
+      [m, b] = p.useState(0),
+      [v, N] = p.useState(0),
+      [E, u] = p.useState(!1);
+    p.useEffect(() => {
+      e && (x(null), b(0), N(0), u(!1));
     }, [e]),
-      m.useEffect(() => {
-        d && (w(d.row), b(d.col));
+      p.useEffect(() => {
+        d && (b(d.row), N(d.col));
       }, [d]);
     const f = () => {
-        const E = new Set();
+        const P = new Set();
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach((C) => {
-              C.type === "parent_container" &&
-                C.gird_position &&
-                E.add(C.gird_position);
+            n.contents.forEach((M) => {
+              M.type === "parent_container" &&
+                M.gird_position &&
+                P.add(M.gird_position);
             }),
-          E
+          P
         );
       },
-      x = () => {
-        const E = f(),
-          C = [];
-        if (E.size === 0) return C.push({ row: 0, col: 0 }), C;
-        const Z = [];
-        E.forEach((F) => {
-          const [k, Q] = F.split(",").map(Number);
-          Z.push({ row: k, col: Q });
+      g = () => {
+        const P = f(),
+          M = [];
+        if (P.size === 0) return M.push({ row: 0, col: 0 }), M;
+        const ee = [];
+        P.forEach((O) => {
+          const [S, Q] = O.split(",").map(Number);
+          ee.push({ row: S, col: Q });
         });
-        const M = new Set();
+        const w = new Set();
         return (
-          Z.forEach(({ row: F, col: k }) => {
-            M.add(`${F},${k + 1}`),
-              M.add(`${F + 1},${k}`),
-              k > 0 && M.add(`${F},${k - 1}`),
-              F > 0 && M.add(`${F - 1},${k}`);
+          ee.forEach(({ row: O, col: S }) => {
+            w.add(`${O},${S + 1}`),
+              w.add(`${O + 1},${S}`),
+              S > 0 && w.add(`${O},${S - 1}`),
+              O > 0 && w.add(`${O - 1},${S}`);
           }),
-          M.forEach((F) => {
-            if (!E.has(F)) {
-              const [k, Q] = F.split(",").map(Number);
-              k >= 0 && Q >= 0 && C.push({ row: k, col: Q });
+          w.forEach((O) => {
+            if (!P.has(O)) {
+              const [S, Q] = O.split(",").map(Number);
+              S >= 0 && Q >= 0 && M.push({ row: S, col: Q });
             }
           }),
-          E.has("0,1") ||
-            C.some((k) => k.row === 0 && k.col === 1) ||
-            C.push({ row: 0, col: 1 }),
-          E.has("1,0") ||
-            C.some((k) => k.row === 1 && k.col === 0) ||
-            C.push({ row: 1, col: 0 }),
-          C.sort((F, k) => (F.row === k.row ? F.col - k.col : F.row - k.row))
+          P.has("0,1") ||
+            M.some((S) => S.row === 0 && S.col === 1) ||
+            M.push({ row: 0, col: 1 }),
+          P.has("1,0") ||
+            M.some((S) => S.row === 1 && S.col === 0) ||
+            M.push({ row: 1, col: 0 }),
+          M.sort((O, S) => (O.row === S.row ? O.col - S.col : O.row - S.row))
         );
       },
-      j = (E) => {
-        g(E);
+      C = (P) => {
+        x(P);
       },
-      L = (E) => {
-        w(E), g({ row: E, col: v });
+      B = (P) => {
+        b(P), x({ row: P, col: v });
       },
-      P = (E) => {
-        b(E), g({ row: p, col: E });
+      I = (P) => {
+        N(P), x({ row: m, col: P });
       },
-      R = d && !f().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
-      N = async () => {
-        if (!(!d || !n || !R)) {
+      A = d && !f().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
+      j = async () => {
+        if (!(!d || !n || !A)) {
           u(!0);
           try {
-            const E = `${d.row},${d.col}`,
-              C = await ke.addMedMapSection(n.GUID, E);
-            C.Code === 200
-              ? (a("新增成功", "success"), t(), c(!1), await I())
-              : a(`新增失敗：${C.Result || "未知錯誤"}`, "error");
-          } catch (E) {
-            console.error("Add parent container failed:", E),
+            const P = `${d.row},${d.col}`,
+              M = await ke.addMedMapSection(n.GUID, P);
+            M.Code === 200
+              ? (a("新增成功", "success"), t(), c(!1), await z())
+              : a(`新增失敗：${M.Result || "未知錯誤"}`, "error");
+          } catch (P) {
+            console.error("Add parent container failed:", P),
               a("新增失敗：網路錯誤", "error");
           } finally {
             u(!1);
           }
         }
       },
-      I = async () => {
+      z = async () => {
         if (!r) {
           console.warn("⚠️ 沒有選中的部門類型，無法重新獲取資料");
           return;
         }
         console.log("🔄 重新獲取藥品地圖資料，部門類型:", r), l(!0);
         try {
-          const E = await ke.getMedMapByDepartment(r);
-          if (E.Code === 200 && E.Data) {
+          const P = await ke.getMedMapByDepartment(r);
+          if (P.Code === 200 && P.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const C = It.convertMedMapApiToFakeData(E.Data);
-            if (!It.validateConvertedData(C)) {
+            const M = Pt.convertMedMapApiToFakeData(P.Data);
+            if (!Pt.validateConvertedData(M)) {
               console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error");
               return;
             }
-            o(C), console.log("✅ 藥品地圖資料已更新");
+            o(M), console.log("✅ 藥品地圖資料已更新");
           } else
-            console.error("❌ API 回傳錯誤:", E),
+            console.error("❌ API 回傳錯誤:", P),
               a("資料更新失敗：API 錯誤", "error");
-        } catch (E) {
-          console.error("💥 重新獲取藥品地圖資料失敗:", E),
+        } catch (P) {
+          console.error("💥 重新獲取藥品地圖資料失敗:", P),
             a("資料更新失敗：網路錯誤", "error");
         } finally {
           l(!1);
         }
       },
-      S = () => {
+      D = () => {
         t();
       },
-      O = () => {
-        const E = f(),
-          C = x(),
-          Z = [...E]
-            .map((ne) => {
-              const [je, oe] = ne.split(",").map(Number);
-              return { row: je, col: oe };
+      F = () => {
+        const P = f(),
+          M = g(),
+          ee = [...P]
+            .map((oe) => {
+              const [Ne, le] = oe.split(",").map(Number);
+              return { row: Ne, col: le };
             })
-            .concat(C);
-        Z.length === 0 && Z.push({ row: 0, col: 0 });
-        const M = Math.max(...Z.map((ne) => ne.row)),
-          F = Math.max(...Z.map((ne) => ne.col)),
-          k = Math.min(...Z.map((ne) => ne.row)),
-          Q = Math.min(...Z.map((ne) => ne.col)),
-          de = M - k + 1,
-          X = F - Q + 1;
+            .concat(M);
+        ee.length === 0 && ee.push({ row: 0, col: 0 });
+        const w = Math.max(...ee.map((oe) => oe.row)),
+          O = Math.max(...ee.map((oe) => oe.col)),
+          S = Math.min(...ee.map((oe) => oe.row)),
+          Q = Math.min(...ee.map((oe) => oe.col)),
+          ie = w - S + 1,
+          X = O - Q + 1;
         return s.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -17328,36 +17693,36 @@ const rh = async (e) => {
               children: s.jsx("div", {
                 className: "grid gap-2",
                 style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
-                children: Array.from({ length: de * X }, (ne, je) => {
-                  const oe = Math.floor(je / X) + k,
-                    ve = (je % X) + Q,
-                    $ = `${oe},${ve}`,
-                    le = E.has($),
-                    pe = C.some((se) => se.row === oe && se.col === ve),
-                    T =
-                      (d == null ? void 0 : d.row) === oe &&
-                      (d == null ? void 0 : d.col) === ve;
+                children: Array.from({ length: ie * X }, (oe, Ne) => {
+                  const le = Math.floor(Ne / X) + S,
+                    ye = (Ne % X) + Q,
+                    U = `${le},${ye}`,
+                    ae = P.has(U),
+                    R = M.some((ce) => ce.row === le && ce.col === ye),
+                    J =
+                      (d == null ? void 0 : d.row) === le &&
+                      (d == null ? void 0 : d.col) === ye;
                   return s.jsx(
                     "button",
                     {
-                      onClick: () => pe && j({ row: oe, col: ve }),
-                      disabled: le || !pe,
+                      onClick: () => R && C({ row: le, col: ye }),
+                      disabled: ae || !R,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${
-                      le
+                      ae
                         ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed"
-                        : T
+                        : J
                         ? "bg-blue-500 border-blue-600 text-white shadow-lg"
-                        : pe
+                        : R
                         ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer"
                         : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
                     }
                   `,
-                      title: le ? "已占用" : pe ? "可選擇" : "不可用",
-                      children: le ? "占用" : `${oe},${ve}`,
+                      title: ae ? "已占用" : R ? "可選擇" : "不可用",
+                      children: ae ? "占用" : `${le},${ye}`,
                     },
-                    $
+                    U
                   );
                 }),
               }),
@@ -17372,13 +17737,13 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: S,
+              onClick: D,
             }),
             s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh", maxWidth: "800px" },
-              onClick: (E) => E.stopPropagation(),
+              onClick: (P) => P.stopPropagation(),
               children: [
                 s.jsxs("div", {
                   className:
@@ -17387,7 +17752,7 @@ const rh = async (e) => {
                     s.jsxs("div", {
                       className: "flex items-center space-x-3",
                       children: [
-                        s.jsx(Nt, { className: "w-6 h-6 text-green-600" }),
+                        s.jsx(gt, { className: "w-6 h-6 text-green-600" }),
                         s.jsx("h2", {
                           className: "text-xl font-semibold text-gray-900",
                           children: "新增櫃體",
@@ -17395,10 +17760,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: S,
+                      onClick: D,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -17407,7 +17772,7 @@ const rh = async (e) => {
                   children: s.jsxs("div", {
                     className: "space-y-6",
                     children: [
-                      O(),
+                      F(),
                       s.jsxs("div", {
                         className: "space-y-2",
                         children: [
@@ -17429,9 +17794,9 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "number",
                                     min: "0",
-                                    value: p,
-                                    onChange: (E) =>
-                                      L(parseInt(E.target.value) || 0),
+                                    value: m,
+                                    onChange: (P) =>
+                                      B(parseInt(P.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -17449,8 +17814,8 @@ const rh = async (e) => {
                                     type: "number",
                                     min: "0",
                                     value: v,
-                                    onChange: (E) =>
-                                      P(parseInt(E.target.value) || 0),
+                                    onChange: (P) =>
+                                      I(parseInt(P.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -17461,11 +17826,11 @@ const rh = async (e) => {
                           d &&
                             s.jsx("div", {
                               className: `text-sm p-2 rounded ${
-                                R
+                                A
                                   ? "bg-green-50 text-green-700 border border-green-200"
                                   : "bg-red-50 text-red-700 border border-red-200"
                               }`,
-                              children: R
+                              children: A
                                 ? `已選擇位置：${d.row},${d.col}`
                                 : `位置 ${d.row},${d.col} 已被占用或無效`,
                             }),
@@ -17500,7 +17865,7 @@ const rh = async (e) => {
                                   ((G = n == null ? void 0 : n.contents) == null
                                     ? void 0
                                     : G.filter(
-                                        (E) => E.type === "parent_container"
+                                        (P) => P.type === "parent_container"
                                       ).length) || 0,
                                 ],
                               }),
@@ -17516,20 +17881,20 @@ const rh = async (e) => {
                     "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                   children: [
                     s.jsx("button", {
-                      onClick: S,
-                      disabled: _,
+                      onClick: D,
+                      disabled: E,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                       children: h("button.cancel"),
                     }),
                     s.jsxs("button", {
-                      onClick: N,
-                      disabled: !R || _,
+                      onClick: j,
+                      disabled: !A || E,
                       className:
                         "px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center space-x-2",
                       children: [
-                        _ && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
-                        s.jsx("span", { children: _ ? "新增中..." : "新增" }),
+                        E && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
+                        s.jsx("span", { children: E ? "新增中..." : "新增" }),
                       ],
                     }),
                   ],
@@ -17565,8 +17930,8 @@ const rh = async (e) => {
       isShelf: !1,
     },
   ],
-  dh = () => {
-    var de;
+  ph = () => {
+    var ie;
     const {
         addShelfDrawContainerModalOpen: e,
         closeAddShelfDrawContainerModal: t,
@@ -17579,119 +17944,119 @@ const rh = async (e) => {
         setSidebarOpen: c,
       } = Je(),
       { t: h } = pt(),
-      [d, g] = m.useState("dispensing_shelves"),
-      [p, w] = m.useState("1"),
-      [v, b] = m.useState("1"),
-      [_, u] = m.useState(""),
-      [f, x] = m.useState(null),
-      [j, L] = m.useState(0),
-      [P, R] = m.useState(0),
-      [N, I] = m.useState(!1);
-    m.useEffect(() => {
+      [d, x] = p.useState("dispensing_shelves"),
+      [m, b] = p.useState("1"),
+      [v, N] = p.useState("1"),
+      [E, u] = p.useState(""),
+      [f, g] = p.useState(null),
+      [C, B] = p.useState(0),
+      [I, A] = p.useState(0),
+      [j, z] = p.useState(!1);
+    p.useEffect(() => {
       e &&
-        (g("dispensing_shelves"),
-        w("1"),
+        (x("dispensing_shelves"),
         b("1"),
+        N("1"),
         u(""),
-        x(null),
-        L(0),
-        R(0),
-        I(!1));
+        g(null),
+        B(0),
+        A(0),
+        z(!1));
     }, [e]),
-      m.useEffect(() => {
-        f && (L(f.row), R(f.col));
+      p.useEffect(() => {
+        f && (B(f.row), A(f.col));
       }, [f]);
-    const S = () => {
+    const D = () => {
         const X = new Set();
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach((ne) => {
-              ne.gird_position && X.add(ne.gird_position);
+            n.contents.forEach((oe) => {
+              oe.gird_position && X.add(oe.gird_position);
             }),
           X
         );
       },
-      O = () => {
-        const X = S(),
-          ne = [];
-        if (X.size === 0) return ne.push({ row: 0, col: 0 }), ne;
-        const je = [];
-        X.forEach((ve) => {
-          const [$, le] = ve.split(",").map(Number);
-          je.push({ row: $, col: le });
+      F = () => {
+        const X = D(),
+          oe = [];
+        if (X.size === 0) return oe.push({ row: 0, col: 0 }), oe;
+        const Ne = [];
+        X.forEach((ye) => {
+          const [U, ae] = ye.split(",").map(Number);
+          Ne.push({ row: U, col: ae });
         });
-        const oe = new Set();
+        const le = new Set();
         return (
-          je.forEach(({ row: ve, col: $ }) => {
-            oe.add(`${ve},${$ + 1}`),
-              oe.add(`${ve + 1},${$}`),
-              $ > 0 && oe.add(`${ve},${$ - 1}`),
-              ve > 0 && oe.add(`${ve - 1},${$}`);
+          Ne.forEach(({ row: ye, col: U }) => {
+            le.add(`${ye},${U + 1}`),
+              le.add(`${ye + 1},${U}`),
+              U > 0 && le.add(`${ye},${U - 1}`),
+              ye > 0 && le.add(`${ye - 1},${U}`);
           }),
-          oe.forEach((ve) => {
-            if (!X.has(ve)) {
-              const [$, le] = ve.split(",").map(Number);
-              $ >= 0 && le >= 0 && ne.push({ row: $, col: le });
+          le.forEach((ye) => {
+            if (!X.has(ye)) {
+              const [U, ae] = ye.split(",").map(Number);
+              U >= 0 && ae >= 0 && oe.push({ row: U, col: ae });
             }
           }),
           X.has("0,1") ||
-            ne.some(($) => $.row === 0 && $.col === 1) ||
-            ne.push({ row: 0, col: 1 }),
+            oe.some((U) => U.row === 0 && U.col === 1) ||
+            oe.push({ row: 0, col: 1 }),
           X.has("1,0") ||
-            ne.some(($) => $.row === 1 && $.col === 0) ||
-            ne.push({ row: 1, col: 0 }),
-          ne.sort((ve, $) =>
-            ve.row === $.row ? ve.col - $.col : ve.row - $.row
+            oe.some((U) => U.row === 1 && U.col === 0) ||
+            oe.push({ row: 1, col: 0 }),
+          oe.sort((ye, U) =>
+            ye.row === U.row ? ye.col - U.col : ye.row - U.row
           )
         );
       },
       G = (X) => {
-        x(X);
+        g(X);
       },
-      E = (X) => {
-        L(X), x({ row: X, col: P });
+      P = (X) => {
+        B(X), g({ row: X, col: I });
       },
-      C = (X) => {
-        R(X), x({ row: j, col: X });
+      M = (X) => {
+        A(X), g({ row: C, col: X });
       },
-      Z = f && !S().has(`${f.row},${f.col}`) && f.row >= 0 && f.col >= 0,
-      M = async () => {
-        if (!(!f || !n || !Z)) {
-          I(!0);
+      ee = f && !D().has(`${f.row},${f.col}`) && f.row >= 0 && f.col >= 0,
+      w = async () => {
+        if (!(!f || !n || !ee)) {
+          z(!0);
           try {
             const X = `${f.row},${f.col}`,
-              ne = vc.find((oe) => oe.value === d);
-            let je;
-            ne != null && ne.isShelf
-              ? (je = await ke.addMedMapShelf({
+              oe = vc.find((le) => le.value === d);
+            let Ne;
+            oe != null && oe.isShelf
+              ? (Ne = await ke.addMedMapShelf({
                   Master_GUID: n.GUID,
                   position: X,
-                  width: p,
+                  width: m,
                   height: v,
-                  ip_light: _,
+                  ip_light: E,
                   type: d,
                 }))
-              : (je = await ke.addMedMapDrawer({
+              : (Ne = await ke.addMedMapDrawer({
                   Master_GUID: n.GUID,
                   position: X,
-                  width: p,
+                  width: m,
                   height: v,
-                  ip_drawer: _,
+                  ip_drawer: E,
                   type: d,
                 })),
-              je.Code === 200
-                ? (a("新增成功", "success"), t(), c(!1), await F())
-                : a(`新增失敗：${je.Result || "未知錯誤"}`, "error");
+              Ne.Code === 200
+                ? (a("新增成功", "success"), t(), c(!1), await O())
+                : a(`新增失敗：${Ne.Result || "未知錯誤"}`, "error");
           } catch (X) {
             console.error("Add container failed:", X),
               a("新增失敗：網路錯誤", "error");
           } finally {
-            I(!1);
+            z(!1);
           }
         }
       },
-      F = async () => {
+      O = async () => {
         if (!r) {
           console.warn("⚠️ 沒有選中的部門類型，無法重新獲取資料");
           return;
@@ -17701,13 +18066,13 @@ const rh = async (e) => {
           const X = await ke.getMedMapByDepartment(r);
           if (X.Code === 200 && X.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const ne = It.convertMedMapApiToFakeData(X.Data);
-            if (!It.validateConvertedData(ne)) {
+            const oe = Pt.convertMedMapApiToFakeData(X.Data);
+            if (!Pt.validateConvertedData(oe)) {
               console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error");
               return;
             }
-            o(ne), console.log("✅ 藥品地圖資料已更新");
+            o(oe), console.log("✅ 藥品地圖資料已更新");
           } else
             console.error("❌ API 回傳錯誤:", X),
               a("資料更新失敗：API 錯誤", "error");
@@ -17718,25 +18083,25 @@ const rh = async (e) => {
           l(!1);
         }
       },
-      k = () => {
+      S = () => {
         t();
       },
       Q = () => {
-        const X = S(),
-          ne = O(),
-          je = [...X]
-            .map((se) => {
-              const [Se, U] = se.split(",").map(Number);
-              return { row: Se, col: U };
+        const X = D(),
+          oe = F(),
+          Ne = [...X]
+            .map((ce) => {
+              const [Se, L] = ce.split(",").map(Number);
+              return { row: Se, col: L };
             })
-            .concat(ne);
-        je.length === 0 && je.push({ row: 0, col: 0 });
-        const oe = Math.max(...je.map((se) => se.row)),
-          ve = Math.max(...je.map((se) => se.col)),
-          $ = Math.min(...je.map((se) => se.row)),
-          le = Math.min(...je.map((se) => se.col)),
-          pe = oe - $ + 1,
-          T = ve - le + 1;
+            .concat(oe);
+        Ne.length === 0 && Ne.push({ row: 0, col: 0 });
+        const le = Math.max(...Ne.map((ce) => ce.row)),
+          ye = Math.max(...Ne.map((ce) => ce.col)),
+          U = Math.min(...Ne.map((ce) => ce.row)),
+          ae = Math.min(...Ne.map((ce) => ce.col)),
+          R = le - U + 1,
+          J = ye - ae + 1;
         return s.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -17748,37 +18113,37 @@ const rh = async (e) => {
               className: "border border-gray-300 rounded-lg p-4 bg-gray-50",
               children: s.jsx("div", {
                 className: "grid gap-2",
-                style: { gridTemplateColumns: `repeat(${T}, 1fr)` },
-                children: Array.from({ length: pe * T }, (se, Se) => {
-                  const U = Math.floor(Se / T) + $,
-                    ee = (Se % T) + le,
-                    ye = `${U},${ee}`,
-                    z = X.has(ye),
-                    D = ne.some((H) => H.row === U && H.col === ee),
-                    A =
-                      (f == null ? void 0 : f.row) === U &&
-                      (f == null ? void 0 : f.col) === ee;
+                style: { gridTemplateColumns: `repeat(${J}, 1fr)` },
+                children: Array.from({ length: R * J }, (ce, Se) => {
+                  const L = Math.floor(Se / J) + U,
+                    _ = (Se % J) + ae,
+                    re = `${L},${_}`,
+                    T = X.has(re),
+                    k = oe.some((V) => V.row === L && V.col === _),
+                    $ =
+                      (f == null ? void 0 : f.row) === L &&
+                      (f == null ? void 0 : f.col) === _;
                   return s.jsx(
                     "button",
                     {
-                      onClick: () => D && G({ row: U, col: ee }),
-                      disabled: z || !D,
+                      onClick: () => k && G({ row: L, col: _ }),
+                      disabled: T || !k,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${
-                      z
+                      T
                         ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed"
-                        : A
+                        : $
                         ? "bg-blue-500 border-blue-600 text-white shadow-lg"
-                        : D
+                        : k
                         ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer"
                         : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
                     }
                   `,
-                      title: z ? "已占用" : D ? "可選擇" : "不可用",
-                      children: z ? "占用" : `${U},${ee}`,
+                      title: T ? "已占用" : k ? "可選擇" : "不可用",
+                      children: T ? "占用" : `${L},${_}`,
                     },
-                    ye
+                    re
                   );
                 }),
               }),
@@ -17793,7 +18158,7 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: k,
+              onClick: S,
             }),
             s.jsxs("div", {
               className:
@@ -17808,7 +18173,7 @@ const rh = async (e) => {
                     s.jsxs("div", {
                       className: "flex items-center space-x-3",
                       children: [
-                        s.jsx(Nt, { className: "w-6 h-6 text-green-600" }),
+                        s.jsx(gt, { className: "w-6 h-6 text-green-600" }),
                         s.jsx("h2", {
                           className: "text-xl font-semibold text-gray-900",
                           children: "新增層架/抽屜",
@@ -17816,10 +18181,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: k,
+                      onClick: S,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -17852,7 +18217,7 @@ const rh = async (e) => {
                                       name: "containerType",
                                       value: X.value,
                                       checked: d === X.value,
-                                      onChange: (ne) => g(ne.target.value),
+                                      onChange: (oe) => x(oe.target.value),
                                       className:
                                         "w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 hidden",
                                     }),
@@ -17888,8 +18253,8 @@ const rh = async (e) => {
                               s.jsx("input", {
                                 type: "number",
                                 min: "1",
-                                value: p,
-                                onChange: (X) => w(X.target.value),
+                                value: m,
+                                onChange: (X) => b(X.target.value),
                                 className:
                                   "w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                               }),
@@ -17906,7 +18271,7 @@ const rh = async (e) => {
                                 type: "number",
                                 min: "1",
                                 value: v,
-                                onChange: (X) => b(X.target.value),
+                                onChange: (X) => N(X.target.value),
                                 className:
                                   "w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                               }),
@@ -17923,7 +18288,7 @@ const rh = async (e) => {
                           }),
                           s.jsx("input", {
                             type: "text",
-                            value: _,
+                            value: E,
                             onChange: (X) => u(X.target.value),
                             placeholder: "請輸入 IP 位址",
                             className:
@@ -17953,9 +18318,9 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "number",
                                     min: "0",
-                                    value: j,
+                                    value: C,
                                     onChange: (X) =>
-                                      E(parseInt(X.target.value) || 0),
+                                      P(parseInt(X.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -17972,9 +18337,9 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "number",
                                     min: "0",
-                                    value: P,
+                                    value: I,
                                     onChange: (X) =>
-                                      C(parseInt(X.target.value) || 0),
+                                      M(parseInt(X.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -17985,11 +18350,11 @@ const rh = async (e) => {
                           f &&
                             s.jsx("div", {
                               className: `text-sm p-2 rounded ${
-                                Z
+                                ee
                                   ? "bg-green-50 text-green-700 border border-green-200"
                                   : "bg-red-50 text-red-700 border border-red-200"
                               }`,
-                              children: Z
+                              children: ee
                                 ? `已選擇位置：${f.row},${f.col}`
                                 : `位置 ${f.row},${f.col} 已被占用或無效`,
                             }),
@@ -18021,10 +18386,10 @@ const rh = async (e) => {
                               s.jsxs("div", {
                                 children: [
                                   "現有內容數量：",
-                                  ((de = n == null ? void 0 : n.contents) ==
+                                  ((ie = n == null ? void 0 : n.contents) ==
                                   null
                                     ? void 0
-                                    : de.length) || 0,
+                                    : ie.length) || 0,
                                 ],
                               }),
                             ],
@@ -18039,20 +18404,20 @@ const rh = async (e) => {
                     "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                   children: [
                     s.jsx("button", {
-                      onClick: k,
-                      disabled: N,
+                      onClick: S,
+                      disabled: j,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                       children: h("button.cancel"),
                     }),
                     s.jsxs("button", {
-                      onClick: M,
-                      disabled: !Z || N,
+                      onClick: w,
+                      disabled: !ee || j,
                       className:
                         "px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center space-x-2",
                       children: [
-                        N && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
-                        s.jsx("span", { children: N ? "新增中..." : "新增" }),
+                        j && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
+                        s.jsx("span", { children: j ? "新增中..." : "新增" }),
                       ],
                     }),
                   ],
@@ -18062,7 +18427,7 @@ const rh = async (e) => {
           ],
         });
   },
-  fh = () => {
+  mh = () => {
     var G;
     const {
         addSubContainerModalOpen: e,
@@ -18076,134 +18441,134 @@ const rh = async (e) => {
         setSidebarOpen: c,
       } = Je(),
       { t: h } = pt(),
-      [d, g] = m.useState(null),
-      [p, w] = m.useState(0),
-      [v, b] = m.useState(0),
-      [_, u] = m.useState(!1);
-    m.useEffect(() => {
-      e && (g(null), w(0), b(0), u(!1));
+      [d, x] = p.useState(null),
+      [m, b] = p.useState(0),
+      [v, N] = p.useState(0),
+      [E, u] = p.useState(!1);
+    p.useEffect(() => {
+      e && (x(null), b(0), N(0), u(!1));
     }, [e]),
-      m.useEffect(() => {
-        d && (w(d.row), b(d.col));
+      p.useEffect(() => {
+        d && (b(d.row), N(d.col));
       }, [d]);
     const f = () => {
-        const E = new Set();
+        const P = new Set();
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach((C) => {
-              C.type === "sub_container" &&
-                C.gird_position &&
-                E.add(C.gird_position);
+            n.contents.forEach((M) => {
+              M.type === "sub_container" &&
+                M.gird_position &&
+                P.add(M.gird_position);
             }),
-          E
+          P
         );
       },
-      x = () => {
-        const E = f(),
-          C = [];
-        if (E.size === 0) return C.push({ row: 0, col: 0 }), C;
-        const Z = [];
-        E.forEach((F) => {
-          const [k, Q] = F.split(",").map(Number);
-          Z.push({ row: k, col: Q });
+      g = () => {
+        const P = f(),
+          M = [];
+        if (P.size === 0) return M.push({ row: 0, col: 0 }), M;
+        const ee = [];
+        P.forEach((O) => {
+          const [S, Q] = O.split(",").map(Number);
+          ee.push({ row: S, col: Q });
         });
-        const M = new Set();
+        const w = new Set();
         return (
-          Z.forEach(({ row: F, col: k }) => {
-            M.add(`${F},${k + 1}`),
-              M.add(`${F + 1},${k}`),
-              k > 0 && M.add(`${F},${k - 1}`),
-              F > 0 && M.add(`${F - 1},${k}`);
+          ee.forEach(({ row: O, col: S }) => {
+            w.add(`${O},${S + 1}`),
+              w.add(`${O + 1},${S}`),
+              S > 0 && w.add(`${O},${S - 1}`),
+              O > 0 && w.add(`${O - 1},${S}`);
           }),
-          M.forEach((F) => {
-            if (!E.has(F)) {
-              const [k, Q] = F.split(",").map(Number);
-              k >= 0 && Q >= 0 && C.push({ row: k, col: Q });
+          w.forEach((O) => {
+            if (!P.has(O)) {
+              const [S, Q] = O.split(",").map(Number);
+              S >= 0 && Q >= 0 && M.push({ row: S, col: Q });
             }
           }),
-          E.has("0,1") ||
-            C.some((k) => k.row === 0 && k.col === 1) ||
-            C.push({ row: 0, col: 1 }),
-          E.has("1,0") ||
-            C.some((k) => k.row === 1 && k.col === 0) ||
-            C.push({ row: 1, col: 0 }),
-          C.sort((F, k) => (F.row === k.row ? F.col - k.col : F.row - k.row))
+          P.has("0,1") ||
+            M.some((S) => S.row === 0 && S.col === 1) ||
+            M.push({ row: 0, col: 1 }),
+          P.has("1,0") ||
+            M.some((S) => S.row === 1 && S.col === 0) ||
+            M.push({ row: 1, col: 0 }),
+          M.sort((O, S) => (O.row === S.row ? O.col - S.col : O.row - S.row))
         );
       },
-      j = (E) => {
-        g(E);
+      C = (P) => {
+        x(P);
       },
-      L = (E) => {
-        w(E), g({ row: E, col: v });
+      B = (P) => {
+        b(P), x({ row: P, col: v });
       },
-      P = (E) => {
-        b(E), g({ row: p, col: E });
+      I = (P) => {
+        N(P), x({ row: m, col: P });
       },
-      R = d && !f().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
-      N = async () => {
-        if (!(!d || !n || !R)) {
+      A = d && !f().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
+      j = async () => {
+        if (!(!d || !n || !A)) {
           u(!0);
           try {
-            const E = `${d.row},${d.col}`,
-              C = await ke.addSubSection(n.GUID, E);
-            C.Code === 200
-              ? (a("新增成功", "success"), t(), c(!1), await I())
-              : a(`新增失敗：${C.Result || "未知錯誤"}`, "error");
-          } catch (E) {
-            console.error("Add sub container failed:", E),
+            const P = `${d.row},${d.col}`,
+              M = await ke.addSubSection(n.GUID, P);
+            M.Code === 200
+              ? (a("新增成功", "success"), t(), c(!1), await z())
+              : a(`新增失敗：${M.Result || "未知錯誤"}`, "error");
+          } catch (P) {
+            console.error("Add sub container failed:", P),
               a("新增失敗：網路錯誤", "error");
           } finally {
             u(!1);
           }
         }
       },
-      I = async () => {
+      z = async () => {
         if (!r) {
           console.warn("⚠️ 沒有選中的部門類型，無法重新獲取資料");
           return;
         }
         console.log("🔄 重新獲取藥品地圖資料，部門類型:", r), l(!0);
         try {
-          const E = await ke.getMedMapByDepartment(r);
-          if (E.Code === 200 && E.Data) {
+          const P = await ke.getMedMapByDepartment(r);
+          if (P.Code === 200 && P.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const C = It.convertMedMapApiToFakeData(E.Data);
-            if (!It.validateConvertedData(C)) {
+            const M = Pt.convertMedMapApiToFakeData(P.Data);
+            if (!Pt.validateConvertedData(M)) {
               console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error");
               return;
             }
-            o(C), console.log("✅ 藥品地圖資料已更新");
+            o(M), console.log("✅ 藥品地圖資料已更新");
           } else
-            console.error("❌ API 回傳錯誤:", E),
+            console.error("❌ API 回傳錯誤:", P),
               a("資料更新失敗：API 錯誤", "error");
-        } catch (E) {
-          console.error("💥 重新獲取藥品地圖資料失敗:", E),
+        } catch (P) {
+          console.error("💥 重新獲取藥品地圖資料失敗:", P),
             a("資料更新失敗：網路錯誤", "error");
         } finally {
           l(!1);
         }
       },
-      S = () => {
+      D = () => {
         t();
       },
-      O = () => {
-        const E = f(),
-          C = x(),
-          Z = [...E]
-            .map((ne) => {
-              const [je, oe] = ne.split(",").map(Number);
-              return { row: je, col: oe };
+      F = () => {
+        const P = f(),
+          M = g(),
+          ee = [...P]
+            .map((oe) => {
+              const [Ne, le] = oe.split(",").map(Number);
+              return { row: Ne, col: le };
             })
-            .concat(C);
-        Z.length === 0 && Z.push({ row: 0, col: 0 });
-        const M = Math.max(...Z.map((ne) => ne.row)),
-          F = Math.max(...Z.map((ne) => ne.col)),
-          k = Math.min(...Z.map((ne) => ne.row)),
-          Q = Math.min(...Z.map((ne) => ne.col)),
-          de = M - k + 1,
-          X = F - Q + 1;
+            .concat(M);
+        ee.length === 0 && ee.push({ row: 0, col: 0 });
+        const w = Math.max(...ee.map((oe) => oe.row)),
+          O = Math.max(...ee.map((oe) => oe.col)),
+          S = Math.min(...ee.map((oe) => oe.row)),
+          Q = Math.min(...ee.map((oe) => oe.col)),
+          ie = w - S + 1,
+          X = O - Q + 1;
         return s.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -18216,36 +18581,36 @@ const rh = async (e) => {
               children: s.jsx("div", {
                 className: "grid gap-2",
                 style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
-                children: Array.from({ length: de * X }, (ne, je) => {
-                  const oe = Math.floor(je / X) + k,
-                    ve = (je % X) + Q,
-                    $ = `${oe},${ve}`,
-                    le = E.has($),
-                    pe = C.some((se) => se.row === oe && se.col === ve),
-                    T =
-                      (d == null ? void 0 : d.row) === oe &&
-                      (d == null ? void 0 : d.col) === ve;
+                children: Array.from({ length: ie * X }, (oe, Ne) => {
+                  const le = Math.floor(Ne / X) + S,
+                    ye = (Ne % X) + Q,
+                    U = `${le},${ye}`,
+                    ae = P.has(U),
+                    R = M.some((ce) => ce.row === le && ce.col === ye),
+                    J =
+                      (d == null ? void 0 : d.row) === le &&
+                      (d == null ? void 0 : d.col) === ye;
                   return s.jsx(
                     "button",
                     {
-                      onClick: () => pe && j({ row: oe, col: ve }),
-                      disabled: le || !pe,
+                      onClick: () => R && C({ row: le, col: ye }),
+                      disabled: ae || !R,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${
-                      le
+                      ae
                         ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed"
-                        : T
+                        : J
                         ? "bg-blue-500 border-blue-600 text-white shadow-lg"
-                        : pe
+                        : R
                         ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer"
                         : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
                     }
                   `,
-                      title: le ? "已占用" : pe ? "可選擇" : "不可用",
-                      children: le ? "占用" : `${oe},${ve}`,
+                      title: ae ? "已占用" : R ? "可選擇" : "不可用",
+                      children: ae ? "占用" : `${le},${ye}`,
                     },
-                    $
+                    U
                   );
                 }),
               }),
@@ -18260,13 +18625,13 @@ const rh = async (e) => {
           children: [
             s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
-              onClick: S,
+              onClick: D,
             }),
             s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh", maxWidth: "800px" },
-              onClick: (E) => E.stopPropagation(),
+              onClick: (P) => P.stopPropagation(),
               children: [
                 s.jsxs("div", {
                   className:
@@ -18275,7 +18640,7 @@ const rh = async (e) => {
                     s.jsxs("div", {
                       className: "flex items-center space-x-3",
                       children: [
-                        s.jsx(Nt, { className: "w-6 h-6 text-green-600" }),
+                        s.jsx(gt, { className: "w-6 h-6 text-green-600" }),
                         s.jsx("h2", {
                           className: "text-xl font-semibold text-gray-900",
                           children: "新增虛擬容器",
@@ -18283,10 +18648,10 @@ const rh = async (e) => {
                       ],
                     }),
                     s.jsx("button", {
-                      onClick: S,
+                      onClick: D,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: s.jsx(Ye, { className: "w-6 h-6" }),
+                      children: s.jsx(Qe, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
@@ -18295,7 +18660,7 @@ const rh = async (e) => {
                   children: s.jsxs("div", {
                     className: "space-y-6",
                     children: [
-                      O(),
+                      F(),
                       s.jsxs("div", {
                         className: "space-y-2",
                         children: [
@@ -18317,9 +18682,9 @@ const rh = async (e) => {
                                   s.jsx("input", {
                                     type: "number",
                                     min: "0",
-                                    value: p,
-                                    onChange: (E) =>
-                                      L(parseInt(E.target.value) || 0),
+                                    value: m,
+                                    onChange: (P) =>
+                                      B(parseInt(P.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -18337,8 +18702,8 @@ const rh = async (e) => {
                                     type: "number",
                                     min: "0",
                                     value: v,
-                                    onChange: (E) =>
-                                      P(parseInt(E.target.value) || 0),
+                                    onChange: (P) =>
+                                      I(parseInt(P.target.value) || 0),
                                     className:
                                       "w-20 px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
@@ -18349,11 +18714,11 @@ const rh = async (e) => {
                           d &&
                             s.jsx("div", {
                               className: `text-sm p-2 rounded ${
-                                R
+                                A
                                   ? "bg-green-50 text-green-700 border border-green-200"
                                   : "bg-red-50 text-red-700 border border-red-200"
                               }`,
-                              children: R
+                              children: A
                                 ? `已選擇位置：${d.row},${d.col}`
                                 : `位置 ${d.row},${d.col} 已被占用或無效`,
                             }),
@@ -18388,7 +18753,7 @@ const rh = async (e) => {
                                   ((G = n == null ? void 0 : n.contents) == null
                                     ? void 0
                                     : G.filter(
-                                        (E) => E.type === "sub_container"
+                                        (P) => P.type === "sub_container"
                                       ).length) || 0,
                                 ],
                               }),
@@ -18404,20 +18769,20 @@ const rh = async (e) => {
                     "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                   children: [
                     s.jsx("button", {
-                      onClick: S,
-                      disabled: _,
+                      onClick: D,
+                      disabled: E,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                       children: h("button.cancel"),
                     }),
                     s.jsxs("button", {
-                      onClick: N,
-                      disabled: !R || _,
+                      onClick: j,
+                      disabled: !A || E,
                       className:
                         "px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center space-x-2",
                       children: [
-                        _ && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
-                        s.jsx("span", { children: _ ? "新增中..." : "新增" }),
+                        E && s.jsx(Rt, { className: "w-4 h-4 animate-spin" }),
+                        s.jsx("span", { children: E ? "新增中..." : "新增" }),
                       ],
                     }),
                   ],
@@ -18427,7 +18792,7 @@ const rh = async (e) => {
           ],
         });
   },
-  ph = ({ isOpen: e, onClose: t, storeShelf: n }) => {
+  hh = ({ isOpen: e, onClose: t, storeShelf: n }) => {
     const {
         showNotification: r,
         medicineList: o,
@@ -18437,142 +18802,153 @@ const rh = async (e) => {
         storeItemModalMode: c,
         updateStockInShelf: h,
       } = Je(),
-      [d, g] = m.useState(""),
-      [p, w] = m.useState(""),
-      [v, b] = m.useState(""),
-      [_, u] = m.useState(""),
-      [f, x] = m.useState(""),
-      [j, L] = m.useState(""),
-      [P, R] = m.useState(""),
-      [N, I] = m.useState(""),
-      [S, O] = m.useState(""),
-      [G, E] = m.useState(""),
-      [C, Z] = m.useState(null),
-      [M, F] = m.useState([]),
-      [k, Q] = m.useState(""),
-      [de, X] = m.useState(!1),
-      ne = m.useRef(null);
-    m.useEffect(() => {
+      [d, x] = p.useState(""),
+      [m, b] = p.useState(""),
+      [v, N] = p.useState(""),
+      [E, u] = p.useState(""),
+      [f, g] = p.useState([]),
+      [C, B] = p.useState(""),
+      [I, A] = p.useState(""),
+      [j, z] = p.useState(""),
+      [D, F] = p.useState(null),
+      [G, P] = p.useState([]),
+      [M, ee] = p.useState(""),
+      [w, O] = p.useState(!1),
+      S = p.useRef(null);
+    p.useEffect(() => {
       if (e && c === "edit" && i) {
-        g(i.code || ""),
-          w(i.name || ""),
-          b(""),
-          u(i.material_no || ""),
-          x(i.lot || "");
-        const T = i.expiry_date || "";
-        if (T) {
-          const se = T.split(" ")[0];
-          L(se);
-        } else L("");
-        R(String(i.qty || "")),
-          I(i.location || ""),
-          O(i.led_index || ""),
-          E(i.ip || "");
+        x(i.code || ""), b(i.name || ""), N(""), u(i.material_no || "");
+        const R = i.lot || [],
+          J = i.expiry_date || [],
+          ce = i.qty || [];
+        if (R.length > 0 || J.length > 0 || ce.length > 0) {
+          const Se = Math.max(R.length, J.length, ce.length),
+            L = [];
+          for (let _ = 0; _ < Se; _++) {
+            const re = J[_] || "";
+            let T = "";
+            re && (T = re.split("T")[0]),
+              L.push({
+                id: `batch_${Date.now()}_${_}`,
+                lot: R[_] || "",
+                expiryDate: T,
+                qty: String(ce[_] || ""),
+              });
+          }
+          g(L);
+        } else g([]);
+        B(i.location || ""), A(i.led_index || ""), z(i.ip || "");
       } else
         e &&
           c === "add" &&
-          (g(""),
-          w(""),
-          b(""),
-          u(""),
-          x(""),
-          L(""),
-          R(""),
-          I(""),
-          O(""),
-          E(""));
+          (x(""), b(""), N(""), u(""), g([]), B(""), A(""), z(""));
     }, [e, c, i]),
-      m.useEffect(() => {
-        const T = (se) => {
-          ne.current && !ne.current.contains(se.target) && Z(null);
+      p.useEffect(() => {
+        const R = (J) => {
+          S.current && !S.current.contains(J.target) && F(null);
         };
         return (
-          document.addEventListener("mousedown", T),
+          document.addEventListener("mousedown", R),
           () => {
-            document.removeEventListener("mousedown", T);
+            document.removeEventListener("mousedown", R);
           }
         );
       }, []);
-    const je = (T, se) => {
-        if (!se.trim()) {
-          F([]);
+    const Q = (R, J) => {
+        if (!J.trim()) {
+          P([]);
           return;
         }
-        const Se = se.toLowerCase(),
-          U = o.filter((ee) => {
-            var ye, z, D, A;
-            switch (T) {
+        const ce = J.toLowerCase(),
+          Se = o.filter((L) => {
+            var _, re, T, k;
+            switch (R) {
               case "code":
-                return (ye = ee.CODE) == null
+                return (_ = L.CODE) == null
                   ? void 0
-                  : ye.toLowerCase().includes(Se);
+                  : _.toLowerCase().includes(ce);
               case "name":
-                return (z = ee.NAME) == null
+                return (re = L.NAME) == null
                   ? void 0
-                  : z.toLowerCase().includes(Se);
+                  : re.toLowerCase().includes(ce);
               case "chineseName":
-                return (D = ee.CHT_NAME) == null
+                return (T = L.CHT_NAME) == null
                   ? void 0
-                  : D.toLowerCase().includes(Se);
+                  : T.toLowerCase().includes(ce);
               case "skdiacode":
-                return (A = ee.SKDIACODE) == null
+                return (k = L.SKDIACODE) == null
                   ? void 0
-                  : A.toLowerCase().includes(Se);
+                  : k.toLowerCase().includes(ce);
               default:
                 return !1;
             }
           });
-        F(U.slice(0, 50));
+        P(Se.slice(0, 50));
       },
-      oe = (T, se) => {
-        switch ((Z(T), T)) {
+      ie = (R, J) => {
+        switch ((F(R), R)) {
           case "code":
-            g(se);
+            x(J);
             break;
           case "name":
-            w(se);
+            b(J);
             break;
           case "chineseName":
-            b(se);
+            N(J);
             break;
           case "skdiacode":
-            u(se);
+            u(J);
             break;
         }
-        je(T, se);
+        Q(R, J);
       },
-      ve = (T, se) => {
-        switch (se) {
+      X = (R, J) => {
+        switch (J) {
           case "code":
-            g(T.CODE || ""),
-              w(T.NAME || ""),
-              b(T.CHT_NAME || ""),
-              u(T.SKDIACODE || "");
+            x(R.CODE || ""),
+              b(R.NAME || ""),
+              N(R.CHT_NAME || ""),
+              u(R.SKDIACODE || "");
             break;
           case "name":
-            g(T.CODE || ""),
-              w(T.NAME || ""),
-              b(T.CHT_NAME || ""),
-              u(T.SKDIACODE || "");
+            x(R.CODE || ""),
+              b(R.NAME || ""),
+              N(R.CHT_NAME || ""),
+              u(R.SKDIACODE || "");
             break;
           case "chineseName":
-            g(T.CODE || ""),
-              w(T.NAME || ""),
-              b(T.CHT_NAME || ""),
-              u(T.SKDIACODE || "");
+            x(R.CODE || ""),
+              b(R.NAME || ""),
+              N(R.CHT_NAME || ""),
+              u(R.SKDIACODE || "");
             break;
           case "skdiacode":
-            g(T.CODE || ""),
-              w(T.NAME || ""),
-              b(T.CHT_NAME || ""),
-              u(T.SKDIACODE || "");
+            x(R.CODE || ""),
+              b(R.NAME || ""),
+              N(R.CHT_NAME || ""),
+              u(R.SKDIACODE || "");
             break;
         }
-        Q(T.GUID), Z(null), F([]);
+        ee(R.GUID), F(null), P([]);
       },
-      $ = async () => {
-        var se;
-        if (!d || !p) {
+      oe = () => {
+        const R = {
+          id: `batch_${Date.now()}`,
+          lot: "",
+          expiryDate: "",
+          qty: "",
+        };
+        g([...f, R]);
+      },
+      Ne = (R) => {
+        g(f.filter((J) => J.id !== R));
+      },
+      le = (R, J, ce) => {
+        g(f.map((Se) => (Se.id === R ? { ...Se, [J]: ce } : Se)));
+      },
+      ye = async () => {
+        var Se;
+        if (!d || !m) {
           r("請選擇藥品", "error");
           return;
         }
@@ -18580,56 +18956,64 @@ const rh = async (e) => {
           r("層架資訊錯誤", "error");
           return;
         }
-        let T = "";
-        j && (T = `${j}T00:00:00`);
+        const R = [],
+          J = [],
+          ce = [];
+        f.forEach((L) => {
+          R.push(L.lot || "");
+          let _ = "";
+          L.expiryDate && (_ = `${L.expiryDate}`),
+            J.push(_),
+            ce.push(L.qty ? `${Number(L.qty)}` : "0");
+        });
         try {
           if (c === "edit" && i) {
-            const Se = {
+            const L = {
                 GUID: i.GUID,
                 code: d,
                 device_type: "EPD290",
-                expiry_date: T || "",
-                ip: G || "",
-                led_index: S || "",
-                location: N || "",
-                lot: f || "",
-                material_no: _ || "",
-                name: p,
-                qty: P,
+                expiry_date: J,
+                ip: j || "",
+                led_index: I || "",
+                location: C || "",
+                lot: R,
+                material_no: E || "",
+                name: m,
+                qty: ce,
                 shelf_guid: n.GUID,
               },
-              U = await ke.updateStock([Se]);
-            U.Code === 200
-              ? (h(n.GUID, i.GUID, Se), r("更新貨物成功", "success"), pe())
-              : r(U.Result || "更新貨物失敗", "error");
+              _ = await ke.updateStock([L]);
+            _.Code === 200
+              ? (h(n.GUID, i.GUID, L), r("更新貨物成功", "success"), ae())
+              : r(_.Result || "更新貨物失敗", "error");
           } else {
-            const Se = {
+            const L = {
                 code: d,
                 device_type: "EPD290",
-                expiry_date: T || "",
-                ip: G || "",
-                led_index: S || "",
-                location: N || "",
-                lot: f || "",
-                material_no: _ || "",
-                name: p,
-                qty: P,
+                expiry_date: J,
+                ip: j || "",
+                led_index: I || "",
+                location: C || "",
+                lot: R,
+                material_no: E || "",
+                name: m,
+                qty: ce,
                 shelf_guid: n.GUID,
               },
-              U = await ke.addStock([Se]);
-            U.Code === 200
+              _ = await ke.addStock([L]);
+            _.Code === 200
               ? (a(n.GUID, {
                   GUID:
-                    ((se = U.Data) == null ? void 0 : se.GUID) ||
+                    ((Se = _.Data) == null ? void 0 : Se.GUID) ||
                     `stock_${Date.now()}`,
-                  ...Se,
+                  ...L,
                 }),
                 r("新增貨物成功", "success"),
-                pe())
-              : r(U.Result || "新增貨物失敗", "error");
+                ae())
+              : r(_.Result || "新增貨物失敗", "error");
           }
-        } catch (Se) {
-          console.error("貨物操作錯誤:", Se),
+        } catch (L) {
+          console.error("貨物操作錯誤:", L),
             r(
               c === "edit"
                 ? "更新貨物失敗，請稍後再試"
@@ -18638,30 +19022,28 @@ const rh = async (e) => {
             );
         }
       },
-      le = (T, se) => {
-        console.log("📸 掃描成功，填入藥品資料:", se),
-          g(se[0].CODE || se[0].code || ""),
-          w(se[0].NAME || se[0].name || ""),
-          b(se[0].CHT_NAME || se[0].cht_name || ""),
-          u(se[0].SKDIACODE || se[0].skdiacode || se[0].material_no || ""),
-          Q(se[0].GUID || ""),
-          X(!1),
+      U = (R, J) => {
+        console.log("📸 掃描成功，填入藥品資料:", J),
+          x(J[0].CODE || J[0].code || ""),
+          b(J[0].NAME || J[0].name || ""),
+          N(J[0].CHT_NAME || J[0].cht_name || ""),
+          u(J[0].SKDIACODE || J[0].skdiacode || J[0].material_no || ""),
+          ee(J[0].GUID || ""),
+          O(!1),
           r("已自動填入藥品資料", "success");
       },
-      pe = () => {
-        g(""),
-          w(""),
+      ae = () => {
+        x(""),
           b(""),
+          N(""),
           u(""),
-          x(""),
-          L(""),
-          R(""),
-          I(""),
-          O(""),
-          E(""),
-          Q(""),
-          F([]),
-          Z(null),
+          g([]),
+          B(""),
+          A(""),
+          z(""),
+          ee(""),
+          P([]),
+          F(null),
           t();
       };
     return e
@@ -18675,17 +19057,17 @@ const rh = async (e) => {
               children: [
                 s.jsxs("div", {
                   className:
-                    "sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between",
+                    "sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between z-10",
                   children: [
                     s.jsx("h2", {
                       className: "text-xl font-bold text-gray-800",
                       children: c === "edit" ? "編輯貨物" : "新增貨物",
                     }),
                     s.jsx("button", {
-                      onClick: pe,
+                      onClick: ae,
                       className:
                         "p-2 hover:bg-gray-100 rounded-full transition-colors",
-                      children: s.jsx(Ye, { className: "w-5 h-5" }),
+                      children: s.jsx(Qe, { className: "w-5 h-5" }),
                     }),
                   ],
                 }),
@@ -18734,7 +19116,7 @@ const rh = async (e) => {
                                     children: "藥品資訊",
                                   }),
                                   s.jsx("button", {
-                                    onClick: () => X(!0),
+                                    onClick: () => O(!0),
                                     className:
                                       "hover:bg-gray-100 rounded-lg transition-colors p-2",
                                     title: "掃描條碼",
@@ -18749,7 +19131,7 @@ const rh = async (e) => {
                                 children: [
                                   s.jsxs("div", {
                                     className: "relative",
-                                    ref: C === "code" ? ne : null,
+                                    ref: D === "code" ? S : null,
                                     children: [
                                       s.jsx("label", {
                                         className:
@@ -18759,23 +19141,23 @@ const rh = async (e) => {
                                       s.jsx("input", {
                                         type: "text",
                                         value: d,
-                                        onChange: (T) =>
-                                          oe("code", T.target.value),
-                                        onFocus: () => Z("code"),
+                                        onChange: (R) =>
+                                          ie("code", R.target.value),
+                                        onFocus: () => F("code"),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入藥品代碼",
                                       }),
-                                      C === "code" &&
-                                        M.length > 0 &&
+                                      D === "code" &&
+                                        G.length > 0 &&
                                         s.jsx("div", {
                                           className:
                                             "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                          children: M.map((T) =>
+                                          children: G.map((R) =>
                                             s.jsxs(
                                               "div",
                                               {
-                                                onClick: () => ve(T, "code"),
+                                                onClick: () => X(R, "code"),
                                                 className:
                                                   "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                 children: [
@@ -18786,7 +19168,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "font-medium text-gray-900",
-                                                        children: T.CODE,
+                                                        children: R.CODE,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18796,7 +19178,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-700",
-                                                        children: T.NAME,
+                                                        children: R.NAME,
                                                       }),
                                                     ],
                                                   }),
@@ -18807,7 +19189,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-600",
-                                                        children: T.CHT_NAME,
+                                                        children: R.CHT_NAME,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18819,14 +19201,14 @@ const rh = async (e) => {
                                                           "text-gray-500",
                                                         children: [
                                                           "料號: ",
-                                                          T.SKDIACODE,
+                                                          R.SKDIACODE,
                                                         ],
                                                       }),
                                                     ],
                                                   }),
                                                 ],
                                               },
-                                              T.GUID
+                                              R.GUID
                                             )
                                           ),
                                         }),
@@ -18834,7 +19216,7 @@ const rh = async (e) => {
                                   }),
                                   s.jsxs("div", {
                                     className: "relative",
-                                    ref: C === "name" ? ne : null,
+                                    ref: D === "name" ? S : null,
                                     children: [
                                       s.jsx("label", {
                                         className:
@@ -18843,24 +19225,24 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("input", {
                                         type: "text",
-                                        value: p,
-                                        onChange: (T) =>
-                                          oe("name", T.target.value),
-                                        onFocus: () => Z("name"),
+                                        value: m,
+                                        onChange: (R) =>
+                                          ie("name", R.target.value),
+                                        onFocus: () => F("name"),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入藥品名稱",
                                       }),
-                                      C === "name" &&
-                                        M.length > 0 &&
+                                      D === "name" &&
+                                        G.length > 0 &&
                                         s.jsx("div", {
                                           className:
                                             "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                          children: M.map((T) =>
+                                          children: G.map((R) =>
                                             s.jsxs(
                                               "div",
                                               {
-                                                onClick: () => ve(T, "name"),
+                                                onClick: () => X(R, "name"),
                                                 className:
                                                   "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                 children: [
@@ -18871,7 +19253,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "font-medium text-gray-900",
-                                                        children: T.CODE,
+                                                        children: R.CODE,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18881,7 +19263,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-700",
-                                                        children: T.NAME,
+                                                        children: R.NAME,
                                                       }),
                                                     ],
                                                   }),
@@ -18892,7 +19274,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-600",
-                                                        children: T.CHT_NAME,
+                                                        children: R.CHT_NAME,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18904,14 +19286,14 @@ const rh = async (e) => {
                                                           "text-gray-500",
                                                         children: [
                                                           "料號: ",
-                                                          T.SKDIACODE,
+                                                          R.SKDIACODE,
                                                         ],
                                                       }),
                                                     ],
                                                   }),
                                                 ],
                                               },
-                                              T.GUID
+                                              R.GUID
                                             )
                                           ),
                                         }),
@@ -18919,7 +19301,7 @@ const rh = async (e) => {
                                   }),
                                   s.jsxs("div", {
                                     className: "relative",
-                                    ref: C === "chineseName" ? ne : null,
+                                    ref: D === "chineseName" ? S : null,
                                     children: [
                                       s.jsx("label", {
                                         className:
@@ -18929,24 +19311,24 @@ const rh = async (e) => {
                                       s.jsx("input", {
                                         type: "text",
                                         value: v,
-                                        onChange: (T) =>
-                                          oe("chineseName", T.target.value),
-                                        onFocus: () => Z("chineseName"),
+                                        onChange: (R) =>
+                                          ie("chineseName", R.target.value),
+                                        onFocus: () => F("chineseName"),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入中文名稱",
                                       }),
-                                      C === "chineseName" &&
-                                        M.length > 0 &&
+                                      D === "chineseName" &&
+                                        G.length > 0 &&
                                         s.jsx("div", {
                                           className:
                                             "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                          children: M.map((T) =>
+                                          children: G.map((R) =>
                                             s.jsxs(
                                               "div",
                                               {
                                                 onClick: () =>
-                                                  ve(T, "chineseName"),
+                                                  X(R, "chineseName"),
                                                 className:
                                                   "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                 children: [
@@ -18957,7 +19339,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "font-medium text-gray-900",
-                                                        children: T.CODE,
+                                                        children: R.CODE,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18967,7 +19349,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-700",
-                                                        children: T.NAME,
+                                                        children: R.NAME,
                                                       }),
                                                     ],
                                                   }),
@@ -18978,7 +19360,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-600",
-                                                        children: T.CHT_NAME,
+                                                        children: R.CHT_NAME,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -18990,14 +19372,14 @@ const rh = async (e) => {
                                                           "text-gray-500",
                                                         children: [
                                                           "料號: ",
-                                                          T.SKDIACODE,
+                                                          R.SKDIACODE,
                                                         ],
                                                       }),
                                                     ],
                                                   }),
                                                 ],
                                               },
-                                              T.GUID
+                                              R.GUID
                                             )
                                           ),
                                         }),
@@ -19005,7 +19387,7 @@ const rh = async (e) => {
                                   }),
                                   s.jsxs("div", {
                                     className: "relative",
-                                    ref: C === "skdiacode" ? ne : null,
+                                    ref: D === "skdiacode" ? S : null,
                                     children: [
                                       s.jsx("label", {
                                         className:
@@ -19014,25 +19396,25 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("input", {
                                         type: "text",
-                                        value: _,
-                                        onChange: (T) =>
-                                          oe("skdiacode", T.target.value),
-                                        onFocus: () => Z("skdiacode"),
+                                        value: E,
+                                        onChange: (R) =>
+                                          ie("skdiacode", R.target.value),
+                                        onFocus: () => F("skdiacode"),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入料號",
                                       }),
-                                      C === "skdiacode" &&
-                                        M.length > 0 &&
+                                      D === "skdiacode" &&
+                                        G.length > 0 &&
                                         s.jsx("div", {
                                           className:
                                             "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                          children: M.map((T) =>
+                                          children: G.map((R) =>
                                             s.jsxs(
                                               "div",
                                               {
                                                 onClick: () =>
-                                                  ve(T, "skdiacode"),
+                                                  X(R, "skdiacode"),
                                                 className:
                                                   "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                 children: [
@@ -19043,7 +19425,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "font-medium text-gray-900",
-                                                        children: T.CODE,
+                                                        children: R.CODE,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -19053,7 +19435,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-700",
-                                                        children: T.NAME,
+                                                        children: R.NAME,
                                                       }),
                                                     ],
                                                   }),
@@ -19064,7 +19446,7 @@ const rh = async (e) => {
                                                       s.jsx("span", {
                                                         className:
                                                           "text-gray-600",
-                                                        children: T.CHT_NAME,
+                                                        children: R.CHT_NAME,
                                                       }),
                                                       s.jsx("span", {
                                                         className:
@@ -19076,14 +19458,14 @@ const rh = async (e) => {
                                                           "text-gray-500",
                                                         children: [
                                                           "料號: ",
-                                                          T.SKDIACODE,
+                                                          R.SKDIACODE,
                                                         ],
                                                       }),
                                                     ],
                                                   }),
                                                 ],
                                               },
-                                              T.GUID
+                                              R.GUID
                                             )
                                           ),
                                         }),
@@ -19096,67 +19478,150 @@ const rh = async (e) => {
                           s.jsxs("div", {
                             className: "space-y-4",
                             children: [
-                              s.jsx("h3", {
-                                className:
-                                  "text-lg font-semibold text-gray-700 border-b pb-2",
-                                children: "批次資訊",
-                              }),
                               s.jsxs("div", {
-                                className: "grid grid-cols-3 gap-4",
+                                className:
+                                  "flex items-center justify-between border-b pb-2",
                                 children: [
-                                  s.jsxs("div", {
-                                    children: [
-                                      s.jsx("label", {
-                                        className:
-                                          "block text-sm font-medium text-gray-700 mb-1",
-                                        children: "批號",
-                                      }),
-                                      s.jsx("input", {
-                                        type: "text",
-                                        value: f,
-                                        onChange: (T) => x(T.target.value),
-                                        className:
-                                          "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                                        placeholder: "輸入批號",
-                                      }),
-                                    ],
+                                  s.jsx("h3", {
+                                    className:
+                                      "text-lg font-semibold text-gray-700",
+                                    children: "批次資訊",
                                   }),
-                                  s.jsxs("div", {
+                                  s.jsxs("button", {
+                                    onClick: oe,
+                                    className:
+                                      "flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors",
+                                    title: "新增批次",
                                     children: [
-                                      s.jsx("label", {
-                                        className:
-                                          "block text-sm font-medium text-gray-700 mb-1",
-                                        children: "效期",
-                                      }),
-                                      s.jsx("input", {
-                                        type: "date",
-                                        value: j,
-                                        onChange: (T) => L(T.target.value),
-                                        className:
-                                          "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                                      }),
-                                    ],
-                                  }),
-                                  s.jsxs("div", {
-                                    children: [
-                                      s.jsx("label", {
-                                        className:
-                                          "block text-sm font-medium text-gray-700 mb-1",
-                                        children: "數量",
-                                      }),
-                                      s.jsx("input", {
-                                        type: "number",
-                                        value: P,
-                                        onChange: (T) => R(T.target.value),
-                                        className:
-                                          "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                                        placeholder: "輸入數量",
-                                        min: "0",
-                                      }),
+                                      s.jsx(gt, { className: "w-4 h-4" }),
+                                      "新增批次",
                                     ],
                                   }),
                                 ],
                               }),
+                              f.length === 0
+                                ? s.jsxs("div", {
+                                    className:
+                                      "text-center py-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300",
+                                    children: [
+                                      s.jsx("p", {
+                                        className: "text-gray-500",
+                                        children: "暫無藥品批號資訊",
+                                      }),
+                                      s.jsx("p", {
+                                        className: "text-sm text-gray-400 mt-1",
+                                        children:
+                                          "點擊上方「新增批次」按鈕開始添加",
+                                      }),
+                                    ],
+                                  })
+                                : s.jsx("div", {
+                                    className: "space-y-3",
+                                    children: f.map((R, J) =>
+                                      s.jsxs(
+                                        "div",
+                                        {
+                                          className:
+                                            "bg-gray-50 rounded-lg p-4 border border-gray-200",
+                                          children: [
+                                            s.jsxs("div", {
+                                              className:
+                                                "flex items-center justify-between mb-3",
+                                              children: [
+                                                s.jsxs("span", {
+                                                  className:
+                                                    "text-sm font-medium text-gray-700",
+                                                  children: ["批次 ", J + 1],
+                                                }),
+                                                s.jsx("button", {
+                                                  onClick: () => Ne(R.id),
+                                                  className:
+                                                    "p-1 text-red-600 hover:bg-red-50 rounded transition-colors",
+                                                  title: "刪除批次",
+                                                  children: s.jsx(Qm, {
+                                                    className: "w-4 h-4",
+                                                  }),
+                                                }),
+                                              ],
+                                            }),
+                                            s.jsxs("div", {
+                                              className:
+                                                "grid grid-cols-3 gap-3",
+                                              children: [
+                                                s.jsxs("div", {
+                                                  children: [
+                                                    s.jsx("label", {
+                                                      className:
+                                                        "block text-xs font-medium text-gray-600 mb-1",
+                                                      children: "批號",
+                                                    }),
+                                                    s.jsx("input", {
+                                                      type: "text",
+                                                      value: R.lot,
+                                                      onChange: (ce) =>
+                                                        le(
+                                                          R.id,
+                                                          "lot",
+                                                          ce.target.value
+                                                        ),
+                                                      className:
+                                                        "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                                                      placeholder: "輸入批號",
+                                                    }),
+                                                  ],
+                                                }),
+                                                s.jsxs("div", {
+                                                  children: [
+                                                    s.jsx("label", {
+                                                      className:
+                                                        "block text-xs font-medium text-gray-600 mb-1",
+                                                      children: "效期",
+                                                    }),
+                                                    s.jsx("input", {
+                                                      type: "date",
+                                                      value: R.expiryDate,
+                                                      onChange: (ce) =>
+                                                        le(
+                                                          R.id,
+                                                          "expiryDate",
+                                                          ce.target.value
+                                                        ),
+                                                      className:
+                                                        "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                                                    }),
+                                                  ],
+                                                }),
+                                                s.jsxs("div", {
+                                                  children: [
+                                                    s.jsx("label", {
+                                                      className:
+                                                        "block text-xs font-medium text-gray-600 mb-1",
+                                                      children: "數量",
+                                                    }),
+                                                    s.jsx("input", {
+                                                      type: "number",
+                                                      value: R.qty,
+                                                      onChange: (ce) =>
+                                                        le(
+                                                          R.id,
+                                                          "qty",
+                                                          ce.target.value
+                                                        ),
+                                                      className:
+                                                        "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                                                      placeholder: "輸入數量",
+                                                      min: "0",
+                                                    }),
+                                                  ],
+                                                }),
+                                              ],
+                                            }),
+                                          ],
+                                        },
+                                        R.id
+                                      )
+                                    ),
+                                  }),
                             ],
                           }),
                           s.jsxs("div", {
@@ -19179,8 +19644,8 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("input", {
                                         type: "text",
-                                        value: N,
-                                        onChange: (T) => I(T.target.value),
+                                        value: C,
+                                        onChange: (R) => B(R.target.value),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入位置",
@@ -19196,8 +19661,8 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("input", {
                                         type: "text",
-                                        value: S,
-                                        onChange: (T) => O(T.target.value),
+                                        value: I,
+                                        onChange: (R) => A(R.target.value),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入 LED 索引",
@@ -19213,8 +19678,8 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("input", {
                                         type: "text",
-                                        value: G,
-                                        onChange: (T) => E(T.target.value),
+                                        value: j,
+                                        onChange: (R) => z(R.target.value),
                                         className:
                                           "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                         placeholder: "輸入電子紙 IP",
@@ -19233,13 +19698,13 @@ const rh = async (e) => {
                     "sticky bottom-0 bg-gray-50 px-6 py-4 border-t flex justify-end space-x-3",
                   children: [
                     s.jsx("button", {
-                      onClick: pe,
+                      onClick: ae,
                       className:
                         "px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors",
                       children: "取消",
                     }),
                     s.jsx("button", {
-                      onClick: $,
+                      onClick: ye,
                       disabled: l || o.length === 0,
                       className:
                         "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400",
@@ -19249,17 +19714,17 @@ const rh = async (e) => {
                 }),
               ],
             }),
-            s.jsx(Bo, {
-              isOpen: de,
-              onClose: () => X(!1),
-              onScanSuccess: le,
+            s.jsx(zo, {
+              isOpen: w,
+              onClose: () => O(!1),
+              onScanSuccess: U,
               mode: "set_store_med_mode",
             }),
           ],
         })
       : null;
   },
-  mh = ({ isOpen: e, onClose: t }) => {
+  gh = ({ isOpen: e, onClose: t }) => {
     const {
         selectedDepartmentType: n,
         apiDepartmentData: r,
@@ -19268,30 +19733,30 @@ const rh = async (e) => {
         triggerRefresh: a,
         reloadMedMapData: i,
       } = Je(),
-      [c, h] = m.useState(null),
-      [d, g] = m.useState(""),
-      [p, w] = m.useState(!1),
-      v = () => (r ? r.map((R) => R.name) : []),
-      b = () => (!n || !o ? [] : o.filter((R) => R["department_type "] === n)),
-      _ = () => {
-        const R = v();
-        return b().filter((I) => !R.includes(I.name));
+      [c, h] = p.useState(null),
+      [d, x] = p.useState(""),
+      [m, b] = p.useState(!1),
+      v = () => (r ? r.map((A) => A.name) : []),
+      N = () => (!n || !o ? [] : o.filter((A) => A["department_type "] === n)),
+      E = () => {
+        const A = v();
+        return N().filter((z) => !A.includes(z.name));
       },
-      u = () => (r ? r.map((R) => R.gird_position) : []),
+      u = () => (r ? r.map((A) => A.gird_position) : []),
       f = () => {
-        const R = u(),
-          N = [];
-        for (let I = 0; I < 10; I++)
-          for (let S = 0; S < 10; S++) {
-            const O = `${I},${S}`;
-            R.includes(O) || N.push(O);
+        const A = u(),
+          j = [];
+        for (let z = 0; z < 10; z++)
+          for (let D = 0; D < 10; D++) {
+            const F = `${z},${D}`;
+            A.includes(F) || j.push(F);
           }
-        return N.slice(0, 20);
+        return j.slice(0, 20);
       };
-    m.useEffect(() => {
-      e && (h(null), g(""));
+    p.useEffect(() => {
+      e && (h(null), x(""));
     }, [e]);
-    const x = async () => {
+    const g = async () => {
         if (!c) {
           l("請選擇部門", "error");
           return;
@@ -19304,25 +19769,25 @@ const rh = async (e) => {
           l("部門分類資訊錯誤", "error");
           return;
         }
-        w(!0);
+        b(!0);
         try {
-          const R = await ke.addMedMap(c.name, c.type, d);
-          R.Code === 200
-            ? (l("新增部門成功", "success"), await i(), j())
-            : l(R.Result || "新增部門失敗", "error");
-        } catch (R) {
-          console.error("新增部門錯誤:", R),
+          const A = await ke.addMedMap(c.name, c.type, d);
+          A.Code === 200
+            ? (l("新增部門成功", "success"), await i(), C())
+            : l(A.Result || "新增部門失敗", "error");
+        } catch (A) {
+          console.error("新增部門錯誤:", A),
             l("新增部門失敗，請稍後再試", "error");
         } finally {
-          w(!1);
+          b(!1);
         }
       },
-      j = () => {
-        h(null), g(""), t();
+      C = () => {
+        h(null), x(""), t();
       };
     if (!e) return null;
-    const L = _(),
-      P = f();
+    const B = E(),
+      I = f();
     return s.jsx("div", {
       className:
         "fixed inset-0 bg-black/50 flex items-center justify-center z-50",
@@ -19339,10 +19804,10 @@ const rh = async (e) => {
                 children: "新增部門",
               }),
               s.jsx("button", {
-                onClick: j,
+                onClick: C,
                 className:
                   "p-2 hover:bg-gray-100 rounded-full transition-colors",
-                children: s.jsx(Ye, { className: "w-5 h-5" }),
+                children: s.jsx(Qe, { className: "w-5 h-5" }),
               }),
             ],
           }),
@@ -19368,7 +19833,7 @@ const rh = async (e) => {
                       "text-lg font-semibold text-gray-700 border-b pb-2",
                     children: "選擇部門",
                   }),
-                  L.length === 0
+                  B.length === 0
                     ? s.jsx("div", {
                         className: "text-center py-8",
                         children: s.jsx("p", {
@@ -19378,12 +19843,12 @@ const rh = async (e) => {
                       })
                     : s.jsx("div", {
                         className: "space-y-2",
-                        children: L.map((R) =>
+                        children: B.map((A) =>
                           s.jsxs(
                             "label",
                             {
                               className: `flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                                (c == null ? void 0 : c.name) === R.name
+                                (c == null ? void 0 : c.name) === A.name
                                   ? "border-blue-500 bg-blue-50"
                                   : "border-gray-200 hover:border-blue-300 hover:bg-gray-50"
                               }`,
@@ -19391,10 +19856,10 @@ const rh = async (e) => {
                                 s.jsx("input", {
                                   type: "radio",
                                   name: "department",
-                                  value: R.name,
+                                  value: A.name,
                                   checked:
-                                    (c == null ? void 0 : c.name) === R.name,
-                                  onChange: () => h(R),
+                                    (c == null ? void 0 : c.name) === A.name,
+                                  onChange: () => h(A),
                                   className:
                                     "w-4 h-4 text-blue-600 focus:ring-blue-500",
                                 }),
@@ -19404,17 +19869,17 @@ const rh = async (e) => {
                                     s.jsx("div", {
                                       className:
                                         "text-sm font-medium text-gray-900",
-                                      children: R.name,
+                                      children: A.name,
                                     }),
                                     s.jsx("div", {
                                       className: "text-xs text-gray-500",
-                                      children: R.type,
+                                      children: A.type,
                                     }),
                                   ],
                                 }),
                               ],
                             },
-                            R.name
+                            A.name
                           )
                         ),
                       }),
@@ -19429,7 +19894,7 @@ const rh = async (e) => {
                         "text-lg font-semibold text-gray-700 border-b pb-2",
                       children: "選擇位置",
                     }),
-                    P.length === 0
+                    I.length === 0
                       ? s.jsx("div", {
                           className: "text-center py-8",
                           children: s.jsx("p", {
@@ -19439,20 +19904,20 @@ const rh = async (e) => {
                         })
                       : s.jsx("div", {
                           className: "grid grid-cols-5 gap-2",
-                          children: P.map((R) => {
-                            const [N, I] = R.split(",");
+                          children: I.map((A) => {
+                            const [j, z] = A.split(",");
                             return s.jsxs(
                               "button",
                               {
-                                onClick: () => g(R),
+                                onClick: () => x(A),
                                 className: `p-3 border-2 rounded-lg text-sm font-medium transition-all ${
-                                  d === R
+                                  d === A
                                     ? "border-blue-500 bg-blue-500 text-white"
                                     : "border-gray-200 hover:border-blue-300 hover:bg-blue-50 text-gray-700"
                                 }`,
-                                children: ["(", N, ",", I, ")"],
+                                children: ["(", j, ",", z, ")"],
                               },
-                              R
+                              A
                             );
                           }),
                         }),
@@ -19465,18 +19930,18 @@ const rh = async (e) => {
               "sticky bottom-0 bg-gray-50 px-6 py-4 border-t flex justify-end space-x-3",
             children: [
               s.jsx("button", {
-                onClick: j,
+                onClick: C,
                 className:
                   "px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors",
-                disabled: p,
+                disabled: m,
                 children: "取消",
               }),
               s.jsx("button", {
-                onClick: x,
-                disabled: !c || !d || p,
+                onClick: g,
+                disabled: !c || !d || m,
                 className:
                   "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed",
-                children: p ? "新增中..." : "新增",
+                children: m ? "新增中..." : "新增",
               }),
             ],
           }),
@@ -19484,99 +19949,99 @@ const rh = async (e) => {
       }),
     });
   },
-  hh = ({ isOpen: e, onClose: t, initialBarcode: n = "" }) => {
+  xh = ({ isOpen: e, onClose: t, initialBarcode: n = "" }) => {
     const {
         showNotification: r,
         medicineList: o,
         isLoadingMedicines: l,
       } = Je(),
-      [a, i] = m.useState(""),
-      [c, h] = m.useState(""),
-      [d, g] = m.useState(""),
-      [p, w] = m.useState(""),
-      [v, b] = m.useState(""),
-      [_, u] = m.useState(null),
-      [f, x] = m.useState([]),
-      [j, L] = m.useState(""),
-      [P, R] = m.useState(null),
-      [N, I] = m.useState(!1),
-      S = m.useRef(null);
-    m.useEffect(() => {
-      e && (i(n), h(""), g(""), w(""), b(""), L(""), R(null), u(null));
+      [a, i] = p.useState(""),
+      [c, h] = p.useState(""),
+      [d, x] = p.useState(""),
+      [m, b] = p.useState(""),
+      [v, N] = p.useState(""),
+      [E, u] = p.useState(null),
+      [f, g] = p.useState([]),
+      [C, B] = p.useState(""),
+      [I, A] = p.useState(null),
+      [j, z] = p.useState(!1),
+      D = p.useRef(null);
+    p.useEffect(() => {
+      e && (i(n), h(""), x(""), b(""), N(""), B(""), A(null), u(null));
     }, [e, n]),
-      m.useEffect(() => {
-        const M = (F) => {
-          S.current && !S.current.contains(F.target) && u(null);
+      p.useEffect(() => {
+        const w = (O) => {
+          D.current && !D.current.contains(O.target) && u(null);
         };
         return (
-          document.addEventListener("mousedown", M),
+          document.addEventListener("mousedown", w),
           () => {
-            document.removeEventListener("mousedown", M);
+            document.removeEventListener("mousedown", w);
           }
         );
       }, []);
-    const O = (M, F) => {
-        if (!F.trim() || l) {
-          x([]);
+    const F = (w, O) => {
+        if (!O.trim() || l) {
+          g([]);
           return;
         }
-        const k = F.toLowerCase(),
-          Q = o.filter((de) => {
-            var X, ne, je, oe;
-            switch (M) {
+        const S = O.toLowerCase(),
+          Q = o.filter((ie) => {
+            var X, oe, Ne, le;
+            switch (w) {
               case "code":
-                return (X = de.CODE) == null
+                return (X = ie.CODE) == null
                   ? void 0
-                  : X.toLowerCase().includes(k);
+                  : X.toLowerCase().includes(S);
               case "name":
-                return (ne = de.NAME) == null
+                return (oe = ie.NAME) == null
                   ? void 0
-                  : ne.toLowerCase().includes(k);
+                  : oe.toLowerCase().includes(S);
               case "chineseName":
-                return (je = de.CHT_NAME) == null
+                return (Ne = ie.CHT_NAME) == null
                   ? void 0
-                  : je.toLowerCase().includes(k);
+                  : Ne.toLowerCase().includes(S);
               case "skdiacode":
-                return (oe = de.SKDIACODE) == null
+                return (le = ie.SKDIACODE) == null
                   ? void 0
-                  : oe.toLowerCase().includes(k);
+                  : le.toLowerCase().includes(S);
               default:
                 return !1;
             }
           });
-        x(Q.slice(0, 10));
+        g(Q.slice(0, 10));
       },
-      G = (M, F) => {
-        switch ((u(M), M)) {
+      G = (w, O) => {
+        switch ((u(w), w)) {
           case "code":
-            h(F);
+            h(O);
             break;
           case "name":
-            g(F);
+            x(O);
             break;
           case "chineseName":
-            w(F);
+            b(O);
             break;
           case "skdiacode":
-            b(F);
+            N(O);
             break;
         }
-        O(M, F);
+        F(w, O);
       },
-      E = (M) => {
-        L(M.GUID),
-          R(M),
-          h(M.CODE || ""),
-          g(M.NAME || ""),
-          w(M.CHT_NAME || ""),
-          b(M.SKDIACODE || ""),
+      P = (w) => {
+        B(w.GUID),
+          A(w),
+          h(w.CODE || ""),
+          x(w.NAME || ""),
+          b(w.CHT_NAME || ""),
+          N(w.SKDIACODE || ""),
           u(null),
-          x([]);
+          g([]);
       },
-      C = () => {
-        i(""), h(""), g(""), w(""), b(""), L(""), R(null), u(null), x([]), t();
+      M = () => {
+        i(""), h(""), x(""), b(""), N(""), B(""), A(null), u(null), g([]), t();
       },
-      Z = async () => {
+      ee = async () => {
         if (!c.trim()) {
           r("藥碼為必填欄位", "error");
           return;
@@ -19585,35 +20050,35 @@ const rh = async (e) => {
           r("條碼不能為空", "error");
           return;
         }
-        I(!0);
+        z(!0);
         try {
-          let M = [];
-          if (P && P.BARCODE2)
+          let w = [];
+          if (I && I.BARCODE2)
             try {
-              const k = JSON.parse(P.BARCODE2);
-              Array.isArray(k)
-                ? (M = [...k])
-                : typeof k == "string" && (M = [k]);
+              const S = JSON.parse(I.BARCODE2);
+              Array.isArray(S)
+                ? (w = [...S])
+                : typeof S == "string" && (w = [S]);
             } catch {
-              console.warn("解析 BARCODE2 失敗，使用原始值:", P.BARCODE2),
-                P.BARCODE2 && (M = [P.BARCODE2]);
+              console.warn("解析 BARCODE2 失敗，使用原始值:", I.BARCODE2),
+                I.BARCODE2 && (w = [I.BARCODE2]);
             }
-          M.includes(a.trim()) || M.push(a.trim()),
-            console.log("📋 處理後的 BARCODE2 陣列:", M);
-          const F = await ke.addMedClouds(
+          w.includes(a.trim()) || w.push(a.trim()),
+            console.log("📋 處理後的 BARCODE2 陣列:", w);
+          const O = await ke.addMedClouds(
             a.trim(),
             c.trim(),
-            JSON.stringify(M),
-            P.BARCODE
+            JSON.stringify(w),
+            I.BARCODE
           );
-          F.Code === 200
-            ? (r("條碼建立成功", "success"), C())
-            : r(F.Result || "建立條碼失敗", "error");
-        } catch (M) {
-          console.error("建立條碼失敗:", M),
+          O.Code === 200
+            ? (r("條碼建立成功", "success"), M())
+            : r(O.Result || "建立條碼失敗", "error");
+        } catch (w) {
+          console.error("建立條碼失敗:", w),
             r("建立條碼失敗，請稍後再試", "error");
         } finally {
-          I(!1);
+          z(!1);
         }
       };
     return e
@@ -19632,7 +20097,7 @@ const rh = async (e) => {
                     children: [
                       s.jsx("div", {
                         className: "w-10 h-10 flex items-center justify-center",
-                        children: s.jsx(Nt, {
+                        children: s.jsx(gt, {
                           className: "w-6 h-6 text-blue-500",
                         }),
                       }),
@@ -19643,11 +20108,11 @@ const rh = async (e) => {
                     ],
                   }),
                   s.jsx("button", {
-                    onClick: C,
+                    onClick: M,
                     className:
                       "p-2 hover:bg-gray-100 rounded-lg transition-colors",
-                    disabled: N,
-                    children: s.jsx(Ye, { className: "w-6 h-6 text-gray-600" }),
+                    disabled: j,
+                    children: s.jsx(Qe, { className: "w-6 h-6 text-gray-600" }),
                   }),
                 ],
               }),
@@ -19655,7 +20120,7 @@ const rh = async (e) => {
                 className: "flex-1 overflow-y-auto p-6",
                 children: s.jsxs("div", {
                   className: "space-y-4",
-                  ref: S,
+                  ref: D,
                   children: [
                     s.jsxs("div", {
                       children: [
@@ -19690,37 +20155,37 @@ const rh = async (e) => {
                         s.jsx("input", {
                           type: "text",
                           value: c,
-                          onChange: (M) => G("code", M.target.value),
+                          onChange: (w) => G("code", w.target.value),
                           onFocus: () => u("code"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
                           placeholder: "輸入藥碼搜尋...",
-                          disabled: N,
+                          disabled: j,
                         }),
-                        _ === "code" &&
+                        E === "code" &&
                           f.length > 0 &&
                           s.jsx("div", {
                             className:
                               "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                            children: f.map((M) =>
+                            children: f.map((w) =>
                               s.jsxs(
                                 "div",
                                 {
-                                  onClick: () => E(M),
+                                  onClick: () => P(w),
                                   className:
                                     "px-4 py-2 hover:bg-green-50 cursor-pointer border-b border-gray-100 last:border-b-0",
                                   children: [
                                     s.jsx("div", {
                                       className: "font-medium text-gray-800",
-                                      children: M.CODE,
+                                      children: w.CODE,
                                     }),
                                     s.jsx("div", {
                                       className: "text-sm text-gray-600",
-                                      children: M.NAME,
+                                      children: w.NAME,
                                     }),
                                   ],
                                 },
-                                M.GUID
+                                w.GUID
                               )
                             ),
                           }),
@@ -19737,37 +20202,37 @@ const rh = async (e) => {
                         s.jsx("input", {
                           type: "text",
                           value: d,
-                          onChange: (M) => G("name", M.target.value),
+                          onChange: (w) => G("name", w.target.value),
                           onFocus: () => u("name"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
                           placeholder: "輸入藥名搜尋...",
-                          disabled: N,
+                          disabled: j,
                         }),
-                        _ === "name" &&
+                        E === "name" &&
                           f.length > 0 &&
                           s.jsx("div", {
                             className:
                               "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                            children: f.map((M) =>
+                            children: f.map((w) =>
                               s.jsxs(
                                 "div",
                                 {
-                                  onClick: () => E(M),
+                                  onClick: () => P(w),
                                   className:
                                     "px-4 py-2 hover:bg-green-50 cursor-pointer border-b border-gray-100 last:border-b-0",
                                   children: [
                                     s.jsx("div", {
                                       className: "font-medium text-gray-800",
-                                      children: M.NAME,
+                                      children: w.NAME,
                                     }),
                                     s.jsx("div", {
                                       className: "text-sm text-gray-600",
-                                      children: M.CODE,
+                                      children: w.CODE,
                                     }),
                                   ],
                                 },
-                                M.GUID
+                                w.GUID
                               )
                             ),
                           }),
@@ -19783,38 +20248,38 @@ const rh = async (e) => {
                         }),
                         s.jsx("input", {
                           type: "text",
-                          value: p,
-                          onChange: (M) => G("chineseName", M.target.value),
+                          value: m,
+                          onChange: (w) => G("chineseName", w.target.value),
                           onFocus: () => u("chineseName"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
                           placeholder: "輸入中文名搜尋...",
-                          disabled: N,
+                          disabled: j,
                         }),
-                        _ === "chineseName" &&
+                        E === "chineseName" &&
                           f.length > 0 &&
                           s.jsx("div", {
                             className:
                               "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                            children: f.map((M) =>
+                            children: f.map((w) =>
                               s.jsxs(
                                 "div",
                                 {
-                                  onClick: () => E(M),
+                                  onClick: () => P(w),
                                   className:
                                     "px-4 py-2 hover:bg-green-50 cursor-pointer border-b border-gray-100 last:border-b-0",
                                   children: [
                                     s.jsx("div", {
                                       className: "font-medium text-gray-800",
-                                      children: M.CHT_NAME,
+                                      children: w.CHT_NAME,
                                     }),
                                     s.jsx("div", {
                                       className: "text-sm text-gray-600",
-                                      children: M.CODE,
+                                      children: w.CODE,
                                     }),
                                   ],
                                 },
-                                M.GUID
+                                w.GUID
                               )
                             ),
                           }),
@@ -19831,37 +20296,37 @@ const rh = async (e) => {
                         s.jsx("input", {
                           type: "text",
                           value: v,
-                          onChange: (M) => G("skdiacode", M.target.value),
+                          onChange: (w) => G("skdiacode", w.target.value),
                           onFocus: () => u("skdiacode"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
                           placeholder: "輸入料號搜尋...",
-                          disabled: N,
+                          disabled: j,
                         }),
-                        _ === "skdiacode" &&
+                        E === "skdiacode" &&
                           f.length > 0 &&
                           s.jsx("div", {
                             className:
                               "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                            children: f.map((M) =>
+                            children: f.map((w) =>
                               s.jsxs(
                                 "div",
                                 {
-                                  onClick: () => E(M),
+                                  onClick: () => P(w),
                                   className:
                                     "px-4 py-2 hover:bg-green-50 cursor-pointer border-b border-gray-100 last:border-b-0",
                                   children: [
                                     s.jsx("div", {
                                       className: "font-medium text-gray-800",
-                                      children: M.SKDIACODE,
+                                      children: w.SKDIACODE,
                                     }),
                                     s.jsx("div", {
                                       className: "text-sm text-gray-600",
-                                      children: M.NAME,
+                                      children: w.NAME,
                                     }),
                                   ],
                                 },
-                                M.GUID
+                                w.GUID
                               )
                             ),
                           }),
@@ -19881,18 +20346,18 @@ const rh = async (e) => {
                   className: "flex justify-end space-x-3",
                   children: [
                     s.jsx("button", {
-                      onClick: C,
-                      disabled: N,
+                      onClick: M,
+                      disabled: j,
                       className:
                         "px-6 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                       children: "取消",
                     }),
                     s.jsx("button", {
-                      onClick: Z,
-                      disabled: N || !c.trim(),
+                      onClick: ee,
+                      disabled: j || !c.trim(),
                       className:
                         "px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                      children: N ? "建立中..." : "確認建立",
+                      children: j ? "建立中..." : "確認建立",
                     }),
                   ],
                 }),
@@ -19902,33 +20367,33 @@ const rh = async (e) => {
         })
       : null;
   },
-  gh = ({
+  yh = ({
     container: e,
     highlightedMedicineCode: t,
     pendingRequisitionCodes: n = [],
     onMedicineClick: r,
   }) => {
     const o = (d) => {
-        const [g, p] = d.split(",").map(Number);
-        return { row: g || 0, col: p || 0 };
+        const [x, m] = d.split(",").map(Number);
+        return { row: x || 0, col: m || 0 };
       },
       l = (d) => {
         if (!d || d.length === 0)
           return { sortedContents: [], maxRow: 0, maxCol: 0 };
-        const g = d.map((b) => ({
-            ...b,
-            gridPos: o(b.gird_position || "0,0"),
+        const x = d.map((N) => ({
+            ...N,
+            gridPos: o(N.gird_position || "0,0"),
           })),
-          p = Math.max(...g.map((b) => b.gridPos.row), 0),
-          w = Math.max(...g.map((b) => b.gridPos.col), 0);
+          m = Math.max(...x.map((N) => N.gridPos.row), 0),
+          b = Math.max(...x.map((N) => N.gridPos.col), 0);
         return {
-          sortedContents: g.sort((b, _) =>
-            b.gridPos.row !== _.gridPos.row
-              ? b.gridPos.row - _.gridPos.row
-              : b.gridPos.col - _.gridPos.col
+          sortedContents: x.sort((N, E) =>
+            N.gridPos.row !== E.gridPos.row
+              ? N.gridPos.row - E.gridPos.row
+              : N.gridPos.col - E.gridPos.col
           ),
-          maxRow: p,
-          maxCol: w,
+          maxRow: m,
+          maxCol: b,
         };
       },
       a = (d) => {
@@ -19950,7 +20415,7 @@ const rh = async (e) => {
         }
       },
       i = (d) => {
-        const g = [
+        const x = [
           "med_box",
           "dispensing_shelves",
           "store_shelves",
@@ -19960,7 +20425,7 @@ const rh = async (e) => {
         return s.jsx(
           "div",
           {
-            className: `${g ? "shadow-sm border-2 p-1 rounded-lg" : ""} ${a(
+            className: `${x ? "shadow-sm border-2 p-1 rounded-lg" : ""} ${a(
               d.type
             )} flex flex-col h-full overflow-hidden`,
             children: s.jsx("div", { className: "flex-1", children: h(d) }),
@@ -19968,32 +20433,32 @@ const rh = async (e) => {
           d.GUID
         );
       },
-      c = (d, g, p) => {
-        const w = {};
+      c = (d, x, m) => {
+        const b = {};
         return (
           d.forEach((v) => {
-            const b = o(v.gird_position || "0,0");
-            w[`${b.row},${b.col}`] = v;
+            const N = o(v.gird_position || "0,0");
+            b[`${N.row},${N.col}`] = v;
           }),
           s.jsx("table", {
             className: "w-full h-full",
             style: { borderCollapse: "separate", borderSpacing: "0px" },
             children: s.jsx("tbody", {
-              children: Array.from({ length: g + 1 }, (v, b) =>
+              children: Array.from({ length: x + 1 }, (v, N) =>
                 s.jsx(
                   "tr",
                   {
                     className: "h-full",
-                    children: Array.from({ length: p + 1 }, (_, u) => {
-                      const f = `${b},${u}`,
-                        x = w[f];
-                      return x
+                    children: Array.from({ length: m + 1 }, (E, u) => {
+                      const f = `${N},${u}`,
+                        g = b[f];
+                      return g
                         ? s.jsx(
                             "td",
                             {
                               className: "align-top bg-transparent",
-                              style: { width: `${100 / (p + 1)}%` },
-                              children: i(x),
+                              style: { width: `${100 / (m + 1)}%` },
+                              children: i(g),
                             },
                             u
                           )
@@ -20001,7 +20466,7 @@ const rh = async (e) => {
                             "td",
                             {
                               className: "align-top bg-transparent",
-                              style: { width: `${100 / (p + 1)}%` },
+                              style: { width: `${100 / (m + 1)}%` },
                               children: s.jsx("div", {
                                 className:
                                   "w-full h-full flex items-center justify-center text-gray-300 text-xs border border-dashed border-gray-200 rounded",
@@ -20012,7 +20477,7 @@ const rh = async (e) => {
                           );
                     }),
                   },
-                  b
+                  N
                 )
               ),
             }),
@@ -20023,18 +20488,18 @@ const rh = async (e) => {
         switch (d.type) {
           case "parent_container":
             if (d.contents && d.contents.length > 0) {
-              const { sortedContents: g, maxRow: p, maxCol: w } = l(d.contents);
-              return c(g, p, w);
+              const { sortedContents: x, maxRow: m, maxCol: b } = l(d.contents);
+              return c(x, m, b);
             } else return s.jsx("div", { className: "" });
           case "sub_container":
             if (d.contents && d.contents.length > 0) {
-              const { sortedContents: g, maxRow: p, maxCol: w } = l(d.contents);
-              return c(g, p, w);
+              const { sortedContents: x, maxRow: m, maxCol: b } = l(d.contents);
+              return c(x, m, b);
             } else return s.jsx("div", { className: "" });
           case "dispensing_shelves":
             if (d.contents && d.contents.length > 0) {
-              const { sortedContents: g, maxRow: p, maxCol: w } = l(d.contents);
-              return c(g, p, w);
+              const { sortedContents: x, maxRow: m, maxCol: b } = l(d.contents);
+              return c(x, m, b);
             } else
               return s.jsx("div", {
                 className:
@@ -20043,13 +20508,13 @@ const rh = async (e) => {
               });
           case "store_shelves":
             if (d.medMapStock && d.medMapStock.length > 0) {
-              const g = d.medMapStock,
-                p = g.length,
-                w = p > 0 ? 100 / p : 100;
+              const x = d.medMapStock,
+                m = x.length,
+                b = m > 0 ? 100 / m : 100;
               return s.jsx("div", {
                 className: "flex h-full",
-                children: g.map((v, b) => {
-                  const _ = t && (v.code == t || v.material_no == t),
+                children: x.map((v, N) => {
+                  const E = t && (v.code == t || v.material_no == t),
                     u = n.includes(v.code) || n.includes(v.material_no);
                   return s.jsxs(
                     "div",
@@ -20057,11 +20522,11 @@ const rh = async (e) => {
                       className: `border-2 rounded-lg border-gray-300 p-2 flex flex-col text-gray-800 justify-center items-center transition-colors cursor-pointer ${
                         u
                           ? "highlight-breathe-red"
-                          : _
+                          : E
                           ? "highlight-breathe-green"
                           : ""
                       }`,
-                      style: { width: `${w}%` },
+                      style: { width: `${b}%` },
                       onClick: () =>
                         r && r({ code: v.code || v.material_no, name: v.name }),
                       children: [
@@ -20076,13 +20541,13 @@ const rh = async (e) => {
                         }),
                       ],
                     },
-                    v.GUID || b
+                    v.GUID || N
                   );
                 }),
               });
             } else if (d.contents && d.contents.length > 0) {
-              const { sortedContents: g, maxRow: p, maxCol: w } = l(d.contents);
-              return c(g, p, w);
+              const { sortedContents: x, maxRow: m, maxCol: b } = l(d.contents);
+              return c(x, m, b);
             } else
               return s.jsx("div", {
                 className:
@@ -20129,13 +20594,13 @@ const rh = async (e) => {
             });
           case "med_box":
             if (d.med_info && d.med_info.length > 0) {
-              const g = t && d.med_info.some((w) => w.code == t),
-                p = d.med_info.some((w) => n.includes(w.code));
+              const x = t && d.med_info.some((b) => b.code == t),
+                m = d.med_info.some((b) => n.includes(b.code));
               return s.jsx("div", {
                 className: `text-sm text-center h-full p-2 flex flex-col text-gray-800 justify-center transition-colors cursor-pointer ${
-                  p
+                  m
                     ? "highlight-breathe-red"
-                    : g
+                    : x
                     ? "highlight-breathe-green"
                     : ""
                 }`,
@@ -20153,8 +20618,8 @@ const rh = async (e) => {
               });
           default:
             if (d.contents && d.contents.length > 0) {
-              const { sortedContents: g, maxRow: p, maxCol: w } = l(d.contents);
-              return c(g, p, w);
+              const { sortedContents: x, maxRow: m, maxCol: b } = l(d.contents);
+              return c(x, m, b);
             } else
               return s.jsxs("div", {
                 className:
@@ -20173,138 +20638,234 @@ const rh = async (e) => {
           children: s.jsx("p", { children: "無容器資料" }),
         });
   },
-  xh = ({ isOpen: e, onClose: t, type: n, data: r, onApprove: o }) => {
-    const [l, a] = m.useState("0"),
-      [i, c] = m.useState("0"),
-      [h, d] = m.useState(null),
-      [g, p] = m.useState(null),
-      [w, v] = m.useState(!1),
-      [b, _] = m.useState(!1);
-    if (
-      (m.useEffect(() => {
-        if (e && r) {
-          const I = r.issuedQuantity || r.requestedQuantity || "0";
-          a(I), c(I), d(null), p(null), v(!1);
+  vh = ({ isOpen: e, onClose: t, type: n, data: r, onApprove: o }) => {
+    const [l, a] = p.useState("0"),
+      [i, c] = p.useState("0"),
+      [h, d] = p.useState(null),
+      [x, m] = p.useState(null),
+      [b, v] = p.useState(!1),
+      [N, E] = p.useState(!1),
+      [u, f] = p.useState(""),
+      [g, C] = p.useState(""),
+      [B, I] = p.useState([]),
+      [A, j] = p.useState([]),
+      [z, D] = p.useState([]),
+      [F, G] = p.useState(!1),
+      [P, M] = p.useState(!1),
+      ee = p.useRef(null),
+      w = p.useRef(null),
+      O = p.useRef(null),
+      S = p.useRef(null);
+    p.useEffect(() => {
+      if (e && r) {
+        const _ = r.issuedQuantity || r.requestedQuantity || "0";
+        a(_), c(_), d(null), m(null), v(!1);
+        const re = localStorage.getItem("medMap_setting");
+        if (re)
+          try {
+            const T = JSON.parse(re);
+            f(T.default_person || ""), C(T.default_person_id || "");
+          } catch (T) {
+            console.error("讀取設定失敗:", T), f(""), C("");
+          }
+        else f(""), C("");
+        Q();
+      }
+    }, [e, r]),
+      p.useEffect(() => {
+        const _ = (re) => {
+          O.current &&
+            !O.current.contains(re.target) &&
+            ee.current &&
+            !ee.current.contains(re.target) &&
+            G(!1),
+            S.current &&
+              !S.current.contains(re.target) &&
+              w.current &&
+              !w.current.contains(re.target) &&
+              M(!1);
+        };
+        return (
+          document.addEventListener("mousedown", _),
+          () => document.removeEventListener("mousedown", _)
+        );
+      }, []);
+    const Q = async () => {
+        try {
+          const _ = await ke.getAllStaffInfo();
+          _.Code === 200 && _.Data && I(_.Data);
+        } catch (_) {
+          console.error("獲取人員資料失敗:", _);
         }
-      }, [e, r]),
-      !e || !r)
-    )
-      return null;
-    const u = (I) => {
-        if (w) a(I), c(I), v(!1);
+      },
+      ie = (_) => {
+        if ((f(_), _.trim() === "")) {
+          j([]), G(!1);
+          return;
+        }
+        const re = B.filter(
+          (T) => T.name && T.name.toLowerCase().includes(_.toLowerCase())
+        );
+        j(re), G(re.length > 0);
+      },
+      X = (_) => {
+        if ((C(_), _.trim() === "")) {
+          D([]), M(!1);
+          return;
+        }
+        const re = B.filter(
+          (T) => T.ID && T.ID.toLowerCase().includes(_.toLowerCase())
+        );
+        D(re), M(re.length > 0);
+      },
+      oe = (_) => {
+        f(_.name), C(_.ID), G(!1);
+      },
+      Ne = (_) => {
+        f(_.name), C(_.ID), M(!1);
+      };
+    if (!e || !r) return null;
+    const le = (_) => {
+        if (b) a(_), c(_), v(!1);
         else {
-          const S = l === "0" ? I : l + I;
-          a(S), c(S);
+          const re = l === "0" ? _ : l + _;
+          a(re), c(re);
         }
       },
-      f = (I) => {
-        h && g !== null && !w && x(), p(i), d(I), v(!0);
+      ye = (_) => {
+        h && x !== null && !b && U(), m(i), d(_), v(!0);
       },
-      x = () => {
-        if (h === null || g === null) return;
-        const I = parseFloat(g),
-          S = parseFloat(i);
-        let O = 0;
+      U = () => {
+        if (h === null || x === null) return;
+        const _ = parseFloat(x),
+          re = parseFloat(i);
+        let T = 0;
         switch (h) {
           case "+":
-            O = I + S;
+            T = _ + re;
             break;
           case "-":
-            O = I - S;
+            T = _ - re;
             break;
           case "×":
-            O = I * S;
+            T = _ * re;
             break;
           case "÷":
-            O = S !== 0 ? I / S : 0;
+            T = re !== 0 ? _ / re : 0;
             break;
           default:
             return;
         }
-        const G = O.toString();
-        a(G), c(G), d(null), p(null), v(!0);
+        const k = T.toString();
+        a(k), c(k), d(null), m(null), v(!0);
       },
-      j = () => {
-        x();
+      ae = () => {
+        U();
       },
-      L = () => {
-        if (w) a("0."), c("0."), v(!1);
+      R = () => {
+        if (b) a("0."), c("0."), v(!1);
         else if (!l.includes(".")) {
-          const I = l + ".";
-          a(I), c(I);
+          const _ = l + ".";
+          a(_), c(_);
         }
       },
-      P = () => {
-        a("0"), c("0"), d(null), p(null), v(!1);
+      J = () => {
+        a("0"), c("0"), d(null), m(null), v(!1);
       },
-      R = async () => {
+      ce = () => {
+        const _ = new Date(),
+          re = _.getFullYear(),
+          T = String(_.getMonth() + 1).padStart(2, "0"),
+          k = String(_.getDate()).padStart(2, "0"),
+          $ = String(_.getHours()).padStart(2, "0"),
+          V = String(_.getMinutes()).padStart(2, "0"),
+          se = String(_.getSeconds()).padStart(2, "0");
+        return `${re}-${T}-${k}T${$}:${V}:${se}`;
+      },
+      Se = async () => {
         if (!r) return;
-        const I = n === "requisition" ? "申領" : "撥補";
+        if (!u.trim()) {
+          alert("請輸入核撥人員名稱");
+          return;
+        }
+        const _ = n === "requisition" ? "申領" : "撥補";
         if (
           window.confirm(`確認核撥資訊：
 
 藥品名稱：${r.name}
 實際撥發量：${l}
+核撥人員：${u}${g ? ` (${g})` : ""}
 
-是否確認${I}？`)
+是否確認${_}？`)
         ) {
-          _(!0);
+          E(!0);
           try {
+            const T = ce();
             if (n === "requisition") {
-              const O = await ke.updateRequisitionActualQuantity(r.GUID, l);
-              if (O.Code !== 200) {
-                alert(`更新實際撥發量失敗：${O.Message || "未知錯誤"}`), _(!1);
+              const k = await ke.updateRequisitionActualQuantity(r.GUID, l);
+              if (k.Code !== 200) {
+                alert(`更新實際撥發量失敗：${k.Message || "未知錯誤"}`), E(!1);
                 return;
               }
-              const G = {
-                  ...r,
-                  actualQuantity: l,
-                  notice: "False",
-                  state: "已過帳",
-                },
-                E = await ke.updateRequisitionByGuid(G);
-              if (E.Code !== 200) {
-                alert(`申領過帳失敗：${E.Message || "未知錯誤"}`), _(!1);
+              const $ = {
+                ...r,
+                actualQuantity: l,
+                notice: "False",
+                state: "已過帳",
+                issuingPerson: u,
+                issueTime: T,
+              };
+              console.log("申領request", $);
+              const V = await ke.updateRequisitionByGuid($);
+              if (V.Code !== 200) {
+                alert(`申領過帳失敗：${V.Message || "未知錯誤"}`), E(!1);
                 return;
               }
               console.log("✅ 申領核撥成功:", {
                 GUID: r.GUID,
                 name: r.name,
                 actualQuantity: l,
+                issuingPerson: u,
+                issueTime: T,
               });
             } else {
-              const O = await ke.updateDistributionActualQuantity(r.GUID, l);
-              if (O.Code !== 200) {
-                alert(`更新實際撥發量失敗：${O.Message || "未知錯誤"}`), _(!1);
+              const k = await ke.updateDistributionActualQuantity(r.GUID, l);
+              if (k.Code !== 200) {
+                alert(`更新實際撥發量失敗：${k.Message || "未知錯誤"}`), E(!1);
                 return;
               }
-              const G = {
-                  ...r,
-                  actualQuantity: l,
-                  notice: "False",
-                  state: "已過帳",
-                },
-                E = await ke.updateDistributionByGuid(G);
-              if (E.Code !== 200) {
-                alert(`撥補過帳失敗：${E.Message || "未知錯誤"}`), _(!1);
+              const $ = {
+                ...r,
+                actualQuantity: l,
+                notice: "False",
+                state: "已過帳",
+                issuer: u,
+                issuanceTime: T,
+              };
+              console.log("撥補request", $);
+              const V = await ke.updateDistributionByGuid($);
+              if (V.Code !== 200) {
+                alert(`撥補過帳失敗：${V.Message || "未知錯誤"}`), E(!1);
                 return;
               }
               console.log("✅ 撥補核撥成功:", {
                 GUID: r.GUID,
                 name: r.name,
                 actualQuantity: l,
+                issuer: u,
+                issuanceTime: T,
               });
             }
-            o && (await o()), alert(`${I}核撥成功！`), t();
-          } catch (O) {
-            console.error(`${I}核撥失敗:`, O),
-              alert(`${I}核撥失敗，請稍後再試`);
+            o && (await o()), alert(`${_}核撥成功！`), t();
+          } catch (T) {
+            console.error(`${_}核撥失敗:`, T),
+              alert(`${_}核撥失敗，請稍後再試`);
           } finally {
-            _(!1);
+            E(!1);
           }
         }
       },
-      N = n === "requisition" ? r.requestedQuantity : r.issuedQuantity;
+      L = n === "requisition" ? r.requestedQuantity : r.issuedQuantity;
     return s.jsxs("div", {
       className: "fixed inset-0 z-[70] flex items-center justify-center",
       children: [
@@ -20314,7 +20875,7 @@ const rh = async (e) => {
         }),
         s.jsxs("div", {
           className:
-            "relative w-full max-w-md bg-white shadow-2xl rounded-xl overflow-hidden flex flex-col m-4",
+            "relative w-full max-w-md bg-white shadow-2xl rounded-xl overflow-hidden flex flex-col m-4 max-h-[90vh]",
           children: [
             s.jsxs("div", {
               className:
@@ -20329,179 +20890,287 @@ const rh = async (e) => {
                   className:
                     "p-2 hover:bg-white/50 rounded-full transition-colors",
                   title: "關閉",
-                  children: s.jsx(Ye, { className: "w-5 h-5 text-gray-700" }),
+                  children: s.jsx(Qe, { className: "w-5 h-5 text-gray-700" }),
                 }),
               ],
             }),
-            s.jsxs("div", {
-              className: "p-4 space-y-2",
-              children: [
-                s.jsxs("div", {
-                  className: "space-y-1",
-                  children: [
-                    s.jsxs("div", {
-                      children: [
-                        s.jsx("span", {
-                          className: "text-sm font-semibold text-gray-600",
-                          children: "藥名",
-                        }),
-                        s.jsx("div", {
-                          className: "text-base text-gray-800 mt-1",
-                          children: r.name || "-",
-                        }),
-                      ],
-                    }),
-                    s.jsxs("div", {
-                      children: [
-                        s.jsx("span", {
-                          className: "text-sm font-semibold text-gray-600",
-                          children: "藥碼",
-                        }),
-                        s.jsx("div", {
-                          className: "text-base text-gray-800 mt-1",
-                          children: r.code || "-",
-                        }),
-                      ],
-                    }),
-                    s.jsxs("div", {
-                      children: [
-                        s.jsx("span", {
-                          className: "text-sm font-semibold text-gray-600",
-                          children: n === "requisition" ? "申領量" : "撥發量",
-                        }),
-                        s.jsx("div", {
-                          className: "text-base text-gray-800 mt-1",
-                          children: N || "-",
-                        }),
-                      ],
-                    }),
-                  ],
-                }),
-                s.jsxs("div", {
-                  children: [
-                    s.jsx("label", {
-                      className:
-                        "text-base font-semibold text-gray-600 block mb-2",
-                      children: "實際撥發量",
-                    }),
-                    s.jsx("input", {
-                      type: "text",
-                      value: l,
-                      disabled: !0,
-                      className:
-                        "w-full px-4 py-3 text-lg font-semibold text-gray-800 bg-gray-100 border border-gray-300 rounded-lg",
-                    }),
-                  ],
-                }),
-                s.jsxs("div", {
-                  className: "grid grid-cols-4 gap-2",
-                  children: [
-                    s.jsx("button", {
-                      onClick: () => u("7"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "7",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("8"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "8",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("9"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "9",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => f("÷"),
-                      className:
-                        "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
-                      children: "÷",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("4"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "4",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("5"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "5",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("6"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "6",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => f("×"),
-                      className:
-                        "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
-                      children: "×",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("1"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "1",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("2"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "2",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("3"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "3",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => f("-"),
-                      className:
-                        "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
-                      children: "-",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => u("0"),
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: "0",
-                    }),
-                    s.jsx("button", {
-                      onClick: L,
-                      className:
-                        "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
-                      children: ".",
-                    }),
-                    s.jsx("button", {
-                      onClick: j,
-                      className:
-                        "py-4 text-lg font-semibold bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors",
-                      children: "=",
-                    }),
-                    s.jsx("button", {
-                      onClick: () => f("+"),
-                      className:
-                        "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
-                      children: "+",
-                    }),
-                  ],
-                }),
-              ],
+            s.jsx("div", {
+              className: "overflow-y-auto flex-1",
+              children: s.jsxs("div", {
+                className: "p-4 space-y-2",
+                children: [
+                  s.jsxs("div", {
+                    className: "bg-blue-50 rounded-lg p-3 space-y-2",
+                    children: [
+                      s.jsx("label", {
+                        className:
+                          "block text-sm font-semibold text-gray-700 mb-1",
+                        children: "核撥人員",
+                      }),
+                      s.jsxs("div", {
+                        className: "grid grid-cols-2 gap-2",
+                        children: [
+                          s.jsxs("div", {
+                            className: "relative",
+                            children: [
+                              s.jsx("input", {
+                                ref: ee,
+                                type: "text",
+                                value: u,
+                                onChange: (_) => ie(_.target.value),
+                                onFocus: () => {
+                                  u.trim() && ie(u);
+                                },
+                                placeholder: "人員名稱",
+                                className:
+                                  "w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+                              }),
+                              F &&
+                                s.jsx("div", {
+                                  ref: O,
+                                  className:
+                                    "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-40 overflow-y-auto",
+                                  children: A.map((_, re) =>
+                                    s.jsxs(
+                                      "div",
+                                      {
+                                        onClick: () => oe(_),
+                                        className:
+                                          "px-3 py-2 hover:bg-blue-50 cursor-pointer transition-colors",
+                                        children: [
+                                          s.jsx("div", {
+                                            className: "text-xs text-gray-500",
+                                            children: _.ID,
+                                          }),
+                                          s.jsx("div", {
+                                            className:
+                                              "font-medium text-gray-900 text-sm",
+                                            children: _.name,
+                                          }),
+                                        ],
+                                      },
+                                      re
+                                    )
+                                  ),
+                                }),
+                            ],
+                          }),
+                          s.jsxs("div", {
+                            className: "relative",
+                            children: [
+                              s.jsx("input", {
+                                ref: w,
+                                type: "text",
+                                value: g,
+                                onChange: (_) => X(_.target.value),
+                                onFocus: () => {
+                                  g.trim() && X(g);
+                                },
+                                placeholder: "人員 ID",
+                                className:
+                                  "w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+                              }),
+                              P &&
+                                s.jsx("div", {
+                                  ref: S,
+                                  className:
+                                    "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-40 overflow-y-auto",
+                                  children: z.map((_, re) =>
+                                    s.jsxs(
+                                      "div",
+                                      {
+                                        onClick: () => Ne(_),
+                                        className:
+                                          "px-3 py-2 hover:bg-blue-50 cursor-pointer transition-colors",
+                                        children: [
+                                          s.jsx("div", {
+                                            className:
+                                              "font-medium text-gray-900 text-sm",
+                                            children: _.ID,
+                                          }),
+                                          s.jsx("div", {
+                                            className: "text-xs text-gray-500",
+                                            children: _.name,
+                                          }),
+                                        ],
+                                      },
+                                      re
+                                    )
+                                  ),
+                                }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  s.jsxs("div", {
+                    className: "space-y-1",
+                    children: [
+                      s.jsxs("div", {
+                        children: [
+                          s.jsx("span", {
+                            className: "text-sm font-semibold text-gray-600",
+                            children: "藥名",
+                          }),
+                          s.jsx("div", {
+                            className: "text-base text-gray-800 mt-1",
+                            children: r.name || "-",
+                          }),
+                        ],
+                      }),
+                      s.jsxs("div", {
+                        children: [
+                          s.jsx("span", {
+                            className: "text-sm font-semibold text-gray-600",
+                            children: "藥碼",
+                          }),
+                          s.jsx("div", {
+                            className: "text-base text-gray-800 mt-1",
+                            children: r.code || "-",
+                          }),
+                        ],
+                      }),
+                      s.jsxs("div", {
+                        children: [
+                          s.jsx("span", {
+                            className: "text-sm font-semibold text-gray-600",
+                            children: n === "requisition" ? "申領量" : "撥發量",
+                          }),
+                          s.jsx("div", {
+                            className: "text-base text-gray-800 mt-1",
+                            children: L || "-",
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  s.jsxs("div", {
+                    children: [
+                      s.jsx("label", {
+                        className:
+                          "text-base font-semibold text-gray-600 block mb-2",
+                        children: "實際撥發量",
+                      }),
+                      s.jsx("input", {
+                        type: "text",
+                        value: l,
+                        disabled: !0,
+                        className:
+                          "w-full px-4 py-3 text-lg font-semibold text-gray-800 bg-gray-100 border border-gray-300 rounded-lg",
+                      }),
+                    ],
+                  }),
+                  s.jsxs("div", {
+                    className: "grid grid-cols-4 gap-2",
+                    children: [
+                      s.jsx("button", {
+                        onClick: () => le("7"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "7",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("8"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "8",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("9"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "9",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => ye("÷"),
+                        className:
+                          "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
+                        children: "÷",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("4"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "4",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("5"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "5",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("6"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "6",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => ye("×"),
+                        className:
+                          "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
+                        children: "×",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("1"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "1",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("2"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "2",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("3"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "3",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => ye("-"),
+                        className:
+                          "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
+                        children: "-",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => le("0"),
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: "0",
+                      }),
+                      s.jsx("button", {
+                        onClick: R,
+                        className:
+                          "py-4 text-lg font-semibold bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
+                        children: ".",
+                      }),
+                      s.jsx("button", {
+                        onClick: ae,
+                        className:
+                          "py-4 text-lg font-semibold bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors",
+                        children: "=",
+                      }),
+                      s.jsx("button", {
+                        onClick: () => ye("+"),
+                        className:
+                          "py-4 text-lg font-semibold bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors",
+                        children: "+",
+                      }),
+                    ],
+                  }),
+                ],
+              }),
             }),
             s.jsxs("div", {
               className:
                 "flex items-center justify-end gap-2 p-3 border-t border-gray-200 bg-gray-50",
               children: [
                 s.jsx("button", {
-                  onClick: P,
+                  onClick: J,
                   className:
                     "px-6 py-2.5 font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors",
                   children: "清除",
@@ -20513,11 +21182,11 @@ const rh = async (e) => {
                   children: "取消",
                 }),
                 s.jsx("button", {
-                  onClick: R,
-                  disabled: b,
+                  onClick: Se,
+                  disabled: N,
                   className:
                     "px-6 py-2.5 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                  children: b ? "處理中..." : "核撥",
+                  children: N ? "處理中..." : "核撥",
                 }),
               ],
             }),
@@ -20526,7 +21195,7 @@ const rh = async (e) => {
       ],
     });
   },
-  yh = ({
+  wh = ({
     isOpen: e,
     onClose: t,
     medicineInfo: n,
@@ -20534,83 +21203,83 @@ const rh = async (e) => {
     distributions: o,
     onNoticeUpdated: l,
   }) => {
-    const [a, i] = m.useState(r),
-      [c, h] = m.useState(o),
-      [d, g] = m.useState(null),
-      [p, w] = m.useState(!1),
-      [v, b] = m.useState(null),
-      [_, u] = m.useState("requisition");
+    const [a, i] = p.useState(r),
+      [c, h] = p.useState(o),
+      [d, x] = p.useState(null),
+      [m, b] = p.useState(!1),
+      [v, N] = p.useState(null),
+      [E, u] = p.useState("requisition");
     Zs.useEffect(() => {
       i(r), h(o);
     }, [r, o]);
-    const f = async (N) => {
-        const I = N.notice === "True" ? "False" : "True";
-        g(N.GUID);
-        const S = [...a],
-          O = S.findIndex((G) => G.GUID === N.GUID);
-        if (O === -1) {
-          g(null);
+    const f = async (j) => {
+        const z = j.notice === "True" ? "False" : "True";
+        x(j.GUID);
+        const D = [...a],
+          F = D.findIndex((G) => G.GUID === j.GUID);
+        if (F === -1) {
+          x(null);
           return;
         }
-        (S[O] = { ...N, notice: I }), i(S);
+        (D[F] = { ...j, notice: z }), i(D);
         try {
-          const G = await ke.updateRequisitionNotice(N.GUID, I);
+          const G = await ke.updateRequisitionNotice(j.GUID, z);
           G.Code !== 200
-            ? ((S[O] = { ...N, notice: N.notice }),
-              i(S),
+            ? ((D[F] = { ...j, notice: j.notice }),
+              i(D),
               console.error("更新申領通知狀態失敗:", G))
             : l && l();
         } catch (G) {
-          (S[O] = { ...N, notice: N.notice }),
-            i(S),
+          (D[F] = { ...j, notice: j.notice }),
+            i(D),
             console.error("更新申領通知狀態失敗:", G);
         } finally {
-          g(null);
+          x(null);
         }
       },
-      x = async (N) => {
-        const I = N.notice === "True" ? "False" : "True";
-        g(N.GUID);
-        const S = [...c],
-          O = S.findIndex((G) => G.GUID === N.GUID);
-        if (O === -1) {
-          g(null);
+      g = async (j) => {
+        const z = j.notice === "True" ? "False" : "True";
+        x(j.GUID);
+        const D = [...c],
+          F = D.findIndex((G) => G.GUID === j.GUID);
+        if (F === -1) {
+          x(null);
           return;
         }
-        (S[O] = { ...N, notice: I }), h(S);
+        (D[F] = { ...j, notice: z }), h(D);
         try {
-          const G = await ke.updateDistributionNotice(N.GUID, I);
+          const G = await ke.updateDistributionNotice(j.GUID, z);
           G.Code !== 200
-            ? ((S[O] = { ...N, notice: N.notice }),
-              h(S),
+            ? ((D[F] = { ...j, notice: j.notice }),
+              h(D),
               console.error("更新撥補通知狀態失敗:", G))
             : l && l();
         } catch (G) {
-          (S[O] = { ...N, notice: N.notice }),
-            h(S),
+          (D[F] = { ...j, notice: j.notice }),
+            h(D),
             console.error("更新撥補通知狀態失敗:", G);
         } finally {
-          g(null);
+          x(null);
         }
       };
     if (!e || !n) return null;
-    const j = a.filter((N) => N.state === "等待過帳"),
-      L = c.filter((N) => N.state === "等待過帳"),
-      P = j.length === 0 && L.length === 0,
-      R = (N) => {
-        if (!N || N === "1/01/01 00:00:00" || N === "0001-01-01T00:00:00")
+    const C = a.filter((j) => j.state === "等待過帳"),
+      B = c.filter((j) => j.state === "等待過帳"),
+      I = C.length === 0 && B.length === 0,
+      A = (j) => {
+        if (!j || j === "1/01/01 00:00:00" || j === "0001-01-01T00:00:00")
           return "-";
         try {
-          const I = new Date(N);
-          if (isNaN(I.getTime())) return N;
-          const S = I.getFullYear(),
-            O = String(I.getMonth() + 1).padStart(2, "0"),
-            G = String(I.getDate()).padStart(2, "0"),
-            E = String(I.getHours()).padStart(2, "0"),
-            C = String(I.getMinutes()).padStart(2, "0");
-          return `${S}/${O}/${G} ${E}:${C}`;
+          const z = new Date(j);
+          if (isNaN(z.getTime())) return j;
+          const D = z.getFullYear(),
+            F = String(z.getMonth() + 1).padStart(2, "0"),
+            G = String(z.getDate()).padStart(2, "0"),
+            P = String(z.getHours()).padStart(2, "0"),
+            M = String(z.getMinutes()).padStart(2, "0");
+          return `${D}/${F}/${G} ${P}:${M}`;
         } catch {
-          return N;
+          return j;
         }
       };
     return s.jsxs("div", {
@@ -20637,7 +21306,7 @@ const rh = async (e) => {
                   className:
                     "p-2 hover:bg-white/50 rounded-full transition-colors",
                   title: "關閉",
-                  children: s.jsx(Ye, { className: "w-6 h-6 text-gray-700" }),
+                  children: s.jsx(Qe, { className: "w-6 h-6 text-gray-700" }),
                 }),
               ],
             }),
@@ -20702,7 +21371,7 @@ const rh = async (e) => {
             }),
             s.jsx("div", {
               className: "flex-1 overflow-y-auto p-4",
-              children: P
+              children: I
                 ? s.jsx("div", {
                     className:
                       "flex items-center justify-center h-40 text-gray-400 text-lg",
@@ -20711,14 +21380,14 @@ const rh = async (e) => {
                 : s.jsxs("div", {
                     className: "space-y-2",
                     children: [
-                      j.map((N, I) =>
+                      C.map((j, z) =>
                         s.jsxs(
                           "div",
                           {
                             className:
                               "border border-blue-200 rounded-lg p-3 bg-blue-50 hover:shadow-md transition-shadow",
                             onClick: () => {
-                              u("requisition"), b(N), w(!0);
+                              u("requisition"), N(j), b(!0);
                             },
                             children: [
                               s.jsxs("div", {
@@ -20734,17 +21403,17 @@ const rh = async (e) => {
                                         children: "申領",
                                       }),
                                       s.jsx("button", {
-                                        onClick: (S) => {
-                                          S.stopPropagation(), f(N);
+                                        onClick: (D) => {
+                                          D.stopPropagation(), f(j);
                                         },
-                                        disabled: d === N.GUID,
+                                        disabled: d === j.GUID,
                                         className: `p-2 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-110 ${
-                                          N.notice === "True"
+                                          j.notice === "True"
                                             ? "bg-green-500 text-white hover:bg-green-600"
                                             : "bg-gray-300 text-gray-600 hover:bg-gray-400"
                                         }`,
                                         title:
-                                          N.notice === "True"
+                                          j.notice === "True"
                                             ? "點擊關閉通知"
                                             : "點擊開啟通知",
                                         children: s.jsx(xc, {
@@ -20755,11 +21424,11 @@ const rh = async (e) => {
                                   }),
                                   s.jsx("span", {
                                     className: `px-3 text-sm py-2 text-white font-semibold rounded-full ${
-                                      N.actionType.includes("緊急")
+                                      j.actionType.includes("緊急")
                                         ? "bg-green-600"
                                         : "bg-blue-600"
                                     }`,
-                                    children: N.actionType,
+                                    children: j.actionType,
                                   }),
                                 ],
                               }),
@@ -20775,7 +21444,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.requestingUnit || "-",
+                                        children: j.requestingUnit || "-",
                                       }),
                                     ],
                                   }),
@@ -20788,7 +21457,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.requestingPerson || "-",
+                                        children: j.requestingPerson || "-",
                                       }),
                                     ],
                                   }),
@@ -20801,7 +21470,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.requestedQuantity || "-",
+                                        children: j.requestedQuantity || "-",
                                       }),
                                     ],
                                   }),
@@ -20814,7 +21483,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: R(N.requestTime),
+                                        children: A(j.requestTime),
                                       }),
                                     ],
                                   }),
@@ -20822,17 +21491,17 @@ const rh = async (e) => {
                               }),
                             ],
                           },
-                          N.GUID
+                          j.GUID
                         )
                       ),
-                      L.map((N, I) =>
+                      B.map((j, z) =>
                         s.jsxs(
                           "div",
                           {
                             className:
                               "border border-yellow-200 rounded-lg p-3 bg-yellow-50 hover:shadow-md transition-shadow",
                             onClick: () => {
-                              u("distribution"), b(N), w(!0);
+                              u("distribution"), N(j), b(!0);
                             },
                             children: [
                               s.jsxs("div", {
@@ -20844,17 +21513,17 @@ const rh = async (e) => {
                                     children: "撥補",
                                   }),
                                   s.jsx("button", {
-                                    onClick: (S) => {
-                                      S.stopPropagation(), x(N);
+                                    onClick: (D) => {
+                                      D.stopPropagation(), g(j);
                                     },
-                                    disabled: d === N.GUID,
+                                    disabled: d === j.GUID,
                                     className: `p-2 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-110 ${
-                                      N.notice === "True"
+                                      j.notice === "True"
                                         ? "bg-green-500 text-white hover:bg-green-600"
                                         : "bg-gray-300 text-gray-600 hover:bg-gray-400"
                                     }`,
                                     title:
-                                      N.notice === "True"
+                                      j.notice === "True"
                                         ? "點擊關閉通知"
                                         : "點擊開啟通知",
                                     children: s.jsx(xc, {
@@ -20875,7 +21544,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.sourceStoreType || "-",
+                                        children: j.sourceStoreType || "-",
                                       }),
                                     ],
                                   }),
@@ -20888,7 +21557,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.destinationStoreType || "-",
+                                        children: j.destinationStoreType || "-",
                                       }),
                                     ],
                                   }),
@@ -20901,7 +21570,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.LOT || "-",
+                                        children: j.LOT || "-",
                                       }),
                                     ],
                                   }),
@@ -20914,7 +21583,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.VAL || "-",
+                                        children: j.VAL || "-",
                                       }),
                                     ],
                                   }),
@@ -20927,7 +21596,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.issuedQuantity || "-",
+                                        children: j.issuedQuantity || "-",
                                       }),
                                     ],
                                   }),
@@ -20940,7 +21609,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: N.reportName || "-",
+                                        children: j.reportName || "-",
                                       }),
                                     ],
                                   }),
@@ -20954,7 +21623,7 @@ const rh = async (e) => {
                                       }),
                                       s.jsx("span", {
                                         className: "text-gray-800",
-                                        children: R(N.addedTime),
+                                        children: A(j.addedTime),
                                       }),
                                     ],
                                   }),
@@ -20962,7 +21631,7 @@ const rh = async (e) => {
                               }),
                             ],
                           },
-                          N.GUID
+                          j.GUID
                         )
                       ),
                     ],
@@ -20970,107 +21639,107 @@ const rh = async (e) => {
             }),
           ],
         }),
-        s.jsx(xh, {
-          isOpen: p,
-          onClose: () => w(!1),
-          type: _,
+        s.jsx(vh, {
+          isOpen: m,
+          onClose: () => b(!1),
+          type: E,
           data: v,
           onApprove: l,
         }),
       ],
     });
   },
-  vh = ({ isOpen: e, onClose: t, container: n }) => {
-    const [r, o] = m.useState("list_mode"),
+  bh = ({ isOpen: e, onClose: t, container: n }) => {
+    const [r, o] = p.useState("list_mode"),
       { highlightedMedicineCode: l } = Je(),
-      [a, i] = m.useState(!1),
-      [c, h] = m.useState([]),
-      [d, g] = m.useState([]),
-      [p, w] = m.useState([]),
-      [v, b] = m.useState(!1),
-      [_, u] = m.useState(null),
-      f = m.useRef(null),
-      x = m.useRef(null),
-      j = () => {
+      [a, i] = p.useState(!1),
+      [c, h] = p.useState([]),
+      [d, x] = p.useState([]),
+      [m, b] = p.useState([]),
+      [v, N] = p.useState(!1),
+      [E, u] = p.useState(null),
+      f = p.useRef(null),
+      g = p.useRef(null),
+      C = () => {
         try {
-          const S = localStorage.getItem("medMap_setting");
-          if (S) {
-            const G = JSON.parse(S).light_sec;
+          const D = localStorage.getItem("medMap_setting");
+          if (D) {
+            const G = JSON.parse(D).light_sec;
             if (G != null && G !== "") {
-              const E = Number(G);
-              if (!isNaN(E) && E > 0) return E * 1e3;
+              const P = Number(G);
+              if (!isNaN(P) && P > 0) return P * 1e3;
             }
           }
-        } catch (S) {
-          console.error("讀取亮燈設定失敗:", S);
+        } catch (D) {
+          console.error("讀取亮燈設定失敗:", D);
         }
         return 6e4;
       },
-      L = m.useCallback(async () => {
+      B = p.useCallback(async () => {
         try {
-          const I = new Date(),
-            S = `${I.getFullYear()}-${String(I.getMonth() + 1).padStart(
+          const z = new Date(),
+            D = `${z.getFullYear()}-${String(z.getMonth() + 1).padStart(
               2,
               "0"
-            )}-${String(I.getDate()).padStart(2, "0")} 00:00:00`,
-            O = `${I.getFullYear()}-${String(I.getMonth() + 1).padStart(
+            )}-${String(z.getDate()).padStart(2, "0")} 00:00:00`,
+            F = `${z.getFullYear()}-${String(z.getMonth() + 1).padStart(
               2,
               "0"
-            )}-${String(I.getDate()).padStart(2, "0")} 23:59:59`,
-            [G, E] = await Promise.all([
-              ke.getRequisitionByTime(S, O),
-              ke.getDistributionByTime(S, O),
+            )}-${String(z.getDate()).padStart(2, "0")} 23:59:59`,
+            [G, P] = await Promise.all([
+              ke.getRequisitionByTime(D, F),
+              ke.getDistributionByTime(D, F),
             ]),
-            C = [];
+            M = [];
           if (G.Code === 200 && G.Data) {
-            const Z = G.Data.filter((F) => {
-              var k;
-              return (k = n == null ? void 0 : n.med_list) == null
+            const ee = G.Data.filter((O) => {
+              var S;
+              return (S = n == null ? void 0 : n.med_list) == null
                 ? void 0
-                : k.some((Q) => Q.code === F.code);
+                : S.some((Q) => Q.code === O.code);
             });
-            g(Z),
-              Z.filter(
-                (F) => F.state === "等待過帳" && F.notice === "True"
-              ).forEach((F) => {
-                F.code && C.push(F.code);
-              });
+            x(ee),
+              ee
+                .filter((O) => O.state === "等待過帳" && O.notice === "True")
+                .forEach((O) => {
+                  O.code && M.push(O.code);
+                });
           }
-          if (E.Code === 200 && E.Data) {
-            const Z = E.Data.filter((F) => {
-              var k;
-              return (k = n == null ? void 0 : n.med_list) == null
+          if (P.Code === 200 && P.Data) {
+            const ee = P.Data.filter((O) => {
+              var S;
+              return (S = n == null ? void 0 : n.med_list) == null
                 ? void 0
-                : k.some((Q) => Q.code === F.code);
+                : S.some((Q) => Q.code === O.code);
             });
-            w(Z),
-              Z.filter(
-                (F) => F.state === "等待過帳" && F.notice === "True"
-              ).forEach((F) => {
-                F.code && (C.includes(F.code) || C.push(F.code));
-              });
+            b(ee),
+              ee
+                .filter((O) => O.state === "等待過帳" && O.notice === "True")
+                .forEach((O) => {
+                  O.code && (M.includes(O.code) || M.push(O.code));
+                });
           }
-          h(C);
-        } catch (I) {
-          console.error("檢查申領撥補資料失敗:", I);
+          h(M);
+        } catch (z) {
+          console.error("檢查申領撥補資料失敗:", z);
         }
       }, [n]);
-    m.useEffect(
+    p.useEffect(
       () => (
         e
-          ? (L(),
-            x.current && clearInterval(x.current),
-            (x.current = setInterval(() => {
-              L();
+          ? (B(),
+            g.current && clearInterval(g.current),
+            (g.current = setInterval(() => {
+              B();
             }, 1e4)))
-          : x.current && (clearInterval(x.current), (x.current = null)),
+          : g.current && (clearInterval(g.current), (g.current = null)),
         () => {
-          x.current && (clearInterval(x.current), (x.current = null));
+          g.current && (clearInterval(g.current), (g.current = null));
         }
       ),
-      [e, L]
+      [e, B]
     ),
-      m.useEffect(() => {
+      p.useEffect(() => {
         if (
           (console.log("容器資料：", n),
           console.log("🔍 ContainerDetailModal - 亮燈狀態檢查:", {
@@ -21081,35 +21750,35 @@ const rh = async (e) => {
           e && l)
         ) {
           i(!0);
-          const I = j();
+          const z = C();
           console.log("✅ ContainerDetailModal - 啟動亮燈:", {
             medicineCode: l,
-            duration: I / 1e3 + "秒",
+            duration: z / 1e3 + "秒",
           }),
             f.current && clearTimeout(f.current),
             (f.current = setTimeout(() => {
               console.log("⏱️ ContainerDetailModal - 亮燈時間結束"),
                 i(!1),
                 (f.current = null);
-            }, I));
+            }, z));
         } else i(!1);
         return () => {
           f.current && clearTimeout(f.current);
         };
       }, [e, l]);
-    const P = (I) => {
-      d.filter((S) => S.code === I.code),
-        p.filter((S) => S.code === I.code),
+    const I = (z) => {
+      d.filter((D) => D.code === z.code),
+        m.filter((D) => D.code === z.code),
         u({
-          code: I.code,
-          name: I.name,
-          cht_name: I.cht_name,
-          skdiacode: I.SKDIACODE || I.skdiacode,
+          code: z.code,
+          name: z.name,
+          cht_name: z.cht_name,
+          skdiacode: z.SKDIACODE || z.skdiacode,
         }),
-        b(!0);
+        N(!0);
     };
     if (!e) return null;
-    const R = () =>
+    const A = () =>
         !(n != null && n.med_list) || n.med_list.length === 0
           ? s.jsx("div", {
               className:
@@ -21164,20 +21833,20 @@ const rh = async (e) => {
                     }),
                   }),
                   s.jsx("tbody", {
-                    children: n.med_list.map((I, S) => {
-                      const O = a && l && I.code == l,
-                        G = c.includes(I.code);
+                    children: n.med_list.map((z, D) => {
+                      const F = a && l && z.code == l,
+                        G = c.includes(z.code);
                       return (
-                        S === 0 &&
+                        D === 0 &&
                           console.log(
                             "🧪 ContainerDetailModal - 第一筆藥品檢查:",
                             {
-                              medCode: I.code,
+                              medCode: z.code,
                               highlightedCode: l,
                               isHighlightActive: a,
-                              isHighlighted: O,
+                              isHighlighted: F,
                               isPendingRequisition: G,
-                              comparison: `${I.code} == ${l} = ${I.code == l}`,
+                              comparison: `${z.code} == ${l} = ${z.code == l}`,
                             }
                           ),
                         s.jsxs(
@@ -21186,50 +21855,50 @@ const rh = async (e) => {
                             className: `transition-colors cursor-pointer ${
                               G
                                 ? "highlight-breathe-red"
-                                : O
+                                : F
                                 ? "highlight-breathe-green"
                                 : "hover:bg-gray-50"
                             }`,
-                            onClick: () => P(I),
+                            onClick: () => I(z),
                             children: [
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm",
-                                children: I.code || "-",
+                                children: z.code || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm",
-                                children: I.SKDIACODE || "-",
+                                children: z.SKDIACODE || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm",
-                                children: I.name || "-",
+                                children: z.name || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm text-right",
-                                children: I.qty || "-",
+                                children: z.qty || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm text-center",
-                                children: I.stockCol || "-",
+                                children: z.stockCol || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm text-center",
-                                children: I.stockRow || "-",
+                                children: z.stockRow || "-",
                               }),
                               s.jsx("td", {
                                 className:
                                   "border border-gray-300 px-1 py-2 text-sm text-center",
-                                children: I.stock || "-",
+                                children: z.stock || "-",
                               }),
                             ],
                           },
-                          S
+                          D
                         )
                       );
                     }),
@@ -21237,13 +21906,13 @@ const rh = async (e) => {
                 ],
               }),
             }),
-      N = () =>
+      j = () =>
         n
-          ? s.jsx(gh, {
+          ? s.jsx(yh, {
               container: n,
               highlightedMedicineCode: a ? l : null,
               pendingRequisitionCodes: c,
-              onMedicineClick: P,
+              onMedicineClick: I,
             })
           : s.jsx("div", {
               className:
@@ -21296,7 +21965,7 @@ const rh = async (e) => {
                       className:
                         "p-2 hover:bg-gray-100 rounded-full transition-colors",
                       title: "關閉",
-                      children: s.jsx(Ye, {
+                      children: s.jsx(Qe, {
                         className: "w-6 h-6 text-gray-700",
                       }),
                     }),
@@ -21304,51 +21973,51 @@ const rh = async (e) => {
                 }),
                 s.jsx("div", {
                   className: "flex-1 overflow-hidden p-3",
-                  children: r === "list_mode" ? R() : N(),
+                  children: r === "list_mode" ? A() : j(),
                 }),
               ],
             }),
           ],
         }),
-        s.jsx(yh, {
+        s.jsx(wh, {
           isOpen: v,
-          onClose: () => b(!1),
-          medicineInfo: _,
-          requisitions: _ ? d.filter((I) => I.code === _.code) : [],
-          distributions: _ ? p.filter((I) => I.code === _.code) : [],
-          onNoticeUpdated: L,
+          onClose: () => N(!1),
+          medicineInfo: E,
+          requisitions: E ? d.filter((z) => z.code === E.code) : [],
+          distributions: E ? m.filter((z) => z.code === E.code) : [],
+          onNoticeUpdated: B,
         }),
       ],
     });
   },
-  wh = ({ isOpen: e, onLoginSuccess: t }) => {
+  Nh = ({ isOpen: e, onLoginSuccess: t }) => {
     const { t: n } = pt(),
-      [r, o] = m.useState(""),
-      [l, a] = m.useState(""),
-      [i, c] = m.useState(!1),
-      [h, d] = m.useState(!1),
-      [g, p] = m.useState(""),
-      w = async (b) => {
-        if ((b.preventDefault(), !r.trim() || !l.trim())) {
-          p("Please enter both ID and password");
+      [r, o] = p.useState(""),
+      [l, a] = p.useState(""),
+      [i, c] = p.useState(!1),
+      [h, d] = p.useState(!1),
+      [x, m] = p.useState(""),
+      b = async (N) => {
+        if ((N.preventDefault(), !r.trim() || !l.trim())) {
+          m("Please enter both ID and password");
           return;
         }
-        d(!0), p("");
+        d(!0), m("");
         try {
-          const _ = await ke.login({ ID: r.trim(), Password: l });
-          if (_.Code === 200 && _.Data) {
-            const u = { ..._.Data, loginTime: new Date().toISOString() };
+          const E = await ke.login({ ID: r.trim(), Password: l });
+          if (E.Code === 200 && E.Data) {
+            const u = { ...E.Data, loginTime: new Date().toISOString() };
             sessionStorage.setItem("user_session", JSON.stringify(u)), t(u);
-          } else p(_.Result || "Login failed");
-        } catch (_) {
-          console.error("Login failed:", _),
-            p("Network error. Please try again.");
+          } else m(E.Result || "Login failed");
+        } catch (E) {
+          console.error("Login failed:", E),
+            m("Network error. Please try again.");
         } finally {
           d(!1);
         }
       },
-      v = (b) => {
-        b.key === "Enter" && !h && w(b);
+      v = (N) => {
+        N.key === "Enter" && !h && b(N);
       };
     return e
       ? s.jsxs("div", {
@@ -21367,17 +22036,17 @@ const rh = async (e) => {
                 s.jsxs("div", {
                   className: "bg-white rounded-lg shadow-sm border p-4 md:p-6",
                   children: [
-                    g &&
+                    x &&
                       s.jsx("div", {
                         className:
                           "mb-6 p-4 bg-red-50 border border-red-200 rounded-lg",
                         children: s.jsx("p", {
                           className: "text-red-600 text-sm",
-                          children: g,
+                          children: x,
                         }),
                       }),
                     s.jsxs("form", {
-                      onSubmit: w,
+                      onSubmit: b,
                       className: "space-y-6",
                       children: [
                         s.jsxs("div", {
@@ -21392,7 +22061,7 @@ const rh = async (e) => {
                               id: "userId",
                               type: "text",
                               value: r,
-                              onChange: (b) => o(b.target.value),
+                              onChange: (N) => o(N.target.value),
                               onKeyPress: v,
                               placeholder: n("login.userIdPlaceholder"),
                               className:
@@ -21417,7 +22086,7 @@ const rh = async (e) => {
                                   id: "password",
                                   type: i ? "text" : "password",
                                   value: l,
-                                  onChange: (b) => a(b.target.value),
+                                  onChange: (N) => a(N.target.value),
                                   onKeyPress: v,
                                   placeholder: n("login.passwordPlaceholder"),
                                   className:
@@ -21432,8 +22101,8 @@ const rh = async (e) => {
                                     "absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors",
                                   disabled: h,
                                   children: i
-                                    ? s.jsx(Bm, { className: "w-5 h-5" })
-                                    : s.jsx(Gm, { className: "w-5 h-5" }),
+                                    ? s.jsx(zm, { className: "w-5 h-5" })
+                                    : s.jsx(Fm, { className: "w-5 h-5" }),
                                 }),
                               ],
                             }),
@@ -21467,7 +22136,7 @@ const rh = async (e) => {
         })
       : null;
   },
-  bh = ({ isVisible: e, message: t }) => {
+  jh = ({ isVisible: e, message: t }) => {
     const { t: n } = pt();
     return e
       ? s.jsxs("div", {
@@ -21530,16 +22199,16 @@ const rh = async (e) => {
         })
       : null;
   },
-  Nh = ({
+  Sh = ({
     message: e,
     type: t,
     isVisible: n,
     onClose: r,
     duration: o = 3e3,
   }) => {
-    const [l, a] = m.useState(!1);
+    const [l, a] = p.useState(!1);
     return (
-      m.useEffect(() => {
+      p.useEffect(() => {
         if (n) {
           a(!0);
           const i = setTimeout(() => {
@@ -21567,7 +22236,7 @@ const rh = async (e) => {
               children: [
                 t === "success"
                   ? s.jsx(Lm, { className: "w-5 h-5 text-green-600" })
-                  : s.jsx(qm, { className: "w-5 h-5 text-red-600" }),
+                  : s.jsx(Xm, { className: "w-5 h-5 text-red-600" }),
                 s.jsx("span", {
                   className: "text-sm font-medium",
                   children: e,
@@ -21577,7 +22246,7 @@ const rh = async (e) => {
                   className: `p-1 rounded-full hover:bg-black/10 transition-colors ${
                     t === "success" ? "text-green-600" : "text-red-600"
                   }`,
-                  children: s.jsx(Ye, { className: "w-4 h-4" }),
+                  children: s.jsx(Qe, { className: "w-4 h-4" }),
                 }),
               ],
             }),
@@ -21585,7 +22254,7 @@ const rh = async (e) => {
         : null
     );
   };
-function jh() {
+function Ch() {
   const {
     selectedDepartmentType: e,
     viewMode: t,
@@ -21598,102 +22267,102 @@ function jh() {
     addParentContainerModalOpen: c,
     closeAddParentContainerModal: h,
     selectedDepartmentForAdd: d,
-    addStoreItemModalOpen: g,
-    closeAddStoreItemModal: p,
-    selectedStoreShelfForAdd: w,
+    addStoreItemModalOpen: x,
+    closeAddStoreItemModal: m,
+    selectedStoreShelfForAdd: b,
     addDepartmentModalOpen: v,
-    closeAddDepartmentModal: b,
-    qrCodeScannerModalOpen: _,
+    closeAddDepartmentModal: N,
+    qrCodeScannerModalOpen: E,
     qrCodeScannerMode: u,
     closeQRCodeScannerModal: f,
-    addBarcodeModalOpen: x,
-    closeAddBarcodeModal: j,
-    initialBarcodeValue: L,
-    containerDetailModalOpen: P,
-    closeContainerDetailModal: R,
-    selectedContainerForDetail: N,
-    setMedicineList: I,
-    setIsLoadingMedicines: S,
-    showNotification: O,
+    addBarcodeModalOpen: g,
+    closeAddBarcodeModal: C,
+    initialBarcodeValue: B,
+    containerDetailModalOpen: I,
+    closeContainerDetailModal: A,
+    selectedContainerForDetail: j,
+    setMedicineList: z,
+    setIsLoadingMedicines: D,
+    showNotification: F,
   } = Je();
-  m.useEffect(() => {
+  p.useEffect(() => {
     (() => {
       try {
-        const M = sessionStorage.getItem("user_session");
-        if (M) {
-          const F = JSON.parse(M);
-          F.GUID && F.ID && F.Name
-            ? (o(F), r(!0))
+        const w = sessionStorage.getItem("user_session");
+        if (w) {
+          const O = JSON.parse(w);
+          O.GUID && O.ID && O.Name
+            ? (o(O), r(!0))
             : sessionStorage.removeItem("user_session");
         }
-      } catch (M) {
-        console.error("Error checking session:", M),
+      } catch (w) {
+        console.error("Error checking session:", w),
           sessionStorage.removeItem("user_session");
       }
     })();
   }, [r, o]),
-    m.useEffect(() => {
-      let Z = !0;
+    p.useEffect(() => {
+      let ee = !0;
       return (
         (async () => {
           if (n) {
-            S(!0);
+            D(!0);
             try {
               console.log("開始載入藥品資料...");
-              const F = await ke.getMedicineCloud();
-              if ((console.log("藥品資料 API 回應:", F), !Z)) return;
-              F.Code === 200 && F.Data
-                ? (I(F.Data),
-                  console.log(`✅ 成功載入 ${F.Data.length} 筆藥品資料`),
-                  O(`載入 ${F.Data.length} 筆藥品資料`, "success"))
-                : (console.warn("API 回應異常:", F),
-                  I([]),
-                  O("藥品資料載入異常，請稍後重試", "error"));
-            } catch (F) {
-              if (!Z) return;
-              console.error("載入藥品資料失敗:", F),
-                I([]),
-                O("無法連線到藥品資料庫，部分功能可能無法使用", "error");
+              const O = await ke.getMedicineCloud();
+              if ((console.log("藥品資料 API 回應:", O), !ee)) return;
+              O.Code === 200 && O.Data
+                ? (z(O.Data),
+                  console.log(`✅ 成功載入 ${O.Data.length} 筆藥品資料`),
+                  F(`載入 ${O.Data.length} 筆藥品資料`, "success"))
+                : (console.warn("API 回應異常:", O),
+                  z([]),
+                  F("藥品資料載入異常，請稍後重試", "error"));
+            } catch (O) {
+              if (!ee) return;
+              console.error("載入藥品資料失敗:", O),
+                z([]),
+                F("無法連線到藥品資料庫，部分功能可能無法使用", "error");
             } finally {
-              Z && S(!1);
+              ee && D(!1);
             }
           }
         })(),
         () => {
-          Z = !1;
+          ee = !1;
         }
       );
     }, [n]);
-  const G = (Z) => {
-      o(Z), r(!0);
+  const G = (ee) => {
+      o(ee), r(!0);
     },
-    E = Zs.useRef(null),
-    C = (Z, M) => {
+    P = Zs.useRef(null),
+    M = (ee, w) => {
       if (
         (console.log("📸 QR掃描成功 - handleQRScanSuccess 被調用:", {
-          barcode: Z,
-          medicineData: M,
+          barcode: ee,
+          medicineData: w,
           mode: u,
         }),
         console.log("📸 當前 mode:", u),
         console.log("📸 當前 viewMode:", t),
-        console.log("📸 drugCanvasRef.current:", E.current),
+        console.log("📸 drugCanvasRef.current:", P.current),
         u === "track_Drug_mode")
       ) {
         if ((console.log("✅ 進入 track_Drug_mode 分支"), t !== "medicine")) {
           console.warn("⚠️ 當前不在藥品地圖視圖，無法定位藥品"),
-            O("請切換到藥品地圖視圖後再使用此功能", "error");
+            F("請切換到藥品地圖視圖後再使用此功能", "error");
           return;
         }
-        E.current
+        P.current
           ? (console.log("✅ drugCanvasRef.current 存在"),
             console.log(
               "📸 drugCanvasRef.current.locateDrug 類型:",
-              typeof E.current.locateDrug
+              typeof P.current.locateDrug
             ),
-            typeof E.current.locateDrug == "function"
+            typeof P.current.locateDrug == "function"
               ? (console.log("✅ 呼叫 locateDrug 函數"),
-                E.current.locateDrug(M))
+                P.current.locateDrug(w))
               : console.warn("⚠️ locateDrug 不是函數"))
           : console.warn("⚠️ drugCanvasRef.current 不存在");
       } else console.log("⚠️ mode 不是 track_Drug_mode，當前 mode:", u);
@@ -21702,31 +22371,31 @@ function jh() {
     ? s.jsxs("div", {
         className: "min-h-screen bg-gray-50",
         children: [
-          s.jsx(Xm, {}),
           s.jsx(Km, {}),
-          s.jsx(Zm, {}),
+          s.jsx(Jm, {}),
+          s.jsx(th, {}),
           s.jsx("div", {
             className: "fixed inset-0",
             children: s.jsx("div", {
               className: "w-full h-full",
               children:
-                t === "department" ? s.jsx(nh, {}) : s.jsx(zd, { ref: E }),
+                t === "department" ? s.jsx(sh, {}) : s.jsx(Bd, { ref: P }),
             }),
           }),
-          s.jsx(eh, {}),
-          s.jsx(ah, {}),
-          s.jsx(ih, {}),
+          s.jsx(nh, {}),
           s.jsx(ch, {}),
           s.jsx(uh, {}),
           s.jsx(dh, {}),
           s.jsx(fh, {}),
-          s.jsx(ph, { isOpen: g, onClose: p, storeShelf: w }),
-          s.jsx(mh, { isOpen: v, onClose: b }),
-          s.jsx(Bo, { isOpen: _, onClose: f, mode: u, onScanSuccess: C }),
-          s.jsx(hh, { isOpen: x, onClose: j, initialBarcode: L }),
-          s.jsx(vh, { isOpen: P, onClose: R, container: N }),
-          s.jsx(bh, { isVisible: l }),
-          s.jsx(Nh, {
+          s.jsx(ph, {}),
+          s.jsx(mh, {}),
+          s.jsx(hh, { isOpen: x, onClose: m, storeShelf: b }),
+          s.jsx(gh, { isOpen: v, onClose: N }),
+          s.jsx(zo, { isOpen: E, onClose: f, mode: u, onScanSuccess: M }),
+          s.jsx(xh, { isOpen: g, onClose: C, initialBarcode: B }),
+          s.jsx(bh, { isOpen: I, onClose: A, container: j }),
+          s.jsx(jh, { isVisible: l }),
+          s.jsx(Sh, {
             message: a.message,
             type: a.type,
             isVisible: a.isVisible,
@@ -21734,11 +22403,11 @@ function jh() {
           }),
         ],
       })
-    : s.jsx(wh, { isOpen: !0, onLoginSuccess: G });
+    : s.jsx(Nh, { isOpen: !0, onLoginSuccess: G });
 }
-function Sh() {
-  return s.jsx(Tm, { children: s.jsx(Im, { children: s.jsx(jh, {}) }) });
+function kh() {
+  return s.jsx(Tm, { children: s.jsx(Pm, { children: s.jsx(Ch, {}) }) });
 }
-Id(document.getElementById("root")).render(
-  s.jsx(m.StrictMode, { children: s.jsx(Sh, {}) })
+Pd(document.getElementById("root")).render(
+  s.jsx(p.StrictMode, { children: s.jsx(kh, {}) })
 );
