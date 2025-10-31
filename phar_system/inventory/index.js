@@ -403,17 +403,30 @@ function show_barcode_search(res) {
   }
 
   if (Array.isArray(res)) {
-    res.forEach((element, index) => {
+    let temp_count = 0;
+    for (let index = 0; index < res.length; index++) {
+      const element = res[index];
       if (element.FILE_STATUS != "關檔中") {
         console.log("CODE", element.CODE);
         show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
         header_serch_text.blur();
-        return;
-      } else if (element.FILE_STATUS == "關檔中" && index == res.length - 1) {
-        alert("藥品資料已鎖檔，無法進行盤點");
-        return;
+        temp_count++;
+        break;
       }
-    });
+    }
+    if (temp_count == 0) alert("藥品資料已鎖檔，無法進行盤點");
+    if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
+    // res.forEach((element, index) => {
+    //   if (element.FILE_STATUS != "關檔中") {
+    //     console.log("CODE", element.CODE);
+    //     show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
+    //     header_serch_text.blur();
+    //     return;
+    //   } else if (element.FILE_STATUS == "關檔中" && index == res.length - 1) {
+    //     alert("藥品資料已鎖檔，無法進行盤點");
+    //     return;
+    //   }
+    // });
   }
 }
 async function serch_CODE_input_enter(barcode) {
