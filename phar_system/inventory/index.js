@@ -411,11 +411,13 @@ function show_barcode_search(res) {
         show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
         header_serch_text.blur();
         temp_count++;
-        break;
+      }
+      if (index == res.length - 1) {
+        console.log("asdgfasdf", temp_count);
+        if (temp_count == 0) alert("藥品資料已鎖檔，無法進行盤點");
+        if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
       }
     }
-    if (temp_count == 0) alert("藥品資料已鎖檔，無法進行盤點");
-    if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
     // res.forEach((element, index) => {
     //   if (element.FILE_STATUS != "關檔中") {
     //     console.log("CODE", element.CODE);
