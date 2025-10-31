@@ -432,53 +432,9 @@ async function serch_CODE_input_enter(barcode) {
     return;
   }
 
-  let temp_index = {};
-  for (let i = 0; i < data.Data[0].Contents.length; i++) {
-    temp_index[`${data.Data[0].Contents[i].CODE}`] = i;
-  }
-
-  if (Array.isArray(response.Data)) {
-    let temp_count = 0;
-    for (let index = 0; index < response.Data.length; index++) {
-      const element = response.Data[index];
-      if (element.FILE_STATUS != "關檔中") {
-        console.log("CODE", element.CODE);
-        show_popup_input(data.Data[0].Contents[temp_index[`${element.CODE}`]]);
-        header_serch_text.blur();
-        temp_count++;
-      }
-      if (index == response.Data.length - 1) {
-        console.log("asdgfasdf", temp_count);
-        if (temp_count == 0) alert("藥品資料已鎖檔，無法進行盤點");
-        if (temp_count > 1) alert("目前有搜尋到多個使用中的藥品，請確認");
-      }
-    }
-  }
-  // for (var i = 0; i < data.Data[0].Contents.length; i++) {
-  //   const CODE = data.Data[0].Contents[i].CODE;
-  //   if (CODE.toUpperCase() == response.Data[0].CODE.toUpperCase()) {
-  //     console.log("CODE", CODE);
-  //     show_popup_input(data.Data[0].Contents[i]);
-  //     header_serch_text.blur();
-  //     return;
-  //   }
-  // }
+  show_barcode_search(response.Data);
 }
 function get_header() {
-  //   // 检查浏览器是否支持localStorage
-  //   if (typeof(Storage) !== "undefined") {
-  //     // 浏览器支持localStorage
-
-  //     // 存储数据
-  //     if(!localStorage.getItem("invertory")) {
-  //       localStorage.setItem("invertory", "check");
-  //     }
-  //     console.log("設定已盤未盤狀態", localStorage.getItem("invertory"));
-  // } else {
-  //     // 浏览器不支持localStorage
-  //     console.log("抱歉，您的浏览器不支持LocalStorage。");
-  // }
-
   const header_div = document.createElement("div");
   My_Div.Init(header_div, "header_div", "header_div", "100%", "", "");
   My_Div.Set_Block(
