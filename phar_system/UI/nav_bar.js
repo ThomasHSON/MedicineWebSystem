@@ -131,6 +131,13 @@ let html_pages = [
                         icon_url: "../../phar_system/phar_system/image/icon/assortment.png",
                         icon_big_url: "../../phar_system/image/icon/requisitions_upload.png"
                     },
+                    {
+                        html_name: "bulletin",
+                        html_ctName: "戰情白板",
+                        html_url: "../../phar_system/bulletin",
+                        icon_url: "../../phar_system/phar_system/image/icon/search-engine.png",
+                        icon_big_url: "../../phar_system/image/icon/search-engine.png"
+                    },
                     // {
                     //     html_name: "requisitions_upload",
                     //     html_ctName: "單據辨識",

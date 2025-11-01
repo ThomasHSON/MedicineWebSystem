@@ -7,7 +7,7 @@
 1. 在底層加入 config.txt 檔案
    內容：
    {
-   "API_SERVER": "http://醫院 server 網域:4433"
+   "API_Server": "http://醫院 server 網域:4433"
    }
 
 2. 在./phar_system 資料夾加入 config.txt 檔案
