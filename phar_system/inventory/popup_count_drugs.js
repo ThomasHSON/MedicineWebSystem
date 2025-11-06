@@ -584,29 +584,77 @@ function stopAllProcesses() {
 
 // 確認相機畫面盤點
 async function enter_count_result() {
-  const videoElement = document.querySelector(".ppcd_video");
-  const canvas = document.querySelector(".ppcd_canvas");
-  const context = canvas.getContext("2d");
+  try {
+    const result = await getCanvasBlob();
+    console.log("成功:", result);
+    // drawToCanvas();
+    // // 停止實時畫面展示
+    // clearInterval(captureIntervalId);
 
-  // 抓去當下畫面
-  const size = Math.min(videoElement.videoWidth, videoElement.videoHeight);
-  canvas.width = 960;
-  canvas.height = 960;
+    console.log("辨識trigger", result);
+    console.log("辨識trigger", result.Data);
+    drugs_counts = 0;
+    drugs_counts = +result.Data.count;
+    if (result.Code == 200) {
+      console.log("近來數數");
+      renderResult(result.Data);
+      console.log("數完", drugs_counts);
+    } else {
+      alert(`辨識錯誤，重新開始辨識${result.Result}`);
+      stopAllProcesses();
+      setTimeout(() => startCamera(), 500);
+      return;
+    }
 
-  // 中心裁切並縮放至960x960
-  const sx = (videoElement.videoWidth - size) / 2;
-  const sy = (videoElement.videoHeight - size) / 2;
-  context.drawImage(videoElement, sx, sy, size, size, 0, 0, 960, 960);
+    if (confirm(`辨識數量: ${drugs_counts}，是否正確?`)) {
+      let END_QTY_input_popup_input = document.querySelector(
+        "#END_QTY_input_popup_input"
+      );
+      let GUID = popup_input_div_Content.GUID;
+      let CODE = popup_input_div_Content.CODE;
+      let END_QTY = drugs_counts;
 
-  // const base64Image = canvas.toDataURL("image/jpeg");
+      if (+END_QTY == 0) {
+        alert("沒有辨識到藥品，請持續辨識");
+        stopAllProcesses();
+        setTimeout(() => startCamera(), 500);
+        return;
+      }
 
-  if (stream) {
-    const tracks = stream.getTracks();
-    tracks.forEach((track) => track.stop());
-    stream = null;
+      // END_QTY_input_popup_input.value = '';
+      let OP = sessionData.Name;
+
+      let temp_str = END_QTY_input_popup_input.value;
+      let input_lastChar = "";
+
+      if (temp_str == "") {
+        END_QTY_input_popup_input.value = END_QTY;
+      } else {
+        input_lastChar = END_QTY_input_popup_input.value.slice(-1);
+        let isSymbol = ["+", "-", "*"].includes(input_lastChar);
+        if (isSymbol) {
+          temp_str += END_QTY;
+        } else {
+          temp_str += `+${+END_QTY}`;
+        }
+        END_QTY_input_popup_input.value = temp_str;
+      }
+
+      // sub_content_add(GUID , temp_sum , OP, CODE);
+      // hide_popup_input();
+      tigger_count_drugs_container(false);
+      return;
+    } else {
+      await pic_analyze_api(canvas.toDataURL("image/jpeg"), "True");
+      stopAllProcesses();
+      setTimeout(() => startCamera(), 500);
+      return;
+    }
+  } catch (err) {
+    console.log("失敗:", err);
+    stopAllProcesses();
+    setTimeout(() => startCamera(), 500);
   }
-
-  await pic_analyze_api(canvas.toDataURL("image/jpeg"), "");
 }
 
 // 輸入AI學習
@@ -663,14 +711,14 @@ async function pic_analyze_api(base64_data, training_trigger) {
     try {
       const result = await getCanvasBlob();
       console.log("成功:", result);
-      drawToCanvas();
-      // 停止實時畫面展示
-      clearInterval(captureIntervalId);
+      // drawToCanvas();
+      // // 停止實時畫面展示
+      // clearInterval(captureIntervalId);
 
       console.log("辨識trigger", result);
       console.log("辨識trigger", result.Data);
       drugs_counts = 0;
-      drugs_counts = +result.count;
+      drugs_counts = +result.Data.count;
       if (result.Code == 200) {
         console.log("近來數數");
         renderResult(result.Data);
