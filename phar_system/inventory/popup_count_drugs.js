@@ -606,67 +606,7 @@ async function enter_count_result() {
     stream = null;
   }
 
-  let return_data = await pic_analyze_api(canvas.toDataURL("image/jpeg"), "");
-  drawToCanvas();
-  // 停止實時畫面展示
-  clearInterval(captureIntervalId);
-
-  console.log("辨識trigger", return_data);
-  console.log("辨識trigger", return_data.Data);
-  drugs_counts = 0;
-  if (return_data.Code == 200) {
-    console.log("近來數數");
-    renderResult(return_data.Data);
-    console.log("數完", drugs_counts);
-  } else {
-    alert(`辨識錯誤，重新開始辨識${return_data.Result}`);
-    stopAllProcesses();
-    setTimeout(() => startCamera(), 500);
-    return;
-  }
-
-  if (confirm(`辨識數量: ${drugs_counts}，是否正確?`)) {
-    let END_QTY_input_popup_input = document.querySelector(
-      "#END_QTY_input_popup_input"
-    );
-    let GUID = popup_input_div_Content.GUID;
-    let CODE = popup_input_div_Content.CODE;
-    let END_QTY = drugs_counts;
-
-    if (+END_QTY == 0) {
-      alert("沒有辨識到藥品，請持續辨識");
-      return;
-    }
-
-    // END_QTY_input_popup_input.value = '';
-    let OP = sessionData.Name;
-
-    let temp_str = END_QTY_input_popup_input.value;
-    let input_lastChar = "";
-
-    if (temp_str == "") {
-      END_QTY_input_popup_input.value = END_QTY;
-    } else {
-      input_lastChar = END_QTY_input_popup_input.value.slice(-1);
-      let isSymbol = ["+", "-", "*"].includes(input_lastChar);
-      if (isSymbol) {
-        temp_str += END_QTY;
-      } else {
-        temp_str += `+${+END_QTY}`;
-      }
-      END_QTY_input_popup_input.value = temp_str;
-    }
-
-    // sub_content_add(GUID , temp_sum , OP, CODE);
-    // hide_popup_input();
-    tigger_count_drugs_container(false);
-    return;
-  } else {
-    await pic_analyze_api(canvas.toDataURL("image/jpeg"), "True");
-    stopAllProcesses();
-    setTimeout(() => startCamera(), 500);
-    return;
-  }
+  await pic_analyze_api(canvas.toDataURL("image/jpeg"), "");
 }
 
 // 輸入AI學習
@@ -723,13 +663,73 @@ async function pic_analyze_api(base64_data, training_trigger) {
     try {
       const result = await getCanvasBlob();
       console.log("成功:", result);
-      return result;
+      drawToCanvas();
+      // 停止實時畫面展示
+      clearInterval(captureIntervalId);
+
+      console.log("辨識trigger", result);
+      console.log("辨識trigger", result.Data);
+      drugs_counts = 0;
+      drugs_counts = +result.count;
+      if (result.Code == 200) {
+        console.log("近來數數");
+        renderResult(result.Data);
+        console.log("數完", drugs_counts);
+      } else {
+        alert(`辨識錯誤，重新開始辨識${result.Result}`);
+        stopAllProcesses();
+        setTimeout(() => startCamera(), 500);
+        return;
+      }
+
+      if (confirm(`辨識數量: ${drugs_counts}，是否正確?`)) {
+        let END_QTY_input_popup_input = document.querySelector(
+          "#END_QTY_input_popup_input"
+        );
+        let GUID = popup_input_div_Content.GUID;
+        let CODE = popup_input_div_Content.CODE;
+        let END_QTY = drugs_counts;
+
+        if (+END_QTY == 0) {
+          alert("沒有辨識到藥品，請持續辨識");
+          stopAllProcesses();
+          setTimeout(() => startCamera(), 500);
+          return;
+        }
+
+        // END_QTY_input_popup_input.value = '';
+        let OP = sessionData.Name;
+
+        let temp_str = END_QTY_input_popup_input.value;
+        let input_lastChar = "";
+
+        if (temp_str == "") {
+          END_QTY_input_popup_input.value = END_QTY;
+        } else {
+          input_lastChar = END_QTY_input_popup_input.value.slice(-1);
+          let isSymbol = ["+", "-", "*"].includes(input_lastChar);
+          if (isSymbol) {
+            temp_str += END_QTY;
+          } else {
+            temp_str += `+${+END_QTY}`;
+          }
+          END_QTY_input_popup_input.value = temp_str;
+        }
+
+        // sub_content_add(GUID , temp_sum , OP, CODE);
+        // hide_popup_input();
+        tigger_count_drugs_container(false);
+        return;
+      } else {
+        await pic_analyze_api(canvas.toDataURL("image/jpeg"), "True");
+        stopAllProcesses();
+        setTimeout(() => startCamera(), 500);
+        return;
+      }
     } catch (err) {
       console.log("失敗:", err);
-      return {
-        Code: -200,
-        Result: err,
-      };
+      stopAllProcesses();
+      setTimeout(() => startCamera(), 500);
     }
   }
 }
