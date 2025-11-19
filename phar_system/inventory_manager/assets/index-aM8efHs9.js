@@ -9750,7 +9750,7 @@ var Ph = Wa.exports,
     async getMedQtyGroup() {
       const e = await Ne();
       if (!e) throw new Error("Failed to load configuration");
-      const t = "/api/med_cart/get_med_qty_group",
+      const t = "/api/medGroup/get_all_group",
         n = {},
         r = await fetch(`${e.domain}${t}`, {
           method: "POST",
