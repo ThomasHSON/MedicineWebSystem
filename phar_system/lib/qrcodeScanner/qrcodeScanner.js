@@ -166,6 +166,12 @@ function qrCodeScannerSetVideo() {
 
   const video = document.createElement("video");
   video.classList.add("qcs_video");
+  video.setAttribute("autoplay", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  video.setAttribute("muted", "true");
+  video.muted = true;
+  video.playsInline = true;
   const canvas = document.createElement("canvas");
   canvas.classList.add("qcs_canvas");
 
