@@ -141,6 +141,13 @@ let html_pages = [
               "../../phar_system/phar_system/image/icon/search-engine.png",
             icon_big_url: "../../phar_system/image/icon/search-engine.png",
           },
+          {
+            html_name: "stock",
+            html_ctName: "庫存查詢系統",
+            html_url: "../../phar_system/stock",
+            icon_url: "../../phar_system/image/icon/balance_icon.png",
+            icon_big_url: "../../phar_system/image/icon/balance_big_icon.png",
+          },
           // {
           //     html_name: "requisitions_upload",
           //     html_ctName: "單據辨識",

@@ -1043,6 +1043,9 @@ video {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.whitespace-normal {
+  white-space: normal;
+}
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -2189,6 +2192,10 @@ button {
 }
 .hover\:bg-gray-200\/50:hover {
   background-color: #e5e7eb80;
+}
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
 }
 .hover\:bg-gray-400:hover {
   --tw-bg-opacity: 1;
