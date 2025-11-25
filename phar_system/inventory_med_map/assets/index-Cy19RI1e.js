@@ -111,14 +111,14 @@ function Ca(e, t, n) {
     t.key !== void 0 && (o = "" + t.key),
     t))
       wa.call(t, r) && !Sa.hasOwnProperty(r) && (l[r] = t[r]);
-  var s = arguments.length - 2;
-  if (s === 1) l.children = n;
-  else if (1 < s) {
-    for (var u = Array(s), f = 0; f < s; f++) u[f] = arguments[f + 2];
+  var a = arguments.length - 2;
+  if (a === 1) l.children = n;
+  else if (1 < a) {
+    for (var u = Array(a), f = 0; f < a; f++) u[f] = arguments[f + 2];
     l.children = u;
   }
   if (e && e.defaultProps)
-    for (r in ((s = e.defaultProps), s)) l[r] === void 0 && (l[r] = s[r]);
+    for (r in ((a = e.defaultProps), a)) l[r] === void 0 && (l[r] = a[r]);
   return {
     $$typeof: Sr,
     type: e,
@@ -199,14 +199,14 @@ function Vr(e, t, n, r, l) {
       1
     );
   if (((i = 0), (r = r === "" ? "." : r + ":"), os(e)))
-    for (var s = 0; s < e.length; s++) {
-      o = e[s];
-      var u = r + Fl(o, s);
+    for (var a = 0; a < e.length; a++) {
+      o = e[a];
+      var u = r + Fl(o, a);
       i += Vr(o, t, n, u, l);
     }
   else if (((u = Hc(e)), typeof u == "function"))
-    for (e = u.call(e), s = 0; !(o = e.next()).done; )
-      (o = o.value), (u = r + Fl(o, s++)), (i += Vr(o, t, n, u, l));
+    for (e = u.call(e), a = 0; !(o = e.next()).done; )
+      (o = o.value), (u = r + Fl(o, a++)), (i += Vr(o, t, n, u, l));
   else if (o === "object")
     throw (
       ((t = String(e)),
@@ -320,18 +320,18 @@ Q.cloneElement = function (e, t, n) {
       t.key !== void 0 && (l = "" + t.key),
       e.type && e.type.defaultProps)
     )
-      var s = e.type.defaultProps;
+      var a = e.type.defaultProps;
     for (u in t)
       wa.call(t, u) &&
         !Sa.hasOwnProperty(u) &&
-        (r[u] = t[u] === void 0 && s !== void 0 ? s[u] : t[u]);
+        (r[u] = t[u] === void 0 && a !== void 0 ? a[u] : t[u]);
   }
   var u = arguments.length - 2;
   if (u === 1) r.children = n;
   else if (1 < u) {
-    s = Array(u);
-    for (var f = 0; f < u; f++) s[f] = arguments[f + 2];
-    r.children = s;
+    a = Array(u);
+    for (var f = 0; f < u; f++) a[f] = arguments[f + 2];
+    r.children = a;
   }
   return { $$typeof: Sr, type: e.type, key: l, ref: o, props: r, _owner: i };
 };
@@ -463,7 +463,7 @@ _l.Fragment = Xc;
 _l.jsx = Na;
 _l.jsxs = Na;
 ha.exports = _l;
-var a = ha.exports,
+var s = ha.exports,
   _a = { exports: {} },
   He = {},
   Ma = { exports: {} },
@@ -522,9 +522,9 @@ var a = ha.exports,
     };
   } else {
     var i = Date,
-      s = i.now();
+      a = i.now();
     e.unstable_now = function () {
-      return i.now() - s;
+      return i.now() - a;
     };
   }
   var u = [],
@@ -1035,16 +1035,16 @@ function Wl(e, t) {
           o = r.stack.split(`
 `),
           i = l.length - 1,
-          s = o.length - 1;
-        1 <= i && 0 <= s && l[i] !== o[s];
+          a = o.length - 1;
+        1 <= i && 0 <= a && l[i] !== o[a];
 
       )
-        s--;
-      for (; 1 <= i && 0 <= s; i--, s--)
-        if (l[i] !== o[s]) {
-          if (i !== 1 || s !== 1)
+        a--;
+      for (; 1 <= i && 0 <= a; i--, a--)
+        if (l[i] !== o[a]) {
+          if (i !== 1 || a !== 1)
             do
-              if ((i--, s--, 0 > s || l[i] !== o[s])) {
+              if ((i--, a--, 0 > a || l[i] !== o[a])) {
                 var u =
                   `
 ` + l[i].replace(" at new ", " at ");
@@ -1055,7 +1055,7 @@ function Wl(e, t) {
                   u
                 );
               }
-            while (1 <= i && 0 <= s);
+            while (1 <= i && 0 <= a);
           break;
         }
     }
@@ -1652,7 +1652,7 @@ if (vt)
   } catch {
     Do = !1;
   }
-function cd(e, t, n, r, l, o, i, s, u) {
+function cd(e, t, n, r, l, o, i, a, u) {
   var f = Array.prototype.slice.call(arguments, 3);
   try {
     t.apply(n, f);
@@ -1669,10 +1669,10 @@ var Xn = !1,
       (Xn = !0), (nl = e);
     },
   };
-function fd(e, t, n, r, l, o, i, s, u) {
+function fd(e, t, n, r, l, o, i, a, u) {
   (Xn = !1), (nl = null), cd.apply(dd, arguments);
 }
-function pd(e, t, n, r, l, o, i, s, u) {
+function pd(e, t, n, r, l, o, i, a, u) {
   if ((fd.apply(this, arguments), Xn)) {
     if (Xn) {
       var f = nl;
@@ -1733,28 +1733,28 @@ function hd(e) {
     }
     if (n.return !== r.return) (n = l), (r = o);
     else {
-      for (var i = !1, s = l.child; s; ) {
-        if (s === n) {
+      for (var i = !1, a = l.child; a; ) {
+        if (a === n) {
           (i = !0), (n = l), (r = o);
           break;
         }
-        if (s === r) {
+        if (a === r) {
           (i = !0), (r = l), (n = o);
           break;
         }
-        s = s.sibling;
+        a = a.sibling;
       }
       if (!i) {
-        for (s = o.child; s; ) {
-          if (s === n) {
+        for (a = o.child; a; ) {
+          if (a === n) {
             (i = !0), (n = o), (r = l);
             break;
           }
-          if (s === r) {
+          if (a === r) {
             (i = !0), (r = o), (n = l);
             break;
           }
-          s = s.sibling;
+          a = a.sibling;
         }
         if (!i) throw Error(_(189));
       }
@@ -1860,8 +1860,8 @@ function ol(e, t) {
     o = e.pingedLanes,
     i = n & 268435455;
   if (i !== 0) {
-    var s = i & ~l;
-    s !== 0 ? (r = Qn(s)) : ((o &= i), o !== 0 && (r = Qn(o)));
+    var a = i & ~l;
+    a !== 0 ? (r = Qn(a)) : ((o &= i), o !== 0 && (r = Qn(o)));
   } else (i = n & ~l), i !== 0 ? (r = Qn(i)) : o !== 0 && (r = Qn(o));
   if (r === 0) return 0;
   if (
@@ -1927,12 +1927,12 @@ function Nd(e, t) {
 
   ) {
     var i = 31 - rt(o),
-      s = 1 << i,
+      a = 1 << i,
       u = l[i];
     u === -1
-      ? (!(s & n) || s & r) && (l[i] = kd(s, t))
-      : u <= t && (e.expiredLanes |= s),
-      (o &= ~s);
+      ? (!(a & n) || a & r) && (l[i] = kd(a, t))
+      : u <= t && (e.expiredLanes |= a),
+      (o &= ~a);
   }
 }
 function Ro(e) {
@@ -2324,8 +2324,8 @@ function Ve(e) {
       (this.nativeEvent = o),
       (this.target = i),
       (this.currentTarget = null);
-    for (var s in e)
-      e.hasOwnProperty(s) && ((n = e[s]), (this[s] = n ? n(o) : o[s]));
+    for (var a in e)
+      e.hasOwnProperty(a) && ((n = e[a]), (this[a] = n ? n(o) : o[a]));
     return (
       (this.isDefaultPrevented = (
         o.defaultPrevented != null ? o.defaultPrevented : o.returnValue === !1
@@ -2979,23 +2979,23 @@ function wu(e, t) {
       var o = void 0;
       if (t)
         for (var i = r.length - 1; 0 <= i; i--) {
-          var s = r[i],
-            u = s.instance,
-            f = s.currentTarget;
-          if (((s = s.listener), u !== o && l.isPropagationStopped())) break e;
-          Ts(l, s, f), (o = u);
+          var a = r[i],
+            u = a.instance,
+            f = a.currentTarget;
+          if (((a = a.listener), u !== o && l.isPropagationStopped())) break e;
+          Ts(l, a, f), (o = u);
         }
       else
         for (i = 0; i < r.length; i++) {
           if (
-            ((s = r[i]),
-            (u = s.instance),
-            (f = s.currentTarget),
-            (s = s.listener),
+            ((a = r[i]),
+            (u = a.instance),
+            (f = a.currentTarget),
+            (a = a.listener),
             u !== o && l.isPropagationStopped())
           )
             break e;
-          Ts(l, s, f), (o = u);
+          Ts(l, a, f), (o = u);
         }
     }
   }
@@ -3053,8 +3053,8 @@ function no(e, t, n, r, l) {
       if (r === null) return;
       var i = r.tag;
       if (i === 3 || i === 4) {
-        var s = r.stateNode.containerInfo;
-        if (s === l || (s.nodeType === 8 && s.parentNode === l)) break;
+        var a = r.stateNode.containerInfo;
+        if (a === l || (a.nodeType === 8 && a.parentNode === l)) break;
         if (i === 4)
           for (i = r.return; i !== null; ) {
             var u = i.tag;
@@ -3066,13 +3066,13 @@ function no(e, t, n, r, l) {
               return;
             i = i.return;
           }
-        for (; s !== null; ) {
-          if (((i = Kt(s)), i === null)) return;
+        for (; a !== null; ) {
+          if (((i = Kt(a)), i === null)) return;
           if (((u = i.tag), u === 5 || u === 6)) {
             r = o = i;
             continue e;
           }
-          s = s.parentNode;
+          a = a.parentNode;
         }
       }
       r = r.return;
@@ -3370,16 +3370,16 @@ function sn(e) {
 }
 function Ls(e, t, n, r, l) {
   for (var o = t._reactName, i = []; n !== null && n !== r; ) {
-    var s = n,
-      u = s.alternate,
-      f = s.stateNode;
+    var a = n,
+      u = a.alternate,
+      f = a.stateNode;
     if (u !== null && u === r) break;
-    s.tag === 5 &&
+    a.tag === 5 &&
       f !== null &&
-      ((s = f),
+      ((a = f),
       l
-        ? ((u = or(n, o)), u != null && i.unshift(fr(n, u, s)))
-        : l || ((u = or(n, o)), u != null && i.push(fr(n, u, s)))),
+        ? ((u = or(n, o)), u != null && i.unshift(fr(n, u, a)))
+        : l || ((u = or(n, o)), u != null && i.push(fr(n, u, a)))),
       (n = n.return);
   }
   i.length !== 0 && e.push({ event: t, listeners: i });
@@ -3797,8 +3797,8 @@ function Fn(e, t, n) {
         t.ref._stringRef === o
         ? t.ref
         : ((t = function (i) {
-            var s = l.refs;
-            i === null ? delete s[o] : (s[o] = i);
+            var a = l.refs;
+            i === null ? delete a[o] : (a[o] = i);
           }),
           (t._stringRef = o),
           t);
@@ -3859,7 +3859,7 @@ function ju(e) {
   function i(c) {
     return e && c.alternate === null && (c.flags |= 2), c;
   }
-  function s(c, d, h, y) {
+  function a(c, d, h, y) {
     return d === null || d.tag !== 6
       ? ((d = fo(h, c.mode, y)), (d.return = c), d)
       : ((d = l(d, h)), (d.return = c), d);
@@ -3920,7 +3920,7 @@ function ju(e) {
   function m(c, d, h, y) {
     var N = d !== null ? d.key : null;
     if ((typeof h == "string" && h !== "") || typeof h == "number")
-      return N !== null ? null : s(c, d, "" + h, y);
+      return N !== null ? null : a(c, d, "" + h, y);
     if (typeof h == "object" && h !== null) {
       switch (h.$$typeof) {
         case jr:
@@ -3937,7 +3937,7 @@ function ju(e) {
   }
   function k(c, d, h, y, N) {
     if ((typeof y == "string" && y !== "") || typeof y == "number")
-      return (c = c.get(h) || null), s(d, c, "" + y, N);
+      return (c = c.get(h) || null), a(d, c, "" + y, N);
     if (typeof y == "object" && y !== null) {
       switch (y.$$typeof) {
         case jr:
@@ -4294,40 +4294,40 @@ function gl(e, t, n, r) {
   _t = !1;
   var o = l.firstBaseUpdate,
     i = l.lastBaseUpdate,
-    s = l.shared.pending;
-  if (s !== null) {
+    a = l.shared.pending;
+  if (a !== null) {
     l.shared.pending = null;
-    var u = s,
+    var u = a,
       f = u.next;
     (u.next = null), i === null ? (o = f) : (i.next = f), (i = u);
     var v = e.alternate;
     v !== null &&
       ((v = v.updateQueue),
-      (s = v.lastBaseUpdate),
-      s !== i &&
-        (s === null ? (v.firstBaseUpdate = f) : (s.next = f),
+      (a = v.lastBaseUpdate),
+      a !== i &&
+        (a === null ? (v.firstBaseUpdate = f) : (a.next = f),
         (v.lastBaseUpdate = u)));
   }
   if (o !== null) {
     var g = l.baseState;
-    (i = 0), (v = f = u = null), (s = o);
+    (i = 0), (v = f = u = null), (a = o);
     do {
-      var m = s.lane,
-        k = s.eventTime;
+      var m = a.lane,
+        k = a.eventTime;
       if ((r & m) === m) {
         v !== null &&
           (v = v.next =
             {
               eventTime: k,
               lane: 0,
-              tag: s.tag,
-              payload: s.payload,
-              callback: s.callback,
+              tag: a.tag,
+              payload: a.payload,
+              callback: a.callback,
               next: null,
             });
         e: {
           var x = e,
-            S = s;
+            S = a;
           switch (((m = t), (k = n), S.tag)) {
             case 1:
               if (((x = S.payload), typeof x == "function")) {
@@ -4351,26 +4351,26 @@ function gl(e, t, n, r) {
               _t = !0;
           }
         }
-        s.callback !== null &&
-          s.lane !== 0 &&
+        a.callback !== null &&
+          a.lane !== 0 &&
           ((e.flags |= 64),
           (m = l.effects),
-          m === null ? (l.effects = [s]) : m.push(s));
+          m === null ? (l.effects = [a]) : m.push(a));
       } else
         (k = {
           eventTime: k,
           lane: m,
-          tag: s.tag,
-          payload: s.payload,
-          callback: s.callback,
+          tag: a.tag,
+          payload: a.payload,
+          callback: a.callback,
           next: null,
         }),
           v === null ? ((f = v = k), (u = g)) : (v = v.next = k),
           (i |= m);
-      if (((s = s.next), s === null)) {
-        if (((s = l.shared.pending), s === null)) break;
-        (m = s),
-          (s = m.next),
+      if (((a = a.next), a === null)) {
+        if (((a = l.shared.pending), a === null)) break;
+        (m = a),
+          (a = m.next),
           (m.next = null),
           (l.lastBaseUpdate = m),
           (l.shared.pending = null);
@@ -4574,7 +4574,7 @@ function so(e) {
   }
   if (l !== null) {
     (o = l.next), (r = r.baseState);
-    var s = (i = null),
+    var a = (i = null),
       u = null,
       f = o;
     do {
@@ -4598,13 +4598,13 @@ function so(e) {
           eagerState: f.eagerState,
           next: null,
         };
-        u === null ? ((s = u = g), (i = r)) : (u = u.next = g),
+        u === null ? ((a = u = g), (i = r)) : (u = u.next = g),
           (ae.lanes |= v),
           (tn |= v);
       }
       f = f.next;
     } while (f !== null && f !== o);
-    u === null ? (i = r) : (u.next = s),
+    u === null ? (i = r) : (u.next = a),
       ot(r, t.memoizedState) || (ze = !0),
       (t.memoizedState = r),
       (t.baseState = i),
@@ -4849,8 +4849,8 @@ function Df(e, t, n) {
     )
       try {
         var i = t.lastRenderedState,
-          s = o(i, n);
-        if (((l.hasEagerState = !0), (l.eagerState = s), ot(s, i))) {
+          a = o(i, n);
+        if (((l.hasEagerState = !0), (l.eagerState = a), ot(a, i))) {
           var u = t.interleaved;
           u === null
             ? ((l.next = l), Ii(t))
@@ -5396,8 +5396,8 @@ function bs(e, t, n, r, l) {
     qr(e, t), qu(t, n, r), Qo(t, n, r, l), (r = !0);
   else if (e === null) {
     var i = t.stateNode,
-      s = t.memoizedProps;
-    i.props = s;
+      a = t.memoizedProps;
+    i.props = a;
     var u = i.context,
       f = n.contextType;
     typeof f == "object" && f !== null
@@ -5410,15 +5410,15 @@ function bs(e, t, n, r, l) {
     g ||
       (typeof i.UNSAFE_componentWillReceiveProps != "function" &&
         typeof i.componentWillReceiveProps != "function") ||
-      ((s !== r || u !== f) && Ks(t, i, r, f)),
+      ((a !== r || u !== f) && Ks(t, i, r, f)),
       (_t = !1);
     var m = t.memoizedState;
     (i.state = m),
       gl(t, r, i, l),
       (u = t.memoizedState),
-      s !== r || m !== u || Ie.current || _t
+      a !== r || m !== u || Ie.current || _t
         ? (typeof v == "function" && (Go(t, n, v, r), (u = t.memoizedState)),
-          (s = _t || Qs(t, n, s, r, m, u, f))
+          (a = _t || Qs(t, n, a, r, m, u, f))
             ? (g ||
                 (typeof i.UNSAFE_componentWillMount != "function" &&
                   typeof i.componentWillMount != "function") ||
@@ -5433,14 +5433,14 @@ function bs(e, t, n, r, l) {
           (i.props = r),
           (i.state = u),
           (i.context = f),
-          (r = s))
+          (r = a))
         : (typeof i.componentDidMount == "function" && (t.flags |= 4194308),
           (r = !1));
   } else {
     (i = t.stateNode),
       Pu(e, t),
-      (s = t.memoizedProps),
-      (f = t.type === t.elementType ? s : et(t.type, s)),
+      (a = t.memoizedProps),
+      (f = t.type === t.elementType ? a : et(t.type, a)),
       (i.props = f),
       (g = t.pendingProps),
       (m = i.context),
@@ -5454,13 +5454,13 @@ function bs(e, t, n, r, l) {
       typeof i.getSnapshotBeforeUpdate == "function") ||
       (typeof i.UNSAFE_componentWillReceiveProps != "function" &&
         typeof i.componentWillReceiveProps != "function") ||
-      ((s !== g || m !== u) && Ks(t, i, r, u)),
+      ((a !== g || m !== u) && Ks(t, i, r, u)),
       (_t = !1),
       (m = t.memoizedState),
       (i.state = m),
       gl(t, r, i, l);
     var x = t.memoizedState;
-    s !== g || m !== x || Ie.current || _t
+    a !== g || m !== x || Ie.current || _t
       ? (typeof k == "function" && (Go(t, n, k, r), (x = t.memoizedState)),
         (f = _t || Qs(t, n, f, r, m, x, u) || !1)
           ? (v ||
@@ -5473,10 +5473,10 @@ function bs(e, t, n, r, l) {
             typeof i.componentDidUpdate == "function" && (t.flags |= 4),
             typeof i.getSnapshotBeforeUpdate == "function" && (t.flags |= 1024))
           : (typeof i.componentDidUpdate != "function" ||
-              (s === e.memoizedProps && m === e.memoizedState) ||
+              (a === e.memoizedProps && m === e.memoizedState) ||
               (t.flags |= 4),
             typeof i.getSnapshotBeforeUpdate != "function" ||
-              (s === e.memoizedProps && m === e.memoizedState) ||
+              (a === e.memoizedProps && m === e.memoizedState) ||
               (t.flags |= 1024),
             (t.memoizedProps = r),
             (t.memoizedState = x)),
@@ -5485,10 +5485,10 @@ function bs(e, t, n, r, l) {
         (i.context = u),
         (r = f))
       : (typeof i.componentDidUpdate != "function" ||
-          (s === e.memoizedProps && m === e.memoizedState) ||
+          (a === e.memoizedProps && m === e.memoizedState) ||
           (t.flags |= 4),
         typeof i.getSnapshotBeforeUpdate != "function" ||
-          (s === e.memoizedProps && m === e.memoizedState) ||
+          (a === e.memoizedProps && m === e.memoizedState) ||
           (t.flags |= 1024),
         (r = !1));
   }
@@ -5499,13 +5499,13 @@ function Xo(e, t, n, r, l, o) {
   var i = (t.flags & 128) !== 0;
   if (!r && !i) return l && $s(t, n, !1), St(e, t, o);
   (r = t.stateNode), (zf.current = t);
-  var s =
+  var a =
     i && typeof n.getDerivedStateFromError != "function" ? null : r.render();
   return (
     (t.flags |= 1),
     e !== null && i
-      ? ((t.child = Dn(t, e.child, null, o)), (t.child = Dn(t, null, s, o)))
-      : je(e, t, s, o),
+      ? ((t.child = Dn(t, e.child, null, o)), (t.child = Dn(t, null, a, o)))
+      : je(e, t, a, o),
     (t.memoizedState = r.state),
     l && $s(t, n, !0),
     t.child
@@ -5530,11 +5530,11 @@ function lc(e, t, n) {
     l = se.current,
     o = !1,
     i = (t.flags & 128) !== 0,
-    s;
+    a;
   if (
-    ((s = i) ||
-      (s = e !== null && e.memoizedState === null ? !1 : (l & 2) !== 0),
-    s
+    ((a = i) ||
+      (a = e !== null && e.memoizedState === null ? !1 : (l & 2) !== 0),
+    a
       ? ((o = !0), (t.flags &= -129))
       : (e === null || e.memoizedState !== null) && (l |= 1),
     re(se, l & 1),
@@ -5569,10 +5569,10 @@ function lc(e, t, n) {
               e)
             : Gi(t, i))
     );
-  if (((l = e.memoizedState), l !== null && ((s = l.dehydrated), s !== null)))
-    return If(e, t, i, r, s, l, n);
+  if (((l = e.memoizedState), l !== null && ((a = l.dehydrated), a !== null)))
+    return If(e, t, i, r, a, l, n);
   if (o) {
-    (o = r.fallback), (i = t.mode), (l = e.child), (s = l.sibling);
+    (o = r.fallback), (i = t.mode), (l = e.child), (a = l.sibling);
     var u = { mode: "hidden", children: r.children };
     return (
       !(i & 1) && t.child !== l
@@ -5581,7 +5581,7 @@ function lc(e, t, n) {
           (r.pendingProps = u),
           (t.deletions = null))
         : ((r = At(l, u)), (r.subtreeFlags = l.subtreeFlags & 14680064)),
-      s !== null ? (o = At(s, o)) : ((o = qt(o, i, n, null)), (o.flags |= 2)),
+      a !== null ? (o = At(a, o)) : ((o = qt(o, i, n, null)), (o.flags |= 2)),
       (o.return = t),
       (r.return = t),
       (r.sibling = o),
@@ -5656,10 +5656,10 @@ function If(e, t, n, r, l, o, i) {
         o);
   if (!(t.mode & 1)) return Ur(e, t, i, null);
   if (l.data === "$!") {
-    if (((r = l.nextSibling && l.nextSibling.dataset), r)) var s = r.dgst;
-    return (r = s), (o = Error(_(419))), (r = uo(o, r, void 0)), Ur(e, t, i, r);
+    if (((r = l.nextSibling && l.nextSibling.dataset), r)) var a = r.dgst;
+    return (r = a), (o = Error(_(419))), (r = uo(o, r, void 0)), Ur(e, t, i, r);
   }
-  if (((s = (i & e.childLanes) !== 0), ze || s)) {
+  if (((a = (i & e.childLanes) !== 0), ze || a)) {
     if (((r = xe), r !== null)) {
       switch (i & -i) {
         case 4:
@@ -5924,8 +5924,8 @@ sc = function (e, t, n, r) {
     for (f in l)
       if (!r.hasOwnProperty(f) && l.hasOwnProperty(f) && l[f] != null)
         if (f === "style") {
-          var s = l[f];
-          for (i in s) s.hasOwnProperty(i) && (n || (n = {}), (n[i] = ""));
+          var a = l[f];
+          for (i in a) a.hasOwnProperty(i) && (n || (n = {}), (n[i] = ""));
         } else
           f !== "dangerouslySetInnerHTML" &&
             f !== "children" &&
@@ -5938,25 +5938,25 @@ sc = function (e, t, n, r) {
     for (f in r) {
       var u = r[f];
       if (
-        ((s = l != null ? l[f] : void 0),
-        r.hasOwnProperty(f) && u !== s && (u != null || s != null))
+        ((a = l != null ? l[f] : void 0),
+        r.hasOwnProperty(f) && u !== a && (u != null || a != null))
       )
         if (f === "style")
-          if (s) {
-            for (i in s)
-              !s.hasOwnProperty(i) ||
+          if (a) {
+            for (i in a)
+              !a.hasOwnProperty(i) ||
                 (u && u.hasOwnProperty(i)) ||
                 (n || (n = {}), (n[i] = ""));
             for (i in u)
               u.hasOwnProperty(i) &&
-                s[i] !== u[i] &&
+                a[i] !== u[i] &&
                 (n || (n = {}), (n[i] = u[i]));
           } else n || (o || (o = []), o.push(f, n)), (n = u);
         else
           f === "dangerouslySetInnerHTML"
             ? ((u = u ? u.__html : void 0),
-              (s = s ? s.__html : void 0),
-              u != null && s !== u && (o = o || []).push(f, u))
+              (a = a ? a.__html : void 0),
+              u != null && a !== u && (o = o || []).push(f, u))
             : f === "children"
             ? (typeof u != "string" && typeof u != "number") ||
               (o = o || []).push(f, "" + u)
@@ -5964,7 +5964,7 @@ sc = function (e, t, n, r) {
               f !== "suppressHydrationWarning" &&
               (rr.hasOwnProperty(f)
                 ? (u != null && f === "onScroll" && le("scroll", e),
-                  o || s === u || (o = []))
+                  o || a === u || (o = []))
                 : (o = o || []).push(f, u));
     }
     n && (o = o || []).push("style", n);
@@ -6101,20 +6101,20 @@ function Af(e, t, n) {
           _o(n, o), (l = null);
           for (var i in o)
             if (o.hasOwnProperty(i)) {
-              var s = o[i];
+              var a = o[i];
               i === "children"
-                ? typeof s == "string"
-                  ? r.textContent !== s &&
+                ? typeof a == "string"
+                  ? r.textContent !== a &&
                     (o.suppressHydrationWarning !== !0 &&
-                      Or(r.textContent, s, e),
-                    (l = ["children", s]))
-                  : typeof s == "number" &&
-                    r.textContent !== "" + s &&
+                      Or(r.textContent, a, e),
+                    (l = ["children", a]))
+                  : typeof a == "number" &&
+                    r.textContent !== "" + a &&
                     (o.suppressHydrationWarning !== !0 &&
-                      Or(r.textContent, s, e),
-                    (l = ["children", "" + s]))
+                      Or(r.textContent, a, e),
+                    (l = ["children", "" + a]))
                 : rr.hasOwnProperty(i) &&
-                  s != null &&
+                  a != null &&
                   i === "onScroll" &&
                   le("scroll", r);
             }
@@ -6196,10 +6196,10 @@ function Af(e, t, n) {
               default:
                 l = r;
             }
-            _o(n, l), (s = l);
-            for (o in s)
-              if (s.hasOwnProperty(o)) {
-                var u = s[o];
+            _o(n, l), (a = l);
+            for (o in a)
+              if (a.hasOwnProperty(o)) {
+                var u = a[o];
                 o === "style"
                   ? Ua(e, u)
                   : o === "dangerouslySetInnerHTML"
@@ -6521,7 +6521,7 @@ function Bf(e, t) {
             break e;
           }
           var i = 0,
-            s = -1,
+            a = -1,
             u = -1,
             f = 0,
             v = 0,
@@ -6530,7 +6530,7 @@ function Bf(e, t) {
           t: for (;;) {
             for (
               var k;
-              g !== n || (l !== 0 && g.nodeType !== 3) || (s = i + l),
+              g !== n || (l !== 0 && g.nodeType !== 3) || (a = i + l),
                 g !== o || (r !== 0 && g.nodeType !== 3) || (u = i + r),
                 g.nodeType === 3 && (i += g.nodeValue.length),
                 (k = g.firstChild) !== null;
@@ -6540,7 +6540,7 @@ function Bf(e, t) {
             for (;;) {
               if (g === e) break t;
               if (
-                (m === n && ++f === l && (s = i),
+                (m === n && ++f === l && (a = i),
                 m === o && ++v === r && (u = i),
                 (k = g.nextSibling) !== null)
               )
@@ -6549,7 +6549,7 @@ function Bf(e, t) {
             }
             g = k;
           }
-          n = s === -1 || u === -1 ? null : { start: s, end: u };
+          n = a === -1 || u === -1 ? null : { start: a, end: u };
         } else n = null;
       }
     n = n || { start: 0, end: 0 };
@@ -6787,8 +6787,8 @@ function dc(e, t, n) {
           (r.props = n.memoizedProps),
             (r.state = n.memoizedState),
             r.componentWillUnmount();
-        } catch (s) {
-          ce(n, t, s);
+        } catch (a) {
+          ce(n, t, a);
         }
       kt(e, t, n);
       break;
@@ -6824,20 +6824,20 @@ function be(e, t) {
       try {
         var o = e,
           i = t,
-          s = i;
-        e: for (; s !== null; ) {
-          switch (s.tag) {
+          a = i;
+        e: for (; a !== null; ) {
+          switch (a.tag) {
             case 5:
-              (we = s.stateNode), (tt = !1);
+              (we = a.stateNode), (tt = !1);
               break e;
             case 3:
-              (we = s.stateNode.containerInfo), (tt = !0);
+              (we = a.stateNode.containerInfo), (tt = !0);
               break e;
             case 4:
-              (we = s.stateNode.containerInfo), (tt = !0);
+              (we = a.stateNode.containerInfo), (tt = !0);
               break e;
           }
-          s = s.return;
+          a = a.return;
         }
         if (we === null) throw Error(_(160));
         dc(o, i, l), (we = null), (tt = !1);
@@ -6891,13 +6891,13 @@ function fc(e, t) {
       if (r & 4 && ((l = e.stateNode), l != null)) {
         var o = e.memoizedProps,
           i = n !== null ? n.memoizedProps : o,
-          s = e.type,
+          a = e.type,
           u = e.updateQueue;
         if (((e.updateQueue = null), u !== null))
           try {
-            s === "input" && o.type === "radio" && o.name != null && za(l, o),
-              Mo(s, i);
-            var f = Mo(s, o);
+            a === "input" && o.type === "radio" && o.name != null && za(l, o),
+              Mo(a, i);
+            var f = Mo(a, o);
             for (i = 0; i < u.length; i += 2) {
               var v = u[i],
                 g = u[i + 1];
@@ -6909,7 +6909,7 @@ function fc(e, t) {
                 ? lr(l, g)
                 : mi(l, v, g, f);
             }
-            switch (s) {
+            switch (a) {
               case "input":
                 So(l, o);
                 break;
@@ -7028,13 +7028,13 @@ function fc(e, t) {
                       typeof o.setProperty == "function"
                         ? o.setProperty("display", "none", "important")
                         : (o.display = "none"))
-                    : ((s = g.stateNode),
+                    : ((a = g.stateNode),
                       (u = g.memoizedProps.style),
                       (i =
                         u != null && u.hasOwnProperty("display")
                           ? u.display
                           : null),
-                      (s.style.display = $a("display", i)));
+                      (a.style.display = $a("display", i)));
               } catch (S) {
                 ce(e, e.return, S);
               }
@@ -7097,8 +7097,8 @@ function st(e) {
         case 3:
         case 4:
           var i = r.stateNode.containerInfo,
-            s = ra(e);
-          ti(e, s, i);
+            a = ra(e);
+          ti(e, a, i);
           break;
         default:
           throw Error(_(161));
@@ -7120,9 +7120,9 @@ function pc(e, t, n) {
     if (l.tag === 22 && r) {
       var i = l.memoizedState !== null || Br;
       if (!i) {
-        var s = l.alternate,
-          u = (s !== null && s.memoizedState !== null) || _e;
-        s = Br;
+        var a = l.alternate,
+          u = (a !== null && a.memoizedState !== null) || _e;
+        a = Br;
         var f = _e;
         if (((Br = i), (_e = u) && !f))
           for (I = l; I !== null; )
@@ -7134,7 +7134,7 @@ function pc(e, t, n) {
                 ? ((u.return = i), (I = u))
                 : sa(l);
         for (; o !== null; ) (I = o), pc(o), (o = o.sibling);
-        (I = l), (Br = s), (_e = f);
+        (I = l), (Br = a), (_e = f);
       }
       oa(e);
     } else
@@ -7187,9 +7187,9 @@ function oa(e) {
               }
               break;
             case 5:
-              var s = t.stateNode;
+              var a = t.stateNode;
               if (n === null && t.flags & 4) {
-                n = s;
+                n = a;
                 var u = t.memoizedProps;
                 switch (t.type) {
                   case "button":
@@ -7309,9 +7309,9 @@ function sa(e) {
       I = null;
       break;
     }
-    var s = t.sibling;
-    if (s !== null) {
-      (s.return = t.return), (I = s);
+    var a = t.sibling;
+    if (a !== null) {
+      (a.return = t.return), (I = a);
       break;
     }
     I = t.return;
@@ -7421,8 +7421,8 @@ function hc(e, t) {
       try {
         Gf();
         break;
-      } catch (s) {
-        mc(e, s);
+      } catch (a) {
+        mc(e, a);
       }
     while (!0);
     Li(),
@@ -7691,15 +7691,15 @@ function mc(e, t) {
       e: {
         var o = e,
           i = n.return,
-          s = n,
+          a = n,
           u = t;
         if (
           ((t = Se),
-          (s.flags |= 32768),
+          (a.flags |= 32768),
           u !== null && typeof u == "object" && typeof u.then == "function")
         ) {
           var f = u,
-            v = s,
+            v = a,
             g = v.tag;
           if (!(v.mode & 1) && (g === 0 || g === 11 || g === 15)) {
             var m = v.alternate;
@@ -7712,7 +7712,7 @@ function mc(e, t) {
           var k = Xs(i);
           if (k !== null) {
             (k.flags &= -257),
-              Js(k, i, s, o, t),
+              Js(k, i, a, o, t),
               k.mode & 1 && Ys(o, f, t),
               (t = k),
               (u = f);
@@ -7729,16 +7729,16 @@ function mc(e, t) {
             }
             u = Error(_(426));
           }
-        } else if (ie && s.mode & 1) {
+        } else if (ie && a.mode & 1) {
           var O = Xs(i);
           if (O !== null) {
             !(O.flags & 65536) && (O.flags |= 256),
-              Js(O, i, s, o, t),
-              Ri(Rn(u, s));
+              Js(O, i, a, o, t),
+              Ri(Rn(u, a));
             break e;
           }
         }
-        (o = u = Rn(u, s)),
+        (o = u = Rn(u, a)),
           ye !== 4 && (ye = 2),
           tr === null ? (tr = [o]) : tr.push(o),
           (o = i);
@@ -7750,7 +7750,7 @@ function mc(e, t) {
               Hs(o, c);
               break e;
             case 1:
-              s = u;
+              a = u;
               var d = o.type,
                 h = o.stateNode;
               if (
@@ -7761,7 +7761,7 @@ function mc(e, t) {
                     (It === null || !It.has(h))))
               ) {
                 (o.flags |= 65536), (t &= -t), (o.lanes |= t);
-                var y = bu(o, s, t);
+                var y = bu(o, a, t);
                 Hs(o, y);
                 break e;
               }
@@ -7876,7 +7876,7 @@ function Qf(e, t, n, r) {
     (o = Xe.transition), (Xe.transition = null);
     var i = te;
     te = 1;
-    var s = Z;
+    var a = Z;
     (Z |= 4),
       (Qi.current = null),
       Bf(e, n),
@@ -7887,7 +7887,7 @@ function Qf(e, t, n, r) {
       (e.current = n),
       Ff(n),
       gd(),
-      (Z = s),
+      (Z = a),
       (te = i),
       (Xe.transition = o);
   } else e.current = n;
@@ -7925,10 +7925,10 @@ function _n() {
           var o = I,
             i = o.child;
           if (I.flags & 16) {
-            var s = o.deletions;
-            if (s !== null) {
-              for (var u = 0; u < s.length; u++) {
-                var f = s[u];
+            var a = o.deletions;
+            if (a !== null) {
+              for (var u = 0; u < a.length; u++) {
+                var f = a[u];
                 for (I = f; I !== null; ) {
                   var v = I;
                   switch (v.tag) {
@@ -7995,27 +7995,27 @@ function _n() {
           if (i.subtreeFlags & 2064 && h !== null) (h.return = i), (I = h);
           else
             e: for (i = d; I !== null; ) {
-              if (((s = I), s.flags & 2048))
+              if (((a = I), a.flags & 2048))
                 try {
-                  switch (s.tag) {
+                  switch (a.tag) {
                     case 0:
                     case 11:
                     case 15:
-                      zl(9, s);
+                      zl(9, a);
                   }
                 } catch (N) {
-                  ce(s, s.return, N);
+                  ce(a, a.return, N);
                 }
-              if (s === i) {
+              if (a === i) {
                 I = null;
                 break e;
               }
-              var y = s.sibling;
+              var y = a.sibling;
               if (y !== null) {
-                (y.return = s.return), (I = y);
+                (y.return = a.return), (I = y);
                 break e;
               }
-              I = s.return;
+              I = a.return;
             }
         }
         if (
@@ -8290,10 +8290,10 @@ wc = function (e, t, n) {
             }
           } else
             for (o = t.child, o !== null && (o.return = t); o !== null; ) {
-              var s = o.dependencies;
-              if (s !== null) {
+              var a = o.dependencies;
+              if (a !== null) {
                 i = o.child;
-                for (var u = s.firstContext; u !== null; ) {
+                for (var u = a.firstContext; u !== null; ) {
                   if (u.context === r) {
                     if (o.tag === 1) {
                       (u = yt(-1, n & -n)), (u.tag = 2);
@@ -8311,7 +8311,7 @@ wc = function (e, t, n) {
                       (u = o.alternate),
                       u !== null && (u.lanes |= n),
                       Wo(o.return, n, t),
-                      (s.lanes |= n);
+                      (a.lanes |= n);
                     break;
                   }
                   u = u.next;
@@ -8320,8 +8320,8 @@ wc = function (e, t, n) {
               else if (o.tag === 18) {
                 if (((i = o.return), i === null)) throw Error(_(341));
                 (i.lanes |= n),
-                  (s = i.alternate),
-                  s !== null && (s.lanes |= n),
+                  (a = i.alternate),
+                  a !== null && (a.lanes |= n),
                   Wo(i, n, t),
                   (i = o.sibling);
               } else i = o.child;
@@ -8554,9 +8554,9 @@ function Zf(e, t, n, r, l) {
     (this.onRecoverableError = l),
     (this.mutableSourceEagerHydrationData = null);
 }
-function bi(e, t, n, r, l, o, i, s, u) {
+function bi(e, t, n, r, l, o, i, a, u) {
   return (
-    (e = new Zf(e, t, n, s, u)),
+    (e = new Zf(e, t, n, a, u)),
     t === 1 ? ((t = 1), o === !0 && (t |= 8)) : (t = 0),
     (o = Ye(3, null, null, t)),
     (e.current = o),
@@ -8609,9 +8609,9 @@ function Cc(e) {
   }
   return t;
 }
-function kc(e, t, n, r, l, o, i, s, u) {
+function kc(e, t, n, r, l, o, i, a, u) {
   return (
-    (e = bi(n, r, !0, e, l, o, i, s, u)),
+    (e = bi(n, r, !0, e, l, o, i, a, u)),
     (e.context = Cc(null)),
     (n = e.current),
     (r = Ee()),
@@ -8731,10 +8731,10 @@ function tp(e, t, n, r, l) {
   }
   for (; (l = e.lastChild); ) e.removeChild(l);
   if (typeof r == "function") {
-    var s = r;
+    var a = r;
     r = function () {
       var f = Nl(u);
-      s.call(f);
+      a.call(f);
     };
   }
   var u = bi(e, 0, !1, null, null, !1, !1, "", da);
@@ -8753,10 +8753,10 @@ function Bl(e, t, n, r, l) {
   if (o) {
     var i = o;
     if (typeof l == "function") {
-      var s = l;
+      var a = l;
       l = function () {
         var u = Nl(i);
-        s.call(u);
+        a.call(u);
       };
     }
     Al(t, i, e, l);
@@ -8996,7 +8996,7 @@ const jc = j.createContext(void 0),
     const [t, n] = j.useState(!1),
       [r, l] = j.useState(null),
       [o, i] = j.useState(null),
-      [s, u] = j.useState("medicine"),
+      [a, u] = j.useState("medicine"),
       [f, v] = j.useState(0),
       [g, m] = j.useState({ message: "", type: "success", isVisible: !1 }),
       [k, x] = j.useState(!1),
@@ -9052,7 +9052,7 @@ const jc = j.createContext(void 0),
       U = () => {
         D(!1), F(null);
       },
-      J = (Y) => {
+      q = (Y) => {
         me(Y), Ge(!0);
       },
       ee = () => {
@@ -9067,10 +9067,10 @@ const jc = j.createContext(void 0),
       H = (Y) => {
         V(Y), A(!0);
       },
-      q = () => {
+      J = () => {
         A(!1), V(null);
       };
-    return a.jsx(jc.Provider, {
+    return s.jsx(jc.Provider, {
       value: {
         sidebarOpen: t,
         setSidebarOpen: n,
@@ -9078,7 +9078,7 @@ const jc = j.createContext(void 0),
         setSelectedDepartmentType: l,
         apiDepartmentData: o,
         setApiDepartmentData: i,
-        viewMode: s,
+        viewMode: a,
         setViewMode: u,
         refreshTrigger: f,
         triggerRefresh: G,
@@ -9112,7 +9112,7 @@ const jc = j.createContext(void 0),
         setAddParentContainerModalOpen: Ge,
         selectedDepartmentForAdd: Ze,
         setSelectedDepartmentForAdd: me,
-        openAddParentContainerModal: J,
+        openAddParentContainerModal: q,
         closeAddParentContainerModal: ee,
         addShelfDrawContainerModalOpen: it,
         setAddShelfDrawContainerModalOpen: w,
@@ -9125,7 +9125,7 @@ const jc = j.createContext(void 0),
         selectedParentContainerForAdd: K,
         setSelectedParentContainerForAdd: V,
         openAddSubContainerModal: H,
-        closeAddSubContainerModal: q,
+        closeAddSubContainerModal: J,
       },
       children: e,
     });
@@ -9305,7 +9305,7 @@ const jc = j.createContext(void 0),
   sp = ({ children: e }) => {
     const [t, n] = j.useState("zh-TW"),
       r = (l) => ip[t][l] || l;
-    return a.jsx(Ec.Provider, {
+    return s.jsx(Ec.Provider, {
       value: { language: t, setLanguage: n, t: r },
       children: e,
     });
@@ -9340,7 +9340,7 @@ const jc = j.createContext(void 0),
         const i = t[`med_${o}`];
         return i ? i.END_QTY : null;
       };
-    return a.jsx(Dc.Provider, {
+    return s.jsx(Dc.Provider, {
       value: {
         inventoryData: t,
         setInventoryData: n,
@@ -9390,7 +9390,7 @@ const jc = j.createContext(void 0),
           size: l = 24,
           strokeWidth: o = 2,
           absoluteStrokeWidth: i,
-          className: s = "",
+          className: a = "",
           children: u,
           ...f
         },
@@ -9405,7 +9405,7 @@ const jc = j.createContext(void 0),
             height: l,
             stroke: r,
             strokeWidth: i ? (Number(o) * 24) / Number(l) : o,
-            className: ["lucide", `lucide-${cp(e)}`, s].join(" "),
+            className: ["lucide", `lucide-${cp(e)}`, a].join(" "),
             ...f,
           },
           [
@@ -9601,26 +9601,26 @@ const jc = j.createContext(void 0),
   Sp = () => {
     const { sidebarOpen: e, setSidebarOpen: t } = on(),
       { t: n } = Vt();
-    return a.jsx("div", {
+    return s.jsx("div", {
       className: "fixed top-4 left-4 z-30",
-      children: a.jsx("nav", {
+      children: s.jsx("nav", {
         className:
           "bg-white/95 backdrop-blur-sm border border-gray-200/50 rounded-xl shadow-lg px-2 py-1",
-        children: a.jsxs("div", {
+        children: s.jsxs("div", {
           className: "flex items-center",
           children: [
-            a.jsx("div", {
+            s.jsx("div", {
               className: "ml-2 text-lg font-semibold text-gray-900",
               children: n("nav.title"),
             }),
-            a.jsx("button", {
+            s.jsx("button", {
               onClick: () => t(!e),
               className:
                 "ml-8 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors",
               title: n(e ? "nav.collapseSidebar" : "nav.expandSidebar"),
               children: e
-                ? a.jsx(pa, { className: "w-6 h-6" })
-                : a.jsx(pa, { className: "w-6 h-6" }),
+                ? s.jsx(pa, { className: "w-6 h-6" })
+                : s.jsx(pa, { className: "w-6 h-6" }),
             }),
           ],
         }),
@@ -9636,33 +9636,33 @@ const jc = j.createContext(void 0),
         window.parent !== window &&
           window.parent.postMessage({ type: "CLOSE_IFRAME" }, "*");
       };
-    return a.jsx("div", {
+    return s.jsx("div", {
       className:
         "fixed sm:bottom-4 sm:top-auto sm:left-auto sm:right-8 top-20 bottom-auto right-auto left-4 z-30",
-      children: a.jsxs("div", {
+      children: s.jsxs("div", {
         className:
           "bg-white/95 backdrop-blur-sm border border-gray-200/50 rounded-xl shadow-lg px-3 py-2 flex items-center gap-2",
         children: [
-          a.jsxs("button", {
+          s.jsxs("button", {
             onClick: r,
             className:
               "flex items-center space-x-2 px-3 py-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors",
             children: [
-              a.jsx(mp, { className: "w-4 h-4" }),
-              a.jsx("span", {
+              s.jsx(mp, { className: "w-4 h-4" }),
+              s.jsx("span", {
                 className: "text-sm font-medium",
                 children: n("topbar.language"),
               }),
             ],
           }),
-          a.jsx("div", { className: "w-px h-6 bg-gray-300" }),
-          a.jsxs("button", {
+          s.jsx("div", { className: "w-px h-6 bg-gray-300" }),
+          s.jsxs("button", {
             onClick: l,
             className:
               "flex items-center space-x-2 px-3 py-1.5 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors",
             children: [
-              a.jsx(wr, { className: "w-4 h-4" }),
-              a.jsx("span", {
+              s.jsx(wr, { className: "w-4 h-4" }),
+              s.jsx("span", {
                 className: "text-sm font-medium",
                 children: "關閉",
               }),
@@ -9904,10 +9904,10 @@ class Np {
       return (
         Array.isArray(t.medMap_Section) &&
           t.medMap_Section.forEach((o, i) => {
-            let s;
+            let a;
             o.absolute_position
-              ? (s = o.absolute_position.split(","))
-              : (s = [0, 0]),
+              ? (a = o.absolute_position.split(","))
+              : (a = [0, 0]),
               (l.contents[i] = {
                 GUID: o.GUID,
                 MASTER_GUID: o.Master_GUID,
@@ -9915,7 +9915,7 @@ class Np {
                 type: "parent_container",
                 class: 1,
                 gird_position: o.position,
-                position: { x: s[0], y: s[1] },
+                position: { x: a[0], y: a[1] },
                 serverName: t.sys_ServerSetting.name,
                 serverType: t.sys_ServerSetting.type,
                 contents: [],
@@ -10079,7 +10079,7 @@ class Np {
     } else return {};
   }
   convertSingleComponent(t, n, r) {
-    var o, i, s, u, f;
+    var o, i, a, u, f;
     const l = {
       GUID: t.GUID || t.guid || `comp_${n}_${Date.now()}`,
       type: this.mapComponentType(t.type || t.component_type || "unknown"),
@@ -10090,7 +10090,7 @@ class Np {
       },
       dimensions: {
         width:
-          ((s = t.dimensions) == null ? void 0 : s.width) || t.width || 180,
+          ((a = t.dimensions) == null ? void 0 : a.width) || t.width || 180,
         height:
           ((u = t.dimensions) == null ? void 0 : u.height) || t.height || 120,
         depth: ((f = t.dimensions) == null ? void 0 : f.depth) || t.depth || 30,
@@ -10199,7 +10199,7 @@ const ho = new Np(),
         isLoadingMedMap: o,
         setIsLoadingMedMap: i,
       } = on(),
-      { t: s } = Vt(),
+      { t: a } = Vt(),
       [u, f] = j.useState(new Set()),
       [v, g] = j.useState([]),
       [m, k] = j.useState(!0),
@@ -10254,78 +10254,78 @@ const ho = new Np(),
           i(!1);
         }
       };
-    return a.jsxs(a.Fragment, {
+    return s.jsxs(s.Fragment, {
       children: [
         e &&
-          a.jsx("div", {
+          s.jsx("div", {
             className:
               "fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden",
             onClick: () => t(!1),
           }),
-        a.jsx("div", {
+        s.jsx("div", {
           className: `fixed w-80 bg-white/95 backdrop-blur-sm shadow-xl border border-gray-200/50 z-50 transform transition-all duration-300 ease-in-out h-screen h-svh ${
             e ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
           }`,
-          children: a.jsxs("div", {
+          children: s.jsxs("div", {
             className: "flex flex-col h-screen h-svh",
             children: [
-              a.jsx("div", {
+              s.jsx("div", {
                 className:
                   "flex-shrink-0 px-4 py-2 border-b border-gray-200/50",
-                children: a.jsxs("div", {
+                children: s.jsxs("div", {
                   className: "flex items-center justify-between",
                   children: [
-                    a.jsxs("div", {
+                    s.jsxs("div", {
                       className: "flex items-center space-x-3",
                       children: [
-                        a.jsx("a", {
+                        s.jsx("a", {
                           href: "../front_page",
                           className:
                             "text-gray-600 hover:text-gray-900 transition-colors p-2 rounded-lg hover:bg-gray-100/50",
-                          title: s("nav.home"),
-                          children: a.jsx(Pc, { className: "w-5 h-5" }),
+                          title: a("nav.home"),
+                          children: s.jsx(Pc, { className: "w-5 h-5" }),
                         }),
-                        a.jsx("h1", {
+                        s.jsx("h1", {
                           className: "text-lg font-semibold text-gray-900",
-                          children: s("sidebar.drugMap"),
+                          children: a("sidebar.drugMap"),
                         }),
                       ],
                     }),
-                    a.jsx("button", {
+                    s.jsx("button", {
                       onClick: () => t(!e),
                       className:
                         "p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-lg transition-colors",
-                      title: s("sidebar.closeSidebar"),
-                      children: a.jsx(yp, { className: "w-6 h-6" }),
+                      title: a("sidebar.closeSidebar"),
+                      children: s.jsx(yp, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
               }),
-              a.jsx("div", {
+              s.jsx("div", {
                 className: "flex-1 overflow-y-auto p-4",
                 children: m
-                  ? a.jsx("div", {
+                  ? s.jsx("div", {
                       className: "flex items-center justify-center py-8",
-                      children: a.jsx("div", {
+                      children: s.jsx("div", {
                         className: "text-gray-500",
                         children: "Loading departments...",
                       }),
                     })
-                  : a.jsxs("div", {
+                  : s.jsxs("div", {
                       className: "space-y-2",
                       children: [
-                        a.jsx("h3", {
+                        s.jsx("h3", {
                           className:
                             "text-base font-semibold text-gray-700 mb-4",
-                          children: s("sidebar.departmentCategories"),
+                          children: a("sidebar.departmentCategories"),
                         }),
                         Object.entries(O).map(([y, N]) =>
-                          a.jsxs(
+                          s.jsxs(
                             "div",
                             {
                               className: "space-y-1",
                               children: [
-                                a.jsxs("button", {
+                                s.jsxs("button", {
                                   disabled: o,
                                   onClick: () => c(y),
                                   className: `w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 border ${
@@ -10336,45 +10336,45 @@ const ho = new Np(),
                                     o ? "opacity-50 cursor-not-allowed" : ""
                                   }`,
                                   children: [
-                                    a.jsxs("div", {
+                                    s.jsxs("div", {
                                       className: "flex items-center space-x-3",
                                       children: [
                                         y === "B1F"
-                                          ? a.jsx(dp, { className: "w-4 h-4" })
-                                          : a.jsx(xp, { className: "w-4 h-4" }),
-                                        a.jsxs("div", {
+                                          ? s.jsx(dp, { className: "w-4 h-4" })
+                                          : s.jsx(xp, { className: "w-4 h-4" }),
+                                        s.jsxs("div", {
                                           className: "text-left",
                                           children: [
-                                            a.jsx("div", {
+                                            s.jsx("div", {
                                               className: "font-medium",
                                               children: y,
                                             }),
-                                            a.jsxs("div", {
+                                            s.jsxs("div", {
                                               className:
                                                 "text-xs text-gray-500",
                                               children: [
                                                 N.length,
                                                 " ",
-                                                s("sidebar.departments"),
+                                                a("sidebar.departments"),
                                               ],
                                             }),
                                           ],
                                         }),
                                       ],
                                     }),
-                                    a.jsx("div", {
+                                    s.jsx("div", {
                                       className: "p-1",
                                       children: u.has(y)
-                                        ? a.jsx(pp, { className: "w-4 h-4" })
-                                        : a.jsx(hp, { className: "w-4 h-4" }),
+                                        ? s.jsx(pp, { className: "w-4 h-4" })
+                                        : s.jsx(hp, { className: "w-4 h-4" }),
                                     }),
                                   ],
                                 }),
                                 u.has(y) &&
-                                  a.jsx("div", {
+                                  s.jsx("div", {
                                     className: "ml-4 space-y-1",
                                     children: N.map((M) =>
-                                      a.jsx(
+                                      s.jsx(
                                         "button",
                                         {
                                           disabled: o,
@@ -10388,16 +10388,16 @@ const ho = new Np(),
                                               ? "opacity-50 cursor-not-allowed"
                                               : "cursor-pointer"
                                           }`,
-                                          children: a.jsxs("div", {
+                                          children: s.jsxs("div", {
                                             className:
                                               "flex items-center justify-between",
                                             children: [
-                                              a.jsx("div", {
+                                              s.jsx("div", {
                                                 className:
                                                   "font-medium text-sm",
                                                 children: M.name,
                                               }),
-                                              a.jsx("span", {
+                                              s.jsx("span", {
                                                 className: `text-xs px-2 py-0.5 rounded-full ${
                                                   M.type === "調劑台"
                                                     ? "bg-green-100 text-green-800"
@@ -10428,12 +10428,12 @@ const ho = new Np(),
   },
   Mp = () => {
     const { t: e } = Vt();
-    return a.jsx("div", {
+    return s.jsx("div", {
       className: "fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30",
-      children: a.jsx("div", {
+      children: s.jsx("div", {
         className:
           "bg-white/95 backdrop-blur-sm border border-gray-200/50 rounded-xl shadow-lg px-4 py-2",
-        children: a.jsx("p", {
+        children: s.jsx("p", {
           className: "text-sm text-gray-600 font-medium whitespace-nowrap",
           children: e("footer.copyright"),
         }),
@@ -10448,7 +10448,7 @@ const ho = new Np(),
         openGridDrawModal: l,
         openAddShelfDrawContainerModal: o,
         openAddSubContainerModal: i,
-        setSelectedMedBox: s,
+        setSelectedMedBox: a,
         setModalMode: u,
         setMedBoxModalOpen: f,
       } = on(),
@@ -10529,15 +10529,15 @@ const ho = new Np(),
       };
     switch (e.type) {
       case "sub_container":
-        return a.jsx("div", {});
+        return s.jsx("div", {});
       case "parent_container":
-        return a.jsx("div", {
+        return s.jsx("div", {
           className: `flex items-center justify-between px-3 py-1 border-b-2 ${g(
             e.type || 0
           )} ${m(e.type || 0)}`,
-          children: a.jsx("div", {
+          children: s.jsx("div", {
             className: "flex items-center space-x-2 mr-6",
-            children: a.jsx("span", {
+            children: s.jsx("span", {
               className:
                 "text-base font-semibold text-gray-800 whitespace-nowrap",
               children: e.name,
@@ -10545,17 +10545,17 @@ const ho = new Np(),
           }),
         });
       case "med_box":
-        return a.jsx("div", {});
+        return s.jsx("div", {});
       case "dispensing_shelves":
-        return a.jsx("div", {});
+        return s.jsx("div", {});
       case "store_shelves":
-        return a.jsx("div", {
+        return s.jsx("div", {
           className: `flex items-center justify-between px-3 py-1 border-b-2 ${g(
             e.type || 0
           )} ${m(e.type || 0)}`,
-          children: a.jsx("div", {
+          children: s.jsx("div", {
             className: "flex items-center space-x-2 mr-6",
-            children: a.jsx("span", {
+            children: s.jsx("span", {
               className:
                 "text-base font-semibold text-gray-800 whitespace-nowrap",
               children: e.name,
@@ -10563,23 +10563,23 @@ const ho = new Np(),
           }),
         });
       case "list_draw":
-        return a.jsx("div", {});
+        return s.jsx("div", {});
       case "grid_draw":
-        return a.jsxs("div", {
+        return s.jsxs("div", {
           className: `flex items-center justify-between px-3 py-2 border-b-2 ${g(
             e.type || 0
           )} ${m(e.type || 0)}`,
           children: [
-            a.jsxs("div", {
+            s.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
               children: [
-                a.jsx("span", {
+                s.jsx("span", {
                   className:
                     "text-base font-semibold text-gray-800 whitespace-nowrap",
                   children: e.name,
                 }),
                 e.type != "parent_container"
-                  ? a.jsx("span", {
+                  ? s.jsx("span", {
                       className: `text-sm px-3 py-1 rounded-full whitespace-nowrap ${k(
                         e.type
                       )}`,
@@ -10588,18 +10588,18 @@ const ho = new Np(),
                   : null,
               ],
             }),
-            a.jsx("button", {
+            s.jsx("button", {
               className: "p-1 hover:bg-black/10 rounded transition-colors",
               onClick: (S) => {
                 S.stopPropagation(), l(e);
               },
               title: v("modal.settings"),
-              children: a.jsx(Rc, { className: "w-6 h-6 text-gray-600" }),
+              children: s.jsx(Rc, { className: "w-6 h-6 text-gray-600" }),
             }),
           ],
         });
       default:
-        return a.jsx("div", {});
+        return s.jsx("div", {});
     }
   },
   jp = ({ children: e }) => {
@@ -10610,7 +10610,7 @@ const ho = new Np(),
         setSidebarOpen: l,
         openAddParentContainerModal: o,
         openListDrawModal: i,
-        openGridDrawModal: s,
+        openGridDrawModal: a,
       } = on(),
       { getInventoryQty: u } = rs(),
       [f, v] = j.useState({ x: 0, y: 0, scale: 1 }),
@@ -10634,8 +10634,8 @@ const ho = new Np(),
         try {
           const z = y(),
             U = z.findIndex((ee) => ee.department === p && ee.canvasType === E),
-            J = { department: p, canvasType: E, scale: $, position: R };
-          U >= 0 ? (z[U] = J) : z.push(J),
+            q = { department: p, canvasType: E, scale: $, position: R };
+          U >= 0 ? (z[U] = q) : z.push(q),
             localStorage.setItem("med_map_anchor", JSON.stringify(z));
         } catch (z) {
           console.error("Error saving canvas state to localStorage:", z);
@@ -10694,8 +10694,8 @@ const ho = new Np(),
             if (!R) return;
             const z = p.clientX - R.left,
               U = p.clientY - R.top,
-              J = p.deltaY > 0 ? 0.9 : 1.1,
-              ee = Math.max(0.1, Math.min(5, f.scale * J)),
+              q = p.deltaY > 0 ? 0.9 : 1.1,
+              ee = Math.max(0.1, Math.min(5, f.scale * q)),
               fe = ee / f.scale,
               ne = z - (z - f.x) * fe,
               H = U - (U - f.y) * fe;
@@ -10772,13 +10772,13 @@ const ho = new Np(),
                   (E = t.current) == null ? void 0 : E.getBoundingClientRect();
                 if (!z) return;
                 const U = $ / Te,
-                  J = Math.max(0.1, Math.min(5, f.scale * U)),
+                  q = Math.max(0.1, Math.min(5, f.scale * U)),
                   ee = R.x - z.left,
                   fe = R.y - z.top,
-                  ne = J / f.scale,
+                  ne = q / f.scale,
                   H = ee - (ee - f.x) * ne,
-                  q = fe - (fe - f.y) * ne;
-                v({ x: H, y: q, scale: J }), We($), Ze(R);
+                  J = fe - (fe - f.y) * ne;
+                v({ x: H, y: J, scale: q }), We($), Ze(R);
               }
             } else if (p.touches.length === 1 && g) {
               const $ = p.touches[0],
@@ -10813,10 +10813,10 @@ const ho = new Np(),
           $ = Math.max(...E.map((U) => U.gridPos.row), 0),
           R = Math.max(...E.map((U) => U.gridPos.col), 0);
         return {
-          sortedContents: E.sort((U, J) =>
-            U.gridPos.row !== J.gridPos.row
-              ? U.gridPos.row - J.gridPos.row
-              : U.gridPos.col - J.gridPos.col
+          sortedContents: E.sort((U, q) =>
+            U.gridPos.row !== q.gridPos.row
+              ? U.gridPos.row - q.gridPos.row
+              : U.gridPos.col - q.gridPos.col
           ),
           maxRow: $,
           maxCol: R,
@@ -10834,9 +10834,9 @@ const ho = new Np(),
               z.width_index >= 0 &&
               z.width_index < z.width.length
             ) {
-              const J = parseFloat(z.width[z.width_index]);
-              if (!isNaN(J)) {
-                const ee = J * 20;
+              const q = parseFloat(z.width[z.width_index]);
+              if (!isNaN(q)) {
+                const ee = q * 20;
                 return Math.max(168, ee);
               }
             }
@@ -10864,7 +10864,7 @@ const ho = new Np(),
           case "med_box":
             return (
               $(p),
-              a.jsxs(
+              s.jsxs(
                 "div",
                 {
                   "data-container-guid": p.GUID,
@@ -10893,8 +10893,8 @@ const ho = new Np(),
                         );
                   },
                   children: [
-                    a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                    a.jsx("div", {
+                    s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                    s.jsx("div", {
                       className: "flex-1 p-1 flex flex-col",
                       children: L(p),
                     }),
@@ -10904,21 +10904,21 @@ const ho = new Np(),
               )
             );
           case "sub_container":
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
                 className: "flex flex-col flex-shrink-0 h-full overflow-hidden",
                 children: [
                   (p.type !== "sub_container" || E === "藥庫") &&
-                    a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", { className: "flex-1", children: L(p, E) }),
+                    s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", { className: "flex-1", children: L(p, E) }),
                 ],
               },
               p.GUID
             );
           case "parent_container":
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
@@ -10929,14 +10929,14 @@ const ho = new Np(),
                 } flex flex-col h-full overflow-hidden cursor-pointer transition-all min-w-[200px]`,
                 children: [
                   (p.type !== "sub_container" || E === "藥庫") &&
-                    a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", { className: "flex-1", children: L(p, E) }),
+                    s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", { className: "flex-1", children: L(p, E) }),
                 ],
               },
               p.GUID
             );
           case "grid_draw":
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
@@ -10948,11 +10948,11 @@ const ho = new Np(),
                   p.type || 0
                 )} min-h-[80px] flex flex-col h-full overflow-hidden cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all`,
                 onClick: (z) => {
-                  z.stopPropagation(), s(p);
+                  z.stopPropagation(), a(p);
                 },
                 children: [
-                  a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", {
+                  s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", {
                     className: "flex-1 p-1 flex items-center",
                     children: L(p),
                   }),
@@ -10961,7 +10961,7 @@ const ho = new Np(),
               p.GUID
             );
           case "list_draw":
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
@@ -10976,8 +10976,8 @@ const ho = new Np(),
                   z.stopPropagation(), i(p);
                 },
                 children: [
-                  a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", {
+                  s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", {
                     className: "flex-1 p-1 flex",
                     children: L(p),
                   }),
@@ -10986,7 +10986,7 @@ const ho = new Np(),
               p.GUID
             );
           case "store_shelves":
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
@@ -10998,14 +10998,14 @@ const ho = new Np(),
                   p.type == "none" ? "opacity-0" : ""
                 }`,
                 children: [
-                  a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", { className: "flex-1 p-1", children: L(p) }),
+                  s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", { className: "flex-1 p-1", children: L(p) }),
                 ],
               },
               p.GUID
             );
           default:
-            return a.jsxs(
+            return s.jsxs(
               "div",
               {
                 "data-container-guid": p.GUID,
@@ -11017,8 +11017,8 @@ const ho = new Np(),
                   p.type == "none" ? "opacity-0" : ""
                 }`,
                 children: [
-                  a.jsx("div", { children: a.jsx(Wt, { content: p }) }),
-                  a.jsx("div", { className: "flex-1 p-1", children: L(p) }),
+                  s.jsx("div", { children: s.jsx(Wt, { content: p }) }),
+                  s.jsx("div", { className: "flex-1 p-1", children: L(p) }),
                 ],
               },
               p.GUID
@@ -11027,30 +11027,30 @@ const ho = new Np(),
       },
       L = (p, E) => {
         const $ = (R, z, U) => {
-          const J = Array(z + 1)
+          const q = Array(z + 1)
               .fill(null)
               .map(() => Array(U + 1).fill(!1)),
             ee = {};
           return (
             R.forEach((fe) => {
               const ne = C(fe.gird_position || "0,0");
-              (ee[`${ne.row},${ne.col}`] = fe), (J[ne.row][ne.col] = !0);
+              (ee[`${ne.row},${ne.col}`] = fe), (q[ne.row][ne.col] = !0);
             }),
-            a.jsx("table", {
+            s.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
-              children: a.jsx("tbody", {
+              children: s.jsx("tbody", {
                 children: Array.from({ length: z + 1 }, (fe, ne) =>
-                  a.jsx(
+                  s.jsx(
                     "tr",
                     {
                       className: "h-full",
                       style: { height: `${100 / (z + 1)}%`, minHeight: "80px" },
-                      children: Array.from({ length: U + 1 }, (H, q) => {
-                        const Y = `${ne},${q}`,
+                      children: Array.from({ length: U + 1 }, (H, J) => {
+                        const Y = `${ne},${J}`,
                           ft = ee[Y];
                         return ft
-                          ? a.jsx(
+                          ? s.jsx(
                               "td",
                               {
                                 className: "align-top bg-transparent",
@@ -11063,9 +11063,9 @@ const ho = new Np(),
                                 },
                                 children: b(ft, E),
                               },
-                              q
+                              J
                             )
-                          : a.jsx(
+                          : s.jsx(
                               "td",
                               {
                                 className: "p-1 align-top bg-transparent",
@@ -11075,13 +11075,13 @@ const ho = new Np(),
                                   minHeight: "80px",
                                   border: "none",
                                 },
-                                children: a.jsx("div", {
+                                children: s.jsx("div", {
                                   className:
                                     "w-full h-full flex items-center justify-center text-gray-400 text-sm",
                                   children: "空位",
                                 }),
                               },
-                              q
+                              J
                             );
                       }),
                     },
@@ -11096,28 +11096,28 @@ const ho = new Np(),
           case "parent_container":
           case "sub_container":
             if (p.contents && p.contents.length > 0) {
-              const { sortedContents: H, maxRow: q, maxCol: Y } = A(p.contents);
-              return $(H, q, Y);
+              const { sortedContents: H, maxRow: J, maxCol: Y } = A(p.contents);
+              return $(H, J, Y);
             } else
-              return a.jsx("table", {
+              return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
                 style: { borderCollapse: "separate", borderSpacing: "1px" },
-                children: a.jsx("tbody", { children: a.jsx("tr", {}) }),
+                children: s.jsx("tbody", { children: s.jsx("tr", {}) }),
               });
           case "dispensing_shelves":
           case "none":
             if (p.contents && p.contents.length > 0) {
-              const { sortedContents: H, maxRow: q, maxCol: Y } = A(p.contents);
-              return $(H, q, Y);
+              const { sortedContents: H, maxRow: J, maxCol: Y } = A(p.contents);
+              return $(H, J, Y);
             } else
-              return a.jsx("table", {
+              return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
                 style: { borderCollapse: "separate", borderSpacing: "0px" },
-                children: a.jsx("tbody", {
-                  children: a.jsx("tr", {
-                    children: a.jsx("td", {
+                children: s.jsx("tbody", {
+                  children: s.jsx("tr", {
+                    children: s.jsx("td", {
                       className: "p-4 text-center text-gray-500 bg-transparent",
-                      children: a.jsx("div", {
+                      children: s.jsx("div", {
                         className: "text-base",
                         children: "無內容",
                       }),
@@ -11128,55 +11128,64 @@ const ho = new Np(),
           case "store_shelves":
             if (p.medMapStock && p.medMapStock.length > 0) {
               const H = p.medMapStock.length;
-              return a.jsx("div", {
+              return s.jsx("div", {
                 className: "h-full",
-                children: a.jsx("div", {
+                children: s.jsx("div", {
                   className: "flex gap-1 h-full",
                   children: p.medMapStock.map(
-                    (q, Y) => (
-                      u(q.code),
-                      a.jsx(
+                    (J, Y) => (
+                      u(J.code),
+                      s.jsx(
                         "div",
                         {
                           className:
-                            "border-2 rounded-lg border-yellow-400 h-full p-2 bg-yellow-100 cursor-pointer hover:bg-yellow-50 transition-colors flex flex-col justify-center",
+                            "border-2 rounded-lg border-yellow-400 p-2 bg-yellow-100 cursor-pointer hover:bg-yellow-50 transition-colors flex flex-col justify-center",
                           style: {
                             width: `${100 / H}%`,
-                            minHeight: "100px",
-                            minWidth: "100px",
+                            minHeight: "120px",
+                            minWidth: "140px",
                           },
                           onClick: (ft) => {
                             ft.stopPropagation(),
-                              q.code &&
+                              J.code &&
                                 window.parent !== window &&
                                 window.parent.postMessage(
                                   {
                                     type: "MED_CLICKED",
-                                    code: q.code,
-                                    name: q.name,
-                                    location: q.location,
+                                    code: J.code,
+                                    name: J.name,
+                                    location: J.location,
                                   },
                                   "*"
                                 );
                           },
-                          children: a.jsxs("div", {
+                          children: s.jsxs("div", {
                             className:
                               "flex flex-col items-center text-center gap-2",
                             children: [
-                              q.code &&
-                                a.jsx("div", {
-                                  className:
-                                    "font-bold text-gray-900 truncate w-full",
-                                  children: q.code,
+                              J.code &&
+                                s.jsxs("div", {
+                                  className: "text-gray-900 truncate w-full",
+                                  children: [
+                                    s.jsx("div", {
+                                      className:
+                                        "font-bold text-gray-900 truncate whitespace-normal w-full",
+                                      children: J.name,
+                                    }),
+                                    s.jsx("div", {
+                                      className: "pt-2",
+                                      children: J.code,
+                                    }),
+                                  ],
                                 }),
-                              q.code &&
-                                u(q.code) !== null &&
-                                a.jsx("div", {
+                              J.code &&
+                                u(J.code) !== null &&
+                                s.jsx("div", {
                                   className:
                                     "text-gray-700 w-full flex justify-end px-1",
-                                  children: a.jsxs("div", {
+                                  children: s.jsxs("div", {
                                     className: "text-gray-600 text-left",
-                                    children: ["已盤：", u(q.code)],
+                                    children: ["已盤：", u(J.code)],
                                   }),
                                 }),
                             ],
@@ -11189,17 +11198,17 @@ const ho = new Np(),
                 }),
               });
             } else if (p.contents && p.contents.length > 0) {
-              const { sortedContents: H, maxRow: q, maxCol: Y } = A(p.contents);
-              return $(H, q, Y);
+              const { sortedContents: H, maxRow: J, maxCol: Y } = A(p.contents);
+              return $(H, J, Y);
             } else
-              return a.jsx("table", {
+              return s.jsx("table", {
                 className: "bg-transparent w-full h-full",
                 style: { borderCollapse: "separate", borderSpacing: "0px" },
-                children: a.jsx("tbody", {
-                  children: a.jsx("tr", {
-                    children: a.jsx("td", {
+                children: s.jsx("tbody", {
+                  children: s.jsx("tr", {
+                    children: s.jsx("td", {
                       className: "p-4 text-center text-gray-500 bg-transparent",
-                      children: a.jsx("div", {
+                      children: s.jsx("div", {
                         className: "text-base",
                         children: "無內容",
                       }),
@@ -11215,11 +11224,11 @@ const ho = new Np(),
                 ...p.Boxes.flat().map((H) => +H.Column + +H.Width - 1)
               ),
               U = R + 1,
-              J = z + 1,
+              q = z + 1,
               ee = p.Boxes.flat(),
               fe = Array(U)
                 .fill(null)
-                .map(() => Array(J).fill(!1)),
+                .map(() => Array(q).fill(!1)),
               ne = {};
             return (
               ee.forEach((H) => {
@@ -11227,86 +11236,86 @@ const ho = new Np(),
               }),
               ee.forEach((H) => {
                 if (!H.Slave && (H.Width > 1 || H.Height > 1))
-                  for (let q = H.Row; q < H.Row + H.Height; q++)
+                  for (let J = H.Row; J < H.Row + H.Height; J++)
                     for (let Y = H.Column; Y < H.Column + H.Width; Y++)
-                      (q !== H.Row || Y !== H.Column) && (fe[q][Y] = !0);
+                      (J !== H.Row || Y !== H.Column) && (fe[J][Y] = !0);
               }),
-              a.jsxs("div", {
+              s.jsxs("div", {
                 className:
                   "bg-violet-100 h-20 flex ml-2 mt-2 mb-6 rounded-xl border-2 border-violet-400 w-[140px] items-center justify-center cursor-pointer transition-all",
                 children: [
-                  a.jsx("div", {
+                  s.jsx("div", {
                     className: "h-[60%] bg-violet-400 w-[3%] rounded-xl",
                   }),
-                  a.jsx("div", {
+                  s.jsx("div", {
                     className:
                       "h-[80%] border-2 border-violet-400 w-[82%] mx-1",
-                    children: a.jsx("div", {
+                    children: s.jsx("div", {
                       className:
                         "flex items-center justify-center text-base text-violet-400 h-[100%]",
                     }),
                   }),
-                  a.jsx("div", { className: "h-[60%] bg-violet-400 w-[3%]" }),
+                  s.jsx("div", { className: "h-[60%] bg-violet-400 w-[3%]" }),
                 ],
               })
             );
           case "list_draw":
-            return a.jsxs("div", {
+            return s.jsxs("div", {
               className:
                 "bg-violet-100 h-20 flex ml-2 mt-2 mb-6 rounded-xl border-2 border-violet-400 w-[140px] items-center justify-center cursor-pointer transition-all",
               children: [
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "h-[60%] bg-violet-400 w-[3%] rounded-xl",
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "h-[80%] border-2 border-violet-400 w-[82%] mx-1",
-                  children: a.jsx("div", {
+                  children: s.jsx("div", {
                     className:
                       "flex items-center justify-center text-base text-violet-400 h-[100%]",
                   }),
                 }),
-                a.jsx("div", { className: "h-[60%] bg-violet-400 w-[3%]" }),
+                s.jsx("div", { className: "h-[60%] bg-violet-400 w-[3%]" }),
               ],
             });
           case "med_box":
             return p.med_info && p.med_info.length > 0
               ? (u(p.med_info[0].code),
-                a.jsxs("div", {
+                s.jsxs("div", {
                   className:
                     "text-base text-center grow flex items-center justify-center flex-col",
                   children: [
-                    a.jsx("div", {
+                    s.jsx("div", {
                       className: "text-gray-700",
                       children: p.med_info[0].code,
                     }),
                     p.med_info[0].code &&
                       u(p.med_info[0].code) !== null &&
-                      a.jsx("div", {
+                      s.jsx("div", {
                         className: "text-gray-700 w-full flex justify-end px-1",
-                        children: a.jsxs("div", {
+                        children: s.jsxs("div", {
                           className: "text-green-600 font-semibold text-left",
                           children: ["已盤：", u(p.med_info[0].code)],
                         }),
                       }),
                   ],
                 }))
-              : a.jsx("div", {
+              : s.jsx("div", {
                   className:
                     "h-full flex items-center justify-center text-gray-500",
-                  children: a.jsx("div", {
+                  children: s.jsx("div", {
                     className: "text-base",
                     children: "空藥盒",
                   }),
                 });
           default:
             return p.contents && p.contents.length > 0
-              ? a.jsx("div", {
+              ? s.jsx("div", {
                   className: "space-y-2",
                   children: p.contents.map((H) => b(H)),
                 })
-              : a.jsx("div", {
+              : s.jsx("div", {
                   className: "h-full text-gray-500",
-                  children: a.jsxs("div", {
+                  children: s.jsxs("div", {
                     className: "text-base",
                     children: ["未知類型: ", p.type],
                   }),
@@ -11321,15 +11330,15 @@ const ho = new Np(),
           return null;
         const E = ($) => {
           if (!$ || $.length === 0)
-            return a.jsx("table", {
+            return s.jsx("table", {
               className: "w-full h-full border-none",
-              children: a.jsx("tbody", {
-                children: a.jsx("tr", {
-                  children: a.jsx("td", {
+              children: s.jsx("tbody", {
+                children: s.jsx("tr", {
+                  children: s.jsx("td", {
                     className: "p-1 text-center text-gray-500",
-                    children: a.jsx("div", {
+                    children: s.jsx("div", {
                       className: "text-center",
-                      children: a.jsx("div", {
+                      children: s.jsx("div", {
                         className: "text-base",
                         children: "內容將在此處顯示",
                       }),
@@ -11339,29 +11348,29 @@ const ho = new Np(),
               }),
             });
           const { sortedContents: R, maxRow: z, maxCol: U } = A($),
-            J = Array(z + 1)
+            q = Array(z + 1)
               .fill(null)
               .map(() => Array(U + 1).fill(!1)),
             ee = {};
           return (
             R.forEach((fe) => {
               const ne = C(fe.gird_position || "0,0");
-              (ee[`${ne.row},${ne.col}`] = fe), (J[ne.row][ne.col] = !0);
+              (ee[`${ne.row},${ne.col}`] = fe), (q[ne.row][ne.col] = !0);
             }),
-            a.jsx("table", {
+            s.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
-              children: a.jsx("tbody", {
+              children: s.jsx("tbody", {
                 children: Array.from({ length: z + 1 }, (fe, ne) =>
-                  a.jsx(
+                  s.jsx(
                     "tr",
                     {
                       className: "h-full",
-                      children: Array.from({ length: U + 1 }, (H, q) => {
-                        const Y = `${ne},${q}`,
+                      children: Array.from({ length: U + 1 }, (H, J) => {
+                        const Y = `${ne},${J}`,
                           ft = ee[Y];
                         return ft
-                          ? a.jsx(
+                          ? s.jsx(
                               "td",
                               {
                                 className: "align-top bg-transparent",
@@ -11373,9 +11382,9 @@ const ho = new Np(),
                                 },
                                 children: b(ft, p.type),
                               },
-                              q
+                              J
                             )
-                          : a.jsx(
+                          : s.jsx(
                               "td",
                               {
                                 className: "align-top bg-transparent",
@@ -11385,13 +11394,13 @@ const ho = new Np(),
                                   minHeight: "120px",
                                   border: "1px dashed #e5e7eb",
                                 },
-                                children: a.jsx("div", {
+                                children: s.jsx("div", {
                                   className:
                                     "w-full h-full flex items-center justify-center text-gray-400 text-sm",
                                   children: "空位",
                                 }),
                               },
-                              q
+                              J
                             );
                       }),
                     },
@@ -11402,25 +11411,25 @@ const ho = new Np(),
             })
           );
         };
-        return a.jsxs(
+        return s.jsxs(
           "div",
           {
             "data-container-guid": p.GUID,
             className:
               "border-2 rounded-lg shadow-lg bg-orange-50 border-orange-300 min-h-[120px] flex flex-col overflow-hidden w-full h-full",
             children: [
-              a.jsx("div", {
+              s.jsx("div", {
                 className:
                   "flex items-center justify-between px-3 py-2 border-b-2 bg-orange-100 border-b-orange-200",
-                children: a.jsx("div", {
+                children: s.jsx("div", {
                   className: "flex items-center space-x-1",
-                  children: a.jsx("span", {
+                  children: s.jsx("span", {
                     className: "text-lg font-semibold text-gray-800",
                     children: p.name,
                   }),
                 }),
               }),
-              a.jsx("div", {
+              s.jsx("div", {
                 className: "flex-1 bg-orange-50",
                 children: E(p.contents || []),
               }),
@@ -11429,9 +11438,9 @@ const ho = new Np(),
           p.GUID
         );
       };
-    return a.jsx("div", {
+    return s.jsx("div", {
       className: "relative w-full h-full overflow-hidden bg-gray-50",
-      children: a.jsx("div", {
+      children: s.jsx("div", {
         ref: t,
         className: `w-full h-full relative ${
           c && !k ? "cursor-grab" : "cursor-default"
@@ -11443,17 +11452,17 @@ const ho = new Np(),
         onTouchStart: w,
         onTouchMove: P,
         onTouchEnd: T,
-        children: a.jsxs("div", {
+        children: s.jsxs("div", {
           className: "absolute inset-0 origin-top-left",
           style: {
             transform: `translate(${f.x}px, ${f.y}px) scale(${f.scale})`,
             transformOrigin: "0 0",
           },
           children: [
-            a.jsx("div", {
+            s.jsx("div", {
               className: "relative",
               "data-canvas-content": !0,
-              children: a.jsx("table", {
+              children: s.jsx("table", {
                 className: "h-full",
                 style: {
                   borderCollapse: "separate",
@@ -11461,18 +11470,18 @@ const ho = new Np(),
                   minWidth: "fit-content",
                   minHeight: "fit-content",
                 },
-                children: a.jsx("tbody", {
+                children: s.jsx("tbody", {
                   children: Array.from({ length: V + 1 }, (p, E) =>
-                    a.jsx(
+                    s.jsx(
                       "tr",
                       {
                         children: Array.from({ length: G + 1 }, ($, R) => {
                           const z = K.find((U) => {
-                            const J = C(U.gird_position || "0,0");
-                            return J.row === E && J.col === R;
+                            const q = C(U.gird_position || "0,0");
+                            return q.row === E && q.col === R;
                           });
                           return z
-                            ? a.jsx(
+                            ? s.jsx(
                                 "td",
                                 {
                                   className: "align-top",
@@ -11485,7 +11494,7 @@ const ho = new Np(),
                                 },
                                 R
                               )
-                            : a.jsx(
+                            : s.jsx(
                                 "td",
                                 {
                                   className: "align-top",
@@ -11494,7 +11503,7 @@ const ho = new Np(),
                                     minHeight: "120px",
                                     border: "none",
                                   },
-                                  children: a.jsx("div", {
+                                  children: s.jsx("div", {
                                     className:
                                       "w-full h-full flex items-center justify-center text-gray-400 text-base",
                                   }),
@@ -11524,14 +11533,14 @@ const ho = new Np(),
       } = on(),
       { t: l } = Vt(),
       { getInventoryQty: o } = rs(),
-      [i, s] = j.useState(""),
+      [i, a] = j.useState(""),
       [u, f] = j.useState([]),
       [v, g] = j.useState(""),
       [m, k] = j.useState("N"),
       [x, S] = j.useState([]),
       [O, c] = j.useState(!1);
     j.useEffect(() => {
-      n && e && (s(n.name || ""), f(n.med_info || []));
+      n && e && (a(n.name || ""), f(n.med_info || []));
     }, [n, e]);
     const d = (C) => {
         f((D) => D.filter((X) => X.code !== C));
@@ -11564,57 +11573,57 @@ const ho = new Np(),
       };
     return !e || !n
       ? null
-      : a.jsxs("div", {
+      : s.jsxs("div", {
           className: "fixed inset-0 z-50 flex items-center justify-center",
           children: [
-            a.jsx("div", {
+            s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
               onClick: M,
             }),
-            a.jsxs("div", {
+            s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
               onClick: (C) => C.stopPropagation(),
               children: [
-                a.jsxs("div", {
+                s.jsxs("div", {
                   className:
                     "flex items-center justify-between px-4 py-2 border-b border-gray-200",
                   children: [
-                    a.jsxs("div", {
+                    s.jsxs("div", {
                       className: "flex items-center space-x-3",
                       children: [
-                        a.jsx(Rc, { className: "w-6 h-6 text-gray-600" }),
-                        a.jsx("h2", {
+                        s.jsx(Rc, { className: "w-6 h-6 text-gray-600" }),
+                        s.jsx("h2", {
                           className: "text-xl font-semibold text-gray-900",
                           children: l("modal.listDrawSettings"),
                         }),
                       ],
                     }),
-                    a.jsx("button", {
+                    s.jsx("button", {
                       onClick: M,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: a.jsx(wr, { className: "w-6 h-6" }),
+                      children: s.jsx(wr, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "flex-1 px-4 py-1 overflow-y-auto",
-                  children: a.jsxs("div", {
+                  children: s.jsxs("div", {
                     className: "space-y-2",
                     children: [
-                      a.jsxs("div", {
+                      s.jsxs("div", {
                         className: "space-y-1",
                         children: [
-                          a.jsx("h3", {
+                          s.jsx("h3", {
                             className: "text-lg font-medium text-gray-900",
                             children: l("form.drawerName"),
                           }),
-                          a.jsx("input", {
+                          s.jsx("input", {
                             type: "text",
                             value: i,
-                            onChange: (C) => s(C.target.value),
+                            onChange: (C) => a(C.target.value),
                             placeholder:
                               (n == null ? void 0 : n.name) ||
                               l("placeholder.drawerName"),
@@ -11623,44 +11632,44 @@ const ho = new Np(),
                           }),
                         ],
                       }),
-                      a.jsxs("div", {
+                      s.jsxs("div", {
                         className: "flex gap-6",
                         children: [
-                          a.jsxs("div", {
+                          s.jsxs("div", {
                             className: "space-y-2 w-[50%]",
                             children: [
-                              a.jsx("h3", {
+                              s.jsx("h3", {
                                 className: "text-lg font-medium text-gray-900",
                                 children: l("form.drugList"),
                               }),
                               u.length > 0
-                                ? a.jsx("div", {
+                                ? s.jsx("div", {
                                     className:
                                       "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2",
                                     children: u.map((C) =>
-                                      a.jsx(
+                                      s.jsx(
                                         "div",
                                         {
                                           className:
                                             "bg-white border-2 border-gray-200 rounded-lg p-1 hover:border-gray-300 transition-colors",
-                                          children: a.jsxs("div", {
+                                          children: s.jsxs("div", {
                                             className:
                                               "flex items-start justify-between",
                                             children: [
-                                              a.jsx("div", {
+                                              s.jsx("div", {
                                                 className: "flex-1 min-w-0",
-                                                children: a.jsxs("div", {
+                                                children: s.jsxs("div", {
                                                   children: [
                                                     C.code &&
-                                                      a.jsx("div", {
-                                                        children: a.jsx("div", {
+                                                      s.jsx("div", {
+                                                        children: s.jsx("div", {
                                                           className:
                                                             "text-sm text-gray-900 font-mono",
                                                           children: C.code,
                                                         }),
                                                       }),
-                                                    a.jsx("div", {
-                                                      children: a.jsx("div", {
+                                                    s.jsx("div", {
+                                                      children: s.jsx("div", {
                                                         className:
                                                           "text-sm text-gray-900 font-medium",
                                                         children:
@@ -11668,8 +11677,8 @@ const ho = new Np(),
                                                           l("status.notSet"),
                                                       }),
                                                     }),
-                                                    a.jsx("div", {
-                                                      children: a.jsx("div", {
+                                                    s.jsx("div", {
+                                                      children: s.jsx("div", {
                                                         className:
                                                           "text-sm text-gray-900",
                                                         children:
@@ -11679,7 +11688,7 @@ const ho = new Np(),
                                                     }),
                                                     C.code &&
                                                       o(C.code) !== null &&
-                                                      a.jsxs("div", {
+                                                      s.jsxs("div", {
                                                         className:
                                                           "text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded mt-1 inline-block",
                                                         children: [
@@ -11690,12 +11699,12 @@ const ho = new Np(),
                                                   ],
                                                 }),
                                               }),
-                                              a.jsx("button", {
+                                              s.jsx("button", {
                                                 onClick: () => d(C.code),
                                                 className:
                                                   "ml-3 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0",
                                                 title: l("button.remove"),
-                                                children: a.jsx(wr, {
+                                                children: s.jsx(wr, {
                                                   className: "w-5 h-5",
                                                 }),
                                               }),
@@ -11706,18 +11715,18 @@ const ho = new Np(),
                                       )
                                     ),
                                   })
-                                : a.jsx("div", {
+                                : s.jsx("div", {
                                     className:
                                       "bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg py-12",
-                                    children: a.jsxs("div", {
+                                    children: s.jsxs("div", {
                                       className: "text-center",
                                       children: [
-                                        a.jsx("div", {
+                                        s.jsx("div", {
                                           className:
                                             "text-gray-500 text-lg mb-2",
                                           children: l("status.drawerNoDrug"),
                                         }),
-                                        a.jsx("div", {
+                                        s.jsx("div", {
                                           className: "text-gray-400 text-sm",
                                           children: l("status.drugListEmpty"),
                                         }),
@@ -11726,17 +11735,17 @@ const ho = new Np(),
                                   }),
                             ],
                           }),
-                          a.jsxs("div", {
+                          s.jsxs("div", {
                             className: "space-y-2 w-[50%]",
                             children: [
-                              a.jsx("h3", {
+                              s.jsx("h3", {
                                 className: "text-lg font-medium text-gray-900",
                                 children: l("form.drugSearch"),
                               }),
-                              a.jsxs("div", {
+                              s.jsxs("div", {
                                 className: "flex gap-2 mb-2",
                                 children: [
-                                  a.jsx("input", {
+                                  s.jsx("input", {
                                     type: "text",
                                     value: v,
                                     onChange: (C) => g(C.target.value),
@@ -11744,43 +11753,43 @@ const ho = new Np(),
                                     className:
                                       "border rounded px-3 py-1 flex-1 min-w-0 focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
-                                  a.jsxs("select", {
+                                  s.jsxs("select", {
                                     value: m,
                                     onChange: (C) => k(C.target.value),
                                     className:
                                       "border rounded px-2 py-1 focus:border-blue-500 focus:outline-none transition-colors",
                                     title: "管制級別",
                                     children: [
-                                      a.jsx("option", {
+                                      s.jsx("option", {
                                         value: "N",
                                         children: "N",
                                       }),
-                                      a.jsx("option", {
+                                      s.jsx("option", {
                                         value: "1",
                                         children: "1",
                                       }),
-                                      a.jsx("option", {
+                                      s.jsx("option", {
                                         value: "2",
                                         children: "2",
                                       }),
-                                      a.jsx("option", {
+                                      s.jsx("option", {
                                         value: "3",
                                         children: "3",
                                       }),
-                                      a.jsx("option", {
+                                      s.jsx("option", {
                                         value: "4",
                                         children: "4",
                                       }),
                                     ],
                                   }),
-                                  a.jsxs("button", {
+                                  s.jsxs("button", {
                                     onClick: h,
                                     disabled: O,
                                     className:
                                       "bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition-colors whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2",
                                     children: [
                                       O &&
-                                        a.jsx(si, {
+                                        s.jsx(si, {
                                           className: "w-4 h-4 animate-spin",
                                         }),
                                       l("button.search"),
@@ -11788,15 +11797,15 @@ const ho = new Np(),
                                   }),
                                 ],
                               }),
-                              a.jsx("div", {
+                              s.jsx("div", {
                                 className:
                                   "bg-white border rounded p-3 min-h-[300px] max-h-[300px] overflow-y-auto",
                                 children: O
-                                  ? a.jsxs("div", {
+                                  ? s.jsxs("div", {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
                                       children: [
-                                        a.jsx(si, {
+                                        s.jsx(si, {
                                           className:
                                             "w-5 h-5 animate-spin mr-2",
                                         }),
@@ -11804,41 +11813,41 @@ const ho = new Np(),
                                       ],
                                     })
                                   : x.length > 0
-                                  ? a.jsx("div", {
+                                  ? s.jsx("div", {
                                       className: "space-y-1",
                                       children: x.map((C, D) =>
-                                        a.jsxs(
+                                        s.jsxs(
                                           "div",
                                           {
                                             className:
                                               "flex items-center justify-between p-2 border border-gray-200 rounded hover:bg-gray-50 transition-colors",
                                             children: [
-                                              a.jsxs("div", {
+                                              s.jsxs("div", {
                                                 className: "flex-1 min-w-0",
                                                 children: [
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-sm font-medium text-gray-900 truncate",
                                                     children: C.NAME,
                                                   }),
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-500 truncate",
                                                     children: C.CHT_NAME,
                                                   }),
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-xs text-gray-400 font-mono",
                                                     children: C.CODE,
                                                   }),
                                                 ],
                                               }),
-                                              a.jsx("button", {
+                                              s.jsx("button", {
                                                 onClick: () => y(C),
                                                 className:
                                                   "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                                 title: l("button.add"),
-                                                children: a.jsx(vp, {
+                                                children: s.jsx(vp, {
                                                   className: "w-4 h-4",
                                                 }),
                                               }),
@@ -11848,7 +11857,7 @@ const ho = new Np(),
                                         )
                                       ),
                                     })
-                                  : a.jsx("div", {
+                                  : s.jsx("div", {
                                       className:
                                         "text-gray-500 text-center flex items-center justify-center h-full",
                                       children: l(
@@ -11865,17 +11874,17 @@ const ho = new Np(),
                     ],
                   }),
                 }),
-                a.jsxs("div", {
+                s.jsxs("div", {
                   className:
                     "flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200",
                   children: [
-                    a.jsx("button", {
+                    s.jsx("button", {
                       onClick: M,
                       className:
                         "px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors",
                       children: l("button.cancel"),
                     }),
-                    a.jsx("button", {
+                    s.jsx("button", {
                       onClick: N,
                       className:
                         "px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors",
@@ -11898,7 +11907,7 @@ const ho = new Np(),
         setApiDepartmentData: o,
         showNotification: i,
       } = on(),
-      { t: s } = Vt(),
+      { t: a } = Vt(),
       { getInventoryQty: u } = rs(),
       [f, v] = j.useState(""),
       [g, m] = j.useState(null),
@@ -12144,22 +12153,22 @@ const ho = new Np(),
           !((b = n == null ? void 0 : n.drawer) != null && b.Boxes) ||
           n.drawer.Boxes.length === 0
         )
-          return a.jsx("div", {
+          return s.jsx("div", {
             className:
               "bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg py-12",
-            children: a.jsxs("div", {
+            children: s.jsxs("div", {
               className: "text-center",
               children: [
-                a.jsx(gp, {
+                s.jsx(gp, {
                   className: "w-12 h-12 text-gray-400 mx-auto mb-4",
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "text-gray-500 text-lg mb-2",
-                  children: s("status.gridDrawNotConfigured"),
+                  children: a("status.gridDrawNotConfigured"),
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "text-gray-400 text-sm",
-                  children: s("status.noDrugInfo"),
+                  children: a("status.noDrugInfo"),
                 }),
               ],
             }),
@@ -12206,13 +12215,13 @@ const ho = new Np(),
                 for (let p = L.Column; p < L.Column + L.calculatedWidth; p++)
                   (W !== L.Row || p !== L.Column) && (V[W][p] = !0);
           }),
-          a.jsx("div", {
+          s.jsx("div", {
             className: "rounded-lg",
-            children: a.jsx("table", {
+            children: s.jsx("table", {
               className: "w-full",
-              children: a.jsx("tbody", {
+              children: s.jsx("tbody", {
                 children: Array.from({ length: A }, (L, W) =>
-                  a.jsx(
+                  s.jsx(
                     "tr",
                     {
                       children: Array.from({ length: K }, (p, E) => {
@@ -12220,7 +12229,7 @@ const ho = new Np(),
                         const $ = `${W},${E}`,
                           R = G[$];
                         return R
-                          ? a.jsx(
+                          ? s.jsx(
                               "td",
                               {
                                 className: `border border-gray-400 pt-1 pl-1 align-top cursor-pointer select-none ${
@@ -12258,11 +12267,11 @@ const ho = new Np(),
                                 onTouchMove: (z) => {
                                   if ((z.preventDefault(), !S)) return;
                                   const U = z.touches[0],
-                                    J = document.elementFromPoint(
+                                    q = document.elementFromPoint(
                                       U.clientX,
                                       U.clientY
                                     ),
-                                    ee = J == null ? void 0 : J.closest("td");
+                                    ee = q == null ? void 0 : q.closest("td");
                                   if (ee) {
                                     const fe = parseInt(
                                         ee.getAttribute("data-row") || "0"
@@ -12276,41 +12285,41 @@ const ho = new Np(),
                                 onTouchEnd: me,
                                 "data-row": W,
                                 "data-col": E,
-                                children: a.jsx("div", {
+                                children: s.jsx("div", {
                                   className: "h-full flex flex-col",
                                   children:
                                     R.Code || R.Name || R.ChineseName
-                                      ? a.jsxs("div", {
+                                      ? s.jsxs("div", {
                                           className:
                                             "flex flex-col items-between",
                                           children: [
-                                            a.jsxs("div", {
+                                            s.jsxs("div", {
                                               children: [
                                                 R.Code &&
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-sm font-mono text-gray-600",
                                                     children: R.Code,
                                                   }),
                                                 R.Name &&
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-sm font-medium text-gray-900",
                                                     children: R.Name,
                                                   }),
                                                 R.ChineseName &&
-                                                  a.jsx("div", {
+                                                  s.jsx("div", {
                                                     className:
                                                       "text-sm text-gray-700",
                                                     children: R.ChineseName,
                                                   }),
                                               ],
                                             }),
-                                            a.jsx("div", {
+                                            s.jsx("div", {
                                               children:
                                                 R.Code &&
                                                 u(R.Code) !== null &&
-                                                a.jsxs("div", {
+                                                s.jsxs("div", {
                                                   className:
                                                     "text-sm font-semibold text-green-600 rounded",
                                                   children: [
@@ -12321,16 +12330,16 @@ const ho = new Np(),
                                             }),
                                           ],
                                         })
-                                      : a.jsx("div", {
+                                      : s.jsx("div", {
                                           className:
                                             "h-full flex justify-center items-center text-xs text-gray-400 italic text-center",
-                                          children: s("status.notAdded"),
+                                          children: a("status.notAdded"),
                                         }),
                                 }),
                               },
                               E
                             )
-                          : a.jsx(
+                          : s.jsx(
                               "td",
                               {
                                 className: `border border-gray-300 p-2 align-top cursor-pointer select-none ${
@@ -12350,11 +12359,11 @@ const ho = new Np(),
                                 onTouchMove: (z) => {
                                   if ((z.preventDefault(), !S)) return;
                                   const U = z.touches[0],
-                                    J = document.elementFromPoint(
+                                    q = document.elementFromPoint(
                                       U.clientX,
                                       U.clientY
                                     ),
-                                    ee = J == null ? void 0 : J.closest("td");
+                                    ee = q == null ? void 0 : q.closest("td");
                                   if (ee) {
                                     const fe = parseInt(
                                         ee.getAttribute("data-row") || "0"
@@ -12368,10 +12377,10 @@ const ho = new Np(),
                                 onTouchEnd: me,
                                 "data-row": W,
                                 "data-col": E,
-                                children: a.jsx("div", {
+                                children: s.jsx("div", {
                                   className:
                                     "h-full flex items-center justify-center text-gray-400 text-xs",
-                                  children: s("status.notAdded"),
+                                  children: a("status.notAdded"),
                                 }),
                               },
                               E
@@ -12388,48 +12397,48 @@ const ho = new Np(),
       };
     return !e || !n
       ? null
-      : a.jsxs("div", {
+      : s.jsxs("div", {
           className: "fixed inset-0 z-50 flex items-center justify-center",
           children: [
-            a.jsx("div", {
+            s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
               onClick: C,
             }),
-            a.jsxs("div", {
+            s.jsxs("div", {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
               onClick: (w) => w.stopPropagation(),
               children: [
-                a.jsxs("div", {
+                s.jsxs("div", {
                   className:
                     "flex items-center justify-between px-4 py-2 border-b border-gray-200",
                   children: [
-                    a.jsx("h2", {
+                    s.jsx("h2", {
                       className: "text-xl font-semibold text-gray-900",
                       children:
                         (n == null ? void 0 : n.name) ||
-                        s("modal.gridDrawSettings"),
+                        a("modal.gridDrawSettings"),
                     }),
-                    a.jsx("button", {
+                    s.jsx("button", {
                       onClick: C,
                       className:
                         "p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors",
-                      children: a.jsx(wr, { className: "w-6 h-6" }),
+                      children: s.jsx(wr, { className: "w-6 h-6" }),
                     }),
                   ],
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "flex-1 px-4 py-2 overflow-y-auto",
-                  children: a.jsx("div", {
+                  children: s.jsx("div", {
                     className: "space-y-4 pt-2",
-                    children: a.jsx("div", {
+                    children: s.jsx("div", {
                       className: "space-y-1",
                       children: it(),
                     }),
                   }),
                 }),
-                a.jsx("div", {
+                s.jsx("div", {
                   className: "fixed inset-0 pointer-events-none",
                   onMouseUp: me,
                   onMouseLeave: me,
@@ -12444,56 +12453,56 @@ const ho = new Np(),
   Pp = ({ isVisible: e, message: t }) => {
     const { t: n } = Vt();
     return e
-      ? a.jsxs("div", {
+      ? s.jsxs("div", {
           className: "fixed inset-0 z-[9999] flex items-center justify-center",
           children: [
-            a.jsx("div", {
+            s.jsx("div", {
               className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
             }),
-            a.jsx("div", {
+            s.jsx("div", {
               className:
                 "relative z-10 flex flex-col items-center justify-center p-8",
-              children: a.jsxs("div", {
+              children: s.jsxs("div", {
                 className:
                   "bg-white/95 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-2xl px-8 py-6 flex flex-col items-center space-y-4 min-w-[280px]",
                 children: [
-                  a.jsxs("div", {
+                  s.jsxs("div", {
                     className: "flex items-center space-x-3 mb-2",
                     children: [
-                      a.jsx("div", {
+                      s.jsx("div", {
                         className: "p-3 bg-blue-100 rounded-full",
-                        children: a.jsx(Pc, {
+                        children: s.jsx(Pc, {
                           className: "w-8 h-8 text-blue-600",
                         }),
                       }),
-                      a.jsx("div", {
+                      s.jsx("div", {
                         className: "text-xl font-semibold text-gray-900",
                         children: n("nav.title"),
                       }),
                     ],
                   }),
-                  a.jsxs("div", {
+                  s.jsxs("div", {
                     className: "flex items-center space-x-3",
                     children: [
-                      a.jsx(si, {
+                      s.jsx(si, {
                         className: "w-8 h-8 text-blue-600 animate-spin",
                       }),
-                      a.jsx("div", {
+                      s.jsx("div", {
                         className: "text-lg font-medium text-gray-700",
                         children: t || n("status.loadingMedMapData"),
                       }),
                     ],
                   }),
-                  a.jsx("div", {
+                  s.jsx("div", {
                     className:
                       "w-full bg-gray-200 rounded-full h-2 overflow-hidden",
-                    children: a.jsx("div", {
+                    children: s.jsx("div", {
                       className:
                         "h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full animate-pulse",
                       style: { width: "100%" },
                     }),
                   }),
-                  a.jsx("div", {
+                  s.jsx("div", {
                     className: "text-sm text-gray-500 text-center max-w-xs",
                     children: n("status.loadingMedMapHint"),
                   }),
@@ -12516,23 +12525,23 @@ const ho = new Np(),
       j.useEffect(() => {
         if (n) {
           i(!0);
-          const s = setTimeout(() => {
+          const a = setTimeout(() => {
             r();
           }, l);
-          return () => clearTimeout(s);
+          return () => clearTimeout(a);
         } else {
-          const s = setTimeout(() => {
+          const a = setTimeout(() => {
             i(!1);
           }, 300);
-          return () => clearTimeout(s);
+          return () => clearTimeout(a);
         }
       }, [n, l, r]),
       o
-        ? a.jsx("div", {
+        ? s.jsx("div", {
             className: `fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999] transition-all duration-300 ease-in-out ${
               n ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
             }`,
-            children: a.jsxs("div", {
+            children: s.jsxs("div", {
               className: `flex items-center space-x-3 px-4 py-3 rounded-lg shadow-lg border ${
                 t === "success"
                   ? "bg-green-50 border-green-200 text-green-800"
@@ -12540,18 +12549,18 @@ const ho = new Np(),
               }`,
               children: [
                 t === "success"
-                  ? a.jsx(fp, { className: "w-5 h-5 text-green-600" })
-                  : a.jsx(wp, { className: "w-5 h-5 text-red-600" }),
-                a.jsx("span", {
+                  ? s.jsx(fp, { className: "w-5 h-5 text-green-600" })
+                  : s.jsx(wp, { className: "w-5 h-5 text-red-600" }),
+                s.jsx("span", {
                   className: "text-sm font-medium",
                   children: e,
                 }),
-                a.jsx("button", {
+                s.jsx("button", {
                   onClick: r,
                   className: `p-1 rounded-full hover:bg-black/10 transition-colors ${
                     t === "success" ? "text-green-600" : "text-red-600"
                   }`,
-                  children: a.jsx(wr, { className: "w-4 h-4" }),
+                  children: s.jsx(wr, { className: "w-4 h-4" }),
                 }),
               ],
             }),
@@ -12561,24 +12570,24 @@ const ho = new Np(),
   };
 function Tp() {
   const { isLoadingMedMap: e, notification: t, hideNotification: n } = on();
-  return a.jsxs("div", {
+  return s.jsxs("div", {
     className: "min-h-screen bg-gray-50",
     children: [
-      a.jsx(Sp, {}),
-      a.jsx(Cp, {}),
-      a.jsx(_p, {}),
-      a.jsx("div", {
+      s.jsx(Sp, {}),
+      s.jsx(Cp, {}),
+      s.jsx(_p, {}),
+      s.jsx("div", {
         className: "fixed inset-0",
-        children: a.jsx("div", {
+        children: s.jsx("div", {
           className: "w-full h-full",
-          children: a.jsx(jp, {}),
+          children: s.jsx(jp, {}),
         }),
       }),
-      a.jsx(Mp, {}),
-      a.jsx(Ep, {}),
-      a.jsx(Dp, {}),
-      a.jsx(Pp, { isVisible: e }),
-      a.jsx(Rp, {
+      s.jsx(Mp, {}),
+      s.jsx(Ep, {}),
+      s.jsx(Dp, {}),
+      s.jsx(Pp, { isVisible: e }),
+      s.jsx(Rp, {
         message: t.message,
         type: t.type,
         isVisible: t.isVisible,
@@ -12588,10 +12597,10 @@ function Tp() {
   });
 }
 function Lp() {
-  return a.jsx(sp, {
-    children: a.jsx(ap, { children: a.jsx(op, { children: a.jsx(Tp, {}) }) }),
+  return s.jsx(sp, {
+    children: s.jsx(ap, { children: s.jsx(op, { children: s.jsx(Tp, {}) }) }),
   });
 }
 Mc(document.getElementById("root")).render(
-  a.jsx(j.StrictMode, { children: a.jsx(Lp, {}) })
+  s.jsx(j.StrictMode, { children: s.jsx(Lp, {}) })
 );
