@@ -87,6 +87,32 @@ function set_popup_container() {
   let popup_count_drugs_container = document.createElement("div");
   popup_count_drugs_container.classList.add("popup_count_drugs_container");
 
+  let result_confirm_container = document.createElement("div");
+  result_confirm_container.classList.add("result_confirm_container");
+
+  let result_confirm_count = document.createElement("div");
+  result_confirm_count.classList.add("result_confirm_count");
+
+  let result_confirm_btn = document.createElement("div");
+  result_confirm_btn.classList.add("result_confirm_btn");
+  result_confirm_btn.innerHTML = "確認";
+  result_confirm_btn.addEventListener("click", () => {
+    set_result_to_count();
+  });
+
+  let result_cancel_btn = document.createElement("div");
+  result_cancel_btn.classList.add("result_cancel_btn");
+  result_cancel_btn.innerHTML = "取消";
+  result_cancel_btn.addEventListener("click", () => {
+    cancel_resul_to_count();
+  });
+
+  result_confirm_container.appendChild(result_confirm_count);
+  result_confirm_container.appendChild(result_confirm_btn);
+  result_confirm_container.appendChild(result_cancel_btn);
+
+  popup_count_drugs_container.appendChild(result_confirm_container);
+
   let ppcd_video_container = document.createElement("div");
   ppcd_video_container.classList.add("ppcd_video_container");
 
@@ -585,67 +611,27 @@ function stopAllProcesses() {
 // 確認相機畫面盤點
 async function enter_count_result() {
   try {
+    const videoElement = document.querySelector(".ppcd_video");
+    const canvas_show = document.querySelector(".ppcd_canvas");
     const result = await getCanvasBlob();
     console.log("成功:", result);
     // drawToCanvas();
-    // // 停止實時畫面展示
-    // clearInterval(captureIntervalId);
+    // 停止實時畫面展示
+    isRunning = false;
+    clearInterval(captureIntervalId);
 
     console.log("辨識trigger", result);
     console.log("辨識trigger", result.Data);
+
     drugs_counts = 0;
     drugs_counts = +result.Data.count;
     if (result.Code == 200) {
       console.log("近來數數");
       renderResult(result.Data);
+      show_result_notice();
       console.log("數完", drugs_counts);
     } else {
       alert(`辨識錯誤，重新開始辨識${result.Result}`);
-      stopAllProcesses();
-      setTimeout(() => startCamera(), 500);
-      return;
-    }
-
-    if (confirm(`辨識數量: ${drugs_counts}，是否正確?`)) {
-      let END_QTY_input_popup_input = document.querySelector(
-        "#END_QTY_input_popup_input"
-      );
-      let GUID = popup_input_div_Content.GUID;
-      let CODE = popup_input_div_Content.CODE;
-      let END_QTY = drugs_counts;
-
-      if (+END_QTY == 0) {
-        alert("沒有辨識到藥品，請持續辨識");
-        stopAllProcesses();
-        setTimeout(() => startCamera(), 500);
-        return;
-      }
-
-      // END_QTY_input_popup_input.value = '';
-      let OP = sessionData.Name;
-
-      let temp_str = END_QTY_input_popup_input.value;
-      let input_lastChar = "";
-
-      if (temp_str == "") {
-        END_QTY_input_popup_input.value = END_QTY;
-      } else {
-        input_lastChar = END_QTY_input_popup_input.value.slice(-1);
-        let isSymbol = ["+", "-", "*"].includes(input_lastChar);
-        if (isSymbol) {
-          temp_str += END_QTY;
-        } else {
-          temp_str += `+${+END_QTY}`;
-        }
-        END_QTY_input_popup_input.value = temp_str;
-      }
-
-      // sub_content_add(GUID , temp_sum , OP, CODE);
-      // hide_popup_input();
-      tigger_count_drugs_container(false);
-      return;
-    } else {
-      await pic_analyze_api(canvas.toDataURL("image/jpeg"), "True");
       stopAllProcesses();
       setTimeout(() => startCamera(), 500);
       return;
@@ -655,6 +641,163 @@ async function enter_count_result() {
     stopAllProcesses();
     setTimeout(() => startCamera(), 500);
   }
+}
+
+function show_result_notice() {
+  let result_confirm_container = document.querySelector(
+    ".result_confirm_container"
+  );
+  const videoElement = document.querySelector(".ppcd_video");
+  const canvas_show = document.querySelector(".ppcd_canvas");
+
+  result_confirm_container.style.top = "24px";
+  if (videoElement) {
+    // videoElement.pause(); // 停止播放影片
+    videoElement.style.display = "none"; // 隱藏 video
+    console.log(videoElement);
+  }
+
+  if (canvas_show) {
+    // 確保 canvas 看得到，作為靜態畫面
+    canvas_show.style.display = "block";
+    console.log(canvas_show);
+  }
+
+  let result_confirm_count = document.querySelector(".result_confirm_count");
+  result_confirm_count.innerHTML = `辨識數量：${drugs_counts}`;
+  // if (confirm(`辨識數量: ${drugs_counts}，是否正確?`)) {
+  //   let END_QTY_input_popup_input = document.querySelector(
+  //     "#END_QTY_input_popup_input"
+  //   );
+  //   let GUID = popup_input_div_Content.GUID;
+  //   let CODE = popup_input_div_Content.CODE;
+  //   let END_QTY = drugs_counts;
+
+  //   if (+END_QTY == 0) {
+  //     alert("沒有辨識到藥品，請持續辨識");
+  //     stopAllProcesses();
+  //     setTimeout(() => startCamera(), 500);
+  //     return;
+  //   }
+
+  //   // END_QTY_input_popup_input.value = '';
+  //   let OP = sessionData.Name;
+
+  //   let temp_str = END_QTY_input_popup_input.value;
+  //   let input_lastChar = "";
+
+  //   if (temp_str == "") {
+  //     END_QTY_input_popup_input.value = END_QTY;
+  //   } else {
+  //     input_lastChar = END_QTY_input_popup_input.value.slice(-1);
+  //     let isSymbol = ["+", "-", "*"].includes(input_lastChar);
+  //     if (isSymbol) {
+  //       temp_str += END_QTY;
+  //     } else {
+  //       temp_str += `+${+END_QTY}`;
+  //     }
+  //     END_QTY_input_popup_input.value = temp_str;
+  //   }
+
+  //   // sub_content_add(GUID , temp_sum , OP, CODE);
+  //   // hide_popup_input();
+  //   if (videoElement) {
+  //     // videoElement.pause(); // 停止播放影片
+  //     videoElement.style.display = "block"; // 隱藏 video
+  //   }
+
+  //   if (canvas_show) {
+  //     // 確保 canvas 看得到，作為靜態畫面
+  //     canvas_show.style.display = "none";
+  //   }
+  //   tigger_count_drugs_container(false);
+  //   return;
+  // }
+}
+
+function set_result_to_count() {
+  let result_confirm_container = document.querySelector(
+    ".result_confirm_container"
+  );
+  result_confirm_container.style.top = "-120px";
+
+  let END_QTY_input_popup_input = document.querySelector(
+    "#END_QTY_input_popup_input"
+  );
+  let GUID = popup_input_div_Content.GUID;
+  let CODE = popup_input_div_Content.CODE;
+  let END_QTY = drugs_counts;
+
+  if (+END_QTY == 0) {
+    alert("沒有辨識到藥品，請持續辨識");
+    stopAllProcesses();
+    setTimeout(() => startCamera(), 500);
+    return;
+  }
+
+  // END_QTY_input_popup_input.value = '';
+  let OP = sessionData.Name;
+
+  let temp_str = END_QTY_input_popup_input.value;
+  let input_lastChar = "";
+
+  if (temp_str == "") {
+    END_QTY_input_popup_input.value = END_QTY;
+  } else {
+    input_lastChar = END_QTY_input_popup_input.value.slice(-1);
+    let isSymbol = ["+", "-", "*"].includes(input_lastChar);
+    if (isSymbol) {
+      temp_str += END_QTY;
+    } else {
+      temp_str += `+${+END_QTY}`;
+    }
+    END_QTY_input_popup_input.value = temp_str;
+  }
+  const videoElement = document.querySelector(".ppcd_video");
+  const canvas_show = document.querySelector(".ppcd_canvas");
+
+  // sub_content_add(GUID , temp_sum , OP, CODE);
+  // hide_popup_input();
+  if (videoElement) {
+    // videoElement.pause(); // 停止播放影片
+    videoElement.style.display = "block"; // 隱藏 video
+  }
+
+  if (canvas_show) {
+    // 確保 canvas 看得到，作為靜態畫面
+    canvas_show.style.display = "none";
+  }
+  tigger_count_drugs_container(false);
+  return;
+}
+async function cancel_resul_to_count() {
+  let result_confirm_container = document.querySelector(
+    ".result_confirm_container"
+  );
+  result_confirm_container.style.top = "-120px";
+
+  const videoElement = document.querySelector(".ppcd_video");
+  const canvas_show = document.querySelector(".ppcd_canvas");
+
+  if (videoElement) {
+    // videoElement.pause(); // 停止播放影片
+    videoElement.style.display = "block"; // 隱藏 video
+    console.log(videoElement);
+  }
+
+  if (canvas_show) {
+    // 確保 canvas 看得到，作為靜態畫面
+    canvas_show.style.display = "none";
+    console.log(canvas_show);
+  }
+
+  // pic_analyze_api(canvas.toDataURL("image/jpeg"), "True");
+  stopAllProcesses();
+  setTimeout(() => startCamera(), 500);
+
+  let result_confirm_count = document.querySelector(".result_confirm_count");
+  result_confirm_count.innerHTML = ``;
+  return;
 }
 
 // 輸入AI學習
@@ -720,16 +863,21 @@ function getCanvasBlob() {
   }
   const videoElement = document.querySelector(".ppcd_video");
   const canvas = document.createElement("canvas");
+  const canvas_show = document.querySelector(".ppcd_canvas");
+  canvas_show.width = 960;
+  canvas_show.height = 960;
   const size = Math.min(videoElement.videoWidth, videoElement.videoHeight);
   canvas.width = 960;
   canvas.height = 960;
   const context = canvas.getContext("2d");
+  const context_show = canvas_show.getContext("2d");
 
   capture_sp = performance.now();
   // 中心裁切並縮放至960x960
   const sx = (videoElement.videoWidth - size) / 2;
   const sy = (videoElement.videoHeight - size) / 2;
   context.drawImage(videoElement, sx, sy, size, size, 0, 0, 960, 960);
+  context_show.drawImage(videoElement, sx, sy, size, size, 0, 0, 960, 960);
 
   capture_ep = performance.now();
   capture_time = capture_ep - capture_sp;
