@@ -637,9 +637,6 @@ video {
 .items-start {
   align-items: flex-start;
 }
-.items-end {
-  align-items: flex-end;
-}
 .items-center {
   align-items: center;
 }
@@ -1397,9 +1394,6 @@ video {
   opacity: 1;
 }
 @media (min-width: 640px) {
-  .sm\:mb-0 {
-    margin-bottom: 0;
-  }
   .sm\:inline {
     display: inline;
   }
@@ -1427,12 +1421,12 @@ video {
   .sm\:flex-row {
     flex-direction: row;
   }
+  .sm\:items-end {
+    align-items: flex-end;
+  }
   .sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-  .sm\:text-left {
-    text-align: left;
   }
   .sm\:text-sm {
     font-size: 0.875rem;
