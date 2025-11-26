@@ -1570,11 +1570,20 @@ async function set_ppmcl_main_info() {
         ppmcl_cpoe_notice_ice.classList.add("med_cart_REFRIGERATED_MEDICINE");
         ppmcl_cpoe_notice_ice.innerHTML = "冷藏";
 
-        if (item.self == "Y")
+        if (item.self == "Y") {
           ppmcl_cpoe_notice_container.appendChild(ppmcl_cpoe_notice_self);
-        if (item.med_cloud[0]) {
-          if (item.med_cloud[0].REFRIGERATED_MEDICINE == "Y")
-            ppmcl_cpoe_notice_container.appendChild(ppmcl_cpoe_notice_ice);
+        }
+        try {
+          if (item.med_cloud) {
+            if (item.med_cloud[0].REFRIGERATED_MEDICINE) {
+              if (item.med_cloud[0].REFRIGERATED_MEDICINE == "Y") {
+                ppmcl_cpoe_notice_container.appendChild(ppmcl_cpoe_notice_ice);
+              }
+            }
+          }
+        } catch (error) {
+          console.log(item);
+          console.error(error);
         }
 
         ppmcl_cpoe_med_info_container.appendChild(ppmcl_cpoe_name_container);

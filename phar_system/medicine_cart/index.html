@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="popup_self_operate.css?v=1.2" />
     <link rel="stylesheet" href="popup_nearMiss.css?v=1.7" />
     <link rel="stylesheet" href="popup_nearMiss_report.css?v=1.3" />
+    <link rel="stylesheet" href="deliver_login.css?v=1.0" />
     <script src="../Function/Basic.js?v=1.14"></script>
 
     <script>
@@ -85,11 +86,14 @@
         loadScript("popup_self_operate.js");
         loadScript("popup_nearMiss.js");
         loadScript("popup_nearMiss_report.js");
+        loadScript("deliver_login.js");
       })();
     </script>
   </head>
   <body>
     <script>
+      set_deliver_login();
+
       get_popup_dc_new();
       popup_dc_new_div.Set_Visible(false);
 

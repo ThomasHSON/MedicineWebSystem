@@ -11674,7 +11674,7 @@ const rd = async () => {
                             }),
                             n.jsx("p", {
                               className:
-                                "text-gray-700 text-sm mb-3 leading-relaxed",
+                                "text-gray-700 text-sm mb-3 leading-relaxed whitespace-pre-line",
                               children: x.content,
                             }),
                             n.jsxs("div", {
@@ -11836,12 +11836,12 @@ const rd = async () => {
         n.jsx("div", {
           className: "flex-1 p-3",
           children: n.jsxs("div", {
-            className: `h-full p-4 border rounded-xl transition-colors ${s(
+            className: `h-full px-4 py-2 border flex flex-col rounded-xl transition-colors ${s(
               o.priority
             )} border-gray-200`,
             children: [
               n.jsxs("div", {
-                className: "flex items-center justify-between mb-3",
+                className: "flex items-center justify-between mb-2 w-full",
                 children: [
                   n.jsx("h4", {
                     className:
@@ -11857,7 +11857,8 @@ const rd = async () => {
                 ],
               }),
               n.jsx("p", {
-                className: "text-gray-700 text-base mb-4 leading-relaxed",
+                className:
+                  "text-gray-700 text-base mb-2 leading-relaxed whitespace-pre-line flex-1",
                 children: o.content,
               }),
               n.jsxs("div", {

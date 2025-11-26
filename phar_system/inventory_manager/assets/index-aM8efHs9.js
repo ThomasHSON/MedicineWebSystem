@@ -9471,7 +9471,7 @@ var Ph = Wa.exports,
         s = window.URL.createObjectURL(o),
         i = document.createElement("a");
       (i.href = s),
-        (i.download = "盤點範例.xls"),
+        (i.download = "盤點範例.xlsx"),
         document.body.appendChild(i),
         i.click(),
         window.URL.revokeObjectURL(s),
