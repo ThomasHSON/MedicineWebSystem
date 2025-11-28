@@ -548,7 +548,7 @@ function popup_med_serch_get_row(medClass, index) {
   );
   My_Div.Set_Text(
     row_text,
-    `${index}.${medClass.NAME}`,
+    `${index}.${medClass.NAME} \n ${medClass.CODE}`,
     TextAlignEnum.LEFT,
     "16px",
     true,
