@@ -9,8 +9,8 @@ const qrCodeScanner = {
     audio: false,
     video: {
       facingMode: "environment",
-      width: { ideal: 1920 },
-      height: { ideal: 1080 },
+      width: { ideal: 9999 },
+      height: { ideal: 9999 },
       frameRate: { ideal: 30 },
     },
   },
