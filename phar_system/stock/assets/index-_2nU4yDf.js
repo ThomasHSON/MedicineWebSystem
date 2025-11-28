@@ -14647,7 +14647,9 @@ const Fc = async () => {
       },
       u = () => {
         const i = Dp();
-        i != null && i.domain && (window.location.href = i.domain);
+        i != null &&
+          i.domain &&
+          (window.location.href = i.homepage / phar_system / frontpage);
       };
     return o.jsx("div", {
       className: "min-h-screen bg-white",
