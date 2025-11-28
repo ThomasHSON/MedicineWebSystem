@@ -110,16 +110,17 @@ function popup_med_serch_content_init() {
   const radio_content_CODE_text = document.createElement("div");
   My_Div.Set_Text(
     radio_content_CODE_text,
-    "藥名",
+    "藥碼",
     TextAlignEnum.CENTER,
     "16px",
     false,
     "微軟正黑體",
     "black"
   );
-  radio_content_ENG_NAME_text.style.marginLeft = "5px";
-  radio_content_ENG_NAME_text.style.marginRight = "5px";
-  content_serch_type_div.appendChild(radio_content_ENG_NAME_text);
+  radio_content_CODE_text.style.marginLeft = "5px";
+  radio_content_CODE_text.style.marginRight = "5px";
+  content_serch_type_div.appendChild(radio_content_CODE_text);
+
   const radio_content_ENG_NAME = document.createElement("input");
   radio_content_ENG_NAME.type = "radio";
   radio_content_ENG_NAME.id = "radio_content_ENG_NAME";
