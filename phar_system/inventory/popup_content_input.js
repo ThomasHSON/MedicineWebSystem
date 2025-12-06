@@ -188,7 +188,8 @@ function edit_title_popup_input(Content)
     if(Content.CHT_NAME != null) med_cht_name_text.innerText = `(中) : ${Content.CHT_NAME}`;
 
     const med_end_QTY_text = document.querySelector('#med_end_QTY_text_popup_input');
-    med_end_QTY_text.innerText = `盤點量 : \n${Content.END_QTY}`;
+    med_end_QTY_text.innerText = `盤點量 : \n${+Content.END_QTY}`;
+    console.log(Content);
     const med_end_PKG_text = document.querySelector('#med_end_PKG_text_popup_input');
     med_end_PKG_text.innerText = `單位 : \n${Content.PAKAGE}`;
     
@@ -460,7 +461,7 @@ function get_underline_popup_input()
     underline_div.appendChild(END_QTY_input_div);
 
     const calculate_div = document.createElement('div');
-    My_Div.Init(calculate_div, 'calculate_div','calculate_div', '100%', '180px', '');
+    My_Div.Init(calculate_div, 'calculate_div','calculate_div', '100%', '210px', '');
     My_Div.Set_Block(calculate_div, DisplayEnum.FLEX, FlexDirectionEnum.COLUMN, JustifyContentEnum.CENTER);
 
     const calculate_div_row1 = document.createElement('div');
@@ -590,6 +591,14 @@ function get_underline_popup_input()
         calculate_input("0");
     });
     calculate_div_row4.appendChild(calculate_0_btn);
+    const calculate_Period_btn = document.createElement('button');
+    My_Div.Init(calculate_Period_btn, `calculate_btn`,`calculate_Period_btn`, '25%', '100%',);
+    My_Div.Set_Text(calculate_Period_btn ,`.` , TextAlignEnum.CENTER , "20px", true,"微軟正黑體","black");
+    calculate_Period_btn.addEventListener('click', function()
+    {
+         calculate_input(".");
+    });
+    calculate_div_row4.appendChild(calculate_Period_btn);
     const calculate_Back_btn = document.createElement('button');
     My_Div.Init(calculate_Back_btn, `calculate_btn`,`calculate_Back_btn`, '25%', '100%',);
     My_Div.Set_Text(calculate_Back_btn ,`←` , TextAlignEnum.CENTER , "20px", true,"微軟正黑體","black");
@@ -598,6 +607,11 @@ function get_underline_popup_input()
         popup_input_END_QTY_input.value = popup_input_END_QTY_input.value.slice(0, -1);
     });
     calculate_div_row4.appendChild(calculate_Back_btn);
+    
+    
+    const calculate_div_row5 = document.createElement('div');
+    My_Div.Init(calculate_div_row5, 'calculate_div_row5','calculate_div_row5', '100%', '25%', '');
+    My_Div.Set_Block(calculate_div_row5, DisplayEnum.FLEX, FlexDirectionEnum.ROW, JustifyContentEnum.RIGHT);
     const calculate_Result_btn = document.createElement('button');
     My_Div.Init(calculate_Result_btn, `calculate_btn`,`calculate_Result_btn`, '25%', '100%',);
     My_Div.Set_Text(calculate_Result_btn ,`=` , TextAlignEnum.CENTER , "20px", true,"微軟正黑體","black");
@@ -605,12 +619,13 @@ function get_underline_popup_input()
     {
         popup_input_END_QTY_input.value = calculateExpression(popup_input_END_QTY_input.value);
     });
-    calculate_div_row4.appendChild(calculate_Result_btn);
+    calculate_div_row5.appendChild(calculate_Result_btn);
 
     calculate_div.appendChild(calculate_div_row1);
     calculate_div.appendChild(calculate_div_row2);
     calculate_div.appendChild(calculate_div_row3);
     calculate_div.appendChild(calculate_div_row4);
+    calculate_div.appendChild(calculate_div_row5);
     underline_div.appendChild(calculate_div);
 
     return underline_div;
@@ -621,7 +636,7 @@ function calculate_input(char)
     var text = popup_input_END_QTY_input.value;
     if(text.length == 0)
     {
-        if(char == '0' ||char == '1'||char == '2'||char == '3'||char == '1'||char == '4'||char == '5'||char == '6'||char == '7'||char == '8'||char == '9'||char == '+'||char == '-')
+        if(char == '0' ||char == '1'||char == '2'||char == '3'||char == '1'||char == '4'||char == '5'||char == '6'||char == '7'||char == '8'||char == '9'||char == '+'||char == '-'||char == '.')
         {
             popup_input_END_QTY_input.value = text + char;
         }
@@ -632,10 +647,14 @@ function calculate_input(char)
         {
             popup_input_END_QTY_input.value = text + char;
         }
-        else if(char == '+' ||char == '-'||char == '*')
+        else if(char == '+' ||char == '-'||char == '*' || char == '.')
         {
             let lastChar = text[text.length - 1];
-            if(lastChar == "+" || lastChar == '-' || lastChar == '*')
+            console.log(char);
+            console.log(char == '.');
+            console.log(lastChar == '.');
+            console.log(lastChar == '.');
+            if(lastChar == "+" || lastChar == '-' || lastChar == '*' || lastChar == '.')
             {
                 return;
             }
@@ -725,40 +744,51 @@ function get_block_popup_input(Sub_content)
 }
 
 function calculateExpression(expression) {
-    // 移除所有空格
-    expression = expression.replace(/\s+/g, '');
-  
-    // 创建一个存储数字和运算符的数组
-    const stack = [];
-    let currentNumber = 0;
-    let currentOperator = '+';
-  
-    for (let i = 0; i < expression.length; i++) {
-      const char = expression[i];
-  
-      if (!isNaN(char)) {
-        // 如果是数字字符，将其添加到当前数字
-        currentNumber = currentNumber * 10 + parseInt(char);
-      }
-  
-      if (isNaN(char) || i === expression.length - 1) {
-        // 如果是运算符或表达式结束
-        if (currentOperator === '+') {
-          stack.push(currentNumber);
-        } else if (currentOperator === '-') {
-          stack.push(-currentNumber);
-        } else if (currentOperator === '*') {
-          stack.push(stack.pop() * currentNumber);
-        }
-  
-        currentNumber = 0;
-        currentOperator = char;
-      }
+  expression = expression.replace(/\s+/g, '');
+
+  const stack = [];
+  let currentNumber = '';
+  let currentOperator = '+';
+
+  function applyCurrentNumber() {
+    if (currentNumber === '' || currentNumber === '.') return;
+
+    const num = parseFloat(currentNumber);
+    if (isNaN(num)) return;
+
+    if (currentOperator === '+') {
+      stack.push(num);
+    } else if (currentOperator === '-') {
+      stack.push(-num);
+    } else if (currentOperator === '*') {
+      const last = stack.pop() ?? 0;
+      stack.push(last * num);
     }
-  
-    // 对数组中的所有数字求和
-    return stack.reduce((total, num) => total + num, 0);
+
+    currentNumber = '';
   }
+
+  for (let i = 0; i < expression.length; i++) {
+    const char = expression[i];
+
+    if ((char >= '0' && char <= '9') || char === '.') {
+      currentNumber += char;
+    }
+
+    if (char === '+' || char === '-' || char === '*' || i === expression.length - 1) {
+      applyCurrentNumber();
+      currentOperator = char;
+    }
+  }
+
+  // 原本的總和
+  const total = stack.reduce((t, n) => t + n, 0);
+
+  // ⭐ 最重要：四捨五入到小數點一位
+  return Math.round(total * 10) / 10;
+}
+
+
   
 
 function set_localStorage_submit_post_data(post_data, med_info, IC_SN)
