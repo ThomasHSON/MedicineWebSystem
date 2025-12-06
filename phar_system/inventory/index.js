@@ -300,13 +300,19 @@ async function Refresh_rows() {
 
     if (row.length != 0) {
       const _QTY = subContentArray[i].END_QTY;
+      let single_QTY = 0;
+      subContentArray[i].Sub_content.forEach(element => {
+        if(element.OP == sessionData.Name) {
+          single_QTY = single_QTY + parseInt(element.END_QTY);
+        }
+      });
       const _TOL_QTY = subContentArray[i].START_QTY;
       const row_content_QTY = row[0].querySelector(`.row_content_QTY`);
       row[0].style.backgroundColor = "white";
       if (_TOL_QTY == "0" || _TOL_QTY == "") {
         My_Div.Set_Text(
           row_content_QTY,
-          `${_QTY}/${_QTY}`,
+          `${single_QTY}/${_QTY}`,
           TextAlignEnum.RIGHT,
           "18px",
           true,
@@ -316,7 +322,7 @@ async function Refresh_rows() {
       } else {
         My_Div.Set_Text(
           row_content_QTY,
-          `${_QTY}/${_TOL_QTY}`,
+          `${single_QTY}/${_TOL_QTY}`,
           TextAlignEnum.RIGHT,
           "18px",
           true,
@@ -982,26 +988,59 @@ function get_row(Sub_Content) {
     "",
     ""
   );
-  if (_TOL_QTY == "0" || _TOL_QTY == "") {
-    My_Div.Set_Text(
-      row_content_QTY,
-      `${_QTY}/${_QTY}`,
-      TextAlignEnum.RIGHT,
-      "18px",
-      true,
-      "微軟正黑體",
-      "green"
-    );
+  let single_QTY = 0;
+  Sub_Content.Sub_content.forEach(element => {
+    if(element.OP == sessionData.Name) {
+      single_QTY = single_QTY + parseInt(element.END_QTY);
+    }
+  });
+  // 這裡加上去判斷
+  let queryString = window.location.search;
+  let urlParams = new URLSearchParams(queryString);
+  if (urlParams.has('administrator')) {
+    if (_TOL_QTY == "0" || _TOL_QTY == "") {
+      My_Div.Set_Text(
+        row_content_QTY,
+        `${_QTY}/${_QTY}`,
+        TextAlignEnum.RIGHT,
+        "18px",
+        true,
+        "微軟正黑體",
+        "green"
+      );
+    } else {
+      My_Div.Set_Text(
+        row_content_QTY,
+        `${_QTY}/${_TOL_QTY}`,
+        TextAlignEnum.RIGHT,
+        "18px",
+        true,
+        "微軟正黑體",
+        "green"
+      );
+    }
   } else {
-    My_Div.Set_Text(
-      row_content_QTY,
-      `${_QTY}/${_TOL_QTY}`,
-      TextAlignEnum.RIGHT,
-      "18px",
-      true,
-      "微軟正黑體",
-      "green"
-    );
+    if (_TOL_QTY == "0" || _TOL_QTY == "") {
+      My_Div.Set_Text(
+        row_content_QTY,
+        `${single_QTY}/${_QTY}`,
+        TextAlignEnum.RIGHT,
+        "18px",
+        true,
+        "微軟正黑體",
+        "green"
+      );
+    } else {
+      My_Div.Set_Text(
+        row_content_QTY,
+        `${single_QTY}/${_TOL_QTY}`,
+        TextAlignEnum.RIGHT,
+        "18px",
+        true,
+        "微軟正黑體",
+        "green"
+      );
+    }
   }
   row_content_sub02_div01.appendChild(row_content_QTY);
 
