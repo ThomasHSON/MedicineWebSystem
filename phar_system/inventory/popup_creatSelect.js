@@ -118,7 +118,6 @@ function popup_creatSelect_content_init()
 
         popup_creatSelect_creat["Data"] = temp_data;
         if(temp_data.length == 0) {
-            alert("目前沒有任何單據符合您, 請與管理員確認後再登入確認");
         }
     }
 
