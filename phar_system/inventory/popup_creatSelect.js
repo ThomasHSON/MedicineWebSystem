@@ -95,8 +95,12 @@ function popup_creatSelect_content_init()
         // // temp_arr [123, 4234, 1134]
         // temp_arr.forEach(e => {
         // })
-        if(temp_str.includes(loged_name)) {
-            count_include = +count_include + 1;
+        if(temp_str) {
+            if(temp_str.includes(loged_name)) {
+                count_include = +count_include + 1;
+                temp_data.push(element);
+            }
+        } else {
             temp_data.push(element);
         }
     });
