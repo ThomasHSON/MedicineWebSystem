@@ -301,11 +301,12 @@ async function Refresh_rows() {
     if (row.length != 0) {
       const _QTY = subContentArray[i].END_QTY;
       let single_QTY = 0;
-      subContentArray[i].Sub_content.forEach(element => {
-        if(element.OP == sessionData.Name) {
-          single_QTY = single_QTY + parseInt(element.END_QTY);
+      subContentArray[i].Sub_content.forEach((element) => {
+        if (element.OP == sessionData.Name) {
+          single_QTY += Number(+element.END_QTY);
         }
       });
+      single_QTY = formatQty(single_QTY);
       const _TOL_QTY = subContentArray[i].START_QTY;
       const row_content_QTY = row[0].querySelector(`.row_content_QTY`);
       row[0].style.backgroundColor = "white";
@@ -989,15 +990,18 @@ function get_row(Sub_Content) {
     ""
   );
   let single_QTY = 0;
-  Sub_Content.Sub_content.forEach(element => {
-    if(element.OP == sessionData.Name) {
-      single_QTY = single_QTY + parseInt(element.END_QTY);
+  Sub_Content.Sub_content.forEach((element) => {
+    if (element.OP == sessionData.Name) {
+      single_QTY += Number(+element.END_QTY);
     }
   });
+  single_QTY = formatQty(single_QTY);
+  _QTY = formatQty(_QTY);
+  _TOL_QTY = formatQty(_TOL_QTY);
   // 這裡加上去判斷
   let queryString = window.location.search;
   let urlParams = new URLSearchParams(queryString);
-  if (urlParams.has('administrator')) {
+  if (urlParams.has("administrator")) {
     if (_TOL_QTY == "0" || _TOL_QTY == "") {
       My_Div.Set_Text(
         row_content_QTY,
@@ -1224,4 +1228,15 @@ function send_inventory_info_to_iframe() {
     { action: "MED_INVENTORY_INFO", data: data_object },
     "*"
   );
+}
+function formatQty(value) {
+  const num = Number(value);
+
+  // 如果是整數，就回傳整數
+  if (Number.isInteger(num)) {
+    return num;
+  }
+
+  // 有小數 → 四捨五入到 1 位
+  return Number(num.toFixed(1));
 }
