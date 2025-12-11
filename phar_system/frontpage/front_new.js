@@ -89,8 +89,13 @@ function get_page_section(object, arr) {
       });
     } else {
       object["branch"][0]["pages"].forEach((element) => {
+        let temp_boolean = user_permission_check(
+          user_permission_data,
+          element["html_ctName"],
+          user_sessecion.level
+        );
         let temp_div = get_page_icon(element, arr, user_sessecion.level);
-        if (!front_page_display_logic(element.html_name, arr)) {
+        if (!front_page_display_logic(element.html_name, arr) && temp_boolean) {
           console.log(element.html_name);
           console.log(front_page_display_logic(element.html_name, arr));
           pages_icon_container.appendChild(temp_div);
@@ -99,8 +104,13 @@ function get_page_section(object, arr) {
 
       // 將禁止頁面放置後方
       object["branch"][0]["pages"].forEach((element) => {
+        let temp_boolean = user_permission_check(
+          user_permission_data,
+          element["html_ctName"],
+          user_sessecion.level
+        );
         let temp_div = get_page_icon(element, arr, user_sessecion.level);
-        if (front_page_display_logic(element.html_name, arr)) {
+        if (front_page_display_logic(element.html_name, arr) || !temp_boolean) {
           console.log(element.html_name);
           console.log(front_page_display_logic(element.html_name, arr));
           pages_icon_container.appendChild(temp_div);
@@ -174,8 +184,17 @@ function get_page_section(object, arr) {
         });
       } else {
         element["pages"].forEach((element) => {
+          let temp_boolean = user_permission_check(
+            user_permission_data,
+            element["html_ctName"],
+            user_sessecion.level
+          );
+
           let temp_div = get_page_icon(element, arr, user_sessecion.level);
-          if (!front_page_display_logic(element.html_name, arr)) {
+          if (
+            !front_page_display_logic(element.html_name, arr) &&
+            temp_boolean
+          ) {
             console.log(element.html_name);
             console.log(front_page_display_logic(element.html_name, arr));
             pages_icon_container.appendChild(temp_div);
@@ -184,13 +203,20 @@ function get_page_section(object, arr) {
 
         // 將禁止頁面放置後方
         element["pages"].forEach((element) => {
+          let temp_boolean = user_permission_check(
+            user_permission_data,
+            element["html_ctName"],
+            user_sessecion.level
+          );
+
           let temp_div = get_page_icon(element, arr, user_sessecion.level);
           if (
             front_page_display_logic(
               element.html_name,
               arr,
               user_sessecion.level
-            )
+            ) ||
+            !temp_boolean
           ) {
             console.log(element.html_name);
             console.log(front_page_display_logic(element.html_name, arr));
