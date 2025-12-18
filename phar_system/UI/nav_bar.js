@@ -135,7 +135,7 @@ let html_pages = [
           },
           {
             html_name: "bulletin",
-            html_ctName: "戰情白板",
+            html_ctName: "藥庫監控",
             html_url: "../../phar_system/bulletin",
             icon_url:
               "../../phar_system/phar_system/image/icon/search-engine.png",
