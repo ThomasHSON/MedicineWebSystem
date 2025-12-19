@@ -1,12 +1,10 @@
 window.onload = load;
 // window.addEventListener('resize', handleResize);
-var IsLogged = (function() 
-{
-  return (sessionData.Name != null && sessionData.Name != "");
+var IsLogged = (function () {
+  return sessionData.Name != null && sessionData.Name != "";
 })();
-function handleResize() 
-{
-   //Set_popup_find_position();
+function handleResize() {
+  //Set_popup_find_position();
 }
 function set_login_timestamp() {
   // 取得當前時間
@@ -14,17 +12,24 @@ function set_login_timestamp() {
 
   // 格式化成 "2025-09-09T00:00:00" 的形式
   let pad = (n) => n.toString().padStart(2, "0");
-  let formatted = 
-    now.getFullYear() + "-" +
-    pad(now.getMonth() + 1) + "-" +
-    pad(now.getDate()) + "T" +
-    pad(now.getHours()) + ":" +
-    pad(now.getMinutes()) + ":" +
+  let formatted =
+    now.getFullYear() +
+    "-" +
+    pad(now.getMonth() + 1) +
+    "-" +
+    pad(now.getDate()) +
+    "T" +
+    pad(now.getHours()) +
+    ":" +
+    pad(now.getMinutes()) +
+    ":" +
     pad(now.getSeconds());
 
-  let log_time =     
-    pad(now.getHours()) + ":" +
-    pad(now.getMinutes()) + ":" +
+  let log_time =
+    pad(now.getHours()) +
+    ":" +
+    pad(now.getMinutes()) +
+    ":" +
     pad(now.getSeconds());
 
   let cutoff_time = page_setting_params.delivery_time.value + ":00";
@@ -32,20 +37,28 @@ function set_login_timestamp() {
   console.log(log_time > cutoff_time);
 
   let formatted_cutoff;
-  if(log_time > cutoff_time) {
+  if (log_time > cutoff_time) {
     let nextDay = new Date(now);
-    nextDay.setDate(nextDay.getDate() + 1)
-    formatted_cutoff = 
-      nextDay.getFullYear() + "-" +
-      pad(nextDay.getMonth() + 1) + "-" +
-      pad(nextDay.getDate()) + "T" +
-      page_setting_params.delivery_time.value + ":00";
+    nextDay.setDate(nextDay.getDate() + 1);
+    formatted_cutoff =
+      nextDay.getFullYear() +
+      "-" +
+      pad(nextDay.getMonth() + 1) +
+      "-" +
+      pad(nextDay.getDate()) +
+      "T" +
+      page_setting_params.delivery_time.value +
+      ":00";
   } else {
-    formatted_cutoff = 
-      now.getFullYear() + "-" +
-      pad(now.getMonth() + 1) + "-" +
-      pad(now.getDate()) + "T" +
-      page_setting_params.delivery_time.value + ":00";
+    formatted_cutoff =
+      now.getFullYear() +
+      "-" +
+      pad(now.getMonth() + 1) +
+      "-" +
+      pad(now.getDate()) +
+      "T" +
+      page_setting_params.delivery_time.value +
+      ":00";
   }
 
   // 寫入 localStorage
@@ -63,15 +76,20 @@ function check_cutoff_time_relogin() {
 
   // 格式化成 "2025-09-09T00:00:00" 的形式
   let pad = (n) => n.toString().padStart(2, "0");
-  let formatted = 
-    now.getFullYear() + "-" +
-    pad(now.getMonth() + 1) + "-" +
-    pad(now.getDate()) + "T" +
-    pad(now.getHours()) + ":" +
-    pad(now.getMinutes()) + ":" +
+  let formatted =
+    now.getFullYear() +
+    "-" +
+    pad(now.getMonth() + 1) +
+    "-" +
+    pad(now.getDate()) +
+    "T" +
+    pad(now.getHours()) +
+    ":" +
+    pad(now.getMinutes()) +
+    ":" +
     pad(now.getSeconds());
 
-  if(cutoff_time < formatted) {
+  if (cutoff_time < formatted) {
     console.log("API操作時間", formatted);
     console.log("切帳時間：", cutoff_time);
     console.log("取消操作，重新整理頁面。");
@@ -89,22 +107,21 @@ function check_cutoff_time_relogin() {
   }
 }
 
-async function load()
-{
+async function load() {
   set_popup_notice_div();
   check_session_off();
   var serverName = "";
-//   ServerName = serverName;
+  //   ServerName = serverName;
   ServerType = "網頁";
   TableName = "medicine_page";
   APIServer = await LoadAPIServer();
   console.log(ServerType, TableName, APIServer);
-  console.log(serverName,"網頁","API01");
-  const API01 = serch_APIServer(serverName,"網頁","API01");
-  const API02 = serch_APIServer(serverName,"網頁","API02");
-  console.log("API01",API01);
-  console.log("API02",API02);
-  await check_ip(API01[0].server,API02[0].server);
+  console.log(serverName, "網頁", "API01");
+  const API01 = serch_APIServer(serverName, "網頁", "API01");
+  const API02 = serch_APIServer(serverName, "網頁", "API02");
+  console.log("API01", API01);
+  console.log("API02", API02);
+  await check_ip(API01[0].server, API02[0].server);
   // permissions = await GetApipermissions();
   // console.log(permissions);
 
@@ -113,12 +130,12 @@ async function load()
   med_data = med_data.Data;
   console.log("雲端藥品資料", med_data);
   let post_data = {
-    ValueAry: ["medicine_cart"]
-  }
+    ValueAry: ["medicine_cart"],
+  };
 
   let return_data = await get_by_page_name(post_data);
   return_data = return_data.Data;
-  return_data.forEach(element => {
+  return_data.forEach((element) => {
     page_setting_params[`${element.name}`] = element;
   });
 
@@ -131,12 +148,12 @@ async function load()
   document.body.appendChild(Loadingpopup);
   Set_main_div_enable(true);
 
-  var loggedID = sessionStorage.getItem('loggedID');  
-  var loggedName = sessionStorage.getItem('loggedName');  
+  var loggedID = sessionStorage.getItem("loggedID");
+  var loggedName = sessionStorage.getItem("loggedName");
   const test_user_data = {
     id: loggedID,
     name: loggedName,
-  }
+  };
 
   // nav_bar_create("medicine_cart", test_user_data);
   get_header(test_user_data);
@@ -156,147 +173,156 @@ async function load()
 }
 
 function get_header(test_user_data) {
-    let body = document.querySelector("body");
-    const header = document.createElement("div");
-    header.id = "header";
-    header.className = "header";
+  let body = document.querySelector("body");
+  const header = document.createElement("div");
+  header.id = "header";
+  header.className = "header";
 
-    let header_title_container = document.createElement("div");
-    header_title_container.classList = "header_title_container";
+  let header_title_container = document.createElement("div");
+  header_title_container.classList = "header_title_container";
 
-    let h_title = document.createElement("div");
-    h_title.classList = 'h_title';
-    h_title.innerHTML = "住院調劑";
+  let h_title = document.createElement("div");
+  h_title.classList = "h_title";
+  h_title.innerHTML = "住院調劑";
 
-    let header_user = document.createElement("div");
-    header_user.classList.add("header_user");
-    header_user.innerHTML = `使用者：${test_user_data.name}`;
+  let header_user = document.createElement("div");
+  header_user.classList.add("header_user");
+  header_user.innerHTML = `使用者：${test_user_data.name}`;
 
-    let homepage_link = document.createElement("a");
-    homepage_link.classList.add("homepage_link");
-    homepage_link.href = '../frontpage';
+  let homepage_link = document.createElement("a");
+  homepage_link.classList.add("homepage_link");
+  homepage_link.href = "../frontpage";
 
-    let homepage_link_img = document.createElement("img");
-    homepage_link_img.src = '../image/homepage.png';
-    homepage_link_img.classList.add("homepage_link_img");
+  let homepage_link_img = document.createElement("img");
+  homepage_link_img.src = "../image/homepage.png";
+  homepage_link_img.classList.add("homepage_link_img");
 
-    homepage_link.appendChild(homepage_link_img);
+  homepage_link.appendChild(homepage_link_img);
 
-    header_title_container.appendChild(h_title);
-    header_title_container.appendChild(header_user);
+  header_title_container.appendChild(h_title);
+  header_title_container.appendChild(header_user);
 
-    let light_color_select_div = document.createElement("div");
-    light_color_select_div.classList.add("light_color_select_div");
-    
-    let current_light_color_display = document.createElement("div");
-    current_light_color_display.classList.add("current_light_color_display");
-    current_light_color_display.style.backgroundColor = `rgb(${color_select.rgb})`;
-    current_light_color_display.onclick = open_light_color_list;
+  let light_color_select_div = document.createElement("div");
+  light_color_select_div.classList.add("light_color_select_div");
 
-    let light_color_select_container = document.createElement("div");
-    light_color_select_container.classList.add("light_color_select_container");
+  let current_light_color_display = document.createElement("div");
+  current_light_color_display.classList.add("current_light_color_display");
+  current_light_color_display.style.backgroundColor = `rgb(${color_select.rgb})`;
+  current_light_color_display.onclick = open_light_color_list;
 
-    light_color_list.forEach((element, index) => {
-      if(index != 5) {
-        let light_color_select_item = document.createElement("div");
-        light_color_select_item.classList.add("light_color_select_item");
-        light_color_select_item.setAttribute("data-color", `${element.name}`)
-        light_color_select_item.style.backgroundColor = `rgb(${light_color_object[element.name]})`;
-        light_color_select_item.onclick = (e) => {
-          let current_light_color_display = document.querySelector(".current_light_color_display");
+  let light_color_select_container = document.createElement("div");
+  light_color_select_container.classList.add("light_color_select_container");
 
-          console.log(light_color_object[e.target.getAttribute("data-color")]);
-          current_light_color_display.style.backgroundColor = `rgb(${light_color_object[e.target.getAttribute("data-color")]})`;
+  light_color_list.forEach((element, index) => {
+    if (index != 5) {
+      let light_color_select_item = document.createElement("div");
+      light_color_select_item.classList.add("light_color_select_item");
+      light_color_select_item.setAttribute("data-color", `${element.name}`);
+      light_color_select_item.style.backgroundColor = `rgb(${
+        light_color_object[element.name]
+      })`;
+      light_color_select_item.onclick = (e) => {
+        let current_light_color_display = document.querySelector(
+          ".current_light_color_display"
+        );
 
-          light_color_list.forEach(element => {
-            if(element.name == e.target.getAttribute("data-color")) {
-              color_select = element;
-              console.log("color_select", color_select);
-            }
-          });
-          close_light_color_list();
-        };
-  
-        light_color_select_container.appendChild(light_color_select_item);
-      }
-    });
+        console.log(light_color_object[e.target.getAttribute("data-color")]);
+        current_light_color_display.style.backgroundColor = `rgb(${
+          light_color_object[e.target.getAttribute("data-color")]
+        })`;
 
-    light_color_select_div.appendChild(current_light_color_display);
-    light_color_select_div.appendChild(light_color_select_container);
+        light_color_list.forEach((element) => {
+          if (element.name == e.target.getAttribute("data-color")) {
+            color_select = element;
+            console.log("color_select", color_select);
+          }
+        });
+        close_light_color_list();
+      };
 
-    let header_display_div = document.createElement("div");
-    header_display_div.classList.add("header_display_div");
+      light_color_select_container.appendChild(light_color_select_item);
+    }
+  });
 
-    header_display_div.appendChild(homepage_link);
-    header_display_div.appendChild(header_title_container);
-    header_display_div.appendChild(light_color_select_div);
+  light_color_select_div.appendChild(current_light_color_display);
+  light_color_select_div.appendChild(light_color_select_container);
 
-    let header_btn_div = document.createElement("div");
-    header_btn_div.classList.add("header_btn_div");
+  let header_display_div = document.createElement("div");
+  header_display_div.classList.add("header_display_div");
 
-    let header_operate = document.createElement("div");
-    header_operate.classList.add("header_operate");
-    header_operate.classList.add("btn");
-    header_operate.innerHTML = "操作";
-    header_operate.addEventListener("click", () => {
-      check_cutoff_time_relogin();
-      api_logger_add("開啟操作彈窗 => API個人操作取得資料：api/med_inventory/get_opid_by_time", "click");
-      popup_self_operate_div_open();
-    })
+  header_display_div.appendChild(homepage_link);
+  header_display_div.appendChild(header_title_container);
+  header_display_div.appendChild(light_color_select_div);
 
-    let header_pages_setting = document.createElement("div");
-    header_pages_setting.classList.add("header_pages_setting");
-    header_pages_setting.classList.add("btn");
-    header_pages_setting.innerHTML = "設定";
-    header_pages_setting.addEventListener("click", () => {
-      location.href = "../pages_setting";
-    });
+  let header_btn_div = document.createElement("div");
+  header_btn_div.classList.add("header_btn_div");
 
-    let header_med_cart_report = document.createElement("div");
-    header_med_cart_report.classList.add("header_med_cart_report");
-    header_med_cart_report.classList.add("btn");
-    header_med_cart_report.innerHTML = "報表";
-    header_med_cart_report.addEventListener("click", () => {
-      location.href = "../medicine_cart/order_record/";
-    });
+  let header_operate = document.createElement("div");
+  header_operate.classList.add("header_operate");
+  header_operate.classList.add("btn");
+  header_operate.innerHTML = "操作";
+  header_operate.addEventListener("click", () => {
+    check_cutoff_time_relogin();
+    api_logger_add(
+      "開啟操作彈窗 => API個人操作取得資料：api/med_inventory/get_opid_by_time",
+      "click"
+    );
+    popup_self_operate_div_open();
+  });
 
-    let header_logout_btn = document.createElement("div");
-    header_logout_btn.classList.add("header_logout_btn");
-    header_logout_btn.classList.add("btn");
-    header_logout_btn.innerText = "登出";
-    header_logout_btn.addEventListener("click", async () => {
-      if (confirm("是否登出？")) {
-        api_logger_add("住院藥車登出", "click");
-        sessionStorage.removeItem("login_json");
-        sessionStorage.removeItem("IC_SN");
-        sessionStorage.removeItem("user_session");
+  let header_pages_setting = document.createElement("div");
+  header_pages_setting.classList.add("header_pages_setting");
+  header_pages_setting.classList.add("btn");
+  header_pages_setting.innerHTML = "設定";
+  header_pages_setting.addEventListener("click", () => {
+    location.href = "../pages_setting";
+  });
 
-        await light_off_func();
+  let header_med_cart_report = document.createElement("div");
+  header_med_cart_report.classList.add("header_med_cart_report");
+  header_med_cart_report.classList.add("btn");
+  header_med_cart_report.innerHTML = "報表";
+  header_med_cart_report.addEventListener("click", () => {
+    location.href = "../medicine_cart/order_record/";
+  });
 
-        location.reload();
-      }
-    })
+  let header_logout_btn = document.createElement("div");
+  header_logout_btn.classList.add("header_logout_btn");
+  header_logout_btn.classList.add("btn");
+  header_logout_btn.innerText = "登出";
+  header_logout_btn.addEventListener("click", async () => {
+    if (confirm("是否登出？")) {
+      api_logger_add("住院藥車登出", "click");
+      sessionStorage.removeItem("login_json");
+      sessionStorage.removeItem("IC_SN");
+      sessionStorage.removeItem("user_session");
 
-    header_btn_div.appendChild(header_operate);
-    header_btn_div.appendChild(header_med_cart_report);
-    header_btn_div.appendChild(header_pages_setting);
-    header_btn_div.appendChild(header_logout_btn);
+      await light_off_func();
 
-    header.appendChild(header_display_div);
-    header.appendChild(header_btn_div);
-    body.appendChild(header);
+      location.reload();
+    }
+  });
+
+  header_btn_div.appendChild(header_operate);
+  header_btn_div.appendChild(header_med_cart_report);
+  header_btn_div.appendChild(header_pages_setting);
+  header_btn_div.appendChild(header_logout_btn);
+
+  header.appendChild(header_display_div);
+  header.appendChild(header_btn_div);
+  body.appendChild(header);
 }
 
 function get_main_div() {
-    let body = document.querySelector("body");
-    const main_div = document.createElement("div");
-    main_div.id = "main_div";
-    main_div.className = "main_div";
+  let body = document.querySelector("body");
+  const main_div = document.createElement("div");
+  main_div.id = "main_div";
+  main_div.className = "main_div";
 
-    body.appendChild(main_div);
+  body.appendChild(main_div);
 }
 function get_main_ui() {
-  let main_div = document.querySelector('.main_div');
+  let main_div = document.querySelector(".main_div");
 
   let function_btn_container = document.createElement("div");
   function_btn_container.classList.add("function_btn_container");
@@ -317,19 +343,26 @@ function get_main_ui() {
   med_cart_sum_list_btn.innerHTML = "藥品總量";
   med_cart_sum_list_btn.addEventListener("click", async () => {
     check_cutoff_time_relogin();
-    if(!current_pharmacy.phar) {
+    if (!current_pharmacy.phar) {
       alert("請先選擇藥局");
       return;
     }
-    if(current_func == "" || current_func == "deliver") {
+    if (current_func == "" || current_func == "deliver") {
       alert("請選擇調劑 / 覆核");
-      return;    
+      return;
     }
-    
-    let ppml_h_current_cart_select = document.querySelector(".ppml_h_current_cart_select");
-    let ppdl_h_current_cart_select = document.querySelector(".ppdl_h_current_cart_select");
-    if(current_cart.hnursta && ppml_h_current_cart_select.value != current_cart.hnursta) {
-        ppml_h_current_cart_select.value = current_cart.hnursta;
+
+    let ppml_h_current_cart_select = document.querySelector(
+      ".ppml_h_current_cart_select"
+    );
+    let ppdl_h_current_cart_select = document.querySelector(
+      ".ppdl_h_current_cart_select"
+    );
+    if (
+      current_cart.hnursta &&
+      ppml_h_current_cart_select.value != current_cart.hnursta
+    ) {
+      ppml_h_current_cart_select.value = current_cart.hnursta;
     }
     // if(last_med_list_n == "") {
 
@@ -346,25 +379,31 @@ function get_main_ui() {
       return;
     }, 6000);
 
-    let checkedRadio_med = document.querySelector('input[name="filter_med_table_input"]:checked');
+    let checkedRadio_med = document.querySelector(
+      'input[name="filter_med_table_input"]:checked'
+    );
     console.log(checkedRadio_med.value);
 
     api_logger_add("開啟藥品總量彈窗", "click");
-    med_list_data = await get_all_med_qty(current_pharmacy.phar, ppml_h_current_cart_select.value, checkedRadio_med.value);
-    if(med_list_data.Code != 200) {
+    med_list_data = await get_all_med_qty(
+      current_pharmacy.phar,
+      ppml_h_current_cart_select.value,
+      checkedRadio_med.value
+    );
+    if (med_list_data.Code != 200) {
       clearTimeout(med_list_timer);
 
       alert("藥品總量資料錯誤", med_list_data.Result);
       Set_main_div_enable(false);
     } else {
-      if(Array.isArray(med_list_data.Data)) {
+      if (Array.isArray(med_list_data.Data)) {
         med_list_data = med_list_data.Data;
         med_list_data = sort_med_list_data(med_list_data, current_func);
         med_list_data = sort_display_med_data(med_list_data);
         await set_pp_med_list_display();
 
         clearTimeout(med_list_timer);
-        
+
         popup_med_list_div_open();
         Set_main_div_enable(false);
       } else {
@@ -374,7 +413,7 @@ function get_main_ui() {
         med_list_data = sort_med_list_data(med_list_data, current_func);
         med_list_data = sort_display_med_data(med_list_data);
         await set_pp_med_list_display();
-        
+
         clearTimeout(med_list_timer);
         Set_main_div_enable(false);
       }
@@ -383,36 +422,40 @@ function get_main_ui() {
       Set_main_div_enable(true);
       console.log("============ 檢查退藥中 =============");
       let test_data_arr = await check_cart_dispense();
-      if(test_data_arr.length > 0 && test_data_arr.includes(ppml_h_current_cart_select.value)) {
+      if (
+        test_data_arr.length > 0 &&
+        test_data_arr.includes(ppml_h_current_cart_select.value)
+      ) {
         let post_data = {
           Value: "調劑台",
-          ValueAry:  [current_pharmacy.phar, ppml_h_current_cart_select.value]
+          ValueAry: [current_pharmacy.phar, ppml_h_current_cart_select.value],
         };
 
-        console.log("出院處方退藥api",post_data);
+        console.log("出院處方退藥api", post_data);
         let return_data = await get_patient_discharge(post_data);
-        if(return_data.Code != 200) {
+        if (return_data.Code != 200) {
           alert("出院處方資料錯誤", return_data.Result);
           Set_main_div_enable(false);
         } else {
           discharged_data = return_data.Data;
-          if(discharged_data.length != 0) {
+          if (discharged_data.length != 0) {
             let any_cpoe = false;
             for (let index = 0; index < discharged_data.length; index++) {
               const element = discharged_data[index];
-              
-              if(element.cpoe.length > 0) {
+
+              if (element.cpoe.length > 0) {
                 any_cpoe = true;
                 break;
               }
             }
 
-            if(any_cpoe) {
+            if (any_cpoe) {
               alert("有出院退藥資料，請先處理");
               clearTimeout(med_list_timer);
-  
-              ppdl_h_current_cart_select.value = ppml_h_current_cart_select.value;
-  
+
+              ppdl_h_current_cart_select.value =
+                ppml_h_current_cart_select.value;
+
               set_discharged_data_display();
               // popup_med_list_div_close();
               popup_med_list_div_close_other();
@@ -425,7 +468,7 @@ function get_main_ui() {
               console.log("============ 檢查退藥完成 =============");
             }
           }
-        }        
+        }
       } else {
         Set_main_div_enable(false);
         console.log("============ 檢查退藥完成 =============");
@@ -439,7 +482,7 @@ function get_main_ui() {
   discharged_btn.innerHTML = "出院退藥";
   discharged_btn.addEventListener("click", async () => {
     check_cutoff_time_relogin();
-    if(!current_pharmacy.phar) {
+    if (!current_pharmacy.phar) {
       alert("請先選擇藥局");
       return;
     }
@@ -447,20 +490,22 @@ function get_main_ui() {
 
     let post_data = {
       Value: "調劑台",
-      ValueAry:[current_pharmacy.phar]
-    }
+      ValueAry: [current_pharmacy.phar],
+    };
 
     console.log("出院api", post_data);
     api_logger_add("開啟出院退藥彈窗", "click");
     let return_data = await get_all_cart_discharge(post_data);
-    if(return_data.Code != 200) {
+    if (return_data.Code != 200) {
       alert("出院退藥資料錯誤", return_data.Result);
       Set_main_div_enable(false);
     } else {
-      let ppdl_h_current_cart_select_option = document.querySelectorAll(".ppdl_h_current_cart_select option");
-      ppdl_h_current_cart_select_option.forEach(element => {
+      let ppdl_h_current_cart_select_option = document.querySelectorAll(
+        ".ppdl_h_current_cart_select option"
+      );
+      ppdl_h_current_cart_select_option.forEach((element) => {
         let temp_arr = return_data.Data;
-        if(temp_arr.includes(element.value)) {
+        if (temp_arr.includes(element.value)) {
           element.innerHTML = `${element.value} (出院)`;
         } else {
           element.innerHTML = element.value;
@@ -468,23 +513,28 @@ function get_main_ui() {
       });
     }
 
-    let ppdl_h_current_cart_select = document.querySelector(".ppdl_h_current_cart_select");
+    let ppdl_h_current_cart_select = document.querySelector(
+      ".ppdl_h_current_cart_select"
+    );
 
-    if(current_cart && ppdl_h_current_cart_select.value != current_cart.hnursta) {
+    if (
+      current_cart &&
+      ppdl_h_current_cart_select.value != current_cart.hnursta
+    ) {
       ppdl_h_current_cart_select.value = current_cart.hnursta;
     }
 
     post_data = {
       Value: "調劑台",
-      ValueAry:  [current_pharmacy.phar, ppdl_h_current_cart_select.value]
+      ValueAry: [current_pharmacy.phar, ppdl_h_current_cart_select.value],
     };
 
-    console.log("出院處方退藥api",post_data);
+    console.log("出院處方退藥api", post_data);
     return_data = await get_patient_discharge(post_data);
-    if(return_data.Code != 200) {
+    if (return_data.Code != 200) {
       alert("出院處方資料錯誤", return_data.Result);
       Set_main_div_enable(false);
-    } else {  
+    } else {
       discharged_data = return_data.Data;
       set_discharged_data_display();
       Set_main_div_enable(false);
@@ -503,14 +553,13 @@ function get_main_ui() {
     popup_bed_change_div_open();
   });
 
-
   let ppnms_h_report_btn = document.createElement("div");
   ppnms_h_report_btn.classList.add("ppnms_h_report_btn");
   ppnms_h_report_btn.classList.add("btn");
   ppnms_h_report_btn.innerHTML = "調劑錯誤";
   ppnms_h_report_btn.addEventListener("click", () => {
-      popup_nearMiss_report_div_open();
-  })
+    popup_nearMiss_report_div_open();
+  });
 
   function_btn_container.appendChild(ppmcl_btn);
   function_btn_container.appendChild(med_cart_sum_list_btn);
@@ -530,7 +579,9 @@ function get_main_ui() {
 }
 
 async function get_function_menu() {
-  let function_menu_container = document.querySelector(".function_menu_container");
+  let function_menu_container = document.querySelector(
+    ".function_menu_container"
+  );
 
   let hos_block_select_container = document.createElement("div");
   hos_block_select_container.classList.add("select_container");
@@ -552,7 +603,7 @@ async function get_function_menu() {
   let temp_phar_data = await med_cart_all_get_phar();
   pharmacy_list = temp_phar_data.Data;
 
-  pharmacy_list.forEach(element => {
+  pharmacy_list.forEach((element) => {
     let pharmacy_option_div = document.createElement("div");
     pharmacy_option_div.classList.add("pharmacy_option_div");
     pharmacy_option_div.setAttribute("pharmacy", element.phar);
@@ -560,7 +611,7 @@ async function get_function_menu() {
     pharmacy_option_div.addEventListener("click", async () => {
       hos_block_content.innerHTML = pharmacy_option_div.innerHTML;
       current_pharmacy = element;
-      if(last_current_pharmacy == current_pharmacy) {
+      if (last_current_pharmacy == current_pharmacy) {
         close_pharmacy_list();
         return;
       } else {
@@ -597,7 +648,7 @@ async function get_function_menu() {
   let func_option_container = document.createElement("div");
   func_option_container.classList.add("func_option_container");
 
-  func_list.forEach(element => {
+  func_list.forEach((element) => {
     let func_option_div = document.createElement("div");
     func_option_div.classList.add("func_option_div");
     func_option_div.setAttribute("func", element.name);
@@ -607,7 +658,7 @@ async function get_function_menu() {
       current_func = element.name;
       if (last_current_func == current_func) {
         close_func_list();
-        return
+        return;
       } else {
         console.log(current_func);
         let temp_logic = get_func_logic();
@@ -677,26 +728,31 @@ async function get_function_menu() {
 }
 
 function get_no_selected_func() {
-    func_display_init();
+  func_display_init();
 
-    let function_display_container = document.querySelector(".function_display_container");
-    let no_selected_display = document.createElement("div");
-    no_selected_display.classList.add("no_selected_display");
-    no_selected_display.innerHTML = "請先完整選擇上列清單";
+  let function_display_container = document.querySelector(
+    ".function_display_container"
+  );
+  let no_selected_display = document.createElement("div");
+  no_selected_display.classList.add("no_selected_display");
+  no_selected_display.innerHTML = "請先完整選擇上列清單";
 
-    function_display_container.appendChild(no_selected_display);
+  function_display_container.appendChild(no_selected_display);
 }
 
 // 開啟亮燈顏色選單
 function open_light_color_list() {
-  let light_color_select_container = document.querySelector(".light_color_select_container");
+  let light_color_select_container = document.querySelector(
+    ".light_color_select_container"
+  );
   let temp_client_width = window.innerWidth;
 
-  if(temp_client_width > 800) {
-    if(!color_list_triiger) {
+  if (temp_client_width > 800) {
+    if (!color_list_triiger) {
       light_color_select_container.style.width = "250px";
       light_color_select_container.style.height = "50px";
-      light_color_select_container.style.boxShadow = "2px 2px 8px 2px #0000003e";
+      light_color_select_container.style.boxShadow =
+        "2px 2px 8px 2px #0000003e";
       color_list_triiger = true;
     } else {
       light_color_select_container.style.width = "0px";
@@ -705,10 +761,11 @@ function open_light_color_list() {
       color_list_triiger = false;
     }
   } else {
-    if(!color_list_triiger) {
+    if (!color_list_triiger) {
       light_color_select_container.style.height = "250px";
       light_color_select_container.style.width = "50px";
-      light_color_select_container.style.boxShadow = "2px 2px 8px 2px #0000003e";
+      light_color_select_container.style.boxShadow =
+        "2px 2px 8px 2px #0000003e";
       color_list_triiger = true;
     } else {
       light_color_select_container.style.height = "0px";
@@ -717,15 +774,16 @@ function open_light_color_list() {
       color_list_triiger = false;
     }
   }
-
 }
 // 關閉亮燈顏色選單
 function close_light_color_list() {
-  let light_color_select_container = document.querySelector(".light_color_select_container");
+  let light_color_select_container = document.querySelector(
+    ".light_color_select_container"
+  );
 
   let temp_client_width = window.innerWidth;
 
-  if(temp_client_width > 550) {
+  if (temp_client_width > 550) {
     light_color_select_container.style.width = "0px";
     light_color_select_container.style.height = "50px";
     light_color_select_container.style.boxShadow = "none";
@@ -736,21 +794,22 @@ function close_light_color_list() {
     light_color_select_container.style.boxShadow = "none";
     color_list_triiger = false;
   }
-
 }
 
 // 開啟藥局選單
 function open_pharmacy_list() {
-  let hos_block_option_container = document.querySelector(".hos_block_option_container");
+  let hos_block_option_container = document.querySelector(
+    ".hos_block_option_container"
+  );
   let pharmacy_option_div = document.querySelectorAll(".pharmacy_option_div");
 
   let temp_height = 0;
 
-  pharmacy_option_div.forEach(element => {
+  pharmacy_option_div.forEach((element) => {
     temp_height += element.offsetHeight;
   });
 
-  if(!pharmacy_list_triiger) {
+  if (!pharmacy_list_triiger) {
     hos_block_option_container.style.height = `${temp_height}px`;
     hos_block_option_container.style.boxShadow = "2px 2px 8px 2px #00000090";
     pharmacy_list_triiger = true;
@@ -762,7 +821,9 @@ function open_pharmacy_list() {
 }
 // 關閉藥局選單
 function close_pharmacy_list() {
-  let hos_block_option_container = document.querySelector(".hos_block_option_container");
+  let hos_block_option_container = document.querySelector(
+    ".hos_block_option_container"
+  );
   hos_block_option_container.style.height = "0px";
   hos_block_option_container.style.boxShadow = "none";
   pharmacy_list_triiger = false;
@@ -775,11 +836,11 @@ function open_func_list() {
 
   let temp_height = 0;
 
-  func_option_div.forEach(element => {
+  func_option_div.forEach((element) => {
     temp_height += element.offsetHeight;
   });
 
-  if(!func_list_triiger) {
+  if (!func_list_triiger) {
     func_option_container.style.height = `${temp_height}px`;
     func_option_container.style.boxShadow = "2px 2px 8px 2px #00000090";
     func_list_triiger = true;
@@ -805,11 +866,11 @@ function open_cart_list() {
   let temp_height = 0;
   let temp_max_height = 320;
 
-  cart_option_div.forEach(element => {
+  cart_option_div.forEach((element) => {
     temp_height += element.offsetHeight;
   });
 
-  if(!cart_list_triiger) {
+  if (!cart_list_triiger) {
     cart_option_container.style.height = `${temp_height}px`;
     // cart_option_container.style.height = `200px`;
     cart_option_container.style.maxHeight = `${temp_max_height}px`;
@@ -835,16 +896,18 @@ function close_cart_list() {
 
 // 開啟藥車選單
 function open_med_table_list() {
-  let med_table_option_container = document.querySelector(".med_table_option_container");
+  let med_table_option_container = document.querySelector(
+    ".med_table_option_container"
+  );
   let med_table_option_div = document.querySelectorAll(".med_table_option_div");
 
   let temp_height = 0;
 
-  med_table_option_div.forEach(element => {
+  med_table_option_div.forEach((element) => {
     temp_height += element.offsetHeight;
   });
 
-  if(!med_table_triiger) {
+  if (!med_table_triiger) {
     med_table_option_container.style.height = `${temp_height}px`;
     med_table_option_container.style.boxShadow = "2px 2px 8px 2px #00000090";
     med_table_triiger = true;
@@ -856,7 +919,9 @@ function open_med_table_list() {
 }
 // 關閉藥車選單
 function close_med_table_list() {
-  let med_table_option_container = document.querySelector(".med_table_option_container");
+  let med_table_option_container = document.querySelector(
+    ".med_table_option_container"
+  );
   med_table_option_container.style.height = "0px";
   med_table_option_container.style.boxShadow = "none";
   med_table_triiger = false;
@@ -864,34 +929,55 @@ function close_med_table_list() {
 
 // 控制所有選單展開
 function select_list_controller() {
-  let light_color_select_div = document.querySelector(".light_color_select_div");
+  let light_color_select_div = document.querySelector(
+    ".light_color_select_div"
+  );
   let func_select_container = document.querySelector(".func_select_container");
-  let hos_block_select_container = document.querySelector(".hos_block_select_container");
+  let hos_block_select_container = document.querySelector(
+    ".hos_block_select_container"
+  );
   let cart_select_container = document.querySelector(".cart_select_container");
-  let med_table_select_container = document.querySelector(".med_table_select_container");
+  let med_table_select_container = document.querySelector(
+    ".med_table_select_container"
+  );
 
-  document.addEventListener('click', (e) => {
-    if (e.target !== color_list_triiger && !isDescendant(light_color_select_div, e.target)) {
+  document.addEventListener("click", (e) => {
+    if (
+      e.target !== color_list_triiger &&
+      !isDescendant(light_color_select_div, e.target)
+    ) {
       if (color_list_triiger) {
         close_light_color_list();
       }
     }
-    if (e.target !== func_list_triiger && !isDescendant(func_select_container, e.target)) {
+    if (
+      e.target !== func_list_triiger &&
+      !isDescendant(func_select_container, e.target)
+    ) {
       if (func_list_triiger) {
         close_func_list();
       }
     }
-    if (e.target !== pharmacy_list_triiger && !isDescendant(hos_block_select_container, e.target)) {
+    if (
+      e.target !== pharmacy_list_triiger &&
+      !isDescendant(hos_block_select_container, e.target)
+    ) {
       if (pharmacy_list_triiger) {
         close_pharmacy_list();
       }
     }
-    if (e.target !== cart_list_triiger && !isDescendant(cart_select_container, e.target)) {
+    if (
+      e.target !== cart_list_triiger &&
+      !isDescendant(cart_select_container, e.target)
+    ) {
       if (cart_list_triiger) {
         close_cart_list();
       }
     }
-    if (e.target !== med_table_triiger && !isDescendant(med_table_select_container, e.target)) {
+    if (
+      e.target !== med_table_triiger &&
+      !isDescendant(med_table_select_container, e.target)
+    ) {
       if (med_table_triiger) {
         close_med_table_list();
       }
@@ -912,15 +998,13 @@ function select_list_controller() {
 }
 
 function Set_main_div_enable(value) {
-    if (value) {
-      console.log("=======================");
-      showLoadingPopup();
-
-    }
-    else {
-      console.log("**********************");
-      hideLoadingPopup();
-    }
+  if (value) {
+    console.log("=======================");
+    showLoadingPopup();
+  } else {
+    console.log("**********************");
+    hideLoadingPopup();
+  }
 }
 
 function get_func_logic() {
@@ -931,9 +1015,10 @@ function get_func_logic() {
   // if(current_func != "" && current_func == last_current_func) return 400;
   // if(current_func != "") return 400;
 
-  if(current_pharmacy != "" && last_current_pharmacy != current_pharmacy) return 100;
-  if(current_pharmacy != "" && current_func != "") return 200;
-  if(current_pharmacy == "" && current_func != "") return 400;
+  if (current_pharmacy != "" && last_current_pharmacy != current_pharmacy)
+    return 100;
+  if (current_pharmacy != "" && current_func != "") return 200;
+  if (current_pharmacy == "" && current_func != "") return 400;
 }
 
 // 100 初始話畫面，載入藥車、調劑台清單
@@ -951,19 +1036,19 @@ function get_all_select_option_logic(num) {
   // let med_table_content = document.querySelector(".med_table_content");
 
   console.log(num);
-  
+
   switch (num) {
     case 100:
       get_cart_list_and_med_table();
-      
+
       break;
     case 200:
       set_func_select_logic();
-      
+
       break;
     case 400:
       break;
-  
+
     default:
       break;
   }
@@ -980,7 +1065,9 @@ async function get_cart_list_and_med_table() {
   cart_list = temp_cart_list.Data;
   console.log(cart_list);
 
-  let temp_table_list = await get_serversetting_by_department_type(current_pharmacy.phar_name);
+  let temp_table_list = await get_serversetting_by_department_type(
+    current_pharmacy.phar_name
+  );
   med_table = temp_table_list.Data;
   //  插入藥品總量選單條及台選單
   set_med_table_filter_radio();
@@ -990,18 +1077,18 @@ async function get_cart_list_and_med_table() {
 
   let cart_option_container = document.querySelector(".cart_option_container");
   cart_option_container.innerHTML = "";
-  cart_list.forEach(element => {
+  cart_list.forEach((element) => {
     let cart_option_div = document.createElement("div");
     cart_option_div.classList.add("cart_option_div");
     cart_option_div.setAttribute("cart", element.GUID);
     cart_option_div.innerHTML = element.hnursta;
-    if(element.hand_status == "已交車") {
+    if (element.hand_status == "已交車") {
       cart_option_div.classList.add("cart_option_div_done");
     }
     cart_option_div.addEventListener("click", async () => {
       cart_content.innerHTML = cart_option_div.innerHTML;
       current_cart = element;
-      if(last_current_cart == current_cart) {
+      if (last_current_cart == current_cart) {
         close_cart_list();
         return;
       } else {
@@ -1016,7 +1103,9 @@ async function get_cart_list_and_med_table() {
     cart_option_container.appendChild(cart_option_div);
 
     // 未調藥品加入彈窗select
-    let ppmcl_h_current_cart_select = document.querySelector(".ppmcl_h_current_cart_select");
+    let ppmcl_h_current_cart_select = document.querySelector(
+      ".ppmcl_h_current_cart_select"
+    );
     let ppmcl_h_current_cart_option = document.createElement("option");
     ppmcl_h_current_cart_option.value = element.hnursta;
     ppmcl_h_current_cart_option.innerHTML = element.hnursta;
@@ -1024,7 +1113,9 @@ async function get_cart_list_and_med_table() {
     ppmcl_h_current_cart_select.appendChild(ppmcl_h_current_cart_option);
 
     // 藥品總量加入彈窗select
-    let ppml_h_current_cart_select = document.querySelector(".ppml_h_current_cart_select");
+    let ppml_h_current_cart_select = document.querySelector(
+      ".ppml_h_current_cart_select"
+    );
     let ppml_h_current_cart_option = document.createElement("option");
     ppml_h_current_cart_option.value = element.hnursta;
     ppml_h_current_cart_option.innerHTML = element.hnursta;
@@ -1032,7 +1123,9 @@ async function get_cart_list_and_med_table() {
     ppml_h_current_cart_select.appendChild(ppml_h_current_cart_option);
 
     // 病床異動加入彈窗select
-    let ppbc_h_current_cart_select = document.querySelector(".ppbc_h_current_cart_select");
+    let ppbc_h_current_cart_select = document.querySelector(
+      ".ppbc_h_current_cart_select"
+    );
     let ppbc_h_current_cart_option = document.createElement("option");
     ppbc_h_current_cart_option.value = element.hnursta;
     ppbc_h_current_cart_option.innerHTML = element.hnursta;
@@ -1040,7 +1133,9 @@ async function get_cart_list_and_med_table() {
     ppbc_h_current_cart_select.appendChild(ppbc_h_current_cart_option);
 
     // 病床異動加入彈窗select
-    let ppdl_h_current_cart_select = document.querySelector(".ppdl_h_current_cart_select");
+    let ppdl_h_current_cart_select = document.querySelector(
+      ".ppdl_h_current_cart_select"
+    );
     let ppdl_h_current_cart_option = document.createElement("option");
     ppdl_h_current_cart_option.value = element.hnursta;
     ppdl_h_current_cart_option.innerHTML = element.hnursta;
@@ -1048,7 +1143,9 @@ async function get_cart_list_and_med_table() {
     ppdl_h_current_cart_select.appendChild(ppdl_h_current_cart_option);
   });
 
-  let med_table_option_container = document.querySelector(".med_table_option_container");
+  let med_table_option_container = document.querySelector(
+    ".med_table_option_container"
+  );
   med_table_option_container.innerHTML = "";
   for (let i = 0; i < med_table.length + 1; i++) {
     if (i == 0) {
@@ -1059,9 +1156,9 @@ async function get_cart_list_and_med_table() {
       med_table_option_div.addEventListener("click", () => {
         med_table_content.innerHTML = med_table_option_div.innerHTML;
         current_med_table = "all";
-        if(last_current_med_table == current_med_table) {
+        if (last_current_med_table == current_med_table) {
           close_med_table_list();
-          return
+          return;
         } else {
           console.log(current_med_table);
           let temp_logic = get_func_logic();
@@ -1070,7 +1167,7 @@ async function get_cart_list_and_med_table() {
           close_med_table_list();
         }
       });
-  
+
       med_table_option_container.appendChild(med_table_option_div);
     } else {
       let element = med_table[i - 1];
@@ -1081,9 +1178,9 @@ async function get_cart_list_and_med_table() {
       med_table_option_div.addEventListener("click", () => {
         med_table_content.innerHTML = med_table_option_div.innerHTML;
         current_med_table = element;
-        if(last_current_med_table == current_med_table) {
+        if (last_current_med_table == current_med_table) {
           close_med_table_list();
-          return
+          return;
         } else {
           console.log(current_med_table);
           let temp_logic = get_func_logic();
@@ -1092,13 +1189,15 @@ async function get_cart_list_and_med_table() {
           close_med_table_list();
         }
       });
-  
+
       med_table_option_container.appendChild(med_table_option_div);
-    } 
+    }
   }
 
   let cart_select_container = document.querySelector(".cart_select_container");
-  let med_table_select_container = document.querySelector(".med_table_select_container");
+  let med_table_select_container = document.querySelector(
+    ".med_table_select_container"
+  );
 
   let cart_content = document.querySelector(".cart_content");
   let med_table_content = document.querySelector(".med_table_content");
@@ -1108,7 +1207,7 @@ async function get_cart_list_and_med_table() {
   current_cart = "";
   last_current_cart = "";
   cart_content.removeEventListener("click", open_cart_list);
-  
+
   div_event_click_cir_disable(med_table_select_container);
   med_table_content.innerHTML = "調劑台";
   current_med_table = "";
@@ -1121,7 +1220,7 @@ async function get_cart_list_and_med_table() {
 // 功能選擇
 function set_func_select_logic() {
   Set_main_div_enable(true);
-  
+
   switch (current_func) {
     case "allocate":
       allocate_func();
@@ -1136,7 +1235,7 @@ function set_func_select_logic() {
       deliver_func();
       // Set_main_div_enable(false);
       break;
-  
+
     default:
       break;
   }
@@ -1145,15 +1244,17 @@ function set_func_select_logic() {
 async function allocate_func() {
   Set_main_div_enable(true);
   let cart_select_container = document.querySelector(".cart_select_container");
-  let med_table_select_container = document.querySelector(".med_table_select_container");
+  let med_table_select_container = document.querySelector(
+    ".med_table_select_container"
+  );
   let func_select_container = document.querySelector(".func_select_container");
   let ppmcl_btn = document.querySelector(".ppmcl_btn");
   let ppmcl_h_title_content = document.querySelector(".ppmcl_h_title_content");
 
   let cart_content = document.querySelector(".cart_content");
   let med_table_content = document.querySelector(".med_table_content");
-  
-  if(current_func == "allocate") {
+
+  if (current_func == "allocate") {
     div_event_click_tri_able(cart_select_container);
     div_event_click_cir_able(med_table_select_container);
     div_event_click_tri_able(func_select_container);
@@ -1162,11 +1263,11 @@ async function allocate_func() {
 
     cart_content.addEventListener("click", open_cart_list);
     med_table_content.addEventListener("click", open_med_table_list);
-    if(current_cart == "" && current_med_table == "") {
+    if (current_cart == "" && current_med_table == "") {
       check_cart_dispense();
       Set_main_div_enable(false);
       return;
-    } else if(current_cart == "" && current_med_table != "") {
+    } else if (current_cart == "" && current_med_table != "") {
       check_cart_dispense();
       Set_main_div_enable(false);
       return;
@@ -1184,11 +1285,11 @@ async function allocate_func() {
     cart_content.addEventListener("click", open_cart_list);
     med_table_content.removeEventListener("click", open_med_table_list);
 
-    med_table_content.innerHTML = '調劑台';
+    med_table_content.innerHTML = "調劑台";
     current_med_table = "";
     last_current_med_table = "";
-  
-    if(current_cart == "" && current_med_table == "") {
+
+    if (current_cart == "" && current_med_table == "") {
       Set_main_div_enable(false);
       return;
     } else {
@@ -1235,8 +1336,10 @@ async function deliver_func() {
   await light_off_func();
   let func_select_container = document.querySelector(".func_select_container");
   let cart_select_container = document.querySelector(".cart_select_container");
-  let med_table_select_container = document.querySelector(".med_table_select_container");
-  
+  let med_table_select_container = document.querySelector(
+    ".med_table_select_container"
+  );
+
   div_event_click_cir_disable(cart_select_container);
   div_event_click_cir_disable(med_table_select_container);
   div_event_click_cir_able(func_select_container);
@@ -1250,8 +1353,8 @@ async function deliver_func() {
   cart_content.innerHTML = "藥車";
   current_cart = "";
   last_current_cart = "";
-  
-  med_table_content.innerHTML = '調劑台';
+
+  med_table_content.innerHTML = "調劑台";
   current_med_table = "";
   last_current_med_table = "";
 
@@ -1265,49 +1368,54 @@ async function deliver_func() {
 
 // 設定可點選展開清單模式
 function div_event_click_cir_able(div) {
-  if(div.classList.contains("select_disable")) div.classList.remove("select_disable");
+  if (div.classList.contains("select_disable"))
+    div.classList.remove("select_disable");
   set_circle_able_arrow(div.children[1]);
 }
 
 function div_event_click_tri_able(div) {
-  if(div.classList.contains("select_disable")) div.classList.remove("select_disable");
+  if (div.classList.contains("select_disable"))
+    div.classList.remove("select_disable");
   set_tir_arrow(div.children[1]);
 }
 function div_event_click_cir_disable(div) {
-  if(div.classList.contains("select_disable")) div.classList.remove("select_disable");
+  if (div.classList.contains("select_disable"))
+    div.classList.remove("select_disable");
 
   div.classList.add("select_disable");
   set_circle_unable_arrow(div.children[1]);
 }
 function set_circle_unable_arrow(div) {
-  if(div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
-  if(div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
-  if(div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
-  if(div.classList.contains("cir_able")) div.classList.remove("cir_able");
+  if (div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
+  if (div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
+  if (div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
+  if (div.classList.contains("cir_able")) div.classList.remove("cir_able");
 
   div.classList.add("cir_arrow");
   div.classList.add("cir_unable");
 }
 function set_circle_able_arrow(div) {
-  if(div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
-  if(div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
-  if(div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
-  if(div.classList.contains("cir_able")) div.classList.remove("cir_able");
+  if (div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
+  if (div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
+  if (div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
+  if (div.classList.contains("cir_able")) div.classList.remove("cir_able");
 
   div.classList.add("cir_arrow");
   div.classList.add("cir_able");
 }
 function set_tir_arrow(div) {
-  if(div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
-  if(div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
-  if(div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
-  if(div.classList.contains("cir_able")) div.classList.remove("cir_able");
+  if (div.classList.contains("tri_arrow")) div.classList.remove("tri_arrow");
+  if (div.classList.contains("cir_arrow")) div.classList.remove("cir_arrow");
+  if (div.classList.contains("cir_unable")) div.classList.remove("cir_unable");
+  if (div.classList.contains("cir_able")) div.classList.remove("cir_able");
 
   div.classList.add("tri_arrow");
 }
 
 function func_display_init() {
-  let function_display_container = document.querySelector(".function_display_container");
+  let function_display_container = document.querySelector(
+    ".function_display_container"
+  );
   function_display_container.innerHTML = "";
 }
 async function popup_login_finished() {
@@ -1322,18 +1430,18 @@ async function reset_cart_list_container() {
   let cart_content = document.querySelector(".cart_content");
   let cart_option_container = document.querySelector(".cart_option_container");
   cart_option_container.innerHTML = "";
-  cart_list.forEach(element => {
+  cart_list.forEach((element) => {
     let cart_option_div = document.createElement("div");
     cart_option_div.classList.add("cart_option_div");
     cart_option_div.setAttribute("cart", element.GUID);
     cart_option_div.innerHTML = element.hnursta;
-    if(element.hand_status == "已交車") {
+    if (element.hand_status == "已交車") {
       cart_option_div.classList.add("cart_option_div_done");
     } else {
       cart_option_div.addEventListener("click", async () => {
         cart_content.innerHTML = cart_option_div.innerHTML;
         current_cart = element;
-        if(last_current_cart == current_cart) {
+        if (last_current_cart == current_cart) {
           close_cart_list();
           return;
         } else {
@@ -1351,10 +1459,12 @@ async function reset_cart_list_container() {
 }
 
 async function set_med_qty_type_radio() {
-  let head_sort_radio_container = document.querySelector('.head_sort_radio_container');
+  let head_sort_radio_container = document.querySelector(
+    ".head_sort_radio_container"
+  );
   let temp_med_group_api_data = await get_med_qty_group();
-  if(temp_med_group_api_data.Code == 200) {
-    med_list_sort_radio_data = temp_med_group_api_data
+  if (temp_med_group_api_data.Code == 200) {
+    med_list_sort_radio_data = temp_med_group_api_data;
     med_list_sort_radio_data = med_list_sort_radio_data.Data;
   }
 
@@ -1374,18 +1484,18 @@ async function set_med_qty_type_radio() {
 
   let label = document.createElement("label");
   label.classList.add("sort_med_label");
-  label.innerHTML = '全部';
-  label.setAttribute("for", 'sort_all');
+  label.innerHTML = "全部";
+  label.setAttribute("for", "sort_all");
 
   head_sort_radio_container.appendChild(input);
   head_sort_radio_container.appendChild(label);
 
-  med_list_sort_radio_data.forEach(element => {
+  med_list_sort_radio_data.forEach((element) => {
     let input = document.createElement("input");
     input.className = "sort_med_input";
     input.name = "sort_med_input";
     input.type = "radio";
-    input.value = element.NAME; 
+    input.value = element.NAME;
     input.id = `type_${element.GUID}`;
 
     let label = document.createElement("label");
@@ -1394,10 +1504,10 @@ async function set_med_qty_type_radio() {
     label.setAttribute("for", `type_${element.GUID}`);
 
     input.addEventListener("change", () => {
-        let ppml_main_container = document.querySelector(".ppml_main_container");
-        api_logger_add("藥品總量：更換藥品種類", "藥品種類 radio change");
-        set_pp_med_list_display();
-        ppml_main_container.scrollTop = 0;
+      let ppml_main_container = document.querySelector(".ppml_main_container");
+      api_logger_add("藥品總量：更換藥品種類", "藥品種類 radio change");
+      set_pp_med_list_display();
+      ppml_main_container.scrollTop = 0;
     });
 
     head_sort_radio_container.appendChild(input);
@@ -1405,10 +1515,12 @@ async function set_med_qty_type_radio() {
   });
 }
 async function set_med_change_list_type_radio() {
-  let ppmcl_head_med_type_filter_container = document.querySelector('.ppmcl_head_med_type_filter_container');
+  let ppmcl_head_med_type_filter_container = document.querySelector(
+    ".ppmcl_head_med_type_filter_container"
+  );
   let temp_med_group_api_data = await get_med_qty_group();
-  if(temp_med_group_api_data.Code == 200) {
-    med_list_sort_radio_data = temp_med_group_api_data
+  if (temp_med_group_api_data.Code == 200) {
+    med_list_sort_radio_data = temp_med_group_api_data;
     med_list_sort_radio_data = med_list_sort_radio_data.Data;
   }
 
@@ -1428,18 +1540,18 @@ async function set_med_change_list_type_radio() {
 
   let label = document.createElement("label");
   label.classList.add("sort_med_change_list_label");
-  label.innerHTML = '全部';
-  label.setAttribute("for", 'sort_change_list_all');
+  label.innerHTML = "全部";
+  label.setAttribute("for", "sort_change_list_all");
 
   ppmcl_head_med_type_filter_container.appendChild(input);
   ppmcl_head_med_type_filter_container.appendChild(label);
 
-  med_list_sort_radio_data.forEach(element => {
+  med_list_sort_radio_data.forEach((element) => {
     let input = document.createElement("input");
     input.className = "sort_med_change_list_input";
     input.name = "sort_med_change_list_input";
     input.type = "radio";
-    input.value = element.NAME; 
+    input.value = element.NAME;
     input.id = `type_change_${element.GUID}`;
 
     let label = document.createElement("label");
@@ -1448,10 +1560,12 @@ async function set_med_change_list_type_radio() {
     label.setAttribute("for", `type_change_${element.GUID}`);
 
     input.addEventListener("change", () => {
-        let ppmcl_main_container = document.querySelector(".ppmcl_main_container");
-        api_logger_add("未調藥品：更換藥品種類", "藥品種類 radio change");
-        set_ppmcl_main_info();
-        ppmcl_main_container.scrollTop = 0;
+      let ppmcl_main_container = document.querySelector(
+        ".ppmcl_main_container"
+      );
+      api_logger_add("未調藥品：更換藥品種類", "藥品種類 radio change");
+      set_ppmcl_main_info();
+      ppmcl_main_container.scrollTop = 0;
     });
 
     ppmcl_head_med_type_filter_container.appendChild(input);

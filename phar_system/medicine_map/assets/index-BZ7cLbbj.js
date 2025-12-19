@@ -13364,7 +13364,8 @@ const hs = new kh(),
               K = Ie();
             console.log(`🎯 高亮 ${te.length} 個櫃體:`, te),
               console.log(`⏱️ 亮燈時長: ${G}ms (${G / 1e3}秒)`),
-              console.log("💡 亮燈設定:", K);
+              console.log("💡 亮燈設定:", K),
+              l("找到藥品，開始亮燈", "success");
             const ae = te.map((Le) => Le.GUID);
             F(ae), U(O), h(O);
             const xe = te
@@ -13436,8 +13437,7 @@ const hs = new kh(),
               const Me =
                 ((te = xe.Data[0]) == null ? void 0 : te.CODE) ||
                 ((G = xe.Data[0]) == null ? void 0 : G.code);
-              console.log("✅ 找到藥品資料:", xe.Data),
-                l("找到藥品，開始亮燈", "success");
+              console.log("✅ 找到藥品資料:", xe.Data);
               const We = performance.now();
               he(Me);
               const Ve = performance.now();
@@ -16935,8 +16935,7 @@ const hs = new kh(),
               console.log("📋 條碼搜尋回應:", B),
               B.Code === 200)
             ) {
-              console.log("✅ 找到藥品資料:", B.Data),
-                m("找到藥品資料", "success");
+              console.log("✅ 找到藥品資料:", B.Data);
               const W = performance.now();
               Wn(B.Data);
               const Q = performance.now();
