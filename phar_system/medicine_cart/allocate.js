@@ -89,6 +89,7 @@ async function allocate_diplay_logic() {
 function pbm_header_scroll() {
   let p_bed_header = document.querySelector(".p_bed_header");
   let pbm_header_container = document.querySelector(".pbm_header_container");
+  let pb_patient_name = document.querySelector(".pb_patient_name");
   let p_bed_info_container = document.querySelector(".p_bed_info_container");
   // let pbm_main_container = document.querySelector(".pbm_main_container");
 
@@ -102,8 +103,10 @@ function pbm_header_scroll() {
     // p_bed_header.style.padding = "16px 16px";
     // pbm_header_container.classList.add('p_sticky');
     pbm_header_container.style.top = `${temp_h}px`;
+    pb_patient_name.style.display = `inline-block`;
     // pbm_main_container.style.marginTop = `${temp_h + temp_h_2 + 20}px`;
   } else {
+    pb_patient_name.style.display = `none`;
     // p_bed_header.style.padding = "0px 0px";
     // p_bed_header.classList.remove('fixed_1');
     // pbm_header_container.classList.remove('p_sticky');
@@ -439,8 +442,13 @@ function get_p_bed_header() {
   pb_name_content.classList.add("pb_name_content");
   pb_name_content.innerHTML = `${current_p_bed_data.nurnum}-${current_p_bed_data.bednum}`;
 
+  let pb_patient_name = document.createElement("span");
+  pb_patient_name.classList.add("pb_patient_name");
+  pb_patient_name.innerHTML = `${current_p_bed_data.pnamec}`;
+
   pb_name_display.appendChild(pb_name_title);
   pb_name_display.appendChild(pb_name_content);
+  pb_name_display.appendChild(pb_patient_name);
 
   let pb_btn_container = document.createElement("div");
   pb_btn_container.classList.add("pb_btn_container");
