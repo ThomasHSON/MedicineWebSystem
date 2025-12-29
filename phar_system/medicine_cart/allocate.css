@@ -618,6 +618,26 @@
 .med_inve_log_container {
   padding: 8px 28px;
 }
+.med_card_icon_option_div {
+  margin-right: 12px;
+}
+.med_card_type_select {
+  font-weight: 600;
+  line-height: 18px;
+  color: #222;
+
+  /* 讓整體看起來像卡片元件內的控制項 */
+  background: #f8f8f7; /* 接近卡片底色 */
+  border: 2px solid #a8a8a8; /* 你圈的亮藍框 */
+  border-radius: 12px;
+  padding: 4px 8px; /* 右邊留箭頭空間 */
+  min-height: 38px;
+
+  /* 小陰影讓它浮起來一點，但不要太油 */
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.05s ease;
+}
 
 @media screen and (max-width: 1200px) {
   .p_bed_header {

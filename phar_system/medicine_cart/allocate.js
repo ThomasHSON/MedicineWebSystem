@@ -1341,6 +1341,51 @@ function set_pbm_main_container() {
       }
     });
 
+    let med_card_icon_option_div = document.createElement("div");
+    med_card_icon_option_div.classList.add("med_card_icon_option_div");
+
+    let med_card_type_select = document.createElement("select");
+    med_card_type_select.classList.add("med_card_type_select");
+
+    med_card_icon_option_div.appendChild(med_card_type_select);
+
+    let temp_fake_type_data = [
+      {
+        name: "選項一",
+        value: "a",
+      },
+      {
+        name: "選項二",
+        value: "b",
+      },
+      {
+        name: "選項三",
+        value: "c",
+      },
+      {
+        name: "選項四",
+        value: "d",
+      },
+    ];
+
+    for (let index = 0; index < temp_fake_type_data.length; index++) {
+      const element = temp_fake_type_data[index];
+
+      let med_card_type_option = document.createElement("option");
+      med_card_type_option.classList.add("med_card_type_option");
+      med_card_type_option.value = element.value;
+      med_card_type_option.innerHTML = element.name;
+
+      med_card_type_select.appendChild(med_card_type_option);
+    }
+
+    let med_card_type_option = document.createElement("option");
+    med_card_type_option.classList.add("med_card_type_option");
+    med_card_type_option.value = "other";
+    med_card_type_option.innerHTML = "其他";
+
+    med_card_type_select.appendChild(med_card_type_option);
+
     let med_card_open_tigger = document.createElement("img");
     med_card_open_tigger.classList.add("med_card_open_tigger");
     med_card_open_tigger.src = "../image/left-arrow.png";
@@ -1443,7 +1488,9 @@ function set_pbm_main_container() {
     med_card_title_container.appendChild(med_card_checkbox_label);
     med_card_title_container.appendChild(med_card_main_display_container);
     med_card_title_container.appendChild(med_card_mid_display_container);
-    med_card_title_container.appendChild(med_card_big_bottle_icon);
+    // 大瓶藥或選項切換
+    // med_card_title_container.appendChild(med_card_big_bottle_icon);
+    med_card_title_container.appendChild(med_card_icon_option_div);
     med_card_title_container.appendChild(med_card_open_tigger);
 
     med_card_container.appendChild(med_card_title_container);
