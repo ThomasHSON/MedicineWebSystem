@@ -1347,6 +1347,32 @@ function set_pbm_main_container() {
     let med_card_type_select = document.createElement("select");
     med_card_type_select.classList.add("med_card_type_select");
 
+    med_card_type_select.addEventListener("change", async () => {
+      let temp_selected = element.large;
+      let post_data = {
+        ValueAry: [element.GUID, med_card_type_select.value],
+      };
+      if (confirm("該處方藥品是否取消大瓶藥標記？")) {
+        api_logger_add(
+          `${current_cart.hnursta}-${current_p_bed_data.bednum} \n${element.GUID} 大瓶藥標記變更`,
+          "select change"
+        );
+        let return_data = await update_large_in_med_cpoe(post_data);
+        if (return_data.Code == 200) {
+          console.log("成功變更");
+        } else {
+          alert("變更失敗請確認資料");
+        }
+      } else {
+        if (temp_selected == "L") {
+          med_card_type_select.value = "";
+        } else {
+          med_card_type_select.value = temp_selected;
+        }
+        return;
+      }
+    });
+
     med_card_icon_option_div.appendChild(med_card_type_select);
 
     let temp_fake_type_data = [
@@ -1367,24 +1393,45 @@ function set_pbm_main_container() {
         value: "d",
       },
     ];
+    if (page_setting_params) {
+      if (page_setting_params.large_bottle_location) {
+        if (page_setting_params.large_bottle_location.value == "True") {
+          let med_card_type_option_1 = document.createElement("option");
+          med_card_type_option_1.classList.add("med_card_type_option");
+          med_card_type_option_1.value = "";
+          med_card_type_option_1.innerHTML = "-";
 
-    for (let index = 0; index < temp_fake_type_data.length; index++) {
-      const element = temp_fake_type_data[index];
+          med_card_type_select.appendChild(med_card_type_option_1);
 
-      let med_card_type_option = document.createElement("option");
-      med_card_type_option.classList.add("med_card_type_option");
-      med_card_type_option.value = element.value;
-      med_card_type_option.innerHTML = element.name;
+          temp_fake_type_data =
+            page_setting_params.large_bottle_location_options.value.split(";");
 
-      med_card_type_select.appendChild(med_card_type_option);
+          for (let index = 0; index < temp_fake_type_data.length; index++) {
+            const element = temp_fake_type_data[index];
+
+            let med_card_type_option = document.createElement("option");
+            med_card_type_option.classList.add("med_card_type_option");
+            med_card_type_option.value = element;
+            med_card_type_option.innerHTML = element;
+
+            med_card_type_select.appendChild(med_card_type_option);
+          }
+
+          let med_card_type_option = document.createElement("option");
+          med_card_type_option.classList.add("med_card_type_option");
+          med_card_type_option.value = "其他";
+          med_card_type_option.innerHTML = "其他";
+
+          med_card_type_select.appendChild(med_card_type_option);
+
+          if (element.large == "L") {
+            med_card_type_select.value = "";
+          } else {
+            med_card_type_select.value = element.large;
+          }
+        }
+      }
     }
-
-    let med_card_type_option = document.createElement("option");
-    med_card_type_option.classList.add("med_card_type_option");
-    med_card_type_option.value = "other";
-    med_card_type_option.innerHTML = "其他";
-
-    med_card_type_select.appendChild(med_card_type_option);
 
     let med_card_open_tigger = document.createElement("img");
     med_card_open_tigger.classList.add("med_card_open_tigger");
@@ -1489,8 +1536,17 @@ function set_pbm_main_container() {
     med_card_title_container.appendChild(med_card_main_display_container);
     med_card_title_container.appendChild(med_card_mid_display_container);
     // 大瓶藥或選項切換
-    // med_card_title_container.appendChild(med_card_big_bottle_icon);
-    med_card_title_container.appendChild(med_card_icon_option_div);
+    if (page_setting_params) {
+      if (page_setting_params.large_bottle_location) {
+        if (page_setting_params.large_bottle_location.value == "True") {
+          med_card_title_container.appendChild(med_card_icon_option_div);
+        } else {
+          med_card_title_container.appendChild(med_card_big_bottle_icon);
+        }
+      } else {
+        med_card_title_container.appendChild(med_card_big_bottle_icon);
+      }
+    }
     med_card_title_container.appendChild(med_card_open_tigger);
 
     med_card_container.appendChild(med_card_title_container);
