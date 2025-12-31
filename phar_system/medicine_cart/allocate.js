@@ -1546,6 +1546,8 @@ function set_pbm_main_container() {
       } else {
         med_card_title_container.appendChild(med_card_big_bottle_icon);
       }
+    } else {
+      med_card_title_container.appendChild(med_card_big_bottle_icon);
     }
     med_card_title_container.appendChild(med_card_open_tigger);
 
