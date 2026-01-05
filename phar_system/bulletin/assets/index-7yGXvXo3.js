@@ -484,12 +484,12 @@ var n = _o.exports,
  * LICENSE file in the root directory of this source tree.
  */ (function (e) {
   function t(P, F) {
-    var E = P.length;
+    var C = P.length;
     P.push(F);
-    e: for (; 0 < E; ) {
-      var S = (E - 1) >>> 1,
+    e: for (; 0 < C; ) {
+      var S = (C - 1) >>> 1,
         b = P[S];
-      if (0 < l(b, F)) (P[S] = F), (P[E] = b), (E = S);
+      if (0 < l(b, F)) (P[S] = F), (P[C] = b), (C = S);
       else break e;
     }
   }
@@ -499,27 +499,27 @@ var n = _o.exports,
   function s(P) {
     if (P.length === 0) return null;
     var F = P[0],
-      E = P.pop();
-    if (E !== F) {
-      P[0] = E;
+      C = P.pop();
+    if (C !== F) {
+      P[0] = C;
       e: for (var S = 0, b = P.length, R = b >>> 1; S < R; ) {
         var A = 2 * (S + 1) - 1,
           U = P[A],
           je = A + 1,
           $r = P[je];
-        if (0 > l(U, E))
+        if (0 > l(U, C))
           je < b && 0 > l($r, U)
-            ? ((P[S] = $r), (P[je] = E), (S = je))
-            : ((P[S] = U), (P[A] = E), (S = A));
-        else if (je < b && 0 > l($r, E)) (P[S] = $r), (P[je] = E), (S = je);
+            ? ((P[S] = $r), (P[je] = C), (S = je))
+            : ((P[S] = U), (P[A] = C), (S = A));
+        else if (je < b && 0 > l($r, C)) (P[S] = $r), (P[je] = C), (S = je);
         else break e;
       }
     }
     return F;
   }
   function l(P, F) {
-    var E = P.sortIndex - F.sortIndex;
-    return E !== 0 ? E : P.id - F.id;
+    var C = P.sortIndex - F.sortIndex;
+    return C !== 0 ? C : P.id - F.id;
   }
   if (typeof performance == "object" && typeof performance.now == "function") {
     var a = performance;
@@ -535,20 +535,20 @@ var n = _o.exports,
   }
   var c = [],
     u = [],
-    d = 1,
+    f = 1,
     m = null,
-    p = 3,
+    h = 3,
     x = !1,
     y = !1,
-    N = !1,
+    w = !1,
     k = typeof setTimeout == "function" ? setTimeout : null,
-    g = typeof clearTimeout == "function" ? clearTimeout : null,
-    h = typeof setImmediate < "u" ? setImmediate : null;
+    p = typeof clearTimeout == "function" ? clearTimeout : null,
+    d = typeof setImmediate < "u" ? setImmediate : null;
   typeof navigator < "u" &&
     navigator.scheduling !== void 0 &&
     navigator.scheduling.isInputPending !== void 0 &&
     navigator.scheduling.isInputPending.bind(navigator.scheduling);
-  function f(P) {
+  function g(P) {
     for (var F = r(u); F !== null; ) {
       if (F.callback === null) s(u);
       else if (F.startTime <= P)
@@ -557,67 +557,67 @@ var n = _o.exports,
       F = r(u);
     }
   }
-  function w(P) {
-    if (((N = !1), f(P), !y))
-      if (r(c) !== null) (y = !0), M(C);
+  function N(P) {
+    if (((w = !1), g(P), !y))
+      if (r(c) !== null) (y = !0), M(D);
       else {
         var F = r(u);
-        F !== null && X(w, F.startTime - P);
+        F !== null && X(N, F.startTime - P);
       }
   }
-  function C(P, F) {
-    (y = !1), N && ((N = !1), g(I), (I = -1)), (x = !0);
-    var E = p;
+  function D(P, F) {
+    (y = !1), w && ((w = !1), p(_), (_ = -1)), (x = !0);
+    var C = h;
     try {
       for (
-        f(F), m = r(c);
+        g(F), m = r(c);
         m !== null && (!(m.expirationTime > F) || (P && !L()));
 
       ) {
         var S = m.callback;
         if (typeof S == "function") {
-          (m.callback = null), (p = m.priorityLevel);
+          (m.callback = null), (h = m.priorityLevel);
           var b = S(m.expirationTime <= F);
           (F = e.unstable_now()),
             typeof b == "function" ? (m.callback = b) : m === r(c) && s(c),
-            f(F);
+            g(F);
         } else s(c);
         m = r(c);
       }
       if (m !== null) var R = !0;
       else {
         var A = r(u);
-        A !== null && X(w, A.startTime - F), (R = !1);
+        A !== null && X(N, A.startTime - F), (R = !1);
       }
       return R;
     } finally {
-      (m = null), (p = E), (x = !1);
+      (m = null), (h = C), (x = !1);
     }
   }
-  var z = !1,
-    _ = null,
-    I = -1,
+  var I = !1,
+    z = null,
+    _ = -1,
     v = 5,
-    D = -1;
+    E = -1;
   function L() {
-    return !(e.unstable_now() - D < v);
+    return !(e.unstable_now() - E < v);
   }
   function $() {
-    if (_ !== null) {
+    if (z !== null) {
       var P = e.unstable_now();
-      D = P;
+      E = P;
       var F = !0;
       try {
-        F = _(!0, P);
+        F = z(!0, P);
       } finally {
-        F ? B() : ((z = !1), (_ = null));
+        F ? B() : ((I = !1), (z = null));
       }
-    } else z = !1;
+    } else I = !1;
   }
   var B;
-  if (typeof h == "function")
+  if (typeof d == "function")
     B = function () {
-      h($);
+      d($);
     };
   else if (typeof MessageChannel < "u") {
     var se = new MessageChannel(),
@@ -631,10 +631,10 @@ var n = _o.exports,
       k($, 0);
     };
   function M(P) {
-    (_ = P), z || ((z = !0), B());
+    (z = P), I || ((I = !0), B());
   }
   function X(P, F) {
-    I = k(function () {
+    _ = k(function () {
       P(e.unstable_now());
     }, F);
   }
@@ -648,7 +648,7 @@ var n = _o.exports,
       P.callback = null;
     }),
     (e.unstable_continueExecution = function () {
-      y || x || ((y = !0), M(C));
+      y || x || ((y = !0), M(D));
     }),
     (e.unstable_forceFrameRate = function (P) {
       0 > P || 125 < P
@@ -658,27 +658,27 @@ var n = _o.exports,
         : (v = 0 < P ? Math.floor(1e3 / P) : 5);
     }),
     (e.unstable_getCurrentPriorityLevel = function () {
-      return p;
+      return h;
     }),
     (e.unstable_getFirstCallbackNode = function () {
       return r(c);
     }),
     (e.unstable_next = function (P) {
-      switch (p) {
+      switch (h) {
         case 1:
         case 2:
         case 3:
           var F = 3;
           break;
         default:
-          F = p;
+          F = h;
       }
-      var E = p;
-      p = F;
+      var C = h;
+      h = F;
       try {
         return P();
       } finally {
-        p = E;
+        h = C;
       }
     }),
     (e.unstable_pauseExecution = function () {}),
@@ -694,20 +694,20 @@ var n = _o.exports,
         default:
           P = 3;
       }
-      var E = p;
-      p = P;
+      var C = h;
+      h = P;
       try {
         return F();
       } finally {
-        p = E;
+        h = C;
       }
     }),
-    (e.unstable_scheduleCallback = function (P, F, E) {
+    (e.unstable_scheduleCallback = function (P, F, C) {
       var S = e.unstable_now();
       switch (
-        (typeof E == "object" && E !== null
-          ? ((E = E.delay), (E = typeof E == "number" && 0 < E ? S + E : S))
-          : (E = S),
+        (typeof C == "object" && C !== null
+          ? ((C = C.delay), (C = typeof C == "number" && 0 < C ? S + C : S))
+          : (C = S),
         P)
       ) {
         case 1:
@@ -726,35 +726,35 @@ var n = _o.exports,
           b = 5e3;
       }
       return (
-        (b = E + b),
+        (b = C + b),
         (P = {
-          id: d++,
+          id: f++,
           callback: F,
           priorityLevel: P,
-          startTime: E,
+          startTime: C,
           expirationTime: b,
           sortIndex: -1,
         }),
-        E > S
-          ? ((P.sortIndex = E),
+        C > S
+          ? ((P.sortIndex = C),
             t(u, P),
             r(c) === null &&
               P === r(u) &&
-              (N ? (g(I), (I = -1)) : (N = !0), X(w, E - S)))
-          : ((P.sortIndex = b), t(c, P), y || x || ((y = !0), M(C))),
+              (w ? (p(_), (_ = -1)) : (w = !0), X(N, C - S)))
+          : ((P.sortIndex = b), t(c, P), y || x || ((y = !0), M(D))),
         P
       );
     }),
     (e.unstable_shouldYield = L),
     (e.unstable_wrapCallback = function (P) {
-      var F = p;
+      var F = h;
       return function () {
-        var E = p;
-        p = F;
+        var C = h;
+        h = F;
         try {
           return P.apply(this, arguments);
         } finally {
-          p = E;
+          h = C;
         }
       };
     });
@@ -855,11 +855,11 @@ function Se(e, t, r, s, l, a, i) {
     (this.sanitizeURL = a),
     (this.removeEmptyString = i);
 }
-var pe = {};
+var he = {};
 "children dangerouslySetInnerHTML defaultValue defaultChecked innerHTML suppressContentEditableWarning suppressHydrationWarning style"
   .split(" ")
   .forEach(function (e) {
-    pe[e] = new Se(e, 0, !1, e, null, !1, !1);
+    he[e] = new Se(e, 0, !1, e, null, !1, !1);
   });
 [
   ["acceptCharset", "accept-charset"],
@@ -868,10 +868,10 @@ var pe = {};
   ["httpEquiv", "http-equiv"],
 ].forEach(function (e) {
   var t = e[0];
-  pe[t] = new Se(t, 1, !1, e[1], null, !1, !1);
+  he[t] = new Se(t, 1, !1, e[1], null, !1, !1);
 });
 ["contentEditable", "draggable", "spellCheck", "value"].forEach(function (e) {
-  pe[e] = new Se(e, 2, !1, e.toLowerCase(), null, !1, !1);
+  he[e] = new Se(e, 2, !1, e.toLowerCase(), null, !1, !1);
 });
 [
   "autoReverse",
@@ -879,24 +879,24 @@ var pe = {};
   "focusable",
   "preserveAlpha",
 ].forEach(function (e) {
-  pe[e] = new Se(e, 2, !1, e, null, !1, !1);
+  he[e] = new Se(e, 2, !1, e, null, !1, !1);
 });
 "allowFullScreen async autoFocus autoPlay controls default defer disabled disablePictureInPicture disableRemotePlayback formNoValidate hidden loop noModule noValidate open playsInline readOnly required reversed scoped seamless itemScope"
   .split(" ")
   .forEach(function (e) {
-    pe[e] = new Se(e, 3, !1, e.toLowerCase(), null, !1, !1);
+    he[e] = new Se(e, 3, !1, e.toLowerCase(), null, !1, !1);
   });
 ["checked", "multiple", "muted", "selected"].forEach(function (e) {
-  pe[e] = new Se(e, 3, !0, e, null, !1, !1);
+  he[e] = new Se(e, 3, !0, e, null, !1, !1);
 });
 ["capture", "download"].forEach(function (e) {
-  pe[e] = new Se(e, 4, !1, e, null, !1, !1);
+  he[e] = new Se(e, 4, !1, e, null, !1, !1);
 });
 ["cols", "rows", "size", "span"].forEach(function (e) {
-  pe[e] = new Se(e, 6, !1, e, null, !1, !1);
+  he[e] = new Se(e, 6, !1, e, null, !1, !1);
 });
 ["rowSpan", "start"].forEach(function (e) {
-  pe[e] = new Se(e, 5, !1, e.toLowerCase(), null, !1, !1);
+  he[e] = new Se(e, 5, !1, e.toLowerCase(), null, !1, !1);
 });
 var Ca = /[\-:]([a-z])/g;
 function Ea(e) {
@@ -906,22 +906,22 @@ function Ea(e) {
   .split(" ")
   .forEach(function (e) {
     var t = e.replace(Ca, Ea);
-    pe[t] = new Se(t, 1, !1, e, null, !1, !1);
+    he[t] = new Se(t, 1, !1, e, null, !1, !1);
   });
 "xlink:actuate xlink:arcrole xlink:role xlink:show xlink:title xlink:type"
   .split(" ")
   .forEach(function (e) {
     var t = e.replace(Ca, Ea);
-    pe[t] = new Se(t, 1, !1, e, "http://www.w3.org/1999/xlink", !1, !1);
+    he[t] = new Se(t, 1, !1, e, "http://www.w3.org/1999/xlink", !1, !1);
   });
 ["xml:base", "xml:lang", "xml:space"].forEach(function (e) {
   var t = e.replace(Ca, Ea);
-  pe[t] = new Se(t, 1, !1, e, "http://www.w3.org/XML/1998/namespace", !1, !1);
+  he[t] = new Se(t, 1, !1, e, "http://www.w3.org/XML/1998/namespace", !1, !1);
 });
 ["tabIndex", "crossOrigin"].forEach(function (e) {
-  pe[e] = new Se(e, 1, !1, e.toLowerCase(), null, !1, !1);
+  he[e] = new Se(e, 1, !1, e.toLowerCase(), null, !1, !1);
 });
-pe.xlinkHref = new Se(
+he.xlinkHref = new Se(
   "xlinkHref",
   1,
   !1,
@@ -931,10 +931,10 @@ pe.xlinkHref = new Se(
   !1
 );
 ["src", "href", "action", "formAction"].forEach(function (e) {
-  pe[e] = new Se(e, 1, !1, e.toLowerCase(), null, !0, !0);
+  he[e] = new Se(e, 1, !1, e.toLowerCase(), null, !0, !0);
 });
 function Da(e, t, r, s) {
-  var l = pe.hasOwnProperty(t) ? pe[t] : null;
+  var l = he.hasOwnProperty(t) ? he[t] : null;
   (l !== null
     ? l.type !== 0
     : s ||
@@ -1662,8 +1662,8 @@ function Ld(e, t, r, s, l, a, i, o, c) {
   var u = Array.prototype.slice.call(arguments, 3);
   try {
     t.apply(r, u);
-  } catch (d) {
-    this.onError(d);
+  } catch (f) {
+    this.onError(f);
   }
 }
 var en = !1,
@@ -3085,11 +3085,11 @@ function pl(e, t, r, s, l) {
     }
   lc(function () {
     var u = a,
-      d = Ta(r),
+      f = Ta(r),
       m = [];
     e: {
-      var p = Rc.get(e);
-      if (p !== void 0) {
+      var h = Rc.get(e);
+      if (h !== void 0) {
         var x = Aa,
           y = e;
         switch (e) {
@@ -3166,45 +3166,45 @@ function pl(e, t, r, s, l) {
           case "pointerup":
             x = Mi;
         }
-        var N = (t & 4) !== 0,
-          k = !N && e === "scroll",
-          g = N ? (p !== null ? p + "Capture" : null) : p;
-        N = [];
-        for (var h = u, f; h !== null; ) {
-          f = h;
-          var w = f.stateNode;
+        var w = (t & 4) !== 0,
+          k = !w && e === "scroll",
+          p = w ? (h !== null ? h + "Capture" : null) : h;
+        w = [];
+        for (var d = u, g; d !== null; ) {
+          g = d;
+          var N = g.stateNode;
           if (
-            (f.tag === 5 &&
-              w !== null &&
-              ((f = w),
-              g !== null && ((w = fn(h, g)), w != null && N.push(vn(h, w, f)))),
+            (g.tag === 5 &&
+              N !== null &&
+              ((g = N),
+              p !== null && ((N = fn(d, p)), N != null && w.push(vn(d, N, g)))),
             k)
           )
             break;
-          h = h.return;
+          d = d.return;
         }
-        0 < N.length &&
-          ((p = new x(p, y, null, r, d)), m.push({ event: p, listeners: N }));
+        0 < w.length &&
+          ((h = new x(h, y, null, r, f)), m.push({ event: h, listeners: w }));
       }
     }
     if (!(t & 7)) {
       e: {
         if (
-          ((p = e === "mouseover" || e === "pointerover"),
+          ((h = e === "mouseover" || e === "pointerover"),
           (x = e === "mouseout" || e === "pointerout"),
-          p &&
+          h &&
             r !== ql &&
             (y = r.relatedTarget || r.fromElement) &&
             (Ht(y) || y[ft]))
         )
           break e;
         if (
-          (x || p) &&
-          ((p =
-            d.window === d
-              ? d
-              : (p = d.ownerDocument)
-              ? p.defaultView || p.parentWindow
+          (x || h) &&
+          ((h =
+            f.window === f
+              ? f
+              : (h = f.ownerDocument)
+              ? h.defaultView || h.parentWindow
               : window),
           x
             ? ((y = r.relatedTarget || r.toElement),
@@ -3217,78 +3217,78 @@ function pl(e, t, r, s, l) {
           x !== y)
         ) {
           if (
-            ((N = Pi),
-            (w = "onMouseLeave"),
-            (g = "onMouseEnter"),
-            (h = "mouse"),
+            ((w = Pi),
+            (N = "onMouseLeave"),
+            (p = "onMouseEnter"),
+            (d = "mouse"),
             (e === "pointerout" || e === "pointerover") &&
-              ((N = Mi),
-              (w = "onPointerLeave"),
-              (g = "onPointerEnter"),
-              (h = "pointer")),
-            (k = x == null ? p : mr(x)),
-            (f = y == null ? p : mr(y)),
-            (p = new N(w, h + "leave", x, r, d)),
-            (p.target = k),
-            (p.relatedTarget = f),
-            (w = null),
-            Ht(d) === u &&
-              ((N = new N(g, h + "enter", y, r, d)),
-              (N.target = f),
-              (N.relatedTarget = k),
-              (w = N)),
-            (k = w),
+              ((w = Mi),
+              (N = "onPointerLeave"),
+              (p = "onPointerEnter"),
+              (d = "pointer")),
+            (k = x == null ? h : mr(x)),
+            (g = y == null ? h : mr(y)),
+            (h = new w(N, d + "leave", x, r, f)),
+            (h.target = k),
+            (h.relatedTarget = g),
+            (N = null),
+            Ht(f) === u &&
+              ((w = new w(p, d + "enter", y, r, f)),
+              (w.target = g),
+              (w.relatedTarget = k),
+              (N = w)),
+            (k = N),
             x && y)
           )
             t: {
-              for (N = x, g = y, h = 0, f = N; f; f = ar(f)) h++;
-              for (f = 0, w = g; w; w = ar(w)) f++;
-              for (; 0 < h - f; ) (N = ar(N)), h--;
-              for (; 0 < f - h; ) (g = ar(g)), f--;
-              for (; h--; ) {
-                if (N === g || (g !== null && N === g.alternate)) break t;
-                (N = ar(N)), (g = ar(g));
+              for (w = x, p = y, d = 0, g = w; g; g = ar(g)) d++;
+              for (g = 0, N = p; N; N = ar(N)) g++;
+              for (; 0 < d - g; ) (w = ar(w)), d--;
+              for (; 0 < g - d; ) (p = ar(p)), g--;
+              for (; d--; ) {
+                if (w === p || (p !== null && w === p.alternate)) break t;
+                (w = ar(w)), (p = ar(p));
               }
-              N = null;
+              w = null;
             }
-          else N = null;
-          x !== null && Qi(m, p, x, N, !1),
-            y !== null && k !== null && Qi(m, k, y, N, !0);
+          else w = null;
+          x !== null && Qi(m, h, x, w, !1),
+            y !== null && k !== null && Qi(m, k, y, w, !0);
         }
       }
       e: {
         if (
-          ((p = u ? mr(u) : window),
-          (x = p.nodeName && p.nodeName.toLowerCase()),
-          x === "select" || (x === "input" && p.type === "file"))
+          ((h = u ? mr(u) : window),
+          (x = h.nodeName && h.nodeName.toLowerCase()),
+          x === "select" || (x === "input" && h.type === "file"))
         )
-          var C = Pf;
-        else if (Ai(p))
-          if (kc) C = Lf;
+          var D = Pf;
+        else if (Ai(h))
+          if (kc) D = Lf;
           else {
-            C = Mf;
-            var z = Rf;
+            D = Mf;
+            var I = Rf;
           }
         else
-          (x = p.nodeName) &&
+          (x = h.nodeName) &&
             x.toLowerCase() === "input" &&
-            (p.type === "checkbox" || p.type === "radio") &&
-            (C = Of);
-        if (C && (C = C(e, u))) {
-          Sc(m, C, r, d);
+            (h.type === "checkbox" || h.type === "radio") &&
+            (D = Of);
+        if (D && (D = D(e, u))) {
+          Sc(m, D, r, f);
           break e;
         }
-        z && z(e, p, u),
+        I && I(e, h, u),
           e === "focusout" &&
-            (z = p._wrapperState) &&
-            z.controlled &&
-            p.type === "number" &&
-            Ll(p, "number", p.value);
+            (I = h._wrapperState) &&
+            I.controlled &&
+            h.type === "number" &&
+            Ll(h, "number", h.value);
       }
-      switch (((z = u ? mr(u) : window), e)) {
+      switch (((I = u ? mr(u) : window), e)) {
         case "focusin":
-          (Ai(z) || z.contentEditable === "true") &&
-            ((dr = z), (Kl = u), (nn = null));
+          (Ai(I) || I.contentEditable === "true") &&
+            ((dr = I), (Kl = u), (nn = null));
           break;
         case "focusout":
           nn = Kl = dr = null;
@@ -3299,53 +3299,53 @@ function pl(e, t, r, s, l) {
         case "contextmenu":
         case "mouseup":
         case "dragend":
-          (Yl = !1), Vi(m, r, d);
+          (Yl = !1), Vi(m, r, f);
           break;
         case "selectionchange":
           if ($f) break;
         case "keydown":
         case "keyup":
-          Vi(m, r, d);
+          Vi(m, r, f);
       }
-      var _;
+      var z;
       if ($a)
         e: {
           switch (e) {
             case "compositionstart":
-              var I = "onCompositionStart";
+              var _ = "onCompositionStart";
               break e;
             case "compositionend":
-              I = "onCompositionEnd";
+              _ = "onCompositionEnd";
               break e;
             case "compositionupdate":
-              I = "onCompositionUpdate";
+              _ = "onCompositionUpdate";
               break e;
           }
-          I = void 0;
+          _ = void 0;
         }
       else
         ur
-          ? Nc(e, r) && (I = "onCompositionEnd")
-          : e === "keydown" && r.keyCode === 229 && (I = "onCompositionStart");
-      I &&
+          ? Nc(e, r) && (_ = "onCompositionEnd")
+          : e === "keydown" && r.keyCode === 229 && (_ = "onCompositionStart");
+      _ &&
         (wc &&
           r.locale !== "ko" &&
-          (ur || I !== "onCompositionStart"
-            ? I === "onCompositionEnd" && ur && (_ = jc())
-            : ((St = d),
+          (ur || _ !== "onCompositionStart"
+            ? _ === "onCompositionEnd" && ur && (z = jc())
+            : ((St = f),
               (La = "value" in St ? St.value : St.textContent),
               (ur = !0))),
-        (z = xs(u, I)),
-        0 < z.length &&
-          ((I = new Ri(I, e, null, r, d)),
-          m.push({ event: I, listeners: z }),
-          _ ? (I.data = _) : ((_ = bc(r)), _ !== null && (I.data = _)))),
-        (_ = Df ? _f(e, r) : If(e, r)) &&
+        (I = xs(u, _)),
+        0 < I.length &&
+          ((_ = new Ri(_, e, null, r, f)),
+          m.push({ event: _, listeners: I }),
+          z ? (_.data = z) : ((z = bc(r)), z !== null && (_.data = z)))),
+        (z = Df ? _f(e, r) : If(e, r)) &&
           ((u = xs(u, "onBeforeInput")),
           0 < u.length &&
-            ((d = new Ri("onBeforeInput", "beforeinput", null, r, d)),
-            m.push({ event: d, listeners: u }),
-            (d.data = _)));
+            ((f = new Ri("onBeforeInput", "beforeinput", null, r, f)),
+            m.push({ event: f, listeners: u }),
+            (f.data = z)));
     }
     Mc(m, t);
   });
@@ -3832,309 +3832,309 @@ function eo(e) {
   return t(e._payload);
 }
 function qc(e) {
-  function t(g, h) {
+  function t(p, d) {
     if (e) {
-      var f = g.deletions;
-      f === null ? ((g.deletions = [h]), (g.flags |= 16)) : f.push(h);
+      var g = p.deletions;
+      g === null ? ((p.deletions = [d]), (p.flags |= 16)) : g.push(d);
     }
   }
-  function r(g, h) {
+  function r(p, d) {
     if (!e) return null;
-    for (; h !== null; ) t(g, h), (h = h.sibling);
+    for (; d !== null; ) t(p, d), (d = d.sibling);
     return null;
   }
-  function s(g, h) {
-    for (g = new Map(); h !== null; )
-      h.key !== null ? g.set(h.key, h) : g.set(h.index, h), (h = h.sibling);
-    return g;
+  function s(p, d) {
+    for (p = new Map(); d !== null; )
+      d.key !== null ? p.set(d.key, d) : p.set(d.index, d), (d = d.sibling);
+    return p;
   }
-  function l(g, h) {
-    return (g = Pt(g, h)), (g.index = 0), (g.sibling = null), g;
+  function l(p, d) {
+    return (p = Pt(p, d)), (p.index = 0), (p.sibling = null), p;
   }
-  function a(g, h, f) {
+  function a(p, d, g) {
     return (
-      (g.index = f),
+      (p.index = g),
       e
-        ? ((f = g.alternate),
-          f !== null
-            ? ((f = f.index), f < h ? ((g.flags |= 2), h) : f)
-            : ((g.flags |= 2), h))
-        : ((g.flags |= 1048576), h)
+        ? ((g = p.alternate),
+          g !== null
+            ? ((g = g.index), g < d ? ((p.flags |= 2), d) : g)
+            : ((p.flags |= 2), d))
+        : ((p.flags |= 1048576), d)
     );
   }
-  function i(g) {
-    return e && g.alternate === null && (g.flags |= 2), g;
+  function i(p) {
+    return e && p.alternate === null && (p.flags |= 2), p;
   }
-  function o(g, h, f, w) {
-    return h === null || h.tag !== 6
-      ? ((h = Sl(f, g.mode, w)), (h.return = g), h)
-      : ((h = l(h, f)), (h.return = g), h);
+  function o(p, d, g, N) {
+    return d === null || d.tag !== 6
+      ? ((d = Sl(g, p.mode, N)), (d.return = p), d)
+      : ((d = l(d, g)), (d.return = p), d);
   }
-  function c(g, h, f, w) {
-    var C = f.type;
-    return C === cr
-      ? d(g, h, f.props.children, w, f.key)
-      : h !== null &&
-        (h.elementType === C ||
-          (typeof C == "object" &&
-            C !== null &&
-            C.$$typeof === jt &&
-            eo(C) === h.type))
-      ? ((w = l(h, f.props)), (w.ref = Qr(g, h, f)), (w.return = g), w)
-      : ((w = cs(f.type, f.key, f.props, null, g.mode, w)),
-        (w.ref = Qr(g, h, f)),
-        (w.return = g),
-        w);
+  function c(p, d, g, N) {
+    var D = g.type;
+    return D === cr
+      ? f(p, d, g.props.children, N, g.key)
+      : d !== null &&
+        (d.elementType === D ||
+          (typeof D == "object" &&
+            D !== null &&
+            D.$$typeof === jt &&
+            eo(D) === d.type))
+      ? ((N = l(d, g.props)), (N.ref = Qr(p, d, g)), (N.return = p), N)
+      : ((N = cs(g.type, g.key, g.props, null, p.mode, N)),
+        (N.ref = Qr(p, d, g)),
+        (N.return = p),
+        N);
   }
-  function u(g, h, f, w) {
-    return h === null ||
-      h.tag !== 4 ||
-      h.stateNode.containerInfo !== f.containerInfo ||
-      h.stateNode.implementation !== f.implementation
-      ? ((h = kl(f, g.mode, w)), (h.return = g), h)
-      : ((h = l(h, f.children || [])), (h.return = g), h);
+  function u(p, d, g, N) {
+    return d === null ||
+      d.tag !== 4 ||
+      d.stateNode.containerInfo !== g.containerInfo ||
+      d.stateNode.implementation !== g.implementation
+      ? ((d = kl(g, p.mode, N)), (d.return = p), d)
+      : ((d = l(d, g.children || [])), (d.return = p), d);
   }
-  function d(g, h, f, w, C) {
-    return h === null || h.tag !== 7
-      ? ((h = Kt(f, g.mode, w, C)), (h.return = g), h)
-      : ((h = l(h, f)), (h.return = g), h);
+  function f(p, d, g, N, D) {
+    return d === null || d.tag !== 7
+      ? ((d = Kt(g, p.mode, N, D)), (d.return = p), d)
+      : ((d = l(d, g)), (d.return = p), d);
   }
-  function m(g, h, f) {
-    if ((typeof h == "string" && h !== "") || typeof h == "number")
-      return (h = Sl("" + h, g.mode, f)), (h.return = g), h;
-    if (typeof h == "object" && h !== null) {
-      switch (h.$$typeof) {
+  function m(p, d, g) {
+    if ((typeof d == "string" && d !== "") || typeof d == "number")
+      return (d = Sl("" + d, p.mode, g)), (d.return = p), d;
+    if (typeof d == "object" && d !== null) {
+      switch (d.$$typeof) {
         case On:
           return (
-            (f = cs(h.type, h.key, h.props, null, g.mode, f)),
-            (f.ref = Qr(g, null, h)),
-            (f.return = g),
-            f
+            (g = cs(d.type, d.key, d.props, null, p.mode, g)),
+            (g.ref = Qr(p, null, d)),
+            (g.return = p),
+            g
           );
         case or:
-          return (h = kl(h, g.mode, f)), (h.return = g), h;
+          return (d = kl(d, p.mode, g)), (d.return = p), d;
         case jt:
-          var w = h._init;
-          return m(g, w(h._payload), f);
+          var N = d._init;
+          return m(p, N(d._payload), g);
       }
-      if (Yr(h) || Ur(h))
-        return (h = Kt(h, g.mode, f, null)), (h.return = g), h;
-      Wn(g, h);
+      if (Yr(d) || Ur(d))
+        return (d = Kt(d, p.mode, g, null)), (d.return = p), d;
+      Wn(p, d);
     }
     return null;
   }
-  function p(g, h, f, w) {
-    var C = h !== null ? h.key : null;
-    if ((typeof f == "string" && f !== "") || typeof f == "number")
-      return C !== null ? null : o(g, h, "" + f, w);
-    if (typeof f == "object" && f !== null) {
-      switch (f.$$typeof) {
+  function h(p, d, g, N) {
+    var D = d !== null ? d.key : null;
+    if ((typeof g == "string" && g !== "") || typeof g == "number")
+      return D !== null ? null : o(p, d, "" + g, N);
+    if (typeof g == "object" && g !== null) {
+      switch (g.$$typeof) {
         case On:
-          return f.key === C ? c(g, h, f, w) : null;
+          return g.key === D ? c(p, d, g, N) : null;
         case or:
-          return f.key === C ? u(g, h, f, w) : null;
+          return g.key === D ? u(p, d, g, N) : null;
         case jt:
-          return (C = f._init), p(g, h, C(f._payload), w);
+          return (D = g._init), h(p, d, D(g._payload), N);
       }
-      if (Yr(f) || Ur(f)) return C !== null ? null : d(g, h, f, w, null);
-      Wn(g, f);
+      if (Yr(g) || Ur(g)) return D !== null ? null : f(p, d, g, N, null);
+      Wn(p, g);
     }
     return null;
   }
-  function x(g, h, f, w, C) {
-    if ((typeof w == "string" && w !== "") || typeof w == "number")
-      return (g = g.get(f) || null), o(h, g, "" + w, C);
-    if (typeof w == "object" && w !== null) {
-      switch (w.$$typeof) {
+  function x(p, d, g, N, D) {
+    if ((typeof N == "string" && N !== "") || typeof N == "number")
+      return (p = p.get(g) || null), o(d, p, "" + N, D);
+    if (typeof N == "object" && N !== null) {
+      switch (N.$$typeof) {
         case On:
-          return (g = g.get(w.key === null ? f : w.key) || null), c(h, g, w, C);
+          return (p = p.get(N.key === null ? g : N.key) || null), c(d, p, N, D);
         case or:
-          return (g = g.get(w.key === null ? f : w.key) || null), u(h, g, w, C);
+          return (p = p.get(N.key === null ? g : N.key) || null), u(d, p, N, D);
         case jt:
-          var z = w._init;
-          return x(g, h, f, z(w._payload), C);
+          var I = N._init;
+          return x(p, d, g, I(N._payload), D);
       }
-      if (Yr(w) || Ur(w)) return (g = g.get(f) || null), d(h, g, w, C, null);
-      Wn(h, w);
+      if (Yr(N) || Ur(N)) return (p = p.get(g) || null), f(d, p, N, D, null);
+      Wn(d, N);
     }
     return null;
   }
-  function y(g, h, f, w) {
+  function y(p, d, g, N) {
     for (
-      var C = null, z = null, _ = h, I = (h = 0), v = null;
-      _ !== null && I < f.length;
-      I++
+      var D = null, I = null, z = d, _ = (d = 0), v = null;
+      z !== null && _ < g.length;
+      _++
     ) {
-      _.index > I ? ((v = _), (_ = null)) : (v = _.sibling);
-      var D = p(g, _, f[I], w);
-      if (D === null) {
-        _ === null && (_ = v);
+      z.index > _ ? ((v = z), (z = null)) : (v = z.sibling);
+      var E = h(p, z, g[_], N);
+      if (E === null) {
+        z === null && (z = v);
         break;
       }
-      e && _ && D.alternate === null && t(g, _),
-        (h = a(D, h, I)),
-        z === null ? (C = D) : (z.sibling = D),
-        (z = D),
-        (_ = v);
+      e && z && E.alternate === null && t(p, z),
+        (d = a(E, d, _)),
+        I === null ? (D = E) : (I.sibling = E),
+        (I = E),
+        (z = v);
     }
-    if (I === f.length) return r(g, _), Y && qt(g, I), C;
-    if (_ === null) {
-      for (; I < f.length; I++)
-        (_ = m(g, f[I], w)),
-          _ !== null &&
-            ((h = a(_, h, I)), z === null ? (C = _) : (z.sibling = _), (z = _));
-      return Y && qt(g, I), C;
+    if (_ === g.length) return r(p, z), Y && qt(p, _), D;
+    if (z === null) {
+      for (; _ < g.length; _++)
+        (z = m(p, g[_], N)),
+          z !== null &&
+            ((d = a(z, d, _)), I === null ? (D = z) : (I.sibling = z), (I = z));
+      return Y && qt(p, _), D;
     }
-    for (_ = s(g, _); I < f.length; I++)
-      (v = x(_, g, I, f[I], w)),
+    for (z = s(p, z); _ < g.length; _++)
+      (v = x(z, p, _, g[_], N)),
         v !== null &&
-          (e && v.alternate !== null && _.delete(v.key === null ? I : v.key),
-          (h = a(v, h, I)),
-          z === null ? (C = v) : (z.sibling = v),
-          (z = v));
+          (e && v.alternate !== null && z.delete(v.key === null ? _ : v.key),
+          (d = a(v, d, _)),
+          I === null ? (D = v) : (I.sibling = v),
+          (I = v));
     return (
       e &&
-        _.forEach(function (L) {
-          return t(g, L);
+        z.forEach(function (L) {
+          return t(p, L);
         }),
-      Y && qt(g, I),
-      C
+      Y && qt(p, _),
+      D
     );
   }
-  function N(g, h, f, w) {
-    var C = Ur(f);
-    if (typeof C != "function") throw Error(T(150));
-    if (((f = C.call(f)), f == null)) throw Error(T(151));
+  function w(p, d, g, N) {
+    var D = Ur(g);
+    if (typeof D != "function") throw Error(T(150));
+    if (((g = D.call(g)), g == null)) throw Error(T(151));
     for (
-      var z = (C = null), _ = h, I = (h = 0), v = null, D = f.next();
-      _ !== null && !D.done;
-      I++, D = f.next()
+      var I = (D = null), z = d, _ = (d = 0), v = null, E = g.next();
+      z !== null && !E.done;
+      _++, E = g.next()
     ) {
-      _.index > I ? ((v = _), (_ = null)) : (v = _.sibling);
-      var L = p(g, _, D.value, w);
+      z.index > _ ? ((v = z), (z = null)) : (v = z.sibling);
+      var L = h(p, z, E.value, N);
       if (L === null) {
-        _ === null && (_ = v);
+        z === null && (z = v);
         break;
       }
-      e && _ && L.alternate === null && t(g, _),
-        (h = a(L, h, I)),
-        z === null ? (C = L) : (z.sibling = L),
-        (z = L),
-        (_ = v);
+      e && z && L.alternate === null && t(p, z),
+        (d = a(L, d, _)),
+        I === null ? (D = L) : (I.sibling = L),
+        (I = L),
+        (z = v);
     }
-    if (D.done) return r(g, _), Y && qt(g, I), C;
-    if (_ === null) {
-      for (; !D.done; I++, D = f.next())
-        (D = m(g, D.value, w)),
-          D !== null &&
-            ((h = a(D, h, I)), z === null ? (C = D) : (z.sibling = D), (z = D));
-      return Y && qt(g, I), C;
+    if (E.done) return r(p, z), Y && qt(p, _), D;
+    if (z === null) {
+      for (; !E.done; _++, E = g.next())
+        (E = m(p, E.value, N)),
+          E !== null &&
+            ((d = a(E, d, _)), I === null ? (D = E) : (I.sibling = E), (I = E));
+      return Y && qt(p, _), D;
     }
-    for (_ = s(g, _); !D.done; I++, D = f.next())
-      (D = x(_, g, I, D.value, w)),
-        D !== null &&
-          (e && D.alternate !== null && _.delete(D.key === null ? I : D.key),
-          (h = a(D, h, I)),
-          z === null ? (C = D) : (z.sibling = D),
-          (z = D));
+    for (z = s(p, z); !E.done; _++, E = g.next())
+      (E = x(z, p, _, E.value, N)),
+        E !== null &&
+          (e && E.alternate !== null && z.delete(E.key === null ? _ : E.key),
+          (d = a(E, d, _)),
+          I === null ? (D = E) : (I.sibling = E),
+          (I = E));
     return (
       e &&
-        _.forEach(function ($) {
-          return t(g, $);
+        z.forEach(function ($) {
+          return t(p, $);
         }),
-      Y && qt(g, I),
-      C
+      Y && qt(p, _),
+      D
     );
   }
-  function k(g, h, f, w) {
+  function k(p, d, g, N) {
     if (
-      (typeof f == "object" &&
-        f !== null &&
-        f.type === cr &&
-        f.key === null &&
-        (f = f.props.children),
-      typeof f == "object" && f !== null)
+      (typeof g == "object" &&
+        g !== null &&
+        g.type === cr &&
+        g.key === null &&
+        (g = g.props.children),
+      typeof g == "object" && g !== null)
     ) {
-      switch (f.$$typeof) {
+      switch (g.$$typeof) {
         case On:
           e: {
-            for (var C = f.key, z = h; z !== null; ) {
-              if (z.key === C) {
-                if (((C = f.type), C === cr)) {
-                  if (z.tag === 7) {
-                    r(g, z.sibling),
-                      (h = l(z, f.props.children)),
-                      (h.return = g),
-                      (g = h);
+            for (var D = g.key, I = d; I !== null; ) {
+              if (I.key === D) {
+                if (((D = g.type), D === cr)) {
+                  if (I.tag === 7) {
+                    r(p, I.sibling),
+                      (d = l(I, g.props.children)),
+                      (d.return = p),
+                      (p = d);
                     break e;
                   }
                 } else if (
-                  z.elementType === C ||
-                  (typeof C == "object" &&
-                    C !== null &&
-                    C.$$typeof === jt &&
-                    eo(C) === z.type)
+                  I.elementType === D ||
+                  (typeof D == "object" &&
+                    D !== null &&
+                    D.$$typeof === jt &&
+                    eo(D) === I.type)
                 ) {
-                  r(g, z.sibling),
-                    (h = l(z, f.props)),
-                    (h.ref = Qr(g, z, f)),
-                    (h.return = g),
-                    (g = h);
+                  r(p, I.sibling),
+                    (d = l(I, g.props)),
+                    (d.ref = Qr(p, I, g)),
+                    (d.return = p),
+                    (p = d);
                   break e;
                 }
-                r(g, z);
+                r(p, I);
                 break;
-              } else t(g, z);
-              z = z.sibling;
+              } else t(p, I);
+              I = I.sibling;
             }
-            f.type === cr
-              ? ((h = Kt(f.props.children, g.mode, w, f.key)),
-                (h.return = g),
-                (g = h))
-              : ((w = cs(f.type, f.key, f.props, null, g.mode, w)),
-                (w.ref = Qr(g, h, f)),
-                (w.return = g),
-                (g = w));
+            g.type === cr
+              ? ((d = Kt(g.props.children, p.mode, N, g.key)),
+                (d.return = p),
+                (p = d))
+              : ((N = cs(g.type, g.key, g.props, null, p.mode, N)),
+                (N.ref = Qr(p, d, g)),
+                (N.return = p),
+                (p = N));
           }
-          return i(g);
+          return i(p);
         case or:
           e: {
-            for (z = f.key; h !== null; ) {
-              if (h.key === z)
+            for (I = g.key; d !== null; ) {
+              if (d.key === I)
                 if (
-                  h.tag === 4 &&
-                  h.stateNode.containerInfo === f.containerInfo &&
-                  h.stateNode.implementation === f.implementation
+                  d.tag === 4 &&
+                  d.stateNode.containerInfo === g.containerInfo &&
+                  d.stateNode.implementation === g.implementation
                 ) {
-                  r(g, h.sibling),
-                    (h = l(h, f.children || [])),
-                    (h.return = g),
-                    (g = h);
+                  r(p, d.sibling),
+                    (d = l(d, g.children || [])),
+                    (d.return = p),
+                    (p = d);
                   break e;
                 } else {
-                  r(g, h);
+                  r(p, d);
                   break;
                 }
-              else t(g, h);
-              h = h.sibling;
+              else t(p, d);
+              d = d.sibling;
             }
-            (h = kl(f, g.mode, w)), (h.return = g), (g = h);
+            (d = kl(g, p.mode, N)), (d.return = p), (p = d);
           }
-          return i(g);
+          return i(p);
         case jt:
-          return (z = f._init), k(g, h, z(f._payload), w);
+          return (I = g._init), k(p, d, I(g._payload), N);
       }
-      if (Yr(f)) return y(g, h, f, w);
-      if (Ur(f)) return N(g, h, f, w);
-      Wn(g, f);
+      if (Yr(g)) return y(p, d, g, N);
+      if (Ur(g)) return w(p, d, g, N);
+      Wn(p, g);
     }
-    return (typeof f == "string" && f !== "") || typeof f == "number"
-      ? ((f = "" + f),
-        h !== null && h.tag === 6
-          ? (r(g, h.sibling), (h = l(h, f)), (h.return = g), (g = h))
-          : (r(g, h), (h = Sl(f, g.mode, w)), (h.return = g), (g = h)),
-        i(g))
-      : r(g, h);
+    return (typeof g == "string" && g !== "") || typeof g == "number"
+      ? ((g = "" + g),
+        d !== null && d.tag === 6
+          ? (r(p, d.sibling), (d = l(d, g)), (d.return = p), (p = d))
+          : (r(p, d), (d = Sl(g, p.mode, N)), (d.return = p), (p = d)),
+        i(p))
+      : r(p, d);
   }
   return k;
 }
@@ -4306,23 +4306,23 @@ function ks(e, t, r, s) {
     var c = o,
       u = c.next;
     (c.next = null), i === null ? (a = u) : (i.next = u), (i = c);
-    var d = e.alternate;
-    d !== null &&
-      ((d = d.updateQueue),
-      (o = d.lastBaseUpdate),
+    var f = e.alternate;
+    f !== null &&
+      ((f = f.updateQueue),
+      (o = f.lastBaseUpdate),
       o !== i &&
-        (o === null ? (d.firstBaseUpdate = u) : (o.next = u),
-        (d.lastBaseUpdate = c)));
+        (o === null ? (f.firstBaseUpdate = u) : (o.next = u),
+        (f.lastBaseUpdate = c)));
   }
   if (a !== null) {
     var m = l.baseState;
-    (i = 0), (d = u = c = null), (o = a);
+    (i = 0), (f = u = c = null), (o = a);
     do {
-      var p = o.lane,
+      var h = o.lane,
         x = o.eventTime;
-      if ((s & p) === p) {
-        d !== null &&
-          (d = d.next =
+      if ((s & h) === h) {
+        f !== null &&
+          (f = f.next =
             {
               eventTime: x,
               lane: 0,
@@ -4333,11 +4333,11 @@ function ks(e, t, r, s) {
             });
         e: {
           var y = e,
-            N = o;
-          switch (((p = t), (x = r), N.tag)) {
+            w = o;
+          switch (((h = t), (x = r), w.tag)) {
             case 1:
-              if (((y = N.payload), typeof y == "function")) {
-                m = y.call(x, m, p);
+              if (((y = w.payload), typeof y == "function")) {
+                m = y.call(x, m, h);
                 break e;
               }
               m = y;
@@ -4346,12 +4346,12 @@ function ks(e, t, r, s) {
               y.flags = (y.flags & -65537) | 128;
             case 0:
               if (
-                ((y = N.payload),
-                (p = typeof y == "function" ? y.call(x, m, p) : y),
-                p == null)
+                ((y = w.payload),
+                (h = typeof y == "function" ? y.call(x, m, h) : y),
+                h == null)
               )
                 break e;
-              m = te({}, m, p);
+              m = te({}, m, h);
               break e;
             case 2:
               wt = !0;
@@ -4360,33 +4360,33 @@ function ks(e, t, r, s) {
         o.callback !== null &&
           o.lane !== 0 &&
           ((e.flags |= 64),
-          (p = l.effects),
-          p === null ? (l.effects = [o]) : p.push(o));
+          (h = l.effects),
+          h === null ? (l.effects = [o]) : h.push(o));
       } else
         (x = {
           eventTime: x,
-          lane: p,
+          lane: h,
           tag: o.tag,
           payload: o.payload,
           callback: o.callback,
           next: null,
         }),
-          d === null ? ((u = d = x), (c = m)) : (d = d.next = x),
-          (i |= p);
+          f === null ? ((u = f = x), (c = m)) : (f = f.next = x),
+          (i |= h);
       if (((o = o.next), o === null)) {
         if (((o = l.shared.pending), o === null)) break;
-        (p = o),
-          (o = p.next),
-          (p.next = null),
-          (l.lastBaseUpdate = p),
+        (h = o),
+          (o = h.next),
+          (h.next = null),
+          (l.lastBaseUpdate = h),
           (l.shared.pending = null);
       }
     } while (!0);
     if (
-      (d === null && (c = m),
+      (f === null && (c = m),
       (l.baseState = c),
       (l.firstBaseUpdate = u),
-      (l.lastBaseUpdate = d),
+      (l.lastBaseUpdate = f),
       (t = l.shared.interleaved),
       t !== null)
     ) {
@@ -4484,7 +4484,7 @@ var ss = xt.ReactCurrentDispatcher,
   sn = !1,
   bn = 0,
   Zf = 0;
-function ge() {
+function pe() {
   throw Error(T(321));
 }
 function Za(e, t) {
@@ -4584,8 +4584,8 @@ function jl(e) {
       c = null,
       u = a;
     do {
-      var d = u.lane;
-      if ((er & d) === d)
+      var f = u.lane;
+      if ((er & f) === f)
         c !== null &&
           (c = c.next =
             {
@@ -4598,15 +4598,15 @@ function jl(e) {
           (s = u.hasEagerState ? u.eagerState : e(s, u.action));
       else {
         var m = {
-          lane: d,
+          lane: f,
           action: u.action,
           hasEagerState: u.hasEagerState,
           eagerState: u.eagerState,
           next: null,
         };
         c === null ? ((o = c = m), (i = s)) : (c = c.next = m),
-          (ee.lanes |= d),
-          (tr |= d);
+          (ee.lanes |= f),
+          (tr |= f);
       }
       u = u.next;
     } while (u !== null && u !== a);
@@ -4889,22 +4889,22 @@ function du(e, t, r) {
 }
 var Ds = {
     readContext: Be,
-    useCallback: ge,
-    useContext: ge,
-    useEffect: ge,
-    useImperativeHandle: ge,
-    useInsertionEffect: ge,
-    useLayoutEffect: ge,
-    useMemo: ge,
-    useReducer: ge,
-    useRef: ge,
-    useState: ge,
-    useDebugValue: ge,
-    useDeferredValue: ge,
-    useTransition: ge,
-    useMutableSource: ge,
-    useSyncExternalStore: ge,
-    useId: ge,
+    useCallback: pe,
+    useContext: pe,
+    useEffect: pe,
+    useImperativeHandle: pe,
+    useInsertionEffect: pe,
+    useLayoutEffect: pe,
+    useMemo: pe,
+    useReducer: pe,
+    useRef: pe,
+    useState: pe,
+    useDebugValue: pe,
+    useDeferredValue: pe,
+    useTransition: pe,
+    useMutableSource: pe,
+    useSyncExternalStore: pe,
+    useId: pe,
     unstable_isNewReconciler: !1,
   },
   nm = {
@@ -5409,22 +5409,22 @@ function mo(e, t, r, s, l) {
     typeof u == "object" && u !== null
       ? (u = Be(u))
       : ((u = De(r) ? Jt : ve.current), (u = Dr(t, u)));
-    var d = r.getDerivedStateFromProps,
+    var f = r.getDerivedStateFromProps,
       m =
-        typeof d == "function" ||
+        typeof f == "function" ||
         typeof i.getSnapshotBeforeUpdate == "function";
     m ||
       (typeof i.UNSAFE_componentWillReceiveProps != "function" &&
         typeof i.componentWillReceiveProps != "function") ||
       ((o !== s || c !== u) && ao(t, i, s, u)),
       (wt = !1);
-    var p = t.memoizedState;
-    (i.state = p),
+    var h = t.memoizedState;
+    (i.state = h),
       ks(t, s, i, l),
       (c = t.memoizedState),
-      o !== s || p !== c || Ee.current || wt
-        ? (typeof d == "function" && (aa(t, r, d, s), (c = t.memoizedState)),
-          (o = wt || lo(t, r, o, s, p, c, u))
+      o !== s || h !== c || Ee.current || wt
+        ? (typeof f == "function" && (aa(t, r, f, s), (c = t.memoizedState)),
+          (o = wt || lo(t, r, o, s, h, c, u))
             ? (m ||
                 (typeof i.UNSAFE_componentWillMount != "function" &&
                   typeof i.componentWillMount != "function") ||
@@ -5449,27 +5449,27 @@ function mo(e, t, r, s, l) {
       (u = t.type === t.elementType ? o : Ge(t.type, o)),
       (i.props = u),
       (m = t.pendingProps),
-      (p = i.context),
+      (h = i.context),
       (c = r.contextType),
       typeof c == "object" && c !== null
         ? (c = Be(c))
         : ((c = De(r) ? Jt : ve.current), (c = Dr(t, c)));
     var x = r.getDerivedStateFromProps;
-    (d =
+    (f =
       typeof x == "function" ||
       typeof i.getSnapshotBeforeUpdate == "function") ||
       (typeof i.UNSAFE_componentWillReceiveProps != "function" &&
         typeof i.componentWillReceiveProps != "function") ||
-      ((o !== m || p !== c) && ao(t, i, s, c)),
+      ((o !== m || h !== c) && ao(t, i, s, c)),
       (wt = !1),
-      (p = t.memoizedState),
-      (i.state = p),
+      (h = t.memoizedState),
+      (i.state = h),
       ks(t, s, i, l);
     var y = t.memoizedState;
-    o !== m || p !== y || Ee.current || wt
+    o !== m || h !== y || Ee.current || wt
       ? (typeof x == "function" && (aa(t, r, x, s), (y = t.memoizedState)),
-        (u = wt || lo(t, r, u, s, p, y, c) || !1)
-          ? (d ||
+        (u = wt || lo(t, r, u, s, h, y, c) || !1)
+          ? (f ||
               (typeof i.UNSAFE_componentWillUpdate != "function" &&
                 typeof i.componentWillUpdate != "function") ||
               (typeof i.componentWillUpdate == "function" &&
@@ -5479,10 +5479,10 @@ function mo(e, t, r, s, l) {
             typeof i.componentDidUpdate == "function" && (t.flags |= 4),
             typeof i.getSnapshotBeforeUpdate == "function" && (t.flags |= 1024))
           : (typeof i.componentDidUpdate != "function" ||
-              (o === e.memoizedProps && p === e.memoizedState) ||
+              (o === e.memoizedProps && h === e.memoizedState) ||
               (t.flags |= 4),
             typeof i.getSnapshotBeforeUpdate != "function" ||
-              (o === e.memoizedProps && p === e.memoizedState) ||
+              (o === e.memoizedProps && h === e.memoizedState) ||
               (t.flags |= 1024),
             (t.memoizedProps = s),
             (t.memoizedState = y)),
@@ -5491,10 +5491,10 @@ function mo(e, t, r, s, l) {
         (i.context = c),
         (s = u))
       : (typeof i.componentDidUpdate != "function" ||
-          (o === e.memoizedProps && p === e.memoizedState) ||
+          (o === e.memoizedProps && h === e.memoizedState) ||
           (t.flags |= 4),
         typeof i.getSnapshotBeforeUpdate != "function" ||
-          (o === e.memoizedProps && p === e.memoizedState) ||
+          (o === e.memoizedProps && h === e.memoizedState) ||
           (t.flags |= 1024),
         (s = !1));
   }
@@ -6001,7 +6001,7 @@ function Wr(e, t) {
           : (s.sibling = null);
     }
 }
-function xe(e) {
+function ge(e) {
   var t = e.alternate !== null && e.alternate.child === e.child,
     r = 0,
     s = 0;
@@ -6034,9 +6034,9 @@ function um(e, t, r) {
     case 12:
     case 9:
     case 14:
-      return xe(t), null;
+      return ge(t), null;
     case 1:
-      return De(t.type) && vs(), xe(t), null;
+      return De(t.type) && vs(), ge(t), null;
     case 3:
       return (
         (s = t.stateNode),
@@ -6053,7 +6053,7 @@ function um(e, t, r) {
               (e.memoizedState.isDehydrated && !(t.flags & 256)) ||
               ((t.flags |= 1024), Ye !== null && (wa(Ye), (Ye = null)))),
         ma(e, t),
-        xe(t),
+        ge(t),
         null
       );
     case 5:
@@ -6065,7 +6065,7 @@ function um(e, t, r) {
       else {
         if (!s) {
           if (t.stateNode === null) throw Error(T(166));
-          return xe(t), null;
+          return ge(t), null;
         }
         if (((e = Qt(st.current)), Qn(t))) {
           (s = t.stateNode), (r = t.type);
@@ -6260,7 +6260,7 @@ function um(e, t, r) {
         }
         t.ref !== null && ((t.flags |= 512), (t.flags |= 2097152));
       }
-      return xe(t), null;
+      return ge(t), null;
     case 6:
       if (e && t.stateNode != null) bu(e, t, e.memoizedProps, s);
       else {
@@ -6286,7 +6286,7 @@ function um(e, t, r) {
             (s[rt] = t),
             (t.stateNode = s);
       }
-      return xe(t), null;
+      return ge(t), null;
     case 13:
       if (
         (K(J),
@@ -6308,7 +6308,7 @@ function um(e, t, r) {
             a[rt] = t;
           } else
             _r(), !(t.flags & 128) && (t.memoizedState = null), (t.flags |= 4);
-          xe(t), (a = !1);
+          ge(t), (a = !1);
         } else Ye !== null && (wa(Ye), (Ye = null)), (a = !0);
         if (!a) return t.flags & 65536 ? t : null;
       }
@@ -6321,18 +6321,18 @@ function um(e, t, r) {
             t.mode & 1 &&
               (e === null || J.current & 1 ? ce === 0 && (ce = 3) : ui())),
           t.updateQueue !== null && (t.flags |= 4),
-          xe(t),
+          ge(t),
           null);
     case 4:
       return (
-        zr(), ma(e, t), e === null && yn(t.stateNode.containerInfo), xe(t), null
+        zr(), ma(e, t), e === null && yn(t.stateNode.containerInfo), ge(t), null
       );
     case 10:
-      return Wa(t.type._context), xe(t), null;
+      return Wa(t.type._context), ge(t), null;
     case 17:
-      return De(t.type) && vs(), xe(t), null;
+      return De(t.type) && vs(), ge(t), null;
     case 19:
-      if ((K(J), (a = t.memoizedState), a === null)) return xe(t), null;
+      if ((K(J), (a = t.memoizedState), a === null)) return ge(t), null;
       if (((s = (t.flags & 128) !== 0), (i = a.rendering), i === null))
         if (s) Wr(a, !1);
         else {
@@ -6401,7 +6401,7 @@ function um(e, t, r) {
               Wr(a, !0),
               a.tail === null && a.tailMode === "hidden" && !i.alternate && !Y)
             )
-              return xe(t), null;
+              return ge(t), null;
           } else
             2 * le() - a.renderingStartTime > Pr &&
               r !== 1073741824 &&
@@ -6421,7 +6421,7 @@ function um(e, t, r) {
           (r = J.current),
           W(J, s ? (r & 1) | 2 : r & 1),
           t)
-        : (xe(t), null);
+        : (ge(t), null);
     case 22:
     case 23:
       return (
@@ -6429,8 +6429,8 @@ function um(e, t, r) {
         (s = t.memoizedState !== null),
         e !== null && (e.memoizedState !== null) !== s && (t.flags |= 8192),
         s && t.mode & 1
-          ? Te & 1073741824 && (xe(t), t.subtreeFlags & 6 && (t.flags |= 8192))
-          : xe(t),
+          ? Te & 1073741824 && (ge(t), t.subtreeFlags & 6 && (t.flags |= 8192))
+          : ge(t),
         null
       );
     case 24:
@@ -6528,9 +6528,9 @@ function mm(e, t) {
             o = -1,
             c = -1,
             u = 0,
-            d = 0,
+            f = 0,
             m = e,
-            p = null;
+            h = null;
           t: for (;;) {
             for (
               var x;
@@ -6540,16 +6540,16 @@ function mm(e, t) {
                 (x = m.firstChild) !== null;
 
             )
-              (p = m), (m = x);
+              (h = m), (m = x);
             for (;;) {
               if (m === e) break t;
               if (
-                (p === r && ++u === l && (o = i),
-                p === a && ++d === s && (c = i),
+                (h === r && ++u === l && (o = i),
+                h === a && ++f === s && (c = i),
                 (x = m.nextSibling) !== null)
               )
                 break;
-              (m = p), (p = m.parentNode);
+              (m = h), (h = m.parentNode);
             }
             m = x;
           }
@@ -6574,23 +6574,23 @@ function mm(e, t) {
                 break;
               case 1:
                 if (y !== null) {
-                  var N = y.memoizedProps,
+                  var w = y.memoizedProps,
                     k = y.memoizedState,
-                    g = t.stateNode,
-                    h = g.getSnapshotBeforeUpdate(
-                      t.elementType === t.type ? N : Ge(t.type, N),
+                    p = t.stateNode,
+                    d = p.getSnapshotBeforeUpdate(
+                      t.elementType === t.type ? w : Ge(t.type, w),
                       k
                     );
-                  g.__reactInternalSnapshotBeforeUpdate = h;
+                  p.__reactInternalSnapshotBeforeUpdate = d;
                 }
                 break;
               case 3:
-                var f = t.stateNode.containerInfo;
-                f.nodeType === 1
-                  ? (f.textContent = "")
-                  : f.nodeType === 9 &&
-                    f.documentElement &&
-                    f.removeChild(f.documentElement);
+                var g = t.stateNode.containerInfo;
+                g.nodeType === 1
+                  ? (g.textContent = "")
+                  : g.nodeType === 9 &&
+                    g.documentElement &&
+                    g.removeChild(g.documentElement);
                 break;
               case 5:
               case 6:
@@ -6600,8 +6600,8 @@ function mm(e, t) {
               default:
                 throw Error(T(163));
             }
-        } catch (w) {
-          re(t, t.return, w);
+        } catch (N) {
+          re(t, t.return, N);
         }
         if (((e = t.sibling), e !== null)) {
           (e.return = t.return), (O = e);
@@ -6865,13 +6865,13 @@ function Eu(e, t) {
       if ((We(t, e), et(e), s & 4)) {
         try {
           ln(3, e, e.return), Hs(3, e);
-        } catch (N) {
-          re(e, e.return, N);
+        } catch (w) {
+          re(e, e.return, w);
         }
         try {
           ln(5, e, e.return);
-        } catch (N) {
-          re(e, e.return, N);
+        } catch (w) {
+          re(e, e.return, w);
         }
       }
       break;
@@ -6888,8 +6888,8 @@ function Eu(e, t) {
         var l = e.stateNode;
         try {
           dn(l, "");
-        } catch (N) {
-          re(e, e.return, N);
+        } catch (w) {
+          re(e, e.return, w);
         }
       }
       if (s & 4 && ((l = e.stateNode), l != null)) {
@@ -6903,15 +6903,15 @@ function Eu(e, t) {
               Ul(o, i);
             var u = Ul(o, a);
             for (i = 0; i < c.length; i += 2) {
-              var d = c[i],
+              var f = c[i],
                 m = c[i + 1];
-              d === "style"
+              f === "style"
                 ? ec(l, m)
-                : d === "dangerouslySetInnerHTML"
+                : f === "dangerouslySetInnerHTML"
                 ? Jo(l, m)
-                : d === "children"
+                : f === "children"
                 ? dn(l, m)
-                : Da(l, d, m, u);
+                : Da(l, f, m, u);
             }
             switch (o) {
               case "input":
@@ -6921,19 +6921,19 @@ function Eu(e, t) {
                 Yo(l, a);
                 break;
               case "select":
-                var p = l._wrapperState.wasMultiple;
+                var h = l._wrapperState.wasMultiple;
                 l._wrapperState.wasMultiple = !!a.multiple;
                 var x = a.value;
                 x != null
                   ? jr(l, !!a.multiple, x, !1)
-                  : p !== !!a.multiple &&
+                  : h !== !!a.multiple &&
                     (a.defaultValue != null
                       ? jr(l, !!a.multiple, a.defaultValue, !0)
                       : jr(l, !!a.multiple, a.multiple ? [] : "", !1));
             }
             l[jn] = a;
-          } catch (N) {
-            re(e, e.return, N);
+          } catch (w) {
+            re(e, e.return, w);
           }
       }
       break;
@@ -6943,8 +6943,8 @@ function Eu(e, t) {
         (l = e.stateNode), (a = e.memoizedProps);
         try {
           l.nodeValue = a;
-        } catch (N) {
-          re(e, e.return, N);
+        } catch (w) {
+          re(e, e.return, w);
         }
       }
       break;
@@ -6954,8 +6954,8 @@ function Eu(e, t) {
       )
         try {
           pn(t.containerInfo);
-        } catch (N) {
-          re(e, e.return, N);
+        } catch (w) {
+          re(e, e.return, w);
         }
       break;
     case 4:
@@ -6975,56 +6975,56 @@ function Eu(e, t) {
       break;
     case 22:
       if (
-        ((d = r !== null && r.memoizedState !== null),
-        e.mode & 1 ? ((ye = (u = ye) || d), We(t, e), (ye = u)) : We(t, e),
+        ((f = r !== null && r.memoizedState !== null),
+        e.mode & 1 ? ((ye = (u = ye) || f), We(t, e), (ye = u)) : We(t, e),
         et(e),
         s & 8192)
       ) {
         if (
           ((u = e.memoizedState !== null),
-          (e.stateNode.isHidden = u) && !d && e.mode & 1)
+          (e.stateNode.isHidden = u) && !f && e.mode & 1)
         )
-          for (O = e, d = e.child; d !== null; ) {
-            for (m = O = d; O !== null; ) {
-              switch (((p = O), (x = p.child), p.tag)) {
+          for (O = e, f = e.child; f !== null; ) {
+            for (m = O = f; O !== null; ) {
+              switch (((h = O), (x = h.child), h.tag)) {
                 case 0:
                 case 11:
                 case 14:
                 case 15:
-                  ln(4, p, p.return);
+                  ln(4, h, h.return);
                   break;
                 case 1:
-                  yr(p, p.return);
-                  var y = p.stateNode;
+                  yr(h, h.return);
+                  var y = h.stateNode;
                   if (typeof y.componentWillUnmount == "function") {
-                    (s = p), (r = p.return);
+                    (s = h), (r = h.return);
                     try {
                       (t = s),
                         (y.props = t.memoizedProps),
                         (y.state = t.memoizedState),
                         y.componentWillUnmount();
-                    } catch (N) {
-                      re(s, r, N);
+                    } catch (w) {
+                      re(s, r, w);
                     }
                   }
                   break;
                 case 5:
-                  yr(p, p.return);
+                  yr(h, h.return);
                   break;
                 case 22:
-                  if (p.memoizedState !== null) {
+                  if (h.memoizedState !== null) {
                     jo(m);
                     continue;
                   }
               }
-              x !== null ? ((x.return = p), (O = x)) : jo(m);
+              x !== null ? ((x.return = h), (O = x)) : jo(m);
             }
-            d = d.sibling;
+            f = f.sibling;
           }
-        e: for (d = null, m = e; ; ) {
+        e: for (f = null, m = e; ; ) {
           if (m.tag === 5) {
-            if (d === null) {
-              d = m;
+            if (f === null) {
+              f = m;
               try {
                 (l = m.stateNode),
                   u
@@ -7039,16 +7039,16 @@ function Eu(e, t) {
                           ? c.display
                           : null),
                       (o.style.display = Zo("display", i)));
-              } catch (N) {
-                re(e, e.return, N);
+              } catch (w) {
+                re(e, e.return, w);
               }
             }
           } else if (m.tag === 6) {
-            if (d === null)
+            if (f === null)
               try {
                 m.stateNode.nodeValue = u ? "" : m.memoizedProps;
-              } catch (N) {
-                re(e, e.return, N);
+              } catch (w) {
+                re(e, e.return, w);
               }
           } else if (
             ((m.tag !== 22 && m.tag !== 23) ||
@@ -7062,9 +7062,9 @@ function Eu(e, t) {
           if (m === e) break e;
           for (; m.sibling === null; ) {
             if (m.return === null || m.return === e) break e;
-            d === m && (d = null), (m = m.return);
+            f === m && (f = null), (m = m.return);
           }
-          d === m && (d = null), (m.sibling.return = m.return), (m = m.sibling);
+          f === m && (f = null), (m.sibling.return = m.return), (m = m.sibling);
         }
       }
       break;
@@ -7217,9 +7217,9 @@ function vo(e) {
               if (t.memoizedState === null) {
                 var u = t.alternate;
                 if (u !== null) {
-                  var d = u.memoizedState;
-                  if (d !== null) {
-                    var m = d.dehydrated;
+                  var f = u.memoizedState;
+                  if (f !== null) {
+                    var m = f.dehydrated;
                     m !== null && pn(m);
                   }
                 }
@@ -7236,8 +7236,8 @@ function vo(e) {
               throw Error(T(163));
           }
         ye || (t.flags & 512 && pa(t));
-      } catch (p) {
-        re(t, t.return, p);
+      } catch (h) {
+        re(t, t.return, h);
       }
     }
     if (t === e) {
@@ -7328,7 +7328,7 @@ var pm = Math.ceil,
   V = 0,
   de = null,
   ie = null,
-  he = 0,
+  me = 0,
   Te = 0,
   vr = At(0),
   ce = 0,
@@ -7356,8 +7356,8 @@ function Ne() {
 }
 function Tt(e) {
   return e.mode & 1
-    ? V & 2 && he !== 0
-      ? he & -he
+    ? V & 2 && me !== 0
+      ? me & -me
       : Jf.transition !== null
       ? (os === 0 && (os = fc()), os)
       : ((e = Q),
@@ -7369,14 +7369,14 @@ function Je(e, t, r, s) {
   if (50 < on) throw ((on = 0), (va = null), Error(T(185)));
   In(e, r, s),
     (!(V & 2) || e !== de) &&
-      (e === de && (!(V & 2) && (Bs |= r), ce === 4 && bt(e, he)),
+      (e === de && (!(V & 2) && (Bs |= r), ce === 4 && bt(e, me)),
       _e(e, s),
       r === 1 && V === 0 && !(t.mode & 1) && ((Pr = le() + 500), Us && Ft()));
 }
 function _e(e, t) {
   var r = e.callbackNode;
   Xd(e, t);
-  var s = hs(e, e === de ? he : 0);
+  var s = hs(e, e === de ? me : 0);
   if (s === 0)
     r !== null && _i(r), (e.callbackNode = null), (e.callbackPriority = 0);
   else if (((t = s & -s), e.callbackPriority !== t)) {
@@ -7412,7 +7412,7 @@ function _u(e, t) {
   if (((is = -1), (os = 0), V & 6)) throw Error(T(327));
   var r = e.callbackNode;
   if (kr() && e.callbackNode !== r) return null;
-  var s = hs(e, e === de ? he : 0);
+  var s = hs(e, e === de ? me : 0);
   if (s === 0) return null;
   if (s & 30 || s & e.expiredLanes || t) t = Ts(e, s);
   else {
@@ -7420,7 +7420,7 @@ function _u(e, t) {
     var l = V;
     V |= 2;
     var a = zu();
-    (de !== e || he !== t) && ((lt = null), (Pr = le() + 500), Gt(e, t));
+    (de !== e || me !== t) && ((lt = null), (Pr = le() + 500), Gt(e, t));
     do
       try {
         ym();
@@ -7432,7 +7432,7 @@ function _u(e, t) {
     Qa(),
       (_s.current = a),
       (V = l),
-      ie !== null ? (t = 0) : ((de = null), (he = 0), (t = ce));
+      ie !== null ? (t = 0) : ((de = null), (me = 0), (t = ce));
   }
   if (t !== 0) {
     if (
@@ -7648,7 +7648,7 @@ function Gt(e, t) {
   if (
     ((de = e),
     (ie = e = Pt(e.current, null)),
-    (he = Te = t),
+    (me = Te = t),
     (ce = 0),
     (Cn = null),
     (ai = Bs = tr = 0),
@@ -7698,20 +7698,20 @@ function Iu(e, t) {
           o = r,
           c = t;
         if (
-          ((t = he),
+          ((t = me),
           (o.flags |= 32768),
           c !== null && typeof c == "object" && typeof c.then == "function")
         ) {
           var u = c,
-            d = o,
-            m = d.tag;
-          if (!(d.mode & 1) && (m === 0 || m === 11 || m === 15)) {
-            var p = d.alternate;
-            p
-              ? ((d.updateQueue = p.updateQueue),
-                (d.memoizedState = p.memoizedState),
-                (d.lanes = p.lanes))
-              : ((d.updateQueue = null), (d.memoizedState = null));
+            f = o,
+            m = f.tag;
+          if (!(f.mode & 1) && (m === 0 || m === 11 || m === 15)) {
+            var h = f.alternate;
+            h
+              ? ((f.updateQueue = h.updateQueue),
+                (f.memoizedState = h.memoizedState),
+                (f.lanes = h.lanes))
+              : ((f.updateQueue = null), (f.memoizedState = null));
           }
           var x = oo(i);
           if (x !== null) {
@@ -7722,8 +7722,8 @@ function Iu(e, t) {
               (c = u);
             var y = t.updateQueue;
             if (y === null) {
-              var N = new Set();
-              N.add(c), (t.updateQueue = N);
+              var w = new Set();
+              w.add(c), (t.updateQueue = w);
             } else y.add(c);
             break e;
           } else {
@@ -7750,23 +7750,23 @@ function Iu(e, t) {
           switch (a.tag) {
             case 3:
               (a.flags |= 65536), (t &= -t), (a.lanes |= t);
-              var g = mu(a, c, t);
-              to(a, g);
+              var p = mu(a, c, t);
+              to(a, p);
               break e;
             case 1:
               o = c;
-              var h = a.type,
-                f = a.stateNode;
+              var d = a.type,
+                g = a.stateNode;
               if (
                 !(a.flags & 128) &&
-                (typeof h.getDerivedStateFromError == "function" ||
-                  (f !== null &&
-                    typeof f.componentDidCatch == "function" &&
-                    (zt === null || !zt.has(f))))
+                (typeof d.getDerivedStateFromError == "function" ||
+                  (g !== null &&
+                    typeof g.componentDidCatch == "function" &&
+                    (zt === null || !zt.has(g))))
               ) {
                 (a.flags |= 65536), (t &= -t), (a.lanes |= t);
-                var w = hu(a, o, t);
-                to(a, w);
+                var N = hu(a, o, t);
+                to(a, N);
                 break e;
               }
           }
@@ -7774,8 +7774,8 @@ function Iu(e, t) {
         } while (a !== null);
       }
       Pu(r);
-    } catch (C) {
-      (t = C), ie === r && r !== null && (ie = r = r.return);
+    } catch (D) {
+      (t = D), ie === r && r !== null && (ie = r = r.return);
       continue;
     }
     break;
@@ -7787,13 +7787,13 @@ function zu() {
 }
 function ui() {
   (ce === 0 || ce === 3 || ce === 2) && (ce = 4),
-    de === null || (!(tr & 268435455) && !(Bs & 268435455)) || bt(de, he);
+    de === null || (!(tr & 268435455) && !(Bs & 268435455)) || bt(de, me);
 }
 function Ts(e, t) {
   var r = V;
   V |= 2;
   var s = zu();
-  (de !== e || he !== t) && ((lt = null), Gt(e, t));
+  (de !== e || me !== t) && ((lt = null), Gt(e, t));
   do
     try {
       xm();
@@ -7803,7 +7803,7 @@ function Ts(e, t) {
     }
   while (!0);
   if ((Qa(), (V = r), (_s.current = s), ie !== null)) throw Error(T(261));
-  return (de = null), (he = 0), ce;
+  return (de = null), (me = 0), ce;
 }
 function xm() {
   for (; ie !== null; ) Tu(ie);
@@ -7867,7 +7867,7 @@ function vm(e, t, r, s) {
   var a = r.lanes | r.childLanes;
   if (
     (Jd(e, a),
-    e === de && ((ie = de = null), (he = 0)),
+    e === de && ((ie = de = null), (me = 0)),
     (!(r.subtreeFlags & 2064) && !(r.flags & 2064)) ||
       Yn ||
       ((Yn = !0),
@@ -7934,26 +7934,26 @@ function kr() {
               for (var c = 0; c < o.length; c++) {
                 var u = o[c];
                 for (O = u; O !== null; ) {
-                  var d = O;
-                  switch (d.tag) {
+                  var f = O;
+                  switch (f.tag) {
                     case 0:
                     case 11:
                     case 15:
-                      ln(8, d, a);
+                      ln(8, f, a);
                   }
-                  var m = d.child;
-                  if (m !== null) (m.return = d), (O = m);
+                  var m = f.child;
+                  if (m !== null) (m.return = f), (O = m);
                   else
                     for (; O !== null; ) {
-                      d = O;
-                      var p = d.sibling,
-                        x = d.return;
-                      if ((Su(d), d === u)) {
+                      f = O;
+                      var h = f.sibling,
+                        x = f.return;
+                      if ((Su(f), f === u)) {
                         O = null;
                         break;
                       }
-                      if (p !== null) {
-                        (p.return = x), (O = p);
+                      if (h !== null) {
+                        (h.return = x), (O = h);
                         break;
                       }
                       O = x;
@@ -7962,13 +7962,13 @@ function kr() {
               }
               var y = a.alternate;
               if (y !== null) {
-                var N = y.child;
-                if (N !== null) {
+                var w = y.child;
+                if (w !== null) {
                   y.child = null;
                   do {
-                    var k = N.sibling;
-                    (N.sibling = null), (N = k);
-                  } while (N !== null);
+                    var k = w.sibling;
+                    (w.sibling = null), (w = k);
+                  } while (w !== null);
                 }
               }
               O = a;
@@ -7984,21 +7984,21 @@ function kr() {
                   case 15:
                     ln(9, a, a.return);
                 }
-              var g = a.sibling;
-              if (g !== null) {
-                (g.return = a.return), (O = g);
+              var p = a.sibling;
+              if (p !== null) {
+                (p.return = a.return), (O = p);
                 break e;
               }
               O = a.return;
             }
         }
-        var h = e.current;
-        for (O = h; O !== null; ) {
+        var d = e.current;
+        for (O = d; O !== null; ) {
           i = O;
-          var f = i.child;
-          if (i.subtreeFlags & 2064 && f !== null) (f.return = i), (O = f);
+          var g = i.child;
+          if (i.subtreeFlags & 2064 && g !== null) (g.return = i), (O = g);
           else
-            e: for (i = h; O !== null; ) {
+            e: for (i = d; O !== null; ) {
               if (((o = O), o.flags & 2048))
                 try {
                   switch (o.tag) {
@@ -8007,16 +8007,16 @@ function kr() {
                     case 15:
                       Hs(9, o);
                   }
-                } catch (C) {
-                  re(o, o.return, C);
+                } catch (D) {
+                  re(o, o.return, D);
                 }
               if (o === i) {
                 O = null;
                 break e;
               }
-              var w = o.sibling;
-              if (w !== null) {
-                (w.return = o.return), (O = w);
+              var N = o.sibling;
+              if (N !== null) {
+                (N.return = o.return), (O = N);
                 break e;
               }
               O = o.return;
@@ -8075,8 +8075,8 @@ function jm(e, t, r) {
     (t = Ne()),
     (e.pingedLanes |= e.suspendedLanes & r),
     de === e &&
-      (he & r) === r &&
-      (ce === 4 || (ce === 3 && (he & 130023424) === he && 500 > le() - ii)
+      (me & r) === r &&
+      (ce === 4 || (ce === 3 && (me & 130023424) === me && 500 > le() - ii)
         ? Gt(e, 0)
         : (ai |= r)),
     _e(e, t);
@@ -8304,10 +8304,10 @@ Mu = function (e, t, r) {
                       var u = a.updateQueue;
                       if (u !== null) {
                         u = u.shared;
-                        var d = u.pending;
-                        d === null
+                        var f = u.pending;
+                        f === null
                           ? (c.next = c)
-                          : ((c.next = d.next), (d.next = c)),
+                          : ((c.next = f.next), (f.next = c)),
                           (u.pending = c);
                       }
                     }
@@ -9033,12 +9033,12 @@ var zm = $o.exports,
           children: c,
           ...u
         },
-        d
+        f
       ) =>
         j.createElement(
           "svg",
           {
-            ref: d,
+            ref: f,
             ...Tm,
             width: l,
             height: l,
@@ -9048,7 +9048,7 @@ var zm = $o.exports,
             ...u,
           },
           [
-            ...t.map(([m, p]) => j.createElement(m, p)),
+            ...t.map(([m, h]) => j.createElement(m, h)),
             ...(Array.isArray(c) ? c : [c]),
           ]
         )
@@ -10010,19 +10010,19 @@ const Ku = async () => {
           o = [],
           c = [],
           u = new Map();
-        s.forEach((p) => {
-          const x = p.serverName || "未知伺服器",
-            y = p.qty || [],
-            N = p.lot || [],
-            k = p.expiry_date || [];
-          i.push(...N), o.push(...k), c.push(...y);
-          const g = y.reduce((f, w) => f + (Number(w) || 0), 0),
-            h = u.get(x) || 0;
-          u.set(x, h + g);
+        s.forEach((h) => {
+          const x = h.serverName || "未知伺服器",
+            y = h.qty || [],
+            w = h.lot || [],
+            k = h.expiry_date || [];
+          i.push(...w), o.push(...k), c.push(...y);
+          const p = y.reduce((g, N) => g + (Number(N) || 0), 0),
+            d = u.get(x) || 0;
+          u.set(x, d + p);
         });
-        const d = c.reduce((p, x) => p + (Number(x) || 0), 0),
-          m = Array.from(u.entries()).map(([p, x]) => ({
-            serverName: p,
+        const f = c.reduce((h, x) => h + (Number(x) || 0), 0),
+          m = Array.from(u.entries()).map(([h, x]) => ({
+            serverName: h,
             qty: x,
           }));
         r.push({
@@ -10032,7 +10032,7 @@ const Ku = async () => {
           qty: c,
           lot: i,
           expiry_date: o,
-          totalQuantity: d,
+          totalQuantity: f,
           batchCount: i.length,
           serverData: m,
         });
@@ -10093,13 +10093,13 @@ const Ku = async () => {
     e.map((t, r) => {
       let s;
       try {
-        const d = t.created_time.replace(/\//g, "-");
-        (s = new Date(d)),
+        const f = t.created_time.replace(/\//g, "-");
+        (s = new Date(f)),
           isNaN(s.getTime()) &&
             (console.warn("Invalid date format:", t.created_time),
             (s = new Date()));
-      } catch (d) {
-        console.error("Error parsing created_time:", t.created_time, d),
+      } catch (f) {
+        console.error("Error parsing created_time:", t.created_time, f),
           (s = new Date());
       }
       const l = new Date(),
@@ -10132,37 +10132,37 @@ const Ku = async () => {
       );
     }),
   S0 = async () => {
-    await new Promise((d) => setTimeout(d, 500));
+    await new Promise((f) => setTimeout(f, 500));
     const e = {};
     let t = [];
     try {
-      const d = await Wm();
-      if (d.Code === 200 && d.Data)
-        (t = Gm(d.Data)),
+      const f = await Wm();
+      if (f.Code === 200 && f.Data)
+        (t = Gm(f.Data)),
           console.log(
             "[Dashboard] Bulletins loaded successfully:",
             t.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching bulletin data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching bulletin data:", f),
         (e.bulletins = { hasError: !0, message: "公告欄資料載入失敗" }),
         (t = []);
     }
     let r = [];
     try {
-      const d = await s0();
-      if (d.Code === 200 && d.Data)
-        (r = N0(d.Data)),
+      const f = await s0();
+      if (f.Code === 200 && f.Data)
+        (r = N0(f.Data)),
           console.log(
             "[Dashboard] Drug replacements loaded successfully:",
             r.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching drug replacement data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching drug replacement data:", f),
         (e.drugReplacements = {
           hasError: !0,
           message: "藥品替換資料載入失敗",
@@ -10171,33 +10171,33 @@ const Ku = async () => {
     }
     let s = [];
     try {
-      const d = await c0();
-      if (d.Code === 200 && d.Data)
-        (s = b0(d.Data)),
+      const f = await c0();
+      if (f.Code === 200 && f.Data)
+        (s = b0(f.Data)),
           console.log(
             "[Dashboard] Out of stock items loaded successfully:",
             s.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching out of stock data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching out of stock data:", f),
         (e.outOfStock = { hasError: !0, message: "缺貨清單資料載入失敗" }),
         (s = []);
     }
     let l = [];
     try {
-      const d = await t0();
-      if (d.Code === 200 && d.Data)
-        (l = h0(d.Data)),
+      const f = await t0();
+      if (f.Code === 200 && f.Data)
+        (l = h0(f.Data)),
           console.log(
             "[Dashboard] Restock tasks loaded successfully:",
             l.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching restock tasks data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching restock tasks data:", f),
         e.tasks || (e.tasks = { hasError: !0, message: "" }),
         (e.tasks.message =
           (e.tasks.message ? e.tasks.message + "、" : "") + "撥補任務載入失敗"),
@@ -10207,10 +10207,10 @@ const Ku = async () => {
     let a = [],
       i = [];
     try {
-      const d = await n0();
-      if (d.Code === 200 && d.Data)
-        (a = p0(d.Data)),
-          (i = g0(d.Data)),
+      const f = await n0();
+      if (f.Code === 200 && f.Data)
+        (a = p0(f.Data)),
+          (i = g0(f.Data)),
           console.log(
             "[Dashboard] Receiving tasks loaded successfully:",
             a.length,
@@ -10221,11 +10221,11 @@ const Ku = async () => {
             i.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
       console.error(
         "[Dashboard] Error fetching receiving and putaway tasks data:",
-        d
+        f
       ),
         e.tasks || (e.tasks = { hasError: !0, message: "" }),
         (e.tasks.message =
@@ -10237,17 +10237,17 @@ const Ku = async () => {
     }
     let o = [];
     try {
-      const d = await j0();
-      if (d.Code === 200 && d.Data)
-        (o = w0(d.Data)),
+      const f = await j0();
+      if (f.Code === 200 && f.Data)
+        (o = w0(f.Data)),
           console.log(
             "[Dashboard] Internal requests loaded successfully:",
             o.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching internal requests data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching internal requests data:", f),
         (e.internalRequests = {
           hasError: !0,
           message: "內部申請資料載入失敗",
@@ -10256,33 +10256,33 @@ const Ku = async () => {
     }
     let c = [];
     try {
-      const d = await r0();
-      if (d.Code === 200 && d.Data)
-        (c = x0(d.Data)),
+      const f = await r0();
+      if (f.Code === 200 && f.Data)
+        (c = x0(f.Data)),
           console.log(
             "[Dashboard] Incoming drugs loaded successfully:",
             c.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching incoming drugs data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching incoming drugs data:", f),
         (e.incomingDrugs = { hasError: !0, message: "未到貨監控資料載入失敗" }),
         (c = []);
     }
     let u = [];
     try {
-      const d = await y0();
-      if (d.Code === 200 && d.Data)
-        (u = v0(d.Data)),
+      const f = await y0();
+      if (f.Code === 200 && f.Data)
+        (u = v0(f.Data)),
           console.log(
             "[Dashboard] Inventory highlights loaded successfully:",
             u.length,
             "items"
           );
-      else throw new Error(`API returned code ${d.Code}`);
-    } catch (d) {
-      console.error("[Dashboard] Error fetching stock all server data:", d),
+      else throw new Error(`API returned code ${f.Code}`);
+    } catch (f) {
+      console.error("[Dashboard] Error fetching stock all server data:", f),
         (e.inventory = { hasError: !0, message: "庫存重點資料載入失敗" }),
         (u = []);
     }
@@ -10436,17 +10436,17 @@ const Ku = async () => {
   }) => {
     const [i, o] = j.useState(!1),
       [c, u] = j.useState(!1),
-      [d, m] = j.useState(null),
-      [p, x] = j.useState(null),
+      [f, m] = j.useState(null),
+      [h, x] = j.useState(null),
       y = j.useRef(null),
-      N = j.useCallback(
-        (f) => {
-          f.preventDefault(),
-            f.stopPropagation(),
+      w = j.useCallback(
+        (g) => {
+          g.preventDefault(),
+            g.stopPropagation(),
             o(!0),
             m({
-              x: f.clientX,
-              y: f.clientY,
+              x: g.clientX,
+              y: g.clientY,
               startRow: r.position.master_row,
               startCol: r.position.master_col,
             });
@@ -10454,78 +10454,78 @@ const Ku = async () => {
         [r.position]
       ),
       k = j.useCallback(
-        (f) => {
-          f.preventDefault(),
-            f.stopPropagation(),
+        (g) => {
+          g.preventDefault(),
+            g.stopPropagation(),
             u(!0),
-            x({ x: f.clientX, y: f.clientY, startRow: r.row, startCol: r.col });
+            x({ x: g.clientX, y: g.clientY, startRow: r.row, startCol: r.col });
         },
         [r.row, r.col]
       ),
-      g = j.useCallback(
-        (f) => {
-          if (i && d && y.current) {
-            const w = f.clientX - d.x,
-              C = f.clientY - d.y,
-              z = y.current.parentElement;
-            if (z) {
-              const _ = z.getBoundingClientRect(),
-                I = (_.width - 7 * 16) / 8,
-                v = (_.height - 5 * 16) / 6,
-                D = Math.round(w / (I + 16)),
-                L = Math.round(C / (v + 16)),
-                $ = Math.max(0, Math.min(8 - r.col, d.startCol + D)),
-                B = Math.max(0, Math.min(6 - r.row, d.startRow + L));
+      p = j.useCallback(
+        (g) => {
+          if (i && f && y.current) {
+            const N = g.clientX - f.x,
+              D = g.clientY - f.y,
+              I = y.current.parentElement;
+            if (I) {
+              const z = I.getBoundingClientRect(),
+                _ = (z.width - 7 * 16) / 8,
+                v = (z.height - 5 * 16) / 6,
+                E = Math.round(N / (_ + 16)),
+                L = Math.round(D / (v + 16)),
+                $ = Math.max(0, Math.min(8 - r.col, f.startCol + E)),
+                B = Math.max(0, Math.min(6 - r.row, f.startRow + L));
               (B !== r.position.master_row || $ !== r.position.master_col) &&
                 s(t, { master_row: B, master_col: $ });
             }
           }
-          if (c && p && y.current) {
-            const w = f.clientX - p.x,
-              C = f.clientY - p.y,
-              z = y.current.parentElement;
-            if (z) {
-              const _ = z.getBoundingClientRect(),
-                I = (_.width - 7 * 16) / 8,
-                v = (_.height - 5 * 16) / 6,
-                D = Math.round(w / (I + 16)),
-                L = Math.round(C / (v + 16)),
+          if (c && h && y.current) {
+            const N = g.clientX - h.x,
+              D = g.clientY - h.y,
+              I = y.current.parentElement;
+            if (I) {
+              const z = I.getBoundingClientRect(),
+                _ = (z.width - 7 * 16) / 8,
+                v = (z.height - 5 * 16) / 6,
+                E = Math.round(N / (_ + 16)),
+                L = Math.round(D / (v + 16)),
                 $ = Math.max(
                   1,
-                  Math.min(8 - r.position.master_col, p.startCol + D)
+                  Math.min(8 - r.position.master_col, h.startCol + E)
                 ),
                 B = Math.max(
                   1,
-                  Math.min(6 - r.position.master_row, p.startRow + L)
+                  Math.min(6 - r.position.master_row, h.startRow + L)
                 );
               (B !== r.row || $ !== r.col) && l(t, { row: B, col: $ });
             }
           }
         },
-        [i, c, d, p, r, s, l, t]
+        [i, c, f, h, r, s, l, t]
       ),
-      h = j.useCallback(() => {
+      d = j.useCallback(() => {
         o(!1), u(!1), m(null), x(null);
       }, []);
     return (
       Pe.useEffect(() => {
         if (i || c)
           return (
-            document.addEventListener("mousemove", g),
-            document.addEventListener("mouseup", h),
+            document.addEventListener("mousemove", p),
+            document.addEventListener("mouseup", d),
             (document.body.style.cursor = i ? "grabbing" : "nw-resize"),
             (document.body.style.userSelect = "none"),
             (document.body.style.pointerEvents = "none"),
             y.current && (y.current.style.pointerEvents = "auto"),
             () => {
-              document.removeEventListener("mousemove", g),
-                document.removeEventListener("mouseup", h),
+              document.removeEventListener("mousemove", p),
+                document.removeEventListener("mouseup", d),
                 (document.body.style.cursor = "auto"),
                 (document.body.style.userSelect = "auto"),
                 (document.body.style.pointerEvents = "auto");
             }
           );
-      }, [i, c, g, h]),
+      }, [i, c, p, d]),
       n.jsxs("div", {
         ref: y,
         className: `relative bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col min-h-0 max-h-full overflow-hidden transition-all duration-200 ${
@@ -10537,7 +10537,7 @@ const Ku = async () => {
             className: `absolute top-0 left-0 right-0 h-12 cursor-move z-20 flex items-center justify-center transition-opacity bg-blue-500 bg-opacity-20 rounded-t-xl ${
               i ? "opacity-100" : "opacity-0 hover:opacity-100"
             }`,
-            onMouseDown: N,
+            onMouseDown: w,
             children: [
               n.jsx(Am, { size: 20, className: "text-blue-600" }),
               n.jsx("span", {
@@ -10598,9 +10598,9 @@ const Ku = async () => {
       if (e) {
         const x = new Date(),
           y = x.toISOString().slice(0, 16),
-          N = new Date(x);
-        N.setMonth(N.getMonth() + 1);
-        const k = N.toISOString().slice(0, 16);
+          w = new Date(x);
+        w.setMonth(w.getMonth() + 1);
+        const k = w.toISOString().slice(0, 16);
         l({
           title: "",
           content: "",
@@ -10612,9 +10612,9 @@ const Ku = async () => {
       }
     }, [e]);
     const u = (x, y) => {
-        l((N) => ({ ...N, [x]: y }));
+        l((w) => ({ ...w, [x]: y }));
       },
-      d = () => {
+      f = () => {
         if (!s.title.trim()) return "請輸入主旨";
         if (!s.content.trim()) return "請輸入內容";
         if (!s.start_time) return "請選擇開始時間";
@@ -10624,7 +10624,7 @@ const Ku = async () => {
       },
       m = async () => {
         c(null);
-        const x = d();
+        const x = f();
         if (x) {
           c(x);
           return;
@@ -10636,24 +10636,24 @@ const Ku = async () => {
         }
         i(!0);
         try {
-          const N = (g) => g.replace("T", " ") + ":00",
+          const w = (p) => p.replace("T", " ") + ":00",
             k = {
               title: s.title.trim(),
               content: s.content.trim(),
               priority: s.priority,
               creator_dept: y.Employer || "",
               creator_name: y.Name || "",
-              start_time: N(s.start_time),
-              end_time: N(s.end_time),
+              start_time: w(s.start_time),
+              end_time: w(s.end_time),
             };
           await Km(k), r(), t();
-        } catch (N) {
-          c(N instanceof Error ? N.message : "新增公告失敗，請稍後再試");
+        } catch (w) {
+          c(w instanceof Error ? w.message : "新增公告失敗，請稍後再試");
         } finally {
           i(!1);
         }
       },
-      p = () => {
+      h = () => {
         a || t();
       };
     return e
@@ -10679,7 +10679,7 @@ const Ku = async () => {
                     ],
                   }),
                   n.jsx("button", {
-                    onClick: p,
+                    onClick: h,
                     disabled: a,
                     className:
                       "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
@@ -10844,7 +10844,7 @@ const Ku = async () => {
                   "flex items-center justify-end space-x-4 p-6 border-t border-gray-200 bg-gray-50",
                 children: [
                   n.jsx("button", {
-                    onClick: p,
+                    onClick: h,
                     disabled: a,
                     className:
                       "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
@@ -10881,14 +10881,14 @@ const Ku = async () => {
     const [s, l] = j.useState([]),
       [a, i] = j.useState(!1),
       [o, c] = j.useState(null),
-      [u, d] = j.useState(null),
-      [m, p] = j.useState(!1),
+      [u, f] = j.useState(null),
+      [m, h] = j.useState(!1),
       [x, y] = j.useState(!1),
-      [N, k] = j.useState(!1);
+      [w, k] = j.useState(!1);
     j.useEffect(() => {
-      e && g();
+      e && p();
     }, [e]);
-    const g = async () => {
+    const p = async () => {
         i(!0), c(null);
         try {
           const v = await Ym();
@@ -10900,8 +10900,8 @@ const Ku = async () => {
           i(!1);
         }
       },
-      h = (v) => {
-        const D = (L) => {
+      d = (v) => {
+        const E = (L) => {
           if (!L) return "";
           try {
             const $ = L.replace(/\//g, "-");
@@ -10910,25 +10910,25 @@ const Ku = async () => {
             return console.error("Error formatting date for input:", L, $), "";
           }
         };
-        d({
+        f({
           GUID: v.GUID,
           title: v.title || "",
           content: v.content || "",
           priority: v.priority || "Normal",
           creator_dept: v.creator_dept || "",
           creator_name: v.creator_name || "",
-          start_time: D(v.start_time),
-          end_time: D(v.end_time),
+          start_time: E(v.start_time),
+          end_time: E(v.end_time),
           created_time: v.created_time || "",
         });
       },
-      f = async () => {
+      g = async () => {
         if (u) {
-          p(!0), c(null);
+          h(!0), c(null);
           try {
             const v = (L) =>
                 L ? L.replace("T", " ").replace(/-/g, "/") + ":00" : "",
-              D = {
+              E = {
                 GUID: u.GUID,
                 title: u.title.trim(),
                 content: u.content.trim(),
@@ -10938,19 +10938,19 @@ const Ku = async () => {
                 start_time: v(u.start_time),
                 end_time: v(u.end_time),
               };
-            await Xm(D), await g(), d(null), r && r();
+            await Xm(E), await p(), f(null), r && r();
           } catch (v) {
             c(v instanceof Error ? v.message : "更新公告失敗，請稍後再試");
           } finally {
-            p(!1);
+            h(!1);
           }
         }
       },
-      w = async () => {
+      N = async () => {
         if (u) {
           k(!0), c(null), y(!1);
           try {
-            await Jm(u.GUID), await g(), d(null), r && r();
+            await Jm(u.GUID), await p(), f(null), r && r();
           } catch (v) {
             c(v instanceof Error ? v.message : "刪除公告失敗，請稍後再試");
           } finally {
@@ -10958,11 +10958,11 @@ const Ku = async () => {
           }
         }
       },
-      C = (v) => {
+      D = (v) => {
         if (!v) return "-";
         try {
-          const D = v.replace(/\//g, "-");
-          return new Date(D).toLocaleString("zh-TW", {
+          const E = v.replace(/\//g, "-");
+          return new Date(E).toLocaleString("zh-TW", {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
@@ -10975,7 +10975,7 @@ const Ku = async () => {
           return v;
         }
       },
-      z = (v) => {
+      I = (v) => {
         switch (v) {
           case "Critical":
             return "緊急";
@@ -10987,7 +10987,7 @@ const Ku = async () => {
             return v || "一般";
         }
       },
-      _ = (v) => {
+      z = (v) => {
         switch (v) {
           case "Critical":
             return "bg-red-100 text-red-800";
@@ -10999,8 +10999,8 @@ const Ku = async () => {
             return "bg-gray-100 text-gray-800";
         }
       },
-      I = () => {
-        !a && !m && !N && (d(null), y(!1), t());
+      _ = () => {
+        !a && !m && !w && (f(null), y(!1), t());
       };
     return e
       ? n.jsxs("div", {
@@ -11029,7 +11029,7 @@ const Ku = async () => {
                       ],
                     }),
                     n.jsx("button", {
-                      onClick: I,
+                      onClick: _,
                       disabled: a || m,
                       className:
                         "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
@@ -11132,13 +11132,13 @@ const Ku = async () => {
                                       {
                                         className:
                                           "hover:bg-blue-50 cursor-pointer transition-colors",
-                                        onClick: () => h(v),
+                                        onClick: () => d(v),
                                         title: "點擊編輯此公告",
                                         children: [
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: C(v.created_time),
+                                            children: D(v.created_time),
                                           }),
                                           n.jsx("td", {
                                             className:
@@ -11162,10 +11162,10 @@ const Ku = async () => {
                                             className:
                                               "px-6 py-4 whitespace-nowrap",
                                             children: n.jsx("span", {
-                                              className: `px-2 py-1 rounded-full text-xs font-medium ${_(
+                                              className: `px-2 py-1 rounded-full text-xs font-medium ${z(
                                                 v.priority
                                               )}`,
-                                              children: z(v.priority),
+                                              children: I(v.priority),
                                             }),
                                           }),
                                           n.jsx("td", {
@@ -11179,12 +11179,12 @@ const Ku = async () => {
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: C(v.start_time),
+                                            children: D(v.start_time),
                                           }),
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: C(v.end_time),
+                                            children: D(v.end_time),
                                           }),
                                         ],
                                       },
@@ -11230,7 +11230,7 @@ const Ku = async () => {
                           children: [
                             n.jsxs("button", {
                               onClick: () => y(!0),
-                              disabled: m || N,
+                              disabled: m || w,
                               className:
                                 "flex items-center px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                               title: "刪除公告",
@@ -11240,8 +11240,8 @@ const Ku = async () => {
                               ],
                             }),
                             n.jsx("button", {
-                              onClick: () => d(null),
-                              disabled: m || N,
+                              onClick: () => f(null),
+                              disabled: m || w,
                               className:
                                 "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
                               children: n.jsx(Ae, { size: 20 }),
@@ -11270,7 +11270,7 @@ const Ku = async () => {
                               type: "text",
                               value: u.title,
                               onChange: (v) =>
-                                d({ ...u, title: v.target.value }),
+                                f({ ...u, title: v.target.value }),
                               disabled: m,
                               className:
                                 "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -11293,7 +11293,7 @@ const Ku = async () => {
                             n.jsx("textarea", {
                               value: u.content,
                               onChange: (v) =>
-                                d({ ...u, content: v.target.value }),
+                                f({ ...u, content: v.target.value }),
                               disabled: m,
                               rows: 6,
                               className:
@@ -11317,7 +11317,7 @@ const Ku = async () => {
                             n.jsxs("select", {
                               value: u.priority,
                               onChange: (v) =>
-                                d({ ...u, priority: v.target.value }),
+                                f({ ...u, priority: v.target.value }),
                               disabled: m,
                               className:
                                 "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -11358,7 +11358,7 @@ const Ku = async () => {
                                   type: "datetime-local",
                                   value: u.start_time,
                                   onChange: (v) =>
-                                    d({ ...u, start_time: v.target.value }),
+                                    f({ ...u, start_time: v.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -11382,7 +11382,7 @@ const Ku = async () => {
                                   type: "datetime-local",
                                   value: u.end_time,
                                   onChange: (v) =>
-                                    d({ ...u, end_time: v.target.value }),
+                                    f({ ...u, end_time: v.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -11398,20 +11398,20 @@ const Ku = async () => {
                         "flex items-center justify-end space-x-4 p-6 border-t border-gray-200 bg-gray-50",
                       children: [
                         n.jsx("button", {
-                          onClick: () => d(null),
-                          disabled: m || N,
+                          onClick: () => f(null),
+                          disabled: m || w,
                           className:
                             "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                           children: "取消",
                         }),
                         n.jsx("button", {
-                          onClick: f,
+                          onClick: g,
                           disabled:
-                            m || N || !u.title.trim() || !u.content.trim(),
+                            m || w || !u.title.trim() || !u.content.trim(),
                           className:
                             "flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                           children:
-                            m || N
+                            m || w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -11469,17 +11469,17 @@ const Ku = async () => {
                         children: [
                           n.jsx("button", {
                             onClick: () => y(!1),
-                            disabled: N,
+                            disabled: w,
                             className:
                               "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                             children: "取消",
                           }),
                           n.jsx("button", {
-                            onClick: w,
-                            disabled: N,
+                            onClick: N,
+                            disabled: w,
                             className:
                               "flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                            children: N
+                            children: w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -11538,7 +11538,7 @@ const Ku = async () => {
             return "bg-gray-100 text-gray-800";
         }
       },
-      d = (x) =>
+      f = (x) =>
         new Date(x).toLocaleString("zh-TW", {
           month: "2-digit",
           day: "2-digit",
@@ -11548,7 +11548,7 @@ const Ku = async () => {
       m = () => {
         t && t();
       },
-      p = () => {
+      h = () => {
         t && t();
       };
     return n.jsxs(n.Fragment, {
@@ -11686,7 +11686,7 @@ const Ku = async () => {
                                   children: [
                                     n.jsx(Ar, { size: 12, className: "mr-1" }),
                                     n.jsx("span", {
-                                      children: d(x.publishDate),
+                                      children: f(x.publishDate),
                                     }),
                                   ],
                                 }),
@@ -11701,7 +11701,7 @@ const Ku = async () => {
           ],
         }),
         n.jsx(P0, { isOpen: l, onClose: () => a(!1), onSuccess: m }),
-        n.jsx(R0, { isOpen: i, onClose: () => o(!1), onSuccess: p }),
+        n.jsx(R0, { isOpen: i, onClose: () => o(!1), onSuccess: h }),
       ],
     });
   },
@@ -11753,10 +11753,10 @@ const Ku = async () => {
       i = (c) => {
         try {
           const u = c.replace(/\//g, "-"),
-            d = new Date(u);
-          return isNaN(d.getTime())
+            f = new Date(u);
+          return isNaN(f.getTime())
             ? c
-            : d.toLocaleString("zh-TW", {
+            : f.toLocaleString("zh-TW", {
                 month: "2-digit",
                 day: "2-digit",
                 hour: "2-digit",
@@ -12073,8 +12073,8 @@ const Ku = async () => {
             return "bg-white border-gray-200";
         }
       },
-      d = ({ task: y, taskType: N }) =>
-        N === "restock" && "code" in y
+      f = ({ task: y, taskType: w }) =>
+        w === "restock" && "code" in y
           ? n.jsx("div", {
               className: `p-3 border rounded-lg transition-all duration-200 ${u(
                 y.state
@@ -12139,7 +12139,7 @@ const Ku = async () => {
                 }),
               }),
             })
-          : (N === "receiving" || N === "putaway") && "code" in y
+          : (w === "receiving" || w === "putaway") && "code" in y
           ? n.jsx("div", {
               className:
                 "p-3 border rounded-lg transition-all duration-200 bg-white border-gray-200 hover:border-gray-300",
@@ -12209,12 +12209,12 @@ const Ku = async () => {
         { key: "receiving", label: "驗收", icon: Xt, tasks: t },
         { key: "putaway", label: "歸貨", icon: qu, tasks: r },
       ],
-      p = ((x = m.find((y) => y.key === a)) == null ? void 0 : x.tasks) || [];
+      h = ((x = m.find((y) => y.key === a)) == null ? void 0 : x.tasks) || [];
     return (
-      p.filter((y) =>
+      h.filter((y) =>
         "state" in y ? y.state === "等待過帳" : y.quantity && y.quantity > 0
       ).length,
-      p.filter((y) => ("state" in y ? y.state === "已簽收" : !1)).length,
+      h.filter((y) => ("state" in y ? y.state === "已簽收" : !1)).length,
       n.jsxs("div", {
         className:
           "bg-white rounded-lg shadow-sm border border-gray-200 h-full",
@@ -12237,7 +12237,7 @@ const Ku = async () => {
                           }),
                           n.jsxs("span", {
                             className: "text-gray-500 text-sm",
-                            children: ["總計: ", p.length],
+                            children: ["總計: ", h.length],
                           }),
                         ],
                       }),
@@ -12281,12 +12281,12 @@ const Ku = async () => {
               n.jsx("div", {
                 className: "flex space-x-1 bg-gray-100 rounded-lg p-1",
                 children: m.map((y) => {
-                  const N = y.icon,
+                  const w = y.icon,
                     k = a === y.key,
-                    g = y.tasks.filter((h) =>
-                      "state" in h
-                        ? h.state === "等待過帳"
-                        : h.quantity && h.quantity > 0
+                    p = y.tasks.filter((d) =>
+                      "state" in d
+                        ? d.state === "等待過帳"
+                        : d.quantity && d.quantity > 0
                     ).length;
                   return n.jsxs(
                     "button",
@@ -12298,16 +12298,16 @@ const Ku = async () => {
                           : "text-gray-600 hover:text-gray-800"
                       }`,
                       children: [
-                        n.jsx(N, { size: 16, className: "mr-2" }),
+                        n.jsx(w, { size: 16, className: "mr-2" }),
                         y.label,
-                        g > 0 &&
+                        p > 0 &&
                           n.jsx("span", {
                             className: `ml-2 px-2 py-0.5 rounded-full text-xs ${
                               k
                                 ? "bg-blue-100 text-blue-600"
                                 : "bg-gray-200 text-gray-600"
                             }`,
-                            children: g,
+                            children: p,
                           }),
                       ],
                     },
@@ -12322,7 +12322,7 @@ const Ku = async () => {
             children: n.jsx("div", {
               className: "space-y-3 max-h-64 overflow-y-auto",
               children:
-                p.length === 0
+                h.length === 0
                   ? n.jsxs("div", {
                       className: "text-center text-gray-500 py-8",
                       children: [
@@ -12333,13 +12333,13 @@ const Ku = async () => {
                         n.jsx("p", { children: "暫無任務" }),
                       ],
                     })
-                  : p
+                  : h
                       .filter((y) =>
                         a === "restock" && "state" in y
                           ? y.state === "等待過帳"
                           : !0
                       )
-                      .map((y) => n.jsx(d, { task: y, taskType: a }, y.id)),
+                      .map((y) => n.jsx(f, { task: y, taskType: a }, y.id)),
             }),
           }),
           n.jsx(gi, {
@@ -12353,7 +12353,7 @@ const Ku = async () => {
     );
   },
   A0 = ({ restockTasks: e, receivingTasks: t, putAwayTasks: r }) => {
-    var N;
+    var w;
     const [s, l] = j.useState("restock"),
       [a, i] = j.useState(0),
       c = (() => {
@@ -12361,17 +12361,17 @@ const Ku = async () => {
         return k ? parseInt(k, 10) : 5;
       })(),
       u = e.filter((k) => k.state === "等待過帳"),
-      d = [
+      f = [
         { key: "restock", label: "撥補", icon: Ie, tasks: u },
         { key: "receiving", label: "驗收", icon: Xt, tasks: t },
         { key: "putaway", label: "歸貨", icon: qu, tasks: r },
       ],
-      m = ((N = d.find((k) => k.key === s)) == null ? void 0 : N.tasks) || [];
+      m = ((w = f.find((k) => k.key === s)) == null ? void 0 : w.tasks) || [];
     j.useEffect(() => {
       const k = setInterval(() => {
-        l((g) => {
-          const f = (d.findIndex((w) => w.key === g) + 1) % d.length;
-          return d[f].key;
+        l((p) => {
+          const g = (f.findIndex((N) => N.key === p) + 1) % f.length;
+          return f[g].key;
         }),
           i(0);
       }, 12e3);
@@ -12380,9 +12380,9 @@ const Ku = async () => {
       j.useEffect(() => {
         if (m.length <= c) return;
         const k = setInterval(() => {
-          i((g) => {
-            const h = g + c;
-            return h >= m.length ? 0 : h;
+          i((p) => {
+            const d = p + c;
+            return d >= m.length ? 0 : d;
           });
         }, 8e3);
         return () => clearInterval(k);
@@ -12393,7 +12393,7 @@ const Ku = async () => {
           : "quantity" in k && k.quantity > 0
       ).length,
       m.filter((k) => ("state" in k ? k.state === "已簽收" : !1)).length;
-    const p = m.slice(a, a + c),
+    const h = m.slice(a, a + c),
       x = Math.ceil(m.length / c),
       y = Math.floor(a / c) + 1;
     return n.jsxs("div", {
@@ -12419,33 +12419,33 @@ const Ku = async () => {
                 }),
                 n.jsx("div", {
                   className: "flex space-x-1 bg-gray-100 rounded-lg p-1",
-                  children: d.map((k) => {
-                    const g = k.icon,
-                      h = s === k.key,
-                      f = k.tasks.filter((w) =>
-                        "state" in w
-                          ? w.state === "等待過帳"
-                          : "quantity" in w && w.quantity > 0
+                  children: f.map((k) => {
+                    const p = k.icon,
+                      d = s === k.key,
+                      g = k.tasks.filter((N) =>
+                        "state" in N
+                          ? N.state === "等待過帳"
+                          : "quantity" in N && N.quantity > 0
                       ).length;
                     return n.jsxs(
                       "div",
                       {
                         className: `flex items-center justify-center px-2 py-1 rounded-md text-xs font-medium transition-colors ${
-                          h
+                          d
                             ? "bg-white text-blue-600 shadow-sm"
                             : "text-gray-600"
                         }`,
                         children: [
-                          n.jsx(g, { size: 14, className: "mr-1" }),
+                          n.jsx(p, { size: 14, className: "mr-1" }),
                           k.label,
-                          f > 0 &&
+                          g > 0 &&
                             n.jsx("span", {
                               className: `ml-1 px-1 py-0.5 rounded-full text-xs ${
-                                h
+                                d
                                   ? "bg-blue-100 text-blue-600"
                                   : "bg-gray-200 text-gray-600"
                               }`,
-                              children: f,
+                              children: g,
                             }),
                         ],
                       },
@@ -12463,15 +12463,15 @@ const Ku = async () => {
                   n.jsxs("span", { children: ["第 ", y, " / ", x, " 頁"] }),
                   n.jsx("div", {
                     className: "flex space-x-1",
-                    children: Array.from({ length: x }, (k, g) =>
+                    children: Array.from({ length: x }, (k, p) =>
                       n.jsx(
                         "div",
                         {
                           className: `w-2 h-2 rounded-full ${
-                            g === y - 1 ? "bg-green-500" : "bg-gray-300"
+                            p === y - 1 ? "bg-green-500" : "bg-gray-300"
                           }`,
                         },
-                        g
+                        p
                       )
                     ),
                   }),
@@ -12538,10 +12538,10 @@ const Ku = async () => {
                         }),
                       }),
                       n.jsx("tbody", {
-                        children: p.map((k, g) => {
+                        children: h.map((k, p) => {
                           if (s === "restock" && "code" in k && "state" in k) {
-                            const h = (w) => {
-                                switch (w) {
+                            const d = (N) => {
+                                switch (N) {
                                   case "等待過帳":
                                     return "bg-white hover:bg-gray-50";
                                   case "已過帳":
@@ -12552,7 +12552,7 @@ const Ku = async () => {
                                     return "bg-white hover:bg-gray-50";
                                 }
                               },
-                              f =
+                              g =
                                 (k.state === "已過帳" ||
                                   k.state === "已簽收") &&
                                 k.actualIssuedQuantity
@@ -12561,7 +12561,7 @@ const Ku = async () => {
                             return n.jsxs(
                               "tr",
                               {
-                                className: `border-b border-gray-200 transition-colors ${h(
+                                className: `border-b border-gray-200 transition-colors ${d(
                                   k.state
                                 )}`,
                                 children: [
@@ -12578,7 +12578,7 @@ const Ku = async () => {
                                   n.jsx("td", {
                                     className:
                                       "text-base p-2 text-center text-gray-700",
-                                    children: f,
+                                    children: g,
                                   }),
                                   n.jsx("td", {
                                     className:
@@ -12587,7 +12587,7 @@ const Ku = async () => {
                                   }),
                                 ],
                               },
-                              `${a}-${g}`
+                              `${a}-${p}`
                             );
                           }
                           return (s === "receiving" || s === "putaway") &&
@@ -12620,7 +12620,7 @@ const Ku = async () => {
                                     }),
                                   ],
                                 },
-                                `${a}-${g}`
+                                `${a}-${p}`
                               )
                             : null;
                         }),
@@ -12687,20 +12687,20 @@ const Ku = async () => {
         try {
           const c = new Date(o.replace(/\//g, "-")),
             u = new Date(),
-            d = c.getTime() - u.getTime(),
-            m = Math.ceil(d / (1e3 * 60 * 60 * 24)),
-            p = c.toLocaleDateString("zh-TW", {
+            f = c.getTime() - u.getTime(),
+            m = Math.ceil(f / (1e3 * 60 * 60 * 24)),
+            h = c.toLocaleDateString("zh-TW", {
               year: "numeric",
               month: "2-digit",
               day: "2-digit",
             });
           return m < 0
-            ? `${p} (逾期 ${Math.abs(m)} 天)`
+            ? `${h} (逾期 ${Math.abs(m)} 天)`
             : m === 0
-            ? `${p} (今天)`
+            ? `${h} (今天)`
             : m === 1
-            ? `${p} (明天)`
-            : `${p} (${m} 天後)`;
+            ? `${h} (明天)`
+            : `${h} (${m} 天後)`;
         } catch {
           return o;
         }
@@ -12919,21 +12919,21 @@ const Ku = async () => {
         if (!c) return "未設定";
         try {
           const u = new Date(c.replace(/\//g, "-")),
-            d = new Date(),
-            m = u.getTime() - d.getTime(),
-            p = Math.ceil(m / (1e3 * 60 * 60 * 24)),
+            f = new Date(),
+            m = u.getTime() - f.getTime(),
+            h = Math.ceil(m / (1e3 * 60 * 60 * 24)),
             x = u.toLocaleDateString("zh-TW", {
               year: "numeric",
               month: "2-digit",
               day: "2-digit",
             });
-          return p < 0
-            ? `${x} (逾期 ${Math.abs(p)} 天)`
-            : p === 0
+          return h < 0
+            ? `${x} (逾期 ${Math.abs(h)} 天)`
+            : h === 0
             ? `${x} (今天)`
-            : p === 1
+            : h === 1
             ? `${x} (明天)`
-            : `${x} (${p} 天後)`;
+            : `${x} (${h} 天後)`;
         } catch {
           return c;
         }
@@ -13127,65 +13127,65 @@ const Ku = async () => {
     const [s, l] = j.useState({ drugName: "", start_time: "", end_time: "" }),
       [a, i] = j.useState([]),
       [o, c] = j.useState([]),
-      [u, d] = j.useState(!1),
-      [m, p] = j.useState(!1),
+      [u, f] = j.useState(!1),
+      [m, h] = j.useState(!1),
       [x, y] = j.useState(!1),
-      [N, k] = j.useState(null);
+      [w, k] = j.useState(null);
     Pe.useEffect(() => {
       if (e) {
-        const I = new Date(),
-          v = I.toISOString().slice(0, 16),
-          D = new Date(I);
-        D.setMonth(D.getMonth() + 1);
-        const L = D.toISOString().slice(0, 16);
+        const _ = new Date(),
+          v = _.toISOString().slice(0, 16),
+          E = new Date(_);
+        E.setMonth(E.getMonth() + 1);
+        const L = E.toISOString().slice(0, 16);
         l({ drugName: "", start_time: v, end_time: L }),
           c([]),
-          d(!1),
+          f(!1),
           k(null),
-          g();
+          p();
       }
     }, [e]);
-    const g = async () => {
-        p(!0);
+    const p = async () => {
+        h(!0);
         try {
-          const I = await Zs();
-          I.Code === 200 && I.Data
-            ? i(I.Data)
-            : console.warn("Failed to load medicine data:", I);
-        } catch (I) {
-          console.error("Error loading medicine data:", I);
+          const _ = await Zs();
+          _.Code === 200 && _.Data
+            ? i(_.Data)
+            : console.warn("Failed to load medicine data:", _);
+        } catch (_) {
+          console.error("Error loading medicine data:", _);
         } finally {
-          p(!1);
+          h(!1);
         }
       },
-      h = (I, v) => {
-        l((D) => ({ ...D, [I]: v })), I === "drugName" && f(v);
+      d = (_, v) => {
+        l((E) => ({ ...E, [_]: v })), _ === "drugName" && g(v);
       },
-      f = (I) => {
-        if (!I.trim()) {
-          c([]), d(!1);
+      g = (_) => {
+        if (!_.trim()) {
+          c([]), f(!1);
           return;
         }
-        const v = a.filter((D) =>
-          D.NAME.toLowerCase().includes(I.toLowerCase())
+        const v = a.filter((E) =>
+          E.NAME.toLowerCase().includes(_.toLowerCase())
         );
-        c(v.slice(0, 10)), d(v.length > 0);
+        c(v.slice(0, 10)), f(v.length > 0);
       },
-      w = (I) => {
-        l((v) => ({ ...v, drugName: I })), d(!1), c([]);
+      N = (_) => {
+        l((v) => ({ ...v, drugName: _ })), f(!1), c([]);
       },
-      C = () => {
+      D = () => {
         if (!s.drugName.trim()) return "請輸入藥品名稱";
         if (!s.start_time) return "請選擇開始時間";
         if (!s.end_time) return "請選擇結束時間";
-        const I = new Date(s.start_time);
-        return new Date(s.end_time) <= I ? "結束時間必須晚於開始時間" : null;
+        const _ = new Date(s.start_time);
+        return new Date(s.end_time) <= _ ? "結束時間必須晚於開始時間" : null;
       },
-      z = async () => {
+      I = async () => {
         k(null);
-        const I = C();
-        if (I) {
-          k(I);
+        const _ = D();
+        if (_) {
+          k(_);
           return;
         }
         const v = Rn();
@@ -13195,24 +13195,24 @@ const Ku = async () => {
         }
         y(!0);
         try {
-          const D = ($) => $.replace("T", " ") + ":00",
+          const E = ($) => $.replace("T", " ") + ":00",
             L = {
               title: "缺貨通知",
               content: s.drugName.trim(),
               priority: "Critical",
               creator_dept: v.Employer || "",
               creator_name: v.Name || "",
-              start_time: D(s.start_time),
-              end_time: D(s.end_time),
+              start_time: E(s.start_time),
+              end_time: E(s.end_time),
             };
           await d0(L), r(), t();
-        } catch (D) {
-          k(D instanceof Error ? D.message : "新增缺貨項目失敗，請稍後再試");
+        } catch (E) {
+          k(E instanceof Error ? E.message : "新增缺貨項目失敗，請稍後再試");
         } finally {
           y(!1);
         }
       },
-      _ = () => {
+      z = () => {
         x || t();
       };
     return e
@@ -13238,7 +13238,7 @@ const Ku = async () => {
                     ],
                   }),
                   n.jsx("button", {
-                    onClick: _,
+                    onClick: z,
                     disabled: x,
                     className:
                       "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
@@ -13249,7 +13249,7 @@ const Ku = async () => {
               n.jsxs("div", {
                 className: "p-6 space-y-6",
                 children: [
-                  N &&
+                  w &&
                     n.jsxs("div", {
                       className:
                         "bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center",
@@ -13258,7 +13258,7 @@ const Ku = async () => {
                           size: 20,
                           className: "mr-2 flex-shrink-0",
                         }),
-                        N,
+                        w,
                       ],
                     }),
                   n.jsxs("div", {
@@ -13289,9 +13289,9 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "text",
                             value: s.drugName,
-                            onChange: (I) => h("drugName", I.target.value),
+                            onChange: (_) => d("drugName", _.target.value),
                             onFocus: () => {
-                              o.length > 0 && d(!0);
+                              o.length > 0 && f(!0);
                             },
                             disabled: x || m,
                             className:
@@ -13321,17 +13321,17 @@ const Ku = async () => {
                         n.jsx("div", {
                           className:
                             "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                          children: o.map((I, v) =>
+                          children: o.map((_, v) =>
                             n.jsx(
                               "button",
                               {
                                 type: "button",
-                                onClick: () => w(I.NAME),
+                                onClick: () => N(_.NAME),
                                 className:
                                   "w-full px-4 py-2 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors border-b border-gray-100 last:border-b-0",
                                 children: n.jsx("div", {
                                   className: "font-medium text-gray-900",
-                                  children: I.NAME,
+                                  children: _.NAME,
                                 }),
                               },
                               v
@@ -13352,7 +13352,7 @@ const Ku = async () => {
                   u &&
                     n.jsx("div", {
                       className: "fixed inset-0 z-40",
-                      onClick: () => d(!1),
+                      onClick: () => f(!1),
                     }),
                   n.jsxs("div", {
                     className: "grid grid-cols-1 md:grid-cols-2 gap-4",
@@ -13373,7 +13373,7 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "datetime-local",
                             value: s.start_time,
-                            onChange: (I) => h("start_time", I.target.value),
+                            onChange: (_) => d("start_time", _.target.value),
                             disabled: x,
                             className:
                               "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -13396,7 +13396,7 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "datetime-local",
                             value: s.end_time,
-                            onChange: (I) => h("end_time", I.target.value),
+                            onChange: (_) => d("end_time", _.target.value),
                             disabled: x,
                             className:
                               "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -13412,14 +13412,14 @@ const Ku = async () => {
                   "flex items-center justify-end space-x-4 p-6 border-t border-gray-200 bg-gray-50",
                 children: [
                   n.jsx("button", {
-                    onClick: _,
+                    onClick: z,
                     disabled: x,
                     className:
                       "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                     children: "取消",
                   }),
                   n.jsx("button", {
-                    onClick: z,
+                    onClick: I,
                     disabled: x || !s.drugName.trim(),
                     className:
                       "flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
@@ -13448,43 +13448,43 @@ const Ku = async () => {
     const [s, l] = j.useState([]),
       [a, i] = j.useState(!1),
       [o, c] = j.useState(null),
-      [u, d] = j.useState(null),
-      [m, p] = j.useState(!1),
+      [u, f] = j.useState(null),
+      [m, h] = j.useState(!1),
       [x, y] = j.useState(!1),
-      [N, k] = j.useState(!1),
-      [g, h] = j.useState([]),
-      [f, w] = j.useState([]),
-      [C, z] = j.useState(!1),
-      [_, I] = j.useState(!1);
+      [w, k] = j.useState(!1),
+      [p, d] = j.useState([]),
+      [g, N] = j.useState([]),
+      [D, I] = j.useState(!1),
+      [z, _] = j.useState(!1);
     j.useEffect(() => {
       e && v();
     }, [e]);
     const v = async () => {
         i(!0), c(null);
         try {
-          const E = await u0();
-          if (E.Code === 200) l(E.Data || []);
-          else throw new Error(E.Result || "載入歷史缺貨項目失敗");
-        } catch (E) {
-          c(E instanceof Error ? E.message : "載入歷史缺貨項目時發生錯誤");
+          const C = await u0();
+          if (C.Code === 200) l(C.Data || []);
+          else throw new Error(C.Result || "載入歷史缺貨項目失敗");
+        } catch (C) {
+          c(C instanceof Error ? C.message : "載入歷史缺貨項目時發生錯誤");
         } finally {
           i(!1);
         }
       },
-      D = async () => {
-        I(!0);
+      E = async () => {
+        _(!0);
         try {
-          const E = await Zs();
-          E.Code === 200 && E.Data
-            ? h(E.Data)
-            : console.warn("Failed to load medicine data:", E);
-        } catch (E) {
-          console.error("Error loading medicine data:", E);
+          const C = await Zs();
+          C.Code === 200 && C.Data
+            ? d(C.Data)
+            : console.warn("Failed to load medicine data:", C);
+        } catch (C) {
+          console.error("Error loading medicine data:", C);
         } finally {
-          I(!1);
+          _(!1);
         }
       },
-      L = (E) => {
+      L = (C) => {
         const S = (b) => {
           if (!b) return "";
           try {
@@ -13494,37 +13494,37 @@ const Ku = async () => {
             return console.error("Error formatting date for input:", b, R), "";
           }
         };
-        d({
-          GUID: E.GUID,
-          title: E.title || "",
-          content: E.content || "",
-          priority: E.priority || "Normal",
-          creator_dept: E.creator_dept || "",
-          creator_name: E.creator_name || "",
-          start_time: S(E.start_time),
-          end_time: S(E.end_time),
-          created_time: E.created_time || "",
+        f({
+          GUID: C.GUID,
+          title: C.title || "",
+          content: C.content || "",
+          priority: C.priority || "Normal",
+          creator_dept: C.creator_dept || "",
+          creator_name: C.creator_name || "",
+          start_time: S(C.start_time),
+          end_time: S(C.end_time),
+          created_time: C.created_time || "",
         }),
-          g.length === 0 && D();
+          p.length === 0 && E();
       },
-      $ = (E) => {
-        if (!E.trim()) {
-          w([]), z(!1);
+      $ = (C) => {
+        if (!C.trim()) {
+          N([]), I(!1);
           return;
         }
-        const S = g.filter((b) =>
-          b.NAME.toLowerCase().includes(E.toLowerCase())
+        const S = p.filter((b) =>
+          b.NAME.toLowerCase().includes(C.toLowerCase())
         );
-        w(S.slice(0, 10)), z(S.length > 0);
+        N(S.slice(0, 10)), I(S.length > 0);
       },
-      B = (E) => {
-        u && d({ ...u, content: E }), z(!1), w([]);
+      B = (C) => {
+        u && f({ ...u, content: C }), I(!1), N([]);
       },
       se = async () => {
         if (u) {
-          p(!0), c(null);
+          h(!0), c(null);
           try {
-            const E = (b) =>
+            const C = (b) =>
                 b ? b.replace("T", " ").replace(/-/g, "/") + ":00" : "",
               S = {
                 GUID: u.GUID,
@@ -13533,14 +13533,14 @@ const Ku = async () => {
                 priority: u.priority,
                 creator_dept: u.creator_dept,
                 creator_name: u.creator_name,
-                start_time: E(u.start_time),
-                end_time: E(u.end_time),
+                start_time: C(u.start_time),
+                end_time: C(u.end_time),
               };
-            await f0(S), await v(), d(null), r && r();
-          } catch (E) {
-            c(E instanceof Error ? E.message : "更新缺貨項目失敗，請稍後再試");
+            await f0(S), await v(), f(null), r && r();
+          } catch (C) {
+            c(C instanceof Error ? C.message : "更新缺貨項目失敗，請稍後再試");
           } finally {
-            p(!1);
+            h(!1);
           }
         }
       },
@@ -13548,18 +13548,18 @@ const Ku = async () => {
         if (u) {
           k(!0), c(null), y(!1);
           try {
-            await m0(u.GUID), await v(), d(null), r && r();
-          } catch (E) {
-            c(E instanceof Error ? E.message : "刪除缺貨項目失敗，請稍後再試");
+            await m0(u.GUID), await v(), f(null), r && r();
+          } catch (C) {
+            c(C instanceof Error ? C.message : "刪除缺貨項目失敗，請稍後再試");
           } finally {
             k(!1);
           }
         }
       },
-      M = (E) => {
-        if (!E) return "-";
+      M = (C) => {
+        if (!C) return "-";
         try {
-          const S = E.replace(/\//g, "-");
+          const S = C.replace(/\//g, "-");
           return new Date(S).toLocaleString("zh-TW", {
             year: "numeric",
             month: "2-digit",
@@ -13570,11 +13570,11 @@ const Ku = async () => {
             hour12: !1,
           });
         } catch {
-          return E;
+          return C;
         }
       },
-      X = (E) => {
-        switch (E) {
+      X = (C) => {
+        switch (C) {
           case "Critical":
             return "緊急";
           case "Important":
@@ -13582,11 +13582,11 @@ const Ku = async () => {
           case "Normal":
             return "一般";
           default:
-            return E || "一般";
+            return C || "一般";
         }
       },
-      P = (E) => {
-        switch (E) {
+      P = (C) => {
+        switch (C) {
           case "Critical":
             return "bg-red-100 text-red-800";
           case "Important":
@@ -13598,7 +13598,7 @@ const Ku = async () => {
         }
       },
       F = () => {
-        !a && !m && !N && (d(null), y(!1), t());
+        !a && !m && !w && (f(null), y(!1), t());
       };
     return e
       ? n.jsxs("div", {
@@ -13719,27 +13719,27 @@ const Ku = async () => {
                                 n.jsx("tbody", {
                                   className:
                                     "bg-white divide-y divide-gray-200",
-                                  children: s.map((E) =>
+                                  children: s.map((C) =>
                                     n.jsxs(
                                       "tr",
                                       {
                                         className:
                                           "hover:bg-blue-50 cursor-pointer transition-colors",
-                                        onClick: () => L(E),
+                                        onClick: () => L(C),
                                         title: "點擊編輯此缺貨項目",
                                         children: [
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: M(E.created_time),
+                                            children: M(C.created_time),
                                           }),
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 text-sm text-gray-900 max-w-xs",
                                             children: n.jsx("div", {
                                               className: "truncate",
-                                              title: E.content,
-                                              children: E.content || "-",
+                                              title: C.content,
+                                              children: C.content || "-",
                                             }),
                                           }),
                                           n.jsx("td", {
@@ -13747,32 +13747,32 @@ const Ku = async () => {
                                               "px-6 py-4 whitespace-nowrap",
                                             children: n.jsx("span", {
                                               className: `px-2 py-1 rounded-full text-xs font-medium ${P(
-                                                E.priority
+                                                C.priority
                                               )}`,
-                                              children: X(E.priority),
+                                              children: X(C.priority),
                                             }),
                                           }),
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
                                             children:
-                                              `${E.creator_dept || ""} ${
-                                                E.creator_name || ""
+                                              `${C.creator_dept || ""} ${
+                                                C.creator_name || ""
                                               }`.trim() || "-",
                                           }),
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: M(E.start_time),
+                                            children: M(C.start_time),
                                           }),
                                           n.jsx("td", {
                                             className:
                                               "px-6 py-4 whitespace-nowrap text-sm text-gray-900",
-                                            children: M(E.end_time),
+                                            children: M(C.end_time),
                                           }),
                                         ],
                                       },
-                                      E.GUID
+                                      C.GUID
                                     )
                                   ),
                                 }),
@@ -13814,7 +13814,7 @@ const Ku = async () => {
                           children: [
                             n.jsxs("button", {
                               onClick: () => y(!0),
-                              disabled: m || N,
+                              disabled: m || w,
                               className:
                                 "flex items-center px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                               title: "刪除缺貨項目",
@@ -13824,8 +13824,8 @@ const Ku = async () => {
                               ],
                             }),
                             n.jsx("button", {
-                              onClick: () => d(null),
-                              disabled: m || N,
+                              onClick: () => f(null),
+                              disabled: m || w,
                               className:
                                 "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
                               children: n.jsx(Ae, { size: 20 }),
@@ -13865,26 +13865,26 @@ const Ku = async () => {
                                 n.jsx("input", {
                                   type: "text",
                                   value: u.content,
-                                  onChange: (E) => {
-                                    d({ ...u, content: E.target.value }),
-                                      $(E.target.value);
+                                  onChange: (C) => {
+                                    f({ ...u, content: C.target.value }),
+                                      $(C.target.value);
                                   },
                                   onFocus: () => {
-                                    f.length > 0 && z(!0);
+                                    g.length > 0 && I(!0);
                                   },
-                                  disabled: m || _,
+                                  disabled: m || z,
                                   className:
                                     "w-full pl-10 pr-10 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                                   placeholder: "請輸入藥品名稱進行搜尋",
                                   autoComplete: "off",
                                 }),
-                                _ &&
+                                z &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3",
                                     children: n.jsx(Z, { size: "small" }),
                                   }),
-                                C &&
+                                D &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none",
@@ -13895,29 +13895,29 @@ const Ku = async () => {
                                   }),
                               ],
                             }),
-                            C &&
-                              f.length > 0 &&
+                            D &&
+                              g.length > 0 &&
                               n.jsx("div", {
                                 className:
                                   "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                                children: f.map((E, S) =>
+                                children: g.map((C, S) =>
                                   n.jsx(
                                     "button",
                                     {
                                       type: "button",
-                                      onClick: () => B(E.NAME),
+                                      onClick: () => B(C.NAME),
                                       className:
                                         "w-full px-4 py-2 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors border-b border-gray-100 last:border-b-0",
                                       children: n.jsx("div", {
                                         className: "font-medium text-gray-900",
-                                        children: E.NAME,
+                                        children: C.NAME,
                                       }),
                                     },
                                     S
                                   )
                                 ),
                               }),
-                            _ &&
+                            z &&
                               n.jsxs("div", {
                                 className:
                                   "mt-2 text-sm text-gray-500 flex items-center",
@@ -13931,10 +13931,10 @@ const Ku = async () => {
                               }),
                           ],
                         }),
-                        C &&
+                        D &&
                           n.jsx("div", {
                             className: "fixed inset-0 z-40",
-                            onClick: () => z(!1),
+                            onClick: () => I(!1),
                           }),
                         n.jsxs("div", {
                           children: [
@@ -13951,8 +13951,8 @@ const Ku = async () => {
                             }),
                             n.jsxs("select", {
                               value: u.priority,
-                              onChange: (E) =>
-                                d({ ...u, priority: E.target.value }),
+                              onChange: (C) =>
+                                f({ ...u, priority: C.target.value }),
                               disabled: m,
                               className:
                                 "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -13992,8 +13992,8 @@ const Ku = async () => {
                                 n.jsx("input", {
                                   type: "datetime-local",
                                   value: u.start_time,
-                                  onChange: (E) =>
-                                    d({ ...u, start_time: E.target.value }),
+                                  onChange: (C) =>
+                                    f({ ...u, start_time: C.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -14016,8 +14016,8 @@ const Ku = async () => {
                                 n.jsx("input", {
                                   type: "datetime-local",
                                   value: u.end_time,
-                                  onChange: (E) =>
-                                    d({ ...u, end_time: E.target.value }),
+                                  onChange: (C) =>
+                                    f({ ...u, end_time: C.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -14033,19 +14033,19 @@ const Ku = async () => {
                         "flex items-center justify-end space-x-4 p-6 border-t border-gray-200 bg-gray-50",
                       children: [
                         n.jsx("button", {
-                          onClick: () => d(null),
-                          disabled: m || N,
+                          onClick: () => f(null),
+                          disabled: m || w,
                           className:
                             "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                           children: "取消",
                         }),
                         n.jsx("button", {
                           onClick: se,
-                          disabled: m || N || !u.content.trim(),
+                          disabled: m || w || !u.content.trim(),
                           className:
                             "flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                           children:
-                            m || N
+                            m || w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -14107,17 +14107,17 @@ const Ku = async () => {
                         children: [
                           n.jsx("button", {
                             onClick: () => y(!1),
-                            disabled: N,
+                            disabled: w,
                             className:
                               "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                             children: "取消",
                           }),
                           n.jsx("button", {
                             onClick: ae,
-                            disabled: N,
+                            disabled: w,
                             className:
                               "flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                            children: N
+                            children: w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -14153,41 +14153,41 @@ const Ku = async () => {
     const [l, a] = Pe.useState(!1),
       [i, o] = Pe.useState(!1),
       [c, u] = Pe.useState(!1),
-      [d, m] = Pe.useState(!1),
-      p = (g) =>
-        new Date(g).toLocaleDateString("zh-TW", {
+      [f, m] = Pe.useState(!1),
+      h = (p) =>
+        new Date(p).toLocaleDateString("zh-TW", {
           month: "2-digit",
           day: "2-digit",
         }),
-      x = (g) => {
-        const h = new Date(g);
-        if (isNaN(h.getTime()))
-          return console.warn("Invalid lastStockDate:", g), 0;
-        const f = new Date(),
-          w = new Date(h.getFullYear(), h.getMonth(), h.getDate()),
-          C = new Date(f.getFullYear(), f.getMonth(), f.getDate()),
-          z = C.getTime() - w.getTime(),
-          _ = Math.floor(z / (1e3 * 60 * 60 * 24));
+      x = (p) => {
+        const d = new Date(p);
+        if (isNaN(d.getTime()))
+          return console.warn("Invalid lastStockDate:", p), 0;
+        const g = new Date(),
+          N = new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+          D = new Date(g.getFullYear(), g.getMonth(), g.getDate()),
+          I = D.getTime() - N.getTime(),
+          z = Math.floor(I / (1e3 * 60 * 60 * 24));
         return (
           console.log("Days calculation in OutOfStockList:", {
-            lastStockDate: g,
-            lastStock: h,
-            lastStockDateOnly: w,
-            nowDateOnly: C,
-            diffDays: _,
+            lastStockDate: p,
+            lastStock: d,
+            lastStockDateOnly: N,
+            nowDateOnly: D,
+            diffDays: z,
           }),
-          _
+          z
         );
       },
       y = () => {
         t && t();
       },
-      N = async () => {
+      w = async () => {
         u(!0);
         try {
-          await new Promise((g) => setTimeout(g, 100)), a(!0);
-        } catch (g) {
-          console.error("Failed to prepare add modal:", g), a(!0);
+          await new Promise((p) => setTimeout(p, 100)), a(!0);
+        } catch (p) {
+          console.error("Failed to prepare add modal:", p), a(!0);
         } finally {
           u(!1);
         }
@@ -14226,7 +14226,7 @@ const Ku = async () => {
                                     type: "checkbox",
                                     className: "sr-only peer",
                                     checked: r,
-                                    onChange: (g) => s(g.target.checked),
+                                    onChange: (p) => s(p.target.checked),
                                   }),
                                   n.jsx("div", {
                                     className:
@@ -14262,7 +14262,7 @@ const Ku = async () => {
                           ],
                         }),
                         n.jsx("button", {
-                          onClick: N,
+                          onClick: w,
                           disabled: c,
                           className:
                             "flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed",
@@ -14309,14 +14309,14 @@ const Ku = async () => {
                           n.jsx("p", { children: "目前無缺貨品項" }),
                         ],
                       })
-                    : e.map((g) => {
-                        const h = x(g.lastStockDate),
-                          f = h > 3 || g.status === "urgent_order";
+                    : e.map((p) => {
+                        const d = x(p.lastStockDate),
+                          g = d > 3 || p.status === "urgent_order";
                         return n.jsxs(
                           "div",
                           {
                             className: `p-3 border rounded-lg transition-colors ${
-                              f
+                              g
                                 ? "border-red-200 bg-red-50"
                                 : "border-gray-200 bg-white hover:border-gray-300"
                             }`,
@@ -14326,7 +14326,7 @@ const Ku = async () => {
                                   "flex items-start justify-between mb-2",
                                 children: n.jsx("h4", {
                                   className: "font-medium text-gray-800 flex-1",
-                                  children: g.drugName,
+                                  children: p.drugName,
                                 }),
                               }),
                               n.jsx("div", {
@@ -14340,12 +14340,12 @@ const Ku = async () => {
                                     }),
                                     n.jsxs("span", {
                                       className:
-                                        h > 3 ? "text-red-600 font-medium" : "",
+                                        d > 3 ? "text-red-600 font-medium" : "",
                                       children: [
                                         "缺貨 ",
-                                        h,
+                                        d,
                                         " 天 (自 ",
-                                        p(g.lastStockDate),
+                                        h(p.lastStockDate),
                                         ")",
                                       ],
                                     }),
@@ -14354,7 +14354,7 @@ const Ku = async () => {
                               }),
                             ],
                           },
-                          g.id
+                          p.id
                         );
                       }),
               }),
@@ -14364,7 +14364,7 @@ const Ku = async () => {
         n.jsx(U0, { isOpen: l, onClose: () => a(!1), onSuccess: y }),
         n.jsx(q0, { isOpen: i, onClose: () => o(!1), onSuccess: k }),
         n.jsx(gi, {
-          isOpen: d,
+          isOpen: f,
           onClose: () => m(!1),
           sectionKey: "outOfStock",
           sectionTitle: "缺貨通知",
@@ -14381,8 +14381,8 @@ const Ku = async () => {
     j.useEffect(() => {
       if (e.length <= l) return;
       const u = setInterval(() => {
-        r((d) => {
-          const m = d + l;
+        r((f) => {
+          const m = f + l;
           return m >= e.length ? 0 : m;
         });
       }, 8e3);
@@ -14391,16 +14391,16 @@ const Ku = async () => {
     const a = (u) => {
         if (!u) return 0;
         try {
-          const d = new Date(u),
+          const f = new Date(u),
             m = new Date(),
-            p = new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+            h = new Date(f.getFullYear(), f.getMonth(), f.getDate()),
             y =
               new Date(m.getFullYear(), m.getMonth(), m.getDate()).getTime() -
-              p.getTime(),
-            N = Math.floor(y / (1e3 * 60 * 60 * 24));
-          return Math.max(0, N);
-        } catch (d) {
-          return console.error("日期解析錯誤:", d, "原始日期:", u), 0;
+              h.getTime(),
+            w = Math.floor(y / (1e3 * 60 * 60 * 24));
+          return Math.max(0, w);
+        } catch (f) {
+          return console.error("日期解析錯誤:", f, "原始日期:", u), 0;
         }
       },
       i = e.slice(t, t + l),
@@ -14438,15 +14438,15 @@ const Ku = async () => {
                   n.jsxs("span", { children: ["第 ", c, " / ", o, " 頁"] }),
                   n.jsx("div", {
                     className: "flex space-x-1",
-                    children: Array.from({ length: o }, (u, d) =>
+                    children: Array.from({ length: o }, (u, f) =>
                       n.jsx(
                         "div",
                         {
                           className: `w-2 h-2 rounded-full ${
-                            d === c - 1 ? "bg-red-500" : "bg-gray-300"
+                            f === c - 1 ? "bg-red-500" : "bg-gray-300"
                           }`,
                         },
-                        d
+                        f
                       )
                     ),
                   }),
@@ -14504,14 +14504,14 @@ const Ku = async () => {
                         }),
                       }),
                       n.jsx("tbody", {
-                        children: i.map((u, d) => {
+                        children: i.map((u, f) => {
                           const m = a(u.lastStockDate),
-                            p = m > 3 || u.status === "urgent_order";
+                            h = m > 3 || u.status === "urgent_order";
                           return n.jsxs(
                             "tr",
                             {
                               className: `border-b border-gray-200 transition-colors ${
-                                p ? "bg-red-50" : "bg-white hover:bg-gray-50"
+                                h ? "bg-red-50" : "bg-white hover:bg-gray-50"
                               }`,
                               children: [
                                 n.jsx("td", {
@@ -14541,7 +14541,7 @@ const Ku = async () => {
                                 }),
                               ],
                             },
-                            `${t}-${d}`
+                            `${t}-${f}`
                           );
                         }),
                       }),
@@ -14584,48 +14584,48 @@ const Ku = async () => {
       }),
       [a, i] = j.useState([]),
       [o, c] = j.useState([]),
-      [u, d] = j.useState(""),
-      [m, p] = j.useState(!1),
+      [u, f] = j.useState(""),
+      [m, h] = j.useState(!1),
       [x, y] = j.useState(!1),
-      [N, k] = j.useState(!1),
-      [g, h] = j.useState(null);
+      [w, k] = j.useState(!1),
+      [p, d] = j.useState(null);
     Pe.useEffect(() => {
       if (e) {
-        const D = new Date(),
-          L = D.toISOString().slice(0, 16),
-          $ = new Date(D);
+        const E = new Date(),
+          L = E.toISOString().slice(0, 16),
+          $ = new Date(E);
         $.setMonth($.getMonth() + 1);
         const B = $.toISOString().slice(0, 16);
         l({ originalDrug: null, reason: "", start_time: L, end_time: B }),
-          d(""),
+          f(""),
           c([]),
-          p(!1),
-          h(null),
-          f();
+          h(!1),
+          d(null),
+          g();
       }
     }, [e]);
-    const f = async () => {
+    const g = async () => {
         y(!0);
         try {
-          const D = await Zs();
-          D.Code === 200 && D.Data
-            ? i(D.Data)
-            : console.warn("Failed to load medicine data:", D);
-        } catch (D) {
-          console.error("Error loading medicine data:", D);
+          const E = await Zs();
+          E.Code === 200 && E.Data
+            ? i(E.Data)
+            : console.warn("Failed to load medicine data:", E);
+        } catch (E) {
+          console.error("Error loading medicine data:", E);
         } finally {
           y(!1);
         }
       },
-      w = (D, L) => {
-        l(($) => ({ ...$, [D]: L }));
+      N = (E, L) => {
+        l(($) => ({ ...$, [E]: L }));
       },
-      C = (D) => {
-        if ((d(D), !D.trim())) {
-          c([]), p(!1);
+      D = (E) => {
+        if ((f(E), !E.trim())) {
+          c([]), h(!1);
           return;
         }
-        const L = D.toLowerCase(),
+        const L = E.toLowerCase(),
           $ = a.filter((B) => {
             const se = (B.NAME || "").toLowerCase(),
               ae = (B.CODE || "").toLowerCase(),
@@ -14635,29 +14635,29 @@ const Ku = async () => {
               se.includes(L) || ae.includes(L) || M.includes(L) || X.includes(L)
             );
           });
-        c($.slice(0, 10)), p($.length > 0);
+        c($.slice(0, 10)), h($.length > 0);
       },
-      z = (D) => {
-        l((L) => ({ ...L, originalDrug: D })), d(D.NAME), p(!1), c([]);
+      I = (E) => {
+        l((L) => ({ ...L, originalDrug: E })), f(E.NAME), h(!1), c([]);
       },
-      _ = () => {
+      z = () => {
         if (!s.originalDrug) return "請選擇藥品";
         if (!s.reason.trim()) return "請輸入替換原因";
         if (!s.start_time) return "請選擇開始時間";
         if (!s.end_time) return "請選擇結束時間";
-        const D = new Date(s.start_time);
-        return new Date(s.end_time) <= D ? "結束時間必須晚於開始時間" : null;
+        const E = new Date(s.start_time);
+        return new Date(s.end_time) <= E ? "結束時間必須晚於開始時間" : null;
       },
-      I = async () => {
-        h(null);
-        const D = _();
-        if (D) {
-          h(D);
+      _ = async () => {
+        d(null);
+        const E = z();
+        if (E) {
+          d(E);
           return;
         }
         const L = Rn();
         if (!L) {
-          h("無法獲取使用者資訊，請重新登入");
+          d("無法獲取使用者資訊，請重新登入");
           return;
         }
         k(!0);
@@ -14675,7 +14675,7 @@ const Ku = async () => {
             };
           await a0(B), t(), r();
         } catch ($) {
-          h(
+          d(
             $ instanceof Error ? $.message : "新增藥品通知項目失敗，請稍後再試"
           );
         } finally {
@@ -14683,7 +14683,7 @@ const Ku = async () => {
         }
       },
       v = () => {
-        N || t();
+        w || t();
       };
     return e
       ? n.jsx("div", {
@@ -14709,7 +14709,7 @@ const Ku = async () => {
                   }),
                   n.jsx("button", {
                     onClick: v,
-                    disabled: N,
+                    disabled: w,
                     className:
                       "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
                     children: n.jsx(Ae, { size: 20 }),
@@ -14719,7 +14719,7 @@ const Ku = async () => {
               n.jsxs("div", {
                 className: "p-6 space-y-6",
                 children: [
-                  g &&
+                  p &&
                     n.jsxs("div", {
                       className:
                         "bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center",
@@ -14728,7 +14728,7 @@ const Ku = async () => {
                           size: 20,
                           className: "mr-2 flex-shrink-0",
                         }),
-                        g,
+                        p,
                       ],
                     }),
                   n.jsxs("div", {
@@ -14759,11 +14759,11 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "text",
                             value: u,
-                            onChange: (D) => C(D.target.value),
+                            onChange: (E) => D(E.target.value),
                             onFocus: () => {
-                              o.length > 0 && p(!0);
+                              o.length > 0 && h(!0);
                             },
-                            disabled: N || x,
+                            disabled: w || x,
                             className:
                               "w-full pl-10 pr-10 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                             placeholder: "請輸入藥品名稱進行搜尋",
@@ -14791,33 +14791,33 @@ const Ku = async () => {
                         n.jsx("div", {
                           className:
                             "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                          children: o.map((D, L) =>
+                          children: o.map((E, L) =>
                             n.jsxs(
                               "button",
                               {
                                 type: "button",
-                                onClick: () => z(D),
+                                onClick: () => I(E),
                                 className:
                                   "w-full px-4 py-2 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors border-b border-gray-100 last:border-b-0",
                                 children: [
                                   n.jsx("div", {
                                     className: "font-medium text-gray-900",
-                                    children: D.NAME,
+                                    children: E.NAME,
                                   }),
                                   n.jsxs("div", {
                                     className:
                                       "text-sm text-gray-500 space-y-0.5",
                                     children: [
                                       n.jsxs("div", {
-                                        children: ["藥碼: ", D.CODE],
+                                        children: ["藥碼: ", E.CODE],
                                       }),
-                                      D.SKDIACODE &&
+                                      E.SKDIACODE &&
                                         n.jsxs("div", {
-                                          children: ["料號: ", D.SKDIACODE],
+                                          children: ["料號: ", E.SKDIACODE],
                                         }),
-                                      D.CHT_NAME &&
+                                      E.CHT_NAME &&
                                         n.jsxs("div", {
-                                          children: ["中文名: ", D.CHT_NAME],
+                                          children: ["中文名: ", E.CHT_NAME],
                                         }),
                                     ],
                                   }),
@@ -14832,7 +14832,7 @@ const Ku = async () => {
                   m &&
                     n.jsx("div", {
                       className: "fixed inset-0 z-40",
-                      onClick: () => p(!1),
+                      onClick: () => h(!1),
                     }),
                   n.jsxs("div", {
                     children: [
@@ -14849,8 +14849,8 @@ const Ku = async () => {
                       }),
                       n.jsx("textarea", {
                         value: s.reason,
-                        onChange: (D) => w("reason", D.target.value),
-                        disabled: N,
+                        onChange: (E) => N("reason", E.target.value),
+                        disabled: w,
                         rows: 4,
                         className:
                           "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical disabled:opacity-50 disabled:bg-gray-100",
@@ -14877,8 +14877,8 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "datetime-local",
                             value: s.start_time,
-                            onChange: (D) => w("start_time", D.target.value),
-                            disabled: N,
+                            onChange: (E) => N("start_time", E.target.value),
+                            disabled: w,
                             className:
                               "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                           }),
@@ -14900,8 +14900,8 @@ const Ku = async () => {
                           n.jsx("input", {
                             type: "datetime-local",
                             value: s.end_time,
-                            onChange: (D) => w("end_time", D.target.value),
-                            disabled: N,
+                            onChange: (E) => N("end_time", E.target.value),
+                            disabled: w,
                             className:
                               "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                           }),
@@ -14925,17 +14925,17 @@ const Ku = async () => {
                 children: [
                   n.jsx("button", {
                     onClick: v,
-                    disabled: N,
+                    disabled: w,
                     className:
                       "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                     children: "取消",
                   }),
                   n.jsx("button", {
-                    onClick: I,
-                    disabled: N || !s.originalDrug || !s.reason.trim(),
+                    onClick: _,
+                    disabled: w || !s.originalDrug || !s.reason.trim(),
                     className:
                       "flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                    children: N
+                    children: w
                       ? n.jsxs(n.Fragment, {
                           children: [
                             n.jsx(Z, { size: "small", className: "mr-2" }),
@@ -14960,14 +14960,14 @@ const Ku = async () => {
     const [s, l] = j.useState([]),
       [a, i] = j.useState(!1),
       [o, c] = j.useState(null),
-      [u, d] = j.useState(null),
-      [m, p] = j.useState(!1),
+      [u, f] = j.useState(null),
+      [m, h] = j.useState(!1),
       [x, y] = j.useState(!1),
-      [N, k] = j.useState(!1),
-      [g, h] = j.useState([]),
-      [f, w] = j.useState([]),
-      [C, z] = j.useState(null),
-      [_, I] = j.useState(!1);
+      [w, k] = j.useState(!1),
+      [p, d] = j.useState([]),
+      [g, N] = j.useState([]),
+      [D, I] = j.useState(null),
+      [z, _] = j.useState(!1);
     j.useEffect(() => {
       e && v();
     }, [e]);
@@ -14983,17 +14983,17 @@ const Ku = async () => {
           i(!1);
         }
       },
-      D = async () => {
-        I(!0);
+      E = async () => {
+        _(!0);
         try {
           const b = await Zs();
           b.Code === 200 && b.Data
-            ? h(b.Data)
+            ? d(b.Data)
             : console.warn("Failed to load medicine data:", b);
         } catch (b) {
           console.error("Error loading medicine data:", b);
         } finally {
-          I(!1);
+          _(!1);
         }
       },
       L = (b) => {
@@ -15006,7 +15006,7 @@ const Ku = async () => {
             return console.error("Error formatting date for input:", A, U), "";
           }
         };
-        d({
+        f({
           GUID: b.GUID,
           title: b.title || "",
           content: b.content || "",
@@ -15018,17 +15018,17 @@ const Ku = async () => {
           end_time: R(b.end_time),
           created_time: b.created_time || "",
         }),
-          g.length === 0 && D();
+          p.length === 0 && E();
       },
       $ = (b, R) => {
         if (!b.trim()) {
-          w([]), z(null);
+          N([]), I(null);
           return;
         }
-        const A = g.filter((U) =>
+        const A = p.filter((U) =>
           U.NAME.toLowerCase().includes(b.toLowerCase())
         );
-        w(A.slice(0, 10)), z(A.length > 0 ? R : null);
+        N(A.slice(0, 10)), I(A.length > 0 ? R : null);
       },
       B = (b, R) => {
         if (u) {
@@ -15037,9 +15037,9 @@ const Ku = async () => {
           R === "original"
             ? (U = `${b};${A[1] || ""}`)
             : (U = `${A[0] || ""};${b}`),
-            d({ ...u, content: U });
+            f({ ...u, content: U });
         }
-        z(null), w([]);
+        I(null), N([]);
       },
       se = (b) => {
         var R;
@@ -15051,7 +15051,7 @@ const Ku = async () => {
       },
       M = async () => {
         if (u) {
-          p(!0), c(null);
+          h(!0), c(null);
           try {
             const b = (A) =>
                 A ? A.replace("T", " ").replace(/-/g, "/") + ":00" : "",
@@ -15066,7 +15066,7 @@ const Ku = async () => {
                 start_time: b(u.start_time),
                 end_time: b(u.end_time),
               };
-            await i0(R), await v(), d(null), r && r();
+            await i0(R), await v(), f(null), r && r();
           } catch (b) {
             c(
               b instanceof Error
@@ -15074,7 +15074,7 @@ const Ku = async () => {
                 : "更新藥品通知項目失敗，請稍後再試"
             );
           } finally {
-            p(!1);
+            h(!1);
           }
         }
       },
@@ -15082,7 +15082,7 @@ const Ku = async () => {
         if (u) {
           k(!0), c(null), y(!1);
           try {
-            await o0(u.GUID), await v(), d(null), r && r();
+            await o0(u.GUID), await v(), f(null), r && r();
           } catch (b) {
             c(
               b instanceof Error
@@ -15123,7 +15123,7 @@ const Ku = async () => {
             return b || "一般";
         }
       },
-      E = (b) => {
+      C = (b) => {
         switch (b) {
           case "Critical":
             return "bg-red-100 text-red-800";
@@ -15136,7 +15136,7 @@ const Ku = async () => {
         }
       },
       S = () => {
-        !a && !m && !N && (d(null), y(!1), t());
+        !a && !m && !w && (f(null), y(!1), t());
       };
     return e
       ? n.jsxs("div", {
@@ -15312,7 +15312,7 @@ const Ku = async () => {
                                             className:
                                               "px-6 py-4 whitespace-nowrap",
                                             children: n.jsx("span", {
-                                              className: `px-2 py-1 rounded-full text-xs font-medium ${E(
+                                              className: `px-2 py-1 rounded-full text-xs font-medium ${C(
                                                 b.priority
                                               )}`,
                                               children: F(b.priority),
@@ -15380,7 +15380,7 @@ const Ku = async () => {
                           children: [
                             n.jsxs("button", {
                               onClick: () => y(!0),
-                              disabled: m || N,
+                              disabled: m || w,
                               className:
                                 "flex items-center px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                               title: "刪除藥品通知項目",
@@ -15390,8 +15390,8 @@ const Ku = async () => {
                               ],
                             }),
                             n.jsx("button", {
-                              onClick: () => d(null),
-                              disabled: m || N,
+                              onClick: () => f(null),
+                              disabled: m || w,
                               className:
                                 "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
                               children: n.jsx(Ae, { size: 20 }),
@@ -15435,25 +15435,25 @@ const Ku = async () => {
                                     const R = `${b.target.value};${ae(
                                       u.content
                                     )}`;
-                                    d({ ...u, content: R }),
+                                    f({ ...u, content: R }),
                                       $(b.target.value, "original");
                                   },
                                   onFocus: () => {
-                                    f.length > 0 && z("original");
+                                    g.length > 0 && I("original");
                                   },
-                                  disabled: m || _,
+                                  disabled: m || z,
                                   className:
                                     "w-full pl-10 pr-10 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                                   placeholder: "請輸入原藥品名稱進行搜尋",
                                   autoComplete: "off",
                                 }),
-                                _ &&
+                                z &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3",
                                     children: n.jsx(Z, { size: "small" }),
                                   }),
-                                C === "original" &&
+                                D === "original" &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none",
@@ -15464,12 +15464,12 @@ const Ku = async () => {
                                   }),
                               ],
                             }),
-                            C === "original" &&
-                              f.length > 0 &&
+                            D === "original" &&
+                              g.length > 0 &&
                               n.jsx("div", {
                                 className:
                                   "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                                children: f.map((b, R) =>
+                                children: g.map((b, R) =>
                                   n.jsx(
                                     "button",
                                     {
@@ -15520,25 +15520,25 @@ const Ku = async () => {
                                     const R = `${se(u.content)};${
                                       b.target.value
                                     }`;
-                                    d({ ...u, content: R }),
+                                    f({ ...u, content: R }),
                                       $(b.target.value, "replacement");
                                   },
                                   onFocus: () => {
-                                    f.length > 0 && z("replacement");
+                                    g.length > 0 && I("replacement");
                                   },
-                                  disabled: m || _,
+                                  disabled: m || z,
                                   className:
                                     "w-full pl-10 pr-10 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
                                   placeholder: "請輸入替換藥品名稱進行搜尋",
                                   autoComplete: "off",
                                 }),
-                                _ &&
+                                z &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3",
                                     children: n.jsx(Z, { size: "small" }),
                                   }),
-                                C === "replacement" &&
+                                D === "replacement" &&
                                   n.jsx("div", {
                                     className:
                                       "absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none",
@@ -15549,12 +15549,12 @@ const Ku = async () => {
                                   }),
                               ],
                             }),
-                            C === "replacement" &&
-                              f.length > 0 &&
+                            D === "replacement" &&
+                              g.length > 0 &&
                               n.jsx("div", {
                                 className:
                                   "absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto",
-                                children: f.map((b, R) =>
+                                children: g.map((b, R) =>
                                   n.jsx(
                                     "button",
                                     {
@@ -15573,10 +15573,10 @@ const Ku = async () => {
                               }),
                           ],
                         }),
-                        C &&
+                        D &&
                           n.jsx("div", {
                             className: "fixed inset-0 z-40",
-                            onClick: () => z(null),
+                            onClick: () => I(null),
                           }),
                         n.jsxs("div", {
                           children: [
@@ -15594,7 +15594,7 @@ const Ku = async () => {
                             n.jsx("textarea", {
                               value: u.note,
                               onChange: (b) =>
-                                d({ ...u, note: b.target.value }),
+                                f({ ...u, note: b.target.value }),
                               disabled: m,
                               rows: 4,
                               className:
@@ -15618,7 +15618,7 @@ const Ku = async () => {
                             n.jsxs("select", {
                               value: u.priority,
                               onChange: (b) =>
-                                d({ ...u, priority: b.target.value }),
+                                f({ ...u, priority: b.target.value }),
                               disabled: m,
                               className:
                                 "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -15659,7 +15659,7 @@ const Ku = async () => {
                                   type: "datetime-local",
                                   value: u.start_time,
                                   onChange: (b) =>
-                                    d({ ...u, start_time: b.target.value }),
+                                    f({ ...u, start_time: b.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -15683,7 +15683,7 @@ const Ku = async () => {
                                   type: "datetime-local",
                                   value: u.end_time,
                                   onChange: (b) =>
-                                    d({ ...u, end_time: b.target.value }),
+                                    f({ ...u, end_time: b.target.value }),
                                   disabled: m,
                                   className:
                                     "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50 disabled:bg-gray-100",
@@ -15692,7 +15692,7 @@ const Ku = async () => {
                             }),
                           ],
                         }),
-                        _ &&
+                        z &&
                           n.jsxs("div", {
                             className:
                               "text-sm text-gray-500 flex items-center",
@@ -15708,8 +15708,8 @@ const Ku = async () => {
                         "flex items-center justify-end space-x-4 p-6 border-t border-gray-200 bg-gray-50",
                       children: [
                         n.jsx("button", {
-                          onClick: () => d(null),
-                          disabled: m || N,
+                          onClick: () => f(null),
+                          disabled: m || w,
                           className:
                             "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                           children: "取消",
@@ -15717,11 +15717,11 @@ const Ku = async () => {
                         n.jsx("button", {
                           onClick: M,
                           disabled:
-                            m || N || !u.content.trim() || !u.note.trim(),
+                            m || w || !u.content.trim() || !u.note.trim(),
                           className:
                             "flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
                           children:
-                            m || N
+                            m || w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -15785,17 +15785,17 @@ const Ku = async () => {
                         children: [
                           n.jsx("button", {
                             onClick: () => y(!1),
-                            disabled: N,
+                            disabled: w,
                             className:
                               "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors disabled:opacity-50",
                             children: "取消",
                           }),
                           n.jsx("button", {
                             onClick: X,
-                            disabled: N,
+                            disabled: w,
                             className:
                               "flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                            children: N
+                            children: w
                               ? n.jsxs(n.Fragment, {
                                   children: [
                                     n.jsx(Z, {
@@ -15830,8 +15830,8 @@ const Ku = async () => {
   }) => {
     const [l, a] = Pe.useState(!1),
       [i, o] = Pe.useState(!1),
-      c = (p) => {
-        switch (p) {
+      c = (h) => {
+        switch (h) {
           case "high":
             return "border-red-200 bg-red-50";
           case "medium":
@@ -15842,8 +15842,8 @@ const Ku = async () => {
             return "border-gray-200 bg-white";
         }
       },
-      u = (p) => {
-        const x = new Date(p),
+      u = (h) => {
+        const x = new Date(h),
           y = new Date();
         return (
           x.getTime() - y.getTime(),
@@ -15854,7 +15854,7 @@ const Ku = async () => {
           })
         );
       },
-      d = () => {
+      f = () => {
         t && t();
       },
       m = () => {
@@ -15894,7 +15894,7 @@ const Ku = async () => {
                                     type: "checkbox",
                                     className: "sr-only peer",
                                     checked: r,
-                                    onChange: (p) => s(p.target.checked),
+                                    onChange: (h) => s(h.target.checked),
                                   }),
                                   n.jsx("div", {
                                     className:
@@ -15957,12 +15957,12 @@ const Ku = async () => {
                           n.jsx("p", { children: "暫無藥品通知" }),
                         ],
                       })
-                    : e.map((p) => {
-                        const [x, y] = [p.originalDrug, p.replacementDrug];
+                    : e.map((h) => {
+                        const [x, y] = [h.originalDrug, h.replacementDrug];
                         return n.jsxs(
                           "div",
                           {
-                            className: `p-3 rounded-lg border ${c(p.priority)}`,
+                            className: `p-3 rounded-lg border ${c(h.priority)}`,
                             children: [
                               n.jsx("div", {
                                 className: "space-y-2 text-sm",
@@ -15997,7 +15997,7 @@ const Ku = async () => {
                                         className: "mr-2 text-gray-400",
                                       }),
                                       n.jsxs("span", {
-                                        children: ["原因: ", p.reason],
+                                        children: ["原因: ", h.reason],
                                       }),
                                     ],
                                   }),
@@ -16011,7 +16011,7 @@ const Ku = async () => {
                                       n.jsxs("span", {
                                         children: [
                                           "生效日期: ",
-                                          u(p.effectiveDate),
+                                          u(h.effectiveDate),
                                         ],
                                       }),
                                     ],
@@ -16020,14 +16020,14 @@ const Ku = async () => {
                               }),
                             ],
                           },
-                          p.id || `${p.originalDrug}`
+                          h.id || `${h.originalDrug}`
                         );
                       }),
               }),
             }),
           ],
         }),
-        n.jsx(B0, { isOpen: l, onClose: () => a(!1), onSuccess: d }),
+        n.jsx(B0, { isOpen: l, onClose: () => a(!1), onSuccess: f }),
         n.jsx(Q0, { isOpen: i, onClose: () => o(!1), onSuccess: m }),
       ],
     });
@@ -16055,9 +16055,9 @@ const Ku = async () => {
     }, [e.length]);
     const l = (c) => {
       const u = new Date(c),
-        d = new Date();
+        f = new Date();
       return (
-        u.getTime() - d.getTime(),
+        u.getTime() - f.getTime(),
         u.toLocaleDateString("zh-TW", {
           year: "numeric",
           month: "2-digit",
@@ -16398,8 +16398,8 @@ const Ku = async () => {
     j.useEffect(() => {
       if (e.length <= l) return;
       const m = setInterval(() => {
-        r((p) => {
-          const x = p + l;
+        r((h) => {
+          const x = h + l;
           return x >= e.length ? 0 : x;
         });
       }, 8e3);
@@ -16409,10 +16409,10 @@ const Ku = async () => {
       i = Math.ceil(e.length / l),
       o = Math.floor(t / l) + 1,
       c = Array.from(
-        new Set(e.flatMap((m) => (m.serverData || []).map((p) => p.serverName)))
+        new Set(e.flatMap((m) => (m.serverData || []).map((h) => h.serverName)))
       ).sort(),
       u = 40,
-      d = c.length > 0 ? 60 / c.length : 20;
+      f = c.length > 0 ? 60 / c.length : 20;
     return n.jsxs("div", {
       className:
         "bg-white rounded-xl shadow-lg border border-gray-200 h-full flex flex-col min-h-0 max-h-full",
@@ -16477,7 +16477,7 @@ const Ku = async () => {
                         children: [
                           n.jsx("col", { style: { width: `${u}%` } }),
                           c.map((m) =>
-                            n.jsx("col", { style: { width: `${d}%` } }, m)
+                            n.jsx("col", { style: { width: `${f}%` } }, m)
                           ),
                         ],
                       }),
@@ -16506,12 +16506,12 @@ const Ku = async () => {
                         }),
                       }),
                       n.jsx("tbody", {
-                        children: a.map((m, p) =>
+                        children: a.map((m, h) =>
                           n.jsxs(
                             "tr",
                             {
                               className: `border-b border-gray-200 transition-colors ${
-                                p % 2 === 0
+                                h % 2 === 0
                                   ? "bg-white hover:bg-gray-300"
                                   : "bg-gray-200 hover:bg-gray-300"
                               }`,
@@ -16535,7 +16535,7 @@ const Ku = async () => {
                                   const y = (m.serverData || []).find(
                                       (k) => k.serverName === x
                                     ),
-                                    N = y ? y.qty : 0;
+                                    w = y ? y.qty : 0;
                                   return n.jsx(
                                     "td",
                                     {
@@ -16544,7 +16544,7 @@ const Ku = async () => {
                                       children: n.jsx("div", {
                                         className:
                                           "font-semibold text-gray-700",
-                                        children: N,
+                                        children: w,
                                       }),
                                     },
                                     x
@@ -16552,7 +16552,7 @@ const Ku = async () => {
                                 }),
                               ],
                             },
-                            `${t}-${p}`
+                            `${t}-${h}`
                           )
                         ),
                       }),
@@ -17044,21 +17044,21 @@ class X0 {
       console.log("=====================================");
   }
 }
-const me = new X0(),
+const xe = new X0(),
   J0 = ({ isOpen: e, onClose: t }) => {
-    const [r, s] = j.useState(me.getSelectedSound()),
-      [l, a] = j.useState(me.getRepeatCount()),
-      [i, o] = j.useState(me.getRepeatInterval()),
-      [c, u] = j.useState(me.getVolume()),
-      [d, m] = j.useState(() => {
+    const [r, s] = j.useState(xe.getSelectedSound()),
+      [l, a] = j.useState(xe.getRepeatCount()),
+      [i, o] = j.useState(xe.getRepeatInterval()),
+      [c, u] = j.useState(xe.getVolume()),
+      [f, m] = j.useState(() => {
         const v = localStorage.getItem("internalRequests_displayMode");
         return v || "all";
       }),
-      [p, x] = j.useState(() => {
+      [h, x] = j.useState(() => {
         const v = localStorage.getItem("internalRequests_notifyMode");
         return v || "urgentOnly";
       }),
-      [y, N] = j.useState(() => {
+      [y, w] = j.useState(() => {
         const v = localStorage.getItem("internalRequests_reminderInterval");
         return v ? parseInt(v, 10) : 5;
       }),
@@ -17067,22 +17067,22 @@ const me = new X0(),
         { type: "chime", name: "鐘鈴聲", description: "雙音和諧提示音" },
         { type: "bell", name: "鈴聲", description: "三音漸進提示音" },
       ],
+      p = (v) => {
+        xe.playPreview(v);
+      },
+      d = (v) => {
+        s(v), xe.setSelectedSound(v);
+      },
       g = (v) => {
-        me.playPreview(v);
+        a(v), xe.setRepeatCount(v);
       },
-      h = (v) => {
-        s(v), me.setSelectedSound(v);
+      N = (v) => {
+        o(v), xe.setRepeatInterval(v);
       },
-      f = (v) => {
-        a(v), me.setRepeatCount(v);
+      D = (v) => {
+        u(v), xe.setVolume(v);
       },
-      w = (v) => {
-        o(v), me.setRepeatInterval(v);
-      },
-      C = (v) => {
-        u(v), me.setVolume(v);
-      },
-      z = (v) => {
+      I = (v) => {
         m(v),
           localStorage.setItem("internalRequests_displayMode", v),
           window.dispatchEvent(
@@ -17091,7 +17091,7 @@ const me = new X0(),
             })
           );
       },
-      _ = (v) => {
+      z = (v) => {
         x(v),
           localStorage.setItem("internalRequests_notifyMode", v),
           window.dispatchEvent(
@@ -17100,8 +17100,8 @@ const me = new X0(),
             })
           );
       },
-      I = (v) => {
-        N(v),
+      _ = (v) => {
+        w(v),
           localStorage.setItem(
             "internalRequests_reminderInterval",
             v.toString()
@@ -17155,7 +17155,7 @@ const me = new X0(),
                                   ? "border-teal-500 bg-teal-50"
                                   : "border-gray-200 hover:border-gray-300"
                               }`,
-                              onClick: () => h(v.type),
+                              onClick: () => d(v.type),
                               children: n.jsxs("div", {
                                 className: "flex items-center justify-between",
                                 children: [
@@ -17185,8 +17185,8 @@ const me = new X0(),
                                     ],
                                   }),
                                   n.jsx("button", {
-                                    onClick: (D) => {
-                                      D.stopPropagation(), g(v.type);
+                                    onClick: (E) => {
+                                      E.stopPropagation(), p(v.type);
                                     },
                                     className:
                                       "ml-4 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors",
@@ -17238,7 +17238,7 @@ const me = new X0(),
                                 max: "1",
                                 step: "0.01",
                                 value: c,
-                                onChange: (v) => C(parseFloat(v.target.value)),
+                                onChange: (v) => D(parseFloat(v.target.value)),
                                 className:
                                   "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600",
                               }),
@@ -17276,7 +17276,7 @@ const me = new X0(),
                                 max: "5",
                                 step: "1",
                                 value: l,
-                                onChange: (v) => f(parseInt(v.target.value)),
+                                onChange: (v) => g(parseInt(v.target.value)),
                                 className:
                                   "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600",
                               }),
@@ -17316,7 +17316,7 @@ const me = new X0(),
                                   step: "0.1",
                                   value: i,
                                   onChange: (v) =>
-                                    w(parseFloat(v.target.value)),
+                                    N(parseFloat(v.target.value)),
                                   className:
                                     "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600",
                                 }),
@@ -17399,7 +17399,7 @@ const me = new X0(),
                                 max: "8",
                                 step: "1",
                                 value: y,
-                                onChange: (v) => I(parseInt(v.target.value)),
+                                onChange: (v) => _(parseInt(v.target.value)),
                                 className:
                                   "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600",
                               }),
@@ -17456,11 +17456,11 @@ const me = new X0(),
                         children: [
                           n.jsx("div", {
                             className: `border-2 rounded-lg p-4 transition-all cursor-pointer ${
-                              p === "urgentOnly"
+                              h === "urgentOnly"
                                 ? "border-teal-500 bg-teal-50"
                                 : "border-gray-200 hover:border-gray-300"
                             }`,
-                            onClick: () => _("urgentOnly"),
+                            onClick: () => z("urgentOnly"),
                             children: n.jsx("div", {
                               className: "flex items-center justify-between",
                               children: n.jsxs("div", {
@@ -17482,7 +17482,7 @@ const me = new X0(),
                                               "text-base font-semibold text-gray-800",
                                             children: "僅通知緊急申領",
                                           }),
-                                          p === "urgentOnly" &&
+                                          h === "urgentOnly" &&
                                             n.jsx(ir, {
                                               size: 18,
                                               className: "text-teal-600",
@@ -17501,11 +17501,11 @@ const me = new X0(),
                           }),
                           n.jsx("div", {
                             className: `border-2 rounded-lg p-4 transition-all cursor-pointer ${
-                              p === "all"
+                              h === "all"
                                 ? "border-teal-500 bg-teal-50"
                                 : "border-gray-200 hover:border-gray-300"
                             }`,
-                            onClick: () => _("all"),
+                            onClick: () => z("all"),
                             children: n.jsx("div", {
                               className: "flex items-center justify-between",
                               children: n.jsxs("div", {
@@ -17527,7 +17527,7 @@ const me = new X0(),
                                               "text-base font-semibold text-gray-800",
                                             children: "通知所有新申領",
                                           }),
-                                          p === "all" &&
+                                          h === "all" &&
                                             n.jsx(ir, {
                                               size: 18,
                                               className: "text-teal-600",
@@ -17560,11 +17560,11 @@ const me = new X0(),
                         children: [
                           n.jsx("div", {
                             className: `border-2 rounded-lg p-4 transition-all cursor-pointer ${
-                              d === "all"
+                              f === "all"
                                 ? "border-teal-500 bg-teal-50"
                                 : "border-gray-200 hover:border-gray-300"
                             }`,
-                            onClick: () => z("all"),
+                            onClick: () => I("all"),
                             children: n.jsx("div", {
                               className: "flex items-center justify-between",
                               children: n.jsxs("div", {
@@ -17586,7 +17586,7 @@ const me = new X0(),
                                               "text-base font-semibold text-gray-800",
                                             children: "不分類顯示",
                                           }),
-                                          d === "all" &&
+                                          f === "all" &&
                                             n.jsx(ir, {
                                               size: 18,
                                               className: "text-teal-600",
@@ -17605,11 +17605,11 @@ const me = new X0(),
                           }),
                           n.jsx("div", {
                             className: `border-2 rounded-lg p-4 transition-all cursor-pointer ${
-                              d === "separate"
+                              f === "separate"
                                 ? "border-teal-500 bg-teal-50"
                                 : "border-gray-200 hover:border-gray-300"
                             }`,
-                            onClick: () => z("separate"),
+                            onClick: () => I("separate"),
                             children: n.jsx("div", {
                               className: "flex items-center justify-between",
                               children: n.jsxs("div", {
@@ -17631,7 +17631,7 @@ const me = new X0(),
                                               "text-base font-semibold text-gray-800",
                                             children: "區分緊急申領",
                                           }),
-                                          d === "separate" &&
+                                          f === "separate" &&
                                             n.jsx(ir, {
                                               size: 18,
                                               className: "text-teal-600",
@@ -17650,11 +17650,11 @@ const me = new X0(),
                           }),
                           n.jsx("div", {
                             className: `border-2 rounded-lg p-4 transition-all cursor-pointer ${
-                              d === "urgentOnly"
+                              f === "urgentOnly"
                                 ? "border-teal-500 bg-teal-50"
                                 : "border-gray-200 hover:border-gray-300"
                             }`,
-                            onClick: () => z("urgentOnly"),
+                            onClick: () => I("urgentOnly"),
                             children: n.jsx("div", {
                               className: "flex items-center justify-between",
                               children: n.jsxs("div", {
@@ -17676,7 +17676,7 @@ const me = new X0(),
                                               "text-base font-semibold text-gray-800",
                                             children: "僅顯示緊急申領",
                                           }),
-                                          d === "urgentOnly" &&
+                                          f === "urgentOnly" &&
                                             n.jsx(ir, {
                                               size: 18,
                                               className: "text-teal-600",
@@ -17714,114 +17714,82 @@ const me = new X0(),
       : null;
   },
   Z0 = ({ internalRequests: e, showInFocus: t = !0, onFocusToggle: r }) => {
-    const [s, l] = j.useState(me.getStatus()),
+    const [s, l] = j.useState(xe.getStatus()),
       [a, i] = j.useState(!1),
       o = j.useRef(new Set()),
       c = j.useRef(new Set()),
       u = j.useRef(!0),
-      [d, m] = j.useState(() => {
-        const f = localStorage.getItem("internalRequests_notifyMode");
-        return f || "urgentOnly";
+      [f, m] = j.useState(() => {
+        const d = localStorage.getItem("internalRequests_notifyMode");
+        return d || "urgentOnly";
       }),
-      [p, x] = j.useState(() => {
-        const f = localStorage.getItem("internalRequests_reminderInterval");
-        return f ? parseInt(f, 10) : 5;
-      }),
-      y = j.useRef(e);
+      [h, x] = j.useState(() => {
+        const d = localStorage.getItem("internalRequests_reminderInterval");
+        return d ? parseInt(d, 10) : 5;
+      });
     j.useEffect(() => {
-      y.current = e;
-    }, [e]),
-      j.useEffect(() => {
-        const f = (w) => {
-          var z, _;
-          const C = w;
-          ((z = C.detail) == null ? void 0 : z.notifyMode) !== void 0 &&
-            m(C.detail.notifyMode),
-            ((_ = C.detail) == null ? void 0 : _.reminderInterval) !== void 0 &&
-              x(C.detail.reminderInterval);
-        };
-        return (
-          window.addEventListener("internalRequestsSettingChanged", f),
-          () => window.removeEventListener("internalRequestsSettingChanged", f)
-        );
-      }, []),
-      j.useEffect(() => {
-        console.log("======= 設置定期提醒計時器 ======="),
-          console.log("提醒間隔:", p, "分鐘");
-        const f = setInterval(() => {
-          const w = y.current.filter(
-            (C) => C.state === "等待過帳" && C.actionType === "緊急申領"
-          );
-          w.length > 0
-            ? (console.log("======= 定期提醒：檢測到未處理的緊急申領 ======="),
-              console.log("緊急申領數量:", w.length),
-              console.log(
-                "緊急申領 IDs:",
-                w.map((C) => C.id)
-              ),
-              (async () => {
-                try {
-                  await me.playNotification(),
-                    console.log("======= 定期提醒音效播放完成 =======");
-                } catch (C) {
-                  console.error("======= 定期提醒音效播放失敗 =======", C);
-                }
-              })())
-            : console.log("======= 定期提醒：無未處理的緊急申領 =======");
-        }, p * 60 * 1e3);
-        return () => {
-          console.log("======= 清除定期提醒計時器 ======="), clearInterval(f);
-        };
-      }, [p]),
+      const d = (g) => {
+        var D, I;
+        const N = g;
+        ((D = N.detail) == null ? void 0 : D.notifyMode) !== void 0 &&
+          m(N.detail.notifyMode),
+          ((I = N.detail) == null ? void 0 : I.reminderInterval) !== void 0 &&
+            x(N.detail.reminderInterval);
+      };
+      return (
+        window.addEventListener("internalRequestsSettingChanged", d),
+        () => window.removeEventListener("internalRequestsSettingChanged", d)
+      );
+    }, []),
       j.useEffect(() => {
         u.current &&
           e.length > 0 &&
           (console.log("======= 初始載入完成，開始監控申領通知 ======="),
-          console.log("通知模式:", d),
+          console.log("通知模式:", f),
           (u.current = !1));
-        const f = new Set(),
-          w = new Set();
-        e.forEach((z) => {
-          z.state === "等待過帳" &&
-            (w.add(z.id), z.actionType === "緊急申領" && f.add(z.id));
+        const d = new Set(),
+          g = new Set();
+        e.forEach((D) => {
+          D.state === "等待過帳" &&
+            (g.add(D.id), D.actionType === "緊急申領" && d.add(D.id));
         });
-        let C = !1;
-        d === "urgentOnly"
-          ? Array.from(f).some((_) => !o.current.has(_)) &&
+        let N = !1;
+        f === "urgentOnly"
+          ? Array.from(d).some((I) => !o.current.has(I)) &&
             !u.current &&
             (console.log("======= 檢測到新的緊急申領，準備播放音效 ======="),
-            console.log("當前緊急申領 IDs:", Array.from(f)),
+            console.log("當前緊急申領 IDs:", Array.from(d)),
             console.log("之前緊急申領 IDs:", Array.from(o.current)),
-            (C = !0))
-          : d === "all" &&
-            Array.from(w).some((_) => !c.current.has(_)) &&
+            (N = !0))
+          : f === "all" &&
+            Array.from(g).some((I) => !c.current.has(I)) &&
             !u.current &&
             (console.log(
               "======= 檢測到新的申領（所有類型），準備播放音效 ======="
             ),
-            console.log("當前待處理申領 IDs:", Array.from(w)),
+            console.log("當前待處理申領 IDs:", Array.from(g)),
             console.log("之前待處理申領 IDs:", Array.from(c.current)),
-            (C = !0)),
-          C &&
+            (N = !0)),
+          N &&
             (async () => {
               try {
-                await me.playNotification(),
+                await xe.playNotification(),
                   console.log("======= 音效播放完成 =======");
-              } catch (z) {
-                console.error("======= 音效播放失敗 =======", z);
+              } catch (D) {
+                console.error("======= 音效播放失敗 =======", D);
               }
             })(),
-          (o.current = f),
-          (c.current = w);
-      }, [e, d]);
-    const N = () => {
-        const f = me.toggle();
-        l(f);
+          (o.current = d),
+          (c.current = g);
+      }, [e, f]);
+    const y = () => {
+        const d = xe.toggle();
+        l(d);
       },
-      k = (f, w) => {
-        if (f === "等待過帳" && w === "緊急申領")
+      w = (d, g) => {
+        if (d === "等待過帳" && g === "緊急申領")
           return "border-red-500 bg-red-50";
-        switch (f) {
+        switch (d) {
           case "等待過帳":
             return "border-yellow-200 bg-yellow-50";
           case "已過帳":
@@ -17832,28 +17800,28 @@ const me = new X0(),
             return "border-gray-200 bg-white";
         }
       },
-      g = (f) => {
+      k = (d) => {
         try {
-          return new Date(f.replace(/\//g, "-")).toLocaleString("zh-TW", {
+          return new Date(d.replace(/\//g, "-")).toLocaleString("zh-TW", {
             month: "2-digit",
             day: "2-digit",
             hour: "2-digit",
             minute: "2-digit",
           });
         } catch {
-          return f;
+          return d;
         }
       },
-      h = [...e].sort((f, w) => {
-        if (f.state === "等待過帳" && f.actionType === "緊急申領") return -1;
-        if (w.state === "等待過帳" && w.actionType === "緊急申領") return 1;
-        const C = { 等待過帳: 0, 已過帳: 1, 已簽收: 2 },
-          z = C[f.state],
-          _ = C[w.state];
-        if (z !== _) return z - _;
+      p = [...e].sort((d, g) => {
+        if (d.state === "等待過帳" && d.actionType === "緊急申領") return -1;
+        if (g.state === "等待過帳" && g.actionType === "緊急申領") return 1;
+        const N = { 等待過帳: 0, 已過帳: 1, 已簽收: 2 },
+          D = N[d.state],
+          I = N[g.state];
+        if (D !== I) return D - I;
         try {
-          const I = new Date(f.requestTime.replace(/\//g, "-")).getTime();
-          return new Date(w.requestTime.replace(/\//g, "-")).getTime() - I;
+          const z = new Date(d.requestTime.replace(/\//g, "-")).getTime();
+          return new Date(g.requestTime.replace(/\//g, "-")).getTime() - z;
         } catch {
           return 0;
         }
@@ -17882,7 +17850,7 @@ const me = new X0(),
                     children: n.jsx(nr, { size: 18 }),
                   }),
                   n.jsx("button", {
-                    onClick: N,
+                    onClick: y,
                     className: `ml-2 p-2 rounded-lg transition-colors ${
                       s
                         ? "bg-green-100 text-green-600 hover:bg-green-200"
@@ -17905,7 +17873,7 @@ const me = new X0(),
                               type: "checkbox",
                               className: "sr-only peer",
                               checked: t,
-                              onChange: (f) => r(f.target.checked),
+                              onChange: (d) => r(d.target.checked),
                             }),
                             n.jsx("div", {
                               className:
@@ -17924,7 +17892,7 @@ const me = new X0(),
               n.jsxs("span", {
                 className: "text-sm text-gray-500",
                 children: [
-                  e.filter((f) => f.state === "等待過帳").length,
+                  e.filter((d) => d.state === "等待過帳").length,
                   " 項待處理",
                 ],
               }),
@@ -17936,7 +17904,7 @@ const me = new X0(),
           children: n.jsx("div", {
             className: "space-y-3 max-h-80 overflow-y-auto",
             children:
-              h.length === 0
+              p.length === 0
                 ? n.jsxs("div", {
                     className: "text-center text-gray-500 py-8",
                     children: [
@@ -17947,15 +17915,15 @@ const me = new X0(),
                       n.jsx("p", { children: "暫無藥品申領" }),
                     ],
                   })
-                : h.map(
-                    (f) => (
-                      f.state === "等待過帳" && f.actionType,
+                : p.map(
+                    (d) => (
+                      d.state === "等待過帳" && d.actionType,
                       n.jsxs(
                         "div",
                         {
-                          className: `p-3 border-2 rounded-lg transition-colors ${k(
-                            f.state,
-                            f.actionType
+                          className: `p-3 border-2 rounded-lg transition-colors ${w(
+                            d.state,
+                            d.actionType
                           )}`,
                           children: [
                             n.jsxs("div", {
@@ -17971,9 +17939,9 @@ const me = new X0(),
                                         n.jsx("span", {
                                           className:
                                             "text-sm font-semibold text-gray-700",
-                                          children: f.code,
+                                          children: d.code,
                                         }),
-                                        f.actionType === "緊急申領" &&
+                                        d.actionType === "緊急申領" &&
                                           n.jsxs("span", {
                                             className:
                                               "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-600 text-white",
@@ -17989,14 +17957,14 @@ const me = new X0(),
                                     }),
                                     n.jsx("h4", {
                                       className: "font-medium text-gray-800",
-                                      children: f.name,
+                                      children: d.name,
                                     }),
                                   ],
                                 }),
                                 n.jsx("span", {
                                   className:
                                     "px-2 py-1 rounded-lg text-xs font-medium bg-gray-100 text-gray-700",
-                                  children: f.state,
+                                  children: d.state,
                                 }),
                               ],
                             }),
@@ -18015,7 +17983,7 @@ const me = new X0(),
                                           className: "mr-2 text-gray-400",
                                         }),
                                         n.jsx("span", {
-                                          children: f.requestingUnit,
+                                          children: d.requestingUnit,
                                         }),
                                       ],
                                     }),
@@ -18030,7 +17998,7 @@ const me = new X0(),
                                           className: "font-medium",
                                           children: [
                                             "數量: ",
-                                            f.requestedQuantity,
+                                            d.requestedQuantity,
                                           ],
                                         }),
                                       ],
@@ -18047,7 +18015,7 @@ const me = new X0(),
                                     n.jsxs("span", {
                                       children: [
                                         "申請人: ",
-                                        f.requestingPerson,
+                                        d.requestingPerson,
                                       ],
                                     }),
                                   ],
@@ -18062,12 +18030,12 @@ const me = new X0(),
                                     n.jsxs("span", {
                                       children: [
                                         "申請時間: ",
-                                        g(f.requestTime),
+                                        k(d.requestTime),
                                       ],
                                     }),
                                   ],
                                 }),
-                                f.remarks &&
+                                d.remarks &&
                                   n.jsxs("div", {
                                     className:
                                       "mt-2 p-2 bg-gray-50 border border-gray-200 rounded text-xs",
@@ -18078,7 +18046,7 @@ const me = new X0(),
                                       }),
                                       n.jsx("span", {
                                         className: "text-gray-700",
-                                        children: f.remarks,
+                                        children: d.remarks,
                                       }),
                                     ],
                                   }),
@@ -18086,7 +18054,7 @@ const me = new X0(),
                             }),
                           ],
                         },
-                        f.id
+                        d.id
                       )
                     )
                   ),
@@ -18101,8 +18069,8 @@ const me = new X0(),
       [l, a] = j.useState(0),
       [i, o] = j.useState(0),
       c = Math.min(5, Math.max(1, t - 1)),
-      [u, d] = j.useState(me.getStatus()),
-      [m, p] = j.useState(() => {
+      [u, f] = j.useState(xe.getStatus()),
+      [m, h] = j.useState(() => {
         const S = localStorage.getItem("internalRequests_displayMode");
         return S || "all";
       }),
@@ -18110,17 +18078,17 @@ const me = new X0(),
         const S = localStorage.getItem("internalRequests_notifyMode");
         return S || "urgentOnly";
       }),
-      [N, k] = j.useState(() => {
+      [w, k] = j.useState(() => {
         const S = localStorage.getItem("internalRequests_reminderInterval");
         return S ? parseInt(S, 10) : 5;
       }),
-      g = j.useRef(new Set()),
-      h = j.useRef(new Set()),
-      f = j.useRef(!0),
-      w = j.useRef(e),
-      [C, z] = j.useState(Date.now());
+      p = j.useRef(new Set()),
+      d = j.useRef(new Set()),
+      g = j.useRef(!0),
+      N = j.useRef(e),
+      [D, I] = j.useState(Date.now());
     j.useEffect(() => {
-      w.current = e;
+      N.current = e;
     }, [e]),
       j.useEffect(() => {
         try {
@@ -18137,13 +18105,13 @@ const me = new X0(),
             );
             return;
           }
-          f.current &&
+          g.current &&
             e.length > 0 &&
             (console.log(
               "======= [InternalRequestsCarousel] 初始載入完成，開始監控申領通知 ======="
             ),
             console.log("[InternalRequestsCarousel] 通知模式:", x),
-            (f.current = !1));
+            (g.current = !1));
           const S = new Set(),
             b = new Set();
           e.forEach((U) => {
@@ -18174,7 +18142,7 @@ const me = new X0(),
             ),
             console.log(
               "[InternalRequestsCarousel] Previous urgent requests:",
-              g.current.size
+              p.current.size
             ),
             console.log(
               "[InternalRequestsCarousel] Current all requests:",
@@ -18182,15 +18150,15 @@ const me = new X0(),
             ),
             console.log(
               "[InternalRequestsCarousel] Previous all requests:",
-              h.current.size
+              d.current.size
             );
           let R = !1,
             A = [];
           if (
             (x === "urgentOnly"
-              ? ((A = Array.from(S).filter((U) => !g.current.has(U))),
+              ? ((A = Array.from(S).filter((U) => !p.current.has(U))),
                 A.length > 0 &&
-                  !f.current &&
+                  !g.current &&
                   (console.log(
                     "======= [InternalRequestsCarousel] 檢測到新的緊急申領，準備播放音效 ======="
                   ),
@@ -18200,7 +18168,7 @@ const me = new X0(),
                   ),
                   console.log(
                     "[InternalRequestsCarousel] 之前緊急申領 IDs:",
-                    Array.from(g.current)
+                    Array.from(p.current)
                   ),
                   console.log(
                     "[InternalRequestsCarousel] 新增的緊急申領 IDs:",
@@ -18208,9 +18176,9 @@ const me = new X0(),
                   ),
                   (R = !0)))
               : x === "all" &&
-                ((A = Array.from(b).filter((U) => !h.current.has(U))),
+                ((A = Array.from(b).filter((U) => !d.current.has(U))),
                 A.length > 0 &&
-                  !f.current &&
+                  !g.current &&
                   (console.log(
                     "======= [InternalRequestsCarousel] 檢測到新的申領（所有類型），準備播放音效 ======="
                   ),
@@ -18220,7 +18188,7 @@ const me = new X0(),
                   ),
                   console.log(
                     "[InternalRequestsCarousel] 之前待處理申領 IDs:",
-                    Array.from(h.current)
+                    Array.from(d.current)
                   ),
                   console.log("[InternalRequestsCarousel] 新增的申領 IDs:", A),
                   (R = !0))),
@@ -18235,7 +18203,7 @@ const me = new X0(),
             ),
             console.log(
               "[InternalRequestsCarousel] Is initial load:",
-              f.current
+              g.current
             ),
             R)
           ) {
@@ -18260,10 +18228,10 @@ const me = new X0(),
               "[InternalRequestsCarousel] 重置輪播計時器，時間戳:",
               U
             ),
-              z(U),
+              I(U),
               (async () => {
                 try {
-                  await me.playNotification(),
+                  await xe.playNotification(),
                     console.log(
                       "======= [InternalRequestsCarousel] 音效播放完成 ======="
                     );
@@ -18275,7 +18243,7 @@ const me = new X0(),
                 }
               })();
           } else
-            f.current
+            g.current
               ? console.log(
                   "[InternalRequestsCarousel] 初始載入中，跳過音效通知"
                 )
@@ -18283,7 +18251,7 @@ const me = new X0(),
                 console.log(
                   "[InternalRequestsCarousel] 無新的申領，跳過音效通知"
                 );
-          (g.current = new Set(S)), (h.current = new Set(b));
+          (p.current = new Set(S)), (d.current = new Set(b));
         } catch (S) {
           console.error(
             "[InternalRequestsCarousel] Error in urgent request detection:",
@@ -18296,7 +18264,7 @@ const me = new X0(),
           var A, U, je;
           const R = b;
           ((A = R.detail) == null ? void 0 : A.displayMode) !== void 0 &&
-            p(R.detail.displayMode),
+            h(R.detail.displayMode),
             ((U = R.detail) == null ? void 0 : U.notifyMode) !== void 0 &&
               y(R.detail.notifyMode),
             ((je = R.detail) == null ? void 0 : je.reminderInterval) !==
@@ -18311,9 +18279,9 @@ const me = new X0(),
         console.log(
           "======= [InternalRequestsCarousel] 設置定期提醒計時器 ======="
         ),
-          console.log("[InternalRequestsCarousel] 提醒間隔:", N, "分鐘");
+          console.log("[InternalRequestsCarousel] 提醒間隔:", w, "分鐘");
         const S = setInterval(() => {
-          const b = w.current.filter(
+          const b = N.current.filter(
             (R) => R.state === "等待過帳" && R.actionType === "緊急申領"
           );
           b.length > 0
@@ -18327,7 +18295,7 @@ const me = new X0(),
               ),
               (async () => {
                 try {
-                  await me.playNotification(),
+                  await xe.playNotification(),
                     console.log(
                       "======= [InternalRequestsCarousel] 定期提醒音效播放完成 ======="
                     );
@@ -18341,41 +18309,41 @@ const me = new X0(),
             : console.log(
                 "======= [InternalRequestsCarousel] 定期提醒：無未處理的緊急申領 ======="
               );
-        }, N * 60 * 1e3);
+        }, w * 60 * 1e3);
         return () => {
           console.log(
             "======= [InternalRequestsCarousel] 清除定期提醒計時器 ======="
           ),
             clearInterval(S);
         };
-      }, [N]);
-    const _ = e.filter((S) => S.actionType === "緊急申領").length,
-      I = e.filter((S) => S.actionType !== "緊急申領").length,
+      }, [w]);
+    const z = e.filter((S) => S.actionType === "緊急申領").length,
+      _ = e.filter((S) => S.actionType !== "緊急申領").length,
       v = e.length;
     j.useEffect(() => {
       if (m === "separate") {
         const S = [];
-        if (_ > c) {
+        if (z > c) {
           const b = setInterval(() => {
             a((R) => {
+              const A = R + c;
+              return A >= z ? 0 : A;
+            });
+          }, 8e3);
+          S.push(b);
+        }
+        if (_ > c) {
+          const b = setInterval(() => {
+            o((R) => {
               const A = R + c;
               return A >= _ ? 0 : A;
             });
           }, 8e3);
           S.push(b);
         }
-        if (I > c) {
-          const b = setInterval(() => {
-            o((R) => {
-              const A = R + c;
-              return A >= I ? 0 : A;
-            });
-          }, 8e3);
-          S.push(b);
-        }
         return () => S.forEach((b) => clearInterval(b));
       } else {
-        const S = m === "urgentOnly" ? _ : v;
+        const S = m === "urgentOnly" ? z : v;
         if (S > c) {
           const b = setInterval(() => {
             s((R) => {
@@ -18386,10 +18354,10 @@ const me = new X0(),
           return () => clearInterval(b);
         }
       }
-    }, [_, I, v, m, c, C]);
-    const D = () => {
-        const S = me.toggle();
-        d(S);
+    }, [z, _, v, m, c, D]);
+    const E = () => {
+        const S = xe.toggle();
+        f(S);
       },
       L = (S, b) => {
         if (S === "等待過帳" && b === "緊急申領")
@@ -18597,7 +18565,7 @@ const me = new X0(),
                   ],
                 }),
                 n.jsx("button", {
-                  onClick: D,
+                  onClick: E,
                   className: `p-2 rounded-lg transition-colors ${
                     u
                       ? "bg-green-100 text-green-600 hover:bg-green-200"
@@ -18779,7 +18747,7 @@ const me = new X0(),
     }
     const F =
         m === "urgentOnly" ? P.filter((S) => S.actionType === "緊急申領") : P,
-      E = F.slice(r, r + c);
+      C = F.slice(r, r + c);
     return n.jsxs("div", {
       className:
         "bg-white rounded-lg shadow-sm border border-gray-200 h-full flex flex-col min-h-0 max-h-full",
@@ -18837,7 +18805,7 @@ const me = new X0(),
         }),
         n.jsx("div", {
           className: "flex-1 p-1 min-h-0 overflow-hidden flex flex-col gap-2",
-          children: E.map((S) =>
+          children: C.map((S) =>
             n.jsx("div", { className: "flex-1 min-h-0", children: se(S) }, S.id)
           ),
         }),
@@ -18882,8 +18850,8 @@ const me = new X0(),
         _0(o);
       }, [o]),
       j.useEffect(() => {
-        const m = (p) => {
-          p.key === "Escape" && t();
+        const m = (h) => {
+          h.key === "Escape" && t();
         };
         return (
           e &&
@@ -18895,11 +18863,11 @@ const me = new X0(),
           }
         );
       }, [e, t]);
-    const u = (m, p) => {
-        c((x) => ({ ...x, [m]: { ...x[m], position: p } }));
+    const u = (m, h) => {
+        c((x) => ({ ...x, [m]: { ...x[m], position: h } }));
       },
-      d = (m, p) => {
-        c((x) => ({ ...x, [m]: { ...x[m], ...p } }));
+      f = (m, h) => {
+        c((x) => ({ ...x, [m]: { ...x[m], ...h } }));
       };
     return e
       ? n.jsxs("div", {
@@ -18962,7 +18930,7 @@ const me = new X0(),
               className: "flex-1 p-3 overflow-hidden",
               children: n.jsx("div", {
                 className: "h-full grid grid-cols-8 grid-rows-6 gap-4",
-                children: Object.entries(l).some(([m, p]) => p)
+                children: Object.entries(l).some(([m, h]) => h)
                   ? n.jsxs(n.Fragment, {
                       children: [
                         l.bulletins &&
@@ -18970,7 +18938,7 @@ const me = new X0(),
                             sectionKey: "bulletins",
                             gridData: o.bulletins,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.bulletins.position, {
                               row: o.bulletins.row,
                               col: o.bulletins.col,
@@ -18985,7 +18953,7 @@ const me = new X0(),
                             sectionKey: "tasks",
                             gridData: o.tasks,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.tasks.position, {
                               row: o.tasks.row,
                               col: o.tasks.col,
@@ -19002,7 +18970,7 @@ const me = new X0(),
                             sectionKey: "incomingDrugs",
                             gridData: o.incomingDrugs,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.incomingDrugs.position, {
                               row: o.incomingDrugs.row,
                               col: o.incomingDrugs.col,
@@ -19017,7 +18985,7 @@ const me = new X0(),
                             sectionKey: "outOfStock",
                             gridData: o.outOfStock,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.outOfStock.position, {
                               row: o.outOfStock.row,
                               col: o.outOfStock.col,
@@ -19032,7 +19000,7 @@ const me = new X0(),
                             sectionKey: "drugReplacements",
                             gridData: o.drugReplacements,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.drugReplacements.position, {
                               row: o.drugReplacements.row,
                               col: o.drugReplacements.col,
@@ -19047,7 +19015,7 @@ const me = new X0(),
                             sectionKey: "inventory",
                             gridData: o.inventory,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.inventory.position, {
                               row: o.inventory.row,
                               col: o.inventory.col,
@@ -19062,7 +19030,7 @@ const me = new X0(),
                             sectionKey: "internalRequests",
                             gridData: o.internalRequests,
                             onPositionChange: u,
-                            onSizeChange: d,
+                            onSizeChange: f,
                             gridArea: $t(o.internalRequests.position, {
                               row: o.internalRequests.row,
                               col: o.internalRequests.col,
@@ -19155,8 +19123,8 @@ const me = new X0(),
           ),
             await t(),
             (c.current = e);
-          const p = Date.now() - m,
-            x = Math.max(0, e - p);
+          const h = Date.now() - m,
+            x = Math.max(0, e - h);
           console.log(
             "[useRobustPolling] Poll completed successfully, next poll in",
             x,
@@ -19167,8 +19135,8 @@ const me = new X0(),
             (o.current = setTimeout(() => {
               l && r && !i.current && u();
             }, x));
-        } catch (p) {
-          console.error("[useRobustPolling] Poll failed:", p),
+        } catch (h) {
+          console.error("[useRobustPolling] Poll failed:", h),
             (c.current = Math.min(c.current * 1.5, s)),
             console.log("[useRobustPolling] Retrying in", c.current, "ms"),
             o.current && clearTimeout(o.current),
@@ -19396,7 +19364,7 @@ const me = new X0(),
     );
   },
   lh = () => {
-    var v, D, L, $, B, se, ae;
+    var v, E, L, $, B, se, ae;
     const { t: e } = Fr();
     sh();
     const t = nd(),
@@ -19404,13 +19372,13 @@ const me = new X0(),
       [l, a] = j.useState(!0),
       [i, o] = j.useState(null),
       [c, u] = j.useState(null),
-      [d, m] = j.useState(!0),
-      [p, x] = j.useState(!1),
-      [y, N] = j.useState(() => {
+      [f, m] = j.useState(!0),
+      [h, x] = j.useState(!1),
+      [y, w] = j.useState(() => {
         const M = localStorage.getItem("dashboard_refresh_interval");
         return M ? parseInt(M, 10) : 20;
       }),
-      [k, g] = j.useState({
+      [k, p] = j.useState({
         bulletins: !0,
         tasks: !0,
         incomingDrugs: !0,
@@ -19419,9 +19387,9 @@ const me = new X0(),
         inventory: !0,
         internalRequests: !0,
       }),
-      h = Rn(),
-      f = h ? `${h.Name} - ${h.Employer}` : "鴻森智能科技 - 臨床藥事科",
-      w = j.useCallback(async () => {
+      d = Rn(),
+      g = d ? `${d.Name} - ${d.Employer}` : "鴻森智能科技 - 臨床藥事科",
+      N = j.useCallback(async () => {
         try {
           console.log("[PrescriptionQueryPage] Loading dashboard data..."),
             o(null);
@@ -19461,7 +19429,7 @@ const me = new X0(),
           a(!1);
         }
       }, []);
-    rh({ intervalMs: y * 1e3, onPoll: w, enabled: !0 }),
+    rh({ intervalMs: y * 1e3, onPoll: N, enabled: !0 }),
       j.useEffect(() => {
         console.log(
           "[PrescriptionQueryPage] Setting up page auto-reload every 15 minutes"
@@ -19484,31 +19452,31 @@ const me = new X0(),
           (console.log(
             "[PrescriptionQueryPage] Page became visible, forcing data refresh"
           ),
-          w());
-      }, [t, w]),
+          N());
+      }, [t, N]),
       j.useEffect(() => {
         (async () => {
           try {
             const X = D0();
-            g(X), await Ku(), await w();
+            p(X), await Ku(), await N();
           } catch (X) {
             console.error("Failed to initialize:", X),
               o("初始化失敗，請重新整理頁面");
           }
         })();
-      }, [w]);
-    const C = () => {
-        a(!0), w();
+      }, [N]);
+    const D = () => {
+        a(!0), N();
       },
-      z = () => {
-        w();
+      I = () => {
+        N();
       },
-      _ = (M, X) => {
+      z = (M, X) => {
         const P = { ...k, [M]: X };
-        g(P), I0(P);
+        p(P), I0(P);
       },
-      I = (M) => {
-        N(M),
+      _ = (M) => {
+        w(M),
           localStorage.setItem("dashboard_refresh_interval", M.toString()),
           console.log(
             "[PrescriptionQueryPage] Refresh interval updated to",
@@ -19561,7 +19529,7 @@ const me = new X0(),
                                 }),
                                 n.jsx("p", {
                                   className: "text-gray-600 text-sm",
-                                  children: f,
+                                  children: g,
                                 }),
                               ],
                             }),
@@ -19642,7 +19610,7 @@ const me = new X0(),
                                 }),
                                 n.jsx("p", {
                                   className: "text-gray-600 text-sm",
-                                  children: f,
+                                  children: g,
                                 }),
                               ],
                             }),
@@ -19673,7 +19641,7 @@ const me = new X0(),
                           children: i,
                         }),
                         n.jsx("button", {
-                          onClick: C,
+                          onClick: D,
                           className:
                             "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
                           children: "重新載入",
@@ -19736,7 +19704,7 @@ const me = new X0(),
                                 }),
                                 n.jsx("p", {
                                   className: "text-gray-600 text-sm",
-                                  children: f,
+                                  children: g,
                                 }),
                               ],
                             }),
@@ -19757,7 +19725,7 @@ const me = new X0(),
                                     ],
                                   }),
                                 n.jsx("button", {
-                                  onClick: C,
+                                  onClick: D,
                                   disabled: l,
                                   className:
                                     "p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
@@ -19800,9 +19768,9 @@ const me = new X0(),
                         className: "lg:col-span-2 xl:col-span-2",
                         children: n.jsx(Yu, {
                           bulletins: r.bulletins,
-                          onBulletinAdded: z,
+                          onBulletinAdded: I,
                           showInFocus: k.bulletins,
-                          onFocusToggle: (M) => _("bulletins", M),
+                          onFocusToggle: (M) => z("bulletins", M),
                           error: (v = r.errors) == null ? void 0 : v.bulletins,
                         }),
                       }),
@@ -19813,15 +19781,15 @@ const me = new X0(),
                           receivingTasks: r.receivingTasks,
                           putAwayTasks: r.putAwayTasks,
                           showInFocus: k.tasks,
-                          onFocusToggle: (M) => _("tasks", M),
-                          error: (D = r.errors) == null ? void 0 : D.tasks,
+                          onFocusToggle: (M) => z("tasks", M),
+                          error: (E = r.errors) == null ? void 0 : E.tasks,
                         }),
                       }),
                       n.jsx("div", {
                         children: n.jsx(Ju, {
                           incomingDrugs: r.incomingDrugs,
                           showInFocus: k.incomingDrugs,
-                          onFocusToggle: (M) => _("incomingDrugs", M),
+                          onFocusToggle: (M) => z("incomingDrugs", M),
                           error:
                             (L = r.errors) == null ? void 0 : L.incomingDrugs,
                         }),
@@ -19829,9 +19797,9 @@ const me = new X0(),
                       n.jsx("div", {
                         children: n.jsx(Zu, {
                           outOfStockItems: r.outOfStockItems,
-                          onItemAdded: z,
+                          onItemAdded: I,
                           showInFocus: k.outOfStock,
-                          onFocusToggle: (M) => _("outOfStock", M),
+                          onFocusToggle: (M) => z("outOfStock", M),
                           error: ($ = r.errors) == null ? void 0 : $.outOfStock,
                         }),
                       }),
@@ -19839,7 +19807,7 @@ const me = new X0(),
                         children: n.jsx(ed, {
                           drugReplacements: r.drugReplacements,
                           showInFocus: k.drugReplacements,
-                          onFocusToggle: (M) => _("drugReplacements", M),
+                          onFocusToggle: (M) => z("drugReplacements", M),
                           error:
                             (B = r.errors) == null
                               ? void 0
@@ -19850,7 +19818,7 @@ const me = new X0(),
                         children: n.jsx(td, {
                           inventoryHighlights: r.inventoryHighlights,
                           showInFocus: k.inventory,
-                          onFocusToggle: (M) => _("inventory", M),
+                          onFocusToggle: (M) => z("inventory", M),
                           error:
                             (se = r.errors) == null ? void 0 : se.inventory,
                         }),
@@ -19860,7 +19828,7 @@ const me = new X0(),
                         children: n.jsx(rd, {
                           internalRequests: r.internalRequests,
                           showInFocus: k.internalRequests,
-                          onFocusToggle: (M) => _("internalRequests", M),
+                          onFocusToggle: (M) => z("internalRequests", M),
                           error:
                             (ae = r.errors) == null
                               ? void 0
@@ -19873,16 +19841,16 @@ const me = new X0(),
               }),
             }),
             n.jsx(th, {
-              isOpen: d,
+              isOpen: f,
               onClose: () => m(!1),
               dashboardData: r,
               lastRefresh: c,
               sectionVisibility: k,
             }),
             n.jsx(nh, {
-              isOpen: p,
+              isOpen: h,
               onClose: () => x(!1),
-              onSave: I,
+              onSave: _,
               currentInterval: y,
             }),
             n.jsx("footer", {
@@ -19900,18 +19868,18 @@ const me = new X0(),
       [l, a] = j.useState(""),
       [i, o] = j.useState(null),
       [c, u] = j.useState(!1),
-      d = async (m) => {
+      f = async (m) => {
         m.preventDefault(), o(null), u(!0);
         try {
-          const p = await Vm({ ID: r, Password: l });
-          p.Code === 200
-            ? (Hm(p.Data), e())
-            : p.Code === -1 || p.Code === -2
-            ? o(p.Result)
+          const h = await Vm({ ID: r, Password: l });
+          h.Code === 200
+            ? (Hm(h.Data), e())
+            : h.Code === -1 || h.Code === -2
+            ? o(h.Result)
             : o(t("error.api"));
-        } catch (p) {
-          console.error("Login error:", p),
-            o(p instanceof Error ? p.message : t("error.api"));
+        } catch (h) {
+          console.error("Login error:", h),
+            o(h instanceof Error ? h.message : t("error.api"));
         } finally {
           u(!1);
         }
@@ -19936,7 +19904,7 @@ const me = new X0(),
               ],
             }),
           n.jsxs("form", {
-            onSubmit: d,
+            onSubmit: f,
             className: "space-y-6",
             children: [
               n.jsxs("div", {

@@ -9864,7 +9864,7 @@ const Pt = new eh(),
       [re, X] = f.useState(null),
       [B, ce] = f.useState(null),
       W = () => {
-        sessionStorage.removeItem("user_session"), n(!1), o(null);
+        localStorage.removeItem("user_session"), n(!1), o(null);
       },
       Q = f.useCallback(() => {
         _((Te) => Te + 1);
@@ -24931,7 +24931,7 @@ const Mh = async (e) => {
           const _ = await De.login({ ID: s.trim(), Password: l });
           if (_.Code === 200 && _.Data) {
             const u = { ..._.Data, loginTime: new Date().toISOString() };
-            sessionStorage.setItem("user_session", JSON.stringify(u)), t(u);
+            localStorage.setItem("user_session", JSON.stringify(u)), t(u);
           } else p(_.Result || "Login failed");
         } catch (_) {
           console.error("Login failed:", _),
@@ -25212,16 +25212,16 @@ function Kh() {
   f.useEffect(() => {
     (() => {
       try {
-        const w = sessionStorage.getItem("user_session");
+        const w = localStorage.getItem("user_session");
         if (w) {
           const U = JSON.parse(w);
           U.GUID && U.ID && U.Name
             ? (o(U), s(!0))
-            : sessionStorage.removeItem("user_session");
+            : localStorage.removeItem("user_session");
         }
       } catch (w) {
         console.error("Error checking session:", w),
-          sessionStorage.removeItem("user_session");
+          localStorage.removeItem("user_session");
       }
     })();
   }, [s, o]),
