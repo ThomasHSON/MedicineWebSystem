@@ -34,6 +34,10 @@ let fake_icon_popup_data = [
     short_name: "註解",
     name: "醫師註解",
   },
+  {
+    short_name: "備註",
+    name: "備註編輯",
+  },
 ];
 
 // 調劑畫面生成
@@ -1437,6 +1441,7 @@ function set_pbm_main_container() {
     med_card_open_tigger.classList.add("med_card_open_tigger");
     med_card_open_tigger.src = "../image/left-arrow.png";
     med_card_open_tigger.setAttribute("trigger", false);
+    med_card_open_tigger.setAttribute("guid", element.GUID);
 
     let med_card_mid_display_container = document.createElement("div");
     med_card_mid_display_container.classList.add(
@@ -1640,6 +1645,12 @@ function set_pbm_main_container() {
               //    set_pppns_func(element.med_cloud[0].note);
               popup_physician_notes_div_open();
             }
+          });
+          break;
+        case "備註":
+          med_detail_info_div.addEventListener("click", () => {
+            popup_edit_note_div_open();
+            set_edit_note_info(element);
           });
           break;
 
