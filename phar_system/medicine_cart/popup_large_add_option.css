@@ -1,0 +1,86 @@
+.popup_large_add_option_div {
+  width: 92vw;
+  width: 92svw;
+  max-width: 480px;
+  display: flex !important;
+  justify-content: start !important;
+  justify-content: flex-start !important;
+  flex-direction: column;
+}
+.pplao_header_container {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.pplao_h_title {
+  padding: 8px 24px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(222, 222, 222);
+  color: #000000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+.pplao_h_title_content {
+  padding-left: 12px;
+}
+.pplao_h_current_cart_select {
+  border-radius: 5px;
+  padding: 2px 6px;
+  border: none;
+  font-size: 16px;
+  width: 140px;
+  text-align: center;
+}
+.pplao_h_close_btn {
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  width: 36px;
+  top: 0px;
+  right: 0px;
+}
+.pplao_main_container {
+  width: 100%;
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pplao_footer_container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.pplao_main_cpoe_med_container {
+  margin-top: 12px;
+}
+.pplao_main_cpoe_med_name {
+  padding-bottom: 8px;
+}
+.pplao_main_cpoe_med_code {
+  padding-top: 8px;
+}
+.pplao_main_note_container {
+  margin-top: 16px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 1200px) {
+}
+@media screen and (max-width: 550px) {
+}

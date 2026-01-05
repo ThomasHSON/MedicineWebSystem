@@ -110,6 +110,10 @@ function get_ppen_footer() {
       };
 
       let return_data = await update_cpoe_note_api(post_data);
+      api_logger_add(
+        `${current_cart.hnursta}-${current_p_bed_data.bednum} \n${temp_guid} 處方備註更新`,
+        "update note"
+      );
       if (return_data.Code != 200) {
         alert(`編輯錯誤：${return_data.Result}`);
       } else {

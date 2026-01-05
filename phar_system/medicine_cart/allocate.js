@@ -1350,13 +1350,17 @@ function set_pbm_main_container() {
 
     let med_card_type_select = document.createElement("select");
     med_card_type_select.classList.add("med_card_type_select");
+    med_card_type_select.id = `med_card_type_select_${element.GUID}`;
+    med_card_type_select.setAttribute("guid", element.GUID);
 
-    med_card_type_select.addEventListener("change", async () => {
-      let temp_selected = element.large;
-      let post_data = {
-        ValueAry: [element.GUID, med_card_type_select.value],
-      };
-      if (confirm("該處方藥品是否取消大瓶藥標記？")) {
+    med_card_type_select.addEventListener("change", async (e) => {
+      if (e.target.value == "其他") {
+        popup_large_add_option_div_open();
+        set_cpoe_data_option(element, index);
+      } else {
+        let post_data = {
+          ValueAry: [element.GUID, med_card_type_select.value],
+        };
         api_logger_add(
           `${current_cart.hnursta}-${current_p_bed_data.bednum} \n${element.GUID} 大瓶藥標記變更`,
           "select change"
@@ -1364,14 +1368,9 @@ function set_pbm_main_container() {
         let return_data = await update_large_in_med_cpoe(post_data);
         if (return_data.Code == 200) {
           console.log("成功變更");
+          current_p_bed_data["cpoe"][index].large = med_card_type_select.value;
         } else {
           alert("變更失敗請確認資料");
-        }
-      } else {
-        if (temp_selected == "L") {
-          med_card_type_select.value = "";
-        } else {
-          med_card_type_select.value = temp_selected;
         }
         return;
       }
@@ -1421,6 +1420,42 @@ function set_pbm_main_container() {
             med_card_type_select.appendChild(med_card_type_option);
           }
 
+          let cpoeOptions = [];
+
+          const raw = localStorage.getItem("cpoe_options");
+
+          if (raw !== null) {
+            try {
+              const parsed = JSON.parse(raw);
+
+              if (Array.isArray(parsed)) {
+                cpoeOptions = parsed;
+
+                for (let index = 0; index < cpoeOptions.length; index++) {
+                  const item = cpoeOptions[index];
+
+                  let med_card_type_option = document.createElement("option");
+                  med_card_type_option.classList.add("med_card_type_option");
+                  med_card_type_option.value = item;
+                  med_card_type_option.innerHTML = item;
+
+                  med_card_type_select.appendChild(med_card_type_option);
+                }
+              } else {
+                console.warn("cpoe_options 不是陣列，已忽略");
+              }
+            } catch (e) {
+              console.error("cpoe_options JSON 解析失敗", e);
+            }
+          }
+
+          let med_card_big_type_option = document.createElement("option");
+          med_card_big_type_option.classList.add("med_card_big_type_option");
+          med_card_big_type_option.value = "L";
+          med_card_big_type_option.innerHTML = "大瓶";
+
+          med_card_type_select.appendChild(med_card_big_type_option);
+
           let med_card_type_option = document.createElement("option");
           med_card_type_option.classList.add("med_card_type_option");
           med_card_type_option.value = "其他";
@@ -1429,7 +1464,7 @@ function set_pbm_main_container() {
           med_card_type_select.appendChild(med_card_type_option);
 
           if (element.large == "L") {
-            med_card_type_select.value = "";
+            med_card_type_select.value = "L";
           } else {
             med_card_type_select.value = element.large;
           }
