@@ -10746,7 +10746,7 @@ const Ku = async () => {
                         rows: 6,
                         className:
                           "w-full px-3 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical disabled:opacity-50 disabled:bg-gray-100",
-                        placeholder: "請輸入公告內容",
+                        placeholder: "請輸入公告內容，上限300字。",
                       }),
                     ],
                   }),

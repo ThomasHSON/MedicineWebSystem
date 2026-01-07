@@ -9822,10 +9822,10 @@ const Pt = new eh(),
   nh = ({ children: e }) => {
     const [t, n] = f.useState(!1),
       [s, o] = f.useState(null),
-      [l, a] = f.useState(!1),
+      [l, a] = f.useState(!0),
       [i, c] = f.useState(null),
       [h, g] = f.useState(null),
-      [m, p] = f.useState("medicine"),
+      [m, p] = f.useState("department"),
       [j, b] = f.useState(!1),
       [k, _] = f.useState(0),
       [u, d] = f.useState({ message: "", type: "success", isVisible: !1 }),
@@ -10264,8 +10264,8 @@ const Pt = new eh(),
       "nav.home": "返回首頁",
       "nav.expandSidebar": "展開側邊欄",
       "nav.collapseSidebar": "收合側邊欄",
-      "topbar.medicine": "藥品",
-      "topbar.department": "部門",
+      "topbar.medicine": "編輯",
+      "topbar.department": "視圖",
       "topbar.language": "中文",
       "topbar.logout": "登出",
       "sidebar.drugMap": "藥品地圖",
@@ -10344,8 +10344,8 @@ const Pt = new eh(),
       "nav.home": "Back to Home",
       "nav.expandSidebar": "Expand Sidebar",
       "nav.collapseSidebar": "Collapse Sidebar",
-      "topbar.medicine": "Medicine",
-      "topbar.department": "Department",
+      "topbar.medicine": "Edit",
+      "topbar.department": "View",
       "topbar.language": "English",
       "topbar.logout": "Logout",
       "sidebar.drugMap": "Drug Map",
@@ -10974,21 +10974,6 @@ const Pt = new eh(),
                   className: "flex items-center bg-gray-100 rounded-lg p-1",
                   children: [
                     r.jsxs("button", {
-                      onClick: () => t("medicine"),
-                      className: `flex items-center space-x-2 px-3 py-1.5 rounded-md transition-all duration-300 ease-in-out transform ${
-                        e === "medicine"
-                          ? "bg-white text-green-600 shadow-sm scale-105"
-                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:scale-102"
-                      }`,
-                      children: [
-                        r.jsx(gh, { className: "w-4 h-4" }),
-                        r.jsx("span", {
-                          className: "text-sm font-medium",
-                          children: g("topbar.medicine"),
-                        }),
-                      ],
-                    }),
-                    r.jsxs("button", {
                       onClick: () => t("department"),
                       className: `flex items-center space-x-2 px-3 py-1.5 rounded-md transition-all duration-300 ease-in-out transform ${
                         e === "department"
@@ -11000,6 +10985,21 @@ const Pt = new eh(),
                         r.jsx("span", {
                           className: "text-sm font-medium",
                           children: g("topbar.department"),
+                        }),
+                      ],
+                    }),
+                    r.jsxs("button", {
+                      onClick: () => t("medicine"),
+                      className: `flex items-center space-x-2 px-3 py-1.5 rounded-md transition-all duration-300 ease-in-out transform ${
+                        e === "medicine"
+                          ? "bg-white text-green-600 shadow-sm scale-105"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:scale-102"
+                      }`,
+                      children: [
+                        r.jsx(gh, { className: "w-4 h-4" }),
+                        r.jsx("span", {
+                          className: "text-sm font-medium",
+                          children: g("topbar.medicine"),
                         }),
                       ],
                     }),
@@ -13567,7 +13567,7 @@ const hs = new kh(),
         children: [
           r.jsx("div", {
             className:
-              "absolute md:bottom-4 md:left-4 bottom-16 left-[50%] md:translate-x-[0%] translate-x-[-50%] z-10",
+              "absolute lg:bottom-4 lg:left-4 bottom-16 left-[50%] lg:translate-x-[0%] translate-x-[-50%] z-10",
             children: r.jsxs("div", {
               className:
                 "bg-white rounded-lg shadow-lg flex items-center overflow-hidden border border-gray-200",
