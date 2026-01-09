@@ -156,7 +156,7 @@ function popup_med_serch_content_init() {
   const radio_content_DIANAME_text = document.createElement("div");
   My_Div.Set_Text(
     radio_content_DIANAME_text,
-    "商品名",
+    "學名",
     TextAlignEnum.CENTER,
     "16px",
     false,
@@ -423,7 +423,7 @@ function popup_med_serch_typeSerch(text) {
     med = popup_med_serch_medclass.filter(function (item) {
       return item.DIANAME.toUpperCase().includes(text.toUpperCase());
     });
-    console.log("搜尋商品名結果", med);
+    console.log("搜尋學名結果", med);
   } else if (radio_content_CHT_NAME.checked == true) {
     med = popup_med_serch_medclass.filter(function (item) {
       return item.CHT_NAME.toUpperCase().includes(text.toUpperCase());

@@ -272,10 +272,6 @@ async function page_Init(data) {
     JustifyContentEnum.CENTER
   );
 
-  let header_div = document.querySelector(".header_div");
-  let temp_height = header_div.offsetHeight;
-  main_div.style.paddingTop = `${temp_height + 10}px`;
-
   main_div.style.flexWrap = "wrap";
   main_div.style.overflowX = "hidden";
   main_div.style.overflowY = "hidden";
@@ -452,7 +448,7 @@ function get_header() {
     JustifyContentEnum.LEFT
   );
   // My_Div.Set_position(header_div ,PositionEnum.FIXED ,0,0);
-  header_div.style.overflowX = "hidden";
+  // header_div.style.overflowX = "hidden";
 
   //盤點作業標題
   const header_title_text = document.createElement("div");
@@ -726,8 +722,8 @@ function get_header() {
     header_serch_text,
     "header_serch_text",
     "header_serch_text",
-    "250px",
-    "30px",
+    "360px",
+    "",
     ""
   );
   My_Div.Set_Text(
@@ -747,22 +743,24 @@ function get_header() {
     JustifyContentEnum.CENTER
   );
   header_serch_text.placeholder = "藥碼/料號/條碼 輸入搜尋";
-  header_serch_text.style.marginTop = "5px";
   header_serch_text.style.borderRadius = "5px";
   header_serch_text.style.border = "2px solid gray";
   header_serch_text.type = "email";
   header_serch_text.inputMode = "text";
   header_serch_text.style.textAlign = "left";
-  header_serch_text.style.paddingLeft = "6px";
+  header_serch_text.style.padding = "4px 6px";
+  header_serch_text.style.boxSizing = "border-box";
   header_serch_text.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
       serch_CODE_input_enter(header_serch_text.value);
       header_serch_text.value = "";
     }
   });
-  header_serch_text.addEventListener("blur", function (event) {
-    serch_CODE_input_enter(header_serch_text.value);
-    header_serch_text.value = "";
+  header_serch_text.addEventListener("blur", (event) => {
+    setTimeout(() => {
+      header_blur_search_result_container.innerHTML = "";
+      header_blur_search_result_container.style.display = "none";
+    }, 100);
   });
 
   let header_search_text_img_icon = document.createElement("img");
@@ -770,8 +768,121 @@ function get_header() {
   header_search_text_img_icon.src = "../image/camara.png";
   header_search_text_img_icon.addEventListener("click", () => {});
 
-  header_search_text_container.appendChild(header_serch_text);
-  header_search_text_container.appendChild(header_search_text_img_icon);
+  const header_search_barcode_container = document.createElement("div");
+  header_search_barcode_container.classList.add(
+    "header_search_barcode_container"
+  );
+
+  header_search_barcode_container.appendChild(header_serch_text);
+  header_search_barcode_container.appendChild(header_search_text_img_icon);
+
+  // const header_blur_search_container = document.createElement("div");
+  // header_blur_search_container.classList.add("header_blur_search_container");
+
+  // const header_blur_search_input = document.createElement("input");
+  // header_blur_search_input.classList.add("header_blur_search_input");
+  // header_blur_search_input.id = "header_blur_search_input";
+  // header_blur_search_input.setAttribute("for", "header_blur_search_input");
+  // header_blur_search_input.type = "text";
+  // header_blur_search_input.placeholder = "藥碼/藥名 模糊搜尋";
+
+  // // header_blur_search_input.addEventListener("focus", () => {
+  // //   window.removeEventListener("keydown", get_barcode_input_event);
+  // //   window.removeEventListener("keydown", barcode_keydown);
+  // // });
+
+  // // header_blur_search_input.addEventListener("blur", () => {
+  // //   window.addEventListener("keydown", get_barcode_input_event);
+  // //   window.addEventListener("keydown", barcode_keydown);
+  // // });
+
+  header_serch_text.addEventListener("input", (e) => {
+    if (e.target.value == "") {
+      header_blur_search_result_container.innerHTML = "";
+      header_blur_search_result_container.style.display = "none";
+    } else {
+      let keyword = e.target.value;
+      keyword = keyword.toLowerCase();
+      let temp_search_data = data.Data[0].Contents;
+      let blur_result = temp_search_data.filter(
+        ({ CODE, CHT_NAME, NAME, SKDIACODE }) => {
+          return [CODE, CHT_NAME, NAME, SKDIACODE].some((str) =>
+            String(str)?.toLowerCase().includes(keyword)
+          );
+        }
+      );
+      console.log(blur_result);
+      if (blur_result.length == 0) {
+        header_blur_search_result_container.innerHTML = "";
+        header_blur_search_result_container.style.display = "flex";
+        let header_result_card = document.createElement("div");
+        header_result_card.classList.add("header_result_card");
+        header_result_card.innerHTML = "查無藥品";
+        header_blur_search_result_container.appendChild(header_result_card);
+      } else {
+        header_blur_search_result_container.innerHTML = "";
+        header_blur_search_result_container.style.display = "flex";
+        blur_result.forEach((element) => {
+          let header_result_card = document.createElement("div");
+          header_result_card.classList.add("header_result_card");
+          header_result_card.setAttribute("GUID", element.GUID);
+          header_result_card.addEventListener("click", (e) => {
+            e.preventDefault();
+            const GUID = header_result_card.getAttribute("GUID");
+            for (var i = 0; i < data.Data[0].Contents.length; i++) {
+              if (data.Data[0].Contents[i].GUID == GUID) {
+                show_popup_input(data.Data[0].Contents[i], true, true);
+                header_serch_text.value = "";
+                header_blur_search_result_container.innerHTML = "";
+                header_blur_search_result_container.style.display = "none";
+                return;
+              }
+            }
+          });
+
+          let hrc_name = document.createElement("div");
+          hrc_name.classList.add("hrc_name");
+          hrc_name.classList.add("hrc_content");
+          hrc_name.innerHTML = element.NAME;
+
+          let hrc_cht_name = document.createElement("div");
+          hrc_cht_name.classList.add("hrc_cht_name");
+          hrc_cht_name.classList.add("hrc_content");
+          hrc_cht_name.innerHTML = element.CHT_NAME;
+
+          let hrc_code_container = document.createElement("div");
+          hrc_code_container.classList.add("hrc_code_container");
+
+          let hrc_code = document.createElement("div");
+          hrc_code.classList.add("hrc_code");
+          hrc_code.classList.add("hrc_content");
+          hrc_code.innerHTML = element.CODE;
+
+          let hrc_sdk = document.createElement("div");
+          hrc_sdk.classList.add("hrc_sdk");
+          hrc_sdk.classList.add("hrc_content");
+          hrc_sdk.innerHTML = element.SKDIACODE;
+
+          hrc_code_container.appendChild(hrc_code);
+          hrc_code_container.appendChild(hrc_sdk);
+
+          header_result_card.appendChild(hrc_name);
+          header_result_card.appendChild(hrc_cht_name);
+          header_result_card.appendChild(hrc_code_container);
+
+          header_blur_search_result_container.appendChild(header_result_card);
+        });
+      }
+    }
+  });
+
+  const header_blur_search_result_container = document.createElement("div");
+  header_blur_search_result_container.classList.add(
+    "header_blur_search_result_container"
+  );
+
+  header_search_text_container.appendChild(header_search_barcode_container);
+  header_search_text_container.appendChild(header_blur_search_result_container);
   header_div.appendChild(header_search_text_container);
 
   //狀態列
@@ -856,10 +967,8 @@ function get_main() {
 
   main_div.style.flexWrap = "wrap";
   main_div.style.overflowX = "hidden";
-  main_div.style.overflowY = "hidden";
+  // main_div.style.overflowY = "hidden";
 
-  const header_div = document.querySelector("#header_div");
-  console.log("header_div", header_div.offsetHeight);
   return main_div;
 }
 function get_row(Sub_Content) {
