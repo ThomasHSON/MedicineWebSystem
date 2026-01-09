@@ -9311,21 +9311,19 @@ class Zm {
       body: JSON.stringify(n),
     });
   }
-  async lightByCodeNameType(t, n, s, o, l) {
-    const a = {
-      Method: "light_by_code_name_type",
-      ValueAry: [
-        `ServerName=${t}`,
-        `ServerType=${n}`,
-        `code=${s}`,
-        `color=${o}`,
-        `lightness=${l}`,
-      ],
-      Data: {},
-    };
+  async lightByCodeNameType(t, n, s, o, l, a, i) {
+    const c = [
+      `ServerName=${t}`,
+      `ServerType=${n}`,
+      `code=${s}`,
+      `color=${o}`,
+      `lightness=${l}`,
+    ];
+    i !== void 0 && c.push(`time=${i}`);
+    const h = { Method: "light_by_code_name_type", ValueAry: c, Data: {} };
     return this.request("/api/medMap/light_by_code_name_type", {
       method: "POST",
-      body: JSON.stringify(a),
+      body: JSON.stringify(h),
     });
   }
   async addMedClouds(t, n, s, o) {
@@ -12958,8 +12956,9 @@ class kh {
       this.currentTask &&
         (console.log("🔄 檢測到現有亮燈任務，先執行滅燈..."),
         await this.clearCurrentTask(),
-        await this.sleep(200)),
-        console.log("💡 開始新的亮燈任務");
+        await this.sleep(200));
+      const a = Math.round(o / 1e3);
+      console.log("💡 開始新的亮燈任務");
       for (const i of t)
         try {
           const c = performance.now();
@@ -12969,36 +12968,29 @@ class kh {
             i.medicineCode,
             n,
             s,
-            i.deviceType
+            i.deviceType,
+            a
           );
           const h = performance.now();
           console.log(
             `⏱️ 亮燈API用時 (${i.serverName}/${i.medicineCode}): ${(
               h - c
-            ).toFixed(2)}ms`
+            ).toFixed(2)}ms, 時間: ${a}秒`
           );
         } catch (c) {
           console.error(`❌ 亮燈失敗 (${i.serverName}/${i.medicineCode}):`, c);
         }
-      const a = setTimeout(async () => {
-        var i;
-        console.log("⏰ 計時器到期，執行自動滅燈"),
-          await this.turnOffLights(t),
-          (i = this.currentTask) != null &&
-            i.onLightOff &&
-            this.currentTask.onLightOff(),
-          (this.currentTask = null);
-      }, o);
-      (this.currentTask = { timerId: a, lightData: t, onLightOff: l }),
-        console.log(`✅ 亮燈任務已設定，將於 ${o / 1e3} 秒後自動滅燈`);
+      (this.currentTask = { lightData: t, onLightOff: l }),
+        console.log(
+          `✅ 亮燈任務已設定，將於 ${a} 秒後自動滅燈（由伺服器控制）`
+        );
     } finally {
       this.isProcessing = !1;
     }
   }
   async clearCurrentTask() {
     this.currentTask &&
-      (clearTimeout(this.currentTask.timerId),
-      console.log("🛑 已中斷亮燈計時器"),
+      (console.log("🛑 清除當前亮燈任務"),
       await this.turnOffLights(this.currentTask.lightData),
       this.currentTask.onLightOff && this.currentTask.onLightOff(),
       (this.currentTask = null));
@@ -13050,9 +13042,7 @@ class kh {
       : [];
   }
   cleanup() {
-    this.currentTask &&
-      (clearTimeout(this.currentTask.timerId), (this.currentTask = null)),
-      (this.isProcessing = !1);
+    this.currentTask && (this.currentTask = null), (this.isProcessing = !1);
   }
 }
 const hs = new kh(),
