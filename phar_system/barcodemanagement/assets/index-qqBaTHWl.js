@@ -12950,12 +12950,6 @@ function pd({
                   children: [
                     c.jsx("div", {
                       children: c.jsx("p", {
-                        className: "text-lg font-semibold text-gray-900 mt-1",
-                        children: e.CODE,
-                      }),
-                    }),
-                    c.jsx("div", {
-                      children: c.jsx("p", {
                         className: "text-base text-gray-900 mt-1",
                         children: e.NAME,
                       }),
@@ -12966,6 +12960,28 @@ function pd({
                         children: e.CHT_NAME,
                       }),
                     }),
+                    c.jsx("div", {
+                      children: c.jsx("p", {
+                        className: "text-lg font-semibold text-gray-900 mt-1",
+                        children: e.CODE,
+                      }),
+                    }),
+                    e.STORAGE &&
+                      e.STORAGE.length > 0 &&
+                      c.jsx("div", {
+                        className: "flex flex-wrap gap-2 pt-2",
+                        children: e.STORAGE.map((d, p) =>
+                          c.jsx(
+                            "span",
+                            {
+                              className:
+                                "inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200 shadow-sm",
+                              children: d.info,
+                            },
+                            p
+                          )
+                        ),
+                      }),
                   ],
                 }),
                 c.jsxs("div", {
@@ -13179,32 +13195,53 @@ function tg({ medications: e, isLoading: t }) {
                     w ? "bg-green-100" : "bg-white"
                   }`,
                   children: c.jsxs("div", {
-                    className: "space-y-3",
+                    className:
+                      "space-y-2 flex flex-col justify-between items-between h-full",
                     children: [
                       c.jsxs("div", {
                         className: "flex-1",
                         children: [
-                          c.jsx("h3", {
-                            className:
-                              "text-lg font-semibold text-gray-900 mb-2",
-                            children: y.NAME,
+                          c.jsxs("div", {
+                            children: [
+                              c.jsx("h3", {
+                                className:
+                                  "text-lg font-semibold text-gray-900 mb-2",
+                                children: y.NAME,
+                              }),
+                              c.jsx("p", {
+                                className: "text-gray-600 mb-3",
+                                children: y.CHT_NAME,
+                              }),
+                            ],
                           }),
-                          c.jsx("p", {
-                            className: "text-gray-600 mb-3",
-                            children: y.CHT_NAME,
+                          c.jsx("div", {
+                            className: "space-y-2",
+                            children: c.jsx("div", {
+                              className: "flex justify-between",
+                              children: c.jsx("span", {
+                                className: "text-gray-900 font-medium",
+                                children: y.CODE,
+                              }),
+                            }),
                           }),
                         ],
                       }),
-                      c.jsx("div", {
-                        className: "space-y-2",
-                        children: c.jsx("div", {
-                          className: "flex justify-between",
-                          children: c.jsx("span", {
-                            className: "text-gray-900 font-medium",
-                            children: y.CODE,
-                          }),
+                      y.STORAGE &&
+                        y.STORAGE.length > 0 &&
+                        c.jsx("div", {
+                          className: "flex flex-wrap gap-2 mb-3",
+                          children: y.STORAGE.map((T, g) =>
+                            c.jsx(
+                              "span",
+                              {
+                                className:
+                                  "inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200 shadow-sm",
+                                children: T.info,
+                              },
+                              g
+                            )
+                          ),
                         }),
-                      }),
                     ],
                   }),
                 },

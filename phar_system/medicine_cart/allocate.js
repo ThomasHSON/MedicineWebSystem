@@ -107,10 +107,10 @@ function pbm_header_scroll() {
     // p_bed_header.style.padding = "16px 16px";
     // pbm_header_container.classList.add('p_sticky');
     pbm_header_container.style.top = `${temp_h}px`;
-    pb_patient_name.style.display = `inline-block`;
+    // pb_patient_name.style.display = `inline-block`;
     // pbm_main_container.style.marginTop = `${temp_h + temp_h_2 + 20}px`;
   } else {
-    pb_patient_name.style.display = `none`;
+    // pb_patient_name.style.display = `none`;
     // p_bed_header.style.padding = "0px 0px";
     // p_bed_header.classList.remove('fixed_1');
     // pbm_header_container.classList.remove('p_sticky');
