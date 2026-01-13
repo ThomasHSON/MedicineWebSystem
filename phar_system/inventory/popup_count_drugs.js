@@ -533,7 +533,10 @@ function renderResult(data) {
   let data_index = data.length - 1;
   count_done = false;
 
-  data.Data.forEach((item, index) => {
+  console.log("渲染點點資料型態陣列：", Array.isArray(data));
+  console.log(data);
+
+  data.forEach((item, index) => {
     let color = border_color[index % border_color.length];
     item.value.forEach((value) => {
       let { width, height, center } = value;
