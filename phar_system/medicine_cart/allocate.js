@@ -1302,7 +1302,7 @@ function set_pbm_main_container() {
     med_card_big_bottle_icon.classList.add("med_card_big_bottle_icon");
     med_card_big_bottle_icon.innerHTML = `<img src="../image/iv-bag.png" alt="bottle icon">`;
     med_card_big_bottle_icon.setAttribute("GUID", element.GUID);
-    if (element.large == "L") {
+    if (element.large != "") {
       med_card_big_bottle_icon.classList.add("med_card_bigB");
     }
     med_card_big_bottle_icon.addEventListener("click", async () => {
@@ -1449,12 +1449,12 @@ function set_pbm_main_container() {
             }
           }
 
-          let med_card_big_type_option = document.createElement("option");
-          med_card_big_type_option.classList.add("med_card_big_type_option");
-          med_card_big_type_option.value = "L";
-          med_card_big_type_option.innerHTML = "大瓶";
+          // let med_card_big_type_option = document.createElement("option");
+          // med_card_big_type_option.classList.add("med_card_big_type_option");
+          // med_card_big_type_option.value = "L";
+          // med_card_big_type_option.innerHTML = "大瓶";
 
-          med_card_type_select.appendChild(med_card_big_type_option);
+          // med_card_type_select.appendChild(med_card_big_type_option);
 
           let med_card_type_option = document.createElement("option");
           med_card_type_option.classList.add("med_card_type_option");
@@ -1464,7 +1464,7 @@ function set_pbm_main_container() {
           med_card_type_select.appendChild(med_card_type_option);
 
           if (element.large == "L") {
-            med_card_type_select.value = "L";
+            med_card_type_select.value = "";
           } else {
             med_card_type_select.value = element.large;
           }
@@ -2004,10 +2004,10 @@ function set_pbm_header_container() {
                 // console.log(temp_ex_status, "======> 這邊是狀態分析");
                 switch (temp_ex_status) {
                   case 1:
-                    console.log(element.getAttribute("isBig") != "L");
+                    console.log(element.getAttribute("isBig") == "");
                     console.log(element.getAttribute("remark") != "Y");
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = true;
@@ -2022,7 +2022,7 @@ function set_pbm_header_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = true;
 
                       med_log_arr.push(element.id);
@@ -2068,7 +2068,7 @@ function set_pbm_header_container() {
                 switch (temp_check_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = true;
@@ -2083,7 +2083,7 @@ function set_pbm_header_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = true;
 
                       med_log_arr.push(element.id);
@@ -2159,7 +2159,7 @@ function set_pbm_header_container() {
                 switch (temp_ex_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = false;
@@ -2176,7 +2176,7 @@ function set_pbm_header_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = false;
 
                       med_nodis_log_arr.push(element.id);
@@ -2229,7 +2229,7 @@ function set_pbm_header_container() {
                 switch (temp_check_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = false;
@@ -2246,7 +2246,7 @@ function set_pbm_header_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = false;
 
                       med_nodis_log_arr.push(element.id);
@@ -2637,10 +2637,10 @@ function set_pbm_footer_container() {
                 // console.log(temp_ex_status, "======> 這邊是狀態分析");
                 switch (temp_ex_status) {
                   case 1:
-                    console.log(element.getAttribute("isBig") != "L");
+                    console.log(element.getAttribute("isBig") == "");
                     console.log(element.getAttribute("remark") != "Y");
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = true;
@@ -2655,7 +2655,7 @@ function set_pbm_footer_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = true;
 
                       med_log_arr.push(element.id);
@@ -2701,7 +2701,7 @@ function set_pbm_footer_container() {
                 switch (temp_check_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = true;
@@ -2716,7 +2716,7 @@ function set_pbm_footer_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = true;
 
                       med_log_arr.push(element.id);
@@ -2790,7 +2790,7 @@ function set_pbm_footer_container() {
                 switch (temp_ex_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = false;
@@ -2807,7 +2807,7 @@ function set_pbm_footer_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = false;
 
                       med_nodis_log_arr.push(element.id);
@@ -2860,7 +2860,7 @@ function set_pbm_footer_container() {
                 switch (temp_check_status) {
                   case 1:
                     if (
-                      element.getAttribute("isBig") != "L" &&
+                      element.getAttribute("isBig") == "" &&
                       element.getAttribute("remark") != "Y"
                     ) {
                       element.checked = false;
@@ -2877,7 +2877,7 @@ function set_pbm_footer_container() {
                     }
                     break;
                   case 2:
-                    if (element.getAttribute("isBig") != "L") {
+                    if (element.getAttribute("isBig") == "") {
                       element.checked = false;
 
                       med_nodis_log_arr.push(element.id);
