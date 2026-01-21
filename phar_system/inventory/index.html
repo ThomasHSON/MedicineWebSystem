@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -167,10 +167,12 @@
       function ChathubError() {
         // alert("連線斷開,重新整理");
         // location.reload();
+        // notice_popup_sub_result("重新連線中，請稍後", false);
         Set_main_div_enable(true);
         signalR_init(`${api_ip}chatHub`);
         console.log("reconnect....");
         Set_main_div_enable(false);
+        // notice_popup_sub_result("連線成功", true);
       }
 
       BarcodeKeyinEvent = BarcodeKeyin;
@@ -233,7 +235,7 @@
           }
           lastTouchEnd = now;
         },
-        false
+        false,
       );
     </script>
   </body>
