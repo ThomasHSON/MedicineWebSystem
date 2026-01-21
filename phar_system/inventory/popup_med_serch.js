@@ -97,30 +97,6 @@ function popup_med_serch_content_init() {
     JustifyContentEnum.LEFT
   );
 
-  const radio_content_CODE = document.createElement("input");
-  radio_content_CODE.type = "radio";
-  radio_content_CODE.id = "radio_content_CODE";
-  radio_content_CODE.name = "serch_type";
-  radio_content_CODE.style.width = "20px";
-  radio_content_CODE.style.height = "20px";
-  radio_content_CODE.style.marginRight = "3px";
-  radio_content_CODE.checked = "true";
-  content_serch_type_div.appendChild(radio_content_CODE);
-
-  const radio_content_CODE_text = document.createElement("div");
-  My_Div.Set_Text(
-    radio_content_CODE_text,
-    "藥碼",
-    TextAlignEnum.CENTER,
-    "16px",
-    false,
-    "微軟正黑體",
-    "black"
-  );
-  radio_content_CODE_text.style.marginLeft = "5px";
-  radio_content_CODE_text.style.marginRight = "5px";
-  content_serch_type_div.appendChild(radio_content_CODE_text);
-
   const radio_content_ENG_NAME = document.createElement("input");
   radio_content_ENG_NAME.type = "radio";
   radio_content_ENG_NAME.id = "radio_content_ENG_NAME";
@@ -128,6 +104,7 @@ function popup_med_serch_content_init() {
   radio_content_ENG_NAME.style.width = "20px";
   radio_content_ENG_NAME.style.height = "20px";
   radio_content_ENG_NAME.style.marginRight = "3px";
+  radio_content_ENG_NAME.checked = "true";
   content_serch_type_div.appendChild(radio_content_ENG_NAME);
 
   const radio_content_ENG_NAME_text = document.createElement("div");
@@ -143,6 +120,29 @@ function popup_med_serch_content_init() {
   radio_content_ENG_NAME_text.style.marginLeft = "5px";
   radio_content_ENG_NAME_text.style.marginRight = "5px";
   content_serch_type_div.appendChild(radio_content_ENG_NAME_text);
+
+  const radio_content_CODE = document.createElement("input");
+  radio_content_CODE.type = "radio";
+  radio_content_CODE.id = "radio_content_CODE";
+  radio_content_CODE.name = "serch_type";
+  radio_content_CODE.style.width = "20px";
+  radio_content_CODE.style.height = "20px";
+  radio_content_CODE.style.marginRight = "3px";
+  content_serch_type_div.appendChild(radio_content_CODE);
+
+  const radio_content_CODE_text = document.createElement("div");
+  My_Div.Set_Text(
+    radio_content_CODE_text,
+    "藥碼",
+    TextAlignEnum.CENTER,
+    "16px",
+    false,
+    "微軟正黑體",
+    "black"
+  );
+  radio_content_CODE_text.style.marginLeft = "5px";
+  radio_content_CODE_text.style.marginRight = "5px";
+  content_serch_type_div.appendChild(radio_content_CODE_text);
 
   const radio_content_DIANAME = document.createElement("input");
   radio_content_DIANAME.type = "radio";
