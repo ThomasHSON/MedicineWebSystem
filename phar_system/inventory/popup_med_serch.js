@@ -37,7 +37,7 @@ async function popup_med_serch_init() {
     "popup_med_serch_div_popup_med_serch",
     "popup_med_serch_div_popup_med_serch",
     "330px",
-    ""
+    "",
   );
   popup_med_serch_div._popup_div.style.border = "10px solid white";
   popup_med_serch_div.LoadEvent.push(popup_med_serch_load);
@@ -57,7 +57,7 @@ function popup_med_serch_title_init() {
     "popup_med_serch_title",
     "100%",
     "40px",
-    "green"
+    "green",
   );
   My_Div.Set_Text(
     title_text,
@@ -66,7 +66,7 @@ function popup_med_serch_title_init() {
     "24px",
     true,
     "微軟正黑體",
-    "white"
+    "white",
   );
   title_text.style.borderRadius = "5px";
   title_text.style.marginBottom = "5px";
@@ -78,7 +78,7 @@ function popup_med_serch_content_init() {
     content,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
 
   const content_serch_type_div = document.createElement("div");
@@ -88,13 +88,13 @@ function popup_med_serch_content_init() {
     "content_serch_type_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     content_serch_type_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
 
   const radio_content_ENG_NAME = document.createElement("input");
@@ -115,7 +115,7 @@ function popup_med_serch_content_init() {
     "16px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
   radio_content_ENG_NAME_text.style.marginLeft = "5px";
   radio_content_ENG_NAME_text.style.marginRight = "5px";
@@ -138,7 +138,7 @@ function popup_med_serch_content_init() {
     "16px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
   radio_content_CODE_text.style.marginLeft = "5px";
   radio_content_CODE_text.style.marginRight = "5px";
@@ -161,7 +161,7 @@ function popup_med_serch_content_init() {
     "16px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
   radio_content_DIANAME_text.style.marginLeft = "5px";
   radio_content_DIANAME_text.style.marginRight = "5px";
@@ -186,7 +186,7 @@ function popup_med_serch_content_init() {
     "16px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
   content_serch_type_div.appendChild(radio_content_CHT_NAME_text);
 
@@ -199,13 +199,13 @@ function popup_med_serch_content_init() {
     "content_serch_type_textBox_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     content_serch_type_textBox_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
 
   const content_serch_type_textBox = document.createElement("input");
@@ -215,7 +215,7 @@ function popup_med_serch_content_init() {
     "content_serch_type_textBox",
     "70%",
     "40px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     content_serch_type_textBox,
@@ -224,7 +224,7 @@ function popup_med_serch_content_init() {
     "20px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
 
   content_serch_type_textBox.placeholder = "輸入搜尋內容...";
@@ -243,7 +243,7 @@ function popup_med_serch_content_init() {
     "content_serch_type_serchBtn",
     "",
     "40px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     content_serch_type_serchBtn,
@@ -252,7 +252,7 @@ function popup_med_serch_content_init() {
     "16px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   content_serch_type_serchBtn.style.marginLeft = "5px";
   content_serch_type_serchBtn.style.marginTop = "3px";
@@ -270,13 +270,13 @@ function popup_med_serch_content_init() {
     "content_serch_result_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     content_serch_result_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.TOP
+    JustifyContentEnum.TOP,
   );
   content_serch_result_div.style.marginTop = "5px";
 
@@ -289,13 +289,13 @@ function popup_med_serch_content_init() {
     "content_serch_result_page_control_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     content_serch_result_page_control_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
   content_serch_result_page_control_div.style.marginTop = "5px";
   content_serch_result_page_control_div.style.marginBottom = "5px";
@@ -305,7 +305,7 @@ function popup_med_serch_content_init() {
     "100%",
     "60%",
     "100%",
-    "green"
+    "green",
   );
   My_Div.Init(
     content_serch_result_svg_next,
@@ -313,7 +313,7 @@ function popup_med_serch_content_init() {
     "content_serch_result_svg_next",
     "60px",
     "40px",
-    ""
+    "",
   );
   // svg_next.style.border = "1px solid gray";
   content_serch_result_svg_next.style.borderRadius = "3px";
@@ -328,7 +328,7 @@ function popup_med_serch_content_init() {
     "100%",
     "60%",
     "100%",
-    "green"
+    "green",
   );
   My_Div.Init(
     content_serch_result_svg_previous,
@@ -336,7 +336,7 @@ function popup_med_serch_content_init() {
     "content_serch_result_svg_previous",
     "60px",
     "40px",
-    ""
+    "",
   );
   // svg_next.style.border = "1px solid gray";
   content_serch_result_svg_previous.style.borderRadius = "3px";
@@ -347,10 +347,10 @@ function popup_med_serch_content_init() {
     popup_med_serch_refresh_rows();
   });
   content_serch_result_page_control_div.appendChild(
-    content_serch_result_svg_previous
+    content_serch_result_svg_previous,
   );
   content_serch_result_page_control_div.appendChild(
-    content_serch_result_svg_next
+    content_serch_result_svg_next,
   );
 
   content.appendChild(content_serch_result_page_control_div);
@@ -364,7 +364,7 @@ function popup_med_serch_underline_init() {
     underline,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
 
   const popup_med_serch_content_submit_button =
@@ -375,7 +375,7 @@ function popup_med_serch_underline_init() {
     "popup_med_serch_content_submit_button",
     "95%",
     "60px",
-    "gray"
+    "gray",
   );
   My_Div.Set_Text(
     popup_med_serch_content_submit_button,
@@ -384,7 +384,7 @@ function popup_med_serch_underline_init() {
     "24px",
     true,
     "微軟正黑體",
-    "white"
+    "white",
   );
 
   // popup_med_serch_content_submit_button.type = "submit";
@@ -403,13 +403,13 @@ function popup_med_serch_underline_init() {
 function popup_med_serch_typeSerch(text) {
   const radio_content_CODE = document.querySelector("#radio_content_CODE");
   const radio_content_ENG_NAME = document.querySelector(
-    "#radio_content_ENG_NAME"
+    "#radio_content_ENG_NAME",
   );
   const radio_content_DIANAME = document.querySelector(
-    "#radio_content_DIANAME"
+    "#radio_content_DIANAME",
   );
   const radio_content_CHT_NAME = document.querySelector(
-    "#radio_content_CHT_NAME"
+    "#radio_content_CHT_NAME",
   );
   console.log(`[${arguments.callee.name}]`, radio_content_ENG_NAME.checked);
   var med = null;
@@ -435,14 +435,17 @@ function popup_med_serch_typeSerch(text) {
     });
     console.log("搜尋藥碼結果", med);
   }
+  med = med.filter((item) => {
+    return item.FILE_STATUS != "關檔中";
+  });
   popup_med_serch_rows_div.length = 0;
   popup_med_serch_PageIndex = 0;
   if (med != null) {
     const content_serch_result_div = document.querySelector(
-      "#content_serch_result_div"
+      "#content_serch_result_div",
     );
     if (med.length == 0) {
-      alert("查無資料");
+      alert("藥品已關檔或查無資料");
     } else {
       for (var i = 0; i < med.length; i++) {
         const row = popup_med_serch_get_row(med[i], i + 1);
@@ -454,7 +457,7 @@ function popup_med_serch_typeSerch(text) {
 }
 function popup_med_serch_refresh_rows() {
   const content_serch_result_div = document.querySelector(
-    "#content_serch_result_div"
+    "#content_serch_result_div",
   );
   content_serch_result_div.innerHTML = "";
   My_Div.Init(
@@ -463,18 +466,18 @@ function popup_med_serch_refresh_rows() {
     "content_serch_result_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     content_serch_result_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.TOP
+    JustifyContentEnum.TOP,
   );
   content_serch_result_div.style.marginTop = "5px";
   if (popup_med_serch_PageIndex < 0) popup_med_serch_PageIndex = 0;
   var MaxPage = Math.floor(
-    popup_med_serch_rows_div.length / popup_med_serch_NumOfPageRows
+    popup_med_serch_rows_div.length / popup_med_serch_NumOfPageRows,
   );
   if (popup_med_serch_rows_div.length % popup_med_serch_NumOfPageRows != 0)
     MaxPage++;
@@ -502,13 +505,13 @@ function popup_med_serch_get_row(medClass, index) {
     `popup_med_serch_row_div${medClass.CODE}`,
     "100%",
     "60px",
-    "#8ad0ec"
+    "#8ad0ec",
   );
   My_Div.Set_Block(
     row_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
   row_div.style.flexWrap = "wrap";
   row_div.style.borderTop = "1px solid white";
@@ -544,7 +547,7 @@ function popup_med_serch_get_row(medClass, index) {
     `popup_med_serch_row_text${medClass.CODE}`,
     "100%",
     "60px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     row_text,
@@ -553,13 +556,13 @@ function popup_med_serch_get_row(medClass, index) {
     "16px",
     true,
     "微軟正黑體",
-    "black"
+    "black",
   );
   My_Div.Set_Block(
     row_text,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
   row_text.style.marginLeft = "5px";
 
