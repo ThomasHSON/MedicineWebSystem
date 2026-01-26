@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="deliver_login.css?v=1.0" />
     <link rel="stylesheet" href="popup_edit_note.css" />
     <link rel="stylesheet" href="popup_large_add_option.css" />
+    <link rel="stylesheet" href="popup_batch_edit.css" />
     <script src="../Function/Basic.js?v=1.14"></script>
 
     <script>
@@ -103,6 +104,7 @@
         loadScript("popup_nearMiss_report.js");
         loadScript("popup_large_add_option.js");
         loadScript("deliver_login.js");
+        loadScript("popup_batch_edit.js");
       })();
     </script>
   </head>
@@ -173,6 +175,9 @@
       get_popup_large_add_option();
       popup_large_add_option_div.Set_Visible(false);
 
+      get_popup_batch_edit();
+      popup_batch_edit_div.Set_Visible(true);
+
       set_step_btn();
     </script>
 
@@ -241,7 +246,7 @@
       }
       function barcode_check_toggle(barcode) {
         let med_card_checkbox = document.querySelector(
-          `.med_card_checkbox[code="${barcode}"]`
+          `.med_card_checkbox[code="${barcode}"]`,
         );
         // console.log(med_card_checkbox);
         // console.log(barcode);
