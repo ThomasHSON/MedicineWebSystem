@@ -72,6 +72,25 @@ function get_pp_batch_edit_main() {
   ppbe_step_next_btn.classList.add("ppbe_step_next_btn");
   ppbe_step_next_btn.classList.add("btn");
   ppbe_step_next_btn.innerHTML = "下一步";
+  ppbe_step_next_btn.addEventListener("click", () => {
+    if (ppbe_step_next_btn.classList.contains("ppbe_step_btn_disable")) return;
+    let ppbe_main_func_display = document.querySelector(
+      ".ppbe_main_func_display",
+    );
+    let current_step = ppbe_main_func_display.getAttribute("step");
+    current_step = +current_step + 1;
+
+    let max_page = 2;
+    if (ppbe_cpoe_batch_edit_data.length > 0)
+      max_page = ppbe_cpoe_batch_edit_data.length + 2;
+
+    if (max_page < current_step) current_step = max_page;
+
+    ppbe_main_func_display.setAttribute("step", current_step);
+    ppbe_step_next_btn.classList.add("ppbe_step_btn_disable");
+    ppbe_set_step_display(current_step);
+    ppbe_step_next_btn.classList.remove("ppbe_step_btn_disable");
+  });
 
   let ppbe_step_submit_btn = document.createElement("div");
   ppbe_step_submit_btn.classList.add("ppbe_step_submit_btn");
@@ -95,14 +114,18 @@ function get_pp_batch_edit_footer() {
   return ppbe_footer_container;
 }
 async function popup_batch_edit_div_close() {
+  ppbe_init_data();
   popup_batch_edit_div.Set_Visible(false);
 }
 function popup_batch_edit_div_open() {
-  ppbe_init_cpoe_list();
+  ppbe_set_cpoe_list();
   popup_batch_edit_div.Set_Visible(true);
 }
+function ppbe_init_data() {
+  ppbe_cpoe_batch_edit_data = [];
+}
 
-function ppbe_init_cpoe_list() {
+function ppbe_set_cpoe_list() {
   // 設定初始化彈窗
   let cpoe_info;
   let ppbe_main_head_patient = document.querySelector(
@@ -112,10 +135,15 @@ function ppbe_init_cpoe_list() {
   let ppbe_main_func_display = document.querySelector(
     ".ppbe_main_func_display",
   );
+  ppbe_main_func_display.setAttribute("step", 1);
   try {
     // 設定初始化抬頭資訊(護理站-床號 病人姓名)
     ppbe_main_head_patient.innerHTML = `${current_p_bed_data.nurnum}-${current_p_bed_data.bednum}床 ${current_p_bed_data.pnamec}`;
-    ppbe_main_head_page.innerHTML = "1/1";
+    if (ppbe_cpoe_batch_edit_data.length > 0) {
+      ppbe_main_head_page.innerHTML = `1/${+ppbe_cpoe_batch_edit_data.length + 2}`;
+    } else {
+      ppbe_main_head_page.innerHTML = "1/1";
+    }
     ppbe_main_func_display.innerHTML = "";
     cpoe_info = current_p_bed_data.cpoe;
 
@@ -148,6 +176,11 @@ function ppbe_set_cpoe_card(object) {
   ppbe_input.id = object.GUID;
   ppbe_input.setAttribute("code", object.code);
   ppbe_input.type = "checkbox";
+  let temp_GUID_arr = [];
+  ppbe_cpoe_batch_edit_data.forEach((element) => {
+    temp_GUID_arr.push(element.GUID);
+  });
+  if (temp_GUID_arr.includes(object.GUID)) ppbe_input.checked = true;
   ppbe_input.addEventListener("click", () => {
     let ppbe_main_head_page = document.querySelector(".ppbe_main_head_page");
     let ppbe_step_next_btn = document.querySelector(".ppbe_step_next_btn");
@@ -172,7 +205,127 @@ function ppbe_set_cpoe_card(object) {
     ppbe_step_btn_set();
   });
 
+  let ppbe_card_med_info_container = document.createElement("div");
+  ppbe_card_med_info_container.classList.add("ppbe_card_med_info_container");
+
+  let ppbe_card_med_name = document.createElement("div");
+  ppbe_card_med_name.classList.add("ppbe_card_med_name");
+  ppbe_card_med_name.innerHTML = object.name;
+
+  let ppbe_card_med_cht_name = document.createElement("div");
+  ppbe_card_med_cht_name.classList.add("ppbe_card_med_cht_name");
+  ppbe_card_med_cht_name.innerHTML = object.cht_name;
+
+  let ppbe_card_med_detail = document.createElement("div");
+  ppbe_card_med_detail.classList.add("ppbe_card_med_detail");
+
+  let ppbe_card_med_ordseq = document.createElement("div");
+  ppbe_card_med_ordseq.classList.add("ppbe_card_med_ordseq");
+  ppbe_card_med_ordseq.innerHTML = `序號：${object.ordseq}`;
+
+  let ppbe_card_med_dosage = document.createElement("div");
+  ppbe_card_med_dosage.classList.add("ppbe_card_med_dosage");
+  ppbe_card_med_dosage.innerHTML = `劑量：${object.dosage} ${object.dunit}`;
+
+  let ppbe_card_med_freqn = document.createElement("div");
+  ppbe_card_med_freqn.classList.add("ppbe_card_med_freqn");
+  let temp_str = object.freqn.toUpperCase();
+  if (temp_str.includes("PRN")) {
+    ppbe_card_med_freqn.innerHTML = `頻次：<span class="s_color">${object.freqn}</span>`;
+  } else {
+    ppbe_card_med_freqn.innerHTML = `頻次：${object.freqn}`;
+  }
+
+  let ppbe_card_med_route = document.createElement("div");
+  ppbe_card_med_route.classList.add("ppbe_card_med_route");
+  ppbe_card_med_route.innerHTML = `途徑：${object.route}`;
+
+  let ppbe_card_med_code = document.createElement("div");
+  ppbe_card_med_code.classList.add("ppbe_card_med_code");
+  ppbe_card_med_code.innerHTML = `藥碼：${object.code}`;
+
+  let ppbe_card_med_store_position = document.createElement("div");
+  ppbe_card_med_store_position.classList.add("ppbe_card_med_store_position");
+  ppbe_card_med_store_position.innerHTML = `儲位：${object.store_position}`;
+
+  let ppbe_card_med_unit = document.createElement("div");
+  ppbe_card_med_unit.classList.add("ppbe_card_med_unit");
+  ppbe_card_med_unit.innerHTML = `儲位：${object.dunit}`;
+
+  temp_check_isArray =
+    page_setting_params &&
+    page_setting_params["display_block"] &&
+    page_setting_params["display_block"].value;
+
+  if (temp_check_isArray) {
+    for (
+      let i = 0;
+      i < page_setting_params["display_block"]["value"].length;
+      i++
+    ) {
+      const item = page_setting_params["display_block"]["value"][i];
+      switch (item.name) {
+        case "ordseq":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+          break;
+        case "dosage":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+          break;
+        case "dunit":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_unit);
+          break;
+        case "freqn":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+          break;
+        case "route":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+          break;
+        case "code":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+          break;
+        case "storage":
+          if (item.value == "True")
+            ppbe_card_med_detail.appendChild(ppbe_card_med_store_position);
+          break;
+
+        default:
+          break;
+      }
+    }
+  } else {
+    ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_unit);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+  }
+
+  ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+  ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+  ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+  ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+  ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+  ppbe_card_med_detail.appendChild(ppbe_card_med_store_position);
+
+  ppbe_card_med_info_container.appendChild(ppbe_card_med_name);
+  if (object.cht_name)
+    ppbe_card_med_info_container.appendChild(ppbe_card_med_cht_name);
+  ppbe_card_med_info_container.appendChild(ppbe_card_med_detail);
+
+  let ppbe_card_med_qty = document.createElement("div");
+  ppbe_card_med_qty.classList.add("ppbe_card_med_qty");
+  ppbe_card_med_qty.innerHTML = `總量：${object.qty}`;
+
   ppbe_card.appendChild(ppbe_input);
+  ppbe_card.appendChild(ppbe_card_med_info_container);
+  ppbe_card.appendChild(ppbe_card_med_qty);
 
   return ppbe_card;
 }
@@ -195,15 +348,16 @@ function ppbe_step_btn_set() {
   if (ppbe_cpoe_batch_edit_data.length > 0)
     max_page = ppbe_cpoe_batch_edit_data.length + 2;
 
-  switch (current_step) {
-    case "1":
+  switch (+current_step) {
+    case 1:
+      console.log("按鈕首頁");
       ppbe_step_pre_btn.style.display = "none";
       ppbe_step_next_btn.style.display = "block";
       ppbe_step_submit_btn.style.display = "none";
       ppbe_main_footer.style.justifyContent = "end";
       break;
 
-    case max_page:
+    case +max_page:
       ppbe_step_pre_btn.style.display = "none";
       ppbe_step_next_btn.style.display = "none";
       ppbe_step_submit_btn.style.display = "block";
@@ -218,3 +372,42 @@ function ppbe_step_btn_set() {
       break;
   }
 }
+
+function ppbe_set_step_display(step) {
+  console.log(step);
+  try {
+    let max_page = 2;
+    if (ppbe_cpoe_batch_edit_data.length > 0)
+      max_page = ppbe_cpoe_batch_edit_data.length + 2;
+
+    switch (+step) {
+      case "1":
+        // 初始首頁
+        ppbe_set_cpoe_list();
+        break;
+
+      case +max_page:
+        // 提交資料最後一頁
+        break;
+
+      default:
+        // 中間頁
+        ppbe_set_middle_page(step, max_page);
+        break;
+    }
+  } catch (error) {}
+  ppbe_step_btn_set();
+}
+
+function ppbe_set_middle_page(step, max_page) {
+  let ppbe_main_head_page = document.querySelector(".ppbe_main_head_page");
+  let ppbe_main_func_display = document.querySelector(
+    ".ppbe_main_func_display",
+  );
+
+  try {
+    ppbe_main_func_display.innerHTML = "";
+    ppbe_main_head_page.innerHTML = `${step}/${max_page}`;
+  } catch (error) {}
+}
+function ppbe_set_submit_page() {}

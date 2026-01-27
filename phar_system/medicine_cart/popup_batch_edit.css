@@ -97,11 +97,12 @@
 .batch_edit_note_content {
   padding-left: 12px;
 }
-.ppbe_cm_name {
+.ppbe_card_med_name,
+.ppbe_card_med_qty {
   font-weight: 600;
   font-size: 20px;
 }
-.batch_edit_cpoe_card_med_info_container {
+.ppbe_card_med_info_container {
   flex-grow: 1;
 }
 .ppnsm_cpoe_card_info_top {
@@ -136,19 +137,8 @@
   font-size: 20px;
   padding-bottom: 12px;
 }
-.ppnsm_cpoe_card_info_bottom {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.ppnsm_cpoe_card_info_bottom_right {
-  font-size: 20px;
-  font-weight: 600;
-}
 
-.ppnsm_cpoe_card_info_bottom_left {
-  flex-grow: 1;
+.ppbe_card_med_detail {
   display: grid;
   grid-template-columns: 30% 30% 30%;
 }
