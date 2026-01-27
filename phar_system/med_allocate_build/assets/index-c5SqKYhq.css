@@ -440,6 +440,9 @@ video {
 .ml-2 {
   margin-left: 0.5rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -505,6 +508,9 @@ video {
 }
 .h-full {
   height: 100%;
+}
+.max-h-32 {
+  max-height: 8rem;
 }
 .max-h-60 {
   max-height: 15rem;
@@ -574,6 +580,9 @@ video {
 }
 .flex-1 {
   flex: 1 1 0%;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 .flex-grow {
   flex-grow: 1;
@@ -665,6 +674,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-1 {
+  gap: 0.25rem;
 }
 .gap-2 {
   gap: 0.5rem;
@@ -1024,9 +1036,6 @@ video {
 }
 .pr-3 {
   padding-right: 0.75rem;
-}
-.pt-2 {
-  padding-top: 0.5rem;
 }
 .text-left {
   text-align: left;
