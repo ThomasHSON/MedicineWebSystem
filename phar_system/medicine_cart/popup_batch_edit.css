@@ -58,7 +58,8 @@
   padding: 4px 0px;
 }
 .ppbe_card,
-.batch_edit_note_card {
+.batch_edit_note_card,
+.ppbe_med_info_container {
   position: relative;
   display: block;
   width: 100%;
@@ -102,7 +103,8 @@
   font-weight: 600;
   font-size: 20px;
 }
-.ppbe_card_med_info_container {
+.ppbe_card_med_info_container,
+.ppbe_med_info {
   flex-grow: 1;
 }
 .ppnsm_cpoe_card_info_top {

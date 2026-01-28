@@ -388,6 +388,7 @@ function ppbe_set_step_display(step) {
 
       case +max_page:
         // 提交資料最後一頁
+        ppbe_set_submit_page(step, max_page);
         break;
 
       default:
@@ -408,6 +409,148 @@ function ppbe_set_middle_page(step, max_page) {
   try {
     ppbe_main_func_display.innerHTML = "";
     ppbe_main_head_page.innerHTML = `${step}/${max_page}`;
+
+    let data_index = +step - 2;
+    let temp_object = ppbe_cpoe_batch_edit_data[data_index];
+    console.log(temp_object);
+
+    let ppbe_med_info_container = document.createElement("div");
+    ppbe_med_info_container.classList.add("ppbe_med_info_container");
+
+    let ppbe_med_info = document.createElement("div");
+    ppbe_med_info.classList.add("ppbe_med_info");
+
+    let ppbe_card_med_name = document.createElement("div");
+    ppbe_card_med_name.classList.add("ppbe_card_med_name");
+    ppbe_card_med_name.innerHTML = temp_object.name;
+
+    let ppbe_card_med_cht_name = document.createElement("div");
+    ppbe_card_med_cht_name.classList.add("ppbe_card_med_cht_name");
+    ppbe_card_med_cht_name.innerHTML = temp_object.cht_name;
+
+    let ppbe_card_med_detail = document.createElement("div");
+    ppbe_card_med_detail.classList.add("ppbe_card_med_detail");
+
+    let ppbe_card_med_ordseq = document.createElement("div");
+    ppbe_card_med_ordseq.classList.add("ppbe_card_med_ordseq");
+    ppbe_card_med_ordseq.innerHTML = `序號：${temp_object.ordseq}`;
+
+    let ppbe_card_med_dosage = document.createElement("div");
+    ppbe_card_med_dosage.classList.add("ppbe_card_med_dosage");
+    ppbe_card_med_dosage.innerHTML = `劑量：${temp_object.dosage} ${temp_object.dunit}`;
+
+    let ppbe_card_med_freqn = document.createElement("div");
+    ppbe_card_med_freqn.classList.add("ppbe_card_med_freqn");
+    let temp_str = temp_object.freqn.toUpperCase();
+    if (temp_str.includes("PRN")) {
+      ppbe_card_med_freqn.innerHTML = `頻次：<span class="s_color">${temp_object.freqn}</span>`;
+    } else {
+      ppbe_card_med_freqn.innerHTML = `頻次：${temp_object.freqn}`;
+    }
+
+    let ppbe_card_med_route = document.createElement("div");
+    ppbe_card_med_route.classList.add("ppbe_card_med_route");
+    ppbe_card_med_route.innerHTML = `途徑：${temp_object.route}`;
+
+    let ppbe_card_med_code = document.createElement("div");
+    ppbe_card_med_code.classList.add("ppbe_card_med_code");
+    ppbe_card_med_code.innerHTML = `藥碼：${temp_object.code}`;
+
+    let ppbe_card_med_store_position = document.createElement("div");
+    ppbe_card_med_store_position.classList.add("ppbe_card_med_store_position");
+    ppbe_card_med_store_position.innerHTML = `儲位：${temp_object.store_position}`;
+
+    let ppbe_card_med_unit = document.createElement("div");
+    ppbe_card_med_unit.classList.add("ppbe_card_med_unit");
+    ppbe_card_med_unit.innerHTML = `儲位：${temp_object.dunit}`;
+
+    let temp_check_isArray =
+      page_setting_params &&
+      page_setting_params["display_block"] &&
+      page_setting_params["display_block"].value;
+
+    if (temp_check_isArray) {
+      for (
+        let i = 0;
+        i < page_setting_params["display_block"]["value"].length;
+        i++
+      ) {
+        const item = page_setting_params["display_block"]["value"][i];
+        switch (item.name) {
+          case "ordseq":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+            break;
+          case "dosage":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+            break;
+          case "dunit":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_unit);
+            break;
+          case "freqn":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+            break;
+          case "route":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+            break;
+          case "code":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+            break;
+          case "storage":
+            if (item.value == "True")
+              ppbe_card_med_detail.appendChild(ppbe_card_med_store_position);
+            break;
+
+          default:
+            break;
+        }
+      }
+    } else {
+      ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+      ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+      ppbe_card_med_detail.appendChild(ppbe_card_med_unit);
+      ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+      ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+      ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+    }
+
+    ppbe_card_med_detail.appendChild(ppbe_card_med_ordseq);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_dosage);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_freqn);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_route);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_code);
+    ppbe_card_med_detail.appendChild(ppbe_card_med_store_position);
+
+    ppbe_med_info.appendChild(ppbe_card_med_name);
+    if (temp_object.cht_name) ppbe_med_info.appendChild(ppbe_card_med_cht_name);
+    ppbe_med_info.appendChild(ppbe_card_med_detail);
+
+    let ppbe_card_med_qty = document.createElement("div");
+    ppbe_card_med_qty.classList.add("ppbe_card_med_qty");
+    ppbe_card_med_qty.innerHTML = `總量：${temp_object.qty}`;
+
+    ppbe_med_info_container.appendChild(ppbe_med_info);
+    ppbe_med_info_container.appendChild(ppbe_card_med_qty);
+
+    ppbe_main_func_display.appendChild(ppbe_med_info_container);
+  } catch (error) {
+    console.error(error);
+    ppbe_main_func_display.innerHTML = `錯誤：${error}`;
+  }
+}
+function ppbe_set_submit_page(step, max_page) {
+  let ppbe_main_head_page = document.querySelector(".ppbe_main_head_page");
+  let ppbe_main_func_display = document.querySelector(
+    ".ppbe_main_func_display",
+  );
+
+  try {
+    ppbe_main_func_display.innerHTML = "";
+    ppbe_main_head_page.innerHTML = `${step}/${max_page}`;
   } catch (error) {}
 }
-function ppbe_set_submit_page() {}
