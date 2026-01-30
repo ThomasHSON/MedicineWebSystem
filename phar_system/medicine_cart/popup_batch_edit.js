@@ -537,7 +537,31 @@ function ppbe_set_middle_page(step, max_page) {
     ppbe_med_info_container.appendChild(ppbe_med_info);
     ppbe_med_info_container.appendChild(ppbe_card_med_qty);
 
+    let ppbe_batch_info_head = document.createElement("div");
+    ppbe_batch_info_head.classList.add("ppbe_batch_info_head");
+
+    let ppbe_batch_info_title = document.createElement("div");
+    ppbe_batch_info_title.classList.add("ppbe_batch_info_title");
+    ppbe_batch_info_title.innerHTML = "批號資訊";
+
+    let ppbe_batch_info_add_btn = document.createElement("div");
+    ppbe_batch_info_add_btn.classList.add("ppbe_batch_info_add_btn");
+    ppbe_batch_info_add_btn.classList.add("btn");
+    ppbe_batch_info_add_btn.innerHTML = "新增批號";
+    ppbe_batch_info_add_btn.addEventListener("click", () => {
+      // 新增批號卡片
+    });
+
+    ppbe_batch_info_head.appendChild(ppbe_batch_info_title);
+    ppbe_batch_info_head.appendChild(ppbe_batch_info_add_btn);
+
+    let ppbe_batch_card_container = document.createElement("div");
+    ppbe_batch_card_container.classList.add("ppbe_batch_card_container");
+    // 這邊繼續生成卡片(包含新增刪除邏輯)
+
     ppbe_main_func_display.appendChild(ppbe_med_info_container);
+    ppbe_main_func_display.appendChild(ppbe_batch_info_head);
+    ppbe_main_func_display.appendChild(ppbe_batch_card_container);
   } catch (error) {
     console.error(error);
     ppbe_main_func_display.innerHTML = `錯誤：${error}`;
