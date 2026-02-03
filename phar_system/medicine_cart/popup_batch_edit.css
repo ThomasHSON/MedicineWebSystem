@@ -229,6 +229,11 @@
   border-color: rgb(107, 107, 107);
   cursor: not-allowed;
 }
+.ppbe_batch_card_container {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 12px;
+}
 .ppbe_batch_info_head {
   display: flex;
   justify-content: space-between;
@@ -238,5 +243,43 @@
 }
 .ppbe_batch_info_title {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
+}
+.ppbe_batch_card {
+  padding: 16px;
+  background-color: #efefef;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.5rem;
+}
+.ppbe_batch_card_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.ppbe_batch_card_head_delete {
+  height: 28px;
+  display: block;
+}
+.ppbe_batch_card_head_title {
+  text-decoration: underline;
+}
+.batch_card_info_detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.batch_card_info_input,
+.batch_card_info_label {
+  padding: 2px 4px;
+  font-size: 16px;
+}
+.batch_card_info_input {
+  border-radius: 4px;
+  border: 1px solid #606060;
+}
+.ppbe_batch_card_info_container {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  gap: 8px;
 }
