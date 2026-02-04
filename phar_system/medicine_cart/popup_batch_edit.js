@@ -641,6 +641,12 @@ function ppbe_set_submit_page(step, max_page) {
   try {
     ppbe_main_func_display.innerHTML = "";
     ppbe_main_head_page.innerHTML = `${step}/${max_page}`;
+
+    ppbe_cpoe_batch_edit_data.forEach((element) => {
+      let temp_div = set_ppbe_submit_card(element);
+
+      ppbe_main_func_display.appendChild(temp_div);
+    });
   } catch (error) {}
 }
 let batch_label_data = [
@@ -749,4 +755,50 @@ function set_ppbe_card_init(expiry_date, lot, qty, batch_index, data_index) {
   ppbe_batch_card.appendChild(ppbe_batch_card_info_container);
 
   return ppbe_batch_card;
+}
+function set_ppbe_submit_card(object) {
+  let ppbe_sub_card = document.createElement("div");
+  ppbe_sub_card.classList.add("ppbe_sub_card");
+  try {
+    let ppbe_sub_card_med_info_container = document.createElement("div");
+    ppbe_sub_card_med_info_container.classList.add(
+      "ppbe_sub_card_med_info_container",
+    );
+
+    let ppbe_sc_med_name = document.createElement("div");
+    ppbe_sc_med_name.classList.add("ppbe_sc_med_name");
+    ppbe_sc_med_name.innerHTML = object.name;
+
+    let ppbe_sc_med_cht_name = document.createElement("div");
+    ppbe_sc_med_cht_name.classList.add("ppbe_sc_med_cht_name");
+    ppbe_sc_med_cht_name.innerHTML = object.cht_name;
+
+    ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_name);
+    if (object.cht_name)
+      ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_cht_name);
+
+    let ppbe_sc_med_batch_container = document.createElement("div");
+    ppbe_sc_med_batch_container.classList.add("ppbe_sc_med_batch_container");
+
+    if (object.stock.qty.length > 0) {
+      object.stock.qty.forEach((element, index) => {
+        let ppbe_sc_batch = document.createElement("div");
+        ppbe_sc_batch.classList.add("ppbe_sc_batch");
+
+        let ppbe_sc_batch_head;
+
+        ppbe_sc_med_batch_container.appendChild(ppbe_sc_batch);
+      });
+    } else {
+      ppbe_sc_med_batch_container.innerHTML = "無批號資料";
+    }
+
+    ppbe_sub_card.appendChild(ppbe_sub_card_med_info_container);
+    ppbe_sub_card.appendChild(ppbe_sc_med_batch_container);
+
+    return ppbe_sub_card;
+  } catch (error) {
+    ppbe_sub_card.innerHTML = `資料錯誤：${error}`;
+    return ppbe_sub_card;
+  }
 }
