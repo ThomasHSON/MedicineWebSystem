@@ -162,11 +162,12 @@ function ppbe_set_cpoe_list() {
       ppbe_main_head_page.innerHTML = "1/1";
     }
     ppbe_main_func_display.innerHTML = "";
-    cpoe_info = current_p_bed_data.cpoe;
+    let cpoe_info = current_p_bed_data.cpoe;
 
     if (cpoe_info.length > 0) {
       cpoe_info.forEach((object) => {
-        let temp_card = ppbe_set_cpoe_card(object);
+        let temp_object = structuredClone(object);
+        let temp_card = ppbe_set_cpoe_card(temp_object);
 
         ppbe_main_func_display.appendChild(temp_card);
       });
@@ -375,10 +376,10 @@ function ppbe_step_btn_set() {
       break;
 
     case +max_page:
-      ppbe_step_pre_btn.style.display = "none";
+      ppbe_step_pre_btn.style.display = "block";
       ppbe_step_next_btn.style.display = "none";
       ppbe_step_submit_btn.style.display = "block";
-      ppbe_main_footer.style.justifyContent = "end";
+      ppbe_main_footer.style.justifyContent = "space-between";
       break;
 
     default:
@@ -572,8 +573,9 @@ function ppbe_set_middle_page(step, max_page) {
         if (ppbe_cpoe_batch_edit_data[data_index].stock.qty.length > 0) {
           temp_index = ppbe_cpoe_batch_edit_data[data_index].stock.qty.length;
         }
+        let today_date = getToday();
         let temp_div = set_ppbe_card_init(
-          "2000-01-01",
+          today_date,
           "",
           "",
           temp_index,
@@ -584,7 +586,7 @@ function ppbe_set_middle_page(step, max_page) {
 
         ppbe_cpoe_batch_edit_data[data_index].stock.qty.push("");
         ppbe_cpoe_batch_edit_data[data_index].stock.expiry_date.push(
-          "2000-01-01",
+          today_date,
         );
         ppbe_cpoe_batch_edit_data[data_index].stock.lot.push("");
         console.log(ppbe_cpoe_batch_edit_data[data_index]);
@@ -733,12 +735,30 @@ function set_ppbe_card_init(expiry_date, lot, qty, batch_index, data_index) {
       case "expiry_date":
         let temp_date = expiry_date.replaceAll("/", "-");
         batch_card_info_input.value = temp_date;
+        batch_card_info_input.addEventListener("change", () => {
+          let temp_index = ppbe_batch_card.getAttribute("index");
+          let temp_str_date = batch_card_info_input.value.replaceAll("-", "/");
+          ppbe_cpoe_batch_edit_data[data_index].stock.expiry_date[temp_index] =
+            temp_str_date;
+
+          console.log(ppbe_cpoe_batch_edit_data);
+        });
         break;
       case "lot":
         batch_card_info_input.value = lot;
+        batch_card_info_input.addEventListener("input", () => {
+          let temp_index = ppbe_batch_card.getAttribute("index");
+          ppbe_cpoe_batch_edit_data[data_index].stock.lot[temp_index] =
+            batch_card_info_input.value;
+        });
         break;
       case "qty":
         batch_card_info_input.value = qty;
+        batch_card_info_input.addEventListener("input", () => {
+          let temp_index = ppbe_batch_card.getAttribute("index");
+          ppbe_cpoe_batch_edit_data[data_index].stock.qty[temp_index] =
+            batch_card_info_input.value;
+        });
         break;
 
       default:
@@ -765,6 +785,9 @@ function set_ppbe_submit_card(object) {
       "ppbe_sub_card_med_info_container",
     );
 
+    let ppbe_sc_med_name_container = document.createElement("div");
+    ppbe_sc_med_name_container.classList.add("ppbe_sc_med_name_container");
+
     let ppbe_sc_med_name = document.createElement("div");
     ppbe_sc_med_name.classList.add("ppbe_sc_med_name");
     ppbe_sc_med_name.innerHTML = object.name;
@@ -773,9 +796,16 @@ function set_ppbe_submit_card(object) {
     ppbe_sc_med_cht_name.classList.add("ppbe_sc_med_cht_name");
     ppbe_sc_med_cht_name.innerHTML = object.cht_name;
 
-    ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_name);
+    ppbe_sc_med_name_container.appendChild(ppbe_sc_med_name);
     if (object.cht_name)
-      ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_cht_name);
+      ppbe_sc_med_name_container.appendChild(ppbe_sc_med_cht_name);
+
+    let ppbe_sc_med_qty = document.createElement("div");
+    ppbe_sc_med_qty.classList.add("ppbe_sc_med_qty");
+    ppbe_sc_med_qty.innerHTML = object.qty;
+
+    ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_name_container);
+    ppbe_sub_card_med_info_container.appendChild(ppbe_sc_med_qty);
 
     let ppbe_sc_med_batch_container = document.createElement("div");
     ppbe_sc_med_batch_container.classList.add("ppbe_sc_med_batch_container");
@@ -785,7 +815,47 @@ function set_ppbe_submit_card(object) {
         let ppbe_sc_batch = document.createElement("div");
         ppbe_sc_batch.classList.add("ppbe_sc_batch");
 
-        let ppbe_sc_batch_head;
+        let ppbe_sc_batch_head = document.createElement("div");
+        ppbe_sc_batch_head.classList.add("ppbe_sc_batch_head");
+        ppbe_sc_batch_head.innerHTML = `批號${index + 1}`;
+
+        let ppbe_sc_batch_info = document.createElement("div");
+        ppbe_sc_batch_info.classList.add("ppbe_sc_batch_info");
+
+        batch_label_data.forEach((item) => {
+          let ppbe_sc_batch_info_div = document.createElement("div");
+          ppbe_sc_batch_info_div.classList.add("ppbe_sc_batch_info_div");
+
+          let ppbe_sc_label = document.createElement("div");
+          ppbe_sc_label.classList.add("ppbe_sc_label");
+          ppbe_sc_label.innerHTML = `${item.cht}: `;
+
+          let ppbe_sc_input = document.createElement("div");
+          ppbe_sc_input.classList.add("ppbe_sc_input");
+
+          switch (item.en) {
+            case "expiry_date":
+              ppbe_sc_input.innerHTML = object.stock.expiry_date[index];
+              break;
+            case "lot":
+              ppbe_sc_input.innerHTML = object.stock.lot[index];
+              break;
+            case "qty":
+              ppbe_sc_input.innerHTML = element;
+              break;
+
+            default:
+              break;
+          }
+
+          ppbe_sc_batch_info_div.appendChild(ppbe_sc_label);
+          ppbe_sc_batch_info_div.appendChild(ppbe_sc_input);
+
+          ppbe_sc_batch_info.appendChild(ppbe_sc_batch_info_div);
+        });
+
+        ppbe_sc_batch.appendChild(ppbe_sc_batch_head);
+        ppbe_sc_batch.appendChild(ppbe_sc_batch_info);
 
         ppbe_sc_med_batch_container.appendChild(ppbe_sc_batch);
       });
@@ -802,3 +872,14 @@ function set_ppbe_submit_card(object) {
     return ppbe_sub_card;
   }
 }
+function getToday() {
+  const d = new Date();
+
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+
+  return `${y}-${m}-${day}`;
+}
+
+console.log(getToday()); // 2026-02-05

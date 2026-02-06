@@ -283,3 +283,47 @@
   grid-template-columns: 32% 32% 32%;
   gap: 8px;
 }
+.ppbe_sub_card {
+  padding: 12px 0px;
+  border-bottom: 1px solid #606060;
+}
+.ppbe_sub_card_med_info_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #c8c8c8;
+  background-color: #f1f1f1;
+}
+.ppbe_sc_med_batch_container {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ppbe_sc_med_name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.ppbe_sc_med_qty {
+  font-size: 24px;
+  font-weight: 800;
+}
+.ppbe_sc_batch_head {
+  padding-bottom: 8px;
+}
+.ppbe_sc_batch_info {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+}
+.ppbe_sc_batch_info_div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.ppbe_sc_label {
+  padding-right: 4px;
+}
