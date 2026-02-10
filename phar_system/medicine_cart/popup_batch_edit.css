@@ -233,97 +233,54 @@
   display: grid;
   grid-template-columns: 100%;
   gap: 12px;
+  flex-grow: 1;
 }
 .ppbe_batch_info_head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0px 8px;
+  padding: 8px 0px;
   border-bottom: 1px solid #606060;
 }
 .ppbe_batch_info_title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
 }
-.ppbe_batch_card {
-  padding: 16px;
-  background-color: #efefef;
-  border: 1px solid #c8c8c8;
-  border-radius: 0.5rem;
+.ppbe_stock_batch_container {
+  padding-top: 12px;
 }
-.ppbe_batch_card_head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.ppbe_batch_card_head_delete {
-  height: 28px;
-  display: block;
-}
-.ppbe_batch_card_head_title {
-  text-decoration: underline;
-}
-.batch_card_info_detail {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.batch_card_info_input,
-.batch_card_info_label {
-  padding: 2px 4px;
-  font-size: 16px;
-}
-.batch_card_info_input {
-  border-radius: 4px;
-  border: 1px solid #606060;
-}
-.ppbe_batch_card_info_container {
-  display: grid;
-  grid-template-columns: 32% 32% 32%;
-  gap: 8px;
-}
-.ppbe_sub_card {
-  padding: 12px 0px;
+.ppbe_stock_head {
+  font-weight: 600;
+  font-size: 20px;
+  padding-bottom: 8px;
   border-bottom: 1px solid #606060;
 }
-.ppbe_sub_card_med_info_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  border: 1px solid #c8c8c8;
-  background-color: #f1f1f1;
-}
-.ppbe_sc_med_batch_container {
-  padding-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.ppbe_sc_med_name {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-}
-
-.ppbe_sc_med_qty {
-  font-size: 24px;
-  font-weight: 800;
-}
-.ppbe_sc_batch_head {
-  padding-bottom: 8px;
-}
-.ppbe_sc_batch_info {
+.ppbe_stock_info_div {
+  flex-grow: 1;
   display: grid;
+  gap: 8px;
   grid-template-columns: 32% 32% 32%;
 }
-.ppbe_sc_batch_info_div {
-  display: flex;
-  width: 100%;
-  align-items: center;
+.ppbe_stock_add {
+  background-color: #6ece20;
+  padding: 4px;
+  width: 28px;
+  border-radius: 4px;
+  cursor: pointer;
 }
-.ppbe_sc_label {
-  padding-right: 4px;
+
+.ppbe_stock_main {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 8px;
+  padding-top: 12px;
+}
+.ppbe_stock_card {
+  padding: 12px;
+  border-radius: 0.5rem;
+  border: 1px solid #606060;
+  background-color: #ececec;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
