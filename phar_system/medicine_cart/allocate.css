@@ -10,7 +10,8 @@
 .pb_patient_name {
   padding-left: 12px;
 }
-.nearMiss_log_container_for_cpoe {
+.nearMiss_log_container_for_cpoe,
+.batch_info_container_for_cpoe {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -634,7 +635,9 @@
 
   /* 小陰影讓它浮起來一點，但不要太油 */
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
     transform 0.05s ease;
 }
 

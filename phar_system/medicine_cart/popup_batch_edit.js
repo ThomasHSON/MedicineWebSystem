@@ -113,6 +113,53 @@ function get_pp_batch_edit_main() {
   ppbe_step_submit_btn.classList.add("ppbe_step_submit_btn");
   ppbe_step_submit_btn.classList.add("btn");
   ppbe_step_submit_btn.innerHTML = "更新";
+  ppbe_step_submit_btn.addEventListener("click", async () => {
+    console.log(ppbe_cpoe_batch_edit_data);
+    let temp_arr = [];
+    ppbe_cpoe_batch_edit_data.forEach((element) => {
+      let temp_object = {};
+      temp_object.GUID = element.GUID;
+      temp_object.lot_exp = element.lot_exp;
+
+      temp_arr.push(temp_object);
+    });
+    let post_data = {
+      Data: temp_arr,
+    };
+    console.log(post_data);
+    let return_data = await update_lot_exp_api(post_data);
+    console.log(return_data);
+    if (return_data.Code == 200) {
+      ppbe_cpoe_batch_edit_data = [];
+      console.log(ppbe_cpoe_batch_edit_data);
+
+      return_data.Data.forEach((element) => {
+        // 選取 class 為 batch_info_container_for_cpoe 且 GUID 為 "abc-123-def" 的元素
+        const temp_div = document.querySelector(
+          `.batch_info_container_for_cpoe[GUID="${element.GUID}"]`,
+        );
+
+        if (element.lot_exp != "") {
+          let temp_arr = [];
+          temp_arr = element.lot_exp.split(";");
+
+          if (temp_arr.length > 0) {
+            temp_arr.forEach((element) => {
+              let ppbe_sc_med_batch = document.createElement("div");
+              ppbe_sc_med_batch.classList.add("ppnms_type_card");
+              ppbe_sc_med_batch.innerHTML = element;
+
+              temp_div.appendChild(ppbe_sc_med_batch);
+            });
+          }
+        }
+      });
+      open_med_detail_info();
+      await popup_batch_edit_div_close();
+    } else {
+      alert(return_data.Result);
+    }
+  });
 
   ppbe_main_footer.appendChild(ppbe_step_pre_btn);
   ppbe_main_footer.appendChild(ppbe_step_next_btn);
@@ -131,15 +178,11 @@ function get_pp_batch_edit_footer() {
   return ppbe_footer_container;
 }
 async function popup_batch_edit_div_close() {
-  ppbe_init_data();
   popup_batch_edit_div.Set_Visible(false);
 }
 function popup_batch_edit_div_open() {
   ppbe_set_cpoe_list();
   popup_batch_edit_div.Set_Visible(true);
-}
-function ppbe_init_data() {
-  ppbe_cpoe_batch_edit_data = [];
 }
 
 function ppbe_set_cpoe_list() {
@@ -569,7 +612,19 @@ function ppbe_set_middle_page(step, max_page) {
     ppbe_batch_info_add_btn.classList.add("ppbe_batch_info_add_btn");
     ppbe_batch_info_add_btn.classList.add("btn");
     ppbe_batch_info_add_btn.innerHTML = "新增批號";
-    ppbe_batch_info_add_btn.addEventListener("click", () => {});
+    ppbe_batch_info_add_btn.addEventListener("click", () => {
+      if (ppbe_cpoe_batch_edit_data[data_index].lot_exp == "") {
+        ppbe_cpoe_batch_edit_data[data_index].lot_exp =
+          `[效期]:${batch_getToday()},[批號]:,[數量]:`;
+      } else {
+        ppbe_cpoe_batch_edit_data[data_index].lot_exp +=
+          `;[效期]:${batch_getToday()},[批號]:,[數量]:`;
+      }
+      set_ppbe_batch_card_init(
+        ppbe_cpoe_batch_edit_data[data_index].lot_exp,
+        data_index,
+      );
+    });
 
     ppbe_batch_info_head.appendChild(ppbe_batch_info_title);
     ppbe_batch_info_head.appendChild(ppbe_batch_info_add_btn);
@@ -652,54 +707,16 @@ function set_ppbe_submit_card(object) {
     let ppbe_sc_med_batch_container = document.createElement("div");
     ppbe_sc_med_batch_container.classList.add("ppbe_sc_med_batch_container");
 
-    if (object.stock.qty.length > 0) {
-      object.stock.qty.forEach((element, index) => {
-        let ppbe_sc_batch = document.createElement("div");
-        ppbe_sc_batch.classList.add("ppbe_sc_batch");
+    let temp_arr = [];
+    if (object.lot_exp != "") temp_arr = object.lot_exp.split(";");
 
-        let ppbe_sc_batch_head = document.createElement("div");
-        ppbe_sc_batch_head.classList.add("ppbe_sc_batch_head");
-        ppbe_sc_batch_head.innerHTML = `批號${index + 1}`;
+    if (temp_arr.length > 0) {
+      temp_arr.forEach((element) => {
+        let ppbe_sc_med_batch = document.createElement("div");
+        ppbe_sc_med_batch.classList.add("ppbe_sc_med_batch");
+        ppbe_sc_med_batch.innerHTML = element;
 
-        let ppbe_sc_batch_info = document.createElement("div");
-        ppbe_sc_batch_info.classList.add("ppbe_sc_batch_info");
-
-        batch_label_data.forEach((item) => {
-          let ppbe_sc_batch_info_div = document.createElement("div");
-          ppbe_sc_batch_info_div.classList.add("ppbe_sc_batch_info_div");
-
-          let ppbe_sc_label = document.createElement("div");
-          ppbe_sc_label.classList.add("ppbe_sc_label");
-          ppbe_sc_label.innerHTML = `${item.cht}: `;
-
-          let ppbe_sc_input = document.createElement("div");
-          ppbe_sc_input.classList.add("ppbe_sc_input");
-
-          switch (item.en) {
-            case "expiry_date":
-              ppbe_sc_input.innerHTML = object.stock.expiry_date[index];
-              break;
-            case "lot":
-              ppbe_sc_input.innerHTML = object.stock.lot[index];
-              break;
-            case "qty":
-              ppbe_sc_input.innerHTML = element;
-              break;
-
-            default:
-              break;
-          }
-
-          ppbe_sc_batch_info_div.appendChild(ppbe_sc_label);
-          ppbe_sc_batch_info_div.appendChild(ppbe_sc_input);
-
-          ppbe_sc_batch_info.appendChild(ppbe_sc_batch_info_div);
-        });
-
-        ppbe_sc_batch.appendChild(ppbe_sc_batch_head);
-        ppbe_sc_batch.appendChild(ppbe_sc_batch_info);
-
-        ppbe_sc_med_batch_container.appendChild(ppbe_sc_batch);
+        ppbe_sc_med_batch_container.appendChild(ppbe_sc_med_batch);
       });
     } else {
       ppbe_sc_med_batch_container.innerHTML = "無批號資料";
@@ -721,24 +738,111 @@ function set_ppbe_batch_card_init(str, data_index) {
   );
 
   let temp_arr = batch_parseData(str);
-  console.log(temp_arr);
+  console.log("生成資料的陣列", temp_arr);
 
   ppbe_batch_card_container.innerHTML = "";
 
   if (temp_arr.length > 0) {
     // 這邊加入批號卡片
+    temp_arr.forEach((element, index) => {
+      let ppbe_batch_card = document.createElement("div");
+      ppbe_batch_card.classList.add("ppbe_batch_card");
+
+      let ppbe_bc_head = document.createElement("div");
+      ppbe_bc_head.classList.add("ppbe_bc_head");
+
+      let ppbe_bc_h_title = document.createElement("div");
+      ppbe_bc_h_title.classList.add("ppbe_bc_h_title");
+      ppbe_bc_h_title.innerHTML = `批號${index + 1}`;
+
+      let ppbe_bc_h_delete = document.createElement("img");
+      ppbe_bc_h_delete.classList.add("ppbe_bc_h_delete");
+      ppbe_bc_h_delete.src = "../image/trash.png";
+      ppbe_bc_h_delete.addEventListener("click", () => {
+        console.log("刪除的資料", temp_arr[index]);
+        console.log("刪除的資料索引直", index);
+        let new_arr = temp_arr.filter((item, x) => {
+          console.log(x);
+          console.log(index);
+          return x != index;
+        });
+        console.log("刪除後的陣列", new_arr);
+        let temp_str = batch_stringifyData(new_arr);
+        console.log("刪除後的字串", temp_str);
+        ppbe_cpoe_batch_edit_data[data_index].lot_exp = temp_str;
+        set_ppbe_batch_card_init(temp_str, data_index);
+      });
+
+      ppbe_bc_head.appendChild(ppbe_bc_h_title);
+      ppbe_bc_head.appendChild(ppbe_bc_h_delete);
+
+      let ppbe_bc_main = document.createElement("div");
+      ppbe_bc_main.classList.add("ppbe_bc_main");
+
+      let temp_object_data = [
+        { en: "lot", ch: "批號", type: "text" },
+        { en: "expiry_date", ch: "效期", type: "date" },
+        { en: "qty", ch: "數量", type: "text" },
+      ];
+
+      temp_object_data.forEach((item) => {
+        let ppbe_bc_info = document.createElement("div");
+        ppbe_bc_info.classList.add("ppbe_bc_info");
+
+        let ppbe_bc_label = document.createElement("label");
+        ppbe_bc_label.classList.add("ppbe_bc_label");
+        ppbe_bc_label.innerHTML = item.ch;
+        ppbe_bc_label.setAttribute("for", `${item.en}_${index}`);
+
+        let ppbe_bc_input = document.createElement("input");
+        ppbe_bc_input.classList.add("ppbe_bc_input");
+        ppbe_bc_input.placeholder = "請輸入資料";
+        ppbe_bc_input.id = `${item.en}_${index}`;
+        if (item.en == "expiry_date") {
+          ppbe_bc_input.type = "date";
+          let temp_str = element[`${item.en}`].replaceAll("/", "-");
+          ppbe_bc_input.value = temp_str;
+          ppbe_bc_input.addEventListener("change", () => {
+            let temp_date_str = ppbe_bc_input.value.replaceAll("-", "/");
+            temp_arr[index].expiry_date = temp_date_str;
+            let temp_str = batch_stringifyData(temp_arr);
+            console.log(temp_str);
+            ppbe_cpoe_batch_edit_data[data_index].lot_exp = temp_str;
+          });
+        } else {
+          ppbe_bc_input.type = "text";
+          ppbe_bc_input.value = element[`${item.en}`];
+          ppbe_bc_input.addEventListener("input", () => {
+            temp_arr[index][`${item.en}`] = ppbe_bc_input.value;
+            let temp_str = batch_stringifyData(temp_arr);
+            console.log(temp_str);
+            ppbe_cpoe_batch_edit_data[data_index].lot_exp = temp_str;
+          });
+        }
+
+        ppbe_bc_info.appendChild(ppbe_bc_label);
+        ppbe_bc_info.appendChild(ppbe_bc_input);
+
+        ppbe_bc_main.appendChild(ppbe_bc_info);
+      });
+
+      ppbe_batch_card.appendChild(ppbe_bc_head);
+      ppbe_batch_card.appendChild(ppbe_bc_main);
+
+      ppbe_batch_card_container.appendChild(ppbe_batch_card);
+    });
   } else {
     ppbe_batch_card_container.innerHTML = "暫無批號資訊";
   }
 }
-function getToday() {
+function batch_getToday() {
   const d = new Date();
 
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
 
-  return `${y}-${m}-${day}`;
+  return `${y}/${m}/${day}`;
 }
 function batch_parseData(str) {
   // 擋空資料（最重要的一行）

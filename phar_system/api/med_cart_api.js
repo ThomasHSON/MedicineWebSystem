@@ -34,7 +34,7 @@ async function get_all_med_cart_by_phar(phar) {
       body: JSON.stringify({
         ValueAry: [phar],
       }),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -62,7 +62,7 @@ async function get_bed_list_by_cart(phar, med_cart) {
         body: JSON.stringify({
           ValueAry: [phar, med_cart],
         }),
-      }
+      },
     ).then((response) => {
       return response.json();
     });
@@ -137,7 +137,7 @@ async function get_patient_by_bedNum(phar, med_cart, bed_num) {
       body: JSON.stringify({
         ValueAry: [phar, med_cart, bed_num],
       }),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -341,7 +341,7 @@ async function get_serversetting_by_department_type(phar) {
       body: JSON.stringify({
         ValueAry: [phar],
       }),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -450,7 +450,7 @@ async function api_med_cart_double_check_by_GUID(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -473,7 +473,7 @@ async function api_med_cart_check_dispense_by_GUID(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -562,7 +562,7 @@ async function add_med_inventory_log(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -583,7 +583,7 @@ async function add_med_inventory_time_track(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -607,7 +607,7 @@ async function get_opid_by_time(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -629,7 +629,7 @@ async function get_time_by_op_id(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -648,7 +648,7 @@ async function get_medChange_by_GUID(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -669,7 +669,7 @@ async function get_medChange_by_ST_EN(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -690,7 +690,7 @@ async function update_large_in_med_cpoe(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -709,7 +709,7 @@ async function get_logtime_by_opid(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   ).then((response) => {
     return response.json();
   });
@@ -781,7 +781,7 @@ async function get_all_cart_discharge(data) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }
+      },
     ).then((response) => {
       return response.json();
     });
@@ -814,7 +814,7 @@ async function get_cart_with_NOdispense(data) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }
+      },
     ).then((response) => {
       return response.json();
     });
@@ -847,7 +847,7 @@ async function get_cart_with_NOcheck(data) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }
+      },
     ).then((response) => {
       return response.json();
     });
@@ -880,7 +880,7 @@ async function get_patient_discharge(data) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }
+      },
     ).then((response) => {
       return response.json();
     });
@@ -964,6 +964,35 @@ async function update_cpoe_note_api(data) {
     let temp_doman = transform_api_ip_4433(api_ip);
 
     let temp_data = await fetch(`${temp_doman}api/med_cart/update_note`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      return response.json();
+    });
+
+    let end_p = performance.now();
+    console.log(end_p - start_p);
+    console.log(temp_data);
+
+    return temp_data;
+  } catch (error) {
+    let err_data = {
+      Code: -200,
+      Result: `網路錯誤：${error}`,
+    };
+    return err_data;
+  }
+}
+// 更新處方備註
+async function update_lot_exp_api(data) {
+  try {
+    let start_p = performance.now();
+    let temp_doman = transform_api_ip_4433(api_ip);
+
+    let temp_data = await fetch(`${temp_doman}api/med_cart/update_lot_exp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
