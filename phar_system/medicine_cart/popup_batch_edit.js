@@ -139,6 +139,7 @@ function get_pp_batch_edit_main() {
           `.batch_info_container_for_cpoe[GUID="${element.GUID}"]`,
         );
 
+        temp_div.innerHTML = "";
         if (element.lot_exp != "") {
           let temp_arr = [];
           temp_arr = element.lot_exp.split(";");

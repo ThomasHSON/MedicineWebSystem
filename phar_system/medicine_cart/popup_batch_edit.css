@@ -234,6 +234,8 @@
   grid-template-columns: 100%;
   gap: 12px;
   flex-grow: 1;
+  align-items: start;
+  align-content: start;
 }
 .ppbe_batch_info_head {
   display: flex;
