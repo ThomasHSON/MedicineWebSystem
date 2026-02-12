@@ -1,0 +1,91 @@
+.popup_nearMiss_setting_div {
+  max-width: 800px;
+  width: 90%;
+  width: 90vw;
+  width: 90svw;
+  height: 90%;
+  height: 90vh;
+  height: 90svh;
+  max-height: 960px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: start !important;
+}
+
+.ppnmss_header_container {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.ppnmss_h_title {
+  padding: 4px 48px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(222, 222, 222);
+  color: #000000;
+  border-radius: 5px;
+}
+.ppnmss_h_close_btn {
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  width: 36px;
+  top: 0px;
+  right: 0px;
+}
+.ppnmss_main_container {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.ppnmss_main_title {
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #000000;
+}
+.ppnmss_main_option_container {
+  padding-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.ppmnss_card {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid #999999;
+  background-color: #f4f4f4;
+}
+.ppmnss_card_delete {
+  height: 20px;
+  cursor: pointer;
+  display: block;
+}
+.ppnmss_footer_container {
+  width: 100%;
+}
+.ppnmss_footer_notice {
+  color: rgb(225, 28, 28);
+  font-size: 14px;
+  text-align: center;
+}
+.ppmnss_footer_input_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.ppmnss_footer_input {
+  flex-grow: 1;
+  padding: 4px 12px;
+  border-radius: 0.5rem;
+  border: 1px solid #999999;
+  font-size: 16px;
+}
