@@ -76,18 +76,19 @@ function get_pp_nearMiss_setting_footer() {
   ppmnss_footer_add.classList.add("ppmnss_footer_add");
   ppmnss_footer_add.classList.add("btn");
   ppmnss_footer_add.innerHTML = "新增";
-  ppmnss_footer_add.addEventListener("click", () => {
-    ppmnss_footer_add.innerHTML = "新增中...";
+  ppmnss_footer_add.addEventListener("click", async () => {
     if (ppmnss_footer_add.innerHTML == "新增中...") {
       return;
     }
     let temp_str = ppmnss_footer_input.value;
+    console.log("檢測空值");
     if (temp_str == "") {
       alert("請勿輸入空值");
       ppmnss_footer_add.innerHTML = "新增";
       return;
     }
 
+    console.log("檢測非法字元");
     if (temp_str.includes(";")) {
       alert(`檢測到非法文字，請確認後再新增`);
       ppmnss_footer_add.innerHTML = "新增";
@@ -97,12 +98,38 @@ function get_pp_nearMiss_setting_footer() {
     if (page_setting_params.dispense_error_options) {
       temp_arr = page_setting_params.dispense_error_options.value_db.split(";");
     }
+    console.log("檢測重複項目");
     if (temp_arr.includes(ppmnss_footer_input.value)) {
       alert("已有重複選項，請確認後再進行新增");
       ppmnss_footer_add.innerHTML = "新增";
       return;
     }
     // 這邊處理資料加入
+    ppmnss_footer_add.innerHTML = "新增中...";
+    console.log("加入中");
+    temp_arr.unshift(ppmnss_footer_input.value);
+    let temp_post_str = temp_arr.join(";");
+    let post_data = {
+      ValueAry: [
+        page_setting_params.dispense_error_options.GUID,
+        temp_post_str,
+      ],
+    };
+    let return_data = await update_nearMiss_option_api(post_data);
+
+    console.log(return_data);
+    if (return_data.Code == 200) {
+      page_setting_params.dispense_error_options.value = return_data.Data[0][6];
+      page_setting_params.dispense_error_options.value_db =
+        return_data.Data[0][6];
+
+      ppmnss_footer_input.value = "";
+
+      init_nearMiss_options();
+    } else {
+      alert(`錯誤：${return_data.Result}`);
+    }
+    ppmnss_footer_add.innerHTML = "新增";
   });
 
   ppmnss_footer_input_container.appendChild(ppmnss_footer_input);
@@ -143,6 +170,30 @@ function init_nearMiss_options() {
       let ppmnss_card_delete = document.createElement("img");
       ppmnss_card_delete.classList.add("ppmnss_card_delete");
       ppmnss_card_delete.src = "../image/trash.png";
+      ppmnss_card_delete.addEventListener("click", async () => {
+        let new_arr = temp_arr.filter((item) => item !== element);
+
+        let temp_post_str = new_arr.join(";");
+        let post_data = {
+          ValueAry: [
+            page_setting_params.dispense_error_options.GUID,
+            temp_post_str,
+          ],
+        };
+        let return_data = await update_nearMiss_option_api(post_data);
+
+        console.log(return_data);
+        if (return_data.Code == 200) {
+          page_setting_params.dispense_error_options.value =
+            return_data.Data[0][6];
+          page_setting_params.dispense_error_options.value_db =
+            return_data.Data[0][6];
+
+          init_nearMiss_options();
+        } else {
+          alert(`錯誤：${return_data.Result}`);
+        }
+      });
 
       ppmnss_card.appendChild(ppmnss_card_info);
       ppmnss_card.appendChild(ppmnss_card_delete);

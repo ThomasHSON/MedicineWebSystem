@@ -369,6 +369,12 @@ function set_steps_count() {
   let ppnms_main_display = document.querySelector(".ppnms_main_display");
   let current_step = ppnms_main_display.getAttribute("step");
 
+  let ppnms_h_setting = document.querySelector(".ppnms_h_setting");
+  if (+current_step == 1) {
+    ppnms_h_setting.style.display = "block";
+  } else {
+    ppnms_h_setting.style.display = "none";
+  }
   ppnms_steps_count = pages;
   ppnms_main_step_info.innerHTML = `${current_step}/${ppnms_steps_count}`;
 }
@@ -435,9 +441,9 @@ function set_ppnms_first_page() {
       let ppnms_cm_name_container = document.createElement("div");
       ppnms_cm_name_container.classList.add("ppnms_cm_name_container");
       ppnms_cm_name_container.innerHTML = `
-                <div class="ppnms_cm_name">${element.name}</div>
-                <div class="ppnms_cm_cht_name">${element.cht_name}</div>
-            `;
+        <div class="ppnms_cm_name">${element.name}</div>
+        <div class="ppnms_cm_cht_name">${element.cht_name}</div>
+      `;
 
       let ppnms_cm_large_icon = document.createElement("div");
       ppnms_cm_large_icon.classList.add("ppnms_cm_large_icon");
@@ -603,6 +609,7 @@ function set_ppnms_first_page() {
 function set_ppnms_cpoe_page() {
   let ppnms_main_display = document.querySelector(".ppnms_main_display");
   ppnms_main_display.innerHTML = "";
+
   let current_step = ppnms_main_display.getAttribute("step");
   let nearMiss_index = +current_step - 2;
   let temp_data = current_p_bed_data.cpoe.filter((item) => {
