@@ -1336,18 +1336,22 @@ function set_pbm_main_container() {
     ppbe_sc_med_batch_container.classList.add("batch_info_container_for_cpoe");
     ppbe_sc_med_batch_container.setAttribute("GUID", element.GUID);
 
-    if (element.lot_exp != "") {
-      let temp_arr = [];
-      temp_arr = element.lot_exp.split(";");
+    if (element.lot_exp == undefined) {
+      console.error("無批號回寫欄位lot_exp");
+    } else {
+      if (element.lot_exp != "") {
+        let temp_arr = [];
+        temp_arr = element.lot_exp.split(";");
 
-      if (temp_arr.length > 0) {
-        temp_arr.forEach((element) => {
-          let ppbe_sc_med_batch = document.createElement("div");
-          ppbe_sc_med_batch.classList.add("ppnms_type_card");
-          ppbe_sc_med_batch.innerHTML = element;
+        if (temp_arr.length > 0) {
+          temp_arr.forEach((element) => {
+            let ppbe_sc_med_batch = document.createElement("div");
+            ppbe_sc_med_batch.classList.add("ppnms_type_card");
+            ppbe_sc_med_batch.innerHTML = element;
 
-          ppbe_sc_med_batch_container.appendChild(ppbe_sc_med_batch);
-        });
+            ppbe_sc_med_batch_container.appendChild(ppbe_sc_med_batch);
+          });
+        }
       }
     }
 
