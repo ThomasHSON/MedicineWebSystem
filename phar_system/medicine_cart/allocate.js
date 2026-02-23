@@ -129,6 +129,7 @@ async function allocate_display_init(light_on) {
     current_pharmacy.phar,
     current_cart.hnursta,
   );
+  console.log("病床資料", new_med_cart_beds_data);
   if (new_med_cart_beds_data.Code == 200) {
     console.log("成功更新最新病床資料");
     med_cart_beds_data = new_med_cart_beds_data.Data;
@@ -203,8 +204,34 @@ async function allocate_display_init(light_on) {
     }
 
     if (patient_bed_index == -1) {
-      med_cart_beds_data = [];
-      allocate_display_init("");
+      let test_bed_arr = [];
+      med_cart_beds_data.forEach((item) => {
+        if (item.bed_status == "已佔床") {
+          test_bed_arr.push(item);
+        }
+      });
+
+      if (test_bed_arr.length == 0) {
+        let no_data_div = document.createElement("div");
+        no_data_div.classList.add("no_data_div");
+        no_data_div.innerHTML = `${current_cart.hnursta} 護理站無佔床`;
+
+        function_display_container.appendChild(no_data_div);
+        Set_main_div_enable(false);
+        med_cart_beds_data = [];
+      } else {
+        let no_data_div = document.createElement("div");
+        no_data_div.classList.add("no_data_div");
+        no_data_div.innerHTML = `${current_cart.hnursta} 無資料`;
+
+        function_display_container.appendChild(no_data_div);
+        Set_main_div_enable(false);
+        med_cart_beds_data = [];
+
+        allocate_display_init("");
+      }
+      // if (med_cart_beds_data.length == 0) {
+      // }
       return;
     }
 
