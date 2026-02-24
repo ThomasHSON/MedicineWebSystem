@@ -623,7 +623,12 @@ function get_p_bed_header() {
   // pb_btn_container.appendChild(med_cart_sum_list_btn);
   pb_btn_container.appendChild(pb_list_btn);
   pb_btn_container.appendChild(med_nearMiss_btn);
-  pb_btn_container.appendChild(med_batch_btn);
+
+  if (page_setting_params && page_setting_params.exp_lot != undefined) {
+    if (page_setting_params.exp_lot.value == "True") {
+      pb_btn_container.appendChild(med_batch_btn);
+    }
+  }
   // pb_btn_container.appendChild(bed_change_btn);
 
   // pb_btn_container.appendChild();
