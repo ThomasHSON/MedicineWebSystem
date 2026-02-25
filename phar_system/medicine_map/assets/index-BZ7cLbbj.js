@@ -505,13 +505,13 @@ var r = Bc.exports,
       e: for (var H = 0, A = w.length, Ne = A >>> 1; H < Ne; ) {
         var U = 2 * (H + 1) - 1,
           G = w[U],
-          he = U + 1,
-          J = w[he];
+          ge = U + 1,
+          Z = w[ge];
         if (0 > o(G, ee))
-          he < A && 0 > o(J, G)
-            ? ((w[H] = J), (w[he] = ee), (H = he))
+          ge < A && 0 > o(Z, G)
+            ? ((w[H] = Z), (w[ge] = ee), (H = ge))
             : ((w[H] = G), (w[U] = ee), (H = U));
-        else if (he < A && 0 > o(J, ee)) ((w[H] = J), (w[he] = ee), (H = he));
+        else if (ge < A && 0 > o(Z, ee)) ((w[H] = Z), (w[ge] = ee), (H = ge));
         else break e;
       }
     }
@@ -562,7 +562,7 @@ var r = Bc.exports,
       if (n(c) !== null) ((b = !0), P(E));
       else {
         var B = n(h);
-        B !== null && K(v, B.startTime - w);
+        B !== null && X(v, B.startTime - w);
       }
   }
   function E(w, B) {
@@ -586,7 +586,7 @@ var r = Bc.exports,
       if (m !== null) var Ne = !0;
       else {
         var U = n(h);
-        (U !== null && K(v, U.startTime - B), (Ne = !1));
+        (U !== null && X(v, U.startTime - B), (Ne = !1));
       }
       return Ne;
     } finally {
@@ -601,7 +601,7 @@ var r = Bc.exports,
   function se() {
     return !(e.unstable_now() - $ < M);
   }
-  function ye() {
+  function ve() {
     if (I !== null) {
       var w = e.unstable_now();
       $ = w;
@@ -616,23 +616,23 @@ var r = Bc.exports,
   var _;
   if (typeof d == "function")
     _ = function () {
-      d(ye);
+      d(ve);
     };
   else if (typeof MessageChannel < "u") {
     var N = new MessageChannel(),
       L = N.port2;
-    ((N.port1.onmessage = ye),
+    ((N.port1.onmessage = ve),
       (_ = function () {
         L.postMessage(null);
       }));
   } else
     _ = function () {
-      k(ye, 0);
+      k(ve, 0);
     };
   function P(w) {
     ((I = w), S || ((S = !0), _()));
   }
-  function K(w, B) {
+  function X(w, B) {
     F = k(function () {
       w(e.unstable_now());
     }, B);
@@ -740,7 +740,7 @@ var r = Bc.exports,
             t(h, w),
             n(c) === null &&
               w === n(h) &&
-              (T ? (f(F), (F = -1)) : (T = !0), K(v, ee - H)))
+              (T ? (f(F), (F = -1)) : (T = !0), X(v, ee - H)))
           : ((w.sortIndex = A), t(c, w), b || j || ((b = !0), P(E))),
         w
       );
@@ -4055,8 +4055,8 @@ function eu(e) {
           (S = $)));
     return (
       e &&
-        I.forEach(function (ye) {
-          return t(f, ye);
+        I.forEach(function (ve) {
+          return t(f, ve);
         }),
       nt && Qn(f, F),
       E
@@ -6519,7 +6519,7 @@ function $m(e, t) {
 var ro = !1,
   jt = !1,
   Am = typeof WeakSet == "function" ? WeakSet : Set,
-  Se = null;
+  Ce = null;
 function Sr(e, t) {
   var n = e.ref;
   if (n !== null)
@@ -6592,14 +6592,14 @@ function Om(e, t) {
     n = n || { start: 0, end: 0 };
   } else n = null;
   for (
-    aa = { focusedElem: e, selectionRange: n }, Do = !1, Se = t;
-    Se !== null;
+    aa = { focusedElem: e, selectionRange: n }, Do = !1, Ce = t;
+    Ce !== null;
   )
-    if (((t = Se), (e = t.child), (t.subtreeFlags & 1028) !== 0 && e !== null))
-      ((e.return = t), (Se = e));
+    if (((t = Ce), (e = t.child), (t.subtreeFlags & 1028) !== 0 && e !== null))
+      ((e.return = t), (Ce = e));
     else
-      for (; Se !== null; ) {
-        t = Se;
+      for (; Ce !== null; ) {
+        t = Ce;
         try {
           var b = t.alternate;
           if (t.flags & 1024)
@@ -6640,10 +6640,10 @@ function Om(e, t) {
           at(t, t.return, v);
         }
         if (((e = t.sibling), e !== null)) {
-          ((e.return = t.return), (Se = e));
+          ((e.return = t.return), (Ce = e));
           break;
         }
-        Se = t.return;
+        Ce = t.return;
       }
   return ((b = kc), (kc = !1), b);
 }
@@ -7021,9 +7021,9 @@ function Lu(e, t) {
           ((h = e.memoizedState !== null),
           (e.stateNode.isHidden = h) && !g && e.mode & 1)
         )
-          for (Se = e, g = e.child; g !== null; ) {
-            for (m = Se = g; Se !== null; ) {
-              switch (((p = Se), (j = p.child), p.tag)) {
+          for (Ce = e, g = e.child; g !== null; ) {
+            for (m = Ce = g; Ce !== null; ) {
+              switch (((p = Ce), (j = p.child), p.tag)) {
                 case 0:
                 case 11:
                 case 14:
@@ -7054,7 +7054,7 @@ function Lu(e, t) {
                     continue;
                   }
               }
-              j !== null ? ((j.return = p), (Se = j)) : Ic(m);
+              j !== null ? ((j.return = p), (Ce = j)) : Ic(m);
             }
             g = g.sibling;
           }
@@ -7154,11 +7154,11 @@ function ln(e) {
   t & 4096 && (e.flags &= -4097);
 }
 function Um(e, t, n) {
-  ((Se = e), Gu(e));
+  ((Ce = e), Gu(e));
 }
 function Gu(e, t, n) {
-  for (var s = (e.mode & 1) !== 0; Se !== null; ) {
-    var o = Se,
+  for (var s = (e.mode & 1) !== 0; Ce !== null; ) {
+    var o = Ce,
       l = o.child;
     if (o.tag === 22 && s) {
       var a = o.memoizedState !== null || ro;
@@ -7168,25 +7168,25 @@ function Gu(e, t, n) {
         i = ro;
         var h = jt;
         if (((ro = a), (jt = c) && !h))
-          for (Se = o; Se !== null; )
-            ((a = Se),
+          for (Ce = o; Ce !== null; )
+            ((a = Ce),
               (c = a.child),
               a.tag === 22 && a.memoizedState !== null
                 ? Pc(o)
                 : c !== null
-                  ? ((c.return = a), (Se = c))
+                  ? ((c.return = a), (Ce = c))
                   : Pc(o));
-        for (; l !== null; ) ((Se = l), Gu(l), (l = l.sibling));
-        ((Se = o), (ro = i), (jt = h));
+        for (; l !== null; ) ((Ce = l), Gu(l), (l = l.sibling));
+        ((Ce = o), (ro = i), (jt = h));
       }
       Ec(e);
     } else
-      o.subtreeFlags & 8772 && l !== null ? ((l.return = o), (Se = l)) : Ec(e);
+      o.subtreeFlags & 8772 && l !== null ? ((l.return = o), (Ce = l)) : Ec(e);
   }
 }
 function Ec(e) {
-  for (; Se !== null; ) {
-    var t = Se;
+  for (; Ce !== null; ) {
+    var t = Ce;
     if (t.flags & 8772) {
       var n = t.alternate;
       try {
@@ -7280,34 +7280,34 @@ function Ec(e) {
       }
     }
     if (t === e) {
-      Se = null;
+      Ce = null;
       break;
     }
     if (((n = t.sibling), n !== null)) {
-      ((n.return = t.return), (Se = n));
+      ((n.return = t.return), (Ce = n));
       break;
     }
-    Se = t.return;
+    Ce = t.return;
   }
 }
 function Ic(e) {
-  for (; Se !== null; ) {
-    var t = Se;
+  for (; Ce !== null; ) {
+    var t = Ce;
     if (t === e) {
-      Se = null;
+      Ce = null;
       break;
     }
     var n = t.sibling;
     if (n !== null) {
-      ((n.return = t.return), (Se = n));
+      ((n.return = t.return), (Ce = n));
       break;
     }
-    Se = t.return;
+    Ce = t.return;
   }
 }
 function Pc(e) {
-  for (; Se !== null; ) {
-    var t = Se;
+  for (; Ce !== null; ) {
+    var t = Ce;
     try {
       switch (t.tag) {
         case 0:
@@ -7349,15 +7349,15 @@ function Pc(e) {
       at(t, t.return, c);
     }
     if (t === e) {
-      Se = null;
+      Ce = null;
       break;
     }
     var i = t.sibling;
     if (i !== null) {
-      ((i.return = t.return), (Se = i));
+      ((i.return = t.return), (Ce = i));
       break;
     }
-    Se = t.return;
+    Ce = t.return;
   }
 }
 var Lm = Math.ceil,
@@ -7963,16 +7963,16 @@ function Tr() {
       else {
         if (((e = Pn), (Pn = null), (zo = 0), Ve & 6)) throw Error(de(331));
         var o = Ve;
-        for (Ve |= 4, Se = e.current; Se !== null; ) {
-          var l = Se,
+        for (Ve |= 4, Ce = e.current; Ce !== null; ) {
+          var l = Ce,
             a = l.child;
-          if (Se.flags & 16) {
+          if (Ce.flags & 16) {
             var i = l.deletions;
             if (i !== null) {
               for (var c = 0; c < i.length; c++) {
                 var h = i[c];
-                for (Se = h; Se !== null; ) {
-                  var g = Se;
+                for (Ce = h; Ce !== null; ) {
+                  var g = Ce;
                   switch (g.tag) {
                     case 0:
                     case 11:
@@ -7980,21 +7980,21 @@ function Tr() {
                       xs(8, g, l);
                   }
                   var m = g.child;
-                  if (m !== null) ((m.return = g), (Se = m));
+                  if (m !== null) ((m.return = g), (Ce = m));
                   else
-                    for (; Se !== null; ) {
-                      g = Se;
+                    for (; Ce !== null; ) {
+                      g = Ce;
                       var p = g.sibling,
                         j = g.return;
                       if ((Au(g), g === h)) {
-                        Se = null;
+                        Ce = null;
                         break;
                       }
                       if (p !== null) {
-                        ((p.return = j), (Se = p));
+                        ((p.return = j), (Ce = p));
                         break;
                       }
-                      Se = j;
+                      Ce = j;
                     }
                 }
               }
@@ -8009,13 +8009,13 @@ function Tr() {
                   } while (T !== null);
                 }
               }
-              Se = l;
+              Ce = l;
             }
           }
-          if (l.subtreeFlags & 2064 && a !== null) ((a.return = l), (Se = a));
+          if (l.subtreeFlags & 2064 && a !== null) ((a.return = l), (Ce = a));
           else
-            e: for (; Se !== null; ) {
-              if (((l = Se), l.flags & 2048))
+            e: for (; Ce !== null; ) {
+              if (((l = Ce), l.flags & 2048))
                 switch (l.tag) {
                   case 0:
                   case 11:
@@ -8024,20 +8024,20 @@ function Tr() {
                 }
               var f = l.sibling;
               if (f !== null) {
-                ((f.return = l.return), (Se = f));
+                ((f.return = l.return), (Ce = f));
                 break e;
               }
-              Se = l.return;
+              Ce = l.return;
             }
         }
         var d = e.current;
-        for (Se = d; Se !== null; ) {
-          a = Se;
+        for (Ce = d; Ce !== null; ) {
+          a = Ce;
           var y = a.child;
-          if (a.subtreeFlags & 2064 && y !== null) ((y.return = a), (Se = y));
+          if (a.subtreeFlags & 2064 && y !== null) ((y.return = a), (Ce = y));
           else
-            e: for (a = d; Se !== null; ) {
-              if (((i = Se), i.flags & 2048))
+            e: for (a = d; Ce !== null; ) {
+              if (((i = Ce), i.flags & 2048))
                 try {
                   switch (i.tag) {
                     case 0:
@@ -8049,15 +8049,15 @@ function Tr() {
                   at(i, i.return, E);
                 }
               if (i === a) {
-                Se = null;
+                Ce = null;
                 break e;
               }
               var v = i.sibling;
               if (v !== null) {
-                ((v.return = i.return), (Se = v));
+                ((v.return = i.return), (Ce = v));
                 break e;
               }
-              Se = i.return;
+              Ce = i.return;
             }
         }
         if (
@@ -9288,21 +9288,21 @@ class nh {
       body: JSON.stringify(s),
     });
   }
-  async addStock(t) {
-    const n = { Data: t };
+  async addStock(t, n, s) {
+    const o = { Data: t, ServerName: n, ServerType: s };
     return (
-      console.log(n),
-      this.request("/api/medMap/add_stock", {
+      console.log(o),
+      this.request("/api/stock/add", {
         method: "POST",
-        body: JSON.stringify(n),
+        body: JSON.stringify(o),
       })
     );
   }
-  async updateStock(t) {
-    const n = { Data: t };
-    return this.request("/api/medMap/update_stock", {
+  async updateStock(t, n, s) {
+    const o = { Data: t, ServerName: n, ServerType: s };
+    return this.request("/api/stock/update", {
       method: "POST",
-      body: JSON.stringify(n),
+      body: JSON.stringify(o),
     });
   }
   async deleteStockByGUID(t) {
@@ -9875,27 +9875,27 @@ const Rt = new rh(),
       [E, S] = u.useState(null),
       [I, F] = u.useState("edit"),
       [M, $] = u.useState(!1),
-      [se, ye] = u.useState(null),
+      [se, ve] = u.useState(null),
       [_, N] = u.useState(!1),
       [L, P] = u.useState(null),
-      [K, w] = u.useState(!1),
+      [X, w] = u.useState(!1),
       [B, ee] = u.useState(!1),
       [H, A] = u.useState(null),
       [Ne, U] = u.useState(!1),
-      [G, he] = u.useState(null),
-      [J, ke] = u.useState(!1),
+      [G, ge] = u.useState(null),
+      [Z, ke] = u.useState(!1),
       [Ee, De] = u.useState(null),
       [Be, te] = u.useState(!1),
-      [D, ge] = u.useState(null),
+      [D, xe] = u.useState(null),
       [fe, W] = u.useState(null),
       [le, be] = u.useState(null),
       [O, oe] = u.useState("add"),
-      [V, xe] = u.useState(!1),
-      [ce, we] = u.useState([]),
+      [V, ye] = u.useState(!1),
+      [ie, we] = u.useState([]),
       [pe, C] = u.useState([]),
       [R, q] = u.useState(!1),
-      [ue, ie] = u.useState(!1),
-      [je, Ue] = u.useState(""),
+      [ue, ae] = u.useState(!1),
+      [Se, Ue] = u.useState(""),
       [We, ct] = u.useState(!1),
       [Et, It] = u.useState(""),
       [cr, pn] = u.useState(!1),
@@ -9904,24 +9904,24 @@ const Rt = new rh(),
       [Yn, Wr] = u.useState(!1),
       [Yr, Qr] = u.useState(null),
       [dl, Xr] = u.useState(!1),
-      [x, Z] = u.useState(null),
+      [x, K] = u.useState(null),
       [ne, z] = u.useState(null),
       me = () => {
         (localStorage.removeItem("user_session"), n(!1), o(null));
       },
-      Y = u.useCallback(() => {
+      Q = u.useCallback(() => {
         k(($e) => $e + 1);
       }, []),
-      X = u.useCallback(($e, Xe) => {
+      J = u.useCallback(($e, Xe) => {
         d({ message: $e, type: Xe, isVisible: !0 });
       }, []),
       re = u.useCallback(() => {
         d(($e) => ({ ...$e, isVisible: !1 }));
       }, []),
-      ae = ($e) => {
+      ce = ($e) => {
         (S($e), F("edit"), v(!0));
       },
-      Q = () => {
+      Y = () => {
         const $e = {
           GUID: `new_medbox_${Date.now()}`,
           name: "",
@@ -9933,14 +9933,14 @@ const Rt = new rh(),
         };
         (S($e), F("add"), v(!0));
       },
-      ve = () => {
+      he = () => {
         (v(!1), S(null), F("edit"));
       },
-      Ce = ($e) => {
-        (ye($e), $(!0));
+      je = ($e) => {
+        (ve($e), $(!0));
       },
       Ae = () => {
-        ($(!1), ye(null));
+        ($(!1), ve(null));
       },
       Ie = ($e) => {
         (P($e), N(!0));
@@ -9955,10 +9955,10 @@ const Rt = new rh(),
         (ee(!1), A(null));
       },
       Le = ($e) => {
-        (he($e), U(!0));
+        (ge($e), U(!0));
       },
       Ge = () => {
-        (U(!1), he(null));
+        (U(!1), ge(null));
       },
       _e = ($e) => {
         (De($e), ke(!0));
@@ -9967,10 +9967,10 @@ const Rt = new rh(),
         (ke(!1), De(null));
       },
       ze = ($e) => {
-        (ge($e), W(null), oe("add"), te(!0));
+        (xe($e), W(null), oe("add"), te(!0));
       },
       Pe = ($e, Xe) => {
-        (ge($e), W(Xe));
+        (xe($e), W(Xe));
         const et = JSON.parse(JSON.stringify(Xe));
         (be(et),
           console.log("📋 深拷貝暫存原始貨物資料:", et),
@@ -9978,19 +9978,19 @@ const Rt = new rh(),
           te(!0));
       },
       rt = () => {
-        (te(!1), ge(null), W(null), be(null), oe("add"));
+        (te(!1), xe(null), W(null), be(null), oe("add"));
       },
       Kr = () => {
-        xe(!0);
+        ye(!0);
       },
       ul = () => {
-        xe(!1);
+        ye(!1);
       },
       ff = ($e = "") => {
-        (Ue($e), ie(!0));
+        (Ue($e), ae(!0));
       },
       pf = () => {
-        ie(!1);
+        ae(!1);
       },
       mf = ($e) => {
         (It($e), ct(!0));
@@ -10011,10 +10011,10 @@ const Rt = new rh(),
         (Wr(!1), Qr(null));
       },
       bf = ($e) => {
-        (Z($e), Xr(!0));
+        (K($e), Xr(!0));
       },
       wf = () => {
-        (Xr(!1), Z(null));
+        (Xr(!1), K(null));
       },
       Nf = u.useCallback(async () => {
         if (!i) {
@@ -10192,25 +10192,25 @@ const Rt = new rh(),
         viewMode: m,
         setViewMode: p,
         refreshTrigger: T,
-        triggerRefresh: Y,
+        triggerRefresh: Q,
         addStockToShelf: jf,
         notification: f,
-        showNotification: X,
+        showNotification: J,
         hideNotification: re,
         medBoxModalOpen: y,
         setMedBoxModalOpen: v,
         selectedMedBox: E,
         setSelectedMedBox: S,
-        openMedBoxModal: ae,
-        closeMedBoxModal: ve,
+        openMedBoxModal: ce,
+        closeMedBoxModal: he,
         modalMode: I,
         setModalMode: F,
-        openAddMedBoxModal: Q,
+        openAddMedBoxModal: Y,
         listDrawModalOpen: M,
         setListDrawModalOpen: $,
         selectedListDraw: se,
-        setSelectedListDraw: ye,
-        openListDrawModal: Ce,
+        setSelectedListDraw: ve,
+        openListDrawModal: je,
         closeListDrawModal: Ae,
         gridDrawModalOpen: _,
         setGridDrawModalOpen: N,
@@ -10218,7 +10218,7 @@ const Rt = new rh(),
         setSelectedGridDraw: P,
         openGridDrawModal: Ie,
         closeGridDrawModal: Te,
-        isLoadingMedMap: K,
+        isLoadingMedMap: X,
         setIsLoadingMedMap: w,
         addParentContainerModalOpen: B,
         setAddParentContainerModalOpen: ee,
@@ -10229,10 +10229,10 @@ const Rt = new rh(),
         addShelfDrawContainerModalOpen: Ne,
         setAddShelfDrawContainerModalOpen: U,
         selectedSubContainerForAdd: G,
-        setSelectedSubContainerForAdd: he,
+        setSelectedSubContainerForAdd: ge,
         openAddShelfDrawContainerModal: Le,
         closeAddShelfDrawContainerModal: Ge,
-        addSubContainerModalOpen: J,
+        addSubContainerModalOpen: Z,
         setAddSubContainerModalOpen: ke,
         selectedParentContainerForAdd: Ee,
         setSelectedParentContainerForAdd: De,
@@ -10241,7 +10241,7 @@ const Rt = new rh(),
         addStoreItemModalOpen: Be,
         setAddStoreItemModalOpen: te,
         selectedStoreShelfForAdd: D,
-        setSelectedStoreShelfForAdd: ge,
+        setSelectedStoreShelfForAdd: xe,
         selectedStockItemForEdit: fe,
         setSelectedStockItemForEdit: W,
         originalStockItemBackup: le,
@@ -10256,15 +10256,15 @@ const Rt = new rh(),
         addParentContainerToLocalData: kf,
         addSubContainerToLocalData: _f,
         addDepartmentModalOpen: V,
-        setAddDepartmentModalOpen: xe,
-        allDepartmentsList: ce,
+        setAddDepartmentModalOpen: ye,
+        allDepartmentsList: ie,
         setAllDepartmentsList: we,
         openAddDepartmentModal: Kr,
         closeAddDepartmentModal: ul,
         reloadMedMapData: Nf,
         qrCodeScannerModalOpen: ue,
-        qrCodeScannerMode: je,
-        setQRCodeScannerModalOpen: ie,
+        qrCodeScannerMode: Se,
+        setQRCodeScannerModalOpen: ae,
         openQRCodeScannerModal: ff,
         closeQRCodeScannerModal: pf,
         addBarcodeModalOpen: We,
@@ -10291,7 +10291,7 @@ const Rt = new rh(),
         editParentContainerModalOpen: dl,
         setEditParentContainerModalOpen: Xr,
         selectedParentContainerForEdit: x,
-        setSelectedParentContainerForEdit: Z,
+        setSelectedParentContainerForEdit: K,
         openEditParentContainerModal: bf,
         closeEditParentContainerModal: wf,
         medicineList: pe,
@@ -11214,7 +11214,7 @@ const Rt = new rh(),
               j(""));
           }
         else (s("blue"), l(1), i(60), h(120), m(""), j(""));
-        ye();
+        ve();
       }
     }, [e]),
       u.useEffect(() => {
@@ -11235,7 +11235,7 @@ const Rt = new rh(),
           () => document.removeEventListener("mousedown", w)
         );
       }, []));
-    const ye = async () => {
+    const ve = async () => {
         try {
           const w = await Me.getAllStaffInfo();
           w.Code === 200 && w.Data && T(w.Data);
@@ -11269,7 +11269,7 @@ const Rt = new rh(),
       P = (w) => {
         (m(w.name), j(w.ID), I(!1));
       },
-      K = () => {
+      X = () => {
         const w = {
           light_color: n,
           brightness: o,
@@ -11607,7 +11607,7 @@ const Rt = new rh(),
                       children: "取消",
                     }),
                     r.jsx("button", {
-                      onClick: K,
+                      onClick: X,
                       className:
                         "px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors",
                       children: "儲存",
@@ -11787,9 +11787,9 @@ const Rt = new rh(),
         (N.has(_) ? N.delete(_) : N.add(_), p(N));
       },
       se = async (_) => {
-        (console.log("🏢 選擇部門:", _), s(_), await ye(_), t(!1));
+        (console.log("🏢 選擇部門:", _), s(_), await ve(_), t(!1));
       },
-      ye = async (_) => {
+      ve = async (_) => {
         (console.log("🚀 開始取得藥品地圖資料，部門類型:", _), a(!0));
         try {
           const N = await Me.getMedMapByDepartment(_);
@@ -11800,12 +11800,12 @@ const Rt = new rh(),
               (console.error("❌ 轉換後的資料驗證失敗"), d([]));
               return;
             }
-            const K = Rt.generateConversionReport(N.Data, L);
+            const X = Rt.generateConversionReport(N.Data, L);
             (d(L),
               o(L),
               console.log("💾 已暫存轉換後的資料到狀態中"),
               console.log("📊 最終轉換結果:", L),
-              console.log("📋 轉換報告:", K));
+              console.log("📋 轉換報告:", X));
           } else (console.error("❌ API 回傳錯誤:", N), d([]), o(null));
         } catch (N) {
           (console.error("💥 取得藥品地圖資料失敗:", N), d([]), o(null));
@@ -12056,21 +12056,21 @@ const Rt = new rh(),
     }, [e.position]);
     const F = () => {
         try {
-          const J = localStorage.getItem("medMap_setting");
-          if (J) return JSON.parse(J).light_color || "red";
-        } catch (J) {
-          console.error("讀取高亮顏色設定失敗:", J);
+          const Z = localStorage.getItem("medMap_setting");
+          if (Z) return JSON.parse(Z).light_color || "red";
+        } catch (Z) {
+          console.error("讀取高亮顏色設定失敗:", Z);
         }
         return "red";
       },
       M = u.useCallback(
-        async (J, ke) => {
+        async (Z, ke) => {
           if (!i) return;
-          console.log("🔄 更新組件位置:", J, ke);
+          console.log("🔄 更新組件位置:", Z, ke);
           const Ee = JSON.parse(JSON.stringify(i)),
             De = (te) => {
               for (const D of te) {
-                if (D.GUID === J)
+                if (D.GUID === Z)
                   return (
                     (D.position = { x: ke.x.toFixed(3), y: ke.y.toFixed(3) }),
                     console.log(
@@ -12096,7 +12096,7 @@ const Rt = new rh(),
             try {
               console.log("📡 開始同步後端位置資料...");
               const te = await Me.updateContainerPosition({
-                GUID: J,
+                GUID: Z,
                 absolute_position: `${ke.x.toFixed(3)},${ke.y.toFixed(3)}`,
               });
               te.Code === 200
@@ -12108,22 +12108,22 @@ const Rt = new rh(),
               (console.error("💥 後端位置同步發生錯誤:", te),
                 h("位置更新失敗: 網路錯誤", "error"));
             }
-          } else console.warn("⚠️ 未找到要更新的組件:", J);
+          } else console.warn("⚠️ 未找到要更新的組件:", Z);
         },
         [i, c, h],
       ),
-      { position: $, dimensions: se, name: ye, type: _ } = e,
+      { position: $, dimensions: se, name: ve, type: _ } = e,
       N = u.useCallback(
-        (J) => {
+        (Z) => {
           const ke = l.current;
           if (ke)
-            if ((I({ x: J.clientX, y: J.clientY }), n)) {
-              (J.preventDefault(),
-                J.stopPropagation(),
-                ke.setPointerCapture(J.pointerId));
+            if ((I({ x: Z.clientX, y: Z.clientY }), n)) {
+              (Z.preventDefault(),
+                Z.stopPropagation(),
+                ke.setPointerCapture(Z.pointerId));
               const Ee = ke.getBoundingClientRect(),
-                De = J.clientX - Ee.left,
-                Be = J.clientY - Ee.top;
+                De = Z.clientX - Ee.left,
+                Be = Z.clientY - Ee.top;
               (j({ x: De, y: Be }), m(!0), f(!1));
             } else f(!1);
         },
@@ -12131,12 +12131,12 @@ const Rt = new rh(),
       ),
       L = u.useCallback(() => {
         if (!i) return [];
-        const J = [],
+        const Z = [],
           ke = (Ee) => {
             for (const De of Ee)
               (De.GUID !== e.GUID &&
                 De.position &&
-                J.push({
+                Z.push({
                   GUID: De.GUID,
                   position: De.position,
                   dimensions: De.dimensions,
@@ -12146,23 +12146,23 @@ const Rt = new rh(),
                   ke(De.components),
                 De.contents && Array.isArray(De.contents) && ke(De.contents));
           };
-        return (ke(i), J);
+        return (ke(i), Z);
       }, [i, e.GUID]),
       P = u.useCallback(
-        (J, ke) => {
+        (Z, ke) => {
           const De = L();
-          let Be = J,
+          let Be = Z,
             te = ke;
           for (const D of De) {
-            const ge = parseFloat(D.position.x),
+            const xe = parseFloat(D.position.x),
               fe = parseFloat(D.position.y);
             if (
-              (Math.abs(J - ge) < 20 && (Be = ge),
+              (Math.abs(Z - xe) < 20 && (Be = xe),
               Math.abs(ke - fe) < 20 && (te = fe),
               D.dimensions && e.dimensions)
             ) {
-              const W = ge + parseFloat(D.dimensions.width),
-                le = J + parseFloat(e.dimensions.width);
+              const W = xe + parseFloat(D.dimensions.width),
+                le = Z + parseFloat(e.dimensions.width);
               Math.abs(le - W) < 20 &&
                 (Be = W - parseFloat(e.dimensions.width));
               const be = fe + parseFloat(D.dimensions.depth),
@@ -12175,50 +12175,50 @@ const Rt = new rh(),
         },
         [L, e.dimensions],
       ),
-      K = u.useCallback(
-        (J) => {
-          const ke = Math.abs(J.clientX - S.x),
-            Ee = Math.abs(J.clientY - S.y);
+      X = u.useCallback(
+        (Z) => {
+          const ke = Math.abs(Z.clientX - S.x),
+            Ee = Math.abs(Z.clientY - S.y);
           if (((ke > 5 || Ee > 5) && f(!0), !g || !n)) return;
-          (J.preventDefault(), J.stopPropagation());
+          (Z.preventDefault(), Z.stopPropagation());
           const De = l.current;
           if (!De) return;
           const Be = De.closest("[data-canvas-content]");
           if (!Be) return;
           const te = Be.getBoundingClientRect(),
-            D = (J.clientX - te.left - p.x) / t,
-            ge = (J.clientY - te.top - p.y) / t,
-            fe = P(D, ge);
+            D = (Z.clientX - te.left - p.x) / t,
+            xe = (Z.clientY - te.top - p.y) / t,
+            fe = P(D, xe);
           T(fe);
         },
         [g, p, t, n, P, S],
       ),
       w = u.useCallback(
-        (J) => {
-          const ke = Math.abs(J.clientX - S.x),
-            Ee = Math.abs(J.clientY - S.y),
+        (Z) => {
+          const ke = Math.abs(Z.clientX - S.x),
+            Ee = Math.abs(Z.clientY - S.y),
             De = ke > 5 || Ee > 5;
           if (n) {
             if (!g) return;
-            (J.preventDefault(), J.stopPropagation());
+            (Z.preventDefault(), Z.stopPropagation());
             const Be = l.current;
-            (Be && Be.releasePointerCapture(J.pointerId),
+            (Be && Be.releasePointerCapture(Z.pointerId),
               m(!1),
               De ? M(e.GUID, b) : o && o(e),
               f(!1));
           } else
-            (!De && o && (J.preventDefault(), J.stopPropagation(), o(e)),
+            (!De && o && (Z.preventDefault(), Z.stopPropagation(), o(e)),
               f(!1));
         },
         [g, n, o, e, M, b, S],
       ),
       B = u.useCallback(
-        (J) => {
+        (Z) => {
           const ke = l.current;
           if (!ke) return;
-          const Ee = J.touches[0];
+          const Ee = Z.touches[0];
           if (Ee && (E({ x: Ee.clientX, y: Ee.clientY }), n)) {
-            (J.preventDefault(), J.stopPropagation(), y(Ee.identifier));
+            (Z.preventDefault(), Z.stopPropagation(), y(Ee.identifier));
             const De = ke.getBoundingClientRect(),
               Be = Ee.clientX - De.left,
               te = Ee.clientY - De.top;
@@ -12228,26 +12228,26 @@ const Rt = new rh(),
         [n],
       ),
       ee = u.useCallback(
-        (J) => {
+        (Z) => {
           if (!g || !n || d === null) return;
-          (J.preventDefault(), J.stopPropagation());
+          (Z.preventDefault(), Z.stopPropagation());
           const ke = l.current;
           if (!ke) return;
-          const Ee = Array.from(J.touches).find((fe) => fe.identifier === d);
+          const Ee = Array.from(Z.touches).find((fe) => fe.identifier === d);
           if (!Ee) return;
           const De = ke.closest("[data-canvas-content]");
           if (!De) return;
           const Be = De.getBoundingClientRect(),
             te = (Ee.clientX - Be.left - p.x) / t,
             D = (Ee.clientY - Be.top - p.y) / t,
-            ge = P(te, D);
-          T(ge);
+            xe = P(te, D);
+          T(xe);
         },
         [g, p, t, n, d, P],
       ),
       H = u.useCallback(
-        (J) => {
-          const ke = Array.from(J.changedTouches)[0];
+        (Z) => {
+          const ke = Array.from(Z.changedTouches)[0];
           if (!ke) return;
           const Ee = Math.abs(ke.clientX - v.x),
             De = Math.abs(ke.clientY - v.y),
@@ -12256,29 +12256,29 @@ const Rt = new rh(),
             if (
               !g ||
               d === null ||
-              !Array.from(J.changedTouches).some((D) => D.identifier === d)
+              !Array.from(Z.changedTouches).some((D) => D.identifier === d)
             )
               return;
-            (J.preventDefault(),
-              J.stopPropagation(),
+            (Z.preventDefault(),
+              Z.stopPropagation(),
               m(!1),
               y(null),
               E({ x: 0, y: 0 }),
               Be ? M(e.GUID, b) : o && o(e));
           } else
-            (!Be && o && (J.preventDefault(), J.stopPropagation(), o(e)),
+            (!Be && o && (Z.preventDefault(), Z.stopPropagation(), o(e)),
               E({ x: 0, y: 0 }));
         },
         [g, n, d, M, e, b, v, o],
       ),
       A = u.useCallback(
-        (J) => {
+        (Z) => {
           !g ||
             !n ||
             d === null ||
-            !Array.from(J.changedTouches).some((Ee) => Ee.identifier === d) ||
-            (J.preventDefault(),
-            J.stopPropagation(),
+            !Array.from(Z.changedTouches).some((Ee) => Ee.identifier === d) ||
+            (Z.preventDefault(),
+            Z.stopPropagation(),
             T(e.position),
             m(!1),
             y(null),
@@ -12286,9 +12286,9 @@ const Rt = new rh(),
         },
         [g, n, d, e.position],
       ),
-      Ne = (J) => {
+      Ne = (Z) => {
         if (s) return `highlight-breathe-${F()}`;
-        switch (J) {
+        switch (Z) {
           case "調劑台":
             return "bg-gray-100 border-gray-400";
           case "藥庫":
@@ -12299,9 +12299,9 @@ const Rt = new rh(),
             return "bg-gray-50 border-gray-400";
         }
       },
-      U = (J) => {
+      U = (Z) => {
         if (s) return `highlight-breathe-${F()}`;
-        switch (J) {
+        switch (Z) {
           case "調劑台":
             return "bg-gray-200 text-gray-900";
           case "藥庫":
@@ -12312,9 +12312,9 @@ const Rt = new rh(),
             return "bg-gray-200 text-gray-800";
         }
       },
-      G = (J) => {
+      G = (Z) => {
         if (s) return `highlight-tag-${F()}`;
-        switch (J) {
+        switch (Z) {
           case "調劑台":
             return "bg-gray-700 text-gray-900";
           case "藥庫":
@@ -12325,16 +12325,16 @@ const Rt = new rh(),
             return "bg-gray-700 text-gray-900";
         }
       },
-      he = (J) => {
+      ge = (Z) => {
         const ke =
-          J === "調劑台"
+          Z === "調劑台"
             ? "type.dispensingStation"
-            : J === "藥庫"
+            : Z === "藥庫"
               ? "type.warehouse"
-              : J === "parent_container"
+              : Z === "parent_container"
                 ? "櫃體"
-                : "type." + J;
-        return a(ke) || J;
+                : "type." + Z;
+        return a(ke) || Z;
       };
     return r.jsx("div", {
       ref: l,
@@ -12351,7 +12351,7 @@ const Rt = new rh(),
           : "transform 0.2s ease-out, box-shadow 0.2s ease-out",
       },
       onPointerDown: N,
-      onPointerMove: K,
+      onPointerMove: X,
       onPointerUp: w,
       onTouchStart: B,
       onTouchMove: ee,
@@ -12366,11 +12366,11 @@ const Rt = new rh(),
             children: [
               r.jsx("div", {
                 className: "font-semibold text-[48px] truncate",
-                children: ye,
+                children: ve,
               }),
               r.jsx("div", {
                 className: `flex items-center text-[28px] truncate py-2 px-4 text-white rounded-2xl ${G(_)}`,
-                children: he(_),
+                children: ge(_),
               }),
             ],
           }),
@@ -12463,18 +12463,18 @@ const Rt = new rh(),
           ($.height = M.videoHeight),
           se.drawImage(M, 0, 0, $.width, $.height),
           $.toBlob(
-            async (ye) => {
-              if (!ye) return;
-              const _ = new File([ye], "scan.jpg", { type: "image/jpeg" }),
+            async (ve) => {
+              if (!ve) return;
+              const _ = new File([ve], "scan.jpg", { type: "image/jpeg" }),
                 N = performance.now();
               try {
                 console.log("📸 [相機掃描] 截取圖片並掃描...");
                 const L = performance.now(),
                   P = await Me.scanBarcode(_),
-                  K = performance.now();
+                  X = performance.now();
                 if (
                   (console.log(
-                    `⏱️ [相機掃描] 掃描條碼API用時: ${(K - L).toFixed(2)}ms`,
+                    `⏱️ [相機掃描] 掃描條碼API用時: ${(X - L).toFixed(2)}ms`,
                   ),
                   !P.results || P.results.length === 0)
                 ) {
@@ -12577,8 +12577,8 @@ const Rt = new rh(),
         if (!c.current || !h.current) return;
         const $ = h.current.getBoundingClientRect(),
           se = (M.clientX - $.left) / $.width,
-          ye = (M.clientY - $.top) / $.height;
-        (console.log("🎯 點擊聚焦位置:", { x: se, y: ye }),
+          ve = (M.clientY - $.top) / $.height;
+        (console.log("🎯 點擊聚焦位置:", { x: se, y: ve }),
           k({ x: M.clientX - $.left, y: M.clientY - $.top }),
           setTimeout(() => k(null), 1e3));
         try {
@@ -12596,7 +12596,7 @@ const Rt = new rh(),
               {
                 focusMode: "manual",
                 focusDistance: 0,
-                pointsOfInterest: [{ x: se, y: ye }],
+                pointsOfInterest: [{ x: se, y: ve }],
               },
             ],
           };
@@ -13141,9 +13141,9 @@ const bs = new Eh(),
       [S, I] = u.useState(!1),
       [F, M] = u.useState(!1),
       [$, se] = u.useState(!1),
-      [ye, _] = u.useState(""),
+      [ve, _] = u.useState(""),
       [N, L] = u.useState([]),
-      [P, K] = u.useState(null),
+      [P, X] = u.useState(null),
       [w, B] = u.useState(120),
       ee = {
         blue: "255,0,0",
@@ -13166,15 +13166,15 @@ const bs = new Eh(),
       },
       A = (C, R, q, ue) => {
         try {
-          const ie = H(),
-            je = ie.findIndex(
+          const ae = H(),
+            Se = ae.findIndex(
               (We) => We.department === C && We.canvasType === R,
             ),
             Ue = { department: C, canvasType: R, scale: q, position: ue };
-          (je >= 0 ? (ie[je] = Ue) : ie.push(Ue),
-            localStorage.setItem("med_map_anchor", JSON.stringify(ie)));
-        } catch (ie) {
-          console.error("Error saving canvas state to localStorage:", ie);
+          (Se >= 0 ? (ae[Se] = Ue) : ae.push(Ue),
+            localStorage.setItem("med_map_anchor", JSON.stringify(ae)));
+        } catch (ae) {
+          console.error("Error saving canvas state to localStorage:", ae);
         }
       },
       Ne = (C, R) =>
@@ -13327,7 +13327,7 @@ const bs = new Eh(),
           }
         );
       }, []));
-    const he = u.useCallback(
+    const ge = u.useCallback(
         (C) => {
           var q;
           if (d) return;
@@ -13339,19 +13339,19 @@ const bs = new Eh(),
             const ue =
               (q = t.current) == null ? void 0 : q.getBoundingClientRect();
             if (!ue) return;
-            const ie = C.clientX - ue.left,
-              je = C.clientY - ue.top,
+            const ae = C.clientX - ue.left,
+              Se = C.clientY - ue.top,
               Ue = C.deltaY > 0 ? 0.9 : 1.1,
               We = Math.max(0.1, Math.min(5, b.scale * Ue)),
               ct = We / b.scale,
-              Et = ie - (ie - b.x) * ct,
-              It = je - (je - b.y) * ct;
+              Et = ae - (ae - b.x) * ct,
+              It = Se - (Se - b.y) * ct;
             T({ x: Et, y: It, scale: We });
           }
         },
         [b, d],
       ),
-      J = u.useCallback(
+      Z = u.useCallback(
         (C) => {
           d ||
             !S ||
@@ -13377,16 +13377,16 @@ const bs = new Eh(),
           if (!s) return [];
           const R = [],
             q = (ue) => {
-              for (const ie of ue)
-                (ie.med_list &&
-                  Array.isArray(ie.med_list) &&
-                  ie.med_list.some((Ue) => Ue.code == C) &&
-                  (console.log("✅ 找到藥品所在櫃體:", ie.name, ie.GUID),
-                  R.push(ie)),
-                  ie.components &&
-                    Array.isArray(ie.components) &&
-                    q(ie.components),
-                  ie.contents && Array.isArray(ie.contents) && q(ie.contents));
+              for (const ae of ue)
+                (ae.med_list &&
+                  Array.isArray(ae.med_list) &&
+                  ae.med_list.some((Ue) => Ue.code == C) &&
+                  (console.log("✅ 找到藥品所在櫃體:", ae.name, ae.GUID),
+                  R.push(ae)),
+                  ae.components &&
+                    Array.isArray(ae.components) &&
+                    q(ae.components),
+                  ae.contents && Array.isArray(ae.contents) && q(ae.contents));
             };
           return (q(s), R);
         },
@@ -13398,8 +13398,8 @@ const bs = new Eh(),
           if (R) {
             const ue = JSON.parse(R).light_sec;
             if (ue != null && ue !== "") {
-              const ie = Number(ue);
-              if (!isNaN(ie) && ie > 0) return ie * 1e3;
+              const ae = Number(ue);
+              if (!isNaN(ae) && ae > 0) return ae * 1e3;
             }
           }
         } catch (R) {
@@ -13436,9 +13436,9 @@ const bs = new Eh(),
               console.log(`⏱️ 亮燈時長: ${q}ms (${q / 1e3}秒)`),
               console.log("💡 亮燈設定:", ue),
               l("找到藥品，開始亮燈", "success"));
-            const ie = R.map((Ue) => Ue.GUID);
-            (L(ie), K(C), h(C));
-            const je = R.filter((Ue) => Ue.serverName && Ue.serverType).map(
+            const ae = R.map((Ue) => Ue.GUID);
+            (L(ae), X(C), h(C));
+            const Se = R.filter((Ue) => Ue.serverName && Ue.serverType).map(
               (Ue) => ({
                 serverName: Ue.serverName,
                 serverType: Ue.serverType,
@@ -13446,31 +13446,31 @@ const bs = new Eh(),
                 deviceType: Ue.device_type,
               }),
             );
-            je.length > 0 &&
-              (await bs.startLighting(je, ue.rgb_color, ue.brightness, q),
+            Se.length > 0 &&
+              (await bs.startLighting(Se, ue.rgb_color, ue.brightness, q),
               setTimeout(() => {
-                (L([]), K(null), h(null));
+                (L([]), X(null), h(null));
               }, q));
           } else
-            (console.log("❌ 未找到包含此藥品的櫃體"), L([]), K(null), h(null));
+            (console.log("❌ 未找到包含此藥品的櫃體"), L([]), X(null), h(null));
         },
         [De, Be, te, h],
       ),
-      ge = (C, R) => {
-        var je, Ue;
+      xe = (C, R) => {
+        var Se, Ue;
         console.log("📍 [相機掃描-部門視圖] 藥品定位模式 - 掃描到藥品:", {
           barcode: C,
           medicineData: R,
         });
         const q =
-          ((je = R[0]) == null ? void 0 : je.CODE) ||
+          ((Se = R[0]) == null ? void 0 : Se.CODE) ||
           ((Ue = R[0]) == null ? void 0 : Ue.code);
         M(!1);
         const ue = performance.now();
         D(q);
-        const ie = performance.now();
+        const ae = performance.now();
         console.log(
-          `⏱️ [相機掃描-部門視圖] 亮燈用時: ${(ie - ue).toFixed(2)}ms`,
+          `⏱️ [相機掃描-部門視圖] 亮燈用時: ${(ae - ue).toFixed(2)}ms`,
         );
       },
       fe = (C) => {
@@ -13487,27 +13487,27 @@ const bs = new Eh(),
       W = async (C) => {
         var R, q;
         if (C.key === "Enter") {
-          if ((C.preventDefault(), !ye.trim())) {
+          if ((C.preventDefault(), !ve.trim())) {
             l("請輸入條碼", "warning");
             return;
           }
           const ue = performance.now();
           try {
-            console.log("🔍 [手動輸入-部門視圖] 搜尋條碼:", ye);
-            const ie = performance.now(),
-              je = await Me.searchByBarCode(ye),
+            console.log("🔍 [手動輸入-部門視圖] 搜尋條碼:", ve);
+            const ae = performance.now(),
+              Se = await Me.searchByBarCode(ve),
               Ue = performance.now();
             if (
               (console.log(
-                `⏱️ [手動輸入-部門視圖] API搜尋藥品資料用時: ${(Ue - ie).toFixed(2)}ms`,
+                `⏱️ [手動輸入-部門視圖] API搜尋藥品資料用時: ${(Ue - ae).toFixed(2)}ms`,
               ),
-              console.log("📋 條碼搜尋回應:", je),
-              je.Code === 200 && je.Data && je.Data.length > 0)
+              console.log("📋 條碼搜尋回應:", Se),
+              Se.Code === 200 && Se.Data && Se.Data.length > 0)
             ) {
               const We =
-                ((R = je.Data[0]) == null ? void 0 : R.CODE) ||
-                ((q = je.Data[0]) == null ? void 0 : q.code);
-              console.log("✅ 找到藥品資料:", je.Data);
+                ((R = Se.Data[0]) == null ? void 0 : R.CODE) ||
+                ((q = Se.Data[0]) == null ? void 0 : q.code);
+              console.log("✅ 找到藥品資料:", Se.Data);
               const ct = performance.now();
               D(We);
               const Et = performance.now();
@@ -13520,15 +13520,15 @@ const bs = new Eh(),
                 `⏱️ [手動輸入-部門視圖] 總用時: ${(It - ue).toFixed(2)}ms`,
               );
             } else
-              je.Code === -200 && je.Result === "查無資料"
+              Se.Code === -200 && Se.Result === "查無資料"
                 ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                   l("查無條碼資料，請建立條碼", "warning"),
-                  a(ye),
+                  a(ve),
                   _(""))
-                : (console.log("❌ 搜尋失敗:", je.Result),
-                  l(je.Result || "搜尋失敗", "error"));
-          } catch (ie) {
-            (console.error("條碼搜尋錯誤:", ie),
+                : (console.log("❌ 搜尋失敗:", Se.Result),
+                  l(Se.Result || "搜尋失敗", "error"));
+          } catch (ae) {
+            (console.error("條碼搜尋錯誤:", ae),
               l("搜尋失敗，請稍後再試", "error"));
           }
         }
@@ -13545,9 +13545,9 @@ const bs = new Eh(),
           const C = De(c);
           if (C.length > 0) {
             const R = C.map((q) => q.GUID);
-            (L(R), K(c), console.log("✨ UI 高亮已更新:", R));
+            (L(R), X(c), console.log("✨ UI 高亮已更新:", R));
           }
-        } else (L([]), K(null));
+        } else (L([]), X(null));
       }, [c, De]));
     const [le, be] = u.useState(null),
       [O, oe] = u.useState({ x: 0, y: 0 }),
@@ -13560,7 +13560,7 @@ const bs = new Eh(),
             Math.pow(q.clientY - R.clientY, 2),
         );
       },
-      xe = (C) => {
+      ye = (C) => {
         if (C.length === 1) return { x: C[0].clientX, y: C[0].clientY };
         const R = C[0],
           q = C[1];
@@ -13569,12 +13569,12 @@ const bs = new Eh(),
           y: (R.clientY + q.clientY) / 2,
         };
       },
-      ce = u.useCallback(
+      ie = u.useCallback(
         (C) => {
           if (!d) {
             if (C.touches.length === 2) {
               const R = V(C.touches),
-                q = xe(C.touches);
+                q = ye(C.touches);
               (be(R), oe(q));
             } else if (C.touches.length === 1) {
               const R = C.touches[0];
@@ -13590,15 +13590,15 @@ const bs = new Eh(),
           if (!d) {
             if ((C.preventDefault(), C.touches.length === 2 && le !== null)) {
               const q = V(C.touches),
-                ue = xe(C.touches);
+                ue = ye(C.touches);
               if (q && le) {
-                const ie =
+                const ae =
                   (R = t.current) == null ? void 0 : R.getBoundingClientRect();
-                if (!ie) return;
-                const je = q / le,
-                  Ue = Math.max(0.1, Math.min(5, b.scale * je)),
-                  We = ue.x - ie.left,
-                  ct = ue.y - ie.top,
+                if (!ae) return;
+                const Se = q / le,
+                  Ue = Math.max(0.1, Math.min(5, b.scale * Se)),
+                  We = ue.x - ae.left,
+                  ct = ue.y - ae.top,
                   Et = Ue / b.scale,
                   It = We - (We - b.x) * Et,
                   cr = ct - (ct - b.y) * Et;
@@ -13607,8 +13607,8 @@ const bs = new Eh(),
             } else if (C.touches.length === 1 && k) {
               const q = C.touches[0],
                 ue = q.clientX - v.x,
-                ie = q.clientY - v.y;
-              (T((je) => ({ ...je, x: je.x + ue, y: je.y + ie })),
+                ae = q.clientY - v.y;
+              (T((Se) => ({ ...Se, x: Se.x + ue, y: Se.y + ae })),
                 E({ x: q.clientX, y: q.clientY }));
             }
           }
@@ -13623,10 +13623,10 @@ const bs = new Eh(),
         const C = t.current;
         if (C)
           return (
-            C.addEventListener("wheel", he, { passive: !1 }),
-            () => C.removeEventListener("wheel", he)
+            C.addEventListener("wheel", ge, { passive: !1 }),
+            () => C.removeEventListener("wheel", ge)
           );
-      }, [he]),
+      }, [ge]),
       u.useCallback(() => {
         T({ x: 0, y: 0, scale: 1 });
       }, []),
@@ -13649,7 +13649,7 @@ const bs = new Eh(),
                 r.jsx("div", { className: "w-px h-6 bg-gray-200" }),
                 r.jsx("input", {
                   type: "text",
-                  value: ye,
+                  value: ve,
                   onChange: (C) => _(C.target.value),
                   onKeyPress: W,
                   placeholder: "輸入條碼或掃描...",
@@ -13679,11 +13679,11 @@ const bs = new Eh(),
           r.jsx("div", {
             ref: t,
             className: `w-full h-full relative ${S && !d ? "cursor-grab" : "cursor-default"} ${k ? "cursor-grabbing" : ""}`,
-            onMouseDown: J,
+            onMouseDown: Z,
             onMouseMove: ke,
             onMouseUp: Ee,
             onMouseLeave: Ee,
-            onTouchStart: ce,
+            onTouchStart: ie,
             onTouchMove: we,
             onTouchEnd: pe,
             children: r.jsxs("div", {
@@ -13736,7 +13736,7 @@ const bs = new Eh(),
           r.jsx(il, {
             isOpen: F,
             onClose: () => M(!1),
-            onScanSuccess: ge,
+            onScanSuccess: xe,
             mode: "med_light_location_mode",
           }),
           r.jsx(cf, {
@@ -13773,7 +13773,7 @@ const bs = new Eh(),
       [E, S] = u.useState(""),
       [I, F] = u.useState(!1),
       [M, $] = u.useState(e.name),
-      [se, ye] = u.useState(!1),
+      [se, ve] = u.useState(!1),
       [_, N] = u.useState(!1);
     u.useEffect(() => {
       $(e.name);
@@ -13784,37 +13784,37 @@ const bs = new Eh(),
       P = (G) => {
         (G.stopPropagation(), v(!1), S(""));
       },
-      K = (G) => {
+      X = (G) => {
         (G.stopPropagation(), N(!0));
       },
       w = (G) => {
         (G.stopPropagation(), N(!1));
       },
       B = async (G) => {
-        (G.stopPropagation(), ye(!0));
+        (G.stopPropagation(), ve(!0));
         try {
-          let he;
+          let ge;
           if (e.type === "parent_container")
-            he = await Me.deleteParentContainer(e.GUID);
+            ge = await Me.deleteParentContainer(e.GUID);
           else if (e.type === "sub_container")
-            he = await Me.deleteSubContainer(e.GUID);
+            ge = await Me.deleteSubContainer(e.GUID);
           else if (
             e.type === "store_shelves" ||
             e.type === "dispensing_shelves"
           )
-            he = await Me.deleteShelfContainer(e.GUID);
+            ge = await Me.deleteShelfContainer(e.GUID);
           else {
-            (p("不支援的容器類型", "error"), ye(!1), N(!1));
+            (p("不支援的容器類型", "error"), ve(!1), N(!1));
             return;
           }
-          he.Code === 200
+          ge.Code === 200
             ? (p("刪除成功", "success"), f(e.GUID), N(!1))
-            : p(he.Result || "刪除失敗", "error");
-        } catch (he) {
-          (console.error("刪除容器失敗:", he),
+            : p(ge.Result || "刪除失敗", "error");
+        } catch (ge) {
+          (console.error("刪除容器失敗:", ge),
             p("刪除失敗，請稍後再試", "error"));
         } finally {
-          (ye(!1), N(!1));
+          (ve(!1), N(!1));
         }
       },
       ee = async (G) => {
@@ -13828,7 +13828,7 @@ const bs = new Eh(),
         }
         F(!0);
         try {
-          const he = [
+          const ge = [
             {
               GUID: e.GUID,
               name: E.trim(),
@@ -13838,25 +13838,25 @@ const bs = new Eh(),
               serverType: e.serverType,
             },
           ];
-          let J;
+          let Z;
           if (e.type === "store_shelves" || e.type === "dispensing_shelves")
-            J = await Me.updateMedMapShelf(he);
+            Z = await Me.updateMedMapShelf(ge);
           else if (e.type === "sub_container")
-            J = await Me.updateSubSection(he);
+            Z = await Me.updateSubSection(ge);
           else if (e.type === "parent_container")
-            J = await Me.updateMedMapSection(he);
+            Z = await Me.updateMedMapSection(ge);
           else {
             (p("不支援的容器類型", "error"), F(!1));
             return;
           }
-          J.Code === 200
+          Z.Code === 200
             ? (p("名稱更新成功", "success"),
               v(!1),
               $(E.trim()),
               k(e.GUID, { name: E.trim() }))
-            : p(J.Result || "更新失敗", "error");
-        } catch (he) {
-          (console.error("更新名稱失敗:", he),
+            : p(Z.Result || "更新失敗", "error");
+        } catch (ge) {
+          (console.error("更新名稱失敗:", ge),
             p("更新失敗，請稍後再試", "error"));
         } finally {
           F(!1);
@@ -14015,7 +14015,7 @@ const bs = new Eh(),
                     r.jsx("button", {
                       className:
                         "p-1 hover:bg-red-100 rounded transition-colors",
-                      onClick: K,
+                      onClick: X,
                       title: "刪除容器",
                       children: r.jsx(kr, {
                         className: "w-5 h-5 text-red-600",
@@ -14165,7 +14165,7 @@ const bs = new Eh(),
                     r.jsx("button", {
                       className:
                         "p-1 hover:bg-red-100 rounded transition-colors",
-                      onClick: K,
+                      onClick: X,
                       title: "刪除容器",
                       children: r.jsx(kr, {
                         className: "w-5 h-5 text-red-600",
@@ -14336,7 +14336,7 @@ const bs = new Eh(),
                   !y &&
                   r.jsx("button", {
                     className: "p-1 hover:bg-red-100 rounded transition-colors",
-                    onClick: K,
+                    onClick: X,
                     title: "刪除容器",
                     children: r.jsx(kr, { className: "w-5 h-5 text-red-600" }),
                   }),
@@ -14344,7 +14344,7 @@ const bs = new Eh(),
                   className: "p-1 hover:bg-black/10 rounded transition-colors",
                   onClick: (G) => {
                     G.stopPropagation();
-                    const he = {
+                    const ge = {
                       GUID: `new_medbox_${Date.now()}`,
                       name: "",
                       box_type: "",
@@ -14353,7 +14353,7 @@ const bs = new Eh(),
                       med_info: [],
                       parentShelf: e,
                     };
-                    (h(he), g("add"), m(!0));
+                    (h(ge), g("add"), m(!0));
                   },
                   title: d("modal.add"),
                   children: r.jsx($t, { className: "w-6 h-6 text-green-700" }),
@@ -14489,7 +14489,7 @@ const bs = new Eh(),
                   !y &&
                   r.jsx("button", {
                     className: "p-1 hover:bg-red-100 rounded transition-colors",
-                    onClick: K,
+                    onClick: X,
                     title: "刪除容器",
                     children: r.jsx(kr, { className: "w-5 h-5 text-red-600" }),
                   }),
@@ -14654,9 +14654,9 @@ const bs = new Eh(),
       [S, I] = u.useState({ x: 0, y: 0 }),
       [F, M] = u.useState(!1),
       [$, se] = u.useState(""),
-      [ye, _] = u.useState(!1),
+      [ve, _] = u.useState(!1),
       [N, L] = u.useState(!1),
-      [P, K] = u.useState(null),
+      [P, X] = u.useState(null),
       [w, B] = u.useState(!1),
       [ee, H] = u.useState(120),
       [A, Ne] = u.useState({
@@ -14674,8 +14674,8 @@ const bs = new Eh(),
         draggedStockShelf: null,
       }),
       [U, G] = u.useState(null),
-      he = u.useRef({}),
-      J = () =>
+      ge = u.useRef({}),
+      Z = () =>
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent,
         ) ||
@@ -14693,29 +14693,29 @@ const bs = new Eh(),
           );
         }
       },
-      De = (x, Z, ne, z) => {
+      De = (x, K, ne, z) => {
         try {
           const me = Ee(),
-            Y = me.findIndex(
-              (re) => re.department === x && re.canvasType === Z,
+            Q = me.findIndex(
+              (re) => re.department === x && re.canvasType === K,
             ),
-            X = { department: x, canvasType: Z, scale: ne, position: z };
-          (Y >= 0 ? (me[Y] = X) : me.push(X),
+            J = { department: x, canvasType: K, scale: ne, position: z };
+          (Q >= 0 ? (me[Q] = J) : me.push(J),
             localStorage.setItem("med_map_anchor", JSON.stringify(me)));
         } catch (me) {
           console.error("Error saving canvas state to localStorage:", me);
         }
       },
-      Be = (x, Z) =>
-        Ee().find((z) => z.department === x && z.canvasType === Z) || null;
+      Be = (x, K) =>
+        Ee().find((z) => z.department === x && z.canvasType === K) || null;
     (u.useEffect(() => {
       const x = localStorage.getItem("medMap_setting");
       if (x)
         try {
-          const Z = JSON.parse(x);
-          Z.refresh_interval !== void 0 && H(Z.refresh_interval);
-        } catch (Z) {
-          console.error("Failed to load refresh interval:", Z);
+          const K = JSON.parse(x);
+          K.refresh_interval !== void 0 && H(K.refresh_interval);
+        } catch (K) {
+          console.error("Failed to load refresh interval:", K);
         }
     }, []),
       u.useEffect(
@@ -14734,15 +14734,15 @@ const bs = new Eh(),
           const x = await Me.getMedMapByDepartment(s);
           if (x.Code === 200 && x.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const Z = Rt.convertMedMapApiToFakeData(x.Data);
-            if (!Rt.validateConvertedData(Z)) {
+            const K = Rt.convertMedMapApiToFakeData(x.Data);
+            if (!Rt.validateConvertedData(K)) {
               console.error("❌ 轉換後的資料驗證失敗");
               return;
             }
             (console.log(
               "✅ Data refreshed and converted successfully, updating state...",
             ),
-              l(Z));
+              l(K));
           }
         } catch (x) {
           console.error("❌ Failed to auto-refresh data:", x);
@@ -14754,8 +14754,8 @@ const bs = new Eh(),
           const x = Be(s, "drugCanvas");
           if (x) f({ x: x.position.x, y: x.position.y, scale: x.scale });
           else {
-            const Z = { x: 0, y: 0, scale: 1 };
-            (f(Z), De(s, "drugCanvas", Z.scale, Z));
+            const K = { x: 0, y: 0, scale: 1 };
+            (f(K), De(s, "drugCanvas", K.scale, K));
           }
         }
       }, [s]),
@@ -14776,7 +14776,7 @@ const bs = new Eh(),
           "list_draw",
           "med_box",
         ].includes(x),
-      ge = (x) =>
+      xe = (x) =>
         ({
           parent_container: ["parent_container", "調劑台", "藥庫"],
           sub_container: ["parent_container", "sub_container"],
@@ -14811,44 +14811,44 @@ const bs = new Eh(),
           med_box: ["med_box", "dispensing_shelves"],
         })[x] || [],
       fe = (x) => {
-        const [Z, ne] = x.split(",").map(Number);
-        return { row: Z || 0, col: ne || 0 };
+        const [K, ne] = x.split(",").map(Number);
+        return { row: K || 0, col: ne || 0 };
       },
-      W = (x, Z) => {
-        const ne = (me, Y = null) => {
-            if (me.GUID === x) return { container: me, parent: Y };
+      W = (x, K) => {
+        const ne = (me, Q = null) => {
+            if (me.GUID === x) return { container: me, parent: Q };
             if (me.contents)
-              for (const X of me.contents) {
-                const re = ne(X, me);
+              for (const J of me.contents) {
+                const re = ne(J, me);
                 if (re) return re;
               }
             return null;
           },
           z = cr();
         for (const me of z) {
-          const Y = ne(me);
-          if (Y) return Y;
+          const Q = ne(me);
+          if (Q) return Q;
         }
         return null;
       },
-      le = (x, Z) => {
+      le = (x, K) => {
         if (!x.contents) return [];
-        const ne = Z;
+        const ne = K;
         if (!ne) return x.contents;
         const z = fe(ne.gird_position);
         console.log("📤 移除容器位置:", z);
         for (const me of x.contents) {
-          const Y = fe(me.gird_position);
-          if (Y.row === z.row && Y.col > z.col) {
-            const X = Y.col - 1;
-            ((me.gird_position = `${Y.row},${X}`),
+          const Q = fe(me.gird_position);
+          if (Q.row === z.row && Q.col > z.col) {
+            const J = Q.col - 1;
+            ((me.gird_position = `${Q.row},${J}`),
               console.log(
-                `  ← 容器 ${me.GUID}: (${Y.row},${Y.col}) → (${Y.row},${X})`,
+                `  ← 容器 ${me.GUID}: (${Q.row},${Q.col}) → (${Q.row},${J})`,
               ),
-              (he.current[me.GUID] = {
+              (ge.current[me.GUID] = {
                 GUID: me.GUID,
                 Master_GUID: x.GUID,
-                position: `${Y.row},${X}`,
+                position: `${Q.row},${J}`,
                 serverName: x.serverName,
                 serverType: x.serverType,
                 type: me.type,
@@ -14858,7 +14858,7 @@ const bs = new Eh(),
         }
         return (console.log("✓ 重新計算完成"), x.contents);
       },
-      be = (x, Z, ne, z, me) => {
+      be = (x, K, ne, z, me) => {
         if (
           (x.contents || (x.contents = []),
           console.log("📥 插入容器到位置:", `(${ne},${z})`),
@@ -14869,125 +14869,125 @@ const bs = new Eh(),
         )
           ((ne = 0), (z = 0), console.log("   父容器為空，放置在 (0,0)"));
         else {
-          const Y = x.contents
-            .filter((X) => {
-              const re = fe(X.gird_position || "0,0");
+          const Q = x.contents
+            .filter((J) => {
+              const re = fe(J.gird_position || "0,0");
               return re.row === ne && re.col >= z;
             })
-            .sort((X, re) => {
-              const ae = fe(X.gird_position || "0,0");
-              return fe(re.gird_position || "0,0").col - ae.col;
+            .sort((J, re) => {
+              const ce = fe(J.gird_position || "0,0");
+              return fe(re.gird_position || "0,0").col - ce.col;
             });
-          console.log(`   同 row ${ne} 需要移動的容器數量:`, Y.length);
-          for (const X of Y) {
-            const re = fe(X.gird_position || "0,0"),
-              ae = re.col + 1;
-            ((X.gird_position = `${re.row},${ae}`),
+          console.log(`   同 row ${ne} 需要移動的容器數量:`, Q.length);
+          for (const J of Q) {
+            const re = fe(J.gird_position || "0,0"),
+              ce = re.col + 1;
+            ((J.gird_position = `${re.row},${ce}`),
               console.log(
-                `  → 容器 ${X.GUID}: (${re.row},${re.col}) → (${re.row},${ae})`,
+                `  → 容器 ${J.GUID}: (${re.row},${re.col}) → (${re.row},${ce})`,
               ),
-              (he.current[X.GUID] = {
-                GUID: X.GUID,
+              (ge.current[J.GUID] = {
+                GUID: J.GUID,
                 Master_GUID: x.GUID,
-                position: `${re.row},${ae}`,
+                position: `${re.row},${ce}`,
                 serverName: x.serverName,
                 serverType: x.serverType,
-                type: X.type,
-                containerData: X,
+                type: J.type,
+                containerData: J,
               }));
           }
         }
-        ((Z.gird_position = `${ne},${z}`),
-          (Z.Master_GUID = x.GUID),
-          console.log(`Inserted container ${Z.GUID} at position ${ne},${z}`),
-          x.contents.push(Z),
-          (he.current[Z.GUID] = {
-            GUID: Z.GUID,
+        ((K.gird_position = `${ne},${z}`),
+          (K.Master_GUID = x.GUID),
+          console.log(`Inserted container ${K.GUID} at position ${ne},${z}`),
+          x.contents.push(K),
+          (ge.current[K.GUID] = {
+            GUID: K.GUID,
             Master_GUID: x.GUID,
             position: `${ne},${z}`,
             serverName: x.serverName,
             serverType: x.serverType,
-            type: Z.type,
-            containerData: Z,
+            type: K.type,
+            containerData: K,
           }),
-          Z.type === "dispensing_shelves" &&
-            Z.contents &&
-            Z.contents.forEach((Y) => {
-              Y.type === "med_box" &&
-                (he.current[Y.GUID] = {
-                  GUID: Y.GUID,
-                  Master_GUID: Y.Master_GUID,
-                  position: Y.gird_position,
+          K.type === "dispensing_shelves" &&
+            K.contents &&
+            K.contents.forEach((Q) => {
+              Q.type === "med_box" &&
+                (ge.current[Q.GUID] = {
+                  GUID: Q.GUID,
+                  Master_GUID: Q.Master_GUID,
+                  position: Q.gird_position,
                   serverName: x.serverName,
                   serverType: x.serverType,
-                  type: Y.type,
-                  containerData: Y,
+                  type: Q.type,
+                  containerData: Q,
                 });
             }));
       },
-      O = (x, Z, ne) => {
+      O = (x, K, ne) => {
         const z = x.getBoundingClientRect(),
           me = z.left + z.width / 2,
-          Y = z.top + z.height / 2,
-          X = Z - me,
-          re = ne - Y;
-        return Math.abs(X) > Math.abs(re)
-          ? X > 0
+          Q = z.top + z.height / 2,
+          J = K - me,
+          re = ne - Q;
+        return Math.abs(J) > Math.abs(re)
+          ? J > 0
             ? "right"
             : "left"
           : re > 0
             ? "bottom"
             : "top";
       },
-      oe = (x, Z, ne, z) => {
+      oe = (x, K, ne, z) => {
         if (!v) return;
         if ((z.preventDefault(), z.stopPropagation(), A.floatingElement))
           try {
             A.floatingElement.parentNode &&
               A.floatingElement.parentNode.removeChild(A.floatingElement);
-          } catch (ve) {
-            console.error("清除舊浮動元素失敗:", ve);
+          } catch (he) {
+            console.error("清除舊浮動元素失敗:", he);
           }
-        const me = J(),
-          Y =
+        const me = Z(),
+          Q =
             "touches" in z
               ? z.touches[0].clientX
               : ("pointerId" in z, z.clientX),
-          X =
+          J =
             "touches" in z
               ? z.touches[0].clientY
               : ("pointerId" in z, z.clientY),
           re = ne.getBoundingClientRect(),
-          ae = { x: Y - re.left, y: X - re.top },
-          Q = ne.cloneNode(!0);
-        ((Q.style.position = "fixed"),
-          (Q.style.left = `${Y - ae.x}px`),
-          (Q.style.top = `${X - ae.y}px`),
-          (Q.style.width = `${re.width}px`),
-          (Q.style.height = `${re.height}px`),
-          (Q.style.zIndex = "9999"),
-          (Q.style.opacity = "0.8"),
-          (Q.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
-          (Q.style.pointerEvents = "none"),
-          document.body.appendChild(Q),
+          ce = { x: Q - re.left, y: J - re.top },
+          Y = ne.cloneNode(!0);
+        ((Y.style.position = "fixed"),
+          (Y.style.left = `${Q - ce.x}px`),
+          (Y.style.top = `${J - ce.y}px`),
+          (Y.style.width = `${re.width}px`),
+          (Y.style.height = `${re.height}px`),
+          (Y.style.zIndex = "9999"),
+          (Y.style.opacity = "0.8"),
+          (Y.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
+          (Y.style.pointerEvents = "none"),
+          document.body.appendChild(Y),
           console.log("開始拖曳 stockItem:", x),
-          console.log("來源 shelf:", Z),
+          console.log("來源 shelf:", K),
           Ne({
             isDragging: !0,
             draggedContainer: null,
             draggedElement: ne,
-            floatingElement: Q,
+            floatingElement: Y,
             originalParent: null,
             originalPosition: "",
             originalIndex: -1,
-            mouseOffset: ae,
+            mouseOffset: ce,
             isMobileDrag: me,
             originalData: null,
             draggedStockItem: x,
-            draggedStockShelf: Z,
+            draggedStockShelf: K,
           }));
       },
-      V = (x, Z, ne) => {
+      V = (x, K, ne) => {
         if (!v || !D(x.type)) return;
         if (x.type === "sub_container" && !p) {
           m("需要開啟後台模式才能移動該容器", "error");
@@ -15014,7 +15014,7 @@ const bs = new Eh(),
           return;
         }
         if (
-          ((he.current = {}),
+          ((ge.current = {}),
           ne.preventDefault(),
           ne.stopPropagation(),
           A.floatingElement)
@@ -15025,148 +15025,148 @@ const bs = new Eh(),
           } catch (Te) {
             console.error("清除舊浮動元素失敗:", Te);
           }
-        const z = J(),
+        const z = Z(),
           me =
             "touches" in ne
               ? ne.touches[0].clientX
               : ("pointerId" in ne, ne.clientX),
-          Y =
+          Q =
             "touches" in ne
               ? ne.touches[0].clientY
               : ("pointerId" in ne, ne.clientY),
-          X = Z.getBoundingClientRect(),
-          re = { x: me - X.left, y: Y - X.top },
-          ae = W(x.GUID);
-        if (!ae) return;
-        (console.log("拖曳目標", x), console.log("拖曳目標", ae));
-        const Q = Z.cloneNode(!0);
-        ((Q.style.position = "fixed"),
-          (Q.style.left = `${me - re.x}px`),
-          (Q.style.top = `${Y - re.y}px`),
-          (Q.style.width = `${X.width}px`),
-          (Q.style.height = `${X.height}px`),
-          (Q.style.zIndex = "9999"),
-          (Q.style.opacity = "0.8"),
-          (Q.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
-          (Q.style.pointerEvents = "none"),
-          document.body.appendChild(Q));
-        const ve = ae.parent.contents.findIndex((Te) => Te.GUID === x.GUID),
-          Ce = JSON.parse(JSON.stringify(ae.parent.contents));
-        (ae.parent.contents.splice(ve, 1), console.log(ve));
-        const Ae = ae.parent,
-          Ie = le(ae.parent, x);
-        ((ae.parent.contents = Ie),
-          console.log(ae.parent),
+          J = K.getBoundingClientRect(),
+          re = { x: me - J.left, y: Q - J.top },
+          ce = W(x.GUID);
+        if (!ce) return;
+        (console.log("拖曳目標", x), console.log("拖曳目標", ce));
+        const Y = K.cloneNode(!0);
+        ((Y.style.position = "fixed"),
+          (Y.style.left = `${me - re.x}px`),
+          (Y.style.top = `${Q - re.y}px`),
+          (Y.style.width = `${J.width}px`),
+          (Y.style.height = `${J.height}px`),
+          (Y.style.zIndex = "9999"),
+          (Y.style.opacity = "0.8"),
+          (Y.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
+          (Y.style.pointerEvents = "none"),
+          document.body.appendChild(Y));
+        const he = ce.parent.contents.findIndex((Te) => Te.GUID === x.GUID),
+          je = JSON.parse(JSON.stringify(ce.parent.contents));
+        (ce.parent.contents.splice(he, 1), console.log(he));
+        const Ae = ce.parent,
+          Ie = le(ce.parent, x);
+        ((ce.parent.contents = Ie),
+          console.log(ce.parent),
           Ne({
             isDragging: !0,
             draggedContainer: x,
-            draggedElement: Z,
-            floatingElement: Q,
+            draggedElement: K,
+            floatingElement: Y,
             originalParent: Ae,
             originalPosition: x.gird_position,
-            originalIndex: ve,
+            originalIndex: he,
             mouseOffset: re,
             isMobileDrag: z,
-            originalData: Ce,
+            originalData: je,
           }));
       },
-      xe = (x) => {
+      ye = (x) => {
         if (!A.isDragging || !A.floatingElement) return;
-        const Z = "touches" in x ? x.touches[0].clientX : x.clientX,
+        const K = "touches" in x ? x.touches[0].clientX : x.clientX,
           ne = "touches" in x ? x.touches[0].clientY : x.clientY;
         if (
-          ((A.floatingElement.style.left = `${Z - A.mouseOffset.x}px`),
+          ((A.floatingElement.style.left = `${K - A.mouseOffset.x}px`),
           (A.floatingElement.style.top = `${ne - A.mouseOffset.y}px`),
           A.draggedStockItem)
         ) {
-          const Y = document.elementFromPoint(Z, ne),
-            X = Y == null ? void 0 : Y.closest("[data-stock-guid]");
-          if (X) {
-            const ae = X.getAttribute("data-stock-guid"),
-              Q = (Ce) => {
-                for (const Ae of Ce) {
+          const Q = document.elementFromPoint(K, ne),
+            J = Q == null ? void 0 : Q.closest("[data-stock-guid]");
+          if (J) {
+            const ce = J.getAttribute("data-stock-guid"),
+              Y = (je) => {
+                for (const Ae of je) {
                   if (Ae.type === "store_shelves" && Ae.medMapStock) {
-                    const Ie = Ae.medMapStock.find((Te) => Te.GUID === ae);
+                    const Ie = Ae.medMapStock.find((Te) => Te.GUID === ce);
                     if (Ie) return { stockItem: Ie, shelf: Ae };
                   }
                   if (Ae.contents) {
-                    const Ie = Q(Ae.contents);
+                    const Ie = Y(Ae.contents);
                     if (Ie) return Ie;
                   }
                 }
                 return null;
               },
-              ve = Q(o);
-            if (ve && ve.stockItem.GUID !== A.draggedStockItem.GUID) {
-              const Ce = X.getBoundingClientRect(),
-                Ae = Ce.left + Ce.width / 2,
-                Ie = Ce.top + Ce.height / 2,
-                Te = Math.abs(Z - Ae),
+              he = Y(o);
+            if (he && he.stockItem.GUID !== A.draggedStockItem.GUID) {
+              const je = J.getBoundingClientRect(),
+                Ae = je.left + je.width / 2,
+                Ie = je.top + je.height / 2,
+                Te = Math.abs(K - Ae),
                 He = Math.abs(ne - Ie);
               let Oe;
               (Te > He
-                ? (Oe = Z < Ae ? "left" : "right")
+                ? (Oe = K < Ae ? "left" : "right")
                 : (Oe = ne < Ie ? "top" : "bottom"),
                 G({
-                  container: ve.shelf,
+                  container: he.shelf,
                   direction: null,
-                  element: X,
-                  stockItem: ve.stockItem,
+                  element: J,
+                  stockItem: he.stockItem,
                   stockItemDirection: Oe,
                 }));
               return;
             }
           }
-          const re = Y == null ? void 0 : Y.closest("[data-container-guid]");
+          const re = Q == null ? void 0 : Q.closest("[data-container-guid]");
           if (re) {
-            const ae = re.getAttribute("data-container-guid"),
-              Q = W(ae);
-            if (Q && Q.container.type === "store_shelves") {
-              G({ container: Q.container, direction: null, element: re });
+            const ce = re.getAttribute("data-container-guid"),
+              Y = W(ce);
+            if (Y && Y.container.type === "store_shelves") {
+              G({ container: Y.container, direction: null, element: re });
               return;
             }
           }
           G(null);
           return;
         }
-        const z = document.elementFromPoint(Z, ne),
+        const z = document.elementFromPoint(K, ne),
           me = z == null ? void 0 : z.closest("[data-container-guid]");
         if (me) {
-          const Y = me.getAttribute("data-container-guid"),
-            X = W(Y);
-          if (X) {
-            const re = ge(A.draggedContainer.type),
-              ae = A.draggedContainer.type,
-              Q = X.container.type;
-            if (X.container.GUID === A.draggedContainer.GUID) {
+          const Q = me.getAttribute("data-container-guid"),
+            J = W(Q);
+          if (J) {
+            const re = xe(A.draggedContainer.type),
+              ce = A.draggedContainer.type,
+              Y = J.container.type;
+            if (J.container.GUID === A.draggedContainer.GUID) {
               G(null);
               return;
             }
-            if (re.includes(Q)) {
-              const ve = O(me, Z, ne);
-              if (ae === "med_box" && !["left", "right"].includes(ve)) {
+            if (re.includes(Y)) {
+              const he = O(me, K, ne);
+              if (ce === "med_box" && !["left", "right"].includes(he)) {
                 G(null);
                 return;
               }
-              (X.container.gird_position ||
+              (J.container.gird_position ||
                 console.warn(
-                  `⚠️ 目標容器 ${X.container.GUID} 缺少 gird_position`,
+                  `⚠️ 目標容器 ${J.container.GUID} 缺少 gird_position`,
                 ),
-                G({ container: X.container, direction: ve, element: me }));
+                G({ container: J.container, direction: he, element: me }));
               return;
             }
-            if (ae === "parent_container" || ae === "sub_container") {
-              let ve = me.parentElement;
-              for (; ve; ) {
-                if (ve.hasAttribute("data-container-guid")) {
-                  const Ce = ve.getAttribute("data-container-guid"),
-                    Ae = W(Ce);
+            if (ce === "parent_container" || ce === "sub_container") {
+              let he = me.parentElement;
+              for (; he; ) {
+                if (he.hasAttribute("data-container-guid")) {
+                  const je = he.getAttribute("data-container-guid"),
+                    Ae = W(je);
                   if (Ae && re.includes(Ae.container.type)) {
                     if (Ae.container.GUID === A.draggedContainer.GUID) {
-                      ve = ve.parentElement;
+                      he = he.parentElement;
                       continue;
                     }
-                    const Ie = O(ve, Z, ne);
+                    const Ie = O(he, K, ne);
                     (console.log(
                       `🔼 向上找到有效目標: ${Ae.container.type} (${Ae.container.name})`,
                     ),
@@ -15177,27 +15177,27 @@ const bs = new Eh(),
                       G({
                         container: Ae.container,
                         direction: Ie,
-                        element: ve,
+                        element: he,
                       }));
                     return;
                   }
                 }
-                ve = ve.parentElement;
+                he = he.parentElement;
               }
             }
           }
         }
         G(null);
       },
-      ce = async (x) => {
-        var me, Y;
+      ie = async (x) => {
+        var me, Q;
         if (!A.isDragging) return;
         if (A.floatingElement)
           try {
             A.floatingElement.parentNode &&
               A.floatingElement.parentNode.removeChild(A.floatingElement);
-          } catch (X) {
-            console.error("清除浮動元素失敗:", X);
+          } catch (J) {
+            console.error("清除浮動元素失敗:", J);
           }
         if (A.draggedStockItem && A.draggedStockShelf) {
           if (
@@ -15205,22 +15205,22 @@ const bs = new Eh(),
             console.log("Drop Target:", U),
             U)
           ) {
-            const X = [];
+            const J = [];
             if (U.stockItem && U.stockItemDirection) {
               console.log(
                 `拖曳到 stockItem ${U.stockItem.GUID} 的 ${U.stockItemDirection} 邊`,
               );
               const re = U.container,
-                ae = A.draggedStockShelf,
-                Q = A.draggedStockItem,
-                ve = (U.stockItem.location || "0,0").split(","),
-                Ce = Number(ve[0] || "0"),
-                Ae = (Q.location || "0,0").split(","),
+                ce = A.draggedStockShelf,
+                Y = A.draggedStockItem,
+                he = (U.stockItem.location || "0,0").split(","),
+                je = Number(he[0] || "0"),
+                Ae = (Y.location || "0,0").split(","),
                 Ie = Number(Ae[0] || "0"),
                 Te = Number(Ae[1] || "0");
-              if (re.GUID === ae.GUID) {
+              if (re.GUID === ce.GUID) {
                 console.log("同一層架內移動");
-                const Oe = Number(ve[1] || "0");
+                const Oe = Number(he[1] || "0");
                 if (
                   U.stockItemDirection === "top" ||
                   U.stockItemDirection === "bottom"
@@ -15229,103 +15229,103 @@ const bs = new Eh(),
                   let Le;
                   if (
                     (U.stockItemDirection === "top" ? (Le = Oe) : (Le = Oe + 1),
-                    Ie === Ce)
+                    Ie === je)
                   ) {
                     (console.log("同一列內的深度移動"),
-                      ae.medMapStock.forEach((_e) => {
+                      ce.medMapStock.forEach((_e) => {
                         const Re = (_e.location || "0,0").split(","),
                           ze = Number(Re[0] || "0"),
                           Pe = Number(Re[1] || "0");
-                        if (ze === Ie && _e.GUID !== Q.GUID) {
+                        if (ze === Ie && _e.GUID !== Y.GUID) {
                           if (Pe > Te) {
                             const rt = Pe - 1;
                             (rt >= Le
                               ? (_e.location = `${ze},${rt + 1}`)
                               : (_e.location = `${ze},${rt}`),
-                              X.push({ ..._e }));
+                              J.push({ ..._e }));
                           } else if (Pe < Te) {
                             const rt = Le > Te ? Le - 1 : Le;
                             Pe >= rt &&
                               ((_e.location = `${ze},${Pe + 1}`),
-                              X.push({ ..._e }));
+                              J.push({ ..._e }));
                           }
                         }
                       }));
                     const Ge = Le > Te ? Le - 1 : Le;
-                    ((Q.location = `${Ce},${Ge}`), X.push({ ...Q }));
+                    ((Y.location = `${je},${Ge}`), J.push({ ...Y }));
                   } else
                     (console.log("跨列移動到目標列"),
-                      ae.medMapStock.forEach((Ge) => {
+                      ce.medMapStock.forEach((Ge) => {
                         const _e = (Ge.location || "0,0").split(","),
                           Re = Number(_e[0] || "0"),
                           ze = Number(_e[1] || "0");
                         Re === Ie &&
-                          Ge.GUID !== Q.GUID &&
+                          Ge.GUID !== Y.GUID &&
                           ze > Te &&
                           ((Ge.location = `${Re},${ze - 1}`),
-                          X.push({ ...Ge }));
+                          J.push({ ...Ge }));
                       }),
-                      ae.medMapStock.forEach((Ge) => {
+                      ce.medMapStock.forEach((Ge) => {
                         const _e = (Ge.location || "0,0").split(","),
                           Re = Number(_e[0] || "0"),
                           ze = Number(_e[1] || "0");
-                        Re === Ce &&
-                          Ge.GUID !== Q.GUID &&
+                        Re === je &&
+                          Ge.GUID !== Y.GUID &&
                           ze >= Le &&
                           ((Ge.location = `${Re},${ze + 1}`),
-                          X.push({ ...Ge }));
+                          J.push({ ...Ge }));
                       }),
-                      (Q.location = `${Ce},${Le}`),
-                      X.push({ ...Q }));
+                      (Y.location = `${je},${Le}`),
+                      J.push({ ...Y }));
                 } else {
                   console.log("水平移動（左右）");
-                  const Le = ae.medMapStock.findIndex(
-                    (Re) => Re.GUID === Q.GUID,
+                  const Le = ce.medMapStock.findIndex(
+                    (Re) => Re.GUID === Y.GUID,
                   );
-                  (Le !== -1 && ae.medMapStock.splice(Le, 1),
-                    ae.medMapStock.forEach((Re) => {
+                  (Le !== -1 && ce.medMapStock.splice(Le, 1),
+                    ce.medMapStock.forEach((Re) => {
                       const ze = (Re.location || "0,0").split(","),
                         Pe = Number(ze[0] || "0"),
                         rt = Number(ze[1] || "0");
                       Pe > Ie &&
-                        ((Re.location = `${Pe - 1},${rt}`), X.push({ ...Re }));
+                        ((Re.location = `${Pe - 1},${rt}`), J.push({ ...Re }));
                     }));
                   let Ge;
-                  const _e = Ce > Ie ? Ce - 1 : Ce;
+                  const _e = je > Ie ? je - 1 : je;
                   (U.stockItemDirection === "left" ? (Ge = _e) : (Ge = _e + 1),
-                    ae.medMapStock.forEach((Re) => {
+                    ce.medMapStock.forEach((Re) => {
                       const ze = (Re.location || "0,0").split(","),
                         Pe = Number(ze[0] || "0"),
                         rt = Number(ze[1] || "0");
                       Pe >= Ge &&
-                        ((Re.location = `${Pe + 1},${rt}`), X.push({ ...Re }));
+                        ((Re.location = `${Pe + 1},${rt}`), J.push({ ...Re }));
                     }),
-                    (Q.location = `${Ge},${Te}`),
-                    ae.medMapStock.push(Q),
-                    ae.medMapStock.sort((Re, ze) => {
+                    (Y.location = `${Ge},${Te}`),
+                    ce.medMapStock.push(Y),
+                    ce.medMapStock.sort((Re, ze) => {
                       const Pe = (Re.location || "0,0").split(","),
                         rt = (ze.location || "0,0").split(",");
                       return Number(Pe[0] || "0") - Number(rt[0] || "0");
                     }),
-                    X.push({ ...Q }));
+                    J.push({ ...Y }));
                 }
               } else {
                 console.log("不同層架間移動");
-                const Oe = Number(ve[1] || "0"),
-                  Le = ae.medMapStock.findIndex((Ge) => Ge.GUID === Q.GUID);
+                const Oe = Number(he[1] || "0"),
+                  Le = ce.medMapStock.findIndex((Ge) => Ge.GUID === Y.GUID);
                 if (
-                  (Le !== -1 && ae.medMapStock.splice(Le, 1),
+                  (Le !== -1 && ce.medMapStock.splice(Le, 1),
                   U.stockItemDirection === "top" ||
                     U.stockItemDirection === "bottom")
                 ) {
                   (console.log("跨層架垂直移動到目標列"),
-                    ae.medMapStock.forEach((_e) => {
+                    ce.medMapStock.forEach((_e) => {
                       const Re = (_e.location || "0,0").split(","),
                         ze = Number(Re[0] || "0"),
                         Pe = Number(Re[1] || "0");
                       ze === Ie &&
                         Pe > Te &&
-                        ((_e.location = `${ze},${Pe - 1}`), X.push({ ..._e }));
+                        ((_e.location = `${ze},${Pe - 1}`), J.push({ ..._e }));
                     }));
                   let Ge;
                   (U.stockItemDirection === "top" ? (Ge = Oe) : (Ge = Oe + 1),
@@ -15333,98 +15333,106 @@ const bs = new Eh(),
                       const Re = (_e.location || "0,0").split(","),
                         ze = Number(Re[0] || "0"),
                         Pe = Number(Re[1] || "0");
-                      ze === Ce &&
+                      ze === je &&
                         Pe >= Ge &&
-                        ((_e.location = `${ze},${Pe + 1}`), X.push({ ..._e }));
+                        ((_e.location = `${ze},${Pe + 1}`), J.push({ ..._e }));
                     }),
-                    (Q.location = `${Ce},${Ge}`),
-                    (Q.shelf_guid = re.GUID),
-                    re.medMapStock.push(Q),
+                    (Y.location = `${je},${Ge}`),
+                    (Y.shelf_guid = re.GUID),
+                    re.medMapStock.push(Y),
                     re.medMapStock.sort((_e, Re) => {
                       const ze = (_e.location || "0,0").split(","),
                         Pe = (Re.location || "0,0").split(",");
                       return Number(ze[0] || "0") - Number(Pe[0] || "0");
                     }),
-                    X.push({ ...Q }));
+                    J.push({ ...Y }));
                 } else {
                   (console.log("跨層架水平移動"),
-                    ae.medMapStock.forEach((_e) => {
+                    ce.medMapStock.forEach((_e) => {
                       const Re = (_e.location || "0,0").split(","),
                         ze = Number(Re[0] || "0"),
                         Pe = Number(Re[1] || "0");
                       ze > Ie &&
-                        ((_e.location = `${ze - 1},${Pe}`), X.push({ ..._e }));
+                        ((_e.location = `${ze - 1},${Pe}`), J.push({ ..._e }));
                     }));
                   let Ge;
-                  (U.stockItemDirection === "left" ? (Ge = Ce) : (Ge = Ce + 1),
+                  (U.stockItemDirection === "left" ? (Ge = je) : (Ge = je + 1),
                     re.medMapStock.forEach((_e) => {
                       const Re = (_e.location || "0,0").split(","),
                         ze = Number(Re[0] || "0"),
                         Pe = Number(Re[1] || "0");
                       ze >= Ge &&
-                        ((_e.location = `${ze + 1},${Pe}`), X.push({ ..._e }));
+                        ((_e.location = `${ze + 1},${Pe}`), J.push({ ..._e }));
                     }),
-                    (Q.location = `${Ge},${Te}`),
-                    (Q.shelf_guid = re.GUID),
-                    re.medMapStock.push(Q),
+                    (Y.location = `${Ge},${Te}`),
+                    (Y.shelf_guid = re.GUID),
+                    re.medMapStock.push(Y),
                     re.medMapStock.sort((_e, Re) => {
                       const ze = (_e.location || "0,0").split(","),
                         Pe = (Re.location || "0,0").split(",");
                       return Number(ze[0] || "0") - Number(Pe[0] || "0");
                     }),
-                    X.push({ ...Q }));
+                    J.push({ ...Y }));
                 }
               }
             } else if (U.container.type === "store_shelves") {
               console.log("拖曳到 store_shelves 容器");
               const re = U.container,
-                ae = A.draggedStockShelf,
-                Q = A.draggedStockItem,
-                ve = (Q.location || "0,0").split(","),
-                Ce = Number(ve[0] || "0"),
-                Ae = ae.medMapStock.findIndex((Ie) => Ie.GUID === Q.GUID);
+                ce = A.draggedStockShelf,
+                Y = A.draggedStockItem,
+                he = (Y.location || "0,0").split(","),
+                je = Number(he[0] || "0"),
+                Ae = ce.medMapStock.findIndex((Ie) => Ie.GUID === Y.GUID);
               (Ae !== -1 &&
-                (ae.medMapStock.splice(Ae, 1),
-                ae.medMapStock.forEach((Ie) => {
+                (ce.medMapStock.splice(Ae, 1),
+                ce.medMapStock.forEach((Ie) => {
                   const Te = (Ie.location || "0,0").split(","),
                     He = Number(Te[0] || "0"),
                     Oe = Number(Te[1] || "0");
-                  He > Ce &&
-                    ((Ie.location = `${He - 1},${Oe}`), X.push({ ...Ie }));
+                  He > je &&
+                    ((Ie.location = `${He - 1},${Oe}`), J.push({ ...Ie }));
                 })),
-                (Q.location = "0,0"),
-                (Q.shelf_guid = re.GUID),
+                (Y.location = "0,0"),
+                (Y.shelf_guid = re.GUID),
                 re.medMapStock || (re.medMapStock = []),
                 re.medMapStock.forEach((Ie) => {
                   const Te = (Ie.location || "0,0").split(","),
                     He = Number(Te[0] || "0"),
                     Oe = Number(Te[1] || "0");
-                  ((Ie.location = `${He + 1},${Oe}`), X.push({ ...Ie }));
+                  ((Ie.location = `${He + 1},${Oe}`), J.push({ ...Ie }));
                 }),
-                re.medMapStock.push(Q),
+                re.medMapStock.push(Y),
                 re.medMapStock.sort((Ie, Te) => {
                   const He = (Ie.location || "0,0").split(","),
                     Oe = (Te.location || "0,0").split(",");
                   return Number(He[0] || "0") - Number(Oe[0] || "0");
                 }),
-                X.push({ ...Q }));
+                J.push({ ...Y }));
             }
-            if (X.length > 0) {
-              console.log("準備更新的 stockItems:", X);
+            if (J.length > 0) {
+              console.log("準備更新的 stockItems:", J);
               try {
-                const re = await Me.updateStock(X);
-                if (re.Code === 200) {
+                const re =
+                    targetShelf.serverName ||
+                    (sourceShelf == null ? void 0 : sourceShelf.serverName) ||
+                    "",
+                  ce =
+                    targetShelf.serverType ||
+                    (sourceShelf == null ? void 0 : sourceShelf.serverType) ||
+                    "",
+                  Y = await Me.updateStock(J, re, ce);
+                if (Y.Code === 200) {
                   m("藥品位置更新成功", "success");
                   try {
-                    const ae = await Me.getMedMapByDepartment(s);
-                    if (ae.Code === 200 && ae.Data) {
-                      const Q = Rt.convertMedMapApiToFakeData(ae.Data);
-                      Rt.validateConvertedData(Q) && l(Q);
+                    const he = await Me.getMedMapByDepartment(s);
+                    if (he.Code === 200 && he.Data) {
+                      const je = Rt.convertMedMapApiToFakeData(he.Data);
+                      Rt.validateConvertedData(je) && l(je);
                     }
-                  } catch (ae) {
-                    console.error("刷新數據失敗:", ae);
+                  } catch (he) {
+                    console.error("刷新數據失敗:", he);
                   }
-                } else m(re.Result || "更新失敗", "error");
+                } else m(Y.Result || "更新失敗", "error");
               } catch (re) {
                 (console.error("更新 stockItem 失敗:", re),
                   m("更新失敗，請稍後再試", "error"));
@@ -15448,7 +15456,7 @@ const bs = new Eh(),
             G(null));
           return;
         }
-        let Z = null,
+        let K = null,
           ne = null,
           z = null;
         if (
@@ -15457,9 +15465,9 @@ const bs = new Eh(),
           A.isMobileDrag)
         )
           if (U) {
-            ((Z = U.direction), (z = U.container));
-            const X = U.container.gird_position;
-            console.log("目標容器原始位置:", X);
+            ((K = U.direction), (z = U.container));
+            const J = U.container.gird_position;
+            console.log("目標容器原始位置:", J);
             const re = W(U.container.Master_GUID || U.container.GUID);
             (console.log("🔍 移除前查找目標父容器:"),
               console.log(
@@ -15474,58 +15482,58 @@ const bs = new Eh(),
               ),
               console.log(
                 "  - 父容器類型:",
-                (Y = re == null ? void 0 : re.container) == null
+                (Q = re == null ? void 0 : re.container) == null
                   ? void 0
-                  : Y.type,
+                  : Q.type,
               ));
-            const ae = W(A.draggedContainer.GUID);
-            let Q = null;
-            if (ae) {
-              Q = ae.parent.GUID;
-              const Le = ae.parent.contents.findIndex(
+            const ce = W(A.draggedContainer.GUID);
+            let Y = null;
+            if (ce) {
+              Y = ce.parent.GUID;
+              const Le = ce.parent.contents.findIndex(
                 (_e) => _e.GUID === A.draggedContainer.GUID,
               );
-              ae.parent.contents.splice(Le, 1);
-              const Ge = le(ae.parent, A.draggedContainer);
-              ae.parent.contents = Ge;
+              ce.parent.contents.splice(Le, 1);
+              const Ge = le(ce.parent, A.draggedContainer);
+              ce.parent.contents = Ge;
             }
-            let ve = re;
-            if (!ve) {
+            let he = re;
+            if (!he) {
               console.warn(
                 "⚠️ 透過 Master_GUID 找不到父容器，嘗試透過目標容器 GUID 查找",
               );
               const Le = W(U.container.GUID);
               Le && Le.parent
-                ? ((ve = { container: Le.parent, parent: null }),
+                ? ((he = { container: Le.parent, parent: null }),
                   console.log(
                     "✓ 透過目標容器 GUID 找到父容器:",
                     Le.parent.GUID,
                   ))
                 : console.error("❌ 完全找不到目標父容器");
             }
-            let Ce = U.container;
-            if (Q && ve && ve.container.GUID === Q) {
-              const Le = ve.container.contents.find(
+            let je = U.container;
+            if (Y && he && he.container.GUID === Y) {
+              const Le = he.container.contents.find(
                 (Ge) => Ge.GUID === U.container.GUID,
               );
               Le
-                ? ((Ce = Le),
+                ? ((je = Le),
                   console.log(
                     "同一父容器內移動，更新後的目標容器位置:",
                     Le.gird_position,
                   ))
-                : (console.log("找不到更新後的目標容器，使用原始位置:", X),
-                  (Ce = { ...U.container, gird_position: X }));
+                : (console.log("找不到更新後的目標容器，使用原始位置:", J),
+                  (je = { ...U.container, gird_position: J }));
             }
-            const Ae = Ce.gird_position || X;
+            const Ae = je.gird_position || J;
             (console.log("最終使用的目標位置:", Ae),
               (!Ae || Ae === "0,0") &&
                 (console.error("❌ 警告：目標位置無效或為 0,0"),
                 console.error(
                   "  - targetContainer.gird_position:",
-                  Ce.gird_position,
+                  je.gird_position,
                 ),
-                console.error("  - originalTargetPosition:", X),
+                console.error("  - originalTargetPosition:", J),
                 console.error("  - dropTarget.container:", U.container)));
             const Ie = fe(Ae || "0,0");
             let Te = Ie.row,
@@ -15547,10 +15555,10 @@ const bs = new Eh(),
                 He = Ie.col + 1;
                 break;
             }
-            let Oe = (ve == null ? void 0 : ve.container) || U.container;
+            let Oe = (he == null ? void 0 : he.container) || U.container;
             if (
               (console.log("📦 目標父容器決定:"),
-              console.log("  - targetParentData 存在:", !!ve),
+              console.log("  - targetParentData 存在:", !!he),
               console.log(
                 "  - 使用的父容器 GUID:",
                 Oe == null ? void 0 : Oe.GUID,
@@ -15599,77 +15607,77 @@ const bs = new Eh(),
                 (A.originalParent.contents = JSON.parse(
                   JSON.stringify(A.originalData),
                 )),
-              (Z = null),
+              (K = null),
               (z = null),
               (ne = A.originalParent));
         else if (U) {
-          ((Z = U.direction), (z = U.container));
-          const X = W(A.draggedContainer.GUID);
+          ((K = U.direction), (z = U.container));
+          const J = W(A.draggedContainer.GUID);
           let re = null;
           if (
             (console.log("=== 開始處理容器拖曳 ==="),
             console.log("拖曳容器 GUID:", A.draggedContainer.GUID),
             console.log("拖曳容器原始位置:", A.draggedContainer.gird_position),
-            X)
+            J)
           ) {
-            ((re = X.parent.GUID),
+            ((re = J.parent.GUID),
               console.log("原始父容器 GUID:", re),
               console.log(
                 "移除前父容器的 contents 數量:",
-                X.parent.contents.length,
+                J.parent.contents.length,
               ));
-            const Te = X.parent.contents.findIndex(
+            const Te = J.parent.contents.findIndex(
               (Oe) => Oe.GUID === A.draggedContainer.GUID,
             );
-            (X.parent.contents.splice(Te, 1),
+            (J.parent.contents.splice(Te, 1),
               console.log(
                 "移除後父容器的 contents 數量:",
-                X.parent.contents.length,
+                J.parent.contents.length,
               ));
-            const He = le(X.parent, A.draggedContainer);
-            ((X.parent.contents = He),
+            const He = le(J.parent, A.draggedContainer);
+            ((J.parent.contents = He),
               console.log("重新計算後的容器列表:"),
-              X.parent.contents.forEach((Oe) => {
+              J.parent.contents.forEach((Oe) => {
                 console.log(`  - ${Oe.GUID}: ${Oe.gird_position}`);
               }));
           }
-          const ae = W(U.container.Master_GUID || U.container.GUID);
-          let Q = U.container;
+          const ce = W(U.container.Master_GUID || U.container.GUID);
+          let Y = U.container;
           if (
             (console.log("目標容器原始位置:", U.container.gird_position),
-            re && ae && ae.container.GUID === re)
+            re && ce && ce.container.GUID === re)
           ) {
             console.log("✓ 在同一個父容器內移動");
-            const Te = ae.container.contents.find(
+            const Te = ce.container.contents.find(
               (He) => He.GUID === U.container.GUID,
             );
             Te &&
-              ((Q = Te),
+              ((Y = Te),
               console.log(
                 "同一父容器內移動，更新後的目標容器位置:",
                 Te.gird_position,
               ));
           } else console.log("✗ 跨父容器移動或父容器不同");
-          const ve = fe(Q.gird_position || "0,0");
-          let Ce = ve.row,
-            Ae = ve.col;
+          const he = fe(Y.gird_position || "0,0");
+          let je = he.row,
+            Ae = he.col;
           switch (U.direction) {
             case "top":
-              Ce = Math.max(0, ve.row);
+              je = Math.max(0, he.row);
               break;
             case "bottom":
-              Ce = ve.row + 1;
+              je = he.row + 1;
               break;
             case "left":
-              Ae = Math.max(0, ve.col);
+              Ae = Math.max(0, he.col);
               break;
             case "right":
-              Ae = ve.col + 1;
+              Ae = he.col + 1;
               break;
           }
           (console.log("------目標容器", U),
             console.log("------拖曳容器", A.draggedContainer));
-          let Ie = (ae == null ? void 0 : ae.container) || U.container;
+          let Ie = (ce == null ? void 0 : ce.container) || U.container;
           if (
             (console.log(A.draggedContainer.class),
             console.log(U.container.class),
@@ -15699,10 +15707,10 @@ const bs = new Eh(),
                 for (let Le = 0; Le <= Te; Le++) {
                   const Ge = `${Oe},${Le}`;
                   Ie.contents.filter((Re) => Re.grid_position === Ge).length ===
-                    0 && ((Ce = Oe), (Ae = Le));
+                    0 && ((je = Oe), (Ae = Le));
                 }
-            } else ((Ce = 0), (Ae = 0));
-          ((ne = Ie), be(Ie, A.draggedContainer, Ce, Ae, U.direction));
+            } else ((je = 0), (Ae = 0));
+          ((ne = Ie), be(Ie, A.draggedContainer, je, Ae, U.direction));
         } else
           (console.log("無效拖放，復原所有容器位置"),
             A.originalData &&
@@ -15710,7 +15718,7 @@ const bs = new Eh(),
               (A.originalParent.contents = JSON.parse(
                 JSON.stringify(A.originalData),
               )),
-            (Z = null),
+            (K = null),
             (z = null),
             (ne = A.originalParent));
         (Ne({
@@ -15728,44 +15736,44 @@ const bs = new Eh(),
           draggedStockShelf: null,
         }),
           G(null),
-          console.log("Drop Direction:", Z),
+          console.log("Drop Direction:", K),
           console.log("Parent Object:", ne),
           console.log("Target Object:", z),
-          console.log("API更新資料：", he),
-          await Ph(he));
+          console.log("API更新資料：", ge),
+          await Ph(ge));
       };
     (u.useEffect(() => {
       if (A.isDragging)
-        if (J()) {
-          const Z = (me) => {
-              (me.preventDefault(), xe(me));
+        if (Z()) {
+          const K = (me) => {
+              (me.preventDefault(), ye(me));
             },
-            ne = (me) => ce(),
-            z = (me) => ce();
+            ne = (me) => ie(),
+            z = (me) => ie();
           return (
-            document.addEventListener("pointermove", Z, { passive: !1 }),
+            document.addEventListener("pointermove", K, { passive: !1 }),
             document.addEventListener("pointerup", ne),
             document.addEventListener("pointercancel", z),
             () => {
-              (document.removeEventListener("pointermove", Z),
+              (document.removeEventListener("pointermove", K),
                 document.removeEventListener("pointerup", ne),
                 document.removeEventListener("pointercancel", z));
             }
           );
         } else {
-          const Z = (Y) => xe(Y),
-            ne = (Y) => ce(),
-            z = (Y) => {
-              (Y.preventDefault(), xe(Y));
+          const K = (Q) => ye(Q),
+            ne = (Q) => ie(),
+            z = (Q) => {
+              (Q.preventDefault(), ye(Q));
             },
-            me = (Y) => ce();
+            me = (Q) => ie();
           return (
-            document.addEventListener("mousemove", Z),
+            document.addEventListener("mousemove", K),
             document.addEventListener("mouseup", ne),
             document.addEventListener("touchmove", z, { passive: !1 }),
             document.addEventListener("touchend", me),
             () => {
-              (document.removeEventListener("mousemove", Z),
+              (document.removeEventListener("mousemove", K),
                 document.removeEventListener("mouseup", ne),
                 document.removeEventListener("touchmove", z),
                 document.removeEventListener("touchend", me));
@@ -15789,15 +15797,15 @@ const bs = new Eh(),
         const x = (ne) => {
             ne.code === "Space" && !ne.repeat && (ne.preventDefault(), M(!0));
           },
-          Z = (ne) => {
+          K = (ne) => {
             ne.code === "Space" && (ne.preventDefault(), M(!1), y(!1));
           };
         return (
           window.addEventListener("keydown", x),
-          window.addEventListener("keyup", Z),
+          window.addEventListener("keyup", K),
           () => {
             (window.removeEventListener("keydown", x),
-              window.removeEventListener("keyup", Z));
+              window.removeEventListener("keyup", K));
           }
         );
       }, []));
@@ -15811,13 +15819,13 @@ const bs = new Eh(),
               (ne = n.current) == null ? void 0 : ne.getBoundingClientRect();
             if (!z) return;
             const me = x.clientX - z.left,
-              Y = x.clientY - z.top,
-              X = x.deltaY > 0 ? 0.9 : 1.1,
-              re = Math.max(0.1, Math.min(5, k.scale * X)),
-              ae = re / k.scale,
-              Q = me - (me - k.x) * ae,
-              ve = Y - (Y - k.y) * ae;
-            f({ x: Q, y: ve, scale: re });
+              Q = x.clientY - z.top,
+              J = x.deltaY > 0 ? 0.9 : 1.1,
+              re = Math.max(0.1, Math.min(5, k.scale * J)),
+              ce = re / k.scale,
+              Y = me - (me - k.x) * ce,
+              he = Q - (Q - k.y) * ce;
+            f({ x: Y, y: he, scale: re });
           }
         },
         [k, v],
@@ -15828,7 +15836,7 @@ const bs = new Eh(),
             !F ||
             (y(!0),
             I({ x: x.clientX, y: x.clientY }),
-            K({ x: x.clientX, y: x.clientY }),
+            X({ x: x.clientX, y: x.clientY }),
             B(!1),
             x.preventDefault());
         },
@@ -15837,51 +15845,51 @@ const bs = new Eh(),
       C = u.useCallback(
         (x) => {
           if (!d || v) return;
-          const Z = x.clientX - S.x,
+          const K = x.clientX - S.x,
             ne = x.clientY - S.y;
           if (P) {
             const z = Math.abs(x.clientX - P.x),
               me = Math.abs(x.clientY - P.y);
             (z > 5 || me > 5) && B(!0);
           }
-          (f((z) => ({ ...z, x: z.x + Z, y: z.y + ne })),
+          (f((z) => ({ ...z, x: z.x + K, y: z.y + ne })),
             I({ x: x.clientX, y: x.clientY }));
         },
         [d, S, v, P],
       ),
       R = u.useCallback(() => {
-        (y(!1), K(null));
+        (y(!1), X(null));
       }, []),
       [q, ue] = u.useState(null),
-      [ie, je] = u.useState({ x: 0, y: 0 }),
+      [ae, Se] = u.useState({ x: 0, y: 0 }),
       Ue = (x) => {
         if (x.length < 2) return null;
-        const Z = x[0],
+        const K = x[0],
           ne = x[1];
         return Math.sqrt(
-          Math.pow(ne.clientX - Z.clientX, 2) +
-            Math.pow(ne.clientY - Z.clientY, 2),
+          Math.pow(ne.clientX - K.clientX, 2) +
+            Math.pow(ne.clientY - K.clientY, 2),
         );
       },
       We = (x) => {
         if (x.length === 1) return { x: x[0].clientX, y: x[0].clientY };
-        const Z = x[0],
+        const K = x[0],
           ne = x[1];
         return {
-          x: (Z.clientX + ne.clientX) / 2,
-          y: (Z.clientY + ne.clientY) / 2,
+          x: (K.clientX + ne.clientX) / 2,
+          y: (K.clientY + ne.clientY) / 2,
         };
       },
       ct = u.useCallback(
         (x) => {
           if (!v) {
             if (x.touches.length === 2) {
-              const Z = Ue(x.touches),
+              const K = Ue(x.touches),
                 ne = We(x.touches);
-              (ue(Z), je(ne));
+              (ue(K), Se(ne));
             } else if (x.touches.length === 1) {
-              const Z = x.touches[0];
-              (I({ x: Z.clientX, y: Z.clientY }), y(!0));
+              const K = x.touches[0];
+              (I({ x: K.clientX, y: K.clientY }), y(!0));
             }
           }
         },
@@ -15889,29 +15897,29 @@ const bs = new Eh(),
       ),
       Et = u.useCallback(
         (x) => {
-          var Z;
+          var K;
           if (!v) {
             if ((x.preventDefault(), x.touches.length === 2 && q !== null)) {
               const ne = Ue(x.touches),
                 z = We(x.touches);
               if (ne && q) {
                 const me =
-                  (Z = n.current) == null ? void 0 : Z.getBoundingClientRect();
+                  (K = n.current) == null ? void 0 : K.getBoundingClientRect();
                 if (!me) return;
-                const Y = ne / q,
-                  X = Math.max(0.1, Math.min(5, k.scale * Y)),
+                const Q = ne / q,
+                  J = Math.max(0.1, Math.min(5, k.scale * Q)),
                   re = z.x - me.left,
-                  ae = z.y - me.top,
-                  Q = X / k.scale,
-                  ve = re - (re - k.x) * Q,
-                  Ce = ae - (ae - k.y) * Q;
-                (f({ x: ve, y: Ce, scale: X }), ue(ne), je(z));
+                  ce = z.y - me.top,
+                  Y = J / k.scale,
+                  he = re - (re - k.x) * Y,
+                  je = ce - (ce - k.y) * Y;
+                (f({ x: he, y: je, scale: J }), ue(ne), Se(z));
               }
             } else if (x.touches.length === 1 && d) {
               const ne = x.touches[0],
                 z = ne.clientX - S.x,
                 me = ne.clientY - S.y;
-              (f((Y) => ({ ...Y, x: Y.x + z, y: Y.y + me })),
+              (f((Q) => ({ ...Q, x: Q.x + z, y: Q.y + me })),
                 I({ x: ne.clientX, y: ne.clientY }));
             }
           }
@@ -15933,17 +15941,17 @@ const bs = new Eh(),
       pn = (x) => {
         if (!x || x.length === 0)
           return { sortedContents: [], maxRow: 0, maxCol: 0 };
-        const Z = x.map((Y) => ({
-            ...Y,
-            gridPos: fe(Y.gird_position || "0,0"),
+        const K = x.map((Q) => ({
+            ...Q,
+            gridPos: fe(Q.gird_position || "0,0"),
           })),
-          ne = Math.max(...Z.map((Y) => Y.gridPos.row), 0),
-          z = Math.max(...Z.map((Y) => Y.gridPos.col), 0);
+          ne = Math.max(...K.map((Q) => Q.gridPos.row), 0),
+          z = Math.max(...K.map((Q) => Q.gridPos.col), 0);
         return {
-          sortedContents: Z.sort((Y, X) =>
-            Y.gridPos.row !== X.gridPos.row
-              ? Y.gridPos.row - X.gridPos.row
-              : Y.gridPos.col - X.gridPos.col,
+          sortedContents: K.sort((Q, J) =>
+            Q.gridPos.row !== J.gridPos.row
+              ? Q.gridPos.row - J.gridPos.row
+              : Q.gridPos.col - J.gridPos.col,
           ),
           maxRow: ne,
           maxCol: z,
@@ -15953,7 +15961,7 @@ const bs = new Eh(),
       qr = Math.max(...Vr.map((x) => fe(x.gird_position || "0,0").row), 0),
       cl = Math.max(...Vr.map((x) => fe(x.gird_position || "0,0").col), 0),
       Wn = (x) => {
-        const Z = (z) => {
+        const K = (z) => {
             if (
               z.width &&
               Array.isArray(z.width) &&
@@ -15961,10 +15969,10 @@ const bs = new Eh(),
               z.width_index >= 0 &&
               z.width_index < z.width.length
             ) {
-              const Y = parseFloat(z.width[z.width_index]);
-              if (!isNaN(Y)) {
-                const X = Y * 20;
-                return Math.max(200, X);
+              const Q = parseFloat(z.width[z.width_index]);
+              if (!isNaN(Q)) {
+                const J = Q * 20;
+                return Math.max(200, J);
               }
             }
             return 200;
@@ -15990,7 +15998,7 @@ const bs = new Eh(),
         switch (x.type) {
           case "med_box":
             return (
-              Z(x),
+              K(x),
               r.jsxs(
                 "div",
                 {
@@ -15999,7 +16007,7 @@ const bs = new Eh(),
                   children: [
                     r.jsx("div", {
                       onMouseDown:
-                        v && D(x.type) && !J()
+                        v && D(x.type) && !Z()
                           ? (z) =>
                               V(
                                 x,
@@ -16010,7 +16018,7 @@ const bs = new Eh(),
                               )
                           : void 0,
                       onPointerDown:
-                        v && D(x.type) && J()
+                        v && D(x.type) && Z()
                           ? (z) =>
                               V(
                                 x,
@@ -16039,7 +16047,7 @@ const bs = new Eh(),
                 children: [
                   r.jsx("div", {
                     onMouseDown:
-                      v && D(x.type) && !J()
+                      v && D(x.type) && !Z()
                         ? (z) =>
                             V(
                               x,
@@ -16048,7 +16056,7 @@ const bs = new Eh(),
                             )
                         : void 0,
                     onPointerDown:
-                      v && D(x.type) && J()
+                      v && D(x.type) && Z()
                         ? (z) =>
                             V(
                               x,
@@ -16073,7 +16081,7 @@ const bs = new Eh(),
                 children: [
                   r.jsx("div", {
                     onMouseDown:
-                      v && D(x.type) && !J()
+                      v && D(x.type) && !Z()
                         ? (z) =>
                             V(
                               x,
@@ -16082,7 +16090,7 @@ const bs = new Eh(),
                             )
                         : void 0,
                     onPointerDown:
-                      v && D(x.type) && J()
+                      v && D(x.type) && Z()
                         ? (z) =>
                             V(
                               x,
@@ -16111,7 +16119,7 @@ const bs = new Eh(),
                 children: [
                   r.jsx("div", {
                     onMouseDown:
-                      v && D(x.type) && !J()
+                      v && D(x.type) && !Z()
                         ? (z) =>
                             V(
                               x,
@@ -16120,7 +16128,7 @@ const bs = new Eh(),
                             )
                         : void 0,
                     onPointerDown:
-                      v && D(x.type) && J()
+                      v && D(x.type) && Z()
                         ? (z) =>
                             V(
                               x,
@@ -16148,7 +16156,7 @@ const bs = new Eh(),
                 children: [
                   r.jsx("div", {
                     onMouseDown:
-                      v && D(x.type) && !J()
+                      v && D(x.type) && !Z()
                         ? (z) =>
                             V(
                               x,
@@ -16157,7 +16165,7 @@ const bs = new Eh(),
                             )
                         : void 0,
                     onPointerDown:
-                      v && D(x.type) && J()
+                      v && D(x.type) && Z()
                         ? (z) =>
                             V(
                               x,
@@ -16176,29 +16184,29 @@ const bs = new Eh(),
         }
       },
       Yn = (x) => {
-        const Z = (ne, z, me) => {
-          const Y = Array(z + 1)
+        const K = (ne, z, me) => {
+          const Q = Array(z + 1)
               .fill(null)
               .map(() => Array(me + 1).fill(!1)),
-            X = {};
+            J = {};
           return (
             ne.forEach((re) => {
-              const ae = fe(re.gird_position || "0,0");
-              ((X[`${ae.row},${ae.col}`] = re), (Y[ae.row][ae.col] = !0));
+              const ce = fe(re.gird_position || "0,0");
+              ((J[`${ce.row},${ce.col}`] = re), (Q[ce.row][ce.col] = !0));
             }),
             r.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: r.jsx("tbody", {
-                children: Array.from({ length: z + 1 }, (re, ae) =>
+                children: Array.from({ length: z + 1 }, (re, ce) =>
                   r.jsx(
                     "tr",
                     {
                       className: "h-full",
                       style: { height: `${100 / (z + 1)}%`, minHeight: "80px" },
-                      children: Array.from({ length: me + 1 }, (Q, ve) => {
-                        const Ce = `${ae},${ve}`,
-                          Ae = X[Ce];
+                      children: Array.from({ length: me + 1 }, (Y, he) => {
+                        const je = `${ce},${he}`,
+                          Ae = J[je];
                         return Ae
                           ? r.jsxs(
                               "td",
@@ -16224,7 +16232,7 @@ const bs = new Eh(),
                                     }),
                                 ],
                               },
-                              ve,
+                              he,
                             )
                           : r.jsx(
                               "td",
@@ -16242,11 +16250,11 @@ const bs = new Eh(),
                                   children: "空位",
                                 }),
                               },
-                              ve,
+                              he,
                             );
                       }),
                     },
-                    ae,
+                    ce,
                   ),
                 ),
               }),
@@ -16258,11 +16266,11 @@ const bs = new Eh(),
           case "sub_container":
             if (x.contents && x.contents.length > 0) {
               const {
-                sortedContents: Q,
-                maxRow: ve,
-                maxCol: Ce,
+                sortedContents: Y,
+                maxRow: he,
+                maxCol: je,
               } = pn(x.contents);
-              return Z(Q, ve, Ce);
+              return K(Y, he, je);
             } else
               return r.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -16272,11 +16280,11 @@ const bs = new Eh(),
           case "dispensing_shelves":
             if (x.contents && x.contents.length > 0) {
               const {
-                sortedContents: Q,
-                maxRow: ve,
-                maxCol: Ce,
+                sortedContents: Y,
+                maxRow: he,
+                maxCol: je,
               } = pn(x.contents);
-              return Z(Q, ve, Ce);
+              return K(Y, he, je);
             } else
               return r.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -16295,26 +16303,26 @@ const bs = new Eh(),
               });
           case "store_shelves":
             if (x.medMapStock && x.medMapStock.length > 0) {
-              const Q = x.medMapStock,
-                ve = {};
-              Q.forEach((Te) => {
+              const Y = x.medMapStock,
+                he = {};
+              Y.forEach((Te) => {
                 const He = (Te.location || "0,0").split(","),
                   Oe = Number(He[0] || "0"),
                   Le = Number(He[1] || "0");
-                (ve[Oe] || (ve[Oe] = []),
-                  ve[Oe].push({ ...Te, _position: Oe, _depth: Le }));
+                (he[Oe] || (he[Oe] = []),
+                  he[Oe].push({ ...Te, _position: Oe, _depth: Le }));
               });
-              const Ce = Object.keys(ve)
+              const je = Object.keys(he)
                   .map(Number)
                   .sort((Te, He) => Te - He),
-                Ae = Ce.length;
-              Math.max(...Ce.map((Te) => ve[Te].length));
+                Ae = je.length;
+              Math.max(...je.map((Te) => he[Te].length));
               const Ie = x.width ? x.width * 5 : 500;
               return r.jsx("div", {
                 className: "flex h-full",
                 style: { minWidth: `${Ie}px` },
-                children: Ce.map((Te) => {
-                  const He = ve[Te].sort((_e, Re) => Re._depth - _e._depth),
+                children: je.map((Te) => {
+                  const He = he[Te].sort((_e, Re) => Re._depth - _e._depth),
                     Oe = Ae > 0 ? 100 / Ae : 100,
                     Le = He.length,
                     Ge = Le > 0 ? 100 / Le : 100;
@@ -16347,7 +16355,7 @@ const bs = new Eh(),
                                     )
                                   : !d &&
                                     !F &&
-                                    (K({ x: Pe.clientX, y: Pe.clientY }),
+                                    (X({ x: Pe.clientX, y: Pe.clientY }),
                                     B(!1));
                               },
                               onMouseUp: (Pe) => {
@@ -16358,10 +16366,10 @@ const bs = new Eh(),
                                     Kr <= 5 &&
                                     (Pe.stopPropagation(), c(x, _e));
                                 }
-                                v || (K(null), B(!1));
+                                v || (X(null), B(!1));
                               },
                               onTouchStart: (Pe) => {
-                                if (v && J())
+                                if (v && Z())
                                   oe(
                                     _e,
                                     x,
@@ -16372,7 +16380,7 @@ const bs = new Eh(),
                                   );
                                 else if (!d && !v) {
                                   const rt = Pe.touches[0];
-                                  (K({ x: rt.clientX, y: rt.clientY }), B(!1));
+                                  (X({ x: rt.clientX, y: rt.clientY }), B(!1));
                                 }
                               },
                               onTouchEnd: (Pe) => {
@@ -16384,11 +16392,11 @@ const bs = new Eh(),
                                     ul <= 5 &&
                                     (Pe.stopPropagation(), c(x, _e));
                                 }
-                                v || (K(null), B(!1));
+                                v || (X(null), B(!1));
                               },
                               onPointerDown: (Pe) => {
                                 v &&
-                                  J() &&
+                                  Z() &&
                                   oe(
                                     _e,
                                     x,
@@ -16455,11 +16463,11 @@ const bs = new Eh(),
               });
             } else if (x.contents && x.contents.length > 0) {
               const {
-                sortedContents: Q,
-                maxRow: ve,
-                maxCol: Ce,
+                sortedContents: Y,
+                maxRow: he,
+                maxCol: je,
               } = pn(x.contents);
-              return Z(Q, ve, Ce);
+              return K(Y, he, je);
             } else
               return r.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -16479,11 +16487,11 @@ const bs = new Eh(),
           case "none":
             if (x.contents && x.contents.length > 0) {
               const {
-                sortedContents: Q,
-                maxRow: ve,
-                maxCol: Ce,
+                sortedContents: Y,
+                maxRow: he,
+                maxCol: je,
               } = pn(x.contents);
-              return Z(Q, ve, Ce);
+              return K(Y, he, je);
             } else
               return r.jsx("table", {
                 className: "bg-transparent w-full h-full",
@@ -16502,27 +16510,27 @@ const bs = new Eh(),
               });
           case "grid_draw":
             const ne = Math.max(
-                ...x.Boxes.flat().map((Q) => +Q.Row + +Q.Height - 1),
+                ...x.Boxes.flat().map((Y) => +Y.Row + +Y.Height - 1),
               ),
               z = Math.max(
-                ...x.Boxes.flat().map((Q) => +Q.Column + +Q.Width - 1),
+                ...x.Boxes.flat().map((Y) => +Y.Column + +Y.Width - 1),
               ),
               me = ne + 1,
-              Y = z + 1,
-              X = x.Boxes.flat(),
+              Q = z + 1,
+              J = x.Boxes.flat(),
               re = Array(me)
                 .fill(null)
-                .map(() => Array(Y).fill(!1)),
-              ae = {};
+                .map(() => Array(Q).fill(!1)),
+              ce = {};
             return (
-              X.forEach((Q) => {
-                Q.Slave || (ae[`${Q.Row},${Q.Column}`] = Q);
+              J.forEach((Y) => {
+                Y.Slave || (ce[`${Y.Row},${Y.Column}`] = Y);
               }),
-              X.forEach((Q) => {
-                if (!Q.Slave && (Q.Width > 1 || Q.Height > 1))
-                  for (let ve = Q.Row; ve < Q.Row + Q.Height; ve++)
-                    for (let Ce = Q.Column; Ce < Q.Column + Q.Width; Ce++)
-                      (ve !== Q.Row || Ce !== Q.Column) && (re[ve][Ce] = !0);
+              J.forEach((Y) => {
+                if (!Y.Slave && (Y.Width > 1 || Y.Height > 1))
+                  for (let he = Y.Row; he < Y.Row + Y.Height; he++)
+                    for (let je = Y.Column; je < Y.Column + Y.Width; je++)
+                      (he !== Y.Row || je !== Y.Column) && (re[he][je] = !0);
               }),
               r.jsxs("div", {
                 className:
@@ -16595,7 +16603,7 @@ const bs = new Eh(),
             return x.contents && x.contents.length > 0
               ? r.jsx("div", {
                   className: "space-y-2",
-                  children: x.contents.map((Q) => Wn(Q)),
+                  children: x.contents.map((Y) => Wn(Y)),
                 })
               : r.jsx("div", {
                   className:
@@ -16613,7 +16621,7 @@ const bs = new Eh(),
           x.type !== "調劑台" && x.type !== "藥庫")
         )
           return null;
-        const Z = (ne) => {
+        const K = (ne) => {
           if (!ne || ne.length === 0)
             return r.jsx("table", {
               className: "w-full h-full border-none",
@@ -16632,27 +16640,27 @@ const bs = new Eh(),
                 }),
               }),
             });
-          const { sortedContents: z, maxRow: me, maxCol: Y } = pn(ne),
-            X = Array(me + 1)
+          const { sortedContents: z, maxRow: me, maxCol: Q } = pn(ne),
+            J = Array(me + 1)
               .fill(null)
-              .map(() => Array(Y + 1).fill(!1)),
+              .map(() => Array(Q + 1).fill(!1)),
             re = {};
           return (
-            z.forEach((ae) => {
-              const Q = fe(ae.gird_position || "0,0");
-              ((re[`${Q.row},${Q.col}`] = ae), (X[Q.row][Q.col] = !0));
+            z.forEach((ce) => {
+              const Y = fe(ce.gird_position || "0,0");
+              ((re[`${Y.row},${Y.col}`] = ce), (J[Y.row][Y.col] = !0));
             }),
             r.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: r.jsx("tbody", {
-                children: Array.from({ length: me + 1 }, (ae, Q) =>
+                children: Array.from({ length: me + 1 }, (ce, Y) =>
                   r.jsx(
                     "tr",
                     {
                       className: "h-full",
-                      children: Array.from({ length: Y + 1 }, (ve, Ce) => {
-                        const Ae = `${Q},${Ce}`,
+                      children: Array.from({ length: Q + 1 }, (he, je) => {
+                        const Ae = `${Y},${je}`,
                           Ie = re[Ae];
                         return Ie
                           ? r.jsxs(
@@ -16660,7 +16668,7 @@ const bs = new Eh(),
                               {
                                 className: "p-1 align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (Y + 1)}%`,
+                                  width: `${100 / (Q + 1)}%`,
                                   height: `${100 / (me + 1)}%`,
                                   minHeight: "120px",
                                   border: "none",
@@ -16679,14 +16687,14 @@ const bs = new Eh(),
                                     }),
                                 ],
                               },
-                              Ce,
+                              je,
                             )
                           : r.jsx(
                               "td",
                               {
                                 className: "p-1 align-top bg-transparent",
                                 style: {
-                                  width: `${100 / (Y + 1)}%`,
+                                  width: `${100 / (Q + 1)}%`,
                                   height: `${100 / (me + 1)}%`,
                                   minHeight: "120px",
                                   border: "1px dashed #e5e7eb",
@@ -16697,11 +16705,11 @@ const bs = new Eh(),
                                   children: "空位",
                                 }),
                               },
-                              Ce,
+                              je,
                             );
                       }),
                     },
-                    Q,
+                    Y,
                   ),
                 ),
               }),
@@ -16752,7 +16760,7 @@ const bs = new Eh(),
               }),
               r.jsx("div", {
                 className: `flex-1 bg-orange-50 ${(U == null ? void 0 : U.container.GUID) === x.GUID ? "ring-2 ring-blue-400 ring-inset" : ""}`,
-                children: Z(x.contents || []),
+                children: K(x.contents || []),
               }),
             ],
           },
@@ -16773,77 +16781,77 @@ const bs = new Eh(),
             });
             return;
           }
-          const Z = x[0].CODE || x[0].code;
-          if ((console.log("🎯 提取的藥碼:", Z), !Z)) {
+          const K = x[0].CODE || x[0].code;
+          if ((console.log("🎯 提取的藥碼:", K), !K)) {
             console.warn("⚠️ 無法定位藥品：缺少藥碼");
             return;
           }
-          console.log("🎯 開始定位藥品:", Z);
+          console.log("🎯 開始定位藥品:", K);
           const ne = (me) => {
-              for (const Y of me) {
-                if (Y.type === "grid_draw" && Y.Boxes) {
-                  for (const X of Y.Boxes)
-                    for (const re of X)
-                      if (re.Code === Z) {
-                        const ae = document.querySelector(
-                          `[data-container-guid="${Y.GUID}"]`,
+              for (const Q of me) {
+                if (Q.type === "grid_draw" && Q.Boxes) {
+                  for (const J of Q.Boxes)
+                    for (const re of J)
+                      if (re.Code === K) {
+                        const ce = document.querySelector(
+                          `[data-container-guid="${Q.GUID}"]`,
                         );
-                        if (ae)
+                        if (ce)
                           return (
-                            console.log("✅ 找到藥品容器 (grid_draw):", Y),
-                            { element: ae, bounds: ae.getBoundingClientRect() }
+                            console.log("✅ 找到藥品容器 (grid_draw):", Q),
+                            { element: ce, bounds: ce.getBoundingClientRect() }
                           );
                       }
                 }
                 if (
-                  Y.type === "list_draw" &&
-                  Y.drugs &&
-                  Y.drugs.some((re) => re.code === Z)
+                  Q.type === "list_draw" &&
+                  Q.drugs &&
+                  Q.drugs.some((re) => re.code === K)
                 ) {
                   const re = document.querySelector(
-                    `[data-container-guid="${Y.GUID}"]`,
+                    `[data-container-guid="${Q.GUID}"]`,
                   );
                   if (re)
                     return (
-                      console.log("✅ 找到藥品容器 (list_draw):", Y),
+                      console.log("✅ 找到藥品容器 (list_draw):", Q),
                       { element: re, bounds: re.getBoundingClientRect() }
                     );
                 }
                 if (
-                  (Y.type === "store_shelves" ||
-                    Y.type === "dispensing_shelves") &&
-                  Y.medMapStock &&
-                  Y.medMapStock.some(
-                    (re) => re.code === Z || re.material_no === Z,
+                  (Q.type === "store_shelves" ||
+                    Q.type === "dispensing_shelves") &&
+                  Q.medMapStock &&
+                  Q.medMapStock.some(
+                    (re) => re.code === K || re.material_no === K,
                   )
                 ) {
                   const re = document.querySelector(
-                    `[data-container-guid="${Y.GUID}"]`,
+                    `[data-container-guid="${Q.GUID}"]`,
                   );
                   if (re)
                     return (
-                      console.log("✅ 找到藥品容器 (store_shelves):", Y),
+                      console.log("✅ 找到藥品容器 (store_shelves):", Q),
                       { element: re, bounds: re.getBoundingClientRect() }
                     );
                 }
                 if (
-                  Y.type === "med_box" &&
-                  Y.med_info &&
-                  Y.med_info.length > 0 &&
-                  Y.med_info.some((re) => re.code === Z)
+                  Q.type === "med_box" &&
+                  Q.med_info &&
+                  Q.med_info.length > 0 &&
+                  Q.med_info.some((re) => re.code === K)
                 ) {
                   const re = document.querySelector(
-                    `[data-container-guid="${Y.GUID}"]`,
+                    `[data-container-guid="${Q.GUID}"]`,
                   );
                   if (re)
                     return (
-                      console.log("✅ 找到藥品容器 (med_box):", Y),
+                      console.log("✅ 找到藥品容器 (med_box):", Q),
                       { element: re, bounds: re.getBoundingClientRect() }
                     );
                 }
-                if (Y.contents && Y.contents.length > 0) {
-                  const X = ne(Y.contents);
-                  if (X) return X;
+                if (Q.contents && Q.contents.length > 0) {
+                  const J = ne(Q.contents);
+                  if (J) return J;
                 }
               }
               return null;
@@ -16851,23 +16859,23 @@ const bs = new Eh(),
             z = ne(o);
           if (z) {
             const me = n.current.getBoundingClientRect(),
-              Y = z.bounds,
-              X = (Y.left + Y.right) / 2,
-              re = (Y.top + Y.bottom) / 2,
-              ae = (X - me.left - k.x) / k.scale,
-              Q = (re - me.top - k.y) / k.scale,
-              ve = me.width / 2,
-              Ce = me.height / 2,
-              Ae = ve - ae * k.scale,
-              Ie = Ce - Q * k.scale;
+              Q = z.bounds,
+              J = (Q.left + Q.right) / 2,
+              re = (Q.top + Q.bottom) / 2,
+              ce = (J - me.left - k.x) / k.scale,
+              Y = (re - me.top - k.y) / k.scale,
+              he = me.width / 2,
+              je = me.height / 2,
+              Ae = he - ce * k.scale,
+              Ie = je - Y * k.scale;
             (f((Te) => ({ ...Te, x: Ae, y: Ie })),
               console.log("✅ 定位完成", {
-                elementScreenCenter: { x: X, y: re },
-                elementCanvasPos: { x: ae, y: Q },
-                screenCenter: { x: ve, y: Ce },
+                elementScreenCenter: { x: J, y: re },
+                elementCanvasPos: { x: ce, y: Y },
+                screenCenter: { x: he, y: je },
                 newTransform: { x: Ae, y: Ie },
               }),
-              m(`已定位到藥品：${x.CHT_NAME || x.NAME || Z}`, "success"));
+              m(`已定位到藥品：${x.CHT_NAME || x.NAME || K}`, "success"));
           } else
             (console.warn("❌ 未找到藥品容器"),
               m("未找到該藥品的儲存位置", "error"));
@@ -16881,31 +16889,33 @@ const bs = new Eh(),
         { locateDrug: Yr }
       ),
     );
-    const Qr = async (x, Z, ne) => {
+    const Qr = async (x, K, ne) => {
         (ne.stopPropagation(), ne.preventDefault());
         const z = window.confirm(`確定要刪除 ${x.name || x.material_no} 嗎？`),
           me = { ...x, shelf_guid: "" };
         if (z)
           try {
-            const Y = await Me.updateStock([me]);
-            if ((console.log(Y), Y.Code === 200)) {
-              const X = Z.medMapStock.findIndex((re) => re.GUID === x.GUID);
-              (X !== -1 &&
-                (Z.medMapStock.splice(X, 1),
-                Z.medMapStock.forEach((re, ae) => {
-                  re.location = String(ae);
+            const Q = K.serverName || "",
+              J = K.serverType || "",
+              re = await Me.updateStock([me], Q, J);
+            if ((console.log(re), re.Code === 200)) {
+              const ce = K.medMapStock.findIndex((Y) => Y.GUID === x.GUID);
+              (ce !== -1 &&
+                (K.medMapStock.splice(ce, 1),
+                K.medMapStock.forEach((Y, he) => {
+                  Y.location = String(he);
                 })),
                 m("刪除成功", "success"));
-            } else m(Y.Result || "刪除失敗", "error");
-          } catch (Y) {
-            (console.error("刪除 stock 失敗:", Y),
+            } else m(re.Result || "刪除失敗", "error");
+          } catch (Q) {
+            (console.error("刪除 stock 失敗:", Q),
               m("刪除失敗，請稍後再試", "error"));
           }
       },
       dl = async (x) => {
-        if (x.key === "Enter" && $.trim() && !ye) {
+        if (x.key === "Enter" && $.trim() && !ve) {
           (x.preventDefault(), _(!0));
-          const Z = performance.now();
+          const K = performance.now();
           try {
             console.log("🔍 [手動輸入] 搜尋條碼:", $);
             const ne = performance.now(),
@@ -16919,15 +16929,15 @@ const bs = new Eh(),
               z.Code === 200)
             ) {
               console.log("✅ 找到藥品資料:", z.Data);
-              const Y = performance.now();
+              const Q = performance.now();
               Yr(z.Data);
-              const X = performance.now();
+              const J = performance.now();
               (console.log(
-                `⏱️ [手動輸入] 定位藥品用時: ${(X - Y).toFixed(2)}ms`,
+                `⏱️ [手動輸入] 定位藥品用時: ${(J - Q).toFixed(2)}ms`,
               ),
                 se(""));
               const re = performance.now();
-              console.log(`⏱️ [手動輸入] 總用時: ${(re - Z).toFixed(2)}ms`);
+              console.log(`⏱️ [手動輸入] 總用時: ${(re - K).toFixed(2)}ms`);
             } else
               z.Code === -200 && z.Result === "查無資料"
                 ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
@@ -16964,7 +16974,7 @@ const bs = new Eh(),
                 onClick: () => L(!0),
                 className: "p-2 hover:bg-gray-50 transition-colors",
                 title: "搜尋藥品",
-                disabled: ye,
+                disabled: ve,
                 children: r.jsx(Vo, { className: "w-6 h-6 text-blue-600" }),
               }),
               r.jsx("div", { className: "w-px h-6 bg-gray-200" }),
@@ -16976,13 +16986,13 @@ const bs = new Eh(),
                 placeholder: "輸入條碼或掃描...",
                 className:
                   "px-4 py-2 w-50 focus:outline-none text-gray-700 disabled:opacity-50",
-                disabled: ye,
+                disabled: ve,
               }),
               r.jsx("button", {
                 onClick: () => h("track_Drug_mode"),
                 className: "p-2 hover:bg-gray-50 transition-colors",
                 title: "掃描條碼",
-                disabled: ye,
+                disabled: ve,
                 children: r.jsx(Br, { className: "w-6 h-6 text-blue-600" }),
               }),
             ],
@@ -17028,14 +17038,14 @@ const bs = new Eh(),
                     minHeight: "fit-content",
                   },
                   children: r.jsx("tbody", {
-                    children: Array.from({ length: qr + 1 }, (x, Z) =>
+                    children: Array.from({ length: qr + 1 }, (x, K) =>
                       r.jsx(
                         "tr",
                         {
                           children: Array.from({ length: cl + 1 }, (ne, z) => {
-                            const me = Vr.find((Y) => {
-                              const X = fe(Y.gird_position || "0,0");
-                              return X.row === Z && X.col === z;
+                            const me = Vr.find((Q) => {
+                              const J = fe(Q.gird_position || "0,0");
+                              return J.row === K && J.col === z;
                             });
                             return me
                               ? r.jsx(
@@ -17069,7 +17079,7 @@ const bs = new Eh(),
                                 );
                           }),
                         },
-                        Z,
+                        K,
                       ),
                     ),
                   }),
@@ -17300,17 +17310,17 @@ const Ph = async (e) => {
       [E, S] = u.useState([]),
       [I, F] = u.useState(!1),
       [M, $] = u.useState(!1),
-      [se, ye] = u.useState(null),
+      [se, ve] = u.useState(null),
       [_, N] = u.useState(null),
       [L, P] = u.useState(!1),
-      [K, w] = u.useState(!1);
+      [X, w] = u.useState(!1);
     u.useEffect(() => {
       if (n && e)
         if (c === "add") {
           p(0);
           const te = {};
-          (an.forEach((D, ge) => {
-            te[ge] = 0;
+          (an.forEach((D, xe) => {
+            te[xe] = 0;
           }),
             b(te),
             k(""),
@@ -17322,7 +17332,7 @@ const Ph = async (e) => {
           );
           if ((console.log(n), te >= 0)) {
             p(te);
-            const ge = an[te].width.findIndex((W) => {
+            const xe = an[te].width.findIndex((W) => {
                 var le;
                 return (
                   W ===
@@ -17331,13 +17341,13 @@ const Ph = async (e) => {
               }),
               fe = {};
             (an.forEach((W, le) => {
-              le === te ? (fe[le] = ge >= 0 ? ge : 0) : (fe[le] = 0);
+              le === te ? (fe[le] = xe >= 0 ? xe : 0) : (fe[le] = 0);
             }),
               b(fe));
           } else {
             p(0);
             const D = {};
-            (an.forEach((ge, fe) => {
+            (an.forEach((xe, fe) => {
               D[fe] = 0;
             }),
               b(D));
@@ -17353,29 +17363,29 @@ const Ph = async (e) => {
         }
     }, [n, e, c]);
     const B = () => {
-        n && n.parentShelf && ye(n.parentShelf);
+        n && n.parentShelf && ve(n.parentShelf);
       },
       ee = (te) => {
         if (!te || !te.contents || te.contents.length === 0) return "0,0";
         let D = -1,
-          ge = 0;
+          xe = 0;
         return (
           te.contents.forEach((fe) => {
             if (fe.gird_position) {
               const [W, le] = fe.gird_position.split(",").map(Number);
-              le > D && ((D = le), (ge = W));
+              le > D && ((D = le), (xe = W));
             }
           }),
-          `${ge},${D + 1}`
+          `${xe},${D + 1}`
         );
       },
       H = () => {
         if (!_ || c !== "edit") return !1;
         const te = an[m],
           D = j[m] || 0,
-          ge = te.box_type || te.type || te.name;
+          xe = te.box_type || te.type || te.name;
         return (
-          _.box_type !== ge ||
+          _.box_type !== xe ||
           _.width_index !== D ||
           _.ip !== T ||
           JSON.stringify(_.storage) !==
@@ -17386,15 +17396,15 @@ const Ph = async (e) => {
         p(te);
       },
       Ne = (te, D) => {
-        b((ge) => ({ ...ge, [te]: D }));
+        b((xe) => ({ ...xe, [te]: D }));
       },
       U = () => {
-        n && (c === "add" ? he() : J());
+        n && (c === "add" ? ge() : Z());
       },
       G = () => {
         t();
       },
-      he = async () => {
+      ge = async () => {
         if (!n || !se) {
           a("缺少必要資料，無法新增藥盒", "error");
           return;
@@ -17403,12 +17413,12 @@ const Ph = async (e) => {
         try {
           const te = an[m],
             D = j[m] || 0,
-            ge = te.width[D],
+            xe = te.width[D],
             fe = ee(se),
             W = {
               Master_GUID: se.GUID,
               position: fe,
-              width: ge.toString(),
+              width: xe.toString(),
               height: "60",
               ip_box: T,
               serverName: se.serverName || "",
@@ -17426,7 +17436,7 @@ const Ph = async (e) => {
           $(!1);
         }
       },
-      J = async () => {
+      Z = async () => {
         var te;
         if (!n || !H()) {
           a("沒有資料變更", "error");
@@ -17435,16 +17445,16 @@ const Ph = async (e) => {
         P(!0);
         try {
           const D = an[m],
-            ge = j[m] || 0,
-            fe = D.width[ge],
+            xe = j[m] || 0,
+            fe = D.width[xe],
             W = D.box_type || D.type || D.name,
-            le = _.box_type !== W || _.width_index !== ge || _.ip !== T,
+            le = _.box_type !== W || _.width_index !== xe || _.ip !== T,
             be =
               JSON.stringify(_.storage) !==
               JSON.stringify(n == null ? void 0 : n.storage),
             O = [];
           if (le) {
-            const xe = {
+            const ye = {
               GUID: n.GUID,
               Master_GUID: n.Master_GUID,
               position: n.gird_position,
@@ -17452,7 +17462,7 @@ const Ph = async (e) => {
               serverName: n.serverName,
               serverType: n.serverType,
             };
-            O.push(Me.updateMedMapBox([xe]));
+            O.push(Me.updateMedMapBox([ye]));
           }
           be &&
             O.push(
@@ -17461,12 +17471,12 @@ const Ph = async (e) => {
               ]),
             );
           const oe = await Promise.all(O);
-          if (oe.every((xe) => xe.Code === 200))
+          if (oe.every((ye) => ye.Code === 200))
             (a("藥盒更新成功", "success"), t(), await ke());
           else {
-            const xe = oe.filter((ce) => ce.Code !== 200);
+            const ye = oe.filter((ie) => ie.Code !== 200);
             a(
-              `藥盒更新失敗：${((te = xe[0]) == null ? void 0 : te.Result) || "未知錯誤"}`,
+              `藥盒更新失敗：${((te = ye[0]) == null ? void 0 : te.Result) || "未知錯誤"}`,
               "error",
             );
           }
@@ -17488,13 +17498,13 @@ const Ph = async (e) => {
           if (te.Code === 200 && te.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const D = await $h(() => Promise.resolve().then(() => sh), void 0),
-              ge = D.default.convertMedMapApiToFakeData(te.Data);
-            if (!D.default.validateConvertedData(ge)) {
+              xe = D.default.convertMedMapApiToFakeData(te.Data);
+            if (!D.default.validateConvertedData(xe)) {
               (console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error"));
               return;
             }
-            (o(ge), console.log("✅ 藥品地圖資料已更新"));
+            (o(xe), console.log("✅ 藥品地圖資料已更新"));
           } else
             (console.error("❌ API 回傳錯誤:", te),
               a("資料更新失敗：API 錯誤", "error"));
@@ -17511,21 +17521,21 @@ const Ph = async (e) => {
           const te = f.toLowerCase().trim();
           let D = h;
           (te &&
-            (D = D.filter((ge) => {
+            (D = D.filter((xe) => {
               var fe, W, le;
               return (
-                ((fe = ge.CODE) == null
+                ((fe = xe.CODE) == null
                   ? void 0
                   : fe.toLowerCase().includes(te)) ||
-                ((W = ge.NAME) == null
+                ((W = xe.NAME) == null
                   ? void 0
                   : W.toLowerCase().includes(te)) ||
-                ((le = ge.CHT_NAME) == null
+                ((le = xe.CHT_NAME) == null
                   ? void 0
                   : le.toLowerCase().includes(te))
               );
             })),
-            y !== "N" && (D = D.filter((ge) => ge.DRUGKIND === y)),
+            y !== "N" && (D = D.filter((xe) => xe.DRUGKIND === y)),
             S(D));
         } catch (te) {
           (console.error("Search failed:", te), S([]));
@@ -17688,7 +17698,7 @@ const Ph = async (e) => {
                                   "div",
                                   {
                                     className: `flex gap-4 ${m === D ? "block" : "hidden"}`,
-                                    children: te.width.map((ge, fe) =>
+                                    children: te.width.map((xe, fe) =>
                                       r.jsxs(
                                         "label",
                                         {
@@ -17709,7 +17719,7 @@ const Ph = async (e) => {
                                               children: r.jsxs("div", {
                                                 className:
                                                   "text-sm font-semibold text-gray-900",
-                                                children: [ge, " ", te.unit],
+                                                children: [xe, " ", te.unit],
                                               }),
                                             }),
                                           ],
@@ -18034,7 +18044,7 @@ const Ph = async (e) => {
               ],
             }),
             r.jsx(il, {
-              isOpen: K,
+              isOpen: X,
               onClose: () => w(!1),
               onScanSuccess: De,
               mode: "set_med_box_med_mode",
@@ -18425,7 +18435,7 @@ const Ph = async (e) => {
       [E, S] = u.useState("N"),
       [I, F] = u.useState([]),
       [M, $] = u.useState(!1),
-      [se, ye] = u.useState(0),
+      [se, ve] = u.useState(0),
       [_, N] = u.useState({ x: 0, y: 0 });
     (u.useEffect(() => {
       if (n && e)
@@ -18441,7 +18451,7 @@ const Ph = async (e) => {
         e || (b(!1), p(null), d(null));
       }, [e]));
     const L = () => {
-        n && ge();
+        n && xe();
       },
       P = () => {
         if (
@@ -18479,7 +18489,7 @@ const Ph = async (e) => {
             console.log("hasBackup:", j));
         (d(null), b(!1), p(null), s(), t());
       },
-      K = (W, le) => {
+      X = (W, le) => {
         if (!f) return !1;
         const be = Math.min(f.startRow, f.endRow),
           O = Math.max(f.startRow, f.endRow),
@@ -18504,15 +18514,15 @@ const Ph = async (e) => {
         const O = [W, ...be],
           oe = Math.min(...O.map((pe) => pe.Row)),
           V = Math.max(...O.map((pe) => pe.Row)),
-          xe = Math.min(...O.map((pe) => pe.Column));
+          ye = Math.min(...O.map((pe) => pe.Column));
         return {
-          width: Math.max(...O.map((pe) => pe.Column)) - xe + 1,
+          width: Math.max(...O.map((pe) => pe.Column)) - ye + 1,
           height: V - oe + 1,
         };
       },
       B = () => {
-        var xe;
-        if (!f || !((xe = n == null ? void 0 : n.drawer) != null && xe.Boxes))
+        var ye;
+        if (!f || !((ye = n == null ? void 0 : n.drawer) != null && ye.Boxes))
           return [];
         const W = n.drawer.Boxes.flat(),
           le = Math.min(f.startRow, f.endRow),
@@ -18521,16 +18531,16 @@ const Ph = async (e) => {
           oe = Math.max(f.startCol, f.endCol),
           V = [];
         return (
-          W.forEach((ce) => {
-            if (!ce.Slave) {
-              const we = w(ce),
-                pe = ce.Row + we.height - 1,
-                C = ce.Column + we.width - 1;
-              ce.Row >= le &&
+          W.forEach((ie) => {
+            if (!ie.Slave) {
+              const we = w(ie),
+                pe = ie.Row + we.height - 1,
+                C = ie.Column + we.width - 1;
+              ie.Row >= le &&
                 pe <= be &&
-                ce.Column >= O &&
+                ie.Column >= O &&
                 C <= oe &&
-                V.push(ce);
+                V.push(ie);
             }
           }),
           V
@@ -18542,8 +18552,8 @@ const Ph = async (e) => {
           return !1;
         const oe = n.drawer.Boxes.flat();
         let V = !0,
-          xe = W,
-          ce = le,
+          ye = W,
+          ie = le,
           we = be,
           pe = O;
         for (; V; )
@@ -18552,15 +18562,15 @@ const Ph = async (e) => {
               if (!R.Slave) {
                 const q = w(R),
                   ue = R.Row + q.height - 1,
-                  ie = R.Column + q.width - 1;
-                !(R.Row > ce || ue < xe || R.Column > pe || ie < we) &&
-                  (R.Row < xe && ((xe = R.Row), (V = !0)),
-                  ue > ce && ((ce = ue), (V = !0)),
+                  ae = R.Column + q.width - 1;
+                !(R.Row > ie || ue < ye || R.Column > pe || ae < we) &&
+                  (R.Row < ye && ((ye = R.Row), (V = !0)),
+                  ue > ie && ((ie = ue), (V = !0)),
                   R.Column < we && ((we = R.Column), (V = !0)),
-                  ie > pe && ((pe = ie), (V = !0)));
+                  ae > pe && ((pe = ae), (V = !0)));
               }
             }));
-        return { minRow: xe, maxRow: ce, minCol: we, maxCol: pe };
+        return { minRow: ye, maxRow: ie, minCol: we, maxCol: pe };
       },
       H = () => {
         var V;
@@ -18571,15 +18581,15 @@ const Ph = async (e) => {
           be = Math.min(f.startCol, f.endCol),
           O = Math.max(f.startCol, f.endCol),
           oe = n.drawer.Boxes.flat();
-        for (let xe = W; xe <= le; xe++)
-          for (let ce = be; ce <= O; ce++) {
+        for (let ye = W; ye <= le; ye++)
+          for (let ie = be; ie <= O; ie++) {
             let we = !1;
             for (const pe of oe)
               if (!pe.Slave) {
                 const C = w(pe),
                   R = pe.Row + C.height - 1,
                   q = pe.Column + C.width - 1;
-                if (xe >= pe.Row && xe <= R && ce >= pe.Column && ce <= q) {
+                if (ye >= pe.Row && ye <= R && ie >= pe.Column && ie <= q) {
                   we = !0;
                   break;
                 }
@@ -18602,25 +18612,25 @@ const Ph = async (e) => {
           be = W.some(
             (q) =>
               le.filter(
-                (ie) =>
-                  ie.Slave &&
-                  ie.MasterBox_Row === q.Row &&
-                  ie.MasterBox_Column === q.Column,
+                (ae) =>
+                  ae.Slave &&
+                  ae.MasterBox_Row === q.Row &&
+                  ae.MasterBox_Column === q.Column,
               ).length > 0,
           ),
           O = Math.min(f.startRow, f.endRow),
           oe = Math.max(f.startRow, f.endRow),
           V = Math.min(f.startCol, f.endCol),
-          xe = Math.max(f.startCol, f.endCol),
-          ce = le.some(
+          ye = Math.max(f.startCol, f.endCol),
+          ie = le.some(
             (q) =>
               q.Slave &&
               q.Row >= O &&
               q.Row <= oe &&
               q.Column >= V &&
-              q.Column <= xe,
+              q.Column <= ye,
           );
-        return { canMerge: W.length > 1 && H(), canUnmerge: be || ce };
+        return { canMerge: W.length > 1 && H(), canUnmerge: be || ie };
       },
       { canMerge: Ne, canUnmerge: U } = A(),
       G = async () => {
@@ -18651,7 +18661,7 @@ const Ph = async (e) => {
           $(!1);
         }
       },
-      he = async (W) => {
+      ge = async (W) => {
         var be;
         if (!f || !((be = n == null ? void 0 : n.drawer) != null && be.Boxes))
           return;
@@ -18679,8 +18689,8 @@ const Ph = async (e) => {
                 console.log("✅ 藥品資料更新成功"),
                 o)
               ) {
-                const V = (ce) => {
-                    ce.forEach((we) => {
+                const V = (ie) => {
+                    ie.forEach((we) => {
                       (we.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
                         (we.drawer = n.drawer),
@@ -18693,8 +18703,8 @@ const Ph = async (e) => {
                           V(we.components));
                     });
                   },
-                  xe = JSON.parse(JSON.stringify(o));
-                (V(xe), l(xe));
+                  ye = JSON.parse(JSON.stringify(o));
+                (V(ye), l(ye));
               }
               (d(null), s());
             } else
@@ -18705,11 +18715,11 @@ const Ph = async (e) => {
               a("藥品更新失敗：網路錯誤", "error"));
           }
       },
-      J = (W, le, be) => {
+      Z = (W, le, be) => {
         (be.preventDefault(),
           be.stopPropagation(),
           "touches" in be &&
-            (ye(Date.now()),
+            (ve(Date.now()),
             N({ x: be.touches[0].clientX, y: be.touches[0].clientY })),
           k(!0),
           d({ startRow: W, startCol: le, endRow: W, endCol: le }));
@@ -18720,15 +18730,15 @@ const Ph = async (e) => {
           O = Math.max(f.startRow, W),
           oe = Math.min(f.startCol, le),
           V = Math.max(f.startCol, le),
-          xe = ee(be, O, oe, V);
-        xe &&
-          d((ce) =>
-            ce
+          ye = ee(be, O, oe, V);
+        ye &&
+          d((ie) =>
+            ie
               ? {
-                  startRow: ce.startRow,
-                  startCol: ce.startCol,
-                  endRow: W >= ce.startRow ? xe.maxRow : xe.minRow,
-                  endCol: le >= ce.startCol ? xe.maxCol : xe.minCol,
+                  startRow: ie.startRow,
+                  startCol: ie.startCol,
+                  endRow: W >= ie.startRow ? ye.maxRow : ye.minRow,
+                  endCol: le >= ie.startCol ? ye.maxCol : ye.minCol,
                 }
               : null,
           );
@@ -18771,20 +18781,20 @@ const Ph = async (e) => {
               be = Math.max(f.startRow, f.endRow),
               O = Math.min(f.startCol, f.endCol),
               oe = Math.max(f.startCol, f.endCol),
-              xe = n.drawer.Boxes.flat().filter(
+              ye = n.drawer.Boxes.flat().filter(
                 (R) =>
                   R.Row >= le && R.Row <= be && R.Column >= O && R.Column <= oe,
               ),
-              ce = [],
+              ie = [],
               we = [];
-            xe.forEach((R) => {
-              (ce.push(R.Column.toString()), we.push(R.Row.toString()));
+            ye.forEach((R) => {
+              (ie.push(R.Column.toString()), we.push(R.Row.toString()));
             });
             const pe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${ce.join(",")}`,
+                `SelectColumns=${ie.join(",")}`,
                 `SelectRows=${we.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
@@ -18804,16 +18814,16 @@ const Ph = async (e) => {
                 o)
               ) {
                 const R = (ue) => {
-                    ue.forEach((ie) => {
-                      (ie.GUID === n.GUID &&
+                    ue.forEach((ae) => {
+                      (ae.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
-                        (ie.drawer = n.drawer)),
-                        ie.contents &&
-                          Array.isArray(ie.contents) &&
-                          R(ie.contents),
-                        ie.components &&
-                          Array.isArray(ie.components) &&
-                          R(ie.components));
+                        (ae.drawer = n.drawer)),
+                        ae.contents &&
+                          Array.isArray(ae.contents) &&
+                          R(ae.contents),
+                        ae.components &&
+                          Array.isArray(ae.components) &&
+                          R(ae.components));
                     });
                   },
                   q = JSON.parse(JSON.stringify(o));
@@ -18840,20 +18850,20 @@ const Ph = async (e) => {
               be = Math.max(f.startRow, f.endRow),
               O = Math.min(f.startCol, f.endCol),
               oe = Math.max(f.startCol, f.endCol),
-              xe = n.drawer.Boxes.flat().filter(
+              ye = n.drawer.Boxes.flat().filter(
                 (R) =>
                   R.Row >= le && R.Row <= be && R.Column >= O && R.Column <= oe,
               ),
-              ce = [],
+              ie = [],
               we = [];
-            xe.forEach((R) => {
-              (ce.push(R.Column.toString()), we.push(R.Row.toString()));
+            ye.forEach((R) => {
+              (ie.push(R.Column.toString()), we.push(R.Row.toString()));
             });
             const pe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${ce.join(",")}`,
+                `SelectColumns=${ie.join(",")}`,
                 `SelectRows=${we.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
@@ -18873,16 +18883,16 @@ const Ph = async (e) => {
                 o)
               ) {
                 const R = (ue) => {
-                    ue.forEach((ie) => {
-                      (ie.GUID === n.GUID &&
+                    ue.forEach((ae) => {
+                      (ae.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
-                        (ie.drawer = n.drawer)),
-                        ie.contents &&
-                          Array.isArray(ie.contents) &&
-                          R(ie.contents),
-                        ie.components &&
-                          Array.isArray(ie.components) &&
-                          R(ie.components));
+                        (ae.drawer = n.drawer)),
+                        ae.contents &&
+                          Array.isArray(ae.contents) &&
+                          R(ae.contents),
+                        ae.components &&
+                          Array.isArray(ae.components) &&
+                          R(ae.components));
                     });
                   },
                   q = JSON.parse(JSON.stringify(o));
@@ -18901,7 +18911,7 @@ const Ph = async (e) => {
               s());
           }
       },
-      ge = async () => {
+      xe = async () => {
         if (n)
           try {
             n.name = h;
@@ -18985,9 +18995,9 @@ const Ph = async (e) => {
             const R = [pe, ...C],
               q = Math.min(...R.map((Ue) => Ue.Row)),
               ue = Math.max(...R.map((Ue) => Ue.Row)),
-              ie = Math.min(...R.map((Ue) => Ue.Column));
+              ae = Math.min(...R.map((Ue) => Ue.Column));
             return {
-              width: Math.max(...R.map((Ue) => Ue.Column)) - ie + 1,
+              width: Math.max(...R.map((Ue) => Ue.Column)) - ae + 1,
               height: ue - q + 1,
             };
           },
@@ -18995,15 +19005,15 @@ const Ph = async (e) => {
           O = Math.max(...W.map((pe) => pe.Column + 1 - 1)),
           oe = be + 1,
           V = O + 1,
-          xe = Array(oe)
+          ye = Array(oe)
             .fill(null)
             .map(() => Array(V).fill(!1)),
-          ce = {};
+          ie = {};
         return (
           W.forEach((pe) => {
             if (!pe.Slave) {
               const C = le(pe);
-              ((ce[`${pe.Row},${pe.Column}`] = pe),
+              ((ie[`${pe.Row},${pe.Column}`] = pe),
                 (pe.calculatedWidth = C.width),
                 (pe.calculatedHeight = C.height));
             }
@@ -19015,7 +19025,7 @@ const Ph = async (e) => {
             )
               for (let C = pe.Row; C < pe.Row + pe.calculatedHeight; C++)
                 for (let R = pe.Column; R < pe.Column + pe.calculatedWidth; R++)
-                  (C !== pe.Row || R !== pe.Column) && (xe[C][R] = !0);
+                  (C !== pe.Row || R !== pe.Column) && (ye[C][R] = !0);
           }),
           r.jsx("div", {
             className: "rounded-lg",
@@ -19027,29 +19037,29 @@ const Ph = async (e) => {
                     "tr",
                     {
                       children: Array.from({ length: V }, (R, q) => {
-                        if (xe[C][q]) return null;
+                        if (ye[C][q]) return null;
                         const ue = `${C},${q}`,
-                          ie = ce[ue];
-                        return ie
+                          ae = ie[ue];
+                        return ae
                           ? r.jsx(
                               "td",
                               {
-                                className: `border border-gray-400 pt-1 pl-1 align-top cursor-pointer select-none ${K(C, q) ? "bg-blue-200" : "bg-white hover:bg-gray-100"}`,
+                                className: `border border-gray-400 pt-1 pl-1 align-top cursor-pointer select-none ${X(C, q) ? "bg-blue-200" : "bg-white hover:bg-gray-100"}`,
                                 style: {
                                   width: `${100 / V}%`,
                                   minHeight: "40px",
-                                  height: `${50 * ie.calculatedHeight}px`,
-                                  maxHeight: `${50 * ie.calculatedHeight}px`,
+                                  height: `${50 * ae.calculatedHeight}px`,
+                                  maxHeight: `${50 * ae.calculatedHeight}px`,
                                 },
-                                colSpan: ie.calculatedWidth,
-                                rowSpan: ie.calculatedHeight,
-                                onMouseDown: (je) => J(C, q, je),
+                                colSpan: ae.calculatedWidth,
+                                rowSpan: ae.calculatedHeight,
+                                onMouseDown: (Se) => Z(C, q, Se),
                                 onMouseEnter: () => ke(C, q),
                                 onMouseUp: Ee,
-                                onTouchStart: (je) => J(C, q, je),
-                                onTouchMove: (je) => {
-                                  if ((je.preventDefault(), !T)) return;
-                                  const Ue = je.touches[0],
+                                onTouchStart: (Se) => Z(C, q, Se),
+                                onTouchMove: (Se) => {
+                                  if ((Se.preventDefault(), !T)) return;
+                                  const Ue = Se.touches[0],
                                     We = document.elementFromPoint(
                                       Ue.clientX,
                                       Ue.clientY,
@@ -19071,26 +19081,26 @@ const Ph = async (e) => {
                                 children: r.jsx("div", {
                                   className: "h-full flex flex-col",
                                   children:
-                                    ie.Code || ie.Name || ie.ChineseName
+                                    ae.Code || ae.Name || ae.ChineseName
                                       ? r.jsxs(r.Fragment, {
                                           children: [
-                                            ie.Code &&
+                                            ae.Code &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs font-mono text-gray-600",
-                                                children: ie.Code,
+                                                children: ae.Code,
                                               }),
-                                            ie.Name &&
+                                            ae.Name &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs font-medium text-gray-900",
-                                                children: ie.Name,
+                                                children: ae.Name,
                                               }),
-                                            ie.ChineseName &&
+                                            ae.ChineseName &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs text-gray-700",
-                                                children: ie.ChineseName,
+                                                children: ae.ChineseName,
                                               }),
                                           ],
                                         })
@@ -19106,19 +19116,19 @@ const Ph = async (e) => {
                           : r.jsx(
                               "td",
                               {
-                                className: `border border-gray-300 p-2 align-top cursor-pointer select-none ${K(C, q) ? "border-1 border-blue-500 bg-blue-100" : "bg-gray-50 hover:bg-gray-100"}`,
+                                className: `border border-gray-300 p-2 align-top cursor-pointer select-none ${X(C, q) ? "border-1 border-blue-500 bg-blue-100" : "bg-gray-50 hover:bg-gray-100"}`,
                                 style: {
                                   width: `${100 / V}%`,
                                   minWidth: "80px",
                                   minHeight: "80px",
                                 },
-                                onMouseDown: (je) => J(C, q, je),
+                                onMouseDown: (Se) => Z(C, q, Se),
                                 onMouseEnter: () => ke(C, q),
                                 onMouseUp: Ee,
-                                onTouchStart: (je) => J(C, q, je),
-                                onTouchMove: (je) => {
-                                  if ((je.preventDefault(), !T)) return;
-                                  const Ue = je.touches[0],
+                                onTouchStart: (Se) => Z(C, q, Se),
+                                onTouchMove: (Se) => {
+                                  if ((Se.preventDefault(), !T)) return;
+                                  const Ue = Se.touches[0],
                                     We = document.elementFromPoint(
                                       Ue.clientX,
                                       Ue.clientY,
@@ -19416,7 +19426,7 @@ const Ph = async (e) => {
                                                 ],
                                               }),
                                               r.jsx("button", {
-                                                onClick: () => he(W),
+                                                onClick: () => ge(W),
                                                 className:
                                                   "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                                 title: c("button.add"),
@@ -19519,15 +19529,15 @@ const Ph = async (e) => {
           const [N, L] = _.split(",").map(Number);
           se.push({ row: N, col: L });
         });
-        const ye = new Set();
+        const ve = new Set();
         return (
           se.forEach(({ row: _, col: N }) => {
-            (ye.add(`${_},${N + 1}`),
-              ye.add(`${_ + 1},${N}`),
-              N > 0 && ye.add(`${_},${N - 1}`),
-              _ > 0 && ye.add(`${_ - 1},${N}`));
+            (ve.add(`${_},${N + 1}`),
+              ve.add(`${_ + 1},${N}`),
+              N > 0 && ve.add(`${_},${N - 1}`),
+              _ > 0 && ve.add(`${_ - 1},${N}`));
           }),
-          ye.forEach((_) => {
+          ve.forEach((_) => {
             if (!M.has(_)) {
               const [N, L] = _.split(",").map(Number);
               N >= 0 && L >= 0 && $.push({ row: N, col: L });
@@ -19598,12 +19608,12 @@ const Ph = async (e) => {
             })
             .concat($);
         se.length === 0 && se.push({ row: 0, col: 0 });
-        const ye = Math.max(...se.map((w) => w.row)),
+        const ve = Math.max(...se.map((w) => w.row)),
           _ = Math.max(...se.map((w) => w.col)),
           N = Math.min(...se.map((w) => w.row)),
           L = Math.min(...se.map((w) => w.col)),
-          P = ye - N + 1,
-          K = _ - L + 1;
+          P = ve - N + 1,
+          X = _ - L + 1;
         return r.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -19615,13 +19625,13 @@ const Ph = async (e) => {
               className: "border border-gray-300 rounded-lg p-4 bg-gray-50",
               children: r.jsx("div", {
                 className: "grid gap-2",
-                style: { gridTemplateColumns: `repeat(${K}, 1fr)` },
-                children: Array.from({ length: P * K }, (w, B) => {
-                  const ee = Math.floor(B / K) + N,
-                    H = (B % K) + L,
+                style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
+                children: Array.from({ length: P * X }, (w, B) => {
+                  const ee = Math.floor(B / X) + N,
+                    H = (B % X) + L,
                     A = `${ee},${H}`,
                     Ne = M.has(A),
-                    U = $.some((he) => he.row === ee && he.col === H),
+                    U = $.some((ge) => ge.row === ee && ge.col === H),
                     G =
                       (i == null ? void 0 : i.row) === ee &&
                       (i == null ? void 0 : i.col) === H;
@@ -19894,35 +19904,35 @@ const Ph = async (e) => {
         if (H.size === 0) return (A.push({ row: 0, col: 0 }), A);
         const Ne = [];
         H.forEach((G) => {
-          const [he, J] = G.split(",").map(Number);
-          Ne.push({ row: he, col: J });
+          const [ge, Z] = G.split(",").map(Number);
+          Ne.push({ row: ge, col: Z });
         });
         const U = new Set();
         return (
-          Ne.forEach(({ row: G, col: he }) => {
-            (U.add(`${G},${he + 1}`),
-              U.add(`${G + 1},${he}`),
-              he > 0 && U.add(`${G},${he - 1}`),
-              G > 0 && U.add(`${G - 1},${he}`));
+          Ne.forEach(({ row: G, col: ge }) => {
+            (U.add(`${G},${ge + 1}`),
+              U.add(`${G + 1},${ge}`),
+              ge > 0 && U.add(`${G},${ge - 1}`),
+              G > 0 && U.add(`${G - 1},${ge}`));
           }),
           U.forEach((G) => {
             if (!H.has(G)) {
-              const [he, J] = G.split(",").map(Number);
-              he >= 0 && J >= 0 && A.push({ row: he, col: J });
+              const [ge, Z] = G.split(",").map(Number);
+              ge >= 0 && Z >= 0 && A.push({ row: ge, col: Z });
             }
           }),
           H.has("0,1") ||
-            A.some((he) => he.row === 0 && he.col === 1) ||
+            A.some((ge) => ge.row === 0 && ge.col === 1) ||
             A.push({ row: 0, col: 1 }),
           H.has("1,0") ||
-            A.some((he) => he.row === 1 && he.col === 0) ||
+            A.some((ge) => ge.row === 1 && ge.col === 0) ||
             A.push({ row: 1, col: 0 }),
-          A.sort((G, he) =>
-            G.row === he.row ? G.col - he.col : G.row - he.row,
+          A.sort((G, ge) =>
+            G.row === ge.row ? G.col - ge.col : G.row - ge.row,
           )
         );
       },
-      ye = (H) => {
+      ve = (H) => {
         y(H);
       },
       _ = (H) => {
@@ -19961,7 +19971,7 @@ const Ph = async (e) => {
                   serverType: n.type,
                 })),
               Ne.Code === 200
-                ? (a("新增成功", "success"), t(), c(!1), await K())
+                ? (a("新增成功", "success"), t(), c(!1), await X())
                 : a(`新增失敗：${Ne.Result || "未知錯誤"}`, "error"));
           } catch (H) {
             (console.error("Add container failed:", H),
@@ -19971,7 +19981,7 @@ const Ph = async (e) => {
           }
         }
       },
-      K = async () => {
+      X = async () => {
         if (!s) {
           console.warn("⚠️ 沒有選中的部門類型，無法重新獲取資料");
           return;
@@ -20013,10 +20023,10 @@ const Ph = async (e) => {
         Ne.length === 0 && Ne.push({ row: 0, col: 0 });
         const U = Math.max(...Ne.map((De) => De.row)),
           G = Math.max(...Ne.map((De) => De.col)),
-          he = Math.min(...Ne.map((De) => De.row)),
-          J = Math.min(...Ne.map((De) => De.col)),
-          ke = U - he + 1,
-          Ee = G - J + 1;
+          ge = Math.min(...Ne.map((De) => De.row)),
+          Z = Math.min(...Ne.map((De) => De.col)),
+          ke = U - ge + 1,
+          Ee = G - Z + 1;
         return r.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -20030,10 +20040,10 @@ const Ph = async (e) => {
                 className: "grid gap-2",
                 style: { gridTemplateColumns: `repeat(${Ee}, 1fr)` },
                 children: Array.from({ length: ke * Ee }, (De, Be) => {
-                  const te = Math.floor(Be / Ee) + he,
-                    D = (Be % Ee) + J,
-                    ge = `${te},${D}`,
-                    fe = H.has(ge),
+                  const te = Math.floor(Be / Ee) + ge,
+                    D = (Be % Ee) + Z,
+                    xe = `${te},${D}`,
+                    fe = H.has(xe),
                     W = A.some((be) => be.row === te && be.col === D),
                     le =
                       (d == null ? void 0 : d.row) === te &&
@@ -20041,7 +20051,7 @@ const Ph = async (e) => {
                   return r.jsx(
                     "button",
                     {
-                      onClick: () => W && ye({ row: te, col: D }),
+                      onClick: () => W && ve({ row: te, col: D }),
                       disabled: fe || !W,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
@@ -20050,7 +20060,7 @@ const Ph = async (e) => {
                       title: fe ? "已占用" : W ? "可選擇" : "不可用",
                       children: fe ? "占用" : `${te},${D}`,
                     },
-                    ge,
+                    xe,
                   );
                 }),
               }),
@@ -20369,15 +20379,15 @@ const Ph = async (e) => {
           const [N, L] = _.split(",").map(Number);
           se.push({ row: N, col: L });
         });
-        const ye = new Set();
+        const ve = new Set();
         return (
           se.forEach(({ row: _, col: N }) => {
-            (ye.add(`${_},${N + 1}`),
-              ye.add(`${_ + 1},${N}`),
-              N > 0 && ye.add(`${_},${N - 1}`),
-              _ > 0 && ye.add(`${_ - 1},${N}`));
+            (ve.add(`${_},${N + 1}`),
+              ve.add(`${_ + 1},${N}`),
+              N > 0 && ve.add(`${_},${N - 1}`),
+              _ > 0 && ve.add(`${_ - 1},${N}`));
           }),
-          ye.forEach((_) => {
+          ve.forEach((_) => {
             if (!M.has(_)) {
               const [N, L] = _.split(",").map(Number);
               N >= 0 && L >= 0 && $.push({ row: N, col: L });
@@ -20444,12 +20454,12 @@ const Ph = async (e) => {
             })
             .concat($);
         se.length === 0 && se.push({ row: 0, col: 0 });
-        const ye = Math.max(...se.map((w) => w.row)),
+        const ve = Math.max(...se.map((w) => w.row)),
           _ = Math.max(...se.map((w) => w.col)),
           N = Math.min(...se.map((w) => w.row)),
           L = Math.min(...se.map((w) => w.col)),
-          P = ye - N + 1,
-          K = _ - L + 1;
+          P = ve - N + 1,
+          X = _ - L + 1;
         return r.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -20461,13 +20471,13 @@ const Ph = async (e) => {
               className: "border border-gray-300 rounded-lg p-4 bg-gray-50",
               children: r.jsx("div", {
                 className: "grid gap-2",
-                style: { gridTemplateColumns: `repeat(${K}, 1fr)` },
-                children: Array.from({ length: P * K }, (w, B) => {
-                  const ee = Math.floor(B / K) + N,
-                    H = (B % K) + L,
+                style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
+                children: Array.from({ length: P * X }, (w, B) => {
+                  const ee = Math.floor(B / X) + N,
+                    H = (B % X) + L,
                     A = `${ee},${H}`,
                     Ne = M.has(A),
-                    U = $.some((he) => he.row === ee && he.col === H),
+                    U = $.some((ge) => ge.row === ee && ge.col === H),
                     G =
                       (i == null ? void 0 : i.row) === ee &&
                       (i == null ? void 0 : i.col) === H;
@@ -20679,15 +20689,15 @@ const Ph = async (e) => {
       [E, S] = u.useState(""),
       [I, F] = u.useState(""),
       [M, $] = u.useState(""),
-      [se, ye] = u.useState(""),
+      [se, ve] = u.useState(""),
       [_, N] = u.useState("EPD290"),
       [L, P] = u.useState(null),
-      [K, w] = u.useState([]),
+      [X, w] = u.useState([]),
       [B, ee] = u.useState(""),
       [H, A] = u.useState(null),
       [Ne, U] = u.useState(!1),
-      [G, he] = u.useState([]),
-      [J, ke] = u.useState(!1),
+      [G, ge] = u.useState([]),
+      [Z, ke] = u.useState(!1),
       Ee = u.useRef(null);
     (u.useEffect(() => {
       (async () => {
@@ -20703,19 +20713,19 @@ const Ph = async (e) => {
           console.log(
             `正在載入藥品資料... ServerName: ${oe}, ServerType: ${V}`,
           );
-          const xe = await Me.getStock(oe, V);
-          xe.Code === 200 && xe.Data
-            ? (he(xe.Data),
-              console.log(`成功載入 ${xe.Data.length} 筆藥品資料`),
-              xe.Data.length > 0 &&
-                console.log("📦 藥品資料範例（第一筆）:", xe.Data[0]))
-            : (console.error("載入藥品資料失敗:", xe.Result),
-              s(xe.Result || "載入藥品資料失敗", "error"),
-              he([]));
-        } catch (xe) {
-          (console.error("載入藥品資料時發生錯誤:", xe),
+          const ye = await Me.getStock(oe, V);
+          ye.Code === 200 && ye.Data
+            ? (ge(ye.Data),
+              console.log(`成功載入 ${ye.Data.length} 筆藥品資料`),
+              ye.Data.length > 0 &&
+                console.log("📦 藥品資料範例（第一筆）:", ye.Data[0]))
+            : (console.error("載入藥品資料失敗:", ye.Result),
+              s(ye.Result || "載入藥品資料失敗", "error"),
+              ge([]));
+        } catch (ye) {
+          (console.error("載入藥品資料時發生錯誤:", ye),
             s("載入藥品資料失敗，請稍後再試", "error"),
-            he([]));
+            ge([]));
         } finally {
           ke(!1);
         }
@@ -20731,7 +20741,7 @@ const Ph = async (e) => {
           const O = l.lot || [],
             oe = l.expiry_date || [],
             V = l.qty || [],
-            xe = [];
+            ye = [];
           if (O.length > 0 || oe.length > 0 || V.length > 0) {
             const pe = Math.max(O.length, oe.length, V.length),
               C = [];
@@ -20747,15 +20757,15 @@ const Ph = async (e) => {
                   qty: String(V[R] || ""),
                 }),
                 console.log(C),
-                ue && xe.push(ue));
+                ue && ye.push(ue));
             }
-            (d(C), v(xe));
+            (d(C), v(ye));
           } else v([]);
           const we = (l.location || "0,0").split(",");
           (S(we[0] || "0"),
             F(we[1] || "0"),
             $(l.led_index || ""),
-            ye(l.ip || ""),
+            ve(l.ip || ""),
             N(l.device_type || "EPD290"));
         } else if (e && i === "add") {
           if (
@@ -20766,13 +20776,13 @@ const Ph = async (e) => {
             d([]),
             v([]),
             $(""),
-            ye(""),
+            ve(""),
             N("EPD290"),
             n && n.medMapStock && n.medMapStock.length > 0)
           ) {
             const O = n.medMapStock.map((V) => {
-              const ce = (V.location || "0,0").split(",");
-              return Number(ce[0] || "0");
+              const ie = (V.location || "0,0").split(",");
+              return Number(ie[0] || "0");
             });
             let oe = 0;
             for (; O.includes(oe); ) oe++;
@@ -20798,35 +20808,35 @@ const Ph = async (e) => {
           return;
         }
         const V = oe.toLowerCase(),
-          xe = G.filter((ce) => {
+          ye = G.filter((ie) => {
             var we, pe, C, R;
-            if (!ce.med_cloud) return !1;
+            if (!ie.med_cloud) return !1;
             switch (O) {
               case "code":
-                if (ce.med_cloud)
-                  return (we = ce.med_cloud.CODE) == null
+                if (ie.med_cloud)
+                  return (we = ie.med_cloud.CODE) == null
                     ? void 0
                     : we.toLowerCase().includes(V);
-                if (!ce.med_cloud) return ce.code.toLowerCase().includes(V);
+                if (!ie.med_cloud) return ie.code.toLowerCase().includes(V);
               case "name":
-                if (ce.med_cloud)
-                  return (pe = ce.med_cloud.NAME) == null
+                if (ie.med_cloud)
+                  return (pe = ie.med_cloud.NAME) == null
                     ? void 0
                     : pe.toLowerCase().includes(V);
-                if (!ce.med_cloud) return ce.name.toLowerCase().includes(V);
+                if (!ie.med_cloud) return ie.name.toLowerCase().includes(V);
               case "chineseName":
-                return (C = ce.med_cloud.CHT_NAME) == null
+                return (C = ie.med_cloud.CHT_NAME) == null
                   ? void 0
                   : C.toLowerCase().includes(V);
               case "skdiacode":
-                return (R = ce.med_cloud.SKDIACODE) == null
+                return (R = ie.med_cloud.SKDIACODE) == null
                   ? void 0
                   : R.toLowerCase().includes(V);
               default:
                 return !1;
             }
           });
-        w(xe.slice(0, 50));
+        w(ye.slice(0, 50));
       },
       Be = (O, oe) => {
         switch ((P(O), O)) {
@@ -20855,8 +20865,8 @@ const Ph = async (e) => {
           ee(O.GUID),
           A(O),
           console.log("🔍 選擇的藥品完整資料:", O));
-        let xe = O.lot || ((pe = O.med_cloud) == null ? void 0 : pe.lot) || [],
-          ce =
+        let ye = O.lot || ((pe = O.med_cloud) == null ? void 0 : pe.lot) || [],
+          ie =
             O.expiry_date ||
             ((C = O.med_cloud) == null ? void 0 : C.expiry_date) ||
             [],
@@ -20865,8 +20875,8 @@ const Ph = async (e) => {
           i === "edit" &&
           n != null &&
           n.medMapStock &&
-          xe.length === 0 &&
-          ce.length === 0 &&
+          ye.length === 0 &&
+          ie.length === 0 &&
           we.length === 0
         ) {
           const q = n.medMapStock.find(
@@ -20877,40 +20887,40 @@ const Ph = async (e) => {
           );
           q &&
             (console.log("🔍 從層架找到相同藥品的批次資訊:", q),
-            (xe = q.lot || []),
-            (ce = q.expiry_date || []),
+            (ye = q.lot || []),
+            (ie = q.expiry_date || []),
             (we = q.qty || []));
         }
         if (
           (console.log(
             "🔍 批次資訊 - lot:",
-            xe,
+            ye,
             "expiry_date:",
-            ce,
+            ie,
             "qty:",
             we,
           ),
           console.log("🔍 當前模式:", i),
           i === "edit")
         )
-          if (xe.length > 0 || ce.length > 0 || we.length > 0) {
+          if (ye.length > 0 || ie.length > 0 || we.length > 0) {
             const q = [],
-              ue = Math.max(xe.length, ce.length, we.length),
-              ie = [];
-            for (let je = 0; je < ue; je++) {
-              const Ue = ce[je] || "";
+              ue = Math.max(ye.length, ie.length, we.length),
+              ae = [];
+            for (let Se = 0; Se < ue; Se++) {
+              const Ue = ie[Se] || "";
               let We = "";
               (Ue && (We = Ue.split("T")[0]),
                 (We = We.replace(/\//g, "-")),
-                ie.push({
-                  id: `batch_${Date.now()}_${je}`,
-                  lot: xe[je] || "",
+                ae.push({
+                  id: `batch_${Date.now()}_${Se}`,
+                  lot: ye[Se] || "",
                   expiryDate: We,
-                  qty: String(we[je] || ""),
+                  qty: String(we[Se] || ""),
                 }),
                 We && q.push(We));
             }
-            (console.log("✅ 成功載入批次資訊:", ie), d(ie), v(q));
+            (console.log("✅ 成功載入批次資訊:", ae), d(ae), v(q));
           } else
             (console.log("🗑️ 清空批次資訊（藥品無批次資料）"), d([]), v([]));
         (P(null), w([]));
@@ -20924,14 +20934,14 @@ const Ph = async (e) => {
         };
         d([...f, O]);
       },
-      ge = (O) => {
+      xe = (O) => {
         d(f.filter((oe) => oe.id !== O));
       },
       fe = (O, oe, V) => {
-        d(f.map((xe) => (xe.id === O ? { ...xe, [oe]: V } : xe)));
+        d(f.map((ye) => (ye.id === O ? { ...ye, [oe]: V } : ye)));
       },
       W = async () => {
-        var xe;
+        var ye;
         if (!h || !m) {
           s("請選擇藥品", "error");
           return;
@@ -20943,16 +20953,16 @@ const Ph = async (e) => {
         const O = [],
           oe = [],
           V = [];
-        f.forEach((ce) => {
-          O.push(ce.lot || "");
+        f.forEach((ie) => {
+          O.push(ie.lot || "");
           let we = "";
-          (ce.expiryDate && (we = `${ce.expiryDate}`),
+          (ie.expiryDate && (we = `${ie.expiryDate}`),
             oe.push(we),
-            V.push(ce.qty ? `${Number(ce.qty)}` : "0"));
+            V.push(ie.qty ? `${Number(ie.qty)}` : "0"));
         });
         try {
           if (i === "edit" && l) {
-            const ce = {
+            const ie = {
                 GUID: B || l.GUID,
                 code: h,
                 device_type: _,
@@ -20967,8 +20977,8 @@ const Ph = async (e) => {
                 qty: V,
                 shelf_guid: n.GUID,
               },
-              we = await Me.updateStock([ce]);
-            if ((console.log("==============>", ce), we.Code === 200)) {
+              we = await Me.updateStock([ie], n.serverName, n.serverType);
+            if ((console.log("==============>", ie), we.Code === 200)) {
               if (a) {
                 const C = { ...a, shelf_guid: "" };
                 (console.log("==============>", a),
@@ -20977,7 +20987,11 @@ const Ph = async (e) => {
                     C,
                   ));
                 try {
-                  const R = await Me.updateStock([C]);
+                  const R = await Me.updateStock(
+                    [C],
+                    n.serverName,
+                    n.serverType,
+                  );
                   R.Code === 200
                     ? console.log("✅ 備份資料更新成功")
                     : console.warn("⚠️ 備份資料更新失敗:", R.Result);
@@ -20985,7 +20999,7 @@ const Ph = async (e) => {
                   console.error("❌ 備份資料更新錯誤:", R);
                 }
               }
-              (c(n.GUID, l.GUID, ce), console.log("檢查有無貨物批次被刪除"));
+              (c(n.GUID, l.GUID, ie), console.log("檢查有無貨物批次被刪除"));
               const pe = y.filter((C) => !oe.includes(C));
               if ((console.log(pe), pe.length > 0)) {
                 console.log("🗑️ 檢測到被刪除的批次效期:", pe);
@@ -21019,7 +21033,7 @@ const Ph = async (e) => {
               be();
             } else s(we.Result || "更新貨物失敗", "error");
           } else {
-            let ce, we;
+            let ie, we;
             if (H && H.shelf_guid)
               if (window.confirm("該藥品已有其他儲位，是否新增儲位？"))
                 ((we = {
@@ -21036,7 +21050,7 @@ const Ph = async (e) => {
                   qty: V,
                   shelf_guid: n.GUID,
                 }),
-                  (ce = await Me.addStock([we])));
+                  (ie = await Me.addStock([we], n.serverName, n.serverType)));
               else return;
             else
               ((we = {
@@ -21057,20 +21071,20 @@ const Ph = async (e) => {
                   B &&
                   ((we.GUID = B),
                   console.log("🆔 藥品無儲位，帶入藥品 GUID:", B)),
-                (ce = await Me.updateStock([we])));
-            ce.Code === 200
+                (ie = await Me.updateStock([we], n.serverName, n.serverType)));
+            ie.Code === 200
               ? (o(n.GUID, {
                   GUID:
-                    ((xe = ce.Data) == null ? void 0 : xe.GUID) ||
+                    ((ye = ie.Data) == null ? void 0 : ye.GUID) ||
                     `stock_${Date.now()}`,
                   ...we,
                 }),
                 s("新增貨物成功", "success"),
                 be())
-              : s(ce.Result || "新增貨物失敗", "error");
+              : s(ie.Result || "新增貨物失敗", "error");
           }
-        } catch (ce) {
-          (console.error("貨物操作錯誤:", ce),
+        } catch (ie) {
+          (console.error("貨物操作錯誤:", ie),
             s(
               i === "edit"
                 ? "更新貨物失敗，請稍後再試"
@@ -21087,7 +21101,7 @@ const Ph = async (e) => {
           b(V.CHT_NAME || V.cht_name || ""),
           k(V.SKDIACODE || V.skdiacode || V.material_no || ""),
           ee(V.GUID || ""));
-        const xe = {
+        const ye = {
           GUID: V.GUID || "",
           med_cloud: {
             CODE: V.CODE || V.code || "",
@@ -21102,15 +21116,15 @@ const Ph = async (e) => {
           expiry_date: V.expiry_date || [],
           qty: V.qty || [],
         };
-        A(xe);
-        let ce = V.lot || [],
+        A(ye);
+        let ie = V.lot || [],
           we = V.expiry_date || [],
           pe = V.qty || [];
         if (
           i === "edit" &&
           n != null &&
           n.medMapStock &&
-          ce.length === 0 &&
+          ie.length === 0 &&
           we.length === 0 &&
           pe.length === 0
         ) {
@@ -21123,14 +21137,14 @@ const Ph = async (e) => {
           );
           C &&
             (console.log("📸 從層架找到相同藥品的批次資訊:", C),
-            (ce = C.lot || []),
+            (ie = C.lot || []),
             (we = C.expiry_date || []),
             (pe = C.qty || []));
         }
         if (
           (console.log(
             "📸 QR掃描批次資訊 - lot:",
-            ce,
+            ie,
             "expiry_date:",
             we,
             "qty:",
@@ -21139,22 +21153,22 @@ const Ph = async (e) => {
           console.log("📸 當前模式:", i),
           i === "edit")
         )
-          if (ce.length > 0 || we.length > 0 || pe.length > 0) {
+          if (ie.length > 0 || we.length > 0 || pe.length > 0) {
             const C = [],
-              R = Math.max(ce.length, we.length, pe.length),
+              R = Math.max(ie.length, we.length, pe.length),
               q = [];
             for (let ue = 0; ue < R; ue++) {
-              const ie = we[ue] || "";
-              let je = "";
-              (ie && (je = ie.split("T")[0]),
-                (je = je.replace(/\//g, "-")),
+              const ae = we[ue] || "";
+              let Se = "";
+              (ae && (Se = ae.split("T")[0]),
+                (Se = Se.replace(/\//g, "-")),
                 q.push({
                   id: `batch_${Date.now()}_${ue}`,
-                  lot: ce[ue] || "",
-                  expiryDate: je,
+                  lot: ie[ue] || "",
+                  expiryDate: Se,
                   qty: String(pe[ue] || ""),
                 }),
-                je && C.push(je));
+                Se && C.push(Se));
             }
             (console.log("✅ QR掃描成功載入批次資訊:", q), d(q), v(C));
           } else
@@ -21173,7 +21187,7 @@ const Ph = async (e) => {
           S(""),
           F(""),
           $(""),
-          ye(""),
+          ve(""),
           N("EPD290"),
           ee(""),
           A(null),
@@ -21208,7 +21222,7 @@ const Ph = async (e) => {
                 }),
                 r.jsx("div", {
                   className: "p-4 space-y-2",
-                  children: J
+                  children: Z
                     ? r.jsxs("div", {
                         className: "text-center py-8",
                         children: [
@@ -21284,11 +21298,11 @@ const Ph = async (e) => {
                                           placeholder: "輸入藥品代碼",
                                         }),
                                         L === "code" &&
-                                          K.length > 0 &&
+                                          X.length > 0 &&
                                           r.jsx("div", {
                                             className:
                                               "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                            children: K.map(
+                                            children: X.map(
                                               (O) =>
                                                 O.med_cloud &&
                                                 r.jsxs(
@@ -21376,11 +21390,11 @@ const Ph = async (e) => {
                                           placeholder: "輸入藥品名稱",
                                         }),
                                         L === "name" &&
-                                          K.length > 0 &&
+                                          X.length > 0 &&
                                           r.jsx("div", {
                                             className:
                                               "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                            children: K.map(
+                                            children: X.map(
                                               (O) =>
                                                 O.med_cloud &&
                                                 r.jsxs(
@@ -21468,11 +21482,11 @@ const Ph = async (e) => {
                                           placeholder: "輸入中文名稱",
                                         }),
                                         L === "chineseName" &&
-                                          K.length > 0 &&
+                                          X.length > 0 &&
                                           r.jsx("div", {
                                             className:
                                               "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                            children: K.map(
+                                            children: X.map(
                                               (O) =>
                                                 O.med_cloud &&
                                                 r.jsxs(
@@ -21560,11 +21574,11 @@ const Ph = async (e) => {
                                           placeholder: "輸入料號",
                                         }),
                                         L === "skdiacode" &&
-                                          K.length > 0 &&
+                                          X.length > 0 &&
                                           r.jsx("div", {
                                             className:
                                               "absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto",
-                                            children: K.map(
+                                            children: X.map(
                                               (O) =>
                                                 O.med_cloud &&
                                                 r.jsxs(
@@ -21696,7 +21710,7 @@ const Ph = async (e) => {
                                                     children: ["批次 ", oe + 1],
                                                   }),
                                                   r.jsx("button", {
-                                                    onClick: () => ge(O.id),
+                                                    onClick: () => xe(O.id),
                                                     className:
                                                       "p-1 text-red-600 hover:bg-red-50 rounded transition-colors",
                                                     title: "刪除批次",
@@ -21863,7 +21877,7 @@ const Ph = async (e) => {
                                         r.jsx("input", {
                                           type: "text",
                                           value: se,
-                                          onChange: (O) => ye(O.target.value),
+                                          onChange: (O) => ve(O.target.value),
                                           className:
                                             "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                           placeholder: "輸入電子紙 IP",
@@ -21926,7 +21940,7 @@ const Ph = async (e) => {
                     }),
                     r.jsx("button", {
                       onClick: W,
-                      disabled: J || G.length === 0,
+                      disabled: Z || G.length === 0,
                       className:
                         "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400",
                       children: i === "edit" ? "修改" : "新增",
@@ -22183,8 +22197,8 @@ const Ph = async (e) => {
       e && (i(n), h(""), m(""), j(""), T(""), E(""), I(null), f(null));
     }, [e, n]),
       u.useEffect(() => {
-        const P = (K) => {
-          $.current && !$.current.contains(K.target) && f(null);
+        const P = (X) => {
+          $.current && !$.current.contains(X.target) && f(null);
         };
         return (
           document.addEventListener("mousedown", P),
@@ -22193,12 +22207,12 @@ const Ph = async (e) => {
           }
         );
       }, []));
-    const se = (P, K) => {
-        if (!K.trim() || l) {
+    const se = (P, X) => {
+        if (!X.trim() || l) {
           y([]);
           return;
         }
-        const w = K.toLowerCase(),
+        const w = X.toLowerCase(),
           B = o.filter((ee) => {
             var H, A, Ne, U;
             switch (P) {
@@ -22224,22 +22238,22 @@ const Ph = async (e) => {
           });
         y(B.slice(0, 10));
       },
-      ye = (P, K) => {
+      ve = (P, X) => {
         switch ((f(P), P)) {
           case "code":
-            h(K);
+            h(X);
             break;
           case "name":
-            m(K);
+            m(X);
             break;
           case "chineseName":
-            j(K);
+            j(X);
             break;
           case "skdiacode":
-            T(K);
+            T(X);
             break;
         }
-        se(P, K);
+        se(P, X);
       },
       _ = (P) => {
         (E(P.GUID),
@@ -22287,15 +22301,15 @@ const Ph = async (e) => {
             }
           (P.includes(a.trim()) || P.push(a.trim()),
             console.log("📋 處理後的 BARCODE2 陣列:", P));
-          const K = await Me.addMedClouds(
+          const X = await Me.addMedClouds(
             a.trim(),
             c.trim(),
             JSON.stringify(P),
             S.BARCODE,
           );
-          K.Code === 200
+          X.Code === 200
             ? (s("條碼建立成功", "success"), N())
-            : s(K.Result || "建立條碼失敗", "error");
+            : s(X.Result || "建立條碼失敗", "error");
         } catch (P) {
           (console.error("建立條碼失敗:", P),
             s("建立條碼失敗，請稍後再試", "error"));
@@ -22377,7 +22391,7 @@ const Ph = async (e) => {
                         r.jsx("input", {
                           type: "text",
                           value: c,
-                          onChange: (P) => ye("code", P.target.value),
+                          onChange: (P) => ve("code", P.target.value),
                           onFocus: () => f("code"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
@@ -22424,7 +22438,7 @@ const Ph = async (e) => {
                         r.jsx("input", {
                           type: "text",
                           value: g,
-                          onChange: (P) => ye("name", P.target.value),
+                          onChange: (P) => ve("name", P.target.value),
                           onFocus: () => f("name"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
@@ -22471,7 +22485,7 @@ const Ph = async (e) => {
                         r.jsx("input", {
                           type: "text",
                           value: p,
-                          onChange: (P) => ye("chineseName", P.target.value),
+                          onChange: (P) => ve("chineseName", P.target.value),
                           onFocus: () => f("chineseName"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
@@ -22518,7 +22532,7 @@ const Ph = async (e) => {
                         r.jsx("input", {
                           type: "text",
                           value: b,
-                          onChange: (P) => ye("skdiacode", P.target.value),
+                          onChange: (P) => ve("skdiacode", P.target.value),
                           onFocus: () => f("skdiacode"),
                           className:
                             "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent",
@@ -22776,8 +22790,8 @@ const Ph = async (e) => {
                         children: f.map((E, S) => {
                           let I = 0;
                           E.qty &&
-                            E.qty.forEach((ye) => {
-                              I += +ye;
+                            E.qty.forEach((ve) => {
+                              I += +ve;
                             });
                           const F = t && (E.code == t || E.material_no == t),
                             M = n.includes(E.code) || n.includes(E.material_no),
@@ -22926,20 +22940,20 @@ const Ph = async (e) => {
       [E, S] = u.useState([]),
       [I, F] = u.useState([]),
       [M, $] = u.useState([]),
-      [se, ye] = u.useState(!1),
+      [se, ve] = u.useState(!1),
       [_, N] = u.useState(!1),
       L = u.useRef(null),
       P = u.useRef(null),
-      K = u.useRef(null),
+      X = u.useRef(null),
       w = u.useRef(null);
     (u.useEffect(() => {
       if (e && s) {
         const D = s.issuedQuantity || s.requestedQuantity || "0";
         (a(D), c(D), g(null), p(null), b(!1));
-        const ge = localStorage.getItem("medMap_setting");
-        if (ge)
+        const xe = localStorage.getItem("medMap_setting");
+        if (xe)
           try {
-            const fe = JSON.parse(ge);
+            const fe = JSON.parse(xe);
             (d(fe.default_person || ""), v(fe.default_person_id || ""));
           } catch (fe) {
             (console.error("讀取設定失敗:", fe), d(""), v(""));
@@ -22949,16 +22963,16 @@ const Ph = async (e) => {
       }
     }, [e, s]),
       u.useEffect(() => {
-        const D = (ge) => {
-          (K.current &&
-            !K.current.contains(ge.target) &&
+        const D = (xe) => {
+          (X.current &&
+            !X.current.contains(xe.target) &&
             L.current &&
-            !L.current.contains(ge.target) &&
-            ye(!1),
+            !L.current.contains(xe.target) &&
+            ve(!1),
             w.current &&
-              !w.current.contains(ge.target) &&
+              !w.current.contains(xe.target) &&
               P.current &&
-              !P.current.contains(ge.target) &&
+              !P.current.contains(xe.target) &&
               N(!1));
         };
         return (
@@ -22976,26 +22990,26 @@ const Ph = async (e) => {
       },
       ee = (D) => {
         if ((d(D), D.trim() === "")) {
-          (F([]), ye(!1));
+          (F([]), ve(!1));
           return;
         }
-        const ge = E.filter(
+        const xe = E.filter(
           (fe) => fe.name && fe.name.toLowerCase().includes(D.toLowerCase()),
         );
-        (F(ge), ye(ge.length > 0));
+        (F(xe), ve(xe.length > 0));
       },
       H = (D) => {
         if ((v(D), D.trim() === "")) {
           ($([]), N(!1));
           return;
         }
-        const ge = E.filter(
+        const xe = E.filter(
           (fe) => fe.ID && fe.ID.toLowerCase().includes(D.toLowerCase()),
         );
-        ($(ge), N(ge.length > 0));
+        ($(xe), N(xe.length > 0));
       },
       A = (D) => {
-        (d(D.name), v(D.ID), ye(!1));
+        (d(D.name), v(D.ID), ve(!1));
       },
       Ne = (D) => {
         (d(D.name), v(D.ID), N(!1));
@@ -23004,30 +23018,30 @@ const Ph = async (e) => {
     const U = (D) => {
         if (j) (a(D), c(D), b(!1));
         else {
-          const ge = l === "0" ? D : l + D;
-          (a(ge), c(ge));
+          const xe = l === "0" ? D : l + D;
+          (a(xe), c(xe));
         }
       },
       G = (D) => {
-        (h && m !== null && !j && he(), p(i), g(D), b(!0));
+        (h && m !== null && !j && ge(), p(i), g(D), b(!0));
       },
-      he = () => {
+      ge = () => {
         if (h === null || m === null) return;
         const D = parseFloat(m),
-          ge = parseFloat(i);
+          xe = parseFloat(i);
         let fe = 0;
         switch (h) {
           case "+":
-            fe = D + ge;
+            fe = D + xe;
             break;
           case "-":
-            fe = D - ge;
+            fe = D - xe;
             break;
           case "×":
-            fe = D * ge;
+            fe = D * xe;
             break;
           case "÷":
-            fe = ge !== 0 ? D / ge : 0;
+            fe = xe !== 0 ? D / xe : 0;
             break;
           default:
             return;
@@ -23035,8 +23049,8 @@ const Ph = async (e) => {
         const W = fe.toString();
         (a(W), c(W), g(null), p(null), b(!0));
       },
-      J = () => {
-        he();
+      Z = () => {
+        ge();
       },
       ke = () => {
         if (j) (a("0."), c("0."), b(!1));
@@ -23050,13 +23064,13 @@ const Ph = async (e) => {
       },
       De = () => {
         const D = new Date(),
-          ge = D.getFullYear(),
+          xe = D.getFullYear(),
           fe = String(D.getMonth() + 1).padStart(2, "0"),
           W = String(D.getDate()).padStart(2, "0"),
           le = String(D.getHours()).padStart(2, "0"),
           be = String(D.getMinutes()).padStart(2, "0"),
           O = String(D.getSeconds()).padStart(2, "0");
-        return `${ge}-${fe}-${W}T${le}:${be}:${O}`;
+        return `${xe}-${fe}-${W}T${le}:${be}:${O}`;
       },
       Be = async () => {
         if (!s) return;
@@ -23205,10 +23219,10 @@ const Ph = async (e) => {
                               }),
                               se &&
                                 r.jsx("div", {
-                                  ref: K,
+                                  ref: X,
                                   className:
                                     "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-40 overflow-y-auto",
-                                  children: I.map((D, ge) =>
+                                  children: I.map((D, xe) =>
                                     r.jsxs(
                                       "div",
                                       {
@@ -23227,7 +23241,7 @@ const Ph = async (e) => {
                                           }),
                                         ],
                                       },
-                                      ge,
+                                      xe,
                                     ),
                                   ),
                                 }),
@@ -23253,7 +23267,7 @@ const Ph = async (e) => {
                                   ref: w,
                                   className:
                                     "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-40 overflow-y-auto",
-                                  children: M.map((D, ge) =>
+                                  children: M.map((D, xe) =>
                                     r.jsxs(
                                       "div",
                                       {
@@ -23272,7 +23286,7 @@ const Ph = async (e) => {
                                           }),
                                         ],
                                       },
-                                      ge,
+                                      xe,
                                     ),
                                   ),
                                 }),
@@ -23427,7 +23441,7 @@ const Ph = async (e) => {
                         children: ".",
                       }),
                       r.jsx("button", {
-                        onClick: J,
+                        onClick: Z,
                         className:
                           "py-4 text-lg font-semibold bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors",
                         children: "=",
@@ -23510,7 +23524,7 @@ const Ph = async (e) => {
           try {
             const L = localStorage.getItem("medMap_setting");
             let P = "255,0,0",
-              K = "1",
+              X = "1",
               w = 60;
             if (L)
               try {
@@ -23524,7 +23538,7 @@ const Ph = async (e) => {
                     purple: "255,0,255",
                     cyan: "255,255,0",
                   }[B.light_color] || "255,0,0"),
-                  (K =
+                  (X =
                     ((N = B.brightness) == null ? void 0 : N.toString()) ||
                     "1"),
                   (w = B.light_sec || 60));
@@ -23540,7 +23554,7 @@ const Ph = async (e) => {
                   medicineCode: n.code,
                 },
               ];
-              (await bs.startLighting(B, P, K, w * 1e3, () => {
+              (await bs.startLighting(B, P, X, w * 1e3, () => {
                 (v(!1), a(null));
               }),
                 v(!0),
@@ -23557,21 +23571,21 @@ const Ph = async (e) => {
         const L = N.notice === "True" ? "False" : "True";
         p(N.GUID);
         const P = [...i],
-          K = P.findIndex((w) => w.GUID === N.GUID);
-        if (K === -1) {
+          X = P.findIndex((w) => w.GUID === N.GUID);
+        if (X === -1) {
           p(null);
           return;
         }
-        ((P[K] = { ...N, notice: L }), c(P));
+        ((P[X] = { ...N, notice: L }), c(P));
         try {
           const w = await Me.updateRequisitionNotice(N.GUID, L);
           w.Code !== 200
-            ? ((P[K] = { ...N, notice: N.notice }),
+            ? ((P[X] = { ...N, notice: N.notice }),
               c(P),
               console.error("更新申領通知狀態失敗:", w))
             : l && l();
         } catch (w) {
-          ((P[K] = { ...N, notice: N.notice }),
+          ((P[X] = { ...N, notice: N.notice }),
             c(P),
             console.error("更新申領通知狀態失敗:", w));
         } finally {
@@ -23582,21 +23596,21 @@ const Ph = async (e) => {
         const L = N.notice === "True" ? "False" : "True";
         p(N.GUID);
         const P = [...h],
-          K = P.findIndex((w) => w.GUID === N.GUID);
-        if (K === -1) {
+          X = P.findIndex((w) => w.GUID === N.GUID);
+        if (X === -1) {
           p(null);
           return;
         }
-        ((P[K] = { ...N, notice: L }), g(P));
+        ((P[X] = { ...N, notice: L }), g(P));
         try {
           const w = await Me.updateDistributionNotice(N.GUID, L);
           w.Code !== 200
-            ? ((P[K] = { ...N, notice: N.notice }),
+            ? ((P[X] = { ...N, notice: N.notice }),
               g(P),
               console.error("更新撥補通知狀態失敗:", w))
             : l && l();
         } catch (w) {
-          ((P[K] = { ...N, notice: N.notice }),
+          ((P[X] = { ...N, notice: N.notice }),
             g(P),
             console.error("更新撥補通知狀態失敗:", w));
         } finally {
@@ -23606,7 +23620,7 @@ const Ph = async (e) => {
     if (!e || !n) return null;
     const $ = i.filter((N) => N.state === "等待過帳"),
       se = h.filter((N) => N.state === "等待過帳"),
-      ye = $.length === 0 && se.length === 0,
+      ve = $.length === 0 && se.length === 0,
       _ = (N) => {
         if (!N || N === "1/01/01 00:00:00" || N === "0001-01-01T00:00:00")
           return "-";
@@ -23614,11 +23628,11 @@ const Ph = async (e) => {
           const L = new Date(N);
           if (isNaN(L.getTime())) return N;
           const P = L.getFullYear(),
-            K = String(L.getMonth() + 1).padStart(2, "0"),
+            X = String(L.getMonth() + 1).padStart(2, "0"),
             w = String(L.getDate()).padStart(2, "0"),
             B = String(L.getHours()).padStart(2, "0"),
             ee = String(L.getMinutes()).padStart(2, "0");
-          return `${P}/${K}/${w} ${B}:${ee}`;
+          return `${P}/${X}/${w} ${B}:${ee}`;
         } catch {
           return N;
         }
@@ -23730,7 +23744,7 @@ const Ph = async (e) => {
             }),
             r.jsx("div", {
               className: "flex-1 overflow-y-auto p-4",
-              children: ye
+              children: ve
                 ? r.jsx("div", {
                     className:
                       "flex items-center justify-center h-40 text-gray-400 text-lg",
@@ -24014,8 +24028,8 @@ const Ph = async (e) => {
             for (const P of L) {
               if (P.GUID === _) return P;
               if (P.contents && Array.isArray(P.contents)) {
-                const K = N(P.contents);
-                if (K) return K;
+                const X = N(P.contents);
+                if (X) return X;
               }
             }
             return null;
@@ -24038,8 +24052,8 @@ const Ph = async (e) => {
           if (N) {
             const P = JSON.parse(N).light_sec;
             if (P != null && P !== "") {
-              const K = Number(P);
-              if (!isNaN(K) && K > 0) return K * 1e3;
+              const X = Number(P);
+              if (!isNaN(X) && X > 0) return X * 1e3;
             }
           }
         } catch (N) {
@@ -24061,7 +24075,7 @@ const Ph = async (e) => {
           const _ = new Date(),
             N = `${_.getFullYear()}-${String(_.getMonth() + 1).padStart(2, "0")}-${String(_.getDate()).padStart(2, "0")} 00:00:00`,
             L = `${_.getFullYear()}-${String(_.getMonth() + 1).padStart(2, "0")}-${String(_.getDate()).padStart(2, "0")} 23:59:59`,
-            [P, K] = await Promise.all([
+            [P, X] = await Promise.all([
               Me.getRequisitionByTime(N, L),
               Me.getDistributionByTime(N, L),
             ]),
@@ -24080,8 +24094,8 @@ const Ph = async (e) => {
                 H.code && w.push(H.code);
               }));
           }
-          if (K.Code === 200 && K.Data) {
-            const B = K.Data.filter((H) => {
+          if (X.Code === 200 && X.Data) {
+            const B = X.Data.filter((H) => {
               var A;
               return (A = S == null ? void 0 : S.med_list) == null
                 ? void 0
@@ -24151,7 +24165,7 @@ const Ph = async (e) => {
         };
       }, [e, l]));
     const $ = (_) => {
-      var P, K;
+      var P, X;
       (m.filter((w) => w.code === _.code), j.filter((w) => w.code === _.code));
       const N = (w) => {
           for (const B of w) {
@@ -24175,7 +24189,7 @@ const Ph = async (e) => {
         serverName:
           (P = L == null ? void 0 : L.shelf) == null ? void 0 : P.serverName,
         serverType:
-          (K = L == null ? void 0 : L.shelf) == null ? void 0 : K.serverType,
+          (X = L == null ? void 0 : L.shelf) == null ? void 0 : X.serverType,
       }),
         k(!0));
     };
@@ -24237,7 +24251,7 @@ const Ph = async (e) => {
               r.jsx("tbody", {
                 children: _.map((N, L) => {
                   const P = i && l && N.code == l,
-                    K = h.includes(N.code);
+                    X = h.includes(N.code);
                   let w = 0;
                   (N.qty.forEach((ee) => {
                     w += +ee;
@@ -24248,14 +24262,14 @@ const Ph = async (e) => {
                         highlightedCode: l,
                         isHighlightActive: i,
                         isHighlighted: P,
-                        isPendingRequisition: K,
+                        isPendingRequisition: X,
                         comparison: `${N.code} == ${l} = ${N.code == l}`,
                       }));
                   const B = F();
                   return r.jsxs(
                     "tr",
                     {
-                      className: `transition-colors cursor-pointer ${K ? "highlight-breathe-red" : P ? `highlight-breathe-${B}` : "hover:bg-gray-50"}`,
+                      className: `transition-colors cursor-pointer ${X ? "highlight-breathe-red" : P ? `highlight-breathe-${B}` : "hover:bg-gray-50"}`,
                       onClick: () => $(N),
                       children: [
                         r.jsx("td", {
@@ -24300,7 +24314,7 @@ const Ph = async (e) => {
           }),
         });
       },
-      ye = () =>
+      ve = () =>
         n
           ? r.jsx(Vh, {
               container: S,
@@ -24359,7 +24373,7 @@ const Ph = async (e) => {
                 }),
                 r.jsx("div", {
                   className: "flex-1 overflow-hidden p-3",
-                  children: s === "list_mode" ? se() : ye(),
+                  children: s === "list_mode" ? se() : ve(),
                 }),
               ],
             }),
@@ -25285,9 +25299,9 @@ function eg() {
       try {
         const P = localStorage.getItem("user_session");
         if (P) {
-          const K = JSON.parse(P);
-          K.GUID && K.ID && K.Name
-            ? (o(K), s(!0))
+          const X = JSON.parse(P);
+          X.GUID && X.ID && X.Name
+            ? (o(X), s(!0))
             : localStorage.removeItem("user_session");
         }
       } catch (P) {
@@ -25304,18 +25318,18 @@ function eg() {
             $(!0);
             try {
               console.log("開始載入藥品資料...");
-              const K = await Me.getMedicineCloud();
-              if ((console.log("藥品資料 API 回應:", K), !L)) return;
-              K.Code === 200 && K.Data
-                ? (M(K.Data),
-                  console.log(`✅ 成功載入 ${K.Data.length} 筆藥品資料`),
-                  se(`載入 ${K.Data.length} 筆藥品資料`, "success"))
-                : (console.warn("API 回應異常:", K),
+              const X = await Me.getMedicineCloud();
+              if ((console.log("藥品資料 API 回應:", X), !L)) return;
+              X.Code === 200 && X.Data
+                ? (M(X.Data),
+                  console.log(`✅ 成功載入 ${X.Data.length} 筆藥品資料`),
+                  se(`載入 ${X.Data.length} 筆藥品資料`, "success"))
+                : (console.warn("API 回應異常:", X),
                   M([]),
                   se("藥品資料載入異常，請稍後重試", "error"));
-            } catch (K) {
+            } catch (X) {
               if (!L) return;
-              (console.error("載入藥品資料失敗:", K),
+              (console.error("載入藥品資料失敗:", X),
                 M([]),
                 se("無法連線到藥品資料庫，部分功能可能無法使用", "error"));
             } finally {
@@ -25328,7 +25342,7 @@ function eg() {
         }
       );
     }, [n]));
-  const ye = (L) => {
+  const ve = (L) => {
       (o(L), s(!0));
     },
     _ = bo.useRef(null),
@@ -25400,7 +25414,7 @@ function eg() {
           }),
         ],
       })
-    : r.jsx(Kh, { isOpen: !0, onLoginSuccess: ye });
+    : r.jsx(Kh, { isOpen: !0, onLoginSuccess: ve });
 }
 function tg() {
   return r.jsx(ah, { children: r.jsx(oh, { children: r.jsx(eg, {}) }) });
