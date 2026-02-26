@@ -9475,7 +9475,7 @@ class nh {
     });
   }
 }
-const Me = new nh();
+const Ee = new nh();
 class rh {
   convertMedMapApiToFakeData(t) {
     (console.log("🔄 開始轉換 MedMap API 資料到假資料格式"),
@@ -9942,7 +9942,7 @@ const Rt = new rh(),
       Te = () => {
         (A(!1), ve(null));
       },
-      Ee = (Ae) => {
+      Me = (Ae) => {
         (P(Ae), N(!0));
       },
       Re = () => {
@@ -10023,7 +10023,7 @@ const Rt = new rh(),
         }
         (console.log("🔄 重新載入藥品地圖資料，部門類型:", i), w(!0));
         try {
-          const Ae = await Me.getMedMapByDepartment(i);
+          const Ae = await Ee.getMedMapByDepartment(i);
           if (Ae.Code === 200 && Ae.Data) {
             console.log("📡 重新載入成功:", Ae.Data);
             const Xe = Rt.convertMedMapApiToFakeData(Ae.Data);
@@ -10216,7 +10216,7 @@ const Rt = new rh(),
         setGridDrawModalOpen: N,
         selectedGridDraw: L,
         setSelectedGridDraw: P,
-        openGridDrawModal: Ee,
+        openGridDrawModal: Me,
         closeGridDrawModal: Re,
         isLoadingMedMap: X,
         setIsLoadingMedMap: w,
@@ -11237,7 +11237,7 @@ const Rt = new rh(),
       }, []));
     const ve = async () => {
         try {
-          const w = await Me.getAllStaffInfo();
+          const w = await Ee.getAllStaffInfo();
           w.Code === 200 && w.Data && T(w.Data);
         } catch (w) {
           console.error("獲取人員資料失敗:", w);
@@ -11767,7 +11767,7 @@ const Rt = new rh(),
       (async () => {
         k(!0);
         try {
-          const N = await Me.getDepartments();
+          const N = await Ee.getDepartments();
           N.Code === 200 && N.Data
             ? (console.log(N.Data), b(N.Data), i(N.Data))
             : (console.error("API returned error:", N), b([]), i([]));
@@ -11792,7 +11792,7 @@ const Rt = new rh(),
       ve = async (_) => {
         (console.log("🚀 開始取得藥品地圖資料，部門類型:", _), a(!0));
         try {
-          const N = await Me.getMedMapByDepartment(_);
+          const N = await Ee.getMedMapByDepartment(_);
           if (N.Code === 200 && N.Data) {
             console.log("📡 API 回傳成功:", N.Data);
             const L = Rt.convertMedMapApiToFakeData(N.Data);
@@ -12095,7 +12095,7 @@ const Rt = new rh(),
             (c(Ie), console.log("💾 全域資料已更新"));
             try {
               console.log("📡 開始同步後端位置資料...");
-              const ne = await Me.updateContainerPosition({
+              const ne = await Ee.updateContainerPosition({
                 GUID: Z,
                 absolute_position: `${ke.x.toFixed(3)},${ke.y.toFixed(3)}`,
               });
@@ -12470,7 +12470,7 @@ const Rt = new rh(),
               try {
                 console.log("📸 [相機掃描] 截取圖片並掃描...");
                 const L = performance.now(),
-                  P = await Me.scanBarcode(_),
+                  P = await Ee.scanBarcode(_),
                   X = performance.now();
                 if (
                   (console.log(
@@ -12500,7 +12500,7 @@ const Rt = new rh(),
                   t());
                 try {
                   const B = performance.now(),
-                    te = await Me.searchByBarCode(w.code);
+                    te = await Ee.searchByBarCode(w.code);
                   console.log("AI掃描回傳:", te);
                   const H = performance.now();
                   if (
@@ -13015,7 +13015,7 @@ class Eh {
       for (const i of t)
         try {
           const c = performance.now();
-          await Me.lightByCodeNameType(
+          await Ee.lightByCodeNameType(
             i.serverName,
             i.serverType,
             i.medicineCode,
@@ -13051,7 +13051,7 @@ class Eh {
     for (const n of t)
       try {
         const s = performance.now();
-        await Me.lightByCodeNameType(
+        await Ee.lightByCodeNameType(
           n.serverName,
           n.serverType,
           n.medicineCode,
@@ -13202,7 +13202,7 @@ const bs = new Eh(),
       if (!(g !== "infinite" || !n))
         try {
           console.log("🔄 Auto-refreshing data for InfiniteCanvas...");
-          const C = await Me.getMedMapByDepartment(n);
+          const C = await Ee.getMedMapByDepartment(n);
           if (C.Code === 200 && C.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const R = Rt.convertMedMapApiToFakeData(C.Data);
@@ -13495,7 +13495,7 @@ const bs = new Eh(),
           try {
             console.log("🔍 [手動輸入-部門視圖] 搜尋條碼:", ve);
             const ie = performance.now(),
-              Se = await Me.searchByBarCode(ve),
+              Se = await Ee.searchByBarCode(ve),
               Ue = performance.now();
             if (
               (console.log(
@@ -13795,14 +13795,14 @@ const bs = new Eh(),
         try {
           let ge;
           if (e.type === "parent_container")
-            ge = await Me.deleteParentContainer(e.GUID);
+            ge = await Ee.deleteParentContainer(e.GUID);
           else if (e.type === "sub_container")
-            ge = await Me.deleteSubContainer(e.GUID);
+            ge = await Ee.deleteSubContainer(e.GUID);
           else if (
             e.type === "store_shelves" ||
             e.type === "dispensing_shelves"
           )
-            ge = await Me.deleteShelfContainer(e.GUID);
+            ge = await Ee.deleteShelfContainer(e.GUID);
           else {
             (p("不支援的容器類型", "error"), ve(!1), N(!1));
             return;
@@ -13840,11 +13840,11 @@ const bs = new Eh(),
           ];
           let Z;
           if (e.type === "store_shelves" || e.type === "dispensing_shelves")
-            Z = await Me.updateMedMapShelf(ge);
+            Z = await Ee.updateMedMapShelf(ge);
           else if (e.type === "sub_container")
-            Z = await Me.updateSubSection(ge);
+            Z = await Ee.updateSubSection(ge);
           else if (e.type === "parent_container")
-            Z = await Me.updateMedMapSection(ge);
+            Z = await Ee.updateMedMapSection(ge);
           else {
             (p("不支援的容器類型", "error"), F(!1));
             return;
@@ -14731,7 +14731,7 @@ const bs = new Eh(),
       if (!(j !== "drug" || !s))
         try {
           console.log("🔄 Auto-refreshing data for DrugCanvas...");
-          const x = await Me.getMedMapByDepartment(s);
+          const x = await Ee.getMedMapByDepartment(s);
           if (x.Code === 200 && x.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const K = Rt.convertMedMapApiToFakeData(x.Data);
@@ -15054,8 +15054,8 @@ const bs = new Eh(),
           je = JSON.parse(JSON.stringify(ae.parent.contents));
         (ae.parent.contents.splice(he, 1), console.log(he));
         const Te = ae.parent,
-          Ee = le(ae.parent, x);
-        ((ae.parent.contents = Ee),
+          Me = le(ae.parent, x);
+        ((ae.parent.contents = Me),
           console.log(ae.parent),
           Ne({
             isDragging: !0,
@@ -15086,12 +15086,12 @@ const bs = new Eh(),
               Y = (je) => {
                 for (const Te of je) {
                   if (Te.type === "store_shelves" && Te.medMapStock) {
-                    const Ee = Te.medMapStock.find((Re) => Re.GUID === ae);
-                    if (Ee) return { stockItem: Ee, shelf: Te };
+                    const Me = Te.medMapStock.find((Re) => Re.GUID === ae);
+                    if (Me) return { stockItem: Me, shelf: Te };
                   }
                   if (Te.contents) {
-                    const Ee = Y(Te.contents);
-                    if (Ee) return Ee;
+                    const Me = Y(Te.contents);
+                    if (Me) return Me;
                   }
                 }
                 return null;
@@ -15100,13 +15100,13 @@ const bs = new Eh(),
             if (he && he.stockItem.GUID !== $.draggedStockItem.GUID) {
               const je = J.getBoundingClientRect(),
                 Te = je.left + je.width / 2,
-                Ee = je.top + je.height / 2,
+                Me = je.top + je.height / 2,
                 Re = Math.abs(K - Te),
-                He = Math.abs(re - Ee);
+                He = Math.abs(re - Me);
               let Oe;
               (Re > He
                 ? (Oe = K < Te ? "left" : "right")
-                : (Oe = re < Ee ? "top" : "bottom"),
+                : (Oe = re < Me ? "top" : "bottom"),
                 G({
                   container: he.shelf,
                   direction: null,
@@ -15166,7 +15166,7 @@ const bs = new Eh(),
                       he = he.parentElement;
                       continue;
                     }
-                    const Ee = O(he, K, re);
+                    const Me = O(he, K, re);
                     (console.log(
                       `🔼 向上找到有效目標: ${Te.container.type} (${Te.container.name})`,
                     ),
@@ -15176,7 +15176,7 @@ const bs = new Eh(),
                         ),
                       G({
                         container: Te.container,
-                        direction: Ee,
+                        direction: Me,
                         element: he,
                       }));
                     return;
@@ -15218,7 +15218,7 @@ const bs = new Eh(),
                 he = (U.stockItem.location || "0,0").split(","),
                 je = Number(he[0] || "0"),
                 Te = (Y.location || "0,0").split(","),
-                Ee = Number(Te[0] || "0"),
+                Me = Number(Te[0] || "0"),
                 Re = Number(Te[1] || "0");
               if (ee.GUID === ae.GUID) {
                 console.log("同一層架內移動");
@@ -15231,14 +15231,14 @@ const bs = new Eh(),
                   let Le;
                   if (
                     (U.stockItemDirection === "top" ? (Le = Oe) : (Le = Oe + 1),
-                    Ee === je)
+                    Me === je)
                   ) {
                     (console.log("同一列內的深度移動"),
                       ae.medMapStock.forEach((_e) => {
                         const $e = (_e.location || "0,0").split(","),
                           ze = Number($e[0] || "0"),
                           Pe = Number($e[1] || "0");
-                        if (ze === Ee && _e.GUID !== Y.GUID) {
+                        if (ze === Me && _e.GUID !== Y.GUID) {
                           if (Pe > Re) {
                             const rt = Pe - 1;
                             (rt >= Le
@@ -15261,7 +15261,7 @@ const bs = new Eh(),
                         const _e = (Ge.location || "0,0").split(","),
                           $e = Number(_e[0] || "0"),
                           ze = Number(_e[1] || "0");
-                        $e === Ee &&
+                        $e === Me &&
                           Ge.GUID !== Y.GUID &&
                           ze > Re &&
                           ((Ge.location = `${$e},${ze - 1}`),
@@ -15289,11 +15289,11 @@ const bs = new Eh(),
                       const ze = ($e.location || "0,0").split(","),
                         Pe = Number(ze[0] || "0"),
                         rt = Number(ze[1] || "0");
-                      Pe > Ee &&
+                      Pe > Me &&
                         (($e.location = `${Pe - 1},${rt}`), J.push({ ...$e }));
                     }));
                   let Ge;
-                  const _e = je > Ee ? je - 1 : je;
+                  const _e = je > Me ? je - 1 : je;
                   (U.stockItemDirection === "left" ? (Ge = _e) : (Ge = _e + 1),
                     ae.medMapStock.forEach(($e) => {
                       const ze = ($e.location || "0,0").split(","),
@@ -15325,7 +15325,7 @@ const bs = new Eh(),
                       const $e = (_e.location || "0,0").split(","),
                         ze = Number($e[0] || "0"),
                         Pe = Number($e[1] || "0");
-                      ze === Ee &&
+                      ze === Me &&
                         Pe > Re &&
                         ((_e.location = `${ze},${Pe - 1}`), J.push({ ..._e }));
                     }));
@@ -15354,7 +15354,7 @@ const bs = new Eh(),
                       const $e = (_e.location || "0,0").split(","),
                         ze = Number($e[0] || "0"),
                         Pe = Number($e[1] || "0");
-                      ze > Ee &&
+                      ze > Me &&
                         ((_e.location = `${ze - 1},${Pe}`), J.push({ ..._e }));
                     }));
                   let Ge;
@@ -15384,28 +15384,28 @@ const bs = new Eh(),
               const Y = $.draggedStockItem,
                 he = (Y.location || "0,0").split(","),
                 je = Number(he[0] || "0"),
-                Te = ae.medMapStock.findIndex((Ee) => Ee.GUID === Y.GUID);
+                Te = ae.medMapStock.findIndex((Me) => Me.GUID === Y.GUID);
               (Te !== -1 &&
                 (ae.medMapStock.splice(Te, 1),
-                ae.medMapStock.forEach((Ee) => {
-                  const Re = (Ee.location || "0,0").split(","),
+                ae.medMapStock.forEach((Me) => {
+                  const Re = (Me.location || "0,0").split(","),
                     He = Number(Re[0] || "0"),
                     Oe = Number(Re[1] || "0");
                   He > je &&
-                    ((Ee.location = `${He - 1},${Oe}`), J.push({ ...Ee }));
+                    ((Me.location = `${He - 1},${Oe}`), J.push({ ...Me }));
                 })),
                 (Y.location = "0,0"),
                 (Y.shelf_guid = ee.GUID),
                 ee.medMapStock || (ee.medMapStock = []),
-                ee.medMapStock.forEach((Ee) => {
-                  const Re = (Ee.location || "0,0").split(","),
+                ee.medMapStock.forEach((Me) => {
+                  const Re = (Me.location || "0,0").split(","),
                     He = Number(Re[0] || "0"),
                     Oe = Number(Re[1] || "0");
-                  ((Ee.location = `${He + 1},${Oe}`), J.push({ ...Ee }));
+                  ((Me.location = `${He + 1},${Oe}`), J.push({ ...Me }));
                 }),
                 ee.medMapStock.push(Y),
-                ee.medMapStock.sort((Ee, Re) => {
-                  const He = (Ee.location || "0,0").split(","),
+                ee.medMapStock.sort((Me, Re) => {
+                  const He = (Me.location || "0,0").split(","),
                     Oe = (Re.location || "0,0").split(",");
                   return Number(He[0] || "0") - Number(Oe[0] || "0");
                 }),
@@ -15422,14 +15422,14 @@ const bs = new Eh(),
                     (ee == null ? void 0 : ee.serverType) ||
                     (ae == null ? void 0 : ae.serverType) ||
                     "",
-                  je = await Me.updateStock(J, Y, he);
+                  je = await Ee.updateStock(J, Y, he);
                 if (je.Code === 200) {
                   m("藥品位置更新成功", "success");
                   try {
-                    const Te = await Me.getMedMapByDepartment(s);
+                    const Te = await Ee.getMedMapByDepartment(s);
                     if (Te.Code === 200 && Te.Data) {
-                      const Ee = Rt.convertMedMapApiToFakeData(Te.Data);
-                      Rt.validateConvertedData(Ee) && l(Ee);
+                      const Me = Rt.convertMedMapApiToFakeData(Te.Data);
+                      Rt.validateConvertedData(Me) && l(Me);
                     }
                   } catch (Te) {
                     console.error("刷新數據失敗:", Te);
@@ -15537,24 +15537,24 @@ const bs = new Eh(),
                 ),
                 console.error("  - originalTargetPosition:", J),
                 console.error("  - dropTarget.container:", U.container)));
-            const Ee = fe(Te || "0,0");
-            let Re = Ee.row,
-              He = Ee.col;
+            const Me = fe(Te || "0,0");
+            let Re = Me.row,
+              He = Me.col;
             switch (
               (console.log("計算後的新位置 (插入前):", { row: Re, col: He }),
               U.direction)
             ) {
               case "top":
-                Re = Math.max(0, Ee.row);
+                Re = Math.max(0, Me.row);
                 break;
               case "bottom":
-                Re = Ee.row + 1;
+                Re = Me.row + 1;
                 break;
               case "left":
-                He = Math.max(0, Ee.col);
+                He = Math.max(0, Me.col);
                 break;
               case "right":
-                He = Ee.col + 1;
+                He = Me.col + 1;
                 break;
             }
             let Oe = (he == null ? void 0 : he.container) || U.container;
@@ -15679,28 +15679,28 @@ const bs = new Eh(),
           }
           (console.log("------目標容器", U),
             console.log("------拖曳容器", $.draggedContainer));
-          let Ee = (ae == null ? void 0 : ae.container) || U.container;
+          let Me = (ae == null ? void 0 : ae.container) || U.container;
           if (
             (console.log($.draggedContainer.class),
             console.log(U.container.class),
             console.log($.draggedContainer.class != U.container.class),
             $.draggedContainer.class != U.container.class &&
-              ((Ee = U.container),
+              ((Me = U.container),
               console.log("------這邊顯示放到上層容器現象"),
               console.log("------目標容器", U),
               console.log("------拖曳容器", $.draggedContainer),
-              console.log("------目標父容器", Ee)),
+              console.log("------目標父容器", Me)),
             $.draggedContainer.type === "med_box" &&
               U.container.type !== "med_box")
           )
             if (
               (console.log("藥盒移動目標到層架上"),
-              (Ee = U.container),
-              Ee.contents.length > 0)
+              (Me = U.container),
+              Me.contents.length > 0)
             ) {
               let Re = 0,
                 He = 0;
-              Ee.contents.forEach((Oe) => {
+              Me.contents.forEach((Oe) => {
                 const Le = fe(Oe.gird_position || "0,0").row,
                   Ge = fe(Oe.gird_position || "0,0").col;
                 (Re > Le && (Re = Le), He > Ge && (He = Ge));
@@ -15708,11 +15708,11 @@ const bs = new Eh(),
               for (let Oe = 0; Oe <= He; Oe++)
                 for (let Le = 0; Le <= Re; Le++) {
                   const Ge = `${Oe},${Le}`;
-                  Ee.contents.filter(($e) => $e.grid_position === Ge).length ===
+                  Me.contents.filter(($e) => $e.grid_position === Ge).length ===
                     0 && ((je = Oe), (Te = Le));
                 }
             } else ((je = 0), (Te = 0));
-          ((re = Ee), be(Ee, $.draggedContainer, je, Te, U.direction));
+          ((re = Me), be(Me, $.draggedContainer, je, Te, U.direction));
         } else
           (console.log("無效拖放，復原所有容器位置"),
             $.originalData &&
@@ -16319,10 +16319,10 @@ const bs = new Eh(),
                   .sort((Re, He) => Re - He),
                 Te = je.length;
               Math.max(...je.map((Re) => he[Re].length));
-              const Ee = x.width ? x.width * 5 : 500;
+              const Me = x.width ? x.width * 5 : 500;
               return r.jsx("div", {
                 className: "flex h-full",
-                style: { minWidth: `${Ee}px` },
+                style: { minWidth: `${Me}px` },
                 children: je.map((Re) => {
                   const He = he[Re].sort((_e, $e) => $e._depth - _e._depth),
                     Oe = Te > 0 ? 100 / Te : 100,
@@ -16663,8 +16663,8 @@ const bs = new Eh(),
                       className: "h-full",
                       children: Array.from({ length: Q + 1 }, (he, je) => {
                         const Te = `${Y},${je}`,
-                          Ee = ee[Te];
-                        return Ee
+                          Me = ee[Te];
+                        return Me
                           ? r.jsxs(
                               "td",
                               {
@@ -16677,9 +16677,9 @@ const bs = new Eh(),
                                   position: "relative",
                                 },
                                 children: [
-                                  Wn(Ee),
+                                  Wn(Me),
                                   (U == null ? void 0 : U.container.GUID) ===
-                                    Ee.GUID &&
+                                    Me.GUID &&
                                     r.jsx("div", {
                                       className:
                                         "absolute inset-0 pointer-events-none",
@@ -16869,13 +16869,13 @@ const bs = new Eh(),
               he = me.width / 2,
               je = me.height / 2,
               Te = he - ae * k.scale,
-              Ee = je - Y * k.scale;
-            (f((Re) => ({ ...Re, x: Te, y: Ee })),
+              Me = je - Y * k.scale;
+            (f((Re) => ({ ...Re, x: Te, y: Me })),
               console.log("✅ 定位完成", {
                 elementScreenCenter: { x: J, y: ee },
                 elementCanvasPos: { x: ae, y: Y },
                 screenCenter: { x: he, y: je },
-                newTransform: { x: Te, y: Ee },
+                newTransform: { x: Te, y: Me },
               }),
               m(`已定位到藥品：${x.CHT_NAME || x.NAME || K}`, "success"));
           } else
@@ -16899,7 +16899,7 @@ const bs = new Eh(),
           try {
             const Q = K.serverName || "",
               J = K.serverType || "",
-              ee = await Me.updateStock([me], Q, J);
+              ee = await Ee.updateStock([me], Q, J);
             if ((console.log(ee), ee.Code === 200)) {
               const ae = K.medMapStock.findIndex((Y) => Y.GUID === x.GUID);
               (ae !== -1 &&
@@ -16921,7 +16921,7 @@ const bs = new Eh(),
           try {
             console.log("🔍 [手動輸入] 搜尋條碼:", A);
             const re = performance.now(),
-              z = await Me.searchByBarCode(A.trim()),
+              z = await Ee.searchByBarCode(A.trim()),
               me = performance.now();
             if (
               (console.log(
@@ -17158,21 +17158,21 @@ const Ph = async (e) => {
       (t.length > 0 &&
         (console.log("📦 更新藥盒資料:", t),
         a.push(
-          Me.updateMedMapBox(t)
+          Ee.updateMedMapBox(t)
             .then((i) => ({ type: "med_box", response: i, count: t.length }))
             .catch((i) => ({ type: "med_box", error: i, count: t.length })),
         )),
       n.length > 0 &&
         (console.log("🗂️ 更新抽屜資料:", n),
         a.push(
-          Me.updateMedMapDrawer(n)
+          Ee.updateMedMapDrawer(n)
             .then((i) => ({ type: "drawer", response: i, count: n.length }))
             .catch((i) => ({ type: "drawer", error: i, count: n.length })),
         )),
       s.length > 0 &&
         (console.log("🏪 更新層架資料:", s),
         a.push(
-          Me.updateMedMapShelf(s)
+          Ee.updateMedMapShelf(s)
             .then((i) => ({ type: "shelf", response: i, count: s.length }))
             .catch((i) => ({ type: "shelf", error: i, count: s.length })),
         )),
@@ -17180,7 +17180,7 @@ const Ph = async (e) => {
         (console.log("🏢 更新父容器資料:", o),
         o.forEach((i) => {
           a.push(
-            Me.updateContainerPosition(i)
+            Ee.updateContainerPosition(i)
               .then((c) => ({
                 type: "parent_container",
                 response: c,
@@ -17192,7 +17192,7 @@ const Ph = async (e) => {
       l.length > 0 &&
         (console.log("📁 更新子容器資料:", l),
         a.push(
-          Me.updateSubSection(l)
+          Ee.updateSubSection(l)
             .then((i) => ({
               type: "sub_container",
               response: i,
@@ -17427,7 +17427,7 @@ const Ph = async (e) => {
               serverType: se.serverType || "",
             };
           console.log("🚀 發送新增藥盒 API 請求:", W);
-          const le = await Me.addMedMapBox(W);
+          const le = await Ee.addMedMapBox(W);
           le.Code === 200
             ? (a("藥盒新增成功", "success"), t(), await ke())
             : a(`藥盒新增失敗：${le.Result || "未知錯誤"}`, "error");
@@ -17464,11 +17464,11 @@ const Ph = async (e) => {
               serverName: n.serverName,
               serverType: n.serverType,
             };
-            O.push(Me.updateMedMapBox([ye]));
+            O.push(Ee.updateMedMapBox([ye]));
           }
           be &&
             O.push(
-              Me.updateEpd266Storages(n.serverName || "", n.serverType || "", [
+              Ee.updateEpd266Storages(n.serverName || "", n.serverType || "", [
                 n.storage,
               ]),
             );
@@ -17496,7 +17496,7 @@ const Ph = async (e) => {
         }
         (console.log("🔄 重新獲取藥品地圖資料，部門類型:", s), l(!0));
         try {
-          const ne = await Me.getMedMapByDepartment(s);
+          const ne = await Ee.getMedMapByDepartment(s);
           if (ne.Code === 200 && ne.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const D = await $h(() => Promise.resolve().then(() => sh), void 0),
@@ -17552,7 +17552,7 @@ const Ph = async (e) => {
         if (n)
           try {
             console.log("🚀 開始更新藥盒藥品代碼:", ne.CODE);
-            const D = await Me.updateEpd266Medcode(
+            const D = await Ee.updateEpd266Medcode(
               n.serverName || "",
               n.serverType || "",
               ne.CODE,
@@ -18077,7 +18077,7 @@ const Ph = async (e) => {
       d = async () => {
         k(!0);
         try {
-          const S = await Me.searchMedicine(h, m);
+          const S = await Ee.searchMedicine(h, m);
           b(S);
         } catch (S) {
           (console.error("Search failed:", S), b([]));
@@ -18677,7 +18677,7 @@ const Ph = async (e) => {
               Data: n.drawer,
             };
             console.log("🚀 發送更新藥品 API 請求:", O);
-            const oe = await Me.request("/api/device/update_drawer_medcode", {
+            const oe = await Ee.request("/api/device/update_drawer_medcode", {
               method: "POST",
               body: JSON.stringify(O),
             });
@@ -18802,7 +18802,7 @@ const Ph = async (e) => {
               Data: { IP: n.ip, Boxes: n.Boxes },
             };
             console.log("🚀 發送 API 請求:", pe);
-            const C = await Me.request("/api/device/separate_drawer_boxes", {
+            const C = await Ee.request("/api/device/separate_drawer_boxes", {
               method: "POST",
               body: JSON.stringify(pe),
             });
@@ -18871,7 +18871,7 @@ const Ph = async (e) => {
               Data: { IP: n.ip, Boxes: n.Boxes },
             };
             console.log("🚀 發送 API 請求:", pe);
-            const C = await Me.request("/api/device/combine_drawer_boxes", {
+            const C = await Ee.request("/api/device/combine_drawer_boxes", {
               method: "POST",
               body: JSON.stringify(pe),
             });
@@ -18923,7 +18923,7 @@ const Ph = async (e) => {
               Data: [n.drawer],
             };
             console.log("🚀 發送確認更新 API 請求:", W);
-            const le = await Me.request("/api/device/update_epd583_drawers", {
+            const le = await Ee.request("/api/device/update_epd583_drawers", {
               method: "POST",
               body: JSON.stringify(W),
             });
@@ -19570,7 +19570,7 @@ const Ph = async (e) => {
           try {
             const M = `${i.row},${i.col}`;
             console.log(n);
-            const A = await Me.addMedMapSection(n.GUID, M, n.name, n.type);
+            const A = await Ee.addMedMapSection(n.GUID, M, n.name, n.type);
             if (A.Code === 200) {
               const se = {
                 GUID: A.Data.GUID,
@@ -19952,7 +19952,7 @@ const Ph = async (e) => {
               $ = Gc.find((U) => U.value === g);
             let Ne;
             ($ != null && $.isShelf
-              ? (Ne = await Me.addMedMapShelf({
+              ? (Ne = await Ee.addMedMapShelf({
                   Master_GUID: n.GUID,
                   position: H,
                   width: p,
@@ -19962,7 +19962,7 @@ const Ph = async (e) => {
                   serverName: n.name,
                   serverType: n.type,
                 }))
-              : (Ne = await Me.addMedMapDrawer({
+              : (Ne = await Ee.addMedMapDrawer({
                   Master_GUID: n.GUID,
                   position: H,
                   width: p,
@@ -19990,7 +19990,7 @@ const Ph = async (e) => {
         }
         (console.log("🔄 重新獲取藥品地圖資料，部門類型:", s), l(!0));
         try {
-          const H = await Me.getMedMapByDepartment(s);
+          const H = await Ee.getMedMapByDepartment(s);
           if (H.Code === 200 && H.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const $ = Rt.convertMedMapApiToFakeData(H.Data);
@@ -20419,7 +20419,7 @@ const Ph = async (e) => {
           b(!0);
           try {
             const M = `${i.row},${i.col}`,
-              A = await Me.addSubSection(n.GUID, M);
+              A = await Ee.addSubSection(n.GUID, M);
             if (A.Code === 200) {
               const se = {
                 GUID: A.Data.GUID,
@@ -20715,7 +20715,7 @@ const Ph = async (e) => {
           console.log(
             `正在載入藥品資料... ServerName: ${oe}, ServerType: ${V}`,
           );
-          const ye = await Me.getStock(oe, V);
+          const ye = await Ee.getStock(oe, V);
           ye.Code === 200 && ye.Data
             ? (ge(ye.Data),
               console.log(`成功載入 ${ye.Data.length} 筆藥品資料`),
@@ -20979,28 +20979,8 @@ const Ph = async (e) => {
                 qty: V,
                 shelf_guid: n.GUID,
               },
-              we = await Me.updateStock([ce], n.serverName, n.serverType);
+              we = await Ee.updateStock([ce], n.serverName, n.serverType);
             if ((console.log("==============>", ce), we.Code === 200)) {
-              if (a) {
-                const C = { ...a, shelf_guid: "" };
-                (console.log("==============>", a),
-                  console.log(
-                    "📤 發送備份資料更新請求（shelf_guid 改為空字串）:",
-                    C,
-                  ));
-                try {
-                  const R = await Me.updateStock(
-                    [C],
-                    n.serverName,
-                    n.serverType,
-                  );
-                  R.Code === 200
-                    ? console.log("✅ 備份資料更新成功")
-                    : console.warn("⚠️ 備份資料更新失敗:", R.Result);
-                } catch (R) {
-                  console.error("❌ 備份資料更新錯誤:", R);
-                }
-              }
               (c(n.GUID, l.GUID, ce), console.log("檢查有無貨物批次被刪除"));
               const pe = y.filter((C) => !oe.includes(C));
               if ((console.log(pe), pe.length > 0)) {
@@ -21017,7 +20997,7 @@ const Ph = async (e) => {
                   for (const R of pe)
                     try {
                       console.log(`🗑️ 正在刪除批次，GUID: ${C}, 效期: ${R}`);
-                      const q = await Me.stockDeleteValidityPeriod(C, R);
+                      const q = await Ee.stockDeleteValidityPeriod(C, R);
                       q.Code === 200
                         ? console.log(`✅ 成功刪除批次效期: ${R}`)
                         : console.warn(
@@ -21052,7 +21032,7 @@ const Ph = async (e) => {
                   qty: V,
                   shelf_guid: n.GUID,
                 }),
-                  (ce = await Me.addStock([we], n.serverName, n.serverType)));
+                  (ce = await Ee.addStock([we], n.serverName, n.serverType)));
               else return;
             else
               ((we = {
@@ -21073,7 +21053,7 @@ const Ph = async (e) => {
                   B &&
                   ((we.GUID = B),
                   console.log("🆔 藥品無儲位，帶入藥品 GUID:", B)),
-                (ce = await Me.updateStock([we], n.serverName, n.serverType)));
+                (ce = await Ee.updateStock([we], n.serverName, n.serverType)));
             ce.Code === 200
               ? (o(n.GUID, {
                   GUID:
@@ -22008,7 +21988,7 @@ const Ph = async (e) => {
         }
         j(!0);
         try {
-          const I = await Me.addMedMap(c.name, c.type, g);
+          const I = await Ee.addMedMap(c.name, c.type, g);
           I.Code === 200
             ? (l("新增部門成功", "success"), await i(), v())
             : l(I.Result || "新增部門失敗", "error");
@@ -22303,7 +22283,7 @@ const Ph = async (e) => {
             }
           (P.includes(a.trim()) || P.push(a.trim()),
             console.log("📋 處理後的 BARCODE2 陣列:", P));
-          const X = await Me.addMedClouds(
+          const X = await Ee.addMedClouds(
             a.trim(),
             c.trim(),
             JSON.stringify(P),
@@ -22984,7 +22964,7 @@ const Ph = async (e) => {
       }, []));
     const B = async () => {
         try {
-          const D = await Me.getAllStaffInfo();
+          const D = await Ee.getAllStaffInfo();
           D.Code === 200 && D.Data && S(D.Data);
         } catch (D) {
           console.error("獲取人員資料失敗:", D);
@@ -23094,7 +23074,7 @@ const Ph = async (e) => {
           try {
             const fe = De();
             if (n === "requisition") {
-              const W = await Me.updateRequisitionActualQuantity(s.GUID, l);
+              const W = await Ee.updateRequisitionActualQuantity(s.GUID, l);
               if (W.Code !== 200) {
                 (alert(`更新實際撥發量失敗：${W.Message || "未知錯誤"}`),
                   k(!1));
@@ -23109,7 +23089,7 @@ const Ph = async (e) => {
                 issueTime: fe,
               };
               console.log("申領request", le);
-              const be = await Me.updateRequisitionByGuid(le);
+              const be = await Ee.updateRequisitionByGuid(le);
               if (be.Code !== 200) {
                 (alert(`申領過帳失敗：${be.Message || "未知錯誤"}`), k(!1));
                 return;
@@ -23122,7 +23102,7 @@ const Ph = async (e) => {
                 issueTime: fe,
               });
             } else {
-              const W = await Me.updateDistributionActualQuantity(s.GUID, l);
+              const W = await Ee.updateDistributionActualQuantity(s.GUID, l);
               if (W.Code !== 200) {
                 (alert(`更新實際撥發量失敗：${W.Message || "未知錯誤"}`),
                   k(!1));
@@ -23137,7 +23117,7 @@ const Ph = async (e) => {
                 issuanceTime: fe,
               };
               console.log("撥補request", le);
-              const be = await Me.updateDistributionByGuid(le);
+              const be = await Ee.updateDistributionByGuid(le);
               if (be.Code !== 200) {
                 (alert(`撥補過帳失敗：${be.Message || "未知錯誤"}`), k(!1));
                 return;
@@ -23580,7 +23560,7 @@ const Ph = async (e) => {
         }
         ((P[X] = { ...N, notice: L }), c(P));
         try {
-          const w = await Me.updateRequisitionNotice(N.GUID, L);
+          const w = await Ee.updateRequisitionNotice(N.GUID, L);
           w.Code !== 200
             ? ((P[X] = { ...N, notice: N.notice }),
               c(P),
@@ -23605,7 +23585,7 @@ const Ph = async (e) => {
         }
         ((P[X] = { ...N, notice: L }), g(P));
         try {
-          const w = await Me.updateDistributionNotice(N.GUID, L);
+          const w = await Ee.updateDistributionNotice(N.GUID, L);
           w.Code !== 200
             ? ((P[X] = { ...N, notice: N.notice }),
               g(P),
@@ -24078,8 +24058,8 @@ const Ph = async (e) => {
             N = `${_.getFullYear()}-${String(_.getMonth() + 1).padStart(2, "0")}-${String(_.getDate()).padStart(2, "0")} 00:00:00`,
             L = `${_.getFullYear()}-${String(_.getMonth() + 1).padStart(2, "0")}-${String(_.getDate()).padStart(2, "0")} 23:59:59`,
             [P, X] = await Promise.all([
-              Me.getRequisitionByTime(N, L),
-              Me.getDistributionByTime(N, L),
+              Ee.getRequisitionByTime(N, L),
+              Ee.getDistributionByTime(N, L),
             ]),
             w = [];
           if (P.Code === 200 && P.Data) {
@@ -24458,7 +24438,7 @@ const Ph = async (e) => {
                   },
                 ],
               },
-              b = `${(await Me.getConfig()).domain}/api/medmap/update_shelf`,
+              b = `${(await Ee.getConfig()).domain}/api/medmap/update_shelf`,
               k = await (
                 await fetch(b, {
                   method: "POST",
@@ -24775,7 +24755,7 @@ const Ph = async (e) => {
               },
             ];
             console.log("=========", j, "=========");
-            const b = await Me.updateMedMapSection(j);
+            const b = await Ee.updateMedMapSection(j);
             b.Code === 200
               ? (s("父容器更新成功", "success"),
                 o(n.GUID, {
@@ -25023,7 +25003,7 @@ const Ph = async (e) => {
         }
         (g(!0), p(""));
         try {
-          const k = await Me.login({ ID: s.trim(), Password: l });
+          const k = await Ee.login({ ID: s.trim(), Password: l });
           if (k.Code === 200 && k.Data) {
             const f = { ...k.Data, loginTime: new Date().toISOString() };
             (localStorage.setItem("user_session", JSON.stringify(f)), t(f));
@@ -25320,7 +25300,7 @@ function eg() {
             A(!0);
             try {
               console.log("開始載入藥品資料...");
-              const X = await Me.getMedicineCloud();
+              const X = await Ee.getMedicineCloud();
               if ((console.log("藥品資料 API 回應:", X), !L)) return;
               X.Code === 200 && X.Data
                 ? (M(X.Data),
