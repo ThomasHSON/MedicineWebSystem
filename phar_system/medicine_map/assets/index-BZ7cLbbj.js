@@ -484,12 +484,12 @@ var r = Bc.exports,
  * LICENSE file in the root directory of this source tree.
  */ (function (e) {
   function t(w, B) {
-    var ee = w.length;
+    var te = w.length;
     w.push(B);
-    e: for (; 0 < ee; ) {
-      var H = (ee - 1) >>> 1,
-        A = w[H];
-      if (0 < o(A, B)) ((w[H] = B), (w[ee] = A), (ee = H));
+    e: for (; 0 < te; ) {
+      var H = (te - 1) >>> 1,
+        $ = w[H];
+      if (0 < o($, B)) ((w[H] = B), (w[te] = $), (te = H));
       else break e;
     }
   }
@@ -499,27 +499,27 @@ var r = Bc.exports,
   function s(w) {
     if (w.length === 0) return null;
     var B = w[0],
-      ee = w.pop();
-    if (ee !== B) {
-      w[0] = ee;
-      e: for (var H = 0, A = w.length, Ne = A >>> 1; H < Ne; ) {
+      te = w.pop();
+    if (te !== B) {
+      w[0] = te;
+      e: for (var H = 0, $ = w.length, Ne = $ >>> 1; H < Ne; ) {
         var U = 2 * (H + 1) - 1,
           G = w[U],
           ge = U + 1,
           Z = w[ge];
-        if (0 > o(G, ee))
-          ge < A && 0 > o(Z, G)
-            ? ((w[H] = Z), (w[ge] = ee), (H = ge))
-            : ((w[H] = G), (w[U] = ee), (H = U));
-        else if (ge < A && 0 > o(Z, ee)) ((w[H] = Z), (w[ge] = ee), (H = ge));
+        if (0 > o(G, te))
+          ge < $ && 0 > o(Z, G)
+            ? ((w[H] = Z), (w[ge] = te), (H = ge))
+            : ((w[H] = G), (w[U] = te), (H = U));
+        else if (ge < $ && 0 > o(Z, te)) ((w[H] = Z), (w[ge] = te), (H = ge));
         else break e;
       }
     }
     return B;
   }
   function o(w, B) {
-    var ee = w.sortIndex - B.sortIndex;
-    return ee !== 0 ? ee : w.id - B.id;
+    var te = w.sortIndex - B.sortIndex;
+    return te !== 0 ? te : w.id - B.id;
   }
   if (typeof performance == "object" && typeof performance.now == "function") {
     var l = performance;
@@ -567,7 +567,7 @@ var r = Bc.exports,
   }
   function E(w, B) {
     ((b = !1), T && ((T = !1), f(F), (F = -1)), (j = !0));
-    var ee = p;
+    var te = p;
     try {
       for (
         y(B), m = n(c);
@@ -576,9 +576,9 @@ var r = Bc.exports,
         var H = m.callback;
         if (typeof H == "function") {
           ((m.callback = null), (p = m.priorityLevel));
-          var A = H(m.expirationTime <= B);
+          var $ = H(m.expirationTime <= B);
           ((B = e.unstable_now()),
-            typeof A == "function" ? (m.callback = A) : m === n(c) && s(c),
+            typeof $ == "function" ? (m.callback = $) : m === n(c) && s(c),
             y(B));
         } else s(c);
         m = n(c);
@@ -590,21 +590,21 @@ var r = Bc.exports,
       }
       return Ne;
     } finally {
-      ((m = null), (p = ee), (j = !1));
+      ((m = null), (p = te), (j = !1));
     }
   }
   var S = !1,
     I = null,
     F = -1,
     M = 5,
-    $ = -1;
+    A = -1;
   function se() {
-    return !(e.unstable_now() - $ < M);
+    return !(e.unstable_now() - A < M);
   }
   function ve() {
     if (I !== null) {
       var w = e.unstable_now();
-      $ = w;
+      A = w;
       var B = !0;
       try {
         B = I(!0, w);
@@ -672,12 +672,12 @@ var r = Bc.exports,
         default:
           B = p;
       }
-      var ee = p;
+      var te = p;
       p = B;
       try {
         return w();
       } finally {
-        p = ee;
+        p = te;
       }
     }),
     (e.unstable_pauseExecution = function () {}),
@@ -693,55 +693,55 @@ var r = Bc.exports,
         default:
           w = 3;
       }
-      var ee = p;
+      var te = p;
       p = w;
       try {
         return B();
       } finally {
-        p = ee;
+        p = te;
       }
     }),
-    (e.unstable_scheduleCallback = function (w, B, ee) {
+    (e.unstable_scheduleCallback = function (w, B, te) {
       var H = e.unstable_now();
       switch (
-        (typeof ee == "object" && ee !== null
-          ? ((ee = ee.delay),
-            (ee = typeof ee == "number" && 0 < ee ? H + ee : H))
-          : (ee = H),
+        (typeof te == "object" && te !== null
+          ? ((te = te.delay),
+            (te = typeof te == "number" && 0 < te ? H + te : H))
+          : (te = H),
         w)
       ) {
         case 1:
-          var A = -1;
+          var $ = -1;
           break;
         case 2:
-          A = 250;
+          $ = 250;
           break;
         case 5:
-          A = 1073741823;
+          $ = 1073741823;
           break;
         case 4:
-          A = 1e4;
+          $ = 1e4;
           break;
         default:
-          A = 5e3;
+          $ = 5e3;
       }
       return (
-        (A = ee + A),
+        ($ = te + $),
         (w = {
           id: g++,
           callback: B,
           priorityLevel: w,
-          startTime: ee,
-          expirationTime: A,
+          startTime: te,
+          expirationTime: $,
           sortIndex: -1,
         }),
-        ee > H
-          ? ((w.sortIndex = ee),
+        te > H
+          ? ((w.sortIndex = te),
             t(h, w),
             n(c) === null &&
               w === n(h) &&
-              (T ? (f(F), (F = -1)) : (T = !0), X(v, ee - H)))
-          : ((w.sortIndex = A), t(c, w), b || j || ((b = !0), P(E))),
+              (T ? (f(F), (F = -1)) : (T = !0), X(v, te - H)))
+          : ((w.sortIndex = $), t(c, w), b || j || ((b = !0), P(E))),
         w
       );
     }),
@@ -749,12 +749,12 @@ var r = Bc.exports,
     (e.unstable_wrapCallback = function (w) {
       var B = p;
       return function () {
-        var ee = p;
+        var te = p;
         p = B;
         try {
           return w.apply(this, arguments);
         } finally {
-          p = ee;
+          p = te;
         }
       };
     }));
@@ -3978,15 +3978,15 @@ function eu(e) {
       F++
     ) {
       I.index > F ? ((M = I), (I = null)) : (M = I.sibling);
-      var $ = p(f, I, y[F], v);
-      if ($ === null) {
+      var A = p(f, I, y[F], v);
+      if (A === null) {
         I === null && (I = M);
         break;
       }
-      (e && I && $.alternate === null && t(f, I),
-        (d = l($, d, F)),
-        S === null ? (E = $) : (S.sibling = $),
-        (S = $),
+      (e && I && A.alternate === null && t(f, I),
+        (d = l(A, d, F)),
+        S === null ? (E = A) : (S.sibling = A),
+        (S = A),
         (I = M));
     }
     if (F === y.length) return (n(f, I), nt && Qn(f, F), E);
@@ -4020,12 +4020,12 @@ function eu(e) {
     if (typeof E != "function") throw Error(de(150));
     if (((y = E.call(y)), y == null)) throw Error(de(151));
     for (
-      var S = (E = null), I = d, F = (d = 0), M = null, $ = y.next();
-      I !== null && !$.done;
-      F++, $ = y.next()
+      var S = (E = null), I = d, F = (d = 0), M = null, A = y.next();
+      I !== null && !A.done;
+      F++, A = y.next()
     ) {
       I.index > F ? ((M = I), (I = null)) : (M = I.sibling);
-      var se = p(f, I, $.value, v);
+      var se = p(f, I, A.value, v);
       if (se === null) {
         I === null && (I = M);
         break;
@@ -4036,23 +4036,23 @@ function eu(e) {
         (S = se),
         (I = M));
     }
-    if ($.done) return (n(f, I), nt && Qn(f, F), E);
+    if (A.done) return (n(f, I), nt && Qn(f, F), E);
     if (I === null) {
-      for (; !$.done; F++, $ = y.next())
-        (($ = m(f, $.value, v)),
-          $ !== null &&
-            ((d = l($, d, F)),
-            S === null ? (E = $) : (S.sibling = $),
-            (S = $)));
+      for (; !A.done; F++, A = y.next())
+        ((A = m(f, A.value, v)),
+          A !== null &&
+            ((d = l(A, d, F)),
+            S === null ? (E = A) : (S.sibling = A),
+            (S = A)));
       return (nt && Qn(f, F), E);
     }
-    for (I = s(f, I); !$.done; F++, $ = y.next())
-      (($ = j(I, f, F, $.value, v)),
-        $ !== null &&
-          (e && $.alternate !== null && I.delete($.key === null ? F : $.key),
-          (d = l($, d, F)),
-          S === null ? (E = $) : (S.sibling = $),
-          (S = $)));
+    for (I = s(f, I); !A.done; F++, A = y.next())
+      ((A = j(I, f, F, A.value, v)),
+        A !== null &&
+          (e && A.alternate !== null && I.delete(A.key === null ? F : A.key),
+          (d = l(A, d, F)),
+          S === null ? (E = A) : (S.sibling = A),
+          (S = A)));
     return (
       e &&
         I.forEach(function (ve) {
@@ -9874,27 +9874,27 @@ const Rt = new rh(),
       [y, v] = u.useState(!1),
       [E, S] = u.useState(null),
       [I, F] = u.useState("edit"),
-      [M, $] = u.useState(!1),
+      [M, A] = u.useState(!1),
       [se, ve] = u.useState(null),
       [_, N] = u.useState(!1),
       [L, P] = u.useState(null),
       [X, w] = u.useState(!1),
-      [B, ee] = u.useState(!1),
-      [H, A] = u.useState(null),
+      [B, te] = u.useState(!1),
+      [H, $] = u.useState(null),
       [Ne, U] = u.useState(!1),
       [G, ge] = u.useState(null),
       [Z, ke] = u.useState(!1),
-      [Ee, De] = u.useState(null),
-      [Be, te] = u.useState(!1),
+      [Ie, De] = u.useState(null),
+      [Be, ne] = u.useState(!1),
       [D, xe] = u.useState(null),
       [fe, W] = u.useState(null),
       [le, be] = u.useState(null),
       [O, oe] = u.useState("add"),
       [V, ye] = u.useState(!1),
-      [ie, we] = u.useState([]),
+      [ce, we] = u.useState([]),
       [pe, C] = u.useState([]),
       [R, q] = u.useState(!1),
-      [ue, ae] = u.useState(!1),
+      [ue, ie] = u.useState(!1),
       [Se, Ue] = u.useState(""),
       [We, ct] = u.useState(!1),
       [Et, It] = u.useState(""),
@@ -9905,24 +9905,24 @@ const Rt = new rh(),
       [Yr, Qr] = u.useState(null),
       [dl, Xr] = u.useState(!1),
       [x, K] = u.useState(null),
-      [ne, z] = u.useState(null),
+      [re, z] = u.useState(null),
       me = () => {
         (localStorage.removeItem("user_session"), n(!1), o(null));
       },
       Q = u.useCallback(() => {
-        k(($e) => $e + 1);
+        k((Ae) => Ae + 1);
       }, []),
-      J = u.useCallback(($e, Xe) => {
-        d({ message: $e, type: Xe, isVisible: !0 });
+      J = u.useCallback((Ae, Xe) => {
+        d({ message: Ae, type: Xe, isVisible: !0 });
       }, []),
-      re = u.useCallback(() => {
-        d(($e) => ({ ...$e, isVisible: !1 }));
+      ee = u.useCallback(() => {
+        d((Ae) => ({ ...Ae, isVisible: !1 }));
       }, []),
-      ce = ($e) => {
-        (S($e), F("edit"), v(!0));
+      ae = (Ae) => {
+        (S(Ae), F("edit"), v(!0));
       },
       Y = () => {
-        const $e = {
+        const Ae = {
           GUID: `new_medbox_${Date.now()}`,
           name: "",
           box_type: "",
@@ -9931,54 +9931,54 @@ const Rt = new rh(),
           med_info: [],
           parentShelf: null,
         };
-        (S($e), F("add"), v(!0));
+        (S(Ae), F("add"), v(!0));
       },
       he = () => {
         (v(!1), S(null), F("edit"));
       },
-      je = ($e) => {
-        (ve($e), $(!0));
-      },
-      Ae = () => {
-        ($(!1), ve(null));
-      },
-      Ie = ($e) => {
-        (P($e), N(!0));
+      je = (Ae) => {
+        (ve(Ae), A(!0));
       },
       Te = () => {
+        (A(!1), ve(null));
+      },
+      Ee = (Ae) => {
+        (P(Ae), N(!0));
+      },
+      Re = () => {
         (N(!1), P(null));
       },
-      He = ($e) => {
-        (A($e), ee(!0));
+      He = (Ae) => {
+        ($(Ae), te(!0));
       },
       Oe = () => {
-        (ee(!1), A(null));
+        (te(!1), $(null));
       },
-      Le = ($e) => {
-        (ge($e), U(!0));
+      Le = (Ae) => {
+        (ge(Ae), U(!0));
       },
       Ge = () => {
         (U(!1), ge(null));
       },
-      _e = ($e) => {
-        (De($e), ke(!0));
+      _e = (Ae) => {
+        (De(Ae), ke(!0));
       },
-      Re = () => {
+      $e = () => {
         (ke(!1), De(null));
       },
-      ze = ($e) => {
-        (xe($e), W(null), oe("add"), te(!0));
+      ze = (Ae) => {
+        (xe(Ae), W(null), oe("add"), ne(!0));
       },
-      Pe = ($e, Xe) => {
-        (xe($e), W(Xe));
+      Pe = (Ae, Xe) => {
+        (xe(Ae), W(Xe));
         const et = JSON.parse(JSON.stringify(Xe));
         (be(et),
           console.log("📋 深拷貝暫存原始貨物資料:", et),
           oe("edit"),
-          te(!0));
+          ne(!0));
       },
       rt = () => {
-        (te(!1), xe(null), W(null), be(null), oe("add"));
+        (ne(!1), xe(null), W(null), be(null), oe("add"));
       },
       Kr = () => {
         ye(!0);
@@ -9986,32 +9986,32 @@ const Rt = new rh(),
       ul = () => {
         ye(!1);
       },
-      ff = ($e = "") => {
-        (Ue($e), ae(!0));
+      ff = (Ae = "") => {
+        (Ue(Ae), ie(!0));
       },
       pf = () => {
-        ae(!1);
+        ie(!1);
       },
-      mf = ($e) => {
-        (It($e), ct(!0));
+      mf = (Ae) => {
+        (It(Ae), ct(!0));
       },
       hf = () => {
         (ct(!1), It(""));
       },
-      gf = ($e, Xe) => {
-        (qr($e), Wn(Xe || null), pn(!0));
+      gf = (Ae, Xe) => {
+        (qr(Ae), Wn(Xe || null), pn(!0));
       },
       xf = () => {
         (pn(!1), qr(null), Wn(null));
       },
-      yf = ($e) => {
-        (Qr($e), Wr(!0));
+      yf = (Ae) => {
+        (Qr(Ae), Wr(!0));
       },
       vf = () => {
         (Wr(!1), Qr(null));
       },
-      bf = ($e) => {
-        (K($e), Xr(!0));
+      bf = (Ae) => {
+        (K(Ae), Xr(!0));
       },
       wf = () => {
         (Xr(!1), K(null));
@@ -10023,23 +10023,23 @@ const Rt = new rh(),
         }
         (console.log("🔄 重新載入藥品地圖資料，部門類型:", i), w(!0));
         try {
-          const $e = await Me.getMedMapByDepartment(i);
-          if ($e.Code === 200 && $e.Data) {
-            console.log("📡 重新載入成功:", $e.Data);
-            const Xe = Rt.convertMedMapApiToFakeData($e.Data);
+          const Ae = await Me.getMedMapByDepartment(i);
+          if (Ae.Code === 200 && Ae.Data) {
+            console.log("📡 重新載入成功:", Ae.Data);
+            const Xe = Rt.convertMedMapApiToFakeData(Ae.Data);
             if (!Rt.validateConvertedData(Xe)) {
               (console.error("❌ 轉換後的資料驗證失敗"), g(null));
               return;
             }
             (g(Xe), console.log("✅ 地圖資料已重新載入"));
-          } else (console.error("❌ API 回傳錯誤:", $e), g(null));
-        } catch ($e) {
-          (console.error("💥 重新載入藥品地圖資料失敗:", $e), g(null));
+          } else (console.error("❌ API 回傳錯誤:", Ae), g(null));
+        } catch (Ae) {
+          (console.error("💥 重新載入藥品地圖資料失敗:", Ae), g(null));
         } finally {
           w(!1);
         }
       }, [i, w, g]),
-      jf = u.useCallback(($e, Xe) => {
+      jf = u.useCallback((Ae, Xe) => {
         g(
           (et) =>
             et &&
@@ -10056,7 +10056,7 @@ const Rt = new rh(),
                           return (
                             fr.contents &&
                               (fr.contents = fr.contents.map((Cn) => {
-                                if (Cn.GUID === $e) {
+                                if (Cn.GUID === Ae) {
                                   const Jt = { ...Cn };
                                   return (
                                     Jt.medMapStock || (Jt.medMapStock = []),
@@ -10077,7 +10077,7 @@ const Rt = new rh(),
             }),
         );
       }, []),
-      Sf = u.useCallback(($e, Xe, et) => {
+      Sf = u.useCallback((Ae, Xe, et) => {
         g(
           (mt) =>
             mt &&
@@ -10094,7 +10094,7 @@ const Rt = new rh(),
                           return (
                             Cn.contents &&
                               (Cn.contents = Cn.contents.map((Jt) => {
-                                if (Jt.GUID === $e && Jt.medMapStock) {
+                                if (Jt.GUID === Ae && Jt.medMapStock) {
                                   const _i = { ...Jt };
                                   return (
                                     (_i.medMapStock = Jt.medMapStock.map(
@@ -10117,12 +10117,12 @@ const Rt = new rh(),
             }),
         );
       }, []),
-      Cf = u.useCallback(($e, Xe) => {
+      Cf = u.useCallback((Ae, Xe) => {
         g((et) => {
           if (!et) return et;
           const mt = (xt) =>
             xt.map((tt) =>
-              tt.GUID === $e
+              tt.GUID === Ae
                 ? { ...tt, ...Xe }
                 : tt.contents && Array.isArray(tt.contents)
                   ? { ...tt, contents: mt(tt.contents) }
@@ -10131,12 +10131,12 @@ const Rt = new rh(),
           return mt(et);
         });
       }, []),
-      Df = u.useCallback(($e) => {
+      Df = u.useCallback((Ae) => {
         g((Xe) => {
           if (!Xe) return Xe;
           const et = (mt) =>
             mt
-              .filter((xt) => xt.GUID !== $e)
+              .filter((xt) => xt.GUID !== Ae)
               .map((xt) =>
                 xt.contents && Array.isArray(xt.contents)
                   ? { ...xt, contents: et(xt.contents) }
@@ -10145,12 +10145,12 @@ const Rt = new rh(),
           return et(Xe);
         });
       }, []),
-      kf = u.useCallback(($e, Xe) => {
+      kf = u.useCallback((Ae, Xe) => {
         g(
           (et) =>
             et &&
             et.map((mt) => {
-              if (mt.GUID === $e) {
+              if (mt.GUID === Ae) {
                 const xt = mt.contents ? [...mt.contents, Xe] : [Xe];
                 return { ...mt, contents: xt, medMap_Section: xt };
               }
@@ -10158,12 +10158,12 @@ const Rt = new rh(),
             }),
         );
       }, []),
-      _f = u.useCallback(($e, Xe) => {
+      _f = u.useCallback((Ae, Xe) => {
         g((et) => {
           if (!et) return et;
           const mt = (xt) =>
             xt.map((tt) => {
-              if (tt.GUID === $e) {
+              if (tt.GUID === Ae) {
                 const Sn = tt.contents ? [...tt.contents, Xe] : [Xe];
                 return { ...tt, contents: Sn };
               }
@@ -10196,34 +10196,34 @@ const Rt = new rh(),
         addStockToShelf: jf,
         notification: f,
         showNotification: J,
-        hideNotification: re,
+        hideNotification: ee,
         medBoxModalOpen: y,
         setMedBoxModalOpen: v,
         selectedMedBox: E,
         setSelectedMedBox: S,
-        openMedBoxModal: ce,
+        openMedBoxModal: ae,
         closeMedBoxModal: he,
         modalMode: I,
         setModalMode: F,
         openAddMedBoxModal: Y,
         listDrawModalOpen: M,
-        setListDrawModalOpen: $,
+        setListDrawModalOpen: A,
         selectedListDraw: se,
         setSelectedListDraw: ve,
         openListDrawModal: je,
-        closeListDrawModal: Ae,
+        closeListDrawModal: Te,
         gridDrawModalOpen: _,
         setGridDrawModalOpen: N,
         selectedGridDraw: L,
         setSelectedGridDraw: P,
-        openGridDrawModal: Ie,
-        closeGridDrawModal: Te,
+        openGridDrawModal: Ee,
+        closeGridDrawModal: Re,
         isLoadingMedMap: X,
         setIsLoadingMedMap: w,
         addParentContainerModalOpen: B,
-        setAddParentContainerModalOpen: ee,
+        setAddParentContainerModalOpen: te,
         selectedDepartmentForAdd: H,
-        setSelectedDepartmentForAdd: A,
+        setSelectedDepartmentForAdd: $,
         openAddParentContainerModal: He,
         closeAddParentContainerModal: Oe,
         addShelfDrawContainerModalOpen: Ne,
@@ -10234,12 +10234,12 @@ const Rt = new rh(),
         closeAddShelfDrawContainerModal: Ge,
         addSubContainerModalOpen: Z,
         setAddSubContainerModalOpen: ke,
-        selectedParentContainerForAdd: Ee,
+        selectedParentContainerForAdd: Ie,
         setSelectedParentContainerForAdd: De,
         openAddSubContainerModal: _e,
-        closeAddSubContainerModal: Re,
+        closeAddSubContainerModal: $e,
         addStoreItemModalOpen: Be,
-        setAddStoreItemModalOpen: te,
+        setAddStoreItemModalOpen: ne,
         selectedStoreShelfForAdd: D,
         setSelectedStoreShelfForAdd: xe,
         selectedStockItemForEdit: fe,
@@ -10257,14 +10257,14 @@ const Rt = new rh(),
         addSubContainerToLocalData: _f,
         addDepartmentModalOpen: V,
         setAddDepartmentModalOpen: ye,
-        allDepartmentsList: ie,
+        allDepartmentsList: ce,
         setAllDepartmentsList: we,
         openAddDepartmentModal: Kr,
         closeAddDepartmentModal: ul,
         reloadMedMapData: Nf,
         qrCodeScannerModalOpen: ue,
         qrCodeScannerMode: Se,
-        setQRCodeScannerModalOpen: ae,
+        setQRCodeScannerModalOpen: ie,
         openQRCodeScannerModal: ff,
         closeQRCodeScannerModal: pf,
         addBarcodeModalOpen: We,
@@ -10286,7 +10286,7 @@ const Rt = new rh(),
         setSelectedStoreShelfForEdit: Qr,
         openEditStoreShelfModal: yf,
         closeEditStoreShelfModal: vf,
-        activeCanvas: ne,
+        activeCanvas: re,
         setActiveCanvas: z,
         editParentContainerModalOpen: dl,
         setEditParentContainerModalOpen: Xr,
@@ -11190,7 +11190,7 @@ const Rt = new rh(),
       [S, I] = u.useState(!1),
       F = u.useRef(null),
       M = u.useRef(null),
-      $ = u.useRef(null),
+      A = u.useRef(null),
       se = u.useRef(null);
     (u.useEffect(() => {
       if (e) {
@@ -11219,8 +11219,8 @@ const Rt = new rh(),
     }, [e]),
       u.useEffect(() => {
         const w = (B) => {
-          ($.current &&
-            !$.current.contains(B.target) &&
+          (A.current &&
+            !A.current.contains(B.target) &&
             F.current &&
             !F.current.contains(B.target) &&
             E(!1),
@@ -11249,7 +11249,7 @@ const Rt = new rh(),
           return;
         }
         const B = b.filter(
-          (ee) => ee.name && ee.name.toLowerCase().includes(w.toLowerCase()),
+          (te) => te.name && te.name.toLowerCase().includes(w.toLowerCase()),
         );
         (f(B), E(B.length > 0));
       },
@@ -11259,7 +11259,7 @@ const Rt = new rh(),
           return;
         }
         const B = b.filter(
-          (ee) => ee.ID && ee.ID.toLowerCase().includes(w.toLowerCase()),
+          (te) => te.ID && te.ID.toLowerCase().includes(w.toLowerCase()),
         );
         (y(B), I(B.length > 0));
       },
@@ -11344,7 +11344,7 @@ const Rt = new rh(),
                                 }),
                                 v &&
                                   r.jsx("div", {
-                                    ref: $,
+                                    ref: A,
                                     className:
                                       "absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto",
                                     children: k.map((w, B) =>
@@ -11782,7 +11782,7 @@ const Rt = new rh(),
         const L = N["department_type "];
         return (_[L] || (_[L] = []), _[L].push(N), _);
       }, {}),
-      $ = (_) => {
+      A = (_) => {
         const N = new Set(m);
         (N.has(_) ? N.delete(_) : N.add(_), p(N));
       },
@@ -11917,7 +11917,7 @@ const Rt = new rh(),
                                     }),
                                     r.jsx("div", {
                                       onClick: (L) => {
-                                        (L.stopPropagation(), $(_));
+                                        (L.stopPropagation(), A(_));
                                       },
                                       className:
                                         "p-1 hover:bg-gray-200/50 rounded transition-colors",
@@ -12067,9 +12067,9 @@ const Rt = new rh(),
         async (Z, ke) => {
           if (!i) return;
           console.log("🔄 更新組件位置:", Z, ke);
-          const Ee = JSON.parse(JSON.stringify(i)),
-            De = (te) => {
-              for (const D of te) {
+          const Ie = JSON.parse(JSON.stringify(i)),
+            De = (ne) => {
+              for (const D of ne) {
                 if (D.GUID === Z)
                   return (
                     (D.position = { x: ke.x.toFixed(3), y: ke.y.toFixed(3) }),
@@ -12091,28 +12091,28 @@ const Rt = new rh(),
               }
               return !1;
             };
-          if (De(Ee)) {
-            (c(Ee), console.log("💾 全域資料已更新"));
+          if (De(Ie)) {
+            (c(Ie), console.log("💾 全域資料已更新"));
             try {
               console.log("📡 開始同步後端位置資料...");
-              const te = await Me.updateContainerPosition({
+              const ne = await Me.updateContainerPosition({
                 GUID: Z,
                 absolute_position: `${ke.x.toFixed(3)},${ke.y.toFixed(3)}`,
               });
-              te.Code === 200
-                ? (console.log("✅ 後端位置同步成功", te),
+              ne.Code === 200
+                ? (console.log("✅ 後端位置同步成功", ne),
                   h("位置更新成功", "success"))
-                : (console.error("❌ 後端位置同步失敗:", te),
-                  h(`位置更新失敗: ${te.Result || "未知錯誤"}`, "error"));
-            } catch (te) {
-              (console.error("💥 後端位置同步發生錯誤:", te),
+                : (console.error("❌ 後端位置同步失敗:", ne),
+                  h(`位置更新失敗: ${ne.Result || "未知錯誤"}`, "error"));
+            } catch (ne) {
+              (console.error("💥 後端位置同步發生錯誤:", ne),
                 h("位置更新失敗: 網路錯誤", "error"));
             }
           } else console.warn("⚠️ 未找到要更新的組件:", Z);
         },
         [i, c, h],
       ),
-      { position: $, dimensions: se, name: ve, type: _ } = e,
+      { position: A, dimensions: se, name: ve, type: _ } = e,
       N = u.useCallback(
         (Z) => {
           const ke = l.current;
@@ -12121,9 +12121,9 @@ const Rt = new rh(),
               (Z.preventDefault(),
                 Z.stopPropagation(),
                 ke.setPointerCapture(Z.pointerId));
-              const Ee = ke.getBoundingClientRect(),
-                De = Z.clientX - Ee.left,
-                Be = Z.clientY - Ee.top;
+              const Ie = ke.getBoundingClientRect(),
+                De = Z.clientX - Ie.left,
+                Be = Z.clientY - Ie.top;
               (j({ x: De, y: Be }), m(!0), f(!1));
             } else f(!1);
         },
@@ -12132,8 +12132,8 @@ const Rt = new rh(),
       L = u.useCallback(() => {
         if (!i) return [];
         const Z = [],
-          ke = (Ee) => {
-            for (const De of Ee)
+          ke = (Ie) => {
+            for (const De of Ie)
               (De.GUID !== e.GUID &&
                 De.position &&
                 Z.push({
@@ -12152,13 +12152,13 @@ const Rt = new rh(),
         (Z, ke) => {
           const De = L();
           let Be = Z,
-            te = ke;
+            ne = ke;
           for (const D of De) {
             const xe = parseFloat(D.position.x),
               fe = parseFloat(D.position.y);
             if (
               (Math.abs(Z - xe) < 20 && (Be = xe),
-              Math.abs(ke - fe) < 20 && (te = fe),
+              Math.abs(ke - fe) < 20 && (ne = fe),
               D.dimensions && e.dimensions)
             ) {
               const W = xe + parseFloat(D.dimensions.width),
@@ -12168,26 +12168,26 @@ const Rt = new rh(),
               const be = fe + parseFloat(D.dimensions.depth),
                 O = ke + parseFloat(e.dimensions.depth);
               Math.abs(O - be) < 20 &&
-                (te = be - parseFloat(e.dimensions.depth));
+                (ne = be - parseFloat(e.dimensions.depth));
             }
           }
-          return { x: Be, y: te };
+          return { x: Be, y: ne };
         },
         [L, e.dimensions],
       ),
       X = u.useCallback(
         (Z) => {
           const ke = Math.abs(Z.clientX - S.x),
-            Ee = Math.abs(Z.clientY - S.y);
-          if (((ke > 5 || Ee > 5) && f(!0), !g || !n)) return;
+            Ie = Math.abs(Z.clientY - S.y);
+          if (((ke > 5 || Ie > 5) && f(!0), !g || !n)) return;
           (Z.preventDefault(), Z.stopPropagation());
           const De = l.current;
           if (!De) return;
           const Be = De.closest("[data-canvas-content]");
           if (!Be) return;
-          const te = Be.getBoundingClientRect(),
-            D = (Z.clientX - te.left - p.x) / t,
-            xe = (Z.clientY - te.top - p.y) / t,
+          const ne = Be.getBoundingClientRect(),
+            D = (Z.clientX - ne.left - p.x) / t,
+            xe = (Z.clientY - ne.top - p.y) / t,
             fe = P(D, xe);
           T(fe);
         },
@@ -12196,8 +12196,8 @@ const Rt = new rh(),
       w = u.useCallback(
         (Z) => {
           const ke = Math.abs(Z.clientX - S.x),
-            Ee = Math.abs(Z.clientY - S.y),
-            De = ke > 5 || Ee > 5;
+            Ie = Math.abs(Z.clientY - S.y),
+            De = ke > 5 || Ie > 5;
           if (n) {
             if (!g) return;
             (Z.preventDefault(), Z.stopPropagation());
@@ -12216,31 +12216,31 @@ const Rt = new rh(),
         (Z) => {
           const ke = l.current;
           if (!ke) return;
-          const Ee = Z.touches[0];
-          if (Ee && (E({ x: Ee.clientX, y: Ee.clientY }), n)) {
-            (Z.preventDefault(), Z.stopPropagation(), y(Ee.identifier));
+          const Ie = Z.touches[0];
+          if (Ie && (E({ x: Ie.clientX, y: Ie.clientY }), n)) {
+            (Z.preventDefault(), Z.stopPropagation(), y(Ie.identifier));
             const De = ke.getBoundingClientRect(),
-              Be = Ee.clientX - De.left,
-              te = Ee.clientY - De.top;
-            (j({ x: Be, y: te }), m(!0));
+              Be = Ie.clientX - De.left,
+              ne = Ie.clientY - De.top;
+            (j({ x: Be, y: ne }), m(!0));
           }
         },
         [n],
       ),
-      ee = u.useCallback(
+      te = u.useCallback(
         (Z) => {
           if (!g || !n || d === null) return;
           (Z.preventDefault(), Z.stopPropagation());
           const ke = l.current;
           if (!ke) return;
-          const Ee = Array.from(Z.touches).find((fe) => fe.identifier === d);
-          if (!Ee) return;
+          const Ie = Array.from(Z.touches).find((fe) => fe.identifier === d);
+          if (!Ie) return;
           const De = ke.closest("[data-canvas-content]");
           if (!De) return;
           const Be = De.getBoundingClientRect(),
-            te = (Ee.clientX - Be.left - p.x) / t,
-            D = (Ee.clientY - Be.top - p.y) / t,
-            xe = P(te, D);
+            ne = (Ie.clientX - Be.left - p.x) / t,
+            D = (Ie.clientY - Be.top - p.y) / t,
+            xe = P(ne, D);
           T(xe);
         },
         [g, p, t, n, d, P],
@@ -12249,9 +12249,9 @@ const Rt = new rh(),
         (Z) => {
           const ke = Array.from(Z.changedTouches)[0];
           if (!ke) return;
-          const Ee = Math.abs(ke.clientX - v.x),
+          const Ie = Math.abs(ke.clientX - v.x),
             De = Math.abs(ke.clientY - v.y),
-            Be = Ee > 10 || De > 10;
+            Be = Ie > 10 || De > 10;
           if (n) {
             if (
               !g ||
@@ -12271,12 +12271,12 @@ const Rt = new rh(),
         },
         [g, n, d, M, e, b, v, o],
       ),
-      A = u.useCallback(
+      $ = u.useCallback(
         (Z) => {
           !g ||
             !n ||
             d === null ||
-            !Array.from(Z.changedTouches).some((Ee) => Ee.identifier === d) ||
+            !Array.from(Z.changedTouches).some((Ie) => Ie.identifier === d) ||
             (Z.preventDefault(),
             Z.stopPropagation(),
             T(e.position),
@@ -12354,9 +12354,9 @@ const Rt = new rh(),
       onPointerMove: X,
       onPointerUp: w,
       onTouchStart: B,
-      onTouchMove: ee,
+      onTouchMove: te,
       onTouchEnd: H,
-      onTouchCancel: A,
+      onTouchCancel: $,
       children: r.jsx("div", {
         className: `w-full min-w-[400px] h-auto flex items-start flex-1 justify-between p-2 border-gray-600 ${U(_)}`,
         children: r.jsx("div", {
@@ -12396,8 +12396,8 @@ const Rt = new rh(),
       [f, d] = u.useState(!1);
     u.useEffect(() => {
       const M = () => {
-        const $ = window.innerWidth < 680;
-        d($);
+        const A = window.innerWidth < 680;
+        d(A);
       };
       return (
         M(),
@@ -12449,8 +12449,8 @@ const Rt = new rh(),
         }
         g.current = !0;
         const M = a.current,
-          $ = i.current,
-          se = $.getContext("2d");
+          A = i.current,
+          se = A.getContext("2d");
         if (!se || M.readyState !== M.HAVE_ENOUGH_DATA) {
           (console.log("❌ Video not ready or no context"),
             (g.current = !1),
@@ -12459,10 +12459,10 @@ const Rt = new rh(),
             }, 100));
           return;
         }
-        (($.width = M.videoWidth),
-          ($.height = M.videoHeight),
-          se.drawImage(M, 0, 0, $.width, $.height),
-          $.toBlob(
+        ((A.width = M.videoWidth),
+          (A.height = M.videoHeight),
+          se.drawImage(M, 0, 0, A.width, A.height),
+          A.toBlob(
             async (ve) => {
               if (!ve) return;
               const _ = new File([ve], "scan.jpg", { type: "image/jpeg" }),
@@ -12500,28 +12500,28 @@ const Rt = new rh(),
                   t());
                 try {
                   const B = performance.now(),
-                    ee = await Me.searchByBarCode(w.code);
-                  console.log("AI掃描回傳:", ee);
+                    te = await Me.searchByBarCode(w.code);
+                  console.log("AI掃描回傳:", te);
                   const H = performance.now();
                   if (
                     (console.log(
                       `⏱️ [相機掃描] 搜尋藥品資料API用時: ${(H - B).toFixed(2)}ms`,
                     ),
-                    console.log("🔍 條碼搜尋結果:", ee),
-                    ee.Code === 200)
+                    console.log("🔍 條碼搜尋結果:", te),
+                    te.Code === 200)
                   )
                     if (
-                      (console.log("✅ 找到藥品資料:", ee.Data),
+                      (console.log("✅ 找到藥品資料:", te.Data),
                       console.log("🎯 準備調用 onScanSuccess, mode:", s),
                       o("找到藥品資料", "success"),
                       n)
                     ) {
                       console.log("✅ onScanSuccess 存在，開始調用");
-                      const A = performance.now();
-                      n(w.code, ee.Data);
+                      const $ = performance.now();
+                      n(w.code, te.Data);
                       const Ne = performance.now();
                       console.log(
-                        `⏱️ [相機掃描] 定位藥品用時: ${(Ne - A).toFixed(2)}ms`,
+                        `⏱️ [相機掃描] 定位藥品用時: ${(Ne - $).toFixed(2)}ms`,
                       );
                       const U = performance.now();
                       (console.log(
@@ -12530,12 +12530,12 @@ const Rt = new rh(),
                         console.log("✅ onScanSuccess 調用完成"));
                     } else console.warn("⚠️ onScanSuccess 不存在");
                   else
-                    ee.Code === -200 && ee.Result === "查無資料"
+                    te.Code === -200 && te.Result === "查無資料"
                       ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                         o("查無條碼資料，請建立條碼", "warning"),
                         l(w.code))
-                      : (console.log("❌ 搜尋失敗:", ee.Result),
-                        o(ee.Result || "搜尋失敗", "error"));
+                      : (console.log("❌ 搜尋失敗:", te.Result),
+                        o(te.Result || "搜尋失敗", "error"));
                 } catch (B) {
                   (console.error("條碼搜尋錯誤:", B),
                     o("搜尋失敗，請稍後再試", "error"));
@@ -12575,11 +12575,11 @@ const Rt = new rh(),
       },
       F = async (M) => {
         if (!c.current || !h.current) return;
-        const $ = h.current.getBoundingClientRect(),
-          se = (M.clientX - $.left) / $.width,
-          ve = (M.clientY - $.top) / $.height;
+        const A = h.current.getBoundingClientRect(),
+          se = (M.clientX - A.left) / A.width,
+          ve = (M.clientY - A.top) / A.height;
         (console.log("🎯 點擊聚焦位置:", { x: se, y: ve }),
-          k({ x: M.clientX - $.left, y: M.clientY - $.top }),
+          k({ x: M.clientX - A.left, y: M.clientY - A.top }),
           setTimeout(() => k(null), 1e3));
         try {
           const _ = c.current.getVideoTracks()[0],
@@ -13140,12 +13140,12 @@ const bs = new Eh(),
       [v, E] = u.useState({ x: 0, y: 0 }),
       [S, I] = u.useState(!1),
       [F, M] = u.useState(!1),
-      [$, se] = u.useState(!1),
+      [A, se] = u.useState(!1),
       [ve, _] = u.useState(""),
       [N, L] = u.useState([]),
       [P, X] = u.useState(null),
       [w, B] = u.useState(120),
-      ee = {
+      te = {
         blue: "255,0,0",
         green: "0,255,0",
         red: "0,0,255",
@@ -13164,17 +13164,17 @@ const bs = new Eh(),
           );
         }
       },
-      A = (C, R, q, ue) => {
+      $ = (C, R, q, ue) => {
         try {
-          const ae = H(),
-            Se = ae.findIndex(
+          const ie = H(),
+            Se = ie.findIndex(
               (We) => We.department === C && We.canvasType === R,
             ),
             Ue = { department: C, canvasType: R, scale: q, position: ue };
-          (Se >= 0 ? (ae[Se] = Ue) : ae.push(Ue),
-            localStorage.setItem("med_map_anchor", JSON.stringify(ae)));
-        } catch (ae) {
-          console.error("Error saving canvas state to localStorage:", ae);
+          (Se >= 0 ? (ie[Se] = Ue) : ie.push(Ue),
+            localStorage.setItem("med_map_anchor", JSON.stringify(ie)));
+        } catch (ie) {
+          console.error("Error saving canvas state to localStorage:", ie);
         }
       },
       Ne = (C, R) =>
@@ -13227,14 +13227,14 @@ const bs = new Eh(),
           if (C) T({ x: C.position.x, y: C.position.y, scale: C.scale });
           else {
             const R = { x: 0, y: 0, scale: 1 };
-            (T(R), A(n, "InfiniteCanvas", R.scale, R));
+            (T(R), $(n, "InfiniteCanvas", R.scale, R));
           }
         }
       }, [n]),
       u.useEffect(() => {
         if (!n) return;
         const C = setTimeout(() => {
-          A(n, "InfiniteCanvas", b.scale, { x: b.x, y: b.y });
+          $(n, "InfiniteCanvas", b.scale, { x: b.x, y: b.y });
         }, 500);
         return () => clearTimeout(C);
       }, [b, n]),
@@ -13339,12 +13339,12 @@ const bs = new Eh(),
             const ue =
               (q = t.current) == null ? void 0 : q.getBoundingClientRect();
             if (!ue) return;
-            const ae = C.clientX - ue.left,
+            const ie = C.clientX - ue.left,
               Se = C.clientY - ue.top,
               Ue = C.deltaY > 0 ? 0.9 : 1.1,
               We = Math.max(0.1, Math.min(5, b.scale * Ue)),
               ct = We / b.scale,
-              Et = ae - (ae - b.x) * ct,
+              Et = ie - (ie - b.x) * ct,
               It = Se - (Se - b.y) * ct;
             T({ x: Et, y: It, scale: We });
           }
@@ -13369,7 +13369,7 @@ const bs = new Eh(),
         },
         [k, v, d],
       ),
-      Ee = u.useCallback(() => {
+      Ie = u.useCallback(() => {
         f(!1);
       }, []),
       De = u.useCallback(
@@ -13377,16 +13377,16 @@ const bs = new Eh(),
           if (!s) return [];
           const R = [],
             q = (ue) => {
-              for (const ae of ue)
-                (ae.med_list &&
-                  Array.isArray(ae.med_list) &&
-                  ae.med_list.some((Ue) => Ue.code == C) &&
-                  (console.log("✅ 找到藥品所在櫃體:", ae.name, ae.GUID),
-                  R.push(ae)),
-                  ae.components &&
-                    Array.isArray(ae.components) &&
-                    q(ae.components),
-                  ae.contents && Array.isArray(ae.contents) && q(ae.contents));
+              for (const ie of ue)
+                (ie.med_list &&
+                  Array.isArray(ie.med_list) &&
+                  ie.med_list.some((Ue) => Ue.code == C) &&
+                  (console.log("✅ 找到藥品所在櫃體:", ie.name, ie.GUID),
+                  R.push(ie)),
+                  ie.components &&
+                    Array.isArray(ie.components) &&
+                    q(ie.components),
+                  ie.contents && Array.isArray(ie.contents) && q(ie.contents));
             };
           return (q(s), R);
         },
@@ -13398,8 +13398,8 @@ const bs = new Eh(),
           if (R) {
             const ue = JSON.parse(R).light_sec;
             if (ue != null && ue !== "") {
-              const ae = Number(ue);
-              if (!isNaN(ae) && ae > 0) return ae * 1e3;
+              const ie = Number(ue);
+              if (!isNaN(ie) && ie > 0) return ie * 1e3;
             }
           }
         } catch (R) {
@@ -13407,7 +13407,7 @@ const bs = new Eh(),
         }
         return 6e4;
       }, []),
-      te = u.useCallback(() => {
+      ne = u.useCallback(() => {
         const C = { rgb_color: "255,0,0", brightness: "100" };
         try {
           const R = localStorage.getItem("medMap_setting");
@@ -13415,7 +13415,7 @@ const bs = new Eh(),
             const q = JSON.parse(R),
               ue = q.light_color || "red";
             return {
-              rgb_color: ee[ue] || ee.red,
+              rgb_color: te[ue] || te.red,
               brightness: String(q.brightness !== void 0 ? q.brightness : 100),
             };
           }
@@ -13431,13 +13431,13 @@ const bs = new Eh(),
           const R = De(C);
           if (R.length > 0) {
             const q = Be(),
-              ue = te();
+              ue = ne();
             (console.log(`🎯 高亮 ${R.length} 個櫃體:`, R),
               console.log(`⏱️ 亮燈時長: ${q}ms (${q / 1e3}秒)`),
               console.log("💡 亮燈設定:", ue),
               l("找到藥品，開始亮燈", "success"));
-            const ae = R.map((Ue) => Ue.GUID);
-            (L(ae), X(C), h(C));
+            const ie = R.map((Ue) => Ue.GUID);
+            (L(ie), X(C), h(C));
             const Se = R.filter((Ue) => Ue.serverName && Ue.serverType).map(
               (Ue) => ({
                 serverName: Ue.serverName,
@@ -13454,7 +13454,7 @@ const bs = new Eh(),
           } else
             (console.log("❌ 未找到包含此藥品的櫃體"), L([]), X(null), h(null));
         },
-        [De, Be, te, h],
+        [De, Be, ne, h],
       ),
       xe = (C, R) => {
         var Se, Ue;
@@ -13468,9 +13468,9 @@ const bs = new Eh(),
         M(!1);
         const ue = performance.now();
         D(q);
-        const ae = performance.now();
+        const ie = performance.now();
         console.log(
-          `⏱️ [相機掃描-部門視圖] 亮燈用時: ${(ae - ue).toFixed(2)}ms`,
+          `⏱️ [相機掃描-部門視圖] 亮燈用時: ${(ie - ue).toFixed(2)}ms`,
         );
       },
       fe = (C) => {
@@ -13494,12 +13494,12 @@ const bs = new Eh(),
           const ue = performance.now();
           try {
             console.log("🔍 [手動輸入-部門視圖] 搜尋條碼:", ve);
-            const ae = performance.now(),
+            const ie = performance.now(),
               Se = await Me.searchByBarCode(ve),
               Ue = performance.now();
             if (
               (console.log(
-                `⏱️ [手動輸入-部門視圖] API搜尋藥品資料用時: ${(Ue - ae).toFixed(2)}ms`,
+                `⏱️ [手動輸入-部門視圖] API搜尋藥品資料用時: ${(Ue - ie).toFixed(2)}ms`,
               ),
               console.log("📋 條碼搜尋回應:", Se),
               Se.Code === 200 && Se.Data && Se.Data.length > 0)
@@ -13527,8 +13527,8 @@ const bs = new Eh(),
                   _(""))
                 : (console.log("❌ 搜尋失敗:", Se.Result),
                   l(Se.Result || "搜尋失敗", "error"));
-          } catch (ae) {
-            (console.error("條碼搜尋錯誤:", ae),
+          } catch (ie) {
+            (console.error("條碼搜尋錯誤:", ie),
               l("搜尋失敗，請稍後再試", "error"));
           }
         }
@@ -13569,7 +13569,7 @@ const bs = new Eh(),
           y: (R.clientY + q.clientY) / 2,
         };
       },
-      ie = u.useCallback(
+      ce = u.useCallback(
         (C) => {
           if (!d) {
             if (C.touches.length === 2) {
@@ -13592,13 +13592,13 @@ const bs = new Eh(),
               const q = V(C.touches),
                 ue = ye(C.touches);
               if (q && le) {
-                const ae =
+                const ie =
                   (R = t.current) == null ? void 0 : R.getBoundingClientRect();
-                if (!ae) return;
+                if (!ie) return;
                 const Se = q / le,
                   Ue = Math.max(0.1, Math.min(5, b.scale * Se)),
-                  We = ue.x - ae.left,
-                  ct = ue.y - ae.top,
+                  We = ue.x - ie.left,
+                  ct = ue.y - ie.top,
                   Et = Ue / b.scale,
                   It = We - (We - b.x) * Et,
                   cr = ct - (ct - b.y) * Et;
@@ -13607,8 +13607,8 @@ const bs = new Eh(),
             } else if (C.touches.length === 1 && k) {
               const q = C.touches[0],
                 ue = q.clientX - v.x,
-                ae = q.clientY - v.y;
-              (T((Se) => ({ ...Se, x: Se.x + ue, y: Se.y + ae })),
+                ie = q.clientY - v.y;
+              (T((Se) => ({ ...Se, x: Se.x + ue, y: Se.y + ie })),
                 E({ x: q.clientX, y: q.clientY }));
             }
           }
@@ -13681,9 +13681,9 @@ const bs = new Eh(),
             className: `w-full h-full relative ${S && !d ? "cursor-grab" : "cursor-default"} ${k ? "cursor-grabbing" : ""}`,
             onMouseDown: Z,
             onMouseMove: ke,
-            onMouseUp: Ee,
-            onMouseLeave: Ee,
-            onTouchStart: ie,
+            onMouseUp: Ie,
+            onMouseLeave: Ie,
+            onTouchStart: ce,
             onTouchMove: we,
             onTouchEnd: pe,
             children: r.jsxs("div", {
@@ -13740,7 +13740,7 @@ const bs = new Eh(),
             mode: "med_light_location_mode",
           }),
           r.jsx(cf, {
-            isOpen: $,
+            isOpen: A,
             onClose: () => se(!1),
             medicineList: p,
             onSelectMedicine: fe,
@@ -13772,11 +13772,11 @@ const bs = new Eh(),
       [y, v] = u.useState(!1),
       [E, S] = u.useState(""),
       [I, F] = u.useState(!1),
-      [M, $] = u.useState(e.name),
+      [M, A] = u.useState(e.name),
       [se, ve] = u.useState(!1),
       [_, N] = u.useState(!1);
     u.useEffect(() => {
-      $(e.name);
+      A(e.name);
     }, [e.name]);
     const L = (G) => {
         (G.stopPropagation(), S(e.name || ""), v(!0));
@@ -13817,7 +13817,7 @@ const bs = new Eh(),
           (ve(!1), N(!1));
         }
       },
-      ee = async (G) => {
+      te = async (G) => {
         if ((G.stopPropagation(), !E.trim())) {
           p("名稱不能為空", "error");
           return;
@@ -13852,7 +13852,7 @@ const bs = new Eh(),
           Z.Code === 200
             ? (p("名稱更新成功", "success"),
               v(!1),
-              $(E.trim()),
+              A(E.trim()),
               k(e.GUID, { name: E.trim() }))
             : p(Z.Result || "更新失敗", "error");
         } catch (ge) {
@@ -13880,7 +13880,7 @@ const bs = new Eh(),
             return "bg-gray-100";
         }
       },
-      A = (G) => {
+      $ = (G) => {
         switch (G) {
           case "parent_container":
             return "border-pink-200";
@@ -13939,7 +13939,7 @@ const bs = new Eh(),
     switch (e.type) {
       case "sub_container":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           children: [
             r.jsxs("div", {
               className: "flex items-center space-x-2 mr-6 flex-1",
@@ -13959,7 +13959,7 @@ const bs = new Eh(),
                           autoFocus: !0,
                         }),
                         r.jsx("button", {
-                          onClick: ee,
+                          onClick: te,
                           disabled: I,
                           className:
                             "p-1 hover:bg-green-100 rounded transition-colors disabled:opacity-50",
@@ -14080,7 +14080,7 @@ const bs = new Eh(),
         });
       case "parent_container":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)} cursor-pointer hover:bg-black/5 transition-colors`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)} cursor-pointer hover:bg-black/5 transition-colors`,
           onClick: (G) => {
             y || T(e);
           },
@@ -14104,7 +14104,7 @@ const bs = new Eh(),
                         }),
                         r.jsx("button", {
                           onClick: (G) => {
-                            (G.stopPropagation(), ee(G));
+                            (G.stopPropagation(), te(G));
                           },
                           disabled: I,
                           className:
@@ -14230,7 +14230,7 @@ const bs = new Eh(),
         });
       case "med_box":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           children: [
             r.jsx("div", {
               className: "flex items-center mr-4",
@@ -14257,7 +14257,7 @@ const bs = new Eh(),
         });
       case "dispensing_shelves":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           onClick: (G) => {
             y || b(e);
           },
@@ -14280,7 +14280,7 @@ const bs = new Eh(),
                           autoFocus: !0,
                         }),
                         r.jsx("button", {
-                          onClick: ee,
+                          onClick: te,
                           disabled: I,
                           className:
                             "p-1 hover:bg-green-100 rounded transition-colors disabled:opacity-50",
@@ -14406,7 +14406,7 @@ const bs = new Eh(),
         });
       case "store_shelves":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)} cursor-pointer hover:bg-black/5 transition-colors`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)} cursor-pointer hover:bg-black/5 transition-colors`,
           onClick: (G) => {
             y || b(e);
           },
@@ -14430,7 +14430,7 @@ const bs = new Eh(),
                         }),
                         r.jsx("button", {
                           onClick: (G) => {
-                            (G.stopPropagation(), ee(G));
+                            (G.stopPropagation(), te(G));
                           },
                           disabled: I,
                           className:
@@ -14549,7 +14549,7 @@ const bs = new Eh(),
         });
       case "list_draw":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           children: [
             r.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -14579,7 +14579,7 @@ const bs = new Eh(),
         });
       case "grid_draw":
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           children: [
             r.jsxs("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -14609,7 +14609,7 @@ const bs = new Eh(),
         });
       default:
         return r.jsxs("div", {
-          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${A(e.type || 0)}`,
+          className: `flex items-center justify-between px-3 py-2 border-b-2 ${H(e.type || 0)} ${$(e.type || 0)}`,
           children: [
             r.jsx("div", {
               className: "flex items-center space-x-2 mr-6",
@@ -14653,13 +14653,13 @@ const bs = new Eh(),
       [v, E] = u.useState(!1),
       [S, I] = u.useState({ x: 0, y: 0 }),
       [F, M] = u.useState(!1),
-      [$, se] = u.useState(""),
+      [A, se] = u.useState(""),
       [ve, _] = u.useState(!1),
       [N, L] = u.useState(!1),
       [P, X] = u.useState(null),
       [w, B] = u.useState(!1),
-      [ee, H] = u.useState(120),
-      [A, Ne] = u.useState({
+      [te, H] = u.useState(120),
+      [$, Ne] = u.useState({
         isDragging: !1,
         draggedContainer: null,
         draggedElement: null,
@@ -14682,7 +14682,7 @@ const bs = new Eh(),
         "ontouchstart" in window ||
         navigator.maxTouchPoints > 0,
       ke = 8,
-      Ee = () => {
+      Ie = () => {
         try {
           const x = localStorage.getItem("med_map_anchor");
           return x ? JSON.parse(x) : [];
@@ -14693,13 +14693,13 @@ const bs = new Eh(),
           );
         }
       },
-      De = (x, K, ne, z) => {
+      De = (x, K, re, z) => {
         try {
-          const me = Ee(),
+          const me = Ie(),
             Q = me.findIndex(
-              (re) => re.department === x && re.canvasType === K,
+              (ee) => ee.department === x && ee.canvasType === K,
             ),
-            J = { department: x, canvasType: K, scale: ne, position: z };
+            J = { department: x, canvasType: K, scale: re, position: z };
           (Q >= 0 ? (me[Q] = J) : me.push(J),
             localStorage.setItem("med_map_anchor", JSON.stringify(me)));
         } catch (me) {
@@ -14707,7 +14707,7 @@ const bs = new Eh(),
         }
       },
       Be = (x, K) =>
-        Ee().find((z) => z.department === x && z.canvasType === K) || null;
+        Ie().find((z) => z.department === x && z.canvasType === K) || null;
     (u.useEffect(() => {
       const x = localStorage.getItem("medMap_setting");
       if (x)
@@ -14727,7 +14727,7 @@ const bs = new Eh(),
         ),
         [b],
       ));
-    const te = u.useCallback(async () => {
+    const ne = u.useCallback(async () => {
       if (!(j !== "drug" || !s))
         try {
           console.log("🔄 Auto-refreshing data for DrugCanvas...");
@@ -14748,7 +14748,7 @@ const bs = new Eh(),
           console.error("❌ Failed to auto-refresh data:", x);
         }
     }, [j, s, l]);
-    (df(te, ee, j === "drug" && !!s),
+    (df(ne, te, j === "drug" && !!s),
       u.useEffect(() => {
         if (s) {
           const x = Be(s, "drugCanvas");
@@ -14811,31 +14811,31 @@ const bs = new Eh(),
           med_box: ["med_box", "dispensing_shelves"],
         })[x] || [],
       fe = (x) => {
-        const [K, ne] = x.split(",").map(Number);
-        return { row: K || 0, col: ne || 0 };
+        const [K, re] = x.split(",").map(Number);
+        return { row: K || 0, col: re || 0 };
       },
       W = (x, K) => {
-        const ne = (me, Q = null) => {
+        const re = (me, Q = null) => {
             if (me.GUID === x) return { container: me, parent: Q };
             if (me.contents)
               for (const J of me.contents) {
-                const re = ne(J, me);
-                if (re) return re;
+                const ee = re(J, me);
+                if (ee) return ee;
               }
             return null;
           },
           z = cr();
         for (const me of z) {
-          const Q = ne(me);
+          const Q = re(me);
           if (Q) return Q;
         }
         return null;
       },
       le = (x, K) => {
         if (!x.contents) return [];
-        const ne = K;
-        if (!ne) return x.contents;
-        const z = fe(ne.gird_position);
+        const re = K;
+        if (!re) return x.contents;
+        const z = fe(re.gird_position);
         console.log("📤 移除容器位置:", z);
         for (const me of x.contents) {
           const Q = fe(me.gird_position);
@@ -14858,38 +14858,38 @@ const bs = new Eh(),
         }
         return (console.log("✓ 重新計算完成"), x.contents);
       },
-      be = (x, K, ne, z, me) => {
+      be = (x, K, re, z, me) => {
         if (
           (x.contents || (x.contents = []),
-          console.log("📥 插入容器到位置:", `(${ne},${z})`),
+          console.log("📥 插入容器到位置:", `(${re},${z})`),
           console.log("   插入方向:", me),
           console.log("   目標父容器:", x.GUID),
           console.log("   插入前容器數量:", x.contents.length),
           x.contents.length === 0)
         )
-          ((ne = 0), (z = 0), console.log("   父容器為空，放置在 (0,0)"));
+          ((re = 0), (z = 0), console.log("   父容器為空，放置在 (0,0)"));
         else {
           const Q = x.contents
             .filter((J) => {
-              const re = fe(J.gird_position || "0,0");
-              return re.row === ne && re.col >= z;
+              const ee = fe(J.gird_position || "0,0");
+              return ee.row === re && ee.col >= z;
             })
-            .sort((J, re) => {
-              const ce = fe(J.gird_position || "0,0");
-              return fe(re.gird_position || "0,0").col - ce.col;
+            .sort((J, ee) => {
+              const ae = fe(J.gird_position || "0,0");
+              return fe(ee.gird_position || "0,0").col - ae.col;
             });
-          console.log(`   同 row ${ne} 需要移動的容器數量:`, Q.length);
+          console.log(`   同 row ${re} 需要移動的容器數量:`, Q.length);
           for (const J of Q) {
-            const re = fe(J.gird_position || "0,0"),
-              ce = re.col + 1;
-            ((J.gird_position = `${re.row},${ce}`),
+            const ee = fe(J.gird_position || "0,0"),
+              ae = ee.col + 1;
+            ((J.gird_position = `${ee.row},${ae}`),
               console.log(
-                `  → 容器 ${J.GUID}: (${re.row},${re.col}) → (${re.row},${ce})`,
+                `  → 容器 ${J.GUID}: (${ee.row},${ee.col}) → (${ee.row},${ae})`,
               ),
               (ge.current[J.GUID] = {
                 GUID: J.GUID,
                 Master_GUID: x.GUID,
-                position: `${re.row},${ce}`,
+                position: `${ee.row},${ae}`,
                 serverName: x.serverName,
                 serverType: x.serverType,
                 type: J.type,
@@ -14897,14 +14897,14 @@ const bs = new Eh(),
               }));
           }
         }
-        ((K.gird_position = `${ne},${z}`),
+        ((K.gird_position = `${re},${z}`),
           (K.Master_GUID = x.GUID),
-          console.log(`Inserted container ${K.GUID} at position ${ne},${z}`),
+          console.log(`Inserted container ${K.GUID} at position ${re},${z}`),
           x.contents.push(K),
           (ge.current[K.GUID] = {
             GUID: K.GUID,
             Master_GUID: x.GUID,
-            position: `${ne},${z}`,
+            position: `${re},${z}`,
             serverName: x.serverName,
             serverType: x.serverType,
             type: K.type,
@@ -14925,26 +14925,26 @@ const bs = new Eh(),
                 });
             }));
       },
-      O = (x, K, ne) => {
+      O = (x, K, re) => {
         const z = x.getBoundingClientRect(),
           me = z.left + z.width / 2,
           Q = z.top + z.height / 2,
           J = K - me,
-          re = ne - Q;
-        return Math.abs(J) > Math.abs(re)
+          ee = re - Q;
+        return Math.abs(J) > Math.abs(ee)
           ? J > 0
             ? "right"
             : "left"
-          : re > 0
+          : ee > 0
             ? "bottom"
             : "top";
       },
-      oe = (x, K, ne, z) => {
+      oe = (x, K, re, z) => {
         if (!v) return;
-        if ((z.preventDefault(), z.stopPropagation(), A.floatingElement))
+        if ((z.preventDefault(), z.stopPropagation(), $.floatingElement))
           try {
-            A.floatingElement.parentNode &&
-              A.floatingElement.parentNode.removeChild(A.floatingElement);
+            $.floatingElement.parentNode &&
+              $.floatingElement.parentNode.removeChild($.floatingElement);
           } catch (he) {
             console.error("清除舊浮動元素失敗:", he);
           }
@@ -14957,14 +14957,14 @@ const bs = new Eh(),
             "touches" in z
               ? z.touches[0].clientY
               : ("pointerId" in z, z.clientY),
-          re = ne.getBoundingClientRect(),
-          ce = { x: Q - re.left, y: J - re.top },
-          Y = ne.cloneNode(!0);
+          ee = re.getBoundingClientRect(),
+          ae = { x: Q - ee.left, y: J - ee.top },
+          Y = re.cloneNode(!0);
         ((Y.style.position = "fixed"),
-          (Y.style.left = `${Q - ce.x}px`),
-          (Y.style.top = `${J - ce.y}px`),
-          (Y.style.width = `${re.width}px`),
-          (Y.style.height = `${re.height}px`),
+          (Y.style.left = `${Q - ae.x}px`),
+          (Y.style.top = `${J - ae.y}px`),
+          (Y.style.width = `${ee.width}px`),
+          (Y.style.height = `${ee.height}px`),
           (Y.style.zIndex = "9999"),
           (Y.style.opacity = "0.8"),
           (Y.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
@@ -14975,19 +14975,19 @@ const bs = new Eh(),
           Ne({
             isDragging: !0,
             draggedContainer: null,
-            draggedElement: ne,
+            draggedElement: re,
             floatingElement: Y,
             originalParent: null,
             originalPosition: "",
             originalIndex: -1,
-            mouseOffset: ce,
+            mouseOffset: ae,
             isMobileDrag: me,
             originalData: null,
             draggedStockItem: x,
             draggedStockShelf: K,
           }));
       },
-      V = (x, K, ne) => {
+      V = (x, K, re) => {
         if (!v || !D(x.type)) return;
         if (x.type === "sub_container" && !p) {
           m("需要開啟後台模式才能移動該容器", "error");
@@ -15015,34 +15015,34 @@ const bs = new Eh(),
         }
         if (
           ((ge.current = {}),
-          ne.preventDefault(),
-          ne.stopPropagation(),
-          A.floatingElement)
+          re.preventDefault(),
+          re.stopPropagation(),
+          $.floatingElement)
         )
           try {
-            A.floatingElement.parentNode &&
-              A.floatingElement.parentNode.removeChild(A.floatingElement);
-          } catch (Te) {
-            console.error("清除舊浮動元素失敗:", Te);
+            $.floatingElement.parentNode &&
+              $.floatingElement.parentNode.removeChild($.floatingElement);
+          } catch (Re) {
+            console.error("清除舊浮動元素失敗:", Re);
           }
         const z = Z(),
           me =
-            "touches" in ne
-              ? ne.touches[0].clientX
-              : ("pointerId" in ne, ne.clientX),
+            "touches" in re
+              ? re.touches[0].clientX
+              : ("pointerId" in re, re.clientX),
           Q =
-            "touches" in ne
-              ? ne.touches[0].clientY
-              : ("pointerId" in ne, ne.clientY),
+            "touches" in re
+              ? re.touches[0].clientY
+              : ("pointerId" in re, re.clientY),
           J = K.getBoundingClientRect(),
-          re = { x: me - J.left, y: Q - J.top },
-          ce = W(x.GUID);
-        if (!ce) return;
-        (console.log("拖曳目標", x), console.log("拖曳目標", ce));
+          ee = { x: me - J.left, y: Q - J.top },
+          ae = W(x.GUID);
+        if (!ae) return;
+        (console.log("拖曳目標", x), console.log("拖曳目標", ae));
         const Y = K.cloneNode(!0);
         ((Y.style.position = "fixed"),
-          (Y.style.left = `${me - re.x}px`),
-          (Y.style.top = `${Q - re.y}px`),
+          (Y.style.left = `${me - ee.x}px`),
+          (Y.style.top = `${Q - ee.y}px`),
           (Y.style.width = `${J.width}px`),
           (Y.style.height = `${J.height}px`),
           (Y.style.zIndex = "9999"),
@@ -15050,63 +15050,63 @@ const bs = new Eh(),
           (Y.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)"),
           (Y.style.pointerEvents = "none"),
           document.body.appendChild(Y));
-        const he = ce.parent.contents.findIndex((Te) => Te.GUID === x.GUID),
-          je = JSON.parse(JSON.stringify(ce.parent.contents));
-        (ce.parent.contents.splice(he, 1), console.log(he));
-        const Ae = ce.parent,
-          Ie = le(ce.parent, x);
-        ((ce.parent.contents = Ie),
-          console.log(ce.parent),
+        const he = ae.parent.contents.findIndex((Re) => Re.GUID === x.GUID),
+          je = JSON.parse(JSON.stringify(ae.parent.contents));
+        (ae.parent.contents.splice(he, 1), console.log(he));
+        const Te = ae.parent,
+          Ee = le(ae.parent, x);
+        ((ae.parent.contents = Ee),
+          console.log(ae.parent),
           Ne({
             isDragging: !0,
             draggedContainer: x,
             draggedElement: K,
             floatingElement: Y,
-            originalParent: Ae,
+            originalParent: Te,
             originalPosition: x.gird_position,
             originalIndex: he,
-            mouseOffset: re,
+            mouseOffset: ee,
             isMobileDrag: z,
             originalData: je,
           }));
       },
       ye = (x) => {
-        if (!A.isDragging || !A.floatingElement) return;
+        if (!$.isDragging || !$.floatingElement) return;
         const K = "touches" in x ? x.touches[0].clientX : x.clientX,
-          ne = "touches" in x ? x.touches[0].clientY : x.clientY;
+          re = "touches" in x ? x.touches[0].clientY : x.clientY;
         if (
-          ((A.floatingElement.style.left = `${K - A.mouseOffset.x}px`),
-          (A.floatingElement.style.top = `${ne - A.mouseOffset.y}px`),
-          A.draggedStockItem)
+          (($.floatingElement.style.left = `${K - $.mouseOffset.x}px`),
+          ($.floatingElement.style.top = `${re - $.mouseOffset.y}px`),
+          $.draggedStockItem)
         ) {
-          const Q = document.elementFromPoint(K, ne),
+          const Q = document.elementFromPoint(K, re),
             J = Q == null ? void 0 : Q.closest("[data-stock-guid]");
           if (J) {
-            const ce = J.getAttribute("data-stock-guid"),
+            const ae = J.getAttribute("data-stock-guid"),
               Y = (je) => {
-                for (const Ae of je) {
-                  if (Ae.type === "store_shelves" && Ae.medMapStock) {
-                    const Ie = Ae.medMapStock.find((Te) => Te.GUID === ce);
-                    if (Ie) return { stockItem: Ie, shelf: Ae };
+                for (const Te of je) {
+                  if (Te.type === "store_shelves" && Te.medMapStock) {
+                    const Ee = Te.medMapStock.find((Re) => Re.GUID === ae);
+                    if (Ee) return { stockItem: Ee, shelf: Te };
                   }
-                  if (Ae.contents) {
-                    const Ie = Y(Ae.contents);
-                    if (Ie) return Ie;
+                  if (Te.contents) {
+                    const Ee = Y(Te.contents);
+                    if (Ee) return Ee;
                   }
                 }
                 return null;
               },
               he = Y(o);
-            if (he && he.stockItem.GUID !== A.draggedStockItem.GUID) {
+            if (he && he.stockItem.GUID !== $.draggedStockItem.GUID) {
               const je = J.getBoundingClientRect(),
-                Ae = je.left + je.width / 2,
-                Ie = je.top + je.height / 2,
-                Te = Math.abs(K - Ae),
-                He = Math.abs(ne - Ie);
+                Te = je.left + je.width / 2,
+                Ee = je.top + je.height / 2,
+                Re = Math.abs(K - Te),
+                He = Math.abs(re - Ee);
               let Oe;
-              (Te > He
-                ? (Oe = K < Ae ? "left" : "right")
-                : (Oe = ne < Ie ? "top" : "bottom"),
+              (Re > He
+                ? (Oe = K < Te ? "left" : "right")
+                : (Oe = re < Ee ? "top" : "bottom"),
                 G({
                   container: he.shelf,
                   direction: null,
@@ -15117,34 +15117,34 @@ const bs = new Eh(),
               return;
             }
           }
-          const re = Q == null ? void 0 : Q.closest("[data-container-guid]");
-          if (re) {
-            const ce = re.getAttribute("data-container-guid"),
-              Y = W(ce);
+          const ee = Q == null ? void 0 : Q.closest("[data-container-guid]");
+          if (ee) {
+            const ae = ee.getAttribute("data-container-guid"),
+              Y = W(ae);
             if (Y && Y.container.type === "store_shelves") {
-              G({ container: Y.container, direction: null, element: re });
+              G({ container: Y.container, direction: null, element: ee });
               return;
             }
           }
           G(null);
           return;
         }
-        const z = document.elementFromPoint(K, ne),
+        const z = document.elementFromPoint(K, re),
           me = z == null ? void 0 : z.closest("[data-container-guid]");
         if (me) {
           const Q = me.getAttribute("data-container-guid"),
             J = W(Q);
           if (J) {
-            const re = xe(A.draggedContainer.type),
-              ce = A.draggedContainer.type,
+            const ee = xe($.draggedContainer.type),
+              ae = $.draggedContainer.type,
               Y = J.container.type;
-            if (J.container.GUID === A.draggedContainer.GUID) {
+            if (J.container.GUID === $.draggedContainer.GUID) {
               G(null);
               return;
             }
-            if (re.includes(Y)) {
-              const he = O(me, K, ne);
-              if (ce === "med_box" && !["left", "right"].includes(he)) {
+            if (ee.includes(Y)) {
+              const he = O(me, K, re);
+              if (ae === "med_box" && !["left", "right"].includes(he)) {
                 G(null);
                 return;
               }
@@ -15155,28 +15155,28 @@ const bs = new Eh(),
                 G({ container: J.container, direction: he, element: me }));
               return;
             }
-            if (ce === "parent_container" || ce === "sub_container") {
+            if (ae === "parent_container" || ae === "sub_container") {
               let he = me.parentElement;
               for (; he; ) {
                 if (he.hasAttribute("data-container-guid")) {
                   const je = he.getAttribute("data-container-guid"),
-                    Ae = W(je);
-                  if (Ae && re.includes(Ae.container.type)) {
-                    if (Ae.container.GUID === A.draggedContainer.GUID) {
+                    Te = W(je);
+                  if (Te && ee.includes(Te.container.type)) {
+                    if (Te.container.GUID === $.draggedContainer.GUID) {
                       he = he.parentElement;
                       continue;
                     }
-                    const Ie = O(he, K, ne);
+                    const Ee = O(he, K, re);
                     (console.log(
-                      `🔼 向上找到有效目標: ${Ae.container.type} (${Ae.container.name})`,
+                      `🔼 向上找到有效目標: ${Te.container.type} (${Te.container.name})`,
                     ),
-                      Ae.container.gird_position ||
+                      Te.container.gird_position ||
                         console.warn(
-                          `⚠️ 父容器 ${Ae.container.GUID} 缺少 gird_position`,
+                          `⚠️ 父容器 ${Te.container.GUID} 缺少 gird_position`,
                         ),
                       G({
-                        container: Ae.container,
-                        direction: Ie,
+                        container: Te.container,
+                        direction: Ee,
                         element: he,
                       }));
                     return;
@@ -15189,36 +15189,38 @@ const bs = new Eh(),
         }
         G(null);
       },
-      ie = async (x) => {
+      ce = async (x) => {
         var me, Q;
-        if (!A.isDragging) return;
-        if (A.floatingElement)
+        if (!$.isDragging) return;
+        if ($.floatingElement)
           try {
-            A.floatingElement.parentNode &&
-              A.floatingElement.parentNode.removeChild(A.floatingElement);
+            $.floatingElement.parentNode &&
+              $.floatingElement.parentNode.removeChild($.floatingElement);
           } catch (J) {
             console.error("清除浮動元素失敗:", J);
           }
-        if (A.draggedStockItem && A.draggedStockShelf) {
+        if ($.draggedStockItem && $.draggedStockShelf) {
           if (
             (console.log("StockItem 拖曳結束"),
             console.log("Drop Target:", U),
             U)
           ) {
             const J = [];
+            let ee = null,
+              ae = $.draggedStockShelf;
             if (U.stockItem && U.stockItemDirection) {
-              console.log(
+              (console.log(
                 `拖曳到 stockItem ${U.stockItem.GUID} 的 ${U.stockItemDirection} 邊`,
-              );
-              const re = U.container,
-                ce = A.draggedStockShelf,
-                Y = A.draggedStockItem,
+              ),
+                (ee = U.container),
+                (ae = $.draggedStockShelf));
+              const Y = $.draggedStockItem,
                 he = (U.stockItem.location || "0,0").split(","),
                 je = Number(he[0] || "0"),
-                Ae = (Y.location || "0,0").split(","),
-                Ie = Number(Ae[0] || "0"),
-                Te = Number(Ae[1] || "0");
-              if (re.GUID === ce.GUID) {
+                Te = (Y.location || "0,0").split(","),
+                Ee = Number(Te[0] || "0"),
+                Re = Number(Te[1] || "0");
+              if (ee.GUID === ae.GUID) {
                 console.log("同一層架內移動");
                 const Oe = Number(he[1] || "0");
                 if (
@@ -15229,81 +15231,81 @@ const bs = new Eh(),
                   let Le;
                   if (
                     (U.stockItemDirection === "top" ? (Le = Oe) : (Le = Oe + 1),
-                    Ie === je)
+                    Ee === je)
                   ) {
                     (console.log("同一列內的深度移動"),
-                      ce.medMapStock.forEach((_e) => {
-                        const Re = (_e.location || "0,0").split(","),
-                          ze = Number(Re[0] || "0"),
-                          Pe = Number(Re[1] || "0");
-                        if (ze === Ie && _e.GUID !== Y.GUID) {
-                          if (Pe > Te) {
+                      ae.medMapStock.forEach((_e) => {
+                        const $e = (_e.location || "0,0").split(","),
+                          ze = Number($e[0] || "0"),
+                          Pe = Number($e[1] || "0");
+                        if (ze === Ee && _e.GUID !== Y.GUID) {
+                          if (Pe > Re) {
                             const rt = Pe - 1;
                             (rt >= Le
                               ? (_e.location = `${ze},${rt + 1}`)
                               : (_e.location = `${ze},${rt}`),
                               J.push({ ..._e }));
-                          } else if (Pe < Te) {
-                            const rt = Le > Te ? Le - 1 : Le;
+                          } else if (Pe < Re) {
+                            const rt = Le > Re ? Le - 1 : Le;
                             Pe >= rt &&
                               ((_e.location = `${ze},${Pe + 1}`),
                               J.push({ ..._e }));
                           }
                         }
                       }));
-                    const Ge = Le > Te ? Le - 1 : Le;
+                    const Ge = Le > Re ? Le - 1 : Le;
                     ((Y.location = `${je},${Ge}`), J.push({ ...Y }));
                   } else
                     (console.log("跨列移動到目標列"),
-                      ce.medMapStock.forEach((Ge) => {
+                      ae.medMapStock.forEach((Ge) => {
                         const _e = (Ge.location || "0,0").split(","),
-                          Re = Number(_e[0] || "0"),
+                          $e = Number(_e[0] || "0"),
                           ze = Number(_e[1] || "0");
-                        Re === Ie &&
+                        $e === Ee &&
                           Ge.GUID !== Y.GUID &&
-                          ze > Te &&
-                          ((Ge.location = `${Re},${ze - 1}`),
+                          ze > Re &&
+                          ((Ge.location = `${$e},${ze - 1}`),
                           J.push({ ...Ge }));
                       }),
-                      ce.medMapStock.forEach((Ge) => {
+                      ae.medMapStock.forEach((Ge) => {
                         const _e = (Ge.location || "0,0").split(","),
-                          Re = Number(_e[0] || "0"),
+                          $e = Number(_e[0] || "0"),
                           ze = Number(_e[1] || "0");
-                        Re === je &&
+                        $e === je &&
                           Ge.GUID !== Y.GUID &&
                           ze >= Le &&
-                          ((Ge.location = `${Re},${ze + 1}`),
+                          ((Ge.location = `${$e},${ze + 1}`),
                           J.push({ ...Ge }));
                       }),
                       (Y.location = `${je},${Le}`),
                       J.push({ ...Y }));
                 } else {
                   console.log("水平移動（左右）");
-                  const Le = ce.medMapStock.findIndex(
-                    (Re) => Re.GUID === Y.GUID,
+                  const Le = ae.medMapStock.findIndex(
+                    ($e) => $e.GUID === Y.GUID,
                   );
-                  (Le !== -1 && ce.medMapStock.splice(Le, 1),
-                    ce.medMapStock.forEach((Re) => {
-                      const ze = (Re.location || "0,0").split(","),
+                  (Le !== -1 && ae.medMapStock.splice(Le, 1),
+                    ae.medMapStock.forEach(($e) => {
+                      const ze = ($e.location || "0,0").split(","),
                         Pe = Number(ze[0] || "0"),
                         rt = Number(ze[1] || "0");
-                      Pe > Ie &&
-                        ((Re.location = `${Pe - 1},${rt}`), J.push({ ...Re }));
+                      Pe > Ee &&
+                        (($e.location = `${Pe - 1},${rt}`), J.push({ ...$e }));
                     }));
                   let Ge;
-                  const _e = je > Ie ? je - 1 : je;
+                  const _e = je > Ee ? je - 1 : je;
                   (U.stockItemDirection === "left" ? (Ge = _e) : (Ge = _e + 1),
-                    ce.medMapStock.forEach((Re) => {
-                      const ze = (Re.location || "0,0").split(","),
+                    ae.medMapStock.forEach(($e) => {
+                      const ze = ($e.location || "0,0").split(","),
                         Pe = Number(ze[0] || "0"),
                         rt = Number(ze[1] || "0");
                       Pe >= Ge &&
-                        ((Re.location = `${Pe + 1},${rt}`), J.push({ ...Re }));
+                        (($e.location = `${Pe + 1},${rt}`), J.push({ ...$e }));
                     }),
-                    (Y.location = `${Ge},${Te}`),
-                    ce.medMapStock.push(Y),
-                    ce.medMapStock.sort((Re, ze) => {
-                      const Pe = (Re.location || "0,0").split(","),
+                    (Y.location = `${Ge},${Re}`),
+                    ae.medMapStock.push(Y),
+                    ae.medMapStock.sort(($e, ze) => {
+                      const Pe = ($e.location || "0,0").split(","),
                         rt = (ze.location || "0,0").split(",");
                       return Number(Pe[0] || "0") - Number(rt[0] || "0");
                     }),
@@ -15312,99 +15314,99 @@ const bs = new Eh(),
               } else {
                 console.log("不同層架間移動");
                 const Oe = Number(he[1] || "0"),
-                  Le = ce.medMapStock.findIndex((Ge) => Ge.GUID === Y.GUID);
+                  Le = ae.medMapStock.findIndex((Ge) => Ge.GUID === Y.GUID);
                 if (
-                  (Le !== -1 && ce.medMapStock.splice(Le, 1),
+                  (Le !== -1 && ae.medMapStock.splice(Le, 1),
                   U.stockItemDirection === "top" ||
                     U.stockItemDirection === "bottom")
                 ) {
                   (console.log("跨層架垂直移動到目標列"),
-                    ce.medMapStock.forEach((_e) => {
-                      const Re = (_e.location || "0,0").split(","),
-                        ze = Number(Re[0] || "0"),
-                        Pe = Number(Re[1] || "0");
-                      ze === Ie &&
-                        Pe > Te &&
+                    ae.medMapStock.forEach((_e) => {
+                      const $e = (_e.location || "0,0").split(","),
+                        ze = Number($e[0] || "0"),
+                        Pe = Number($e[1] || "0");
+                      ze === Ee &&
+                        Pe > Re &&
                         ((_e.location = `${ze},${Pe - 1}`), J.push({ ..._e }));
                     }));
                   let Ge;
                   (U.stockItemDirection === "top" ? (Ge = Oe) : (Ge = Oe + 1),
-                    re.medMapStock.forEach((_e) => {
-                      const Re = (_e.location || "0,0").split(","),
-                        ze = Number(Re[0] || "0"),
-                        Pe = Number(Re[1] || "0");
+                    ee.medMapStock.forEach((_e) => {
+                      const $e = (_e.location || "0,0").split(","),
+                        ze = Number($e[0] || "0"),
+                        Pe = Number($e[1] || "0");
                       ze === je &&
                         Pe >= Ge &&
                         ((_e.location = `${ze},${Pe + 1}`), J.push({ ..._e }));
                     }),
                     (Y.location = `${je},${Ge}`),
-                    (Y.shelf_guid = re.GUID),
-                    re.medMapStock.push(Y),
-                    re.medMapStock.sort((_e, Re) => {
+                    (Y.shelf_guid = ee.GUID),
+                    ee.medMapStock.push(Y),
+                    ee.medMapStock.sort((_e, $e) => {
                       const ze = (_e.location || "0,0").split(","),
-                        Pe = (Re.location || "0,0").split(",");
+                        Pe = ($e.location || "0,0").split(",");
                       return Number(ze[0] || "0") - Number(Pe[0] || "0");
                     }),
                     J.push({ ...Y }));
                 } else {
                   (console.log("跨層架水平移動"),
-                    ce.medMapStock.forEach((_e) => {
-                      const Re = (_e.location || "0,0").split(","),
-                        ze = Number(Re[0] || "0"),
-                        Pe = Number(Re[1] || "0");
-                      ze > Ie &&
+                    ae.medMapStock.forEach((_e) => {
+                      const $e = (_e.location || "0,0").split(","),
+                        ze = Number($e[0] || "0"),
+                        Pe = Number($e[1] || "0");
+                      ze > Ee &&
                         ((_e.location = `${ze - 1},${Pe}`), J.push({ ..._e }));
                     }));
                   let Ge;
                   (U.stockItemDirection === "left" ? (Ge = je) : (Ge = je + 1),
-                    re.medMapStock.forEach((_e) => {
-                      const Re = (_e.location || "0,0").split(","),
-                        ze = Number(Re[0] || "0"),
-                        Pe = Number(Re[1] || "0");
+                    ee.medMapStock.forEach((_e) => {
+                      const $e = (_e.location || "0,0").split(","),
+                        ze = Number($e[0] || "0"),
+                        Pe = Number($e[1] || "0");
                       ze >= Ge &&
                         ((_e.location = `${ze + 1},${Pe}`), J.push({ ..._e }));
                     }),
-                    (Y.location = `${Ge},${Te}`),
-                    (Y.shelf_guid = re.GUID),
-                    re.medMapStock.push(Y),
-                    re.medMapStock.sort((_e, Re) => {
+                    (Y.location = `${Ge},${Re}`),
+                    (Y.shelf_guid = ee.GUID),
+                    ee.medMapStock.push(Y),
+                    ee.medMapStock.sort((_e, $e) => {
                       const ze = (_e.location || "0,0").split(","),
-                        Pe = (Re.location || "0,0").split(",");
+                        Pe = ($e.location || "0,0").split(",");
                       return Number(ze[0] || "0") - Number(Pe[0] || "0");
                     }),
                     J.push({ ...Y }));
                 }
               }
             } else if (U.container.type === "store_shelves") {
-              console.log("拖曳到 store_shelves 容器");
-              const re = U.container,
-                ce = A.draggedStockShelf,
-                Y = A.draggedStockItem,
+              (console.log("拖曳到 store_shelves 容器"),
+                (ee = U.container),
+                (ae = $.draggedStockShelf));
+              const Y = $.draggedStockItem,
                 he = (Y.location || "0,0").split(","),
                 je = Number(he[0] || "0"),
-                Ae = ce.medMapStock.findIndex((Ie) => Ie.GUID === Y.GUID);
-              (Ae !== -1 &&
-                (ce.medMapStock.splice(Ae, 1),
-                ce.medMapStock.forEach((Ie) => {
-                  const Te = (Ie.location || "0,0").split(","),
-                    He = Number(Te[0] || "0"),
-                    Oe = Number(Te[1] || "0");
+                Te = ae.medMapStock.findIndex((Ee) => Ee.GUID === Y.GUID);
+              (Te !== -1 &&
+                (ae.medMapStock.splice(Te, 1),
+                ae.medMapStock.forEach((Ee) => {
+                  const Re = (Ee.location || "0,0").split(","),
+                    He = Number(Re[0] || "0"),
+                    Oe = Number(Re[1] || "0");
                   He > je &&
-                    ((Ie.location = `${He - 1},${Oe}`), J.push({ ...Ie }));
+                    ((Ee.location = `${He - 1},${Oe}`), J.push({ ...Ee }));
                 })),
                 (Y.location = "0,0"),
-                (Y.shelf_guid = re.GUID),
-                re.medMapStock || (re.medMapStock = []),
-                re.medMapStock.forEach((Ie) => {
-                  const Te = (Ie.location || "0,0").split(","),
-                    He = Number(Te[0] || "0"),
-                    Oe = Number(Te[1] || "0");
-                  ((Ie.location = `${He + 1},${Oe}`), J.push({ ...Ie }));
+                (Y.shelf_guid = ee.GUID),
+                ee.medMapStock || (ee.medMapStock = []),
+                ee.medMapStock.forEach((Ee) => {
+                  const Re = (Ee.location || "0,0").split(","),
+                    He = Number(Re[0] || "0"),
+                    Oe = Number(Re[1] || "0");
+                  ((Ee.location = `${He + 1},${Oe}`), J.push({ ...Ee }));
                 }),
-                re.medMapStock.push(Y),
-                re.medMapStock.sort((Ie, Te) => {
-                  const He = (Ie.location || "0,0").split(","),
-                    Oe = (Te.location || "0,0").split(",");
+                ee.medMapStock.push(Y),
+                ee.medMapStock.sort((Ee, Re) => {
+                  const He = (Ee.location || "0,0").split(","),
+                    Oe = (Re.location || "0,0").split(",");
                   return Number(He[0] || "0") - Number(Oe[0] || "0");
                 }),
                 J.push({ ...Y }));
@@ -15412,29 +15414,29 @@ const bs = new Eh(),
             if (J.length > 0) {
               console.log("準備更新的 stockItems:", J);
               try {
-                const re =
-                    targetShelf.serverName ||
-                    (sourceShelf == null ? void 0 : sourceShelf.serverName) ||
+                const Y =
+                    (ee == null ? void 0 : ee.serverName) ||
+                    (ae == null ? void 0 : ae.serverName) ||
                     "",
-                  ce =
-                    targetShelf.serverType ||
-                    (sourceShelf == null ? void 0 : sourceShelf.serverType) ||
+                  he =
+                    (ee == null ? void 0 : ee.serverType) ||
+                    (ae == null ? void 0 : ae.serverType) ||
                     "",
-                  Y = await Me.updateStock(J, re, ce);
-                if (Y.Code === 200) {
+                  je = await Me.updateStock(J, Y, he);
+                if (je.Code === 200) {
                   m("藥品位置更新成功", "success");
                   try {
-                    const he = await Me.getMedMapByDepartment(s);
-                    if (he.Code === 200 && he.Data) {
-                      const je = Rt.convertMedMapApiToFakeData(he.Data);
-                      Rt.validateConvertedData(je) && l(je);
+                    const Te = await Me.getMedMapByDepartment(s);
+                    if (Te.Code === 200 && Te.Data) {
+                      const Ee = Rt.convertMedMapApiToFakeData(Te.Data);
+                      Rt.validateConvertedData(Ee) && l(Ee);
                     }
-                  } catch (he) {
-                    console.error("刷新數據失敗:", he);
+                  } catch (Te) {
+                    console.error("刷新數據失敗:", Te);
                   }
-                } else m(Y.Result || "更新失敗", "error");
-              } catch (re) {
-                (console.error("更新 stockItem 失敗:", re),
+                } else m(je.Result || "更新失敗", "error");
+              } catch (Y) {
+                (console.error("更新 stockItem 失敗:", Y),
                   m("更新失敗，請稍後再試", "error"));
               }
             }
@@ -15457,18 +15459,18 @@ const bs = new Eh(),
           return;
         }
         let K = null,
-          ne = null,
+          re = null,
           z = null;
         if (
           (console.log("Drop Target:", U),
-          console.log("Is Mobile Drag:", A.isMobileDrag),
-          A.isMobileDrag)
+          console.log("Is Mobile Drag:", $.isMobileDrag),
+          $.isMobileDrag)
         )
           if (U) {
             ((K = U.direction), (z = U.container));
             const J = U.container.gird_position;
             console.log("目標容器原始位置:", J);
-            const re = W(U.container.Master_GUID || U.container.GUID);
+            const ee = W(U.container.Master_GUID || U.container.GUID);
             (console.log("🔍 移除前查找目標父容器:"),
               console.log(
                 "  - 查找 GUID:",
@@ -15476,28 +15478,28 @@ const bs = new Eh(),
               ),
               console.log(
                 "  - 找到的父容器:",
-                (me = re == null ? void 0 : re.container) == null
+                (me = ee == null ? void 0 : ee.container) == null
                   ? void 0
                   : me.GUID,
               ),
               console.log(
                 "  - 父容器類型:",
-                (Q = re == null ? void 0 : re.container) == null
+                (Q = ee == null ? void 0 : ee.container) == null
                   ? void 0
                   : Q.type,
               ));
-            const ce = W(A.draggedContainer.GUID);
+            const ae = W($.draggedContainer.GUID);
             let Y = null;
-            if (ce) {
-              Y = ce.parent.GUID;
-              const Le = ce.parent.contents.findIndex(
-                (_e) => _e.GUID === A.draggedContainer.GUID,
+            if (ae) {
+              Y = ae.parent.GUID;
+              const Le = ae.parent.contents.findIndex(
+                (_e) => _e.GUID === $.draggedContainer.GUID,
               );
-              ce.parent.contents.splice(Le, 1);
-              const Ge = le(ce.parent, A.draggedContainer);
-              ce.parent.contents = Ge;
+              ae.parent.contents.splice(Le, 1);
+              const Ge = le(ae.parent, $.draggedContainer);
+              ae.parent.contents = Ge;
             }
-            let he = re;
+            let he = ee;
             if (!he) {
               console.warn(
                 "⚠️ 透過 Master_GUID 找不到父容器，嘗試透過目標容器 GUID 查找",
@@ -15525,9 +15527,9 @@ const bs = new Eh(),
                 : (console.log("找不到更新後的目標容器，使用原始位置:", J),
                   (je = { ...U.container, gird_position: J }));
             }
-            const Ae = je.gird_position || J;
-            (console.log("最終使用的目標位置:", Ae),
-              (!Ae || Ae === "0,0") &&
+            const Te = je.gird_position || J;
+            (console.log("最終使用的目標位置:", Te),
+              (!Te || Te === "0,0") &&
                 (console.error("❌ 警告：目標位置無效或為 0,0"),
                 console.error(
                   "  - targetContainer.gird_position:",
@@ -15535,24 +15537,24 @@ const bs = new Eh(),
                 ),
                 console.error("  - originalTargetPosition:", J),
                 console.error("  - dropTarget.container:", U.container)));
-            const Ie = fe(Ae || "0,0");
-            let Te = Ie.row,
-              He = Ie.col;
+            const Ee = fe(Te || "0,0");
+            let Re = Ee.row,
+              He = Ee.col;
             switch (
-              (console.log("計算後的新位置 (插入前):", { row: Te, col: He }),
+              (console.log("計算後的新位置 (插入前):", { row: Re, col: He }),
               U.direction)
             ) {
               case "top":
-                Te = Math.max(0, Ie.row);
+                Re = Math.max(0, Ee.row);
                 break;
               case "bottom":
-                Te = Ie.row + 1;
+                Re = Ee.row + 1;
                 break;
               case "left":
-                He = Math.max(0, Ie.col);
+                He = Math.max(0, Ee.col);
                 break;
               case "right":
-                He = Ie.col + 1;
+                He = Ee.col + 1;
                 break;
             }
             let Oe = (he == null ? void 0 : he.container) || U.container;
@@ -15570,14 +15572,14 @@ const bs = new Eh(),
               console.log("  - dropTarget.container.class:", U.container.class),
               console.log(
                 "  - dragState.draggedContainer.class:",
-                A.draggedContainer.class,
+                $.draggedContainer.class,
               ),
-              A.draggedContainer.class != U.container.class &&
+              $.draggedContainer.class != U.container.class &&
                 ((Oe = U.container),
                 console.log(
                   "  → class 不同，改用 dropTarget.container 作為父容器",
                 )),
-              A.draggedContainer.type === "med_box" &&
+              $.draggedContainer.type === "med_box" &&
                 U.container.type !== "med_box")
             )
               if (
@@ -15588,79 +15590,79 @@ const bs = new Eh(),
                 let Le = 0,
                   Ge = 0;
                 Oe.contents.forEach((_e) => {
-                  const Re = fe(_e.gird_position || "0,0").row,
+                  const $e = fe(_e.gird_position || "0,0").row,
                     ze = fe(_e.gird_position || "0,0").col;
-                  (Le > Re && (Le = Re), Ge > ze && (Ge = ze));
+                  (Le > $e && (Le = $e), Ge > ze && (Ge = ze));
                 });
                 for (let _e = 0; _e <= Ge; _e++)
-                  for (let Re = 0; Re <= Le; Re++) {
-                    const ze = `${_e},${Re}`;
+                  for (let $e = 0; $e <= Le; $e++) {
+                    const ze = `${_e},${$e}`;
                     Oe.contents.filter((rt) => rt.grid_position === ze)
-                      .length === 0 && ((Te = _e), (He = Re));
+                      .length === 0 && ((Re = _e), (He = $e));
                   }
-              } else ((Te = 0), (He = 0));
-            ((ne = Oe), be(Oe, A.draggedContainer, Te, He, U.direction));
+              } else ((Re = 0), (He = 0));
+            ((re = Oe), be(Oe, $.draggedContainer, Re, He, U.direction));
           } else
             (console.log("無效拖放，復原所有容器位置"),
-              A.originalData &&
-                A.originalParent &&
-                (A.originalParent.contents = JSON.parse(
-                  JSON.stringify(A.originalData),
+              $.originalData &&
+                $.originalParent &&
+                ($.originalParent.contents = JSON.parse(
+                  JSON.stringify($.originalData),
                 )),
               (K = null),
               (z = null),
-              (ne = A.originalParent));
+              (re = $.originalParent));
         else if (U) {
           ((K = U.direction), (z = U.container));
-          const J = W(A.draggedContainer.GUID);
-          let re = null;
+          const J = W($.draggedContainer.GUID);
+          let ee = null;
           if (
             (console.log("=== 開始處理容器拖曳 ==="),
-            console.log("拖曳容器 GUID:", A.draggedContainer.GUID),
-            console.log("拖曳容器原始位置:", A.draggedContainer.gird_position),
+            console.log("拖曳容器 GUID:", $.draggedContainer.GUID),
+            console.log("拖曳容器原始位置:", $.draggedContainer.gird_position),
             J)
           ) {
-            ((re = J.parent.GUID),
-              console.log("原始父容器 GUID:", re),
+            ((ee = J.parent.GUID),
+              console.log("原始父容器 GUID:", ee),
               console.log(
                 "移除前父容器的 contents 數量:",
                 J.parent.contents.length,
               ));
-            const Te = J.parent.contents.findIndex(
-              (Oe) => Oe.GUID === A.draggedContainer.GUID,
+            const Re = J.parent.contents.findIndex(
+              (Oe) => Oe.GUID === $.draggedContainer.GUID,
             );
-            (J.parent.contents.splice(Te, 1),
+            (J.parent.contents.splice(Re, 1),
               console.log(
                 "移除後父容器的 contents 數量:",
                 J.parent.contents.length,
               ));
-            const He = le(J.parent, A.draggedContainer);
+            const He = le(J.parent, $.draggedContainer);
             ((J.parent.contents = He),
               console.log("重新計算後的容器列表:"),
               J.parent.contents.forEach((Oe) => {
                 console.log(`  - ${Oe.GUID}: ${Oe.gird_position}`);
               }));
           }
-          const ce = W(U.container.Master_GUID || U.container.GUID);
+          const ae = W(U.container.Master_GUID || U.container.GUID);
           let Y = U.container;
           if (
             (console.log("目標容器原始位置:", U.container.gird_position),
-            re && ce && ce.container.GUID === re)
+            ee && ae && ae.container.GUID === ee)
           ) {
             console.log("✓ 在同一個父容器內移動");
-            const Te = ce.container.contents.find(
+            const Re = ae.container.contents.find(
               (He) => He.GUID === U.container.GUID,
             );
-            Te &&
-              ((Y = Te),
+            Re &&
+              ((Y = Re),
               console.log(
                 "同一父容器內移動，更新後的目標容器位置:",
-                Te.gird_position,
+                Re.gird_position,
               ));
           } else console.log("✗ 跨父容器移動或父容器不同");
           const he = fe(Y.gird_position || "0,0");
           let je = he.row,
-            Ae = he.col;
+            Te = he.col;
           switch (U.direction) {
             case "top":
               je = Math.max(0, he.row);
@@ -15669,58 +15671,58 @@ const bs = new Eh(),
               je = he.row + 1;
               break;
             case "left":
-              Ae = Math.max(0, he.col);
+              Te = Math.max(0, he.col);
               break;
             case "right":
-              Ae = he.col + 1;
+              Te = he.col + 1;
               break;
           }
           (console.log("------目標容器", U),
-            console.log("------拖曳容器", A.draggedContainer));
-          let Ie = (ce == null ? void 0 : ce.container) || U.container;
+            console.log("------拖曳容器", $.draggedContainer));
+          let Ee = (ae == null ? void 0 : ae.container) || U.container;
           if (
-            (console.log(A.draggedContainer.class),
+            (console.log($.draggedContainer.class),
             console.log(U.container.class),
-            console.log(A.draggedContainer.class != U.container.class),
-            A.draggedContainer.class != U.container.class &&
-              ((Ie = U.container),
+            console.log($.draggedContainer.class != U.container.class),
+            $.draggedContainer.class != U.container.class &&
+              ((Ee = U.container),
               console.log("------這邊顯示放到上層容器現象"),
               console.log("------目標容器", U),
-              console.log("------拖曳容器", A.draggedContainer),
-              console.log("------目標父容器", Ie)),
-            A.draggedContainer.type === "med_box" &&
+              console.log("------拖曳容器", $.draggedContainer),
+              console.log("------目標父容器", Ee)),
+            $.draggedContainer.type === "med_box" &&
               U.container.type !== "med_box")
           )
             if (
               (console.log("藥盒移動目標到層架上"),
-              (Ie = U.container),
-              Ie.contents.length > 0)
+              (Ee = U.container),
+              Ee.contents.length > 0)
             ) {
-              let Te = 0,
+              let Re = 0,
                 He = 0;
-              Ie.contents.forEach((Oe) => {
+              Ee.contents.forEach((Oe) => {
                 const Le = fe(Oe.gird_position || "0,0").row,
                   Ge = fe(Oe.gird_position || "0,0").col;
-                (Te > Le && (Te = Le), He > Ge && (He = Ge));
+                (Re > Le && (Re = Le), He > Ge && (He = Ge));
               });
               for (let Oe = 0; Oe <= He; Oe++)
-                for (let Le = 0; Le <= Te; Le++) {
+                for (let Le = 0; Le <= Re; Le++) {
                   const Ge = `${Oe},${Le}`;
-                  Ie.contents.filter((Re) => Re.grid_position === Ge).length ===
-                    0 && ((je = Oe), (Ae = Le));
+                  Ee.contents.filter(($e) => $e.grid_position === Ge).length ===
+                    0 && ((je = Oe), (Te = Le));
                 }
-            } else ((je = 0), (Ae = 0));
-          ((ne = Ie), be(Ie, A.draggedContainer, je, Ae, U.direction));
+            } else ((je = 0), (Te = 0));
+          ((re = Ee), be(Ee, $.draggedContainer, je, Te, U.direction));
         } else
           (console.log("無效拖放，復原所有容器位置"),
-            A.originalData &&
-              A.originalParent &&
-              (A.originalParent.contents = JSON.parse(
-                JSON.stringify(A.originalData),
+            $.originalData &&
+              $.originalParent &&
+              ($.originalParent.contents = JSON.parse(
+                JSON.stringify($.originalData),
               )),
             (K = null),
             (z = null),
-            (ne = A.originalParent));
+            (re = $.originalParent));
         (Ne({
           isDragging: !1,
           draggedContainer: null,
@@ -15737,68 +15739,68 @@ const bs = new Eh(),
         }),
           G(null),
           console.log("Drop Direction:", K),
-          console.log("Parent Object:", ne),
+          console.log("Parent Object:", re),
           console.log("Target Object:", z),
           console.log("API更新資料：", ge),
           await Ph(ge));
       };
     (u.useEffect(() => {
-      if (A.isDragging)
+      if ($.isDragging)
         if (Z()) {
           const K = (me) => {
               (me.preventDefault(), ye(me));
             },
-            ne = (me) => ie(),
-            z = (me) => ie();
+            re = (me) => ce(),
+            z = (me) => ce();
           return (
             document.addEventListener("pointermove", K, { passive: !1 }),
-            document.addEventListener("pointerup", ne),
+            document.addEventListener("pointerup", re),
             document.addEventListener("pointercancel", z),
             () => {
               (document.removeEventListener("pointermove", K),
-                document.removeEventListener("pointerup", ne),
+                document.removeEventListener("pointerup", re),
                 document.removeEventListener("pointercancel", z));
             }
           );
         } else {
           const K = (Q) => ye(Q),
-            ne = (Q) => ie(),
+            re = (Q) => ce(),
             z = (Q) => {
               (Q.preventDefault(), ye(Q));
             },
-            me = (Q) => ie();
+            me = (Q) => ce();
           return (
             document.addEventListener("mousemove", K),
-            document.addEventListener("mouseup", ne),
+            document.addEventListener("mouseup", re),
             document.addEventListener("touchmove", z, { passive: !1 }),
             document.addEventListener("touchend", me),
             () => {
               (document.removeEventListener("mousemove", K),
-                document.removeEventListener("mouseup", ne),
+                document.removeEventListener("mouseup", re),
                 document.removeEventListener("touchmove", z),
                 document.removeEventListener("touchend", me));
             }
           );
         }
-    }, [A.isDragging, U]),
+    }, [$.isDragging, U]),
       u.useEffect(
         () => () => {
-          if (A.floatingElement)
+          if ($.floatingElement)
             try {
-              A.floatingElement.parentNode &&
-                A.floatingElement.parentNode.removeChild(A.floatingElement);
+              $.floatingElement.parentNode &&
+                $.floatingElement.parentNode.removeChild($.floatingElement);
             } catch (x) {
               console.error("組件卸載時清除浮動元素失敗:", x);
             }
         },
-        [A.floatingElement],
+        [$.floatingElement],
       ),
       u.useEffect(() => {
-        const x = (ne) => {
-            ne.code === "Space" && !ne.repeat && (ne.preventDefault(), M(!0));
+        const x = (re) => {
+            re.code === "Space" && !re.repeat && (re.preventDefault(), M(!0));
           },
-          K = (ne) => {
-            ne.code === "Space" && (ne.preventDefault(), M(!1), y(!1));
+          K = (re) => {
+            re.code === "Space" && (re.preventDefault(), M(!1), y(!1));
           };
         return (
           window.addEventListener("keydown", x),
@@ -15811,21 +15813,21 @@ const bs = new Eh(),
       }, []));
     const we = u.useCallback(
         (x) => {
-          var ne;
+          var re;
           if (v) return;
           if (x.ctrlKey || x.metaKey) {
             (x.preventDefault(), x.stopPropagation());
             const z =
-              (ne = n.current) == null ? void 0 : ne.getBoundingClientRect();
+              (re = n.current) == null ? void 0 : re.getBoundingClientRect();
             if (!z) return;
             const me = x.clientX - z.left,
               Q = x.clientY - z.top,
               J = x.deltaY > 0 ? 0.9 : 1.1,
-              re = Math.max(0.1, Math.min(5, k.scale * J)),
-              ce = re / k.scale,
-              Y = me - (me - k.x) * ce,
-              he = Q - (Q - k.y) * ce;
-            f({ x: Y, y: he, scale: re });
+              ee = Math.max(0.1, Math.min(5, k.scale * J)),
+              ae = ee / k.scale,
+              Y = me - (me - k.x) * ae,
+              he = Q - (Q - k.y) * ae;
+            f({ x: Y, y: he, scale: ee });
           }
         },
         [k, v],
@@ -15846,13 +15848,13 @@ const bs = new Eh(),
         (x) => {
           if (!d || v) return;
           const K = x.clientX - S.x,
-            ne = x.clientY - S.y;
+            re = x.clientY - S.y;
           if (P) {
             const z = Math.abs(x.clientX - P.x),
               me = Math.abs(x.clientY - P.y);
             (z > 5 || me > 5) && B(!0);
           }
-          (f((z) => ({ ...z, x: z.x + K, y: z.y + ne })),
+          (f((z) => ({ ...z, x: z.x + K, y: z.y + re })),
             I({ x: x.clientX, y: x.clientY }));
         },
         [d, S, v, P],
@@ -15861,23 +15863,23 @@ const bs = new Eh(),
         (y(!1), X(null));
       }, []),
       [q, ue] = u.useState(null),
-      [ae, Se] = u.useState({ x: 0, y: 0 }),
+      [ie, Se] = u.useState({ x: 0, y: 0 }),
       Ue = (x) => {
         if (x.length < 2) return null;
         const K = x[0],
-          ne = x[1];
+          re = x[1];
         return Math.sqrt(
-          Math.pow(ne.clientX - K.clientX, 2) +
-            Math.pow(ne.clientY - K.clientY, 2),
+          Math.pow(re.clientX - K.clientX, 2) +
+            Math.pow(re.clientY - K.clientY, 2),
         );
       },
       We = (x) => {
         if (x.length === 1) return { x: x[0].clientX, y: x[0].clientY };
         const K = x[0],
-          ne = x[1];
+          re = x[1];
         return {
-          x: (K.clientX + ne.clientX) / 2,
-          y: (K.clientY + ne.clientY) / 2,
+          x: (K.clientX + re.clientX) / 2,
+          y: (K.clientY + re.clientY) / 2,
         };
       },
       ct = u.useCallback(
@@ -15885,8 +15887,8 @@ const bs = new Eh(),
           if (!v) {
             if (x.touches.length === 2) {
               const K = Ue(x.touches),
-                ne = We(x.touches);
-              (ue(K), Se(ne));
+                re = We(x.touches);
+              (ue(K), Se(re));
             } else if (x.touches.length === 1) {
               const K = x.touches[0];
               (I({ x: K.clientX, y: K.clientY }), y(!0));
@@ -15900,27 +15902,27 @@ const bs = new Eh(),
           var K;
           if (!v) {
             if ((x.preventDefault(), x.touches.length === 2 && q !== null)) {
-              const ne = Ue(x.touches),
+              const re = Ue(x.touches),
                 z = We(x.touches);
-              if (ne && q) {
+              if (re && q) {
                 const me =
                   (K = n.current) == null ? void 0 : K.getBoundingClientRect();
                 if (!me) return;
-                const Q = ne / q,
+                const Q = re / q,
                   J = Math.max(0.1, Math.min(5, k.scale * Q)),
-                  re = z.x - me.left,
-                  ce = z.y - me.top,
+                  ee = z.x - me.left,
+                  ae = z.y - me.top,
                   Y = J / k.scale,
-                  he = re - (re - k.x) * Y,
-                  je = ce - (ce - k.y) * Y;
-                (f({ x: he, y: je, scale: J }), ue(ne), Se(z));
+                  he = ee - (ee - k.x) * Y,
+                  je = ae - (ae - k.y) * Y;
+                (f({ x: he, y: je, scale: J }), ue(re), Se(z));
               }
             } else if (x.touches.length === 1 && d) {
-              const ne = x.touches[0],
-                z = ne.clientX - S.x,
-                me = ne.clientY - S.y;
+              const re = x.touches[0],
+                z = re.clientX - S.x,
+                me = re.clientY - S.y;
               (f((Q) => ({ ...Q, x: Q.x + z, y: Q.y + me })),
-                I({ x: ne.clientX, y: ne.clientY }));
+                I({ x: re.clientX, y: re.clientY }));
             }
           }
         },
@@ -15945,7 +15947,7 @@ const bs = new Eh(),
             ...Q,
             gridPos: fe(Q.gird_position || "0,0"),
           })),
-          ne = Math.max(...K.map((Q) => Q.gridPos.row), 0),
+          re = Math.max(...K.map((Q) => Q.gridPos.row), 0),
           z = Math.max(...K.map((Q) => Q.gridPos.col), 0);
         return {
           sortedContents: K.sort((Q, J) =>
@@ -15953,7 +15955,7 @@ const bs = new Eh(),
               ? Q.gridPos.row - J.gridPos.row
               : Q.gridPos.col - J.gridPos.col,
           ),
-          maxRow: ne,
+          maxRow: re,
           maxCol: z,
         };
       },
@@ -15977,7 +15979,7 @@ const bs = new Eh(),
             }
             return 200;
           },
-          ne = (z) => {
+          re = (z) => {
             switch (z) {
               case "parent_container":
                 return "bg-pink-50 border-pink-300";
@@ -16003,7 +16005,7 @@ const bs = new Eh(),
                 "div",
                 {
                   "data-container-guid": x.GUID,
-                  className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${ne(x.type || 0)} min-h-[80px] flex flex-col flex-shrink-0 h-full overflow-hidden`,
+                  className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${re(x.type || 0)} min-h-[80px] flex flex-col flex-shrink-0 h-full overflow-hidden`,
                   children: [
                     r.jsx("div", {
                       onMouseDown:
@@ -16043,7 +16045,7 @@ const bs = new Eh(),
               "div",
               {
                 "data-container-guid": x.GUID,
-                className: `${ne(x.type || 0)} border-2 overflow-hidden rounded-lg shadow-sm min-h-[80px] flex flex-col h-full`,
+                className: `${re(x.type || 0)} border-2 overflow-hidden rounded-lg shadow-sm min-h-[80px] flex flex-col h-full`,
                 children: [
                   r.jsx("div", {
                     onMouseDown:
@@ -16077,7 +16079,7 @@ const bs = new Eh(),
               "div",
               {
                 "data-container-guid": x.GUID,
-                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${ne(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden`,
+                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${re(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden`,
                 children: [
                   r.jsx("div", {
                     onMouseDown:
@@ -16115,7 +16117,7 @@ const bs = new Eh(),
               "div",
               {
                 "data-container-guid": x.GUID,
-                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${ne(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden`,
+                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${re(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden`,
                 children: [
                   r.jsx("div", {
                     onMouseDown:
@@ -16152,7 +16154,7 @@ const bs = new Eh(),
               "div",
               {
                 "data-container-guid": x.GUID,
-                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${ne(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden ${x.type == "none" ? "opacity-0" : ""}`,
+                className: `${x.type !== "sub_container" ? "border-2 rounded-lg shadow-sm" : ""} ${re(x.type || 0)} min-h-[80px] flex flex-col h-full overflow-hidden ${x.type == "none" ? "opacity-0" : ""}`,
                 children: [
                   r.jsx("div", {
                     onMouseDown:
@@ -16184,30 +16186,30 @@ const bs = new Eh(),
         }
       },
       Yn = (x) => {
-        const K = (ne, z, me) => {
+        const K = (re, z, me) => {
           const Q = Array(z + 1)
               .fill(null)
               .map(() => Array(me + 1).fill(!1)),
             J = {};
           return (
-            ne.forEach((re) => {
-              const ce = fe(re.gird_position || "0,0");
-              ((J[`${ce.row},${ce.col}`] = re), (Q[ce.row][ce.col] = !0));
+            re.forEach((ee) => {
+              const ae = fe(ee.gird_position || "0,0");
+              ((J[`${ae.row},${ae.col}`] = ee), (Q[ae.row][ae.col] = !0));
             }),
             r.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: r.jsx("tbody", {
-                children: Array.from({ length: z + 1 }, (re, ce) =>
+                children: Array.from({ length: z + 1 }, (ee, ae) =>
                   r.jsx(
                     "tr",
                     {
                       className: "h-full",
                       style: { height: `${100 / (z + 1)}%`, minHeight: "80px" },
                       children: Array.from({ length: me + 1 }, (Y, he) => {
-                        const je = `${ce},${he}`,
-                          Ae = J[je];
-                        return Ae
+                        const je = `${ae},${he}`,
+                          Te = J[je];
+                        return Te
                           ? r.jsxs(
                               "td",
                               {
@@ -16220,9 +16222,9 @@ const bs = new Eh(),
                                   position: "relative",
                                 },
                                 children: [
-                                  Wn(Ae),
+                                  Wn(Te),
                                   (U == null ? void 0 : U.container.GUID) ===
-                                    Ae.GUID &&
+                                    Te.GUID &&
                                     r.jsx("div", {
                                       className:
                                         "absolute inset-0 pointer-events-none",
@@ -16254,7 +16256,7 @@ const bs = new Eh(),
                             );
                       }),
                     },
-                    ce,
+                    ae,
                   ),
                 ),
               }),
@@ -16305,25 +16307,25 @@ const bs = new Eh(),
             if (x.medMapStock && x.medMapStock.length > 0) {
               const Y = x.medMapStock,
                 he = {};
-              Y.forEach((Te) => {
-                const He = (Te.location || "0,0").split(","),
+              Y.forEach((Re) => {
+                const He = (Re.location || "0,0").split(","),
                   Oe = Number(He[0] || "0"),
                   Le = Number(He[1] || "0");
                 (he[Oe] || (he[Oe] = []),
-                  he[Oe].push({ ...Te, _position: Oe, _depth: Le }));
+                  he[Oe].push({ ...Re, _position: Oe, _depth: Le }));
               });
               const je = Object.keys(he)
                   .map(Number)
-                  .sort((Te, He) => Te - He),
-                Ae = je.length;
-              Math.max(...je.map((Te) => he[Te].length));
-              const Ie = x.width ? x.width * 5 : 500;
+                  .sort((Re, He) => Re - He),
+                Te = je.length;
+              Math.max(...je.map((Re) => he[Re].length));
+              const Ee = x.width ? x.width * 5 : 500;
               return r.jsx("div", {
                 className: "flex h-full",
-                style: { minWidth: `${Ie}px` },
-                children: je.map((Te) => {
-                  const He = he[Te].sort((_e, Re) => Re._depth - _e._depth),
-                    Oe = Ae > 0 ? 100 / Ae : 100,
+                style: { minWidth: `${Ee}px` },
+                children: je.map((Re) => {
+                  const He = he[Re].sort((_e, $e) => $e._depth - _e._depth),
+                    Oe = Te > 0 ? 100 / Te : 100,
                     Le = He.length,
                     Ge = Le > 0 ? 100 / Le : 100;
                   return r.jsx(
@@ -16331,8 +16333,8 @@ const bs = new Eh(),
                     {
                       className: "flex flex-shrink-0 flex-col m-1",
                       style: { width: `calc(${Oe}% - 8px)`, minWidth: "160px" },
-                      children: He.map((_e, Re) => {
-                        const ze = Re === Le - 1;
+                      children: He.map((_e, $e) => {
+                        const ze = $e === Le - 1;
                         return r.jsx(
                           "div",
                           {
@@ -16453,11 +16455,11 @@ const bs = new Eh(),
                               ],
                             }),
                           },
-                          _e.GUID || Re,
+                          _e.GUID || $e,
                         );
                       }),
                     },
-                    Te,
+                    Re,
                   );
                 }),
               });
@@ -16509,28 +16511,28 @@ const bs = new Eh(),
                 }),
               });
           case "grid_draw":
-            const ne = Math.max(
+            const re = Math.max(
                 ...x.Boxes.flat().map((Y) => +Y.Row + +Y.Height - 1),
               ),
               z = Math.max(
                 ...x.Boxes.flat().map((Y) => +Y.Column + +Y.Width - 1),
               ),
-              me = ne + 1,
+              me = re + 1,
               Q = z + 1,
               J = x.Boxes.flat(),
-              re = Array(me)
+              ee = Array(me)
                 .fill(null)
                 .map(() => Array(Q).fill(!1)),
-              ce = {};
+              ae = {};
             return (
               J.forEach((Y) => {
-                Y.Slave || (ce[`${Y.Row},${Y.Column}`] = Y);
+                Y.Slave || (ae[`${Y.Row},${Y.Column}`] = Y);
               }),
               J.forEach((Y) => {
                 if (!Y.Slave && (Y.Width > 1 || Y.Height > 1))
                   for (let he = Y.Row; he < Y.Row + Y.Height; he++)
                     for (let je = Y.Column; je < Y.Column + Y.Width; je++)
-                      (he !== Y.Row || je !== Y.Column) && (re[he][je] = !0);
+                      (he !== Y.Row || je !== Y.Column) && (ee[he][je] = !0);
               }),
               r.jsxs("div", {
                 className:
@@ -16621,8 +16623,8 @@ const bs = new Eh(),
           x.type !== "調劑台" && x.type !== "藥庫")
         )
           return null;
-        const K = (ne) => {
-          if (!ne || ne.length === 0)
+        const K = (re) => {
+          if (!re || re.length === 0)
             return r.jsx("table", {
               className: "w-full h-full border-none",
               children: r.jsx("tbody", {
@@ -16640,29 +16642,29 @@ const bs = new Eh(),
                 }),
               }),
             });
-          const { sortedContents: z, maxRow: me, maxCol: Q } = pn(ne),
+          const { sortedContents: z, maxRow: me, maxCol: Q } = pn(re),
             J = Array(me + 1)
               .fill(null)
               .map(() => Array(Q + 1).fill(!1)),
-            re = {};
+            ee = {};
           return (
-            z.forEach((ce) => {
-              const Y = fe(ce.gird_position || "0,0");
-              ((re[`${Y.row},${Y.col}`] = ce), (J[Y.row][Y.col] = !0));
+            z.forEach((ae) => {
+              const Y = fe(ae.gird_position || "0,0");
+              ((ee[`${Y.row},${Y.col}`] = ae), (J[Y.row][Y.col] = !0));
             }),
             r.jsx("table", {
               className: "w-full h-full",
               style: { borderCollapse: "none", borderSpacing: "0px" },
               children: r.jsx("tbody", {
-                children: Array.from({ length: me + 1 }, (ce, Y) =>
+                children: Array.from({ length: me + 1 }, (ae, Y) =>
                   r.jsx(
                     "tr",
                     {
                       className: "h-full",
                       children: Array.from({ length: Q + 1 }, (he, je) => {
-                        const Ae = `${Y},${je}`,
-                          Ie = re[Ae];
-                        return Ie
+                        const Te = `${Y},${je}`,
+                          Ee = ee[Te];
+                        return Ee
                           ? r.jsxs(
                               "td",
                               {
@@ -16675,9 +16677,9 @@ const bs = new Eh(),
                                   position: "relative",
                                 },
                                 children: [
-                                  Wn(Ie),
+                                  Wn(Ee),
                                   (U == null ? void 0 : U.container.GUID) ===
-                                    Ie.GUID &&
+                                    Ee.GUID &&
                                     r.jsx("div", {
                                       className:
                                         "absolute inset-0 pointer-events-none",
@@ -16739,8 +16741,8 @@ const bs = new Eh(),
                     children: r.jsx("button", {
                       className:
                         "p-1 hover:bg-black/10 rounded transition-colors",
-                      onClick: (ne) => {
-                        (ne.stopPropagation(),
+                      onClick: (re) => {
+                        (re.stopPropagation(),
                           console.log("🔘 點擊新增父容器按鈕"),
                           console.log("📋 找到的部門資料:", x),
                           x
@@ -16787,34 +16789,34 @@ const bs = new Eh(),
             return;
           }
           console.log("🎯 開始定位藥品:", K);
-          const ne = (me) => {
+          const re = (me) => {
               for (const Q of me) {
                 if (Q.type === "grid_draw" && Q.Boxes) {
                   for (const J of Q.Boxes)
-                    for (const re of J)
-                      if (re.Code === K) {
-                        const ce = document.querySelector(
+                    for (const ee of J)
+                      if (ee.Code === K) {
+                        const ae = document.querySelector(
                           `[data-container-guid="${Q.GUID}"]`,
                         );
-                        if (ce)
+                        if (ae)
                           return (
                             console.log("✅ 找到藥品容器 (grid_draw):", Q),
-                            { element: ce, bounds: ce.getBoundingClientRect() }
+                            { element: ae, bounds: ae.getBoundingClientRect() }
                           );
                       }
                 }
                 if (
                   Q.type === "list_draw" &&
                   Q.drugs &&
-                  Q.drugs.some((re) => re.code === K)
+                  Q.drugs.some((ee) => ee.code === K)
                 ) {
-                  const re = document.querySelector(
+                  const ee = document.querySelector(
                     `[data-container-guid="${Q.GUID}"]`,
                   );
-                  if (re)
+                  if (ee)
                     return (
                       console.log("✅ 找到藥品容器 (list_draw):", Q),
-                      { element: re, bounds: re.getBoundingClientRect() }
+                      { element: ee, bounds: ee.getBoundingClientRect() }
                     );
                 }
                 if (
@@ -16822,58 +16824,58 @@ const bs = new Eh(),
                     Q.type === "dispensing_shelves") &&
                   Q.medMapStock &&
                   Q.medMapStock.some(
-                    (re) => re.code === K || re.material_no === K,
+                    (ee) => ee.code === K || ee.material_no === K,
                   )
                 ) {
-                  const re = document.querySelector(
+                  const ee = document.querySelector(
                     `[data-container-guid="${Q.GUID}"]`,
                   );
-                  if (re)
+                  if (ee)
                     return (
                       console.log("✅ 找到藥品容器 (store_shelves):", Q),
-                      { element: re, bounds: re.getBoundingClientRect() }
+                      { element: ee, bounds: ee.getBoundingClientRect() }
                     );
                 }
                 if (
                   Q.type === "med_box" &&
                   Q.med_info &&
                   Q.med_info.length > 0 &&
-                  Q.med_info.some((re) => re.code === K)
+                  Q.med_info.some((ee) => ee.code === K)
                 ) {
-                  const re = document.querySelector(
+                  const ee = document.querySelector(
                     `[data-container-guid="${Q.GUID}"]`,
                   );
-                  if (re)
+                  if (ee)
                     return (
                       console.log("✅ 找到藥品容器 (med_box):", Q),
-                      { element: re, bounds: re.getBoundingClientRect() }
+                      { element: ee, bounds: ee.getBoundingClientRect() }
                     );
                 }
                 if (Q.contents && Q.contents.length > 0) {
-                  const J = ne(Q.contents);
+                  const J = re(Q.contents);
                   if (J) return J;
                 }
               }
               return null;
             },
-            z = ne(o);
+            z = re(o);
           if (z) {
             const me = n.current.getBoundingClientRect(),
               Q = z.bounds,
               J = (Q.left + Q.right) / 2,
-              re = (Q.top + Q.bottom) / 2,
-              ce = (J - me.left - k.x) / k.scale,
-              Y = (re - me.top - k.y) / k.scale,
+              ee = (Q.top + Q.bottom) / 2,
+              ae = (J - me.left - k.x) / k.scale,
+              Y = (ee - me.top - k.y) / k.scale,
               he = me.width / 2,
               je = me.height / 2,
-              Ae = he - ce * k.scale,
-              Ie = je - Y * k.scale;
-            (f((Te) => ({ ...Te, x: Ae, y: Ie })),
+              Te = he - ae * k.scale,
+              Ee = je - Y * k.scale;
+            (f((Re) => ({ ...Re, x: Te, y: Ee })),
               console.log("✅ 定位完成", {
-                elementScreenCenter: { x: J, y: re },
-                elementCanvasPos: { x: ce, y: Y },
+                elementScreenCenter: { x: J, y: ee },
+                elementCanvasPos: { x: ae, y: Y },
                 screenCenter: { x: he, y: je },
-                newTransform: { x: Ae, y: Ie },
+                newTransform: { x: Te, y: Ee },
               }),
               m(`已定位到藥品：${x.CHT_NAME || x.NAME || K}`, "success"));
           } else
@@ -16889,41 +16891,41 @@ const bs = new Eh(),
         { locateDrug: Yr }
       ),
     );
-    const Qr = async (x, K, ne) => {
-        (ne.stopPropagation(), ne.preventDefault());
+    const Qr = async (x, K, re) => {
+        (re.stopPropagation(), re.preventDefault());
         const z = window.confirm(`確定要刪除 ${x.name || x.material_no} 嗎？`),
           me = { ...x, shelf_guid: "" };
         if (z)
           try {
             const Q = K.serverName || "",
               J = K.serverType || "",
-              re = await Me.updateStock([me], Q, J);
-            if ((console.log(re), re.Code === 200)) {
-              const ce = K.medMapStock.findIndex((Y) => Y.GUID === x.GUID);
-              (ce !== -1 &&
-                (K.medMapStock.splice(ce, 1),
+              ee = await Me.updateStock([me], Q, J);
+            if ((console.log(ee), ee.Code === 200)) {
+              const ae = K.medMapStock.findIndex((Y) => Y.GUID === x.GUID);
+              (ae !== -1 &&
+                (K.medMapStock.splice(ae, 1),
                 K.medMapStock.forEach((Y, he) => {
                   Y.location = String(he);
                 })),
                 m("刪除成功", "success"));
-            } else m(re.Result || "刪除失敗", "error");
+            } else m(ee.Result || "刪除失敗", "error");
           } catch (Q) {
             (console.error("刪除 stock 失敗:", Q),
               m("刪除失敗，請稍後再試", "error"));
           }
       },
       dl = async (x) => {
-        if (x.key === "Enter" && $.trim() && !ve) {
+        if (x.key === "Enter" && A.trim() && !ve) {
           (x.preventDefault(), _(!0));
           const K = performance.now();
           try {
-            console.log("🔍 [手動輸入] 搜尋條碼:", $);
-            const ne = performance.now(),
-              z = await Me.searchByBarCode($.trim()),
+            console.log("🔍 [手動輸入] 搜尋條碼:", A);
+            const re = performance.now(),
+              z = await Me.searchByBarCode(A.trim()),
               me = performance.now();
             if (
               (console.log(
-                `⏱️ [手動輸入] API搜尋藥品資料用時: ${(me - ne).toFixed(2)}ms`,
+                `⏱️ [手動輸入] API搜尋藥品資料用時: ${(me - re).toFixed(2)}ms`,
               ),
               console.log("📋 條碼搜尋回應:", z),
               z.Code === 200)
@@ -16936,18 +16938,18 @@ const bs = new Eh(),
                 `⏱️ [手動輸入] 定位藥品用時: ${(J - Q).toFixed(2)}ms`,
               ),
                 se(""));
-              const re = performance.now();
-              console.log(`⏱️ [手動輸入] 總用時: ${(re - K).toFixed(2)}ms`);
+              const ee = performance.now();
+              console.log(`⏱️ [手動輸入] 總用時: ${(ee - K).toFixed(2)}ms`);
             } else
               z.Code === -200 && z.Result === "查無資料"
                 ? (console.log("⚠️ 查無資料，開啟建立條碼彈窗"),
                   m("查無資料，請建立條碼", "error"),
-                  g($.trim()),
+                  g(A.trim()),
                   se(""))
                 : (console.log("❌ 搜尋失敗:", z.Result),
                   m(z.Result || "搜尋失敗", "error"));
-          } catch (ne) {
-            (console.error("條碼搜尋錯誤:", ne),
+          } catch (re) {
+            (console.error("條碼搜尋錯誤:", re),
               m("搜尋失敗，請稍後再試", "error"));
           } finally {
             _(!1);
@@ -16980,7 +16982,7 @@ const bs = new Eh(),
               r.jsx("div", { className: "w-px h-6 bg-gray-200" }),
               r.jsx("input", {
                 type: "text",
-                value: $,
+                value: A,
                 onChange: (x) => se(x.target.value),
                 onKeyDown: dl,
                 placeholder: "輸入條碼或掃描...",
@@ -17042,7 +17044,7 @@ const bs = new Eh(),
                       r.jsx(
                         "tr",
                         {
-                          children: Array.from({ length: cl + 1 }, (ne, z) => {
+                          children: Array.from({ length: cl + 1 }, (re, z) => {
                             const me = Vr.find((Q) => {
                               const J = fe(Q.gird_position || "0,0");
                               return J.row === K && J.col === z;
@@ -17309,7 +17311,7 @@ const Ph = async (e) => {
       [y, v] = u.useState("N"),
       [E, S] = u.useState([]),
       [I, F] = u.useState(!1),
-      [M, $] = u.useState(!1),
+      [M, A] = u.useState(!1),
       [se, ve] = u.useState(null),
       [_, N] = u.useState(null),
       [L, P] = u.useState(!1),
@@ -17318,21 +17320,21 @@ const Ph = async (e) => {
       if (n && e)
         if (c === "add") {
           p(0);
-          const te = {};
+          const ne = {};
           (an.forEach((D, xe) => {
-            te[xe] = 0;
+            ne[xe] = 0;
           }),
-            b(te),
+            b(ne),
             k(""),
-            $(!1),
+            A(!1),
             B());
         } else {
-          const te = an.findIndex(
+          const ne = an.findIndex(
             (D) => D.box_type === n.box_type || D.type === n.box_type,
           );
-          if ((console.log(n), te >= 0)) {
-            p(te);
-            const xe = an[te].width.findIndex((W) => {
+          if ((console.log(n), ne >= 0)) {
+            p(ne);
+            const xe = an[ne].width.findIndex((W) => {
                 var le;
                 return (
                   W ===
@@ -17341,7 +17343,7 @@ const Ph = async (e) => {
               }),
               fe = {};
             (an.forEach((W, le) => {
-              le === te ? (fe[le] = xe >= 0 ? xe : 0) : (fe[le] = 0);
+              le === ne ? (fe[le] = xe >= 0 ? xe : 0) : (fe[le] = 0);
             }),
               b(fe));
           } else {
@@ -17365,12 +17367,12 @@ const Ph = async (e) => {
     const B = () => {
         n && n.parentShelf && ve(n.parentShelf);
       },
-      ee = (te) => {
-        if (!te || !te.contents || te.contents.length === 0) return "0,0";
+      te = (ne) => {
+        if (!ne || !ne.contents || ne.contents.length === 0) return "0,0";
         let D = -1,
           xe = 0;
         return (
-          te.contents.forEach((fe) => {
+          ne.contents.forEach((fe) => {
             if (fe.gird_position) {
               const [W, le] = fe.gird_position.split(",").map(Number);
               le > D && ((D = le), (xe = W));
@@ -17381,9 +17383,9 @@ const Ph = async (e) => {
       },
       H = () => {
         if (!_ || c !== "edit") return !1;
-        const te = an[m],
+        const ne = an[m],
           D = j[m] || 0,
-          xe = te.box_type || te.type || te.name;
+          xe = ne.box_type || ne.type || ne.name;
         return (
           _.box_type !== xe ||
           _.width_index !== D ||
@@ -17392,11 +17394,11 @@ const Ph = async (e) => {
             JSON.stringify(n == null ? void 0 : n.storage)
         );
       },
-      A = (te) => {
-        p(te);
+      $ = (ne) => {
+        p(ne);
       },
-      Ne = (te, D) => {
-        b((xe) => ({ ...xe, [te]: D }));
+      Ne = (ne, D) => {
+        b((xe) => ({ ...xe, [ne]: D }));
       },
       U = () => {
         n && (c === "add" ? ge() : Z());
@@ -17409,12 +17411,12 @@ const Ph = async (e) => {
           a("缺少必要資料，無法新增藥盒", "error");
           return;
         }
-        $(!0);
+        A(!0);
         try {
-          const te = an[m],
+          const ne = an[m],
             D = j[m] || 0,
-            xe = te.width[D],
-            fe = ee(se),
+            xe = ne.width[D],
+            fe = te(se),
             W = {
               Master_GUID: se.GUID,
               position: fe,
@@ -17429,15 +17431,15 @@ const Ph = async (e) => {
           le.Code === 200
             ? (a("藥盒新增成功", "success"), t(), await ke())
             : a(`藥盒新增失敗：${le.Result || "未知錯誤"}`, "error");
-        } catch (te) {
-          (console.error("Add med box failed:", te),
+        } catch (ne) {
+          (console.error("Add med box failed:", ne),
             a("藥盒新增失敗：網路錯誤", "error"));
         } finally {
-          $(!1);
+          A(!1);
         }
       },
       Z = async () => {
-        var te;
+        var ne;
         if (!n || !H()) {
           a("沒有資料變更", "error");
           return;
@@ -17474,9 +17476,9 @@ const Ph = async (e) => {
           if (oe.every((ye) => ye.Code === 200))
             (a("藥盒更新成功", "success"), t(), await ke());
           else {
-            const ye = oe.filter((ie) => ie.Code !== 200);
+            const ye = oe.filter((ce) => ce.Code !== 200);
             a(
-              `藥盒更新失敗：${((te = ye[0]) == null ? void 0 : te.Result) || "未知錯誤"}`,
+              `藥盒更新失敗：${((ne = ye[0]) == null ? void 0 : ne.Result) || "未知錯誤"}`,
               "error",
             );
           }
@@ -17494,11 +17496,11 @@ const Ph = async (e) => {
         }
         (console.log("🔄 重新獲取藥品地圖資料，部門類型:", s), l(!0));
         try {
-          const te = await Me.getMedMapByDepartment(s);
-          if (te.Code === 200 && te.Data) {
+          const ne = await Me.getMedMapByDepartment(s);
+          if (ne.Code === 200 && ne.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
             const D = await $h(() => Promise.resolve().then(() => sh), void 0),
-              xe = D.default.convertMedMapApiToFakeData(te.Data);
+              xe = D.default.convertMedMapApiToFakeData(ne.Data);
             if (!D.default.validateConvertedData(xe)) {
               (console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error"));
@@ -17506,61 +17508,61 @@ const Ph = async (e) => {
             }
             (o(xe), console.log("✅ 藥品地圖資料已更新"));
           } else
-            (console.error("❌ API 回傳錯誤:", te),
+            (console.error("❌ API 回傳錯誤:", ne),
               a("資料更新失敗：API 錯誤", "error"));
-        } catch (te) {
-          (console.error("💥 重新獲取藥品地圖資料失敗:", te),
+        } catch (ne) {
+          (console.error("💥 重新獲取藥品地圖資料失敗:", ne),
             a("資料更新失敗：網路錯誤", "error"));
         } finally {
           l(!1);
         }
       },
-      Ee = async () => {
+      Ie = async () => {
         F(!0);
         try {
-          const te = f.toLowerCase().trim();
+          const ne = f.toLowerCase().trim();
           let D = h;
-          (te &&
+          (ne &&
             (D = D.filter((xe) => {
               var fe, W, le;
               return (
                 ((fe = xe.CODE) == null
                   ? void 0
-                  : fe.toLowerCase().includes(te)) ||
+                  : fe.toLowerCase().includes(ne)) ||
                 ((W = xe.NAME) == null
                   ? void 0
-                  : W.toLowerCase().includes(te)) ||
+                  : W.toLowerCase().includes(ne)) ||
                 ((le = xe.CHT_NAME) == null
                   ? void 0
-                  : le.toLowerCase().includes(te))
+                  : le.toLowerCase().includes(ne))
               );
             })),
             y !== "N" && (D = D.filter((xe) => xe.DRUGKIND === y)),
             S(D));
-        } catch (te) {
-          (console.error("Search failed:", te), S([]));
+        } catch (ne) {
+          (console.error("Search failed:", ne), S([]));
         } finally {
           F(!1);
         }
       },
-      De = (te, D) => {
+      De = (ne, D) => {
         (console.log("📸 掃描成功，藥品資料:", D), w(!1), Be(D));
       },
-      Be = async (te) => {
+      Be = async (ne) => {
         if (n)
           try {
-            console.log("🚀 開始更新藥盒藥品代碼:", te.CODE);
+            console.log("🚀 開始更新藥盒藥品代碼:", ne.CODE);
             const D = await Me.updateEpd266Medcode(
               n.serverName || "",
               n.serverType || "",
-              te.CODE,
+              ne.CODE,
               n.storage || {},
             );
             D.Code === 200
               ? (console.log("✅ 藥品代碼更新成功:", D.Data),
                 (n.storage = D.Data),
                 (n.med_info = [
-                  { name: te.NAME, cht_name: te.CHT_NAME, code: te.CODE },
+                  { name: ne.NAME, cht_name: ne.CHT_NAME, code: ne.CODE },
                 ]),
                 a("藥品更新成功", "success"),
                 i())
@@ -17584,7 +17586,7 @@ const Ph = async (e) => {
               className:
                 "relative flex flex-col bg-white rounded-xl shadow-2xl border border-gray-200",
               style: { width: "90vw", height: "90vh" },
-              onClick: (te) => te.stopPropagation(),
+              onClick: (ne) => ne.stopPropagation(),
               children: [
                 r.jsxs("div", {
                   className:
@@ -17630,7 +17632,7 @@ const Ph = async (e) => {
                               className: "flex items-center",
                               children: r.jsx("input", {
                                 type: "text",
-                                onChange: (te) => k(te.target.value),
+                                onChange: (ne) => k(ne.target.value),
                                 placeholder:
                                   (n == null ? void 0 : n.ip) ||
                                   (n == null ? void 0 : n.name) ||
@@ -17655,7 +17657,7 @@ const Ph = async (e) => {
                               }),
                               r.jsx("div", {
                                 className: "flex gap-4 justify-between",
-                                children: an.map((te, D) =>
+                                children: an.map((ne, D) =>
                                   r.jsxs(
                                     "label",
                                     {
@@ -17666,7 +17668,7 @@ const Ph = async (e) => {
                                           name: "boxType",
                                           value: D,
                                           checked: m === D,
-                                          onChange: () => A(D),
+                                          onChange: () => $(D),
                                           className:
                                             "w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 hidden",
                                         }),
@@ -17674,7 +17676,7 @@ const Ph = async (e) => {
                                           children: r.jsx("div", {
                                             className:
                                               "text-sm font-medium text-gray-900",
-                                            children: te.name,
+                                            children: ne.name,
                                           }),
                                         }),
                                       ],
@@ -17693,12 +17695,12 @@ const Ph = async (e) => {
                                   "text-base font-medium text-gray-900",
                                 children: g("form.widthSelection"),
                               }),
-                              an.map((te, D) =>
+                              an.map((ne, D) =>
                                 r.jsx(
                                   "div",
                                   {
                                     className: `flex gap-4 ${m === D ? "block" : "hidden"}`,
-                                    children: te.width.map((xe, fe) =>
+                                    children: ne.width.map((xe, fe) =>
                                       r.jsxs(
                                         "label",
                                         {
@@ -17719,7 +17721,7 @@ const Ph = async (e) => {
                                               children: r.jsxs("div", {
                                                 className:
                                                   "text-sm font-semibold text-gray-900",
-                                                children: [xe, " ", te.unit],
+                                                children: [xe, " ", ne.unit],
                                               }),
                                             }),
                                           ],
@@ -17753,7 +17755,7 @@ const Ph = async (e) => {
                                     n.med_info &&
                                     n.med_info.length > 0
                                       ? r.jsx("div", {
-                                          children: n.med_info.map((te, D) =>
+                                          children: n.med_info.map((ne, D) =>
                                             r.jsxs(
                                               "div",
                                               {
@@ -17774,7 +17776,7 @@ const Ph = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          te.code ||
+                                                          ne.code ||
                                                           g("status.notSet"),
                                                       }),
                                                     ],
@@ -17793,7 +17795,7 @@ const Ph = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          te.name ||
+                                                          ne.name ||
                                                           g("status.notSet"),
                                                       }),
                                                     ],
@@ -17812,7 +17814,7 @@ const Ph = async (e) => {
                                                         className:
                                                           "text-base text-gray-900 mt-1",
                                                         children:
-                                                          te.cht_name ||
+                                                          ne.cht_name ||
                                                           g("status.notSet"),
                                                       }),
                                                     ],
@@ -17885,14 +17887,14 @@ const Ph = async (e) => {
                                   r.jsx("input", {
                                     type: "text",
                                     value: f,
-                                    onChange: (te) => d(te.target.value),
+                                    onChange: (ne) => d(ne.target.value),
                                     placeholder: g("placeholder.drugSearch"),
                                     className:
                                       "border rounded px-3 py-1 flex-1 min-w-0 focus:border-blue-500 focus:outline-none transition-colors",
                                   }),
                                   r.jsxs("select", {
                                     value: y,
-                                    onChange: (te) => v(te.target.value),
+                                    onChange: (ne) => v(ne.target.value),
                                     className:
                                       "border rounded px-2 py-1 focus:border-blue-500 focus:outline-none transition-colors",
                                     title: "管制級別",
@@ -17920,7 +17922,7 @@ const Ph = async (e) => {
                                     ],
                                   }),
                                   r.jsxs("button", {
-                                    onClick: Ee,
+                                    onClick: Ie,
                                     disabled: I,
                                     className:
                                       "bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition-colors whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2",
@@ -17952,7 +17954,7 @@ const Ph = async (e) => {
                                   : E.length > 0
                                     ? r.jsx("div", {
                                         className: "space-y-1",
-                                        children: E.map((te, D) =>
+                                        children: E.map((ne, D) =>
                                           r.jsxs(
                                             "div",
                                             {
@@ -17965,22 +17967,22 @@ const Ph = async (e) => {
                                                     r.jsx("div", {
                                                       className:
                                                         "text-sm font-medium text-gray-900 truncate",
-                                                      children: te.NAME,
+                                                      children: ne.NAME,
                                                     }),
                                                     r.jsx("div", {
                                                       className:
                                                         "text-xs text-gray-500 truncate",
-                                                      children: te.CHT_NAME,
+                                                      children: ne.CHT_NAME,
                                                     }),
                                                     r.jsx("div", {
                                                       className:
                                                         "text-xs text-gray-400 font-mono",
-                                                      children: te.CODE,
+                                                      children: ne.CODE,
                                                     }),
                                                   ],
                                                 }),
                                                 r.jsx("button", {
-                                                  onClick: () => Be(te),
+                                                  onClick: () => Be(ne),
                                                   className:
                                                     "ml-2 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 rounded transition-colors flex-shrink-0",
                                                   title: g("button.add"),
@@ -17990,7 +17992,7 @@ const Ph = async (e) => {
                                                 }),
                                               ],
                                             },
-                                            te.GUID || D,
+                                            ne.GUID || D,
                                           ),
                                         ),
                                       })
@@ -18090,7 +18092,7 @@ const Ph = async (e) => {
           cht_name: S.CHT_NAME,
           code: S.CODE,
         };
-        c((F) => (F.some(($) => $.code === I.code) ? F : [...F, I]));
+        c((F) => (F.some((A) => A.code === I.code) ? F : [...F, I]));
       },
       v = () => {
         n && ((n.name = l), (n.med_info = i), s(), t());
@@ -18434,7 +18436,7 @@ const Ph = async (e) => {
       [y, v] = u.useState(""),
       [E, S] = u.useState("N"),
       [I, F] = u.useState([]),
-      [M, $] = u.useState(!1),
+      [M, A] = u.useState(!1),
       [se, ve] = u.useState(0),
       [_, N] = u.useState({ x: 0, y: 0 });
     (u.useEffect(() => {
@@ -18531,29 +18533,29 @@ const Ph = async (e) => {
           oe = Math.max(f.startCol, f.endCol),
           V = [];
         return (
-          W.forEach((ie) => {
-            if (!ie.Slave) {
-              const we = w(ie),
-                pe = ie.Row + we.height - 1,
-                C = ie.Column + we.width - 1;
-              ie.Row >= le &&
+          W.forEach((ce) => {
+            if (!ce.Slave) {
+              const we = w(ce),
+                pe = ce.Row + we.height - 1,
+                C = ce.Column + we.width - 1;
+              ce.Row >= le &&
                 pe <= be &&
-                ie.Column >= O &&
+                ce.Column >= O &&
                 C <= oe &&
-                V.push(ie);
+                V.push(ce);
             }
           }),
           V
         );
       },
-      ee = (W, le, be, O) => {
+      te = (W, le, be, O) => {
         var C;
         if (!f || !((C = n == null ? void 0 : n.drawer) != null && C.Boxes))
           return !1;
         const oe = n.drawer.Boxes.flat();
         let V = !0,
           ye = W,
-          ie = le,
+          ce = le,
           we = be,
           pe = O;
         for (; V; )
@@ -18562,15 +18564,15 @@ const Ph = async (e) => {
               if (!R.Slave) {
                 const q = w(R),
                   ue = R.Row + q.height - 1,
-                  ae = R.Column + q.width - 1;
-                !(R.Row > ie || ue < ye || R.Column > pe || ae < we) &&
+                  ie = R.Column + q.width - 1;
+                !(R.Row > ce || ue < ye || R.Column > pe || ie < we) &&
                   (R.Row < ye && ((ye = R.Row), (V = !0)),
-                  ue > ie && ((ie = ue), (V = !0)),
+                  ue > ce && ((ce = ue), (V = !0)),
                   R.Column < we && ((we = R.Column), (V = !0)),
-                  ae > pe && ((pe = ae), (V = !0)));
+                  ie > pe && ((pe = ie), (V = !0)));
               }
             }));
-        return { minRow: ye, maxRow: ie, minCol: we, maxCol: pe };
+        return { minRow: ye, maxRow: ce, minCol: we, maxCol: pe };
       },
       H = () => {
         var V;
@@ -18582,14 +18584,14 @@ const Ph = async (e) => {
           O = Math.max(f.startCol, f.endCol),
           oe = n.drawer.Boxes.flat();
         for (let ye = W; ye <= le; ye++)
-          for (let ie = be; ie <= O; ie++) {
+          for (let ce = be; ce <= O; ce++) {
             let we = !1;
             for (const pe of oe)
               if (!pe.Slave) {
                 const C = w(pe),
                   R = pe.Row + C.height - 1,
                   q = pe.Column + C.width - 1;
-                if (ye >= pe.Row && ye <= R && ie >= pe.Column && ie <= q) {
+                if (ye >= pe.Row && ye <= R && ce >= pe.Column && ce <= q) {
                   we = !0;
                   break;
                 }
@@ -18598,7 +18600,7 @@ const Ph = async (e) => {
           }
         return !0;
       },
-      A = () => {
+      $ = () => {
         var C, R;
         const W = B();
         if (!f) return { canMerge: !1, canUnmerge: !1 };
@@ -18612,17 +18614,17 @@ const Ph = async (e) => {
           be = W.some(
             (q) =>
               le.filter(
-                (ae) =>
-                  ae.Slave &&
-                  ae.MasterBox_Row === q.Row &&
-                  ae.MasterBox_Column === q.Column,
+                (ie) =>
+                  ie.Slave &&
+                  ie.MasterBox_Row === q.Row &&
+                  ie.MasterBox_Column === q.Column,
               ).length > 0,
           ),
           O = Math.min(f.startRow, f.endRow),
           oe = Math.max(f.startRow, f.endRow),
           V = Math.min(f.startCol, f.endCol),
           ye = Math.max(f.startCol, f.endCol),
-          ie = le.some(
+          ce = le.some(
             (q) =>
               q.Slave &&
               q.Row >= O &&
@@ -18630,11 +18632,11 @@ const Ph = async (e) => {
               q.Column >= V &&
               q.Column <= ye,
           );
-        return { canMerge: W.length > 1 && H(), canUnmerge: be || ie };
+        return { canMerge: W.length > 1 && H(), canUnmerge: be || ce };
       },
-      { canMerge: Ne, canUnmerge: U } = A(),
+      { canMerge: Ne, canUnmerge: U } = $(),
       G = async () => {
-        $(!0);
+        A(!0);
         try {
           const W = y.toLowerCase().trim();
           let le = i;
@@ -18658,7 +18660,7 @@ const Ph = async (e) => {
         } catch (W) {
           (console.error("Search failed:", W), F([]));
         } finally {
-          $(!1);
+          A(!1);
         }
       },
       ge = async (W) => {
@@ -18689,8 +18691,8 @@ const Ph = async (e) => {
                 console.log("✅ 藥品資料更新成功"),
                 o)
               ) {
-                const V = (ie) => {
-                    ie.forEach((we) => {
+                const V = (ce) => {
+                    ce.forEach((we) => {
                       (we.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
                         (we.drawer = n.drawer),
@@ -18730,26 +18732,26 @@ const Ph = async (e) => {
           O = Math.max(f.startRow, W),
           oe = Math.min(f.startCol, le),
           V = Math.max(f.startCol, le),
-          ye = ee(be, O, oe, V);
+          ye = te(be, O, oe, V);
         ye &&
-          d((ie) =>
-            ie
+          d((ce) =>
+            ce
               ? {
-                  startRow: ie.startRow,
-                  startCol: ie.startCol,
-                  endRow: W >= ie.startRow ? ye.maxRow : ye.minRow,
-                  endCol: le >= ie.startCol ? ye.maxCol : ye.minCol,
+                  startRow: ce.startRow,
+                  startCol: ce.startCol,
+                  endRow: W >= ce.startRow ? ye.maxRow : ye.minRow,
+                  endCol: le >= ce.startCol ? ye.maxCol : ye.minCol,
                 }
               : null,
           );
       },
-      Ee = () => {
+      Ie = () => {
         if (T && (k(!1), f && n != null && n.Boxes)) {
           const W = Math.min(f.startRow, f.endRow),
             le = Math.max(f.startRow, f.endRow),
             be = Math.min(f.startCol, f.endCol),
             O = Math.max(f.startCol, f.endCol),
-            oe = ee(W, le, be, O);
+            oe = te(W, le, be, O);
           oe &&
             d({
               startRow: oe.minRow,
@@ -18771,9 +18773,9 @@ const Ph = async (e) => {
         !U ||
           !((W = n == null ? void 0 : n.drawer) != null && W.Boxes) ||
           !f ||
-          (console.log(f), te());
+          (console.log(f), ne());
       },
-      te = async () => {
+      ne = async () => {
         var W;
         if (!(!f || !((W = n == null ? void 0 : n.drawer) != null && W.Boxes)))
           try {
@@ -18785,16 +18787,16 @@ const Ph = async (e) => {
                 (R) =>
                   R.Row >= le && R.Row <= be && R.Column >= O && R.Column <= oe,
               ),
-              ie = [],
+              ce = [],
               we = [];
             ye.forEach((R) => {
-              (ie.push(R.Column.toString()), we.push(R.Row.toString()));
+              (ce.push(R.Column.toString()), we.push(R.Row.toString()));
             });
             const pe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${ie.join(",")}`,
+                `SelectColumns=${ce.join(",")}`,
                 `SelectRows=${we.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
@@ -18814,16 +18816,16 @@ const Ph = async (e) => {
                 o)
               ) {
                 const R = (ue) => {
-                    ue.forEach((ae) => {
-                      (ae.GUID === n.GUID &&
+                    ue.forEach((ie) => {
+                      (ie.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
-                        (ae.drawer = n.drawer)),
-                        ae.contents &&
-                          Array.isArray(ae.contents) &&
-                          R(ae.contents),
-                        ae.components &&
-                          Array.isArray(ae.components) &&
-                          R(ae.components));
+                        (ie.drawer = n.drawer)),
+                        ie.contents &&
+                          Array.isArray(ie.contents) &&
+                          R(ie.contents),
+                        ie.components &&
+                          Array.isArray(ie.components) &&
+                          R(ie.components));
                     });
                   },
                   q = JSON.parse(JSON.stringify(o));
@@ -18854,16 +18856,16 @@ const Ph = async (e) => {
                 (R) =>
                   R.Row >= le && R.Row <= be && R.Column >= O && R.Column <= oe,
               ),
-              ie = [],
+              ce = [],
               we = [];
             ye.forEach((R) => {
-              (ie.push(R.Column.toString()), we.push(R.Row.toString()));
+              (ce.push(R.Column.toString()), we.push(R.Row.toString()));
             });
             const pe = {
               ServerName: n.serverName,
               ServerType: n.serverType,
               ValueAry: [
-                `SelectColumns=${ie.join(",")}`,
+                `SelectColumns=${ce.join(",")}`,
                 `SelectRows=${we.join(",")}`,
               ],
               Data: { IP: n.ip, Boxes: n.Boxes },
@@ -18883,16 +18885,16 @@ const Ph = async (e) => {
                 o)
               ) {
                 const R = (ue) => {
-                    ue.forEach((ae) => {
-                      (ae.GUID === n.GUID &&
+                    ue.forEach((ie) => {
+                      (ie.GUID === n.GUID &&
                         (console.log("🎯 找到目標格線抽屜，更新資料"),
-                        (ae.drawer = n.drawer)),
-                        ae.contents &&
-                          Array.isArray(ae.contents) &&
-                          R(ae.contents),
-                        ae.components &&
-                          Array.isArray(ae.components) &&
-                          R(ae.components));
+                        (ie.drawer = n.drawer)),
+                        ie.contents &&
+                          Array.isArray(ie.contents) &&
+                          R(ie.contents),
+                        ie.components &&
+                          Array.isArray(ie.components) &&
+                          R(ie.components));
                     });
                   },
                   q = JSON.parse(JSON.stringify(o));
@@ -18995,9 +18997,9 @@ const Ph = async (e) => {
             const R = [pe, ...C],
               q = Math.min(...R.map((Ue) => Ue.Row)),
               ue = Math.max(...R.map((Ue) => Ue.Row)),
-              ae = Math.min(...R.map((Ue) => Ue.Column));
+              ie = Math.min(...R.map((Ue) => Ue.Column));
             return {
-              width: Math.max(...R.map((Ue) => Ue.Column)) - ae + 1,
+              width: Math.max(...R.map((Ue) => Ue.Column)) - ie + 1,
               height: ue - q + 1,
             };
           },
@@ -19008,12 +19010,12 @@ const Ph = async (e) => {
           ye = Array(oe)
             .fill(null)
             .map(() => Array(V).fill(!1)),
-          ie = {};
+          ce = {};
         return (
           W.forEach((pe) => {
             if (!pe.Slave) {
               const C = le(pe);
-              ((ie[`${pe.Row},${pe.Column}`] = pe),
+              ((ce[`${pe.Row},${pe.Column}`] = pe),
                 (pe.calculatedWidth = C.width),
                 (pe.calculatedHeight = C.height));
             }
@@ -19039,8 +19041,8 @@ const Ph = async (e) => {
                       children: Array.from({ length: V }, (R, q) => {
                         if (ye[C][q]) return null;
                         const ue = `${C},${q}`,
-                          ae = ie[ue];
-                        return ae
+                          ie = ce[ue];
+                        return ie
                           ? r.jsx(
                               "td",
                               {
@@ -19048,14 +19050,14 @@ const Ph = async (e) => {
                                 style: {
                                   width: `${100 / V}%`,
                                   minHeight: "40px",
-                                  height: `${50 * ae.calculatedHeight}px`,
-                                  maxHeight: `${50 * ae.calculatedHeight}px`,
+                                  height: `${50 * ie.calculatedHeight}px`,
+                                  maxHeight: `${50 * ie.calculatedHeight}px`,
                                 },
-                                colSpan: ae.calculatedWidth,
-                                rowSpan: ae.calculatedHeight,
+                                colSpan: ie.calculatedWidth,
+                                rowSpan: ie.calculatedHeight,
                                 onMouseDown: (Se) => Z(C, q, Se),
                                 onMouseEnter: () => ke(C, q),
-                                onMouseUp: Ee,
+                                onMouseUp: Ie,
                                 onTouchStart: (Se) => Z(C, q, Se),
                                 onTouchMove: (Se) => {
                                   if ((Se.preventDefault(), !T)) return;
@@ -19075,32 +19077,32 @@ const Ph = async (e) => {
                                     ke(Et, It);
                                   }
                                 },
-                                onTouchEnd: Ee,
+                                onTouchEnd: Ie,
                                 "data-row": C,
                                 "data-col": q,
                                 children: r.jsx("div", {
                                   className: "h-full flex flex-col",
                                   children:
-                                    ae.Code || ae.Name || ae.ChineseName
+                                    ie.Code || ie.Name || ie.ChineseName
                                       ? r.jsxs(r.Fragment, {
                                           children: [
-                                            ae.Code &&
+                                            ie.Code &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs font-mono text-gray-600",
-                                                children: ae.Code,
+                                                children: ie.Code,
                                               }),
-                                            ae.Name &&
+                                            ie.Name &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs font-medium text-gray-900",
-                                                children: ae.Name,
+                                                children: ie.Name,
                                               }),
-                                            ae.ChineseName &&
+                                            ie.ChineseName &&
                                               r.jsx("div", {
                                                 className:
                                                   "text-xs text-gray-700",
-                                                children: ae.ChineseName,
+                                                children: ie.ChineseName,
                                               }),
                                           ],
                                         })
@@ -19124,7 +19126,7 @@ const Ph = async (e) => {
                                 },
                                 onMouseDown: (Se) => Z(C, q, Se),
                                 onMouseEnter: () => ke(C, q),
-                                onMouseUp: Ee,
+                                onMouseUp: Ie,
                                 onTouchStart: (Se) => Z(C, q, Se),
                                 onTouchMove: (Se) => {
                                   if ((Se.preventDefault(), !T)) return;
@@ -19144,7 +19146,7 @@ const Ph = async (e) => {
                                     ke(Et, It);
                                   }
                                 },
-                                onTouchEnd: Ee,
+                                onTouchEnd: Ie,
                                 "data-row": C,
                                 "data-col": q,
                                 children: r.jsx("div", {
@@ -19476,10 +19478,10 @@ const Ph = async (e) => {
                 }),
                 r.jsx("div", {
                   className: "fixed inset-0 pointer-events-none",
-                  onMouseUp: Ee,
-                  onMouseLeave: Ee,
-                  onTouchEnd: Ee,
-                  onTouchCancel: Ee,
+                  onMouseUp: Ie,
+                  onMouseLeave: Ie,
+                  onTouchEnd: Ie,
+                  onTouchCancel: Ie,
                 }),
               ],
             }),
@@ -19512,18 +19514,18 @@ const Ph = async (e) => {
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach(($) => {
-              $.type === "parent_container" &&
-                $.gird_position &&
-                M.add($.gird_position);
+            n.contents.forEach((A) => {
+              A.type === "parent_container" &&
+                A.gird_position &&
+                M.add(A.gird_position);
             }),
           M
         );
       },
       k = () => {
         const M = T(),
-          $ = [];
-        if (M.size === 0) return ($.push({ row: 0, col: 0 }), $);
+          A = [];
+        if (M.size === 0) return (A.push({ row: 0, col: 0 }), A);
         const se = [];
         M.forEach((_) => {
           const [N, L] = _.split(",").map(Number);
@@ -19540,16 +19542,16 @@ const Ph = async (e) => {
           ve.forEach((_) => {
             if (!M.has(_)) {
               const [N, L] = _.split(",").map(Number);
-              N >= 0 && L >= 0 && $.push({ row: N, col: L });
+              N >= 0 && L >= 0 && A.push({ row: N, col: L });
             }
           }),
           M.has("0,1") ||
-            $.some((N) => N.row === 0 && N.col === 1) ||
-            $.push({ row: 0, col: 1 }),
+            A.some((N) => N.row === 0 && N.col === 1) ||
+            A.push({ row: 0, col: 1 }),
           M.has("1,0") ||
-            $.some((N) => N.row === 1 && N.col === 0) ||
-            $.push({ row: 1, col: 0 }),
-          $.sort((_, N) => (_.row === N.row ? _.col - N.col : _.row - N.row))
+            A.some((N) => N.row === 1 && N.col === 0) ||
+            A.push({ row: 1, col: 0 }),
+          A.sort((_, N) => (_.row === N.row ? _.col - N.col : _.row - N.row))
         );
       },
       f = (M) => {
@@ -19568,12 +19570,12 @@ const Ph = async (e) => {
           try {
             const M = `${i.row},${i.col}`;
             console.log(n);
-            const $ = await Me.addMedMapSection(n.GUID, M, n.name, n.type);
-            if ($.Code === 200) {
+            const A = await Me.addMedMapSection(n.GUID, M, n.name, n.type);
+            if (A.Code === 200) {
               const se = {
-                GUID: $.Data.GUID,
-                Master_GUID: $.Data.Master_GUID,
-                gird_position: $.Data.position,
+                GUID: A.Data.GUID,
+                Master_GUID: A.Data.Master_GUID,
+                gird_position: A.Data.position,
                 name: "",
                 type: "parent_container",
                 class: 1,
@@ -19586,7 +19588,7 @@ const Ph = async (e) => {
                 med_list: [],
               };
               (l(n.GUID, se), s("新增成功", "success"), t(), o(!1));
-            } else s(`新增失敗：${$.Result || "未知錯誤"}`, "error");
+            } else s(`新增失敗：${A.Result || "未知錯誤"}`, "error");
           } catch (M) {
             (console.error("Add parent container failed:", M),
               s("新增失敗：網路錯誤", "error"));
@@ -19600,13 +19602,13 @@ const Ph = async (e) => {
       },
       I = () => {
         const M = T(),
-          $ = k(),
+          A = k(),
           se = [...M]
             .map((w) => {
-              const [B, ee] = w.split(",").map(Number);
-              return { row: B, col: ee };
+              const [B, te] = w.split(",").map(Number);
+              return { row: B, col: te };
             })
-            .concat($);
+            .concat(A);
         se.length === 0 && se.push({ row: 0, col: 0 });
         const ve = Math.max(...se.map((w) => w.row)),
           _ = Math.max(...se.map((w) => w.col)),
@@ -19627,27 +19629,27 @@ const Ph = async (e) => {
                 className: "grid gap-2",
                 style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
                 children: Array.from({ length: P * X }, (w, B) => {
-                  const ee = Math.floor(B / X) + N,
+                  const te = Math.floor(B / X) + N,
                     H = (B % X) + L,
-                    A = `${ee},${H}`,
-                    Ne = M.has(A),
-                    U = $.some((ge) => ge.row === ee && ge.col === H),
+                    $ = `${te},${H}`,
+                    Ne = M.has($),
+                    U = A.some((ge) => ge.row === te && ge.col === H),
                     G =
-                      (i == null ? void 0 : i.row) === ee &&
+                      (i == null ? void 0 : i.row) === te &&
                       (i == null ? void 0 : i.col) === H;
                   return r.jsx(
                     "button",
                     {
-                      onClick: () => U && f({ row: ee, col: H }),
+                      onClick: () => U && f({ row: te, col: H }),
                       disabled: Ne || !U,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${Ne ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed" : G ? "bg-blue-500 border-blue-600 text-white shadow-lg" : U ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer" : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"}
                   `,
                       title: Ne ? "已占用" : U ? "可選擇" : "不可用",
-                      children: Ne ? "占用" : `${ee},${H}`,
+                      children: Ne ? "占用" : `${te},${H}`,
                     },
-                    A,
+                    $,
                   );
                 }),
               }),
@@ -19852,7 +19854,7 @@ const Ph = async (e) => {
     },
   ],
   Gh = () => {
-    var ee;
+    var te;
     const {
         addShelfDrawContainerModalOpen: e,
         closeAddShelfDrawContainerModal: t,
@@ -19887,21 +19889,21 @@ const Ph = async (e) => {
       u.useEffect(() => {
         d && (E(d.row), I(d.col));
       }, [d]));
-    const $ = () => {
+    const A = () => {
         const H = new Set();
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach((A) => {
-              A.gird_position && H.add(A.gird_position);
+            n.contents.forEach(($) => {
+              $.gird_position && H.add($.gird_position);
             }),
           H
         );
       },
       se = () => {
-        const H = $(),
-          A = [];
-        if (H.size === 0) return (A.push({ row: 0, col: 0 }), A);
+        const H = A(),
+          $ = [];
+        if (H.size === 0) return ($.push({ row: 0, col: 0 }), $);
         const Ne = [];
         H.forEach((G) => {
           const [ge, Z] = G.split(",").map(Number);
@@ -19918,16 +19920,16 @@ const Ph = async (e) => {
           U.forEach((G) => {
             if (!H.has(G)) {
               const [ge, Z] = G.split(",").map(Number);
-              ge >= 0 && Z >= 0 && A.push({ row: ge, col: Z });
+              ge >= 0 && Z >= 0 && $.push({ row: ge, col: Z });
             }
           }),
           H.has("0,1") ||
-            A.some((ge) => ge.row === 0 && ge.col === 1) ||
-            A.push({ row: 0, col: 1 }),
+            $.some((ge) => ge.row === 0 && ge.col === 1) ||
+            $.push({ row: 0, col: 1 }),
           H.has("1,0") ||
-            A.some((ge) => ge.row === 1 && ge.col === 0) ||
-            A.push({ row: 1, col: 0 }),
-          A.sort((G, ge) =>
+            $.some((ge) => ge.row === 1 && ge.col === 0) ||
+            $.push({ row: 1, col: 0 }),
+          $.sort((G, ge) =>
             G.row === ge.row ? G.col - ge.col : G.row - ge.row,
           )
         );
@@ -19941,15 +19943,15 @@ const Ph = async (e) => {
       N = (H) => {
         (I(H), y({ row: v, col: H }));
       },
-      L = d && !$().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
+      L = d && !A().has(`${d.row},${d.col}`) && d.row >= 0 && d.col >= 0,
       P = async () => {
         if (!(!d || !n || !L)) {
           M(!0);
           try {
             const H = `${d.row},${d.col}`,
-              A = Gc.find((U) => U.value === g);
+              $ = Gc.find((U) => U.value === g);
             let Ne;
-            (A != null && A.isShelf
+            ($ != null && $.isShelf
               ? (Ne = await Me.addMedMapShelf({
                   Master_GUID: n.GUID,
                   position: H,
@@ -19991,13 +19993,13 @@ const Ph = async (e) => {
           const H = await Me.getMedMapByDepartment(s);
           if (H.Code === 200 && H.Data) {
             console.log("📡 API 回傳成功，開始轉換資料");
-            const A = Rt.convertMedMapApiToFakeData(H.Data);
-            if (!Rt.validateConvertedData(A)) {
+            const $ = Rt.convertMedMapApiToFakeData(H.Data);
+            if (!Rt.validateConvertedData($)) {
               (console.error("❌ 轉換後的資料驗證失敗"),
                 a("資料更新失敗：資料格式錯誤", "error"));
               return;
             }
-            (o(A), console.log("✅ 藥品地圖資料已更新"));
+            (o($), console.log("✅ 藥品地圖資料已更新"));
           } else
             (console.error("❌ API 回傳錯誤:", H),
               a("資料更新失敗：API 錯誤", "error"));
@@ -20012,21 +20014,21 @@ const Ph = async (e) => {
         t();
       },
       B = () => {
-        const H = $(),
-          A = se(),
+        const H = A(),
+          $ = se(),
           Ne = [...H]
             .map((De) => {
-              const [Be, te] = De.split(",").map(Number);
-              return { row: Be, col: te };
+              const [Be, ne] = De.split(",").map(Number);
+              return { row: Be, col: ne };
             })
-            .concat(A);
+            .concat($);
         Ne.length === 0 && Ne.push({ row: 0, col: 0 });
         const U = Math.max(...Ne.map((De) => De.row)),
           G = Math.max(...Ne.map((De) => De.col)),
           ge = Math.min(...Ne.map((De) => De.row)),
           Z = Math.min(...Ne.map((De) => De.col)),
           ke = U - ge + 1,
-          Ee = G - Z + 1;
+          Ie = G - Z + 1;
         return r.jsxs("div", {
           className: "space-y-2",
           children: [
@@ -20038,27 +20040,27 @@ const Ph = async (e) => {
               className: "border border-gray-300 rounded-lg p-4 bg-gray-50",
               children: r.jsx("div", {
                 className: "grid gap-2",
-                style: { gridTemplateColumns: `repeat(${Ee}, 1fr)` },
-                children: Array.from({ length: ke * Ee }, (De, Be) => {
-                  const te = Math.floor(Be / Ee) + ge,
-                    D = (Be % Ee) + Z,
-                    xe = `${te},${D}`,
+                style: { gridTemplateColumns: `repeat(${Ie}, 1fr)` },
+                children: Array.from({ length: ke * Ie }, (De, Be) => {
+                  const ne = Math.floor(Be / Ie) + ge,
+                    D = (Be % Ie) + Z,
+                    xe = `${ne},${D}`,
                     fe = H.has(xe),
-                    W = A.some((be) => be.row === te && be.col === D),
+                    W = $.some((be) => be.row === ne && be.col === D),
                     le =
-                      (d == null ? void 0 : d.row) === te &&
+                      (d == null ? void 0 : d.row) === ne &&
                       (d == null ? void 0 : d.col) === D;
                   return r.jsx(
                     "button",
                     {
-                      onClick: () => W && ve({ row: te, col: D }),
+                      onClick: () => W && ve({ row: ne, col: D }),
                       disabled: fe || !W,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${fe ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed" : le ? "bg-blue-500 border-blue-600 text-white shadow-lg" : W ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer" : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"}
                   `,
                       title: fe ? "已占用" : W ? "可選擇" : "不可用",
-                      children: fe ? "占用" : `${te},${D}`,
+                      children: fe ? "占用" : `${ne},${D}`,
                     },
                     xe,
                   );
@@ -20130,7 +20132,7 @@ const Ph = async (e) => {
                                       name: "containerType",
                                       value: H.value,
                                       checked: g === H.value,
-                                      onChange: (A) => m(A.target.value),
+                                      onChange: ($) => m($.target.value),
                                       className:
                                         "w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 hidden",
                                     }),
@@ -20295,10 +20297,10 @@ const Ph = async (e) => {
                               r.jsxs("div", {
                                 children: [
                                   "現有內容數量：",
-                                  ((ee = n == null ? void 0 : n.contents) ==
+                                  ((te = n == null ? void 0 : n.contents) ==
                                   null
                                     ? void 0
-                                    : ee.length) || 0,
+                                    : te.length) || 0,
                                 ],
                               }),
                             ],
@@ -20362,18 +20364,18 @@ const Ph = async (e) => {
         return (
           n != null &&
             n.contents &&
-            n.contents.forEach(($) => {
-              $.type === "sub_container" &&
-                $.gird_position &&
-                M.add($.gird_position);
+            n.contents.forEach((A) => {
+              A.type === "sub_container" &&
+                A.gird_position &&
+                M.add(A.gird_position);
             }),
           M
         );
       },
       k = () => {
         const M = T(),
-          $ = [];
-        if (M.size === 0) return ($.push({ row: 0, col: 0 }), $);
+          A = [];
+        if (M.size === 0) return (A.push({ row: 0, col: 0 }), A);
         const se = [];
         M.forEach((_) => {
           const [N, L] = _.split(",").map(Number);
@@ -20390,16 +20392,16 @@ const Ph = async (e) => {
           ve.forEach((_) => {
             if (!M.has(_)) {
               const [N, L] = _.split(",").map(Number);
-              N >= 0 && L >= 0 && $.push({ row: N, col: L });
+              N >= 0 && L >= 0 && A.push({ row: N, col: L });
             }
           }),
           M.has("0,1") ||
-            $.some((N) => N.row === 0 && N.col === 1) ||
-            $.push({ row: 0, col: 1 }),
+            A.some((N) => N.row === 0 && N.col === 1) ||
+            A.push({ row: 0, col: 1 }),
           M.has("1,0") ||
-            $.some((N) => N.row === 1 && N.col === 0) ||
-            $.push({ row: 1, col: 0 }),
-          $.sort((_, N) => (_.row === N.row ? _.col - N.col : _.row - N.row))
+            A.some((N) => N.row === 1 && N.col === 0) ||
+            A.push({ row: 1, col: 0 }),
+          A.sort((_, N) => (_.row === N.row ? _.col - N.col : _.row - N.row))
         );
       },
       f = (M) => {
@@ -20417,22 +20419,22 @@ const Ph = async (e) => {
           b(!0);
           try {
             const M = `${i.row},${i.col}`,
-              $ = await Me.addSubSection(n.GUID, M);
-            if ($.Code === 200) {
+              A = await Me.addSubSection(n.GUID, M);
+            if (A.Code === 200) {
               const se = {
-                GUID: $.Data.GUID,
-                Master_GUID: $.Data.Master_GUID,
+                GUID: A.Data.GUID,
+                Master_GUID: A.Data.Master_GUID,
                 name: "",
                 type: "sub_container",
                 class: 2,
-                gird_position: $.Data.position,
+                gird_position: A.Data.position,
                 contents: [],
                 serverName: n.serverName,
                 serverType: n.serverType,
                 oriMaxCol: 0,
               };
               (l(n.GUID, se), s("新增成功", "success"), t(), o(!1));
-            } else s(`新增失敗：${$.Result || "未知錯誤"}`, "error");
+            } else s(`新增失敗：${A.Result || "未知錯誤"}`, "error");
           } catch (M) {
             (console.error("Add sub container failed:", M),
               s("新增失敗：網路錯誤", "error"));
@@ -20446,13 +20448,13 @@ const Ph = async (e) => {
       },
       I = () => {
         const M = T(),
-          $ = k(),
+          A = k(),
           se = [...M]
             .map((w) => {
-              const [B, ee] = w.split(",").map(Number);
-              return { row: B, col: ee };
+              const [B, te] = w.split(",").map(Number);
+              return { row: B, col: te };
             })
-            .concat($);
+            .concat(A);
         se.length === 0 && se.push({ row: 0, col: 0 });
         const ve = Math.max(...se.map((w) => w.row)),
           _ = Math.max(...se.map((w) => w.col)),
@@ -20473,27 +20475,27 @@ const Ph = async (e) => {
                 className: "grid gap-2",
                 style: { gridTemplateColumns: `repeat(${X}, 1fr)` },
                 children: Array.from({ length: P * X }, (w, B) => {
-                  const ee = Math.floor(B / X) + N,
+                  const te = Math.floor(B / X) + N,
                     H = (B % X) + L,
-                    A = `${ee},${H}`,
-                    Ne = M.has(A),
-                    U = $.some((ge) => ge.row === ee && ge.col === H),
+                    $ = `${te},${H}`,
+                    Ne = M.has($),
+                    U = A.some((ge) => ge.row === te && ge.col === H),
                     G =
-                      (i == null ? void 0 : i.row) === ee &&
+                      (i == null ? void 0 : i.row) === te &&
                       (i == null ? void 0 : i.col) === H;
                   return r.jsx(
                     "button",
                     {
-                      onClick: () => U && f({ row: ee, col: H }),
+                      onClick: () => U && f({ row: te, col: H }),
                       disabled: Ne || !U,
                       className: `
                     w-16 h-16 border-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm font-medium
                     ${Ne ? "bg-red-100 border-red-300 text-red-600 cursor-not-allowed" : G ? "bg-blue-500 border-blue-600 text-white shadow-lg" : U ? "bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:border-green-400 cursor-pointer" : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"}
                   `,
                       title: Ne ? "已占用" : U ? "可選擇" : "不可用",
-                      children: Ne ? "占用" : `${ee},${H}`,
+                      children: Ne ? "占用" : `${te},${H}`,
                     },
-                    A,
+                    $,
                   );
                 }),
               }),
@@ -20688,17 +20690,17 @@ const Ph = async (e) => {
       [y, v] = u.useState([]),
       [E, S] = u.useState(""),
       [I, F] = u.useState(""),
-      [M, $] = u.useState(""),
+      [M, A] = u.useState(""),
       [se, ve] = u.useState(""),
       [_, N] = u.useState("EPD290"),
       [L, P] = u.useState(null),
       [X, w] = u.useState([]),
-      [B, ee] = u.useState(""),
-      [H, A] = u.useState(null),
+      [B, te] = u.useState(""),
+      [H, $] = u.useState(null),
       [Ne, U] = u.useState(!1),
       [G, ge] = u.useState([]),
       [Z, ke] = u.useState(!1),
-      Ee = u.useRef(null);
+      Ie = u.useRef(null);
     (u.useEffect(() => {
       (async () => {
         if (!e || !n) return;
@@ -20764,7 +20766,7 @@ const Ph = async (e) => {
           const we = (l.location || "0,0").split(",");
           (S(we[0] || "0"),
             F(we[1] || "0"),
-            $(l.led_index || ""),
+            A(l.led_index || ""),
             ve(l.ip || ""),
             N(l.device_type || "EPD290"));
         } else if (e && i === "add") {
@@ -20775,14 +20777,14 @@ const Ph = async (e) => {
             k(""),
             d([]),
             v([]),
-            $(""),
+            A(""),
             ve(""),
             N("EPD290"),
             n && n.medMapStock && n.medMapStock.length > 0)
           ) {
             const O = n.medMapStock.map((V) => {
-              const ie = (V.location || "0,0").split(",");
-              return Number(ie[0] || "0");
+              const ce = (V.location || "0,0").split(",");
+              return Number(ce[0] || "0");
             });
             let oe = 0;
             for (; O.includes(oe); ) oe++;
@@ -20793,7 +20795,7 @@ const Ph = async (e) => {
       }, [e, i, l, n]),
       u.useEffect(() => {
         const O = (oe) => {
-          Ee.current && !Ee.current.contains(oe.target) && P(null);
+          Ie.current && !Ie.current.contains(oe.target) && P(null);
         };
         return (
           document.addEventListener("mousedown", O),
@@ -20808,28 +20810,28 @@ const Ph = async (e) => {
           return;
         }
         const V = oe.toLowerCase(),
-          ye = G.filter((ie) => {
+          ye = G.filter((ce) => {
             var we, pe, C, R;
-            if (!ie.med_cloud) return !1;
+            if (!ce.med_cloud) return !1;
             switch (O) {
               case "code":
-                if (ie.med_cloud)
-                  return (we = ie.med_cloud.CODE) == null
+                if (ce.med_cloud)
+                  return (we = ce.med_cloud.CODE) == null
                     ? void 0
                     : we.toLowerCase().includes(V);
-                if (!ie.med_cloud) return ie.code.toLowerCase().includes(V);
+                if (!ce.med_cloud) return ce.code.toLowerCase().includes(V);
               case "name":
-                if (ie.med_cloud)
-                  return (pe = ie.med_cloud.NAME) == null
+                if (ce.med_cloud)
+                  return (pe = ce.med_cloud.NAME) == null
                     ? void 0
                     : pe.toLowerCase().includes(V);
-                if (!ie.med_cloud) return ie.name.toLowerCase().includes(V);
+                if (!ce.med_cloud) return ce.name.toLowerCase().includes(V);
               case "chineseName":
-                return (C = ie.med_cloud.CHT_NAME) == null
+                return (C = ce.med_cloud.CHT_NAME) == null
                   ? void 0
                   : C.toLowerCase().includes(V);
               case "skdiacode":
-                return (R = ie.med_cloud.SKDIACODE) == null
+                return (R = ce.med_cloud.SKDIACODE) == null
                   ? void 0
                   : R.toLowerCase().includes(V);
               default:
@@ -20855,18 +20857,18 @@ const Ph = async (e) => {
         }
         De(O, oe);
       },
-      te = (O, oe) => {
+      ne = (O, oe) => {
         var pe, C, R;
         const V = O.med_cloud;
         (g(V.CODE || ""),
           p(V.NAME || ""),
           b(V.CHT_NAME || ""),
           k(V.SKDIACODE || ""),
-          ee(O.GUID),
-          A(O),
+          te(O.GUID),
+          $(O),
           console.log("🔍 選擇的藥品完整資料:", O));
         let ye = O.lot || ((pe = O.med_cloud) == null ? void 0 : pe.lot) || [],
-          ie =
+          ce =
             O.expiry_date ||
             ((C = O.med_cloud) == null ? void 0 : C.expiry_date) ||
             [],
@@ -20876,7 +20878,7 @@ const Ph = async (e) => {
           n != null &&
           n.medMapStock &&
           ye.length === 0 &&
-          ie.length === 0 &&
+          ce.length === 0 &&
           we.length === 0
         ) {
           const q = n.medMapStock.find(
@@ -20888,7 +20890,7 @@ const Ph = async (e) => {
           q &&
             (console.log("🔍 從層架找到相同藥品的批次資訊:", q),
             (ye = q.lot || []),
-            (ie = q.expiry_date || []),
+            (ce = q.expiry_date || []),
             (we = q.qty || []));
         }
         if (
@@ -20896,23 +20898,23 @@ const Ph = async (e) => {
             "🔍 批次資訊 - lot:",
             ye,
             "expiry_date:",
-            ie,
+            ce,
             "qty:",
             we,
           ),
           console.log("🔍 當前模式:", i),
           i === "edit")
         )
-          if (ye.length > 0 || ie.length > 0 || we.length > 0) {
+          if (ye.length > 0 || ce.length > 0 || we.length > 0) {
             const q = [],
-              ue = Math.max(ye.length, ie.length, we.length),
-              ae = [];
+              ue = Math.max(ye.length, ce.length, we.length),
+              ie = [];
             for (let Se = 0; Se < ue; Se++) {
-              const Ue = ie[Se] || "";
+              const Ue = ce[Se] || "";
               let We = "";
               (Ue && (We = Ue.split("T")[0]),
                 (We = We.replace(/\//g, "-")),
-                ae.push({
+                ie.push({
                   id: `batch_${Date.now()}_${Se}`,
                   lot: ye[Se] || "",
                   expiryDate: We,
@@ -20920,7 +20922,7 @@ const Ph = async (e) => {
                 }),
                 We && q.push(We));
             }
-            (console.log("✅ 成功載入批次資訊:", ae), d(ae), v(q));
+            (console.log("✅ 成功載入批次資訊:", ie), d(ie), v(q));
           } else
             (console.log("🗑️ 清空批次資訊（藥品無批次資料）"), d([]), v([]));
         (P(null), w([]));
@@ -20953,16 +20955,16 @@ const Ph = async (e) => {
         const O = [],
           oe = [],
           V = [];
-        f.forEach((ie) => {
-          O.push(ie.lot || "");
+        f.forEach((ce) => {
+          O.push(ce.lot || "");
           let we = "";
-          (ie.expiryDate && (we = `${ie.expiryDate}`),
+          (ce.expiryDate && (we = `${ce.expiryDate}`),
             oe.push(we),
-            V.push(ie.qty ? `${Number(ie.qty)}` : "0"));
+            V.push(ce.qty ? `${Number(ce.qty)}` : "0"));
         });
         try {
           if (i === "edit" && l) {
-            const ie = {
+            const ce = {
                 GUID: B || l.GUID,
                 code: h,
                 device_type: _,
@@ -20977,8 +20979,8 @@ const Ph = async (e) => {
                 qty: V,
                 shelf_guid: n.GUID,
               },
-              we = await Me.updateStock([ie], n.serverName, n.serverType);
-            if ((console.log("==============>", ie), we.Code === 200)) {
+              we = await Me.updateStock([ce], n.serverName, n.serverType);
+            if ((console.log("==============>", ce), we.Code === 200)) {
               if (a) {
                 const C = { ...a, shelf_guid: "" };
                 (console.log("==============>", a),
@@ -20999,7 +21001,7 @@ const Ph = async (e) => {
                   console.error("❌ 備份資料更新錯誤:", R);
                 }
               }
-              (c(n.GUID, l.GUID, ie), console.log("檢查有無貨物批次被刪除"));
+              (c(n.GUID, l.GUID, ce), console.log("檢查有無貨物批次被刪除"));
               const pe = y.filter((C) => !oe.includes(C));
               if ((console.log(pe), pe.length > 0)) {
                 console.log("🗑️ 檢測到被刪除的批次效期:", pe);
@@ -21033,7 +21035,7 @@ const Ph = async (e) => {
               be();
             } else s(we.Result || "更新貨物失敗", "error");
           } else {
-            let ie, we;
+            let ce, we;
             if (H && H.shelf_guid)
               if (window.confirm("該藥品已有其他儲位，是否新增儲位？"))
                 ((we = {
@@ -21050,7 +21052,7 @@ const Ph = async (e) => {
                   qty: V,
                   shelf_guid: n.GUID,
                 }),
-                  (ie = await Me.addStock([we], n.serverName, n.serverType)));
+                  (ce = await Me.addStock([we], n.serverName, n.serverType)));
               else return;
             else
               ((we = {
@@ -21071,20 +21073,20 @@ const Ph = async (e) => {
                   B &&
                   ((we.GUID = B),
                   console.log("🆔 藥品無儲位，帶入藥品 GUID:", B)),
-                (ie = await Me.updateStock([we], n.serverName, n.serverType)));
-            ie.Code === 200
+                (ce = await Me.updateStock([we], n.serverName, n.serverType)));
+            ce.Code === 200
               ? (o(n.GUID, {
                   GUID:
-                    ((ye = ie.Data) == null ? void 0 : ye.GUID) ||
+                    ((ye = ce.Data) == null ? void 0 : ye.GUID) ||
                     `stock_${Date.now()}`,
                   ...we,
                 }),
                 s("新增貨物成功", "success"),
                 be())
-              : s(ie.Result || "新增貨物失敗", "error");
+              : s(ce.Result || "新增貨物失敗", "error");
           }
-        } catch (ie) {
-          (console.error("貨物操作錯誤:", ie),
+        } catch (ce) {
+          (console.error("貨物操作錯誤:", ce),
             s(
               i === "edit"
                 ? "更新貨物失敗，請稍後再試"
@@ -21100,7 +21102,7 @@ const Ph = async (e) => {
           p(V.NAME || V.name || ""),
           b(V.CHT_NAME || V.cht_name || ""),
           k(V.SKDIACODE || V.skdiacode || V.material_no || ""),
-          ee(V.GUID || ""));
+          te(V.GUID || ""));
         const ye = {
           GUID: V.GUID || "",
           med_cloud: {
@@ -21116,15 +21118,15 @@ const Ph = async (e) => {
           expiry_date: V.expiry_date || [],
           qty: V.qty || [],
         };
-        A(ye);
-        let ie = V.lot || [],
+        $(ye);
+        let ce = V.lot || [],
           we = V.expiry_date || [],
           pe = V.qty || [];
         if (
           i === "edit" &&
           n != null &&
           n.medMapStock &&
-          ie.length === 0 &&
+          ce.length === 0 &&
           we.length === 0 &&
           pe.length === 0
         ) {
@@ -21137,14 +21139,14 @@ const Ph = async (e) => {
           );
           C &&
             (console.log("📸 從層架找到相同藥品的批次資訊:", C),
-            (ie = C.lot || []),
+            (ce = C.lot || []),
             (we = C.expiry_date || []),
             (pe = C.qty || []));
         }
         if (
           (console.log(
             "📸 QR掃描批次資訊 - lot:",
-            ie,
+            ce,
             "expiry_date:",
             we,
             "qty:",
@@ -21153,18 +21155,18 @@ const Ph = async (e) => {
           console.log("📸 當前模式:", i),
           i === "edit")
         )
-          if (ie.length > 0 || we.length > 0 || pe.length > 0) {
+          if (ce.length > 0 || we.length > 0 || pe.length > 0) {
             const C = [],
-              R = Math.max(ie.length, we.length, pe.length),
+              R = Math.max(ce.length, we.length, pe.length),
               q = [];
             for (let ue = 0; ue < R; ue++) {
-              const ae = we[ue] || "";
+              const ie = we[ue] || "";
               let Se = "";
-              (ae && (Se = ae.split("T")[0]),
+              (ie && (Se = ie.split("T")[0]),
                 (Se = Se.replace(/\//g, "-")),
                 q.push({
                   id: `batch_${Date.now()}_${ue}`,
-                  lot: ie[ue] || "",
+                  lot: ce[ue] || "",
                   expiryDate: Se,
                   qty: String(pe[ue] || ""),
                 }),
@@ -21186,11 +21188,11 @@ const Ph = async (e) => {
           v([]),
           S(""),
           F(""),
-          $(""),
+          A(""),
           ve(""),
           N("EPD290"),
-          ee(""),
-          A(null),
+          te(""),
+          $(null),
           w([]),
           P(null),
           t());
@@ -21280,7 +21282,7 @@ const Ph = async (e) => {
                                   children: [
                                     r.jsxs("div", {
                                       className: "relative",
-                                      ref: L === "code" ? Ee : null,
+                                      ref: L === "code" ? Ie : null,
                                       children: [
                                         r.jsx("label", {
                                           className:
@@ -21308,7 +21310,7 @@ const Ph = async (e) => {
                                                 r.jsxs(
                                                   "div",
                                                   {
-                                                    onClick: () => te(O),
+                                                    onClick: () => ne(O),
                                                     className:
                                                       "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                     children: [
@@ -21372,7 +21374,7 @@ const Ph = async (e) => {
                                     }),
                                     r.jsxs("div", {
                                       className: "relative",
-                                      ref: L === "name" ? Ee : null,
+                                      ref: L === "name" ? Ie : null,
                                       children: [
                                         r.jsx("label", {
                                           className:
@@ -21400,7 +21402,7 @@ const Ph = async (e) => {
                                                 r.jsxs(
                                                   "div",
                                                   {
-                                                    onClick: () => te(O),
+                                                    onClick: () => ne(O),
                                                     className:
                                                       "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                     children: [
@@ -21464,7 +21466,7 @@ const Ph = async (e) => {
                                     }),
                                     r.jsxs("div", {
                                       className: "relative",
-                                      ref: L === "chineseName" ? Ee : null,
+                                      ref: L === "chineseName" ? Ie : null,
                                       children: [
                                         r.jsx("label", {
                                           className:
@@ -21492,7 +21494,7 @@ const Ph = async (e) => {
                                                 r.jsxs(
                                                   "div",
                                                   {
-                                                    onClick: () => te(O),
+                                                    onClick: () => ne(O),
                                                     className:
                                                       "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                     children: [
@@ -21556,7 +21558,7 @@ const Ph = async (e) => {
                                     }),
                                     r.jsxs("div", {
                                       className: "relative",
-                                      ref: L === "skdiacode" ? Ee : null,
+                                      ref: L === "skdiacode" ? Ie : null,
                                       children: [
                                         r.jsx("label", {
                                           className:
@@ -21584,7 +21586,7 @@ const Ph = async (e) => {
                                                 r.jsxs(
                                                   "div",
                                                   {
-                                                    onClick: () => te(O),
+                                                    onClick: () => ne(O),
                                                     className:
                                                       "px-3 py-2 hover:bg-blue-50 cursor-pointer border-b last:border-b-0",
                                                     children: [
@@ -21855,7 +21857,7 @@ const Ph = async (e) => {
                                         r.jsx("input", {
                                           type: "text",
                                           value: M,
-                                          onChange: (O) => $(O.target.value),
+                                          onChange: (O) => A(O.target.value),
                                           className:
                                             "w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
                                           placeholder: "輸入 LED 索引",
@@ -21982,8 +21984,8 @@ const Ph = async (e) => {
         const I = f(),
           F = [];
         for (let M = 0; M < 10; M++)
-          for (let $ = 0; $ < 10; $++) {
-            const se = `${M},${$}`;
+          for (let A = 0; A < 10; A++) {
+            const se = `${M},${A}`;
             I.includes(se) || F.push(se);
           }
         return F.slice(0, 20);
@@ -22192,13 +22194,13 @@ const Ph = async (e) => {
       [v, E] = u.useState(""),
       [S, I] = u.useState(null),
       [F, M] = u.useState(!1),
-      $ = u.useRef(null);
+      A = u.useRef(null);
     (u.useEffect(() => {
       e && (i(n), h(""), m(""), j(""), T(""), E(""), I(null), f(null));
     }, [e, n]),
       u.useEffect(() => {
         const P = (X) => {
-          $.current && !$.current.contains(X.target) && f(null);
+          A.current && !A.current.contains(X.target) && f(null);
         };
         return (
           document.addEventListener("mousedown", P),
@@ -22213,23 +22215,23 @@ const Ph = async (e) => {
           return;
         }
         const w = X.toLowerCase(),
-          B = o.filter((ee) => {
-            var H, A, Ne, U;
+          B = o.filter((te) => {
+            var H, $, Ne, U;
             switch (P) {
               case "code":
-                return (H = ee.CODE) == null
+                return (H = te.CODE) == null
                   ? void 0
                   : H.toLowerCase().includes(w);
               case "name":
-                return (A = ee.NAME) == null
+                return ($ = te.NAME) == null
                   ? void 0
-                  : A.toLowerCase().includes(w);
+                  : $.toLowerCase().includes(w);
               case "chineseName":
-                return (Ne = ee.CHT_NAME) == null
+                return (Ne = te.CHT_NAME) == null
                   ? void 0
                   : Ne.toLowerCase().includes(w);
               case "skdiacode":
-                return (U = ee.SKDIACODE) == null
+                return (U = te.SKDIACODE) == null
                   ? void 0
                   : U.toLowerCase().includes(w);
               default:
@@ -22356,7 +22358,7 @@ const Ph = async (e) => {
                 className: "flex-1 overflow-y-auto p-6",
                 children: r.jsxs("div", {
                   className: "space-y-4",
-                  ref: $,
+                  ref: A,
                   children: [
                     r.jsxs("div", {
                       children: [
@@ -22795,12 +22797,12 @@ const Ph = async (e) => {
                             });
                           const F = t && (E.code == t || E.material_no == t),
                             M = n.includes(E.code) || n.includes(E.material_no),
-                            $ = o(),
+                            A = o(),
                             se = S === y - 1;
                           return r.jsxs(
                             "div",
                             {
-                              className: `border-2 rounded-lg border-gray-300 p-2 flex flex-col text-gray-800 justify-center items-center transition-colors cursor-pointer min-w-0 overflow-hidden ${se ? "" : "mb-1"} ${M ? "highlight-breathe-red" : F ? `highlight-breathe-${$}` : ""}`,
+                              className: `border-2 rounded-lg border-gray-300 p-2 flex flex-col text-gray-800 justify-center items-center transition-colors cursor-pointer min-w-0 overflow-hidden ${se ? "" : "mb-1"} ${M ? "highlight-breathe-red" : F ? `highlight-breathe-${A}` : ""}`,
                               style: {
                                 height: `calc(${v}% - ${se ? "0px" : "0.25rem"})`,
                               },
@@ -22939,7 +22941,7 @@ const Ph = async (e) => {
       [y, v] = u.useState(""),
       [E, S] = u.useState([]),
       [I, F] = u.useState([]),
-      [M, $] = u.useState([]),
+      [M, A] = u.useState([]),
       [se, ve] = u.useState(!1),
       [_, N] = u.useState(!1),
       L = u.useRef(null),
@@ -22988,7 +22990,7 @@ const Ph = async (e) => {
           console.error("獲取人員資料失敗:", D);
         }
       },
-      ee = (D) => {
+      te = (D) => {
         if ((d(D), D.trim() === "")) {
           (F([]), ve(!1));
           return;
@@ -23000,15 +23002,15 @@ const Ph = async (e) => {
       },
       H = (D) => {
         if ((v(D), D.trim() === "")) {
-          ($([]), N(!1));
+          (A([]), N(!1));
           return;
         }
         const xe = E.filter(
           (fe) => fe.ID && fe.ID.toLowerCase().includes(D.toLowerCase()),
         );
-        ($(xe), N(xe.length > 0));
+        (A(xe), N(xe.length > 0));
       },
-      A = (D) => {
+      $ = (D) => {
         (d(D.name), v(D.ID), ve(!1));
       },
       Ne = (D) => {
@@ -23059,7 +23061,7 @@ const Ph = async (e) => {
           (a(D), c(D));
         }
       },
-      Ee = () => {
+      Ie = () => {
         (a("0"), c("0"), g(null), p(null), b(!1));
       },
       De = () => {
@@ -23157,7 +23159,7 @@ const Ph = async (e) => {
           }
         }
       },
-      te = n === "requisition" ? s.requestedQuantity : s.issuedQuantity;
+      ne = n === "requisition" ? s.requestedQuantity : s.issuedQuantity;
     return r.jsxs("div", {
       className: "fixed inset-0 z-[70] flex items-center justify-center",
       children: [
@@ -23209,9 +23211,9 @@ const Ph = async (e) => {
                                 ref: L,
                                 type: "text",
                                 value: f,
-                                onChange: (D) => ee(D.target.value),
+                                onChange: (D) => te(D.target.value),
                                 onFocus: () => {
-                                  f.trim() && ee(f);
+                                  f.trim() && te(f);
                                 },
                                 placeholder: "人員名稱",
                                 className:
@@ -23226,7 +23228,7 @@ const Ph = async (e) => {
                                     r.jsxs(
                                       "div",
                                       {
-                                        onClick: () => A(D),
+                                        onClick: () => $(D),
                                         className:
                                           "px-3 py-2 hover:bg-blue-50 cursor-pointer transition-colors",
                                         children: [
@@ -23331,7 +23333,7 @@ const Ph = async (e) => {
                           }),
                           r.jsx("div", {
                             className: "text-base text-gray-800 mt-1",
-                            children: te || "-",
+                            children: ne || "-",
                           }),
                         ],
                       }),
@@ -23462,7 +23464,7 @@ const Ph = async (e) => {
                 "flex items-center justify-end gap-2 p-3 border-t border-gray-200 bg-gray-50",
               children: [
                 r.jsx("button", {
-                  onClick: Ee,
+                  onClick: Ie,
                   className:
                     "px-6 py-2.5 font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors",
                   children: "清除",
@@ -23618,9 +23620,9 @@ const Ph = async (e) => {
         }
       };
     if (!e || !n) return null;
-    const $ = i.filter((N) => N.state === "等待過帳"),
+    const A = i.filter((N) => N.state === "等待過帳"),
       se = h.filter((N) => N.state === "等待過帳"),
-      ve = $.length === 0 && se.length === 0,
+      ve = A.length === 0 && se.length === 0,
       _ = (N) => {
         if (!N || N === "1/01/01 00:00:00" || N === "0001-01-01T00:00:00")
           return "-";
@@ -23631,8 +23633,8 @@ const Ph = async (e) => {
             X = String(L.getMonth() + 1).padStart(2, "0"),
             w = String(L.getDate()).padStart(2, "0"),
             B = String(L.getHours()).padStart(2, "0"),
-            ee = String(L.getMinutes()).padStart(2, "0");
-          return `${P}/${X}/${w} ${B}:${ee}`;
+            te = String(L.getMinutes()).padStart(2, "0");
+          return `${P}/${X}/${w} ${B}:${te}`;
         } catch {
           return N;
         }
@@ -23753,7 +23755,7 @@ const Ph = async (e) => {
                 : r.jsxs("div", {
                     className: "space-y-2",
                     children: [
-                      $.map((N, L) =>
+                      A.map((N, L) =>
                         r.jsxs(
                           "div",
                           {
@@ -24082,10 +24084,10 @@ const Ph = async (e) => {
             w = [];
           if (P.Code === 200 && P.Data) {
             const B = P.Data.filter((H) => {
-              var A;
-              return (A = S == null ? void 0 : S.med_list) == null
+              var $;
+              return ($ = S == null ? void 0 : S.med_list) == null
                 ? void 0
-                : A.some((Ne) => Ne.code === H.code);
+                : $.some((Ne) => Ne.code === H.code);
             });
             (p(B),
               B.filter(
@@ -24096,10 +24098,10 @@ const Ph = async (e) => {
           }
           if (X.Code === 200 && X.Data) {
             const B = X.Data.filter((H) => {
-              var A;
-              return (A = S == null ? void 0 : S.med_list) == null
+              var $;
+              return ($ = S == null ? void 0 : S.med_list) == null
                 ? void 0
-                : A.some((Ne) => Ne.code === H.code);
+                : $.some((Ne) => Ne.code === H.code);
             });
             (b(B),
               B.filter(
@@ -24164,18 +24166,18 @@ const Ph = async (e) => {
           y.current && clearTimeout(y.current);
         };
       }, [e, l]));
-    const $ = (_) => {
+    const A = (_) => {
       var P, X;
       (m.filter((w) => w.code === _.code), j.filter((w) => w.code === _.code));
       const N = (w) => {
           for (const B of w) {
             if (B.type === "store_shelves" && B.medMapStock) {
-              const ee = B.medMapStock.find((H) => H.code === _.code);
-              if (ee) return { stock: ee, shelf: B };
+              const te = B.medMapStock.find((H) => H.code === _.code);
+              if (te) return { stock: te, shelf: B };
             }
             if (B.contents && B.contents.length > 0) {
-              const ee = N(B.contents);
-              if (ee) return ee;
+              const te = N(B.contents);
+              if (te) return te;
             }
           }
           return null;
@@ -24253,8 +24255,8 @@ const Ph = async (e) => {
                   const P = i && l && N.code == l,
                     X = h.includes(N.code);
                   let w = 0;
-                  (N.qty.forEach((ee) => {
-                    w += +ee;
+                  (N.qty.forEach((te) => {
+                    w += +te;
                   }),
                     L === 0 &&
                       console.log("🧪 ContainerDetailModal - 第一筆藥品檢查:", {
@@ -24270,7 +24272,7 @@ const Ph = async (e) => {
                     "tr",
                     {
                       className: `transition-colors cursor-pointer ${X ? "highlight-breathe-red" : P ? `highlight-breathe-${B}` : "hover:bg-gray-50"}`,
-                      onClick: () => $(N),
+                      onClick: () => A(N),
                       children: [
                         r.jsx("td", {
                           className: "border border-gray-300 px-1 py-2 text-sm",
@@ -24320,7 +24322,7 @@ const Ph = async (e) => {
               container: S,
               highlightedMedicineCode: i ? l : null,
               pendingRequisitionCodes: h,
-              onMedicineClick: $,
+              onMedicineClick: A,
             })
           : r.jsx("div", {
               className:
@@ -25291,7 +25293,7 @@ function eg() {
     closeContainerDetailModal: I,
     selectedContainerForDetail: F,
     setMedicineList: M,
-    setIsLoadingMedicines: $,
+    setIsLoadingMedicines: A,
     showNotification: se,
   } = it();
   (u.useEffect(() => {
@@ -25315,7 +25317,7 @@ function eg() {
       return (
         (async () => {
           if (n) {
-            $(!0);
+            A(!0);
             try {
               console.log("開始載入藥品資料...");
               const X = await Me.getMedicineCloud();
@@ -25333,7 +25335,7 @@ function eg() {
                 M([]),
                 se("無法連線到藥品資料庫，部分功能可能無法使用", "error"));
             } finally {
-              L && $(!1);
+              L && A(!1);
             }
           }
         })(),
