@@ -276,11 +276,11 @@ async function allocate_display_init(light_on) {
       return;
     }
     current_p_bed_data = current_p_bed_data.Data;
-    current_p_bed_data.cpoe.sort((a, b) => {
-      const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
-      const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
-      return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
-    });
+    // current_p_bed_data.cpoe.sort((a, b) => {
+    //   const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
+    //   const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
+    //   return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
+    // });
 
     // }
     // 這裡對預載入index做定位
@@ -318,7 +318,8 @@ async function allocate_display_init(light_on) {
         }
       });
       console.log(sortedData);
-      current_p_bed_data["cpoe"] = sortedData;
+      console.log(current_p_bed_data["cpoe"]);
+      // current_p_bed_data["cpoe"] = sortedData;
     }
 
     if (light_on == "on") {
@@ -2449,11 +2450,11 @@ function set_pbm_header_container() {
 
       current_p_bed_data = await get_patient_GUID(post_data);
       current_p_bed_data = current_p_bed_data.Data;
-      current_p_bed_data.cpoe.sort((a, b) => {
-        const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
-        const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
-        return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
-      });
+      // current_p_bed_data.cpoe.sort((a, b) => {
+      //   const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
+      //   const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
+      //   return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
+      // });
       await allocate_display_init("");
       let post_data_for_check = [current_pharmacy.phar, current_cart.hnursta];
       let temp_str;
@@ -3079,11 +3080,11 @@ function set_pbm_footer_container() {
 
       current_p_bed_data = await get_patient_GUID(post_data);
       current_p_bed_data = current_p_bed_data.Data;
-      current_p_bed_data.cpoe.sort((a, b) => {
-        const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
-        const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
-        return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
-      });
+      // current_p_bed_data.cpoe.sort((a, b) => {
+      //   const aHasPubMedY = a.pub_med == "Y" ? 1 : 0;
+      //   const bHasPubMedY = b.pub_med == "Y" ? 1 : 0;
+      //   return aHasPubMedY - bHasPubMedY; // 讓 pub_med 為 "Y" 的排到最後
+      // });
       await allocate_display_init("");
       let post_data_for_check = [current_pharmacy.phar, current_cart.hnursta];
       let temp_str;
