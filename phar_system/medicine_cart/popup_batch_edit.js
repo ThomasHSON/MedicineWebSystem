@@ -926,7 +926,7 @@ function set_stock_batch_container(object, data_index) {
       let temp_object = {
         expiry_date: object.expiry_date[index],
         lot: object.lot[index],
-        qty: object.qty[index],
+        qty: ppbe_cpoe_batch_edit_data[data_index].qty,
       };
       temp_arr.push(temp_object);
       console.log(batch_stringifyData(temp_arr));
