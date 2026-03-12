@@ -33,7 +33,7 @@ function qrCodeScannerInit(
   updateUrl,
   btnEl,
   medicine_info,
-  set_func
+  set_func,
 ) {
   const body = document.querySelector("body");
   body.style.position = "relative";
@@ -254,6 +254,18 @@ function cameraOff() {
 
 async function getScanResult(videoEl, canvasEl) {
   let result = await capturePic(videoEl, canvasEl);
+  console.log(result);
+  if (result.status == "error") {
+    console.error(result.error);
+    let m_qcs_info = document.querySelector(".m_qcs_info");
+    let qcs_info = document.querySelector(".qcs_info");
+
+    m_qcs_info.innerHTML = `${result.error}，系統錯誤`;
+    qcs_info.innerHTML = `${result.error}，系統錯誤`;
+
+    show_camera_error(true);
+    return;
+  }
   if (result.results.length == 1 && result.results[0].code) {
     console.log(result);
     console.log(result.results[0].code);
@@ -294,22 +306,25 @@ async function capturePic(videoEl, canvasEl) {
   ctx.drawImage(videoEl, 0, 0, w, h);
 
   const blob = await new Promise((res) =>
-    canvasEl.toBlob(res, "image/jpeg", 1)
+    canvasEl.toBlob(res, "image/jpeg", 1),
   );
 
   // 上傳到API
   const form = new FormData();
   form.append("file", blob);
   try {
+    console.log(qrCodeScanner.scanAPI_Url);
     const rsp = await fetch(qrCodeScanner.scanAPI_Url, {
       method: "POST",
       body: form,
     });
     return rsp.json();
   } catch (err) {
-    console.error(err);
-    alert(qrCodeScanner.scanAPI_Url, err);
-    cameraOff();
+    return {
+      status: "error",
+      error: err,
+    };
+    // cameraOff();
   }
 }
 async function getBarCodeSearch(barcode) {
@@ -491,28 +506,28 @@ function qrCodeBuildMain() {
         case "code":
           tempResult = tempResult.filter((item) => {
             return item.CODE?.toUpperCase().includes(
-              e.target.value.toUpperCase()
+              e.target.value.toUpperCase(),
             );
           });
           break;
         case "name":
           tempResult = tempResult.filter((item) => {
             return item.NAME?.toUpperCase().includes(
-              e.target.value.toUpperCase()
+              e.target.value.toUpperCase(),
             );
           });
           break;
         case "cht_name":
           tempResult = tempResult.filter((item) => {
             return item.CHT_NAME?.toUpperCase().includes(
-              e.target.value.toUpperCase()
+              e.target.value.toUpperCase(),
             );
           });
           break;
         case "SKDIACODE":
           tempResult = tempResult.filter((item) => {
             return item.SKDIACODE?.toUpperCase().includes(
-              e.target.value.toUpperCase()
+              e.target.value.toUpperCase(),
             );
           });
           break;
@@ -532,10 +547,10 @@ function qrCodeBuildMain() {
             const qcb_code_input = document.querySelector("#qcb_code_input");
             const qcb_name_input = document.querySelector("#qcb_name_input");
             const qcb_cht_name_input = document.querySelector(
-              "#qcb_cht_name_input"
+              "#qcb_cht_name_input",
             );
             const qcb_SKDIACODE_input = document.querySelector(
-              "#qcb_SKDIACODE_input"
+              "#qcb_SKDIACODE_input",
             );
 
             qcb_code_input.value = item.CODE;

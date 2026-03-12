@@ -23,7 +23,7 @@ Window.load = load;
 var Header_state;
 let ai_api_ip;
 let config_url;
-
+let permissions_arr = [];
 let inventory_checked = "check";
 
 setInterval(function () {
@@ -44,7 +44,7 @@ function refresh_Header_state() {
       "20px",
       false,
       "微軟正黑體",
-      "white"
+      "white",
     );
   }
 }
@@ -66,7 +66,7 @@ setInterval(async function () {
       "盤點操作",
       current_IC_SN,
       userID,
-      userName
+      userName,
     );
     console.log("===== 人員回報 ======>", return_data);
   }
@@ -172,6 +172,15 @@ async function init() {
   let userAgent = navigator.userAgent;
   console.log("userAgent", userAgent);
 
+  permissions_arr = await get_permissions_arr();
+  console.log("權限設定陣列", permissions_arr);
+  let header_med_map = document.querySelector(".header_med_map");
+  if (permissions_arr.includes("medicine_map")) {
+    header_med_map.remove();
+  } else {
+    console.log("開放藥品地圖");
+  }
+
   current_IC_SN = sessionStorage.getItem("IC_SN");
 
   var IC_SN = sessionStorage.getItem("IC_SN");
@@ -210,13 +219,13 @@ async function init() {
   let temp_filter_done_contents = temp_contents.map((item) => item.GUID);
 
   temp_shift_contents = temp_shift_contents.filter(
-    (item) => !temp_filter_done_contents.includes(item.GUID)
+    (item) => !temp_filter_done_contents.includes(item.GUID),
   );
 
   console.log("被過濾的", temp_shift_contents);
 
   let temp_shift_contents_names_arr = temp_shift_contents.map(
-    (item) => item.NAME
+    (item) => item.NAME,
   );
   let temp_str_shift_contents_names = temp_shift_contents_names_arr.join("\n");
 
@@ -232,12 +241,12 @@ async function init() {
   if (temp_shift_contents.length < 10) {
     // alert(`共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。\n${temp_str_shift_contents_names}`);
     loading_locked_med_and_show_then_focus_input(
-      `共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。\n${temp_str_shift_contents_names}`
+      `共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。\n${temp_str_shift_contents_names}`,
     );
   } else {
     // alert(`共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。`);
     loading_locked_med_and_show_then_focus_input(
-      `共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。`
+      `共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。`,
     );
   }
   // let header_serch_text = document.querySelector('#header_serch_text');
@@ -245,7 +254,7 @@ async function init() {
   set_message_listener();
 
   const header_search_text_img_icon = document.querySelector(
-    ".header_search_text_img_icon"
+    ".header_search_text_img_icon",
   );
   config_url = await get_config_url();
   qrCodeScanner.init(
@@ -254,7 +263,7 @@ async function init() {
     `${api_ip}api/MED_page/add_med_clouds`,
     header_search_text_img_icon,
     medicine_page.Data,
-    show_barcode_search
+    show_barcode_search,
   );
 }
 async function page_Init(data) {
@@ -269,7 +278,7 @@ async function page_Init(data) {
     main_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
 
   main_div.style.flexWrap = "wrap";
@@ -284,7 +293,7 @@ async function Refresh_rows() {
     main_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
   var subContentArray = get_subContentByOP(data);
   for (var i = 0; i < subContentArray.length; i++) {
@@ -314,7 +323,7 @@ async function Refresh_rows() {
           "18px",
           true,
           "微軟正黑體",
-          "green"
+          "green",
         );
       } else {
         My_Div.Set_Text(
@@ -324,7 +333,7 @@ async function Refresh_rows() {
           "18px",
           true,
           "微軟正黑體",
-          "green"
+          "green",
         );
       }
     } else {
@@ -445,7 +454,7 @@ function get_header() {
     header_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUNM,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
   // My_Div.Set_position(header_div ,PositionEnum.FIXED ,0,0);
   // header_div.style.overflowX = "hidden";
@@ -458,7 +467,7 @@ function get_header() {
     "header_title_text",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_title_text,
@@ -467,7 +476,7 @@ function get_header() {
     "30px",
     true,
     "微軟正黑體",
-    ""
+    "",
   );
   header_title_text.className = "h1";
   header_div.appendChild(header_title_text);
@@ -480,13 +489,13 @@ function get_header() {
     "header_creat_div",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     header_creat_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
   header_creat_div.style.marginTop = "5px";
   const header_userName = document.createElement("div");
@@ -496,7 +505,7 @@ function get_header() {
     "header_userName",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_userName,
@@ -505,7 +514,7 @@ function get_header() {
     "18px",
     true,
     "微軟正黑體",
-    ""
+    "",
   );
   header_userName.style.marginLeft = "10px";
   header_creat_div.appendChild(header_userName);
@@ -517,7 +526,7 @@ function get_header() {
     "header_creat_name",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_creat_name,
@@ -526,7 +535,7 @@ function get_header() {
     "18px",
     true,
     "微軟正黑體",
-    ""
+    "",
   );
   header_creat_name.style.marginLeft = "10px";
   header_creat_div.appendChild(header_creat_name);
@@ -540,13 +549,13 @@ function get_header() {
     "header_controls",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     header_controls,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.RIGHT
+    JustifyContentEnum.RIGHT,
   );
   header_controls.style.marginRight = "10px";
   const header_creatselect_btn = document.createElement("button");
@@ -557,7 +566,7 @@ function get_header() {
     "header_creatselect_btn",
     "",
     "40px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_creatselect_btn,
@@ -566,7 +575,7 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   header_creatselect_btn.addEventListener("click", function () {
     popup_creatSelect_div.Show();
@@ -580,7 +589,7 @@ function get_header() {
     "header_serch_btn",
     "",
     "40px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_serch_btn,
@@ -589,7 +598,7 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   header_serch_btn.addEventListener("click", function () {
     popup_med_serch_div.Show();
@@ -603,7 +612,7 @@ function get_header() {
     "header_refresh_btn",
     "",
     "40px",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_refresh_btn,
@@ -612,7 +621,7 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   header_refresh_btn.addEventListener("click", function () {
     location.reload();
@@ -627,7 +636,7 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   header_logout.addEventListener("click", function () {
     const confirmResult = confirm(`是否登出系統?`);
@@ -649,7 +658,7 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    ""
+    "",
   );
 
   this.inventory_checked = "check";
@@ -724,7 +733,7 @@ function get_header() {
     "header_serch_text",
     "360px",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_serch_text,
@@ -733,14 +742,14 @@ function get_header() {
     "16px",
     false,
     "微軟正黑體",
-    "black"
+    "black",
   );
 
   My_Div.Set_Block(
     header_serch_text,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
   header_serch_text.placeholder = "藥碼/料號/條碼 輸入搜尋";
   header_serch_text.style.borderRadius = "5px";
@@ -770,7 +779,7 @@ function get_header() {
 
   const header_search_barcode_container = document.createElement("div");
   header_search_barcode_container.classList.add(
-    "header_search_barcode_container"
+    "header_search_barcode_container",
   );
 
   header_search_barcode_container.appendChild(header_serch_text);
@@ -807,9 +816,9 @@ function get_header() {
       let blur_result = temp_search_data.filter(
         ({ CODE, CHT_NAME, NAME, SKDIACODE }) => {
           return [CODE, CHT_NAME, NAME, SKDIACODE].some((str) =>
-            String(str)?.toLowerCase().includes(keyword)
+            String(str)?.toLowerCase().includes(keyword),
           );
-        }
+        },
       );
       console.log(blur_result);
       if (blur_result.length == 0) {
@@ -878,7 +887,7 @@ function get_header() {
 
   const header_blur_search_result_container = document.createElement("div");
   header_blur_search_result_container.classList.add(
-    "header_blur_search_result_container"
+    "header_blur_search_result_container",
   );
 
   header_search_text_container.appendChild(header_search_barcode_container);
@@ -894,13 +903,13 @@ function get_header() {
     "header_state",
     "100%",
     "40px",
-    "#c77a05"
+    "#c77a05",
   );
   My_Div.Set_Block(
     header_state,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
   My_Div.Set_Text(
     header_state,
@@ -909,7 +918,7 @@ function get_header() {
     "20px",
     false,
     "微軟正黑體",
-    "white"
+    "white",
   );
   header_state.style.marginTop = "5px";
   header_div.appendChild(header_state);
@@ -921,7 +930,7 @@ function get_header() {
     "header_inventory_num",
     "40%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     header_inventory_num,
@@ -930,7 +939,7 @@ function get_header() {
     "20px",
     true,
     "微軟正黑體",
-    ""
+    "",
   );
   header_div.appendChild(header_inventory_num);
 
@@ -938,7 +947,7 @@ function get_header() {
 }
 function edit_herader_view_QTY() {
   const herader_view_QTY_text = document.querySelector(
-    "#herader_view_QTY_text"
+    "#herader_view_QTY_text",
   );
   const totle_QTY = data.Data[0].Contents.length;
   var QTY = 0;
@@ -952,7 +961,7 @@ function edit_herader_view_QTY() {
     "14px",
     true,
     "微軟正黑體",
-    ""
+    "",
   );
 }
 function get_main() {
@@ -962,7 +971,7 @@ function get_main() {
     main_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER
+    JustifyContentEnum.CENTER,
   );
 
   main_div.style.flexWrap = "wrap";
@@ -988,7 +997,7 @@ function get_row(Sub_Content) {
     row_div,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUNM,
-    JustifyContentEnum.TOP
+    JustifyContentEnum.TOP,
   );
   row_div.setAttribute("GUID", _GUID);
   row_div.setAttribute("Master_GUID", _Master_GUID);
@@ -1008,13 +1017,13 @@ function get_row(Sub_Content) {
     `row_content_div01_${_GUID}`,
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     row_content_div01,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
 
   const row_content_sub01_div01 = document.createElement("div");
@@ -1024,13 +1033,13 @@ function get_row(Sub_Content) {
     `row_content_sub01_div01_${_GUID}`,
     "70%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     row_content_sub01_div01,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.LEFT
+    JustifyContentEnum.LEFT,
   );
   row_content_sub01_div01.style.paddingLeft = "10px";
 
@@ -1042,7 +1051,7 @@ function get_row(Sub_Content) {
     "16px",
     true,
     "微軟正黑體",
-    "black"
+    "black",
   );
   row_content_CODE.style.marginRight = "10px";
   row_content_sub01_div01.appendChild(row_content_CODE);
@@ -1055,7 +1064,7 @@ function get_row(Sub_Content) {
     "16px",
     true,
     "微軟正黑體",
-    "black"
+    "black",
   );
   row_content_sub01_div01.appendChild(row_content_SKDIACODE);
 
@@ -1067,7 +1076,7 @@ function get_row(Sub_Content) {
     "16px",
     true,
     "微軟正黑體",
-    "black"
+    "black",
   );
   row_content_STORAGE_NAME.style.marginLeft = "12px";
   row_content_sub01_div01.appendChild(row_content_STORAGE_NAME);
@@ -1079,13 +1088,13 @@ function get_row(Sub_Content) {
     `row_content_sub02_div01__${_GUID}`,
     "30%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     row_content_sub02_div01,
     DisplayEnum.FLEX,
     FlexDirectionEnum.ROW,
-    JustifyContentEnum.RIGHT
+    JustifyContentEnum.RIGHT,
   );
   row_content_sub02_div01.style.marginRight = "10px";
 
@@ -1096,7 +1105,7 @@ function get_row(Sub_Content) {
     `row_content_QTY${_GUID}`,
     "30%",
     "",
-    ""
+    "",
   );
   let single_QTY = 0;
   Sub_Content.Sub_content.forEach((element) => {
@@ -1119,7 +1128,7 @@ function get_row(Sub_Content) {
         "18px",
         true,
         "微軟正黑體",
-        "green"
+        "green",
       );
     } else {
       My_Div.Set_Text(
@@ -1129,7 +1138,7 @@ function get_row(Sub_Content) {
         "18px",
         true,
         "微軟正黑體",
-        "green"
+        "green",
       );
     }
   } else {
@@ -1141,7 +1150,7 @@ function get_row(Sub_Content) {
         "18px",
         true,
         "微軟正黑體",
-        "green"
+        "green",
       );
     } else {
       My_Div.Set_Text(
@@ -1151,7 +1160,7 @@ function get_row(Sub_Content) {
         "18px",
         true,
         "微軟正黑體",
-        "green"
+        "green",
       );
     }
   }
@@ -1167,13 +1176,13 @@ function get_row(Sub_Content) {
     `row_content_div02__${_GUID}`,
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Block(
     row_content_div02,
     DisplayEnum.FLEX,
     FlexDirectionEnum.COLUNM,
-    JustifyContentEnum.TOP
+    JustifyContentEnum.TOP,
   );
   row_content_div02.style.marginTop = "5px";
 
@@ -1184,7 +1193,7 @@ function get_row(Sub_Content) {
     "row_content_NAME",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     row_content_NAME,
@@ -1193,7 +1202,7 @@ function get_row(Sub_Content) {
     "14px",
     true,
     "微軟正黑體",
-    "#c88114"
+    "#c88114",
   );
   row_content_NAME.style.marginLeft = "10px";
   row_content_div02.appendChild(row_content_NAME);
@@ -1205,7 +1214,7 @@ function get_row(Sub_Content) {
     "row_content_CHT_NAME",
     "100%",
     "",
-    ""
+    "",
   );
   My_Div.Set_Text(
     row_content_CHT_NAME,
@@ -1214,7 +1223,7 @@ function get_row(Sub_Content) {
     "14px",
     true,
     "微軟正黑體",
-    "#c88114"
+    "#c88114",
   );
   row_content_CHT_NAME.style.marginLeft = "10px";
   row_content_div02.appendChild(row_content_CHT_NAME);
@@ -1270,7 +1279,7 @@ function isIOSDevice() {
 
 function loading_locked_med_and_show_then_focus_input(text) {
   let ppp_med_info_container = document.querySelector(
-    ".ppp_med_info_container"
+    ".ppp_med_info_container",
   );
   ppp_med_info_container.innerText = text;
 
@@ -1328,14 +1337,14 @@ function set_inventory_info_to_iframe(data) {
   let iframe = document.querySelector("#med_map_iframe");
   iframe.contentWindow.postMessage(
     { action: "MED_INVENTORY_INFO", data: data_object },
-    "*"
+    "*",
   );
 }
 function send_inventory_info_to_iframe() {
   let iframe = document.querySelector("#med_map_iframe");
   iframe.contentWindow.postMessage(
     { action: "MED_INVENTORY_INFO", data: data_object },
-    "*"
+    "*",
   );
 }
 function formatQty(value) {
