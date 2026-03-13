@@ -456,9 +456,11 @@ async function set_ppmcl_main_info() {
           ValueAry: [guid_arr.join(";"), ppmcl_h_current_cart_select.value],
         };
 
-        post_data = await check_med_list_change_func(post_data);
+        let check_new_cpoe_info = await check_med_list_change_func(post_data);
+        post_data = check_new_cpoe_info.post_data;
         console.log(post_data);
-        return;
+        console.log(check_new_cpoe_info.error_data);
+        // return;
         // let post_data2 = {
         //     Data: [
         //         {
@@ -494,7 +496,17 @@ async function set_ppmcl_main_info() {
           return;
         }
 
-        show_popup_notice(return_data.Result, true);
+        if (check_new_cpoe_info.error_data.length > 0) {
+          let temp_str = "";
+          check_new_cpoe_info.error_data.forEach(element, (index) => {
+            temp_str += element.bednum;
+            if (index != check_new_cpoe_info.error_data.length - 1)
+              temp_str += "、";
+          });
+          show_popup_notice(`${temp_str}床位有部分處方變更`, true);
+        } else {
+          show_popup_notice(return_data.Result, true);
+        }
 
         // 在這邊做確認退藥
         //  調劑完後檢查退藥
@@ -639,6 +651,11 @@ async function set_ppmcl_main_info() {
           ValueAry: [guid_arr.join(";"), ppmcl_h_current_cart_select.value],
         };
 
+        let check_new_cpoe_info = await check_med_list_change_func(post_data);
+        post_data = check_new_cpoe_info.post_data;
+        console.log(post_data);
+        console.log(check_new_cpoe_info.error_data);
+
         // let post_data2 = {
         //     Data: [
         //         {
@@ -668,7 +685,17 @@ async function set_ppmcl_main_info() {
         // console.log("未條藥品總調劑log", post_data2);
         let return_data = await api_med_cart_check_by_cart(post_data);
         if (return_data.Code == 200) {
-          show_popup_notice(return_data.Result, true);
+          if (check_new_cpoe_info.error_data.length > 0) {
+            let temp_str = "";
+            check_new_cpoe_info.error_data.forEach(element, (index) => {
+              temp_str += element.bednum;
+              if (index != check_new_cpoe_info.error_data.length - 1)
+                temp_str += "、";
+            });
+            show_popup_notice(`${temp_str}床位有部分處方變更`, true);
+          } else {
+            show_popup_notice(return_data.Result, true);
+          }
 
           // 在這邊做確認退藥
           //  調劑完後檢查退藥
@@ -942,10 +969,37 @@ async function set_ppmcl_main_info() {
             }
           }
 
+          let post_data = {
+            Data: {
+              op_id: "",
+              op_name: "",
+            },
+            ServerName: "",
+            ServerType: "",
+            UserName: "",
+            ValueAry: [temp_guid_arr.join(";"), ""],
+          };
+
+          let check_new_cpoe_info = await check_med_list_change_func(post_data);
+          post_data = check_new_cpoe_info.post_data;
+          console.log(post_data);
+          console.log(check_new_cpoe_info.error_data);
+
           let return_data = await set_post_data_to_dispensed_by_GUID(
-            temp_guid_arr,
+            post_data.ValueAry[0].split(";"),
             element.GUID,
           );
+          if (check_new_cpoe_info.error_data.length > 0) {
+            let temp_str = "";
+            check_new_cpoe_info.error_data.forEach(element, (index) => {
+              temp_str += element.bednum;
+              if (index != check_new_cpoe_info.error_data.length - 1)
+                temp_str += "、";
+            });
+            show_popup_notice(`${temp_str}床位有部分處方變更`, true);
+          } else {
+            show_popup_notice(return_data.Result, true);
+          }
 
           // 在這邊做確認退藥
           //  調劑完後檢查退藥
@@ -1166,14 +1220,26 @@ async function set_ppmcl_main_info() {
             ],
           };
 
-          // if(temp_table != "all") {
-          //     post_data.ServerName = temp_table;
-          //     post_data.ServerType = "調劑台";
-          // }
+          let check_new_cpoe_info = await check_med_list_change_func(post_data);
+          post_data = check_new_cpoe_info.post_data;
+          console.log(post_data);
+          console.log(check_new_cpoe_info.error_data);
 
           console.log("藥品異動逐床全部複合post_data", post_data);
           let return_data = await api_med_cart_check_by_cart(post_data);
           if (return_data.Code == 200) {
+            if (check_new_cpoe_info.error_data.length > 0) {
+              let temp_str = "";
+              check_new_cpoe_info.error_data.forEach(element, (index) => {
+                temp_str += element.bednum;
+                if (index != check_new_cpoe_info.error_data.length - 1)
+                  temp_str += "、";
+              });
+              show_popup_notice(`${temp_str}床位有部分處方變更`, true);
+            } else {
+              show_popup_notice(return_data.Result, true);
+            }
+
             temp_guid_arr.forEach((item) => {
               let ppmcl_cpoe_container = document.querySelector(
                 `.ppmcl_cpoe_container[guid="${item}"]`,
@@ -1621,7 +1687,81 @@ async function set_ppmcl_main_info() {
               `未調藥品：${current_cart.hnursta}-${element.bednum}床藥品${item.code}調劑`,
               "click",
             );
+
             Set_main_div_enable(true);
+
+            let ppmcl_h_current_cart_select = document.querySelector(
+              ".ppmcl_h_current_cart_select",
+            );
+
+            let post_data = [
+              current_pharmacy.phar,
+              ppmcl_h_current_cart_select.value,
+            ];
+            console.log(post_data);
+            let temp_check_data;
+            if (current_func == "allocate") {
+              temp_check_data = await get_patient_with_NOdispense(post_data);
+              temp_check_data = temp_check_data.Data;
+            } else {
+              console.log("==-=-=-=-=-=-=-=-==", "這邊撈覆核");
+              temp_check_data = await get_patient_with_NOcheck(post_data);
+              temp_check_data = temp_check_data.Data;
+            }
+
+            // 比對是否有異動
+
+            let temp_all_cpoe_med_change_data = {};
+
+            temp_check_data.forEach((element) => {
+              element.cpoe.forEach((object) => {
+                if (object.GUID.includes(";")) {
+                  let temp_arr_GUID2 = object.GUID.split(";");
+                  temp_arr_GUID2.forEach((object2) => {
+                    temp_all_cpoe_med_change_data[`${object2}`] = object;
+                  });
+                } else {
+                  temp_all_cpoe_med_change_data[`${object.GUID}`] = object;
+                }
+              });
+            });
+
+            let temp_arr_GUID3 = item.GUID.split(";");
+
+            if (
+              item.qty !=
+              temp_all_cpoe_med_change_data[`${temp_arr_GUID3[0]}`].qty
+            ) {
+              post_data = [
+                current_pharmacy.phar,
+                ppmcl_h_current_cart_select.value,
+              ];
+              console.log(post_data);
+
+              med_change_data = await get_patient_with_NOdispense(post_data);
+              med_change_data = med_change_data.Data;
+              med_change_data = med_change_data.filter((e) => {
+                return e.cpoe_change_status != "";
+              });
+
+              console.log(med_change_data);
+
+              med_change_data = med_change_data.filter((e) => {
+                return e.cpoe.length != 0;
+              });
+
+              console.log(med_change_data);
+
+              if (med_change_data.length > 0) {
+                med_change_data.sort((a, b) => +a.bednum - +b.bednum);
+              }
+
+              console.log("++++++++++++++++++++", med_change_data);
+              await set_ppmcl_main_info();
+              show_popup_notice(`該處方有異動請確認`, true);
+              return;
+            }
+
             let return_data =
               await set_post_data_to_check_dispense_for_med_list(
                 element.GUID,
@@ -1654,9 +1794,6 @@ async function set_ppmcl_main_info() {
             //  調劑完後檢查退藥
             let ppdl_h_current_cart_select = document.querySelector(
               ".ppdl_h_current_cart_select",
-            );
-            let ppmcl_h_current_cart_select = document.querySelector(
-              ".ppmcl_h_current_cart_select",
             );
             // 檢測有無退藥
             console.log("============ 檢查退藥中 =============");
@@ -1758,6 +1895,79 @@ async function set_ppmcl_main_info() {
                 `未調藥品：${current_cart.hnursta}-${element.bednum}床藥品${item.code}覆核`,
                 "click",
               );
+
+              let ppmcl_h_current_cart_select = document.querySelector(
+                ".ppmcl_h_current_cart_select",
+              );
+
+              let post_data = [
+                current_pharmacy.phar,
+                ppmcl_h_current_cart_select.value,
+              ];
+              console.log(post_data);
+              let temp_check_data;
+              if (current_func == "allocate") {
+                temp_check_data = await get_patient_with_NOdispense(post_data);
+                temp_check_data = temp_check_data.Data;
+              } else {
+                console.log("==-=-=-=-=-=-=-=-==", "這邊撈覆核");
+                temp_check_data = await get_patient_with_NOcheck(post_data);
+                temp_check_data = temp_check_data.Data;
+              }
+
+              // 比對是否有異動
+
+              let temp_all_cpoe_med_change_data = {};
+
+              temp_check_data.forEach((element) => {
+                element.cpoe.forEach((object) => {
+                  if (object.GUID.includes(";")) {
+                    let temp_arr_GUID2 = object.GUID.split(";");
+                    temp_arr_GUID2.forEach((object2) => {
+                      temp_all_cpoe_med_change_data[`${object2}`] = object;
+                    });
+                  } else {
+                    temp_all_cpoe_med_change_data[`${object.GUID}`] = object;
+                  }
+                });
+              });
+
+              let temp_arr_GUID3 = item.GUID.split(";");
+
+              if (
+                item.qty !=
+                temp_all_cpoe_med_change_data[`${temp_arr_GUID3[0]}`].qty
+              ) {
+                post_data = [
+                  current_pharmacy.phar,
+                  ppmcl_h_current_cart_select.value,
+                ];
+                console.log(post_data);
+
+                med_change_data = await get_patient_with_NOcheck(post_data);
+                med_change_data = med_change_data.Data;
+
+                med_change_data = med_change_data.filter((e) => {
+                  return e.cpoe_change_status != "";
+                });
+
+                console.log(med_change_data);
+
+                med_change_data = med_change_data.filter((e) => {
+                  return e.cpoe.length != 0;
+                });
+
+                console.log(med_change_data);
+
+                if (med_change_data.length > 0) {
+                  med_change_data.sort((a, b) => +a.bednum - +b.bednum);
+                }
+
+                console.log("++++++++++++++++++++", med_change_data);
+                await set_ppmcl_main_info();
+                show_popup_notice(`該處方有異動請確認`, true);
+                return;
+              }
               let return_data =
                 await set_post_data_to_check_dispense_for_med_list(
                   element.GUID,
@@ -1790,9 +2000,6 @@ async function set_ppmcl_main_info() {
               //  調劑完後檢查退藥
               let ppdl_h_current_cart_select = document.querySelector(
                 ".ppdl_h_current_cart_select",
-              );
-              let ppmcl_h_current_cart_select = document.querySelector(
-                ".ppmcl_h_current_cart_select",
               );
               // 檢測有無退藥
               console.log("============ 檢查退藥中 =============");
@@ -1886,6 +2093,7 @@ async function set_ppmcl_main_info() {
               }
 
               console.log("++++++++++++++++++++", med_change_data);
+              await set_ppmcl_main_info();
 
               Set_main_div_enable(false);
             });
@@ -2171,10 +2379,10 @@ async function check_med_list_change_func(response_data) {
       if (item.GUID.includes(";")) {
         let temp_arr_GUID2 = item.GUID.split(";");
         temp_arr_GUID2.forEach((item2) => {
-          temp_all_cpoe_med_change_data[`${item2}`] = item;
+          all_cpoe_med_change_data[`${item2}`] = item;
         });
       } else {
-        temp_all_cpoe_med_change_data[`${item.GUID}`] = item;
+        all_cpoe_med_change_data[`${item.GUID}`] = item;
       }
     });
   });
@@ -2196,16 +2404,63 @@ async function check_med_list_change_func(response_data) {
   console.log(temp_all_cpoe_med_change_data);
 
   let temp_arr_GUID = response_data.ValueAry[0].split(";");
+  let new_arr = response_data.ValueAry[0].split(";");
+  let change_arr_GUID = [];
   temp_arr_GUID.forEach((element) => {
     let temp_data = temp_all_cpoe_med_change_data[element];
-    console.log(temp_data);
+    let temp_old_data = all_cpoe_med_change_data[element];
     if (temp_data == undefined) {
+      // 如果新的cpoe資料中比對沒有找到進行調劑的處方則移除GUID
+      // 並加入異動資料通知arr中
+      let index = new_arr.indexOf(element);
+      new_arr.splice(index, 1);
+      change_arr_GUID.push(element);
+    } else {
+      if (temp_data.qty != temp_old_data.qty) {
+        let index = new_arr.indexOf(element);
+        new_arr.splice(index, 1);
+        change_arr_GUID.push(element);
+      }
     }
   });
+
+  let reduce_object = {};
+  change_arr_GUID.forEach((element) => {
+    if (element) {
+      let temp_old_data = all_cpoe_med_change_data[element];
+
+      reduce_object[element] = temp_old_data;
+    }
+  });
+
+  console.log("原先post資料", response_data);
+  response_data.ValueAry[0] = new_arr.join(";");
+  console.log("過濾後的新post資料", response_data);
+  console.log("reduce_object資料", reduce_object);
+  console.log(cpoe_reduce_data(reduce_object));
 
   let new_post_data = response_data;
 
   Set_main_div_enable(false);
 
-  return { post_data: new_post_data, error_data: [] };
+  return {
+    post_data: new_post_data,
+    error_data: cpoe_reduce_data(reduce_object),
+  };
+}
+
+function cpoe_reduce_data(object) {
+  // 1. 先將物件轉為陣列
+  const dataArray = Object.values(object);
+
+  // 2. 利用 Map 的 Key 唯一特性進行去重
+  // item.GUID 作為 Key，item 本身作為 Value
+  console.log(dataArray);
+  const uniqueMap = new Map(dataArray.map((item) => [item.GUID, item]));
+
+  // 3. 轉回陣列
+  const result = Array.from(uniqueMap.values());
+
+  console.log(result);
+  return result;
 }
