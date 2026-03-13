@@ -10275,7 +10275,7 @@ const Xm = ({
   };
 async function bm() {
   try {
-    const e = await fetch("../config.txt");
+    const e = await fetch("../../config.txt");
     if (!e.ok) throw new Error("Failed to load configuration");
     const t = await e.json();
     return { domain: t.domain || "", homepage: t.homepage || "" };
