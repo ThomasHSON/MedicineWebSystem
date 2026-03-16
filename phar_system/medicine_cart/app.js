@@ -223,7 +223,7 @@ function get_header(test_user_data) {
       })`;
       light_color_select_item.onclick = (e) => {
         let current_light_color_display = document.querySelector(
-          ".current_light_color_display"
+          ".current_light_color_display",
         );
 
         console.log(light_color_object[e.target.getAttribute("data-color")]);
@@ -265,7 +265,7 @@ function get_header(test_user_data) {
     check_cutoff_time_relogin();
     api_logger_add(
       "開啟操作彈窗 => API個人操作取得資料：api/med_inventory/get_opid_by_time",
-      "click"
+      "click",
     );
     popup_self_operate_div_open();
   });
@@ -353,10 +353,10 @@ function get_main_ui() {
     }
 
     let ppml_h_current_cart_select = document.querySelector(
-      ".ppml_h_current_cart_select"
+      ".ppml_h_current_cart_select",
     );
     let ppdl_h_current_cart_select = document.querySelector(
-      ".ppdl_h_current_cart_select"
+      ".ppdl_h_current_cart_select",
     );
     if (
       current_cart.hnursta &&
@@ -380,7 +380,7 @@ function get_main_ui() {
     }, 6000);
 
     let checkedRadio_med = document.querySelector(
-      'input[name="filter_med_table_input"]:checked'
+      'input[name="filter_med_table_input"]:checked',
     );
     console.log(checkedRadio_med.value);
 
@@ -388,7 +388,7 @@ function get_main_ui() {
     med_list_data = await get_all_med_qty(
       current_pharmacy.phar,
       ppml_h_current_cart_select.value,
-      checkedRadio_med.value
+      checkedRadio_med.value,
     );
     if (med_list_data.Code != 200) {
       clearTimeout(med_list_timer);
@@ -501,7 +501,7 @@ function get_main_ui() {
       Set_main_div_enable(false);
     } else {
       let ppdl_h_current_cart_select_option = document.querySelectorAll(
-        ".ppdl_h_current_cart_select option"
+        ".ppdl_h_current_cart_select option",
       );
       ppdl_h_current_cart_select_option.forEach((element) => {
         let temp_arr = return_data.Data;
@@ -514,7 +514,7 @@ function get_main_ui() {
     }
 
     let ppdl_h_current_cart_select = document.querySelector(
-      ".ppdl_h_current_cart_select"
+      ".ppdl_h_current_cart_select",
     );
 
     if (
@@ -580,7 +580,7 @@ function get_main_ui() {
 
 async function get_function_menu() {
   let function_menu_container = document.querySelector(
-    ".function_menu_container"
+    ".function_menu_container",
   );
 
   let hos_block_select_container = document.createElement("div");
@@ -731,7 +731,7 @@ function get_no_selected_func() {
   func_display_init();
 
   let function_display_container = document.querySelector(
-    ".function_display_container"
+    ".function_display_container",
   );
   let no_selected_display = document.createElement("div");
   no_selected_display.classList.add("no_selected_display");
@@ -743,7 +743,7 @@ function get_no_selected_func() {
 // 開啟亮燈顏色選單
 function open_light_color_list() {
   let light_color_select_container = document.querySelector(
-    ".light_color_select_container"
+    ".light_color_select_container",
   );
   let temp_client_width = window.innerWidth;
 
@@ -778,7 +778,7 @@ function open_light_color_list() {
 // 關閉亮燈顏色選單
 function close_light_color_list() {
   let light_color_select_container = document.querySelector(
-    ".light_color_select_container"
+    ".light_color_select_container",
   );
 
   let temp_client_width = window.innerWidth;
@@ -799,7 +799,7 @@ function close_light_color_list() {
 // 開啟藥局選單
 function open_pharmacy_list() {
   let hos_block_option_container = document.querySelector(
-    ".hos_block_option_container"
+    ".hos_block_option_container",
   );
   let pharmacy_option_div = document.querySelectorAll(".pharmacy_option_div");
 
@@ -822,7 +822,7 @@ function open_pharmacy_list() {
 // 關閉藥局選單
 function close_pharmacy_list() {
   let hos_block_option_container = document.querySelector(
-    ".hos_block_option_container"
+    ".hos_block_option_container",
   );
   hos_block_option_container.style.height = "0px";
   hos_block_option_container.style.boxShadow = "none";
@@ -897,7 +897,7 @@ function close_cart_list() {
 // 開啟藥車選單
 function open_med_table_list() {
   let med_table_option_container = document.querySelector(
-    ".med_table_option_container"
+    ".med_table_option_container",
   );
   let med_table_option_div = document.querySelectorAll(".med_table_option_div");
 
@@ -920,7 +920,7 @@ function open_med_table_list() {
 // 關閉藥車選單
 function close_med_table_list() {
   let med_table_option_container = document.querySelector(
-    ".med_table_option_container"
+    ".med_table_option_container",
   );
   med_table_option_container.style.height = "0px";
   med_table_option_container.style.boxShadow = "none";
@@ -930,15 +930,15 @@ function close_med_table_list() {
 // 控制所有選單展開
 function select_list_controller() {
   let light_color_select_div = document.querySelector(
-    ".light_color_select_div"
+    ".light_color_select_div",
   );
   let func_select_container = document.querySelector(".func_select_container");
   let hos_block_select_container = document.querySelector(
-    ".hos_block_select_container"
+    ".hos_block_select_container",
   );
   let cart_select_container = document.querySelector(".cart_select_container");
   let med_table_select_container = document.querySelector(
-    ".med_table_select_container"
+    ".med_table_select_container",
   );
 
   document.addEventListener("click", (e) => {
@@ -1066,7 +1066,7 @@ async function get_cart_list_and_med_table() {
   console.log(cart_list);
 
   let temp_table_list = await get_serversetting_by_department_type(
-    current_pharmacy.phar_name
+    current_pharmacy.phar_name,
   );
   med_table = temp_table_list.Data;
   //  插入藥品總量選單條及台選單
@@ -1077,6 +1077,31 @@ async function get_cart_list_and_med_table() {
 
   let cart_option_container = document.querySelector(".cart_option_container");
   cart_option_container.innerHTML = "";
+
+  // 未調藥品加入彈窗select
+  let ppmcl_h_current_cart_select = document.querySelector(
+    ".ppmcl_h_current_cart_select",
+  );
+  // 藥品總量加入彈窗select
+  let ppml_h_current_cart_select = document.querySelector(
+    ".ppml_h_current_cart_select",
+  );
+  // 病床異動加入彈窗select
+  let ppbc_h_current_cart_select = document.querySelector(
+    ".ppbc_h_current_cart_select",
+  );
+
+  // 病床異動加入彈窗select
+  let ppdl_h_current_cart_select = document.querySelector(
+    ".ppdl_h_current_cart_select",
+  );
+
+  // 重置選項
+  ppmcl_h_current_cart_select.innerHTML = "";
+  ppml_h_current_cart_select.innerHTML = "";
+  ppbc_h_current_cart_select.innerHTML = "";
+  ppdl_h_current_cart_select.innerHTML = "";
+
   cart_list.forEach((element) => {
     let cart_option_div = document.createElement("div");
     cart_option_div.classList.add("cart_option_div");
@@ -1102,40 +1127,28 @@ async function get_cart_list_and_med_table() {
 
     cart_option_container.appendChild(cart_option_div);
 
-    // 未調藥品加入彈窗select
-    let ppmcl_h_current_cart_select = document.querySelector(
-      ".ppmcl_h_current_cart_select"
-    );
+    // 加入選項
     let ppmcl_h_current_cart_option = document.createElement("option");
     ppmcl_h_current_cart_option.value = element.hnursta;
     ppmcl_h_current_cart_option.innerHTML = element.hnursta;
 
     ppmcl_h_current_cart_select.appendChild(ppmcl_h_current_cart_option);
 
-    // 藥品總量加入彈窗select
-    let ppml_h_current_cart_select = document.querySelector(
-      ".ppml_h_current_cart_select"
-    );
+    // 加入選項
     let ppml_h_current_cart_option = document.createElement("option");
     ppml_h_current_cart_option.value = element.hnursta;
     ppml_h_current_cart_option.innerHTML = element.hnursta;
 
     ppml_h_current_cart_select.appendChild(ppml_h_current_cart_option);
 
-    // 病床異動加入彈窗select
-    let ppbc_h_current_cart_select = document.querySelector(
-      ".ppbc_h_current_cart_select"
-    );
+    // 加入選項
     let ppbc_h_current_cart_option = document.createElement("option");
     ppbc_h_current_cart_option.value = element.hnursta;
     ppbc_h_current_cart_option.innerHTML = element.hnursta;
 
     ppbc_h_current_cart_select.appendChild(ppbc_h_current_cart_option);
 
-    // 病床異動加入彈窗select
-    let ppdl_h_current_cart_select = document.querySelector(
-      ".ppdl_h_current_cart_select"
-    );
+    // 加入選項
     let ppdl_h_current_cart_option = document.createElement("option");
     ppdl_h_current_cart_option.value = element.hnursta;
     ppdl_h_current_cart_option.innerHTML = element.hnursta;
@@ -1144,7 +1157,7 @@ async function get_cart_list_and_med_table() {
   });
 
   let med_table_option_container = document.querySelector(
-    ".med_table_option_container"
+    ".med_table_option_container",
   );
   med_table_option_container.innerHTML = "";
   for (let i = 0; i < med_table.length + 1; i++) {
@@ -1196,7 +1209,7 @@ async function get_cart_list_and_med_table() {
 
   let cart_select_container = document.querySelector(".cart_select_container");
   let med_table_select_container = document.querySelector(
-    ".med_table_select_container"
+    ".med_table_select_container",
   );
 
   let cart_content = document.querySelector(".cart_content");
@@ -1245,7 +1258,7 @@ async function allocate_func() {
   Set_main_div_enable(true);
   let cart_select_container = document.querySelector(".cart_select_container");
   let med_table_select_container = document.querySelector(
-    ".med_table_select_container"
+    ".med_table_select_container",
   );
   let func_select_container = document.querySelector(".func_select_container");
   let ppmcl_btn = document.querySelector(".ppmcl_btn");
@@ -1337,7 +1350,7 @@ async function deliver_func() {
   let func_select_container = document.querySelector(".func_select_container");
   let cart_select_container = document.querySelector(".cart_select_container");
   let med_table_select_container = document.querySelector(
-    ".med_table_select_container"
+    ".med_table_select_container",
   );
 
   div_event_click_cir_disable(cart_select_container);
@@ -1414,7 +1427,7 @@ function set_tir_arrow(div) {
 
 function func_display_init() {
   let function_display_container = document.querySelector(
-    ".function_display_container"
+    ".function_display_container",
   );
   function_display_container.innerHTML = "";
 }
@@ -1460,7 +1473,7 @@ async function reset_cart_list_container() {
 
 async function set_med_qty_type_radio() {
   let head_sort_radio_container = document.querySelector(
-    ".head_sort_radio_container"
+    ".head_sort_radio_container",
   );
   let temp_med_group_api_data = await get_med_qty_group();
   if (temp_med_group_api_data.Code == 200) {
@@ -1516,7 +1529,7 @@ async function set_med_qty_type_radio() {
 }
 async function set_med_change_list_type_radio() {
   let ppmcl_head_med_type_filter_container = document.querySelector(
-    ".ppmcl_head_med_type_filter_container"
+    ".ppmcl_head_med_type_filter_container",
   );
   let temp_med_group_api_data = await get_med_qty_group();
   if (temp_med_group_api_data.Code == 200) {
@@ -1561,7 +1574,7 @@ async function set_med_change_list_type_radio() {
 
     input.addEventListener("change", () => {
       let ppmcl_main_container = document.querySelector(
-        ".ppmcl_main_container"
+        ".ppmcl_main_container",
       );
       api_logger_add("未調藥品：更換藥品種類", "藥品種類 radio change");
       set_ppmcl_main_info();
