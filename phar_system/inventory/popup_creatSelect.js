@@ -15,9 +15,13 @@ async function popup_creatSelect_load() {
 
   popup_creatSelect_creat = await get_all_unlock_creat();
   console.log("creatSelect", popup_creatSelect_creat);
-  const creats = popup_creatSelect_creat.Data.filter(function (item) {
+  let temp_data = popup_creatSelect_creat.Data.filter(function (item) {
     return item.IC_SN.charAt(0) != "Q";
   });
+  temp_data = temp_data.filter(function (item) {
+    return !item.IC_SN.includes("EVD");
+  });
+  const creats = temp_data;
   popup_creatSelect_creat.Data = creats;
   console.log("盤點單", popup_creatSelect_creat);
   popup_creatSelect_div.Set_BackgroundOpacity(1);
