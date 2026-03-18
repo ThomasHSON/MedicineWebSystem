@@ -12976,7 +12976,9 @@ const Jc = E.createContext(void 0),
       },
       v = () => {
         (sessionStorage.setItem("IC_SN", e.IC_SN),
-          (location.href = "../inventory/index.html?administrator"));
+          e.IC_SN.includes("EVD")
+            ? (location.href = "../inventory_daily/index.html?administrator")
+            : (location.href = "../inventory/index.html?administrator"));
       },
       w = async () => {
         const D =
