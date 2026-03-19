@@ -13017,7 +13017,11 @@ function vd({
           l("error", "系統錯誤，請稍後再試"),
           a(""));
       } finally {
-        g(!1);
+        (g(!1),
+          setTimeout(() => {
+            var h;
+            (h = v.current) == null || h.focus();
+          }, 100));
       }
     },
     w = (d) => {
