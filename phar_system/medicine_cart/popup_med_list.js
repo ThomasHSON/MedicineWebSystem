@@ -515,6 +515,8 @@ async function set_pp_med_list_display() {
       ppml_ci_top.appendChild(ppml_big_bottle);
     }
 
+    console.log("檢查冷欌icon", element);
+
     ppml_ci_1_div.appendChild(ppml_ci_top);
 
     let bottomContainer = document.createElement("div");

@@ -71,7 +71,7 @@ function get_pp_nearMiss_header() {
   let ppnms_h_setting = document.createElement("div");
   ppnms_h_setting.classList.add("ppnms_h_setting");
   ppnms_h_setting.classList.add("btn");
-  ppnms_h_setting.innerHTML = `設定回報選項`;
+  ppnms_h_setting.innerHTML = `設定疏失選項`;
   ppnms_h_setting.addEventListener("click", () => {
     popup_nearMiss_div_close();
     popup_nearMiss_setting_div_open();
@@ -79,7 +79,7 @@ function get_pp_nearMiss_header() {
 
   let ppnms_h_title = document.createElement("div");
   ppnms_h_title.classList.add("ppnms_h_title");
-  ppnms_h_title.innerHTML = `調劑錯誤回報`;
+  ppnms_h_title.innerHTML = `調劑疏失`;
 
   let ppnms_h_close_btn = document.createElement("img");
   ppnms_h_close_btn.classList.add("ppnms_h_close_btn");

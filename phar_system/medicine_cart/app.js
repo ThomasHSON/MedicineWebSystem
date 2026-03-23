@@ -556,7 +556,7 @@ function get_main_ui() {
   let ppnms_h_report_btn = document.createElement("div");
   ppnms_h_report_btn.classList.add("ppnms_h_report_btn");
   ppnms_h_report_btn.classList.add("btn");
-  ppnms_h_report_btn.innerHTML = "調劑錯誤";
+  ppnms_h_report_btn.innerHTML = "疏失紀錄";
   ppnms_h_report_btn.addEventListener("click", () => {
     popup_nearMiss_report_div_open();
   });

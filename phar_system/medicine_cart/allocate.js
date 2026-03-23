@@ -595,7 +595,7 @@ function get_p_bed_header() {
   let med_nearMiss_btn = document.createElement("div");
   med_nearMiss_btn.classList.add("btn");
   med_nearMiss_btn.classList.add("med_nearMiss_btn");
-  med_nearMiss_btn.innerHTML = "調劑回報";
+  med_nearMiss_btn.innerHTML = "調劑疏失";
   med_nearMiss_btn.addEventListener("click", () => {
     api_logger_add("開啟NearMiss", "click");
     popup_nearMiss_div_open();
