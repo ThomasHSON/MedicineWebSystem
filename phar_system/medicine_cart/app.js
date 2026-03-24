@@ -1096,11 +1096,15 @@ async function get_cart_list_and_med_table() {
     ".ppdl_h_current_cart_select",
   );
 
+  // 疏失紀錄加入彈窗select
+  let ppnmsr_h_select = document.querySelector(".ppnmsr_h_select");
+
   // 重置選項
   ppmcl_h_current_cart_select.innerHTML = "";
   ppml_h_current_cart_select.innerHTML = "";
   ppbc_h_current_cart_select.innerHTML = "";
   ppdl_h_current_cart_select.innerHTML = "";
+  ppnmsr_h_select.innerHTML = "";
 
   cart_list.forEach((element) => {
     let cart_option_div = document.createElement("div");
@@ -1154,6 +1158,13 @@ async function get_cart_list_and_med_table() {
     ppdl_h_current_cart_option.innerHTML = element.hnursta;
 
     ppdl_h_current_cart_select.appendChild(ppdl_h_current_cart_option);
+
+    // 加入選項
+    let ppnmsr_hcurrent_cart_option = document.createElement("option");
+    ppnmsr_hcurrent_cart_option.value = element.hnursta;
+    ppnmsr_hcurrent_cart_option.innerHTML = element.hnursta;
+
+    ppnmsr_h_select.appendChild(ppnmsr_hcurrent_cart_option);
   });
 
   let med_table_option_container = document.querySelector(

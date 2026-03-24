@@ -508,14 +508,21 @@ async function set_pp_med_list_display() {
     if (element.cht_name) nameDiv_container.appendChild(chtNameDiv);
 
     ppml_ci_top.appendChild(nameDiv_container);
+
+    if (element.med_cloud[0].REFRIGERATED_MEDICINE == "Y") {
+      let ppml_ice_icon = document.createElement("div");
+      ppml_ice_icon.classList.add("ppml_ice_icon");
+      ppml_ice_icon.innerHTML = "冷藏";
+
+      ppml_ci_top.appendChild(ppml_ice_icon);
+    }
+
     if (element.large == "L") {
       let ppml_big_bottle = document.createElement("div");
       ppml_big_bottle.classList.add("ppml_big_bottle");
 
       ppml_ci_top.appendChild(ppml_big_bottle);
     }
-
-    console.log("檢查冷欌icon", element);
 
     ppml_ci_1_div.appendChild(ppml_ci_top);
 
