@@ -1416,13 +1416,13 @@ async function set_pp_med_list_display() {
           // 調整自費PRN顯示
           // ppml_bed_card.innerHTML = `<span class="ppml_bed_card_num">${item.bednum}床</span><div class="ppml_bed_card_qty">${item.lqnty}</div>`;
           ppml_bed_card.innerHTML = `
-            <div class="ppml_bed_card_PRN">P</div><span class="ppml_bed_card_num">${item.bednum}床</span><div class="ppml_bed_card_qty">${item.lqnty}</div>`;
+            <div class="ppml_bed_card_PRN">P</div><span class="ppml_bed_card_num">${item.bednum}床</span><div class="ppml_bed_card_qty ppml_bed_card_qty_discheck">${item.lqnty}</div>`;
         } else if (item.selfPRN != "Y" && item.freqn == "Y") {
           ppml_bed_card.innerHTML = `<div class="ppml_bed_card_PRN_noself">P</div><span class="ppml_bed_card_num">${
             item.bednum
-          }床</span><div class="ppml_bed_card_qty">${+item.lqnty}</div>`;
+          }床</span><div class="ppml_bed_card_qty ppml_bed_card_qty_discheck">${+item.lqnty}</div>`;
         } else {
-          ppml_bed_card.innerHTML = `<span class="ppml_bed_card_num">${item.bednum}床</span><div class="ppml_bed_card_qty">${item.lqnty}</div>`;
+          ppml_bed_card.innerHTML = `<span class="ppml_bed_card_num">${item.bednum}床</span><div class="ppml_bed_card_qty ppml_bed_card_qty_discheck">${item.lqnty}</div>`;
           console.log("iop[ip[io[ip[iopi[poiop[");
         }
 
