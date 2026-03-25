@@ -130,7 +130,7 @@ function set_main_report_display() {
           ppnmsr_card_title.classList.add("ppnmsr_card_title");
           if (disp_id == element.disp_id)
             ppnmsr_card_title.style.textDecoration = "underline";
-          ppnmsr_card_title.innerHTML = `${element.nurnum}-${element.medCpoe.bednum}床 ${element.medCpoe.pnamec}`;
+          ppnmsr_card_title.innerHTML = `${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
 
           // =============
           let nearMiss_cpoe_card = document.createElement("div");
@@ -330,7 +330,7 @@ function set_main_report_display() {
 
           let ppnmsr_card_title = document.createElement("div");
           ppnmsr_card_title.classList.add("ppnmsr_card_title");
-          ppnmsr_card_title.innerHTML = `${element.nurnum}備註：`;
+          ppnmsr_card_title.innerHTML = `備注：${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
 
           let ppnmsr_note_content = document.createElement("div");
           ppnmsr_note_content.classList.add("ppnmsr_note_content");
@@ -423,8 +423,8 @@ function split_nearMiss_data_and_recombine(arr, disp_id) {
 
 function sort_by_nurnum_bednum(arr) {
   let temp_arr = arr.sort((a, b) => {
-    const bedA = Number(a?.medCpoe?.bednum ?? Number.POSITIVE_INFINITY);
-    const bedB = Number(b?.medCpoe?.bednum ?? Number.POSITIVE_INFINITY);
+    const bedA = Number(a?.patientInfo?.bednum ?? Number.POSITIVE_INFINITY);
+    const bedB = Number(b?.patientInfo?.bednum ?? Number.POSITIVE_INFINITY);
     return bedA - bedB;
   });
 
