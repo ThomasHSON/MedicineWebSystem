@@ -10229,7 +10229,7 @@ const fh = ({ onLoginSuccess: e }) => {
                     children: [
                       m.jsxs("div", {
                         className:
-                          "flex items-center gap-6 text-sm text-gray-600",
+                          "flex items-center gap-6 text-base text-gray-600",
                         children: [
                           m.jsxs("span", {
                             children: [
@@ -10312,27 +10312,27 @@ const fh = ({ onLoginSuccess: e }) => {
                                 }),
                                 m.jsx("th", {
                                   className:
-                                    "px-4 py-3 text-left text-sm font-semibold text-gray-700",
+                                    "px-4 py-3 text-left text-base font-semibold text-gray-700",
                                   children: e("dailyReport.serialNumber"),
                                 }),
                                 m.jsx("th", {
                                   className:
-                                    "px-4 py-3 text-left text-sm font-semibold text-gray-700",
+                                    "px-4 py-3 text-left text-base font-semibold text-gray-700",
                                   children: e("dailyReport.name"),
                                 }),
                                 m.jsx("th", {
                                   className:
-                                    "px-4 py-3 text-left text-sm font-semibold text-gray-700",
+                                    "px-4 py-3 text-left text-base font-semibold text-gray-700",
                                   children: e("dailyReport.createDate"),
                                 }),
                                 m.jsx("th", {
                                   className:
-                                    "px-4 py-3 text-center text-sm font-semibold text-gray-700",
+                                    "px-4 py-3 text-center text-base font-semibold text-gray-700",
                                   children: e("dailyReport.status"),
                                 }),
                                 m.jsx("th", {
                                   className:
-                                    "px-4 py-3 text-center text-sm font-semibold text-gray-700",
+                                    "px-4 py-3 text-center text-base font-semibold text-gray-700",
                                   children: e("dailyReport.actions"),
                                 }),
                               ],
@@ -10360,23 +10360,23 @@ const fh = ({ onLoginSuccess: e }) => {
                                     }),
                                     m.jsx("td", {
                                       className:
-                                        "px-4 py-3 text-sm text-gray-900",
+                                        "px-4 py-3 text-base text-gray-900",
                                       children: x.IC_SN,
                                     }),
                                     m.jsx("td", {
                                       className:
-                                        "px-4 py-3 text-sm text-gray-900",
+                                        "px-4 py-3 text-base text-gray-900",
                                       children: x.IC_NAME,
                                     }),
                                     m.jsx("td", {
                                       className:
-                                        "px-4 py-3 text-sm text-gray-600",
+                                        "px-4 py-3 text-base text-gray-600",
                                       children: x.CT_TIME,
                                     }),
                                     m.jsx("td", {
                                       className: "px-4 py-3 text-center",
                                       children: m.jsx("span", {
-                                        className: `inline-flex px-2 py-1 text-xs font-medium rounded-full ${x.STATE === "完成" || x.STATE === "Complete" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`,
+                                        className: `inline-flex px-2 py-1 text-sm font-medium rounded-full ${x.STATE === "完成" || x.STATE === "Complete" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`,
                                         children: x.STATE,
                                       }),
                                     }),
@@ -10387,7 +10387,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                         children: m.jsxs("button", {
                                           onClick: () => N(x.GUID),
                                           className:
-                                            "flex items-center gap-1 px-3 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors",
+                                            "flex items-center gap-1 px-3 py-1 text-base text-blue-600 hover:bg-blue-50 rounded-lg transition-colors",
                                           children: [
                                             m.jsx(Ur, { className: "w-4 h-4" }),
                                             e("dailyReport.download"),
