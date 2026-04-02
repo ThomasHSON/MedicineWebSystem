@@ -153,7 +153,7 @@ function get_pp_nearMiss_main() {
       report_name = JSON.parse(sessionStorage.getItem("user_session")).Name;
       report_id = JSON.parse(sessionStorage.getItem("user_session")).ID;
     } catch (error) {
-      alert(`燈入資料有誤：${error}`);
+      alert(`登入資料有誤：${error}`);
       return;
     }
     nearMiss_type_object;

@@ -191,6 +191,48 @@
     </div>
 
     <script>
+      document.addEventListener("visibilitychange", () => {
+        // 當網頁從背景回到前景（例如平板解鎖、瀏覽器點開）
+        if (document.visibilityState === "visible") {
+          console.log("網頁回到前景，開始檢查 Session...");
+
+          // 1. 從 sessionStorage 讀取資料
+          const userSession = sessionStorage.getItem("user_session");
+
+          // 2. 判斷有沒有資料
+          if (userSession) {
+            console.log("找到 session 資料！");
+
+            try {
+              // 如果你的資料是 JSON 字串，可以在這裡解析
+              const sessionData = JSON.parse(userSession);
+            } catch (e) {
+              console.error("Session 資料格式有誤：", e);
+              // 處理資料格式異常的狀況（例如導向登入頁）
+            }
+          } else {
+            console.log(
+              "沒有找到 session 資料，使用者可能未登入或 Session 已過期。",
+            );
+            // 【下一步】導向登入頁面，或顯示請先登入的提示
+
+            sessionStorage.removeItem("GUuser");
+            sessionStorage.removeItem("loggeduser");
+            sessionStorage.removeItem("loggedPassword");
+            sessionStorage.removeItem("loggedName");
+            sessionStorage.removeItem("loggedEmployer");
+            sessionStorage.removeItem("loggedlevel");
+            sessionStorage.removeItem("loggedTime");
+            sessionStorage.removeItem("color");
+            sessionStorage.removeItem("login_json");
+            sessionStorage.removeItem("IC_SN");
+            sessionStorage.removeItem("user_session");
+
+            alert("登入已超時，請重新登入");
+            location.reload();
+          }
+        }
+      });
       (async function () {
         await popup_login_init();
 

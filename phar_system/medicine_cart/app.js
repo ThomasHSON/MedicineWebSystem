@@ -94,6 +94,14 @@ function check_cutoff_time_relogin() {
     console.log("切帳時間：", cutoff_time);
     console.log("取消操作，重新整理頁面。");
 
+    sessionStorage.removeItem("GUuser");
+    sessionStorage.removeItem("loggeduser");
+    sessionStorage.removeItem("loggedPassword");
+    sessionStorage.removeItem("loggedName");
+    sessionStorage.removeItem("loggedEmployer");
+    sessionStorage.removeItem("loggedlevel");
+    sessionStorage.removeItem("loggedTime");
+    sessionStorage.removeItem("color");
     sessionStorage.removeItem("login_json");
     sessionStorage.removeItem("IC_SN");
     sessionStorage.removeItem("user_session");
@@ -156,6 +164,7 @@ async function load() {
   };
 
   // nav_bar_create("medicine_cart", test_user_data);
+
   get_header(test_user_data);
   get_main_div();
   get_main_ui();

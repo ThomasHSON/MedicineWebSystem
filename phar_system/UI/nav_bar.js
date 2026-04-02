@@ -204,14 +204,14 @@ let html_pages = [
             icon_big_url: "../../phar_system/image/requset_bulid_icon.png",
           },
           {
-            html_name: "med_request_receipt",
+            html_name: "med_request",
             html_ctName: "申領簽收",
             html_url: "../../phar_system/med_request_receipt",
             icon_url: "../../phar_system/image/icon/assortment.png",
             icon_big_url: "../../phar_system/image/searchCheck_1.png",
           },
           {
-            html_name: "med_allocate_receipt",
+            html_name: "med_allocate",
             html_ctName: "撥補簽收",
             html_url: "../../phar_system/med_allocate_receipt",
             icon_url: "../../phar_system/image/icon/assortment.png",
