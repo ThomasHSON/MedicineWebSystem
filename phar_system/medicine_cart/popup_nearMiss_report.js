@@ -128,9 +128,42 @@ function set_main_report_display() {
 
           let ppnmsr_card_title = document.createElement("div");
           ppnmsr_card_title.classList.add("ppnmsr_card_title");
-          if (disp_id == element.disp_id)
-            ppnmsr_card_title.style.textDecoration = "underline";
-          ppnmsr_card_title.innerHTML = `${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
+
+          let ppnmsr_card_title_content = document.createElement("div");
+          ppnmsr_card_title_content.classList.add("ppnmsr_card_title_content");
+          if (disp_id == element.disp_id) {
+            ppnmsr_card_title_content.style.textDecoration = "underline";
+          }
+          ppnmsr_card_title_content.innerHTML = `${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
+
+          let ppnmsr_card_title_btn_container = document.createElement("div");
+          ppnmsr_card_title_btn_container.classList.add(
+            "ppnmsr_card_title_btn_container",
+          );
+
+          let ppnmsr_card_title_fixed_btn = document.createElement("div");
+          ppnmsr_card_title_fixed_btn.classList.add(
+            "ppnmsr_card_title_fixed_btn",
+          );
+          ppnmsr_card_title_fixed_btn.classList.add("btn");
+          ppnmsr_card_title_fixed_btn.innerHTML = "修正";
+          ppnmsr_card_title_fixed_btn.addEventListener("click", () => {});
+
+          let ppnmsr_card_title_non_btn = document.createElement("div");
+          ppnmsr_card_title_non_btn.classList.add("ppnmsr_card_title_non_btn");
+          ppnmsr_card_title_non_btn.classList.add("btn");
+          ppnmsr_card_title_non_btn.innerHTML = "無錯誤";
+          ppnmsr_card_title_non_btn.addEventListener("click", () => {});
+
+          ppnmsr_card_title_btn_container.appendChild(
+            ppnmsr_card_title_fixed_btn,
+          );
+          ppnmsr_card_title_btn_container.appendChild(
+            ppnmsr_card_title_non_btn,
+          );
+
+          ppnmsr_card_title.appendChild(ppnmsr_card_title_content);
+          ppnmsr_card_title.appendChild(ppnmsr_card_title_btn_container);
 
           // =============
           let nearMiss_cpoe_card = document.createElement("div");

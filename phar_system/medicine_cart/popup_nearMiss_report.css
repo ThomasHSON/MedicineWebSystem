@@ -256,8 +256,17 @@
 }
 .ppnmsr_card_title {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ppnmsr_card_title_content {
   font-weight: 600;
   font-size: 20px;
+}
+.ppnmsr_card_title_btn_container {
+  display: flex;
+  gap: 8px;
 }
 .ppnmsr_no_report {
   width: 100%;

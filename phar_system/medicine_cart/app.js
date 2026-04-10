@@ -1323,6 +1323,8 @@ async function allocate_func() {
     last_current_med_table = "";
 
     if (current_cart == "" && current_med_table == "") {
+      // 清單顯示
+      await init_cart_list_display();
       Set_main_div_enable(false);
       return;
     } else {
@@ -1333,6 +1335,9 @@ async function allocate_func() {
     }
   }
 }
+
+// 清單顯示
+async function init_cart_list_display() {}
 // 覆核作業
 // async function review_func() {
 //   await light_off_func();

@@ -1,5 +1,7 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,25 +15,25 @@ body {
   background-size: cover;
 }
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 60px;
-    background-color: #333;
-    color: #fff;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 60px;
+  background-color: #333;
+  color: #fff;
+  padding: 0 20px;
 }
 
 .logout-btn {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 h1 {
@@ -70,37 +72,34 @@ span {
 }
 
 .button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    border: 2px solid rgb(44, 44, 44);
-    border-top: 2px solid #ffffff;
-    border-right: 2px solid #ffffff;
-    box-shadow: -2px 3px rgba(0, 0, 0, 0.7);
+  background-color: #ccc;
+  cursor: not-allowed;
+  border: 2px solid rgb(44, 44, 44);
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  box-shadow: -2px 3px rgba(0, 0, 0, 0.7);
 }
 
 .under-line {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    color: #000000;
-    background-color: #ffffff;
-    height: 30px;
-    line-height: 30px;
-    display: block;
-
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #000000;
+  background-color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+  display: block;
 }
-
 
 @media screen and (max-width: 480px) {
   .login-form {
-      width: 90%;
+    width: 90%;
   }
   .button {
     width: 90%; /* 在 RWD 的情況下，將按鈕寬度設置為 100% */
     margin: 10px 0; /* 調整按鈕在垂直方向上的間距 */
   }
-
 }
