@@ -787,13 +787,23 @@ function set_p_bed_info_container() {
 
   let attending_physician = document.createElement("div");
   attending_physician.classList.add("pbsc_doc");
-  if (current_p_bed_data.pvsdno_name)
-    attending_physician.innerHTML = `主治：${current_p_bed_data.pvsdno_name}(${current_p_bed_data.pvsdno})`;
+  if (current_p_bed_data.pvsdno_name) {
+    if (current_p_bed_data.pvsdno) {
+      attending_physician.innerHTML = `主治：${current_p_bed_data.pvsdno_name}(${current_p_bed_data.pvsdno})`;
+    } else {
+      attending_physician.innerHTML = `主治：${current_p_bed_data.pvsdno_name}`;
+    }
+  }
 
   let resident_physician = document.createElement("div");
   resident_physician.classList.add("pbsc_doc");
-  if (current_p_bed_data.prdno_name)
-    resident_physician.innerHTML = `住院：${current_p_bed_data.prdno_name}(${current_p_bed_data.prdno})`;
+  if (current_p_bed_data.prdno_name) {
+    if (current_p_bed_data.prdno) {
+      resident_physician.innerHTML = `住院：${current_p_bed_data.prdno_name}(${current_p_bed_data.prdno})`;
+    } else {
+      resident_physician.innerHTML = `住院：${current_p_bed_data.prdno_name}`;
+    }
+  }
 
   pbsc_doc_container.appendChild(attending_physician);
   pbsc_doc_container.appendChild(resident_physician);
