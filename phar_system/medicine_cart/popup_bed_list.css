@@ -3,11 +3,12 @@
   width: 92svw;
   height: 92vh;
   height: 92svh;
+  max-height: 92svh;
   max-width: 600px;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .ppbl_header_container {
@@ -45,6 +46,7 @@
 }
 
 .ppbl_main_container {
+  width: 100%;
   flex-grow: 1;
   overflow-y: auto;
   display: grid;

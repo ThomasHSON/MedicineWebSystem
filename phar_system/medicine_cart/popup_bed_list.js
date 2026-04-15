@@ -5,7 +5,7 @@ function get_popup_bed_list() {
     "popup_bed_list_div",
     "popup_bed_list_div",
     "",
-    ""
+    "",
   );
   popup_bed_list_div._popup_div.style.border = "10px solid white";
 
@@ -60,7 +60,7 @@ async function popup_bed_list_div_open() {
   // await allocate_display_init();
   med_cart_beds_data = await get_bed_list_by_cart(
     current_pharmacy.phar,
-    current_cart.hnursta
+    current_cart.hnursta,
   );
   med_cart_beds_data = med_cart_beds_data.Data;
   set_pp_bed_list_info();
