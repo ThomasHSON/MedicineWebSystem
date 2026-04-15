@@ -547,7 +547,7 @@ var l = gu.exports,
     x = !1,
     v = !1,
     N = !1,
-    R = typeof setTimeout == "function" ? setTimeout : null,
+    b = typeof setTimeout == "function" ? setTimeout : null,
     m = typeof clearTimeout == "function" ? clearTimeout : null,
     p = typeof setImmediate < "u" ? setImmediate : null;
   typeof navigator < "u" &&
@@ -633,13 +633,13 @@ var l = gu.exports,
       }));
   } else
     Z = function () {
-      R(U, 0);
+      b(U, 0);
     };
   function ye(O) {
     ((w = O), h || ((h = !0), Z()));
   }
   function Fe(O, P) {
-    C = R(function () {
+    C = b(function () {
       O(e.unstable_now());
     }, P);
   }
@@ -3178,7 +3178,7 @@ function bo(e, t, n, r, s) {
             x = ra;
         }
         var N = (t & 4) !== 0,
-          R = !N && e === "scroll",
+          b = !N && e === "scroll",
           m = N ? (d !== null ? d + "Capture" : null) : d;
         N = [];
         for (var p = c, y; p !== null; ) {
@@ -3189,7 +3189,7 @@ function bo(e, t, n, r, s) {
               S !== null &&
               ((y = S),
               m !== null && ((S = vr(p, m)), S != null && N.push(jr(p, S, y)))),
-            R)
+            b)
           )
             break;
           p = p.return;
@@ -3222,7 +3222,7 @@ function bo(e, t, n, r, s) {
               (x = c),
               (v = v ? Jt(v) : null),
               v !== null &&
-                ((R = cn(v)), v !== R || (v.tag !== 5 && v.tag !== 6)) &&
+                ((b = cn(v)), v !== b || (v.tag !== 5 && v.tag !== 6)) &&
                 (v = null))
             : ((x = null), (v = c)),
           x !== v)
@@ -3237,18 +3237,18 @@ function bo(e, t, n, r, s) {
               (S = "onPointerLeave"),
               (m = "onPointerEnter"),
               (p = "pointer")),
-            (R = x == null ? d : wn(x)),
+            (b = x == null ? d : wn(x)),
             (y = v == null ? d : wn(v)),
             (d = new N(S, p + "leave", x, n, f)),
-            (d.target = R),
+            (d.target = b),
             (d.relatedTarget = y),
             (S = null),
             Jt(f) === c &&
               ((N = new N(m, p + "enter", v, n, f)),
               (N.target = y),
-              (N.relatedTarget = R),
+              (N.relatedTarget = b),
               (S = N)),
-            (R = S),
+            (b = S),
             x && v)
           )
             t: {
@@ -3264,7 +3264,7 @@ function bo(e, t, n, r, s) {
             }
           else N = null;
           (x !== null && ga(g, d, x, N, !1),
-            v !== null && R !== null && ga(g, R, v, N, !0));
+            v !== null && b !== null && ga(g, b, v, N, !0));
         }
       }
       e: {
@@ -4067,7 +4067,7 @@ function Oc(e) {
       E
     );
   }
-  function R(m, p, y, S) {
+  function b(m, p, y, S) {
     if (
       (typeof y == "object" &&
         y !== null &&
@@ -4143,7 +4143,7 @@ function Oc(e) {
           }
           return i(m);
         case Ot:
-          return ((h = y._init), R(m, p, h(y._payload), S));
+          return ((h = y._init), b(m, p, h(y._payload), S));
       }
       if (sr(y)) return v(m, p, y, S);
       if (Hn(y)) return N(m, p, y, S);
@@ -4157,7 +4157,7 @@ function Oc(e) {
         i(m))
       : n(m, p);
   }
-  return R;
+  return b;
 }
 var An = Oc(!0),
   Rc = Oc(!1),
@@ -6613,11 +6613,11 @@ function og(e, t) {
               case 1:
                 if (v !== null) {
                   var N = v.memoizedProps,
-                    R = v.memoizedState,
+                    b = v.memoizedState,
                     m = t.stateNode,
                     p = m.getSnapshotBeforeUpdate(
                       t.elementType === t.type ? N : et(t.type, N),
-                      R,
+                      b,
                     );
                   m.__reactInternalSnapshotBeforeUpdate = p;
                 }
@@ -7774,10 +7774,10 @@ function hd(e, t) {
             u = Error(j(426));
           }
         } else if (re && a.mode & 1) {
-          var R = Ia(i);
-          if (R !== null) {
-            (!(R.flags & 65536) && (R.flags |= 256),
-              Ta(R, i, a, o, t),
+          var b = Ia(i);
+          if (b !== null) {
+            (!(b.flags & 65536) && (b.flags |= 256),
+              Ta(b, i, a, o, t),
               al(Fn(u, a)));
             break e;
           }
@@ -8006,8 +8006,8 @@ function _n() {
                 if (N !== null) {
                   v.child = null;
                   do {
-                    var R = N.sibling;
-                    ((N.sibling = null), (N = R));
+                    var b = N.sibling;
+                    ((N.sibling = null), (N = b));
                   } while (N !== null);
                 }
               }
@@ -9234,9 +9234,9 @@ const $g = (e, t) => {
       d = () => g,
       x = () => bd(o, t.lng || null, i.nsMode === "fallback" ? c : c[0], u),
       [v, N] = k.useState(d);
-    let R = c.join();
-    t.lng && (R = `${t.lng}${R}`);
-    const m = $g(R),
+    let b = c.join();
+    t.lng && (b = `${t.lng}${b}`);
+    const m = $g(b),
       p = k.useRef(!0);
     (k.useEffect(() => {
       const { bindI18n: S, bindI18nStore: E } = i;
@@ -9250,7 +9250,7 @@ const $g = (e, t) => {
             : Ga(o, c, () => {
                 p.current && N(x);
               })),
-        f && m && m !== R && p.current && N(x));
+        f && m && m !== b && p.current && N(x));
       const h = () => {
         p.current && N(x);
       };
@@ -9263,7 +9263,7 @@ const $g = (e, t) => {
             E && o && E.split(" ").forEach((w) => o.store.off(w, h)));
         }
       );
-    }, [o, R]),
+    }, [o, b]),
       k.useEffect(() => {
         p.current && f && N(d);
       }, [o, u, f]));
@@ -9402,7 +9402,19 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Yg = W("DollarSign", [
+ */ const Yg = W("CreditCard", [
+  [
+    "rect",
+    { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" },
+  ],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }],
+]);
+/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */ const Wg = W("DollarSign", [
   ["line", { x1: "12", x2: "12", y1: "2", y2: "22", key: "7eqyqh" }],
   [
     "path",
@@ -9424,7 +9436,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Wg = W("Eye", [
+ */ const Gg = W("Eye", [
   [
     "path",
     { d: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z", key: "rwhkz3" },
@@ -9436,7 +9448,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Gg = W("Globe", [
+ */ const Xg = W("Globe", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   [
     "path",
@@ -9449,7 +9461,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Xg = W("Info", [
+ */ const Jg = W("Info", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "M12 16v-4", key: "1dtifu" }],
   ["path", { d: "M12 8h.01", key: "e9boi3" }],
@@ -9459,7 +9471,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Jg = W("Layers", [
+ */ const Zg = W("Layers", [
   [
     "path",
     {
@@ -9509,7 +9521,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const Zg = W("LogOut", [
+ */ const qg = W("LogOut", [
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }],
   ["polyline", { points: "16 17 21 12 16 7", key: "1gabdz" }],
   ["line", { x1: "21", x2: "9", y1: "12", y2: "12", key: "1uyos4" }],
@@ -9519,7 +9531,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const qg = W("Play", [
+ */ const eh = W("Play", [
   ["polygon", { points: "5 3 19 12 5 21 5 3", key: "191637" }],
 ]);
 /**
@@ -9536,7 +9548,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const eh = W("RotateCcw", [
+ */ const th = W("RotateCcw", [
   [
     "path",
     { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" },
@@ -9564,7 +9576,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const th = W("Search", [
+ */ const nh = W("Search", [
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
   ["path", { d: "m21 21-4.3-4.3", key: "1qie3q" }],
 ]);
@@ -9573,7 +9585,7 @@ const $g = (e, t) => {
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */ const nh = W("Settings", [
+ */ const rh = W("Settings", [
   [
     "path",
     {
@@ -9582,24 +9594,6 @@ const $g = (e, t) => {
     },
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }],
-]);
-/**
- * @license lucide-react v0.344.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */ const rh = W("SquarePen", [
-  [
-    "path",
-    {
-      d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7",
-      key: "1m0v6g",
-    },
-  ],
-  [
-    "path",
-    { d: "M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z", key: "1lpok0" },
-  ],
 ]);
 /**
  * @license lucide-react v0.344.0 - ISC
@@ -9699,7 +9693,7 @@ const $g = (e, t) => {
                     "p-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors",
                   children: [
                     l.jsx("span", { className: "sr-only", children: "Home" }),
-                    l.jsx(Jg, { className: "w-7 h-7" }),
+                    l.jsx(Zg, { className: "w-7 h-7" }),
                   ],
                 }),
                 l.jsxs("div", {
@@ -9725,7 +9719,7 @@ const $g = (e, t) => {
                   className:
                     "px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center",
                   children: [
-                    l.jsx(Gg, { className: "w-5 h-5 text-gray-600" }),
+                    l.jsx(Xg, { className: "w-5 h-5 text-gray-600" }),
                     l.jsx("span", {
                       className:
                         "hidden sm:inline ml-2 text-base text-gray-700",
@@ -9738,7 +9732,7 @@ const $g = (e, t) => {
                   className:
                     "px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center",
                   children: [
-                    l.jsx(Zg, { className: "w-5 h-5" }),
+                    l.jsx(qg, { className: "w-5 h-5" }),
                     l.jsx("span", {
                       className: "hidden sm:inline ml-2 text-base",
                       children: n("logout"),
@@ -10734,7 +10728,7 @@ const fh = ({ onLoginSuccess: e }) => {
             className:
               "flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
             children: [
-              l.jsx(nh, { className: "h-5 w-5 mr-2" }),
+              l.jsx(rh, { className: "h-5 w-5 mr-2" }),
               i("inventorySettings"),
             ],
           }),
@@ -10743,7 +10737,7 @@ const fh = ({ onLoginSuccess: e }) => {
             className:
               "flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
             children: [
-              l.jsx(Yg, { className: "h-5 w-5 mr-2" }),
+              l.jsx(Wg, { className: "h-5 w-5 mr-2" }),
               i("unitPriceSettings"),
             ],
           }),
@@ -10804,7 +10798,7 @@ const fh = ({ onLoginSuccess: e }) => {
   }) => {
     const { t: d } = Ne(),
       [x, v] = k.useState(null),
-      [N, R] = k.useState("asc"),
+      [N, b] = k.useState("asc"),
       [m, p] = k.useState(""),
       [y, S] = k.useState(1),
       [E, h] = k.useState(!1),
@@ -10812,21 +10806,21 @@ const fh = ({ onLoginSuccess: e }) => {
       [_, I] = k.useState({}),
       [M, U] = k.useState(!1),
       [Z, me] = k.useState(!1),
-      ue = (b) => {
-        x === b ? R(N === "asc" ? "desc" : "asc") : (v(b), R("asc"));
+      ue = (R) => {
+        x === R ? b(N === "asc" ? "desc" : "asc") : (v(R), b("asc"));
       },
       ye = k.useMemo(() => {
-        let b = e;
+        let R = e;
         if (m.trim()) {
           const G = m.toLowerCase().trim();
-          b = e.filter(
+          R = e.filter(
             (z) =>
               z.CODE.toLowerCase().includes(G) ||
               z.NAME.toLowerCase().includes(G),
           );
         }
         return x
-          ? [...b].sort((G, z) => {
+          ? [...R].sort((G, z) => {
               const ne = G[x],
                 V = z[x];
               if (typeof ne == "number" && typeof V == "number")
@@ -10835,7 +10829,7 @@ const fh = ({ onLoginSuccess: e }) => {
                 Wt = String(V).toLowerCase();
               return N === "asc" ? xe.localeCompare(Wt) : Wt.localeCompare(xe);
             })
-          : b;
+          : R;
       }, [e, x, N, m]),
       Fe = k.useMemo(() => {
         if (
@@ -10846,7 +10840,7 @@ const fh = ({ onLoginSuccess: e }) => {
           e.length === 0)
         )
           return (console.log("No data available"), !1);
-        const b = e.filter((G) => {
+        const R = e.filter((G) => {
           const z = G.COMMENT,
             ne = z.includes("覆盤");
           return (
@@ -10855,10 +10849,10 @@ const fh = ({ onLoginSuccess: e }) => {
           );
         });
         return (
-          console.log("Review records found:", b.length),
-          console.log("Has review records:", b.length > 0),
+          console.log("Review records found:", R.length),
+          console.log("Has review records:", R.length > 0),
           console.log("=== END REVIEW RECORDS CHECK ==="),
-          b.length > 0
+          R.length > 0
         );
       }, [e]),
       O = k.useMemo(() => {
@@ -10867,9 +10861,9 @@ const fh = ({ onLoginSuccess: e }) => {
           console.log("Has review records in data:", Fe),
           console.log("Data length:", e.length),
           console.log("Loading:", i));
-        const b = s === "generate",
+        const R = s === "generate",
           G = s === "enter" || s === "locked";
-        (console.log("Show Generate Button:", b),
+        (console.log("Show Generate Button:", R),
           console.log("Show Enter Button:", G));
         const z = o || i || !Fe || s !== "generate",
           ne = o || i || s === "locked" || (s !== "enter" && s !== "locked");
@@ -10897,7 +10891,7 @@ const fh = ({ onLoginSuccess: e }) => {
           ),
           console.log("=== END API-BASED BUTTON STATE LOGIC ==="),
           {
-            showGenerateButton: b,
+            showGenerateButton: R,
             showEnterButton: G,
             generateButtonDisabled: z,
             enterButtonDisabled: ne,
@@ -10913,15 +10907,15 @@ const fh = ({ onLoginSuccess: e }) => {
       S(1);
     }, [m]);
     const Ke = () => {
-        const b = {};
+        const R = {};
         (e.forEach((z) => {
           const ne = z.GUID || z.CODE,
             V = z.COMMENT === "覆盤";
-          b[ne] = V;
+          R[ne] = V;
         }),
-          C(b),
-          I({ ...b }));
-        const G = Object.values(b).every((z) => z);
+          C(R),
+          I({ ...R }));
+        const G = Object.values(R).every((z) => z);
         U(G);
       },
       Yt = async () => {
@@ -10929,7 +10923,7 @@ const fh = ({ onLoginSuccess: e }) => {
         else {
           me(!0);
           try {
-            let b = [];
+            let R = [];
             if (
               (Object.keys(w).forEach((z) => {
                 const ne = w[z],
@@ -10938,15 +10932,15 @@ const fh = ({ onLoginSuccess: e }) => {
                   const xe = e.find((Wt) => (Wt.GUID || Wt.CODE) === z);
                   xe &&
                     xe.GUID &&
-                    b.push({ GUID: xe.GUID, COMMENT: ne ? "覆盤" : "" });
+                    R.push({ GUID: xe.GUID, COMMENT: ne ? "覆盤" : "" });
                 }
               }),
-              b.length === 0)
+              R.length === 0)
             ) {
               (h(!1), me(!1));
               return;
             }
-            if ((await K.updateReport(b)).Code === 200) {
+            if ((await K.updateReport(R)).Code === 200) {
               const z = [...e].map((V) => {
                 const xe = V.GUID || V.CODE;
                 return w.hasOwnProperty(xe)
@@ -10993,45 +10987,45 @@ const fh = ({ onLoginSuccess: e }) => {
                 }
               }
             } else alert(d("failedToUpdateReviewItems"));
-          } catch (b) {
-            (console.error("Error updating review items:", b),
+          } catch (R) {
+            (console.error("Error updating review items:", R),
               alert(d("failedToUpdateReviewItems")));
           } finally {
             me(!1);
           }
         }
       },
-      He = (b, G) => {
-        const z = { ...w, [b]: G };
+      He = (R, G) => {
+        const z = { ...w, [R]: G };
         C(z);
         const ne = Object.values(z).every((V) => V);
         (Object.values(z).every((V) => !V), U(ne));
       },
-      kt = (b) => {
+      kt = (R) => {
         const G = {};
         (Object.keys(w).forEach((z) => {
-          G[z] = b;
+          G[z] = R;
         }),
           C(G),
-          U(b));
+          U(R));
       },
-      dn = (b) => {
-        b >= 1 && b <= L && S(b);
+      dn = (R) => {
+        R >= 1 && R <= L && S(R);
       },
-      fo = (b) => {
-        const G = parseInt(b.target.value);
+      fo = (R) => {
+        const G = parseInt(R.target.value);
         isNaN(G) || dn(G);
       },
-      Ee = ({ field: b, children: G }) =>
+      Ee = ({ field: R, children: G }) =>
         l.jsx("th", {
           className:
             "px-4 py-3 text-left text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap",
-          onClick: () => ue(b),
+          onClick: () => ue(R),
           children: l.jsxs("div", {
             className: "flex items-center space-x-1",
             children: [
               l.jsx("span", { children: G }),
-              x === b &&
+              x === R &&
                 (N === "asc"
                   ? l.jsx(Qn, { className: "h-4 w-4" })
                   : l.jsx(Bn, { className: "h-4 w-4" })),
@@ -11085,14 +11079,14 @@ const fh = ({ onLoginSuccess: e }) => {
                         l.jsx("div", {
                           className:
                             "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none",
-                          children: l.jsx(th, {
+                          children: l.jsx(nh, {
                             className: "h-5 w-5 text-gray-400",
                           }),
                         }),
                         l.jsx("input", {
                           type: "text",
                           value: m,
-                          onChange: (b) => p(b.target.value),
+                          onChange: (R) => p(R.target.value),
                           placeholder: d("searchPlaceholder"),
                           className:
                             "block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm",
@@ -11116,8 +11110,8 @@ const fh = ({ onLoginSuccess: e }) => {
                     e.length > 0 &&
                       l.jsxs("button", {
                         onClick: Yt,
-                        disabled: Z || (E && Object.values(w).every((b) => !b)),
-                        className: `flex items-center px-4 py-2 rounded-lg transition-colors ${Z || (E && Object.values(w).every((b) => !b)) ? "bg-gray-300 text-gray-500 cursor-not-allowed" : E ? "bg-green-600 text-white hover:bg-green-700" : "bg-blue-600 text-white hover:bg-blue-700"}`,
+                        disabled: Z || (E && Object.values(w).every((R) => !R)),
+                        className: `flex items-center px-4 py-2 rounded-lg transition-colors ${Z || (E && Object.values(w).every((R) => !R)) ? "bg-gray-300 text-gray-500 cursor-not-allowed" : E ? "bg-green-600 text-white hover:bg-green-700" : "bg-blue-600 text-white hover:bg-blue-700"}`,
                         children: [
                           Z
                             ? l.jsx(Pt, {
@@ -11125,7 +11119,7 @@ const fh = ({ onLoginSuccess: e }) => {
                               })
                             : E
                               ? l.jsx(Kn, { className: "h-5 w-5 mr-2" })
-                              : l.jsx(rh, { className: "h-5 w-5 mr-2" }),
+                              : l.jsx(Yg, { className: "h-5 w-5 mr-2" }),
                           d(
                             Z
                               ? "saving"
@@ -11182,7 +11176,7 @@ const fh = ({ onLoginSuccess: e }) => {
                             ? l.jsx(Pt, {
                                 className: "h-5 w-5 mr-2 animate-spin",
                               })
-                            : l.jsx(qg, { className: "h-5 w-5 mr-2" }),
+                            : l.jsx(eh, { className: "h-5 w-5 mr-2" }),
                           d(
                             s === "locked"
                               ? "lockedReviewSheet"
@@ -11229,7 +11223,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   "px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium",
                                 children: [
                                   "已選取: ",
-                                  Object.values(w).filter((b) => b).length,
+                                  Object.values(w).filter((R) => R).length,
                                   " 項",
                                 ],
                               }),
@@ -11296,7 +11290,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   children: l.jsx("input", {
                                     type: "checkbox",
                                     checked: M,
-                                    onChange: (b) => kt(b.target.checked),
+                                    onChange: (R) => kt(R.target.checked),
                                     className:
                                       "rounded border-gray-300 text-blue-600 focus:ring-blue-500",
                                   }),
@@ -11399,7 +11393,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                     ),
                                   }),
                                 })
-                              : ft.map((b) =>
+                              : ft.map((R) =>
                                   l.jsxs(
                                     "tr",
                                     {
@@ -11411,10 +11405,10 @@ const fh = ({ onLoginSuccess: e }) => {
                                             children: l.jsx("input", {
                                               type: "checkbox",
                                               checked:
-                                                w[b.GUID || b.CODE] || !1,
+                                                w[R.GUID || R.CODE] || !1,
                                               onChange: (G) =>
                                                 He(
-                                                  b.GUID || b.CODE,
+                                                  R.GUID || R.CODE,
                                                   G.target.checked,
                                                 ),
                                               className:
@@ -11424,105 +11418,110 @@ const fh = ({ onLoginSuccess: e }) => {
                                         l.jsx("td", {
                                           className:
                                             "px-4 py-3 text-sm text-gray-900",
-                                          children: b.index,
+                                          children: R.index,
                                         }),
                                         n.CODE &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900 whitespace-nowrap",
-                                            children: b.CODE,
+                                            children: R.CODE,
                                           }),
                                         n.SKDIACODE &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900 whitespace-nowrap",
-                                            children: b.SKDIACODE,
+                                            children: R.SKDIACODE,
                                           }),
                                         n.NAME &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900 whitespace-nowrap",
-                                            children: b.NAME,
+                                            children: R.NAME,
                                           }),
                                         n.ALIAS &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-600",
-                                            children: b.ALIAS,
+                                            children: R.ALIAS,
                                           }),
                                         l.jsx("td", {
                                           className:
                                             "px-4 py-3 text-sm text-gray-600",
                                           children:
-                                            b.COMMENT === "覆盤" ? "Y" : "-",
+                                            R.COMMENT === "覆盤" ? "Y" : "-",
                                         }),
-                                        n.QTY &&
+                                        n.STOCK &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
-                                            children: b.QTY.toLocaleString(),
+                                            children:
+                                              R.QTY != null
+                                                ? R.QTY.toLocaleString()
+                                                : "",
                                           }),
                                         n.COUNT &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
-                                            children: b.COUNT.toLocaleString(),
+                                            children: R.COUNT.toLocaleString(),
                                           }),
                                         n.REVIEW &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
-                                            children: b.REVIEW.toLocaleString(),
+                                            children: R.REVIEW.toLocaleString(),
                                           }),
                                         n.stockAmount &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
                                             children:
-                                              b.stockAmount.toLocaleString(),
+                                              R.stockAmount.toLocaleString(),
                                           }),
                                         n.finalBalance &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
                                             children:
-                                              b.finalBalance.toLocaleString(),
+                                              R.finalBalance.toLocaleString(),
                                           }),
-                                        n.consumption &&
+                                        n.QTY &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
                                             children:
-                                              b.consumption.toLocaleString(),
+                                              R.consumption != null
+                                                ? R.consumption.toLocaleString()
+                                                : "0",
                                           }),
                                         n.PRICE &&
                                           l.jsx("td", {
                                             className:
                                               "px-4 py-3 text-sm text-gray-900",
-                                            children: b.PRICE.toLocaleString(),
+                                            children: R.PRICE.toLocaleString(),
                                           }),
                                         n.ERROR &&
                                           l.jsx("td", {
-                                            className: `px-4 py-3 text-sm font-medium ${b.ERROR < 0 ? "text-red-600" : "text-green-600"}`,
-                                            children: b.ERROR.toLocaleString(),
+                                            className: `px-4 py-3 text-sm font-medium ${R.ERROR < 0 ? "text-red-600" : "text-green-600"}`,
+                                            children: R.ERROR.toLocaleString(),
                                           }),
                                         n.ERROR_MONEY &&
                                           l.jsx("td", {
-                                            className: `px-4 py-3 text-sm font-medium ${b.ERROR_MONEY < 0 ? "text-red-600" : "text-green-600"}`,
+                                            className: `px-4 py-3 text-sm font-medium ${R.ERROR_MONEY < 0 ? "text-red-600" : "text-green-600"}`,
                                             children:
-                                              b.ERROR_MONEY.toLocaleString(),
+                                              R.ERROR_MONEY.toLocaleString(),
                                           }),
                                         n.ERROR_PERCENT &&
                                           l.jsxs("td", {
-                                            className: `px-4 py-3 text-sm font-medium ${b.ERROR_PERCENT < 0 ? "text-red-600" : "text-green-600"}`,
+                                            className: `px-4 py-3 text-sm font-medium ${R.ERROR_PERCENT < 0 ? "text-red-600" : "text-green-600"}`,
                                             children: [
-                                              b.ERROR_PERCENT.toFixed(2),
+                                              R.ERROR_PERCENT.toFixed(2),
                                               "%",
                                             ],
                                           }),
                                       ],
                                     },
-                                    b.index,
+                                    R.index,
                                   ),
                                 ),
                         }),
@@ -11561,7 +11560,7 @@ const fh = ({ onLoginSuccess: e }) => {
       N = (h) => {
         f === h ? x(d === "asc" ? "desc" : "asc") : (g(h), x("asc"));
       },
-      R = k.useMemo(
+      b = k.useMemo(
         () =>
           [...s].sort((h, w) => {
             const C = h[f],
@@ -11757,7 +11756,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   }),
                                   l.jsx("tbody", {
                                     className: "divide-y divide-gray-200",
-                                    children: R.map((h) =>
+                                    children: b.map((h) =>
                                       l.jsxs(
                                         "tr",
                                         {
@@ -11833,7 +11832,7 @@ const fh = ({ onLoginSuccess: e }) => {
       N = (h) => {
         f === h ? x(d === "asc" ? "desc" : "asc") : (g(h), x("asc"));
       },
-      R = k.useMemo(
+      b = k.useMemo(
         () =>
           [...s].sort((h, w) => {
             const C = h[f],
@@ -12029,7 +12028,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   }),
                                   l.jsx("tbody", {
                                     className: "divide-y divide-gray-200",
-                                    children: R.map((h) =>
+                                    children: b.map((h) =>
                                       l.jsxs(
                                         "tr",
                                         {
@@ -12141,7 +12140,7 @@ const fh = ({ onLoginSuccess: e }) => {
       N = (h) => {
         f === h ? x(d === "asc" ? "desc" : "asc") : (g(h), x("asc"));
       },
-      R = k.useMemo(
+      b = k.useMemo(
         () =>
           [...s].sort((h, w) => {
             const C = h[f],
@@ -12348,7 +12347,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   }),
                                   l.jsx("tbody", {
                                     className: "divide-y divide-gray-200",
-                                    children: R.map((h) =>
+                                    children: b.map((h) =>
                                       l.jsxs(
                                         "tr",
                                         {
@@ -12433,7 +12432,7 @@ const fh = ({ onLoginSuccess: e }) => {
       N = (h) => {
         f === h ? x(d === "asc" ? "desc" : "asc") : (g(h), x("asc"));
       },
-      R = k.useMemo(
+      b = k.useMemo(
         () =>
           [...s].sort((h, w) => {
             const C = h[f],
@@ -12624,7 +12623,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                   }),
                                   l.jsx("tbody", {
                                     className: "divide-y divide-gray-200",
-                                    children: R.map((h) =>
+                                    children: b.map((h) =>
                                       l.jsxs(
                                         "tr",
                                         {
@@ -12716,7 +12715,7 @@ const fh = ({ onLoginSuccess: e }) => {
           }
       },
       d = (x, v, N) => {
-        o((R) => ({ ...R, [x]: { ...R[x], [v]: N } }));
+        o((b) => ({ ...b, [x]: { ...b[x], [v]: N } }));
       };
     return e
       ? l.jsx("div", {
@@ -12766,7 +12765,7 @@ const fh = ({ onLoginSuccess: e }) => {
                             children: l.jsxs("div", {
                               className: "flex items-start space-x-3",
                               children: [
-                                l.jsx(Xg, {
+                                l.jsx(Jg, {
                                   className: "h-6 w-6 text-blue-600 mt-0.5",
                                 }),
                                 l.jsxs("div", {
@@ -13307,7 +13306,7 @@ const fh = ({ onLoginSuccess: e }) => {
                         className:
                           "flex items-center px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors",
                         children: [
-                          l.jsx(eh, { className: "h-4 w-4 mr-2" }),
+                          l.jsx(th, { className: "h-4 w-4 mr-2" }),
                           s("resetToDefault"),
                         ],
                       }),
@@ -13337,7 +13336,7 @@ const fh = ({ onLoginSuccess: e }) => {
                                 l.jsxs("div", {
                                   className: "flex items-center",
                                   children: [
-                                    l.jsx(Wg, {
+                                    l.jsx(Gg, {
                                       className: `h-4 w-4 mr-2 ${x ? "text-blue-600" : "text-gray-400"}`,
                                     }),
                                     l.jsx("span", {
@@ -13517,12 +13516,12 @@ const fh = ({ onLoginSuccess: e }) => {
               v.Code === 200 && v.Data && v.Data.records_Ary)
             ) {
               const N = [];
-              (v.Data.records_Ary.forEach((R) => {
-                if (R.creat) {
+              (v.Data.records_Ary.forEach((b) => {
+                if (b.creat) {
                   const m = {
-                    IC_SN: R.creat.IC_SN || "",
-                    IC_NAME: R.creat.IC_NAME || "",
-                    STATE: R.creat.STATE || "",
+                    IC_SN: b.creat.IC_SN || "",
+                    IC_NAME: b.creat.IC_NAME || "",
+                    STATE: b.creat.STATE || "",
                   };
                   m.STATE !== "鎖定" && N.push(m);
                 }
@@ -13821,7 +13820,7 @@ function Rh() {
     [c, f] = k.useState("23:59:59"),
     [g, d] = k.useState(""),
     [x, v] = k.useState([]),
-    [N, R] = k.useState([]),
+    [N, b] = k.useState([]),
     [m, p] = k.useState([]),
     [y, S] = k.useState(""),
     [E, h] = k.useState(!1),
@@ -13837,7 +13836,7 @@ function Rh() {
     [Yt, He] = k.useState(!1),
     [kt, dn] = k.useState(!1),
     [fo, Ee] = k.useState(!1),
-    [b, G] = k.useState(!1),
+    [R, G] = k.useState(!1),
     [z, ne] = k.useState(!1),
     [V, xe] = k.useState(!1);
   (k.useEffect(() => {
@@ -13860,7 +13859,7 @@ function Rh() {
         const D = `${r} ${o}`,
           Q = `${a} ${c}`,
           X = K.filterMergedRecordsByTime(x, D, Q);
-        (R(X), g && !X.find((se) => se.INV_SN === g) && d(""));
+        (b(X), g && !X.find((se) => se.INV_SN === g) && d(""));
       }
     }, [x, r, o, a, c, g]));
   const Wt = () => {
@@ -14205,7 +14204,7 @@ function Rh() {
           l.jsx(Sh, { isOpen: kt, onClose: () => dn(!1), selectedRecord: g }),
           l.jsx(Nh, { isOpen: fo, onClose: () => Ee(!1), selectedRecord: g }),
           l.jsx(Eh, {
-            isOpen: b,
+            isOpen: R,
             onClose: () => G(!1),
             columnSettings: P,
             onSettingsChange: Kd,
@@ -14719,11 +14718,11 @@ class Hs extends co {
     const x = (g && g.usedKey) || i,
       v = (g && g.exactUsedKey) || i,
       N = Object.prototype.toString.apply(d),
-      R = ["[object Number]", "[object Function]", "[object RegExp]"],
+      b = ["[object Number]", "[object Function]", "[object RegExp]"],
       m = n.joinArrays !== void 0 ? n.joinArrays : this.options.joinArrays,
       p = !this.i18nFormat || this.i18nFormat.handleAsObject,
       y = !A(d) && typeof d != "boolean" && typeof d != "number";
-    if (p && d && y && R.indexOf(N) < 0 && !(A(m) && Array.isArray(d))) {
+    if (p && d && y && b.indexOf(N) < 0 && !(A(m) && Array.isArray(d))) {
       if (!n.returnObjects && !this.options.returnObjects) {
         this.options.returnedObjectHandler ||
           this.logger.warn(
@@ -14977,14 +14976,14 @@ class Hs extends co {
                 n.lng || this.language,
                 n.fallbackLng,
               );
-        g.forEach((R) => {
+        g.forEach((b) => {
           this.isValidLookup(r) ||
-            ((a = R),
-            !su[`${N[0]}-${R}`] &&
+            ((a = b),
+            !su[`${N[0]}-${b}`] &&
               this.utils &&
               this.utils.hasLoadedNamespace &&
               !this.utils.hasLoadedNamespace(a) &&
-              ((su[`${N[0]}-${R}`] = !0),
+              ((su[`${N[0]}-${b}`] = !0),
               this.logger.warn(
                 `key "${s}" for languages "${N.join(", ")}" won't get resolved as namespace "${a}" was not yet loaded`,
                 "This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!",
@@ -14994,7 +14993,7 @@ class Hs extends co {
               i = m;
               const p = [f];
               if (this.i18nFormat && this.i18nFormat.addLookupKeys)
-                this.i18nFormat.addLookupKeys(p, f, m, R, n);
+                this.i18nFormat.addLookupKeys(p, f, m, b, n);
               else {
                 let S;
                 d && (S = this.pluralResolver.getSuffix(m, n.count, n));
@@ -15022,7 +15021,7 @@ class Hs extends co {
               let y;
               for (; (y = p.pop()); )
                 this.isValidLookup(r) ||
-                  ((o = y), (r = this.getResource(m, R, y, n)));
+                  ((o = y), (r = this.getResource(m, b, y, n)));
             }));
         });
       }),
@@ -15601,7 +15600,7 @@ class Hh {
       nestingPrefixEscaped: x,
       nestingSuffix: v,
       nestingSuffixEscaped: N,
-      nestingOptionsSeparator: R,
+      nestingOptionsSeparator: b,
       maxReplaces: m,
       alwaysFormat: p,
     } = t.interpolation;
@@ -15615,7 +15614,7 @@ class Hh {
       (this.unescapeSuffix = this.unescapePrefix ? "" : f || ""),
       (this.nestingPrefix = d ? pn(d) : x || pn("$t(")),
       (this.nestingSuffix = v ? pn(v) : N || pn(")")),
-      (this.nestingOptionsSeparator = R || ","),
+      (this.nestingOptionsSeparator = b || ","),
       (this.maxReplaces = m || 1e3),
       (this.alwaysFormat = p !== void 0 ? p : !1),
       this.resetRegExp());
@@ -15658,7 +15657,7 @@ class Hh {
         }
         const v = x.split(this.formatSeparator),
           N = v.shift().trim(),
-          R = v.join(this.formatSeparator).trim();
+          b = v.join(this.formatSeparator).trim();
         return this.format(
           lu(
             n,
@@ -15667,7 +15666,7 @@ class Hh {
             this.options.keySeparator,
             this.options.ignoreJSONStructure,
           ),
-          R,
+          b,
           r,
           { ...s, ...n, interpolationkey: N },
         );
@@ -15692,8 +15691,8 @@ class Hh {
           const v = o[1].trim();
           if (((i = c(v)), i === void 0))
             if (typeof f == "function") {
-              const R = f(t, o, s);
-              i = A(R) ? R : "";
+              const b = f(t, o, s);
+              i = A(b) ? b : "";
             } else if (s && Object.prototype.hasOwnProperty.call(s, v)) i = "";
             else if (g) {
               i = o[0];
@@ -16270,11 +16269,11 @@ class Lr extends co {
         )),
         d.backendConnector.on("*", function (x) {
           for (
-            var v = arguments.length, N = new Array(v > 1 ? v - 1 : 0), R = 1;
-            R < v;
-            R++
+            var v = arguments.length, N = new Array(v > 1 ? v - 1 : 0), b = 1;
+            b < v;
+            b++
           )
-            N[R - 1] = arguments[R];
+            N[b - 1] = arguments[b];
           t.emit(x, ...N);
         }),
         this.modules.languageDetector &&
@@ -16287,11 +16286,11 @@ class Lr extends co {
         (this.translator = new Hs(this.services, this.options)),
         this.translator.on("*", function (x) {
           for (
-            var v = arguments.length, N = new Array(v > 1 ? v - 1 : 0), R = 1;
-            R < v;
-            R++
+            var v = arguments.length, N = new Array(v > 1 ? v - 1 : 0), b = 1;
+            b < v;
+            b++
           )
-            N[R - 1] = arguments[R];
+            N[b - 1] = arguments[b];
           t.emit(x, ...N);
         }),
         this.modules.external.forEach((x) => {
