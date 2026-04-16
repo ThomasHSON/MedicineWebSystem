@@ -105,8 +105,31 @@ async function confirm_popup_input() {
   // res_data.Code = 201; // 模擬失敗回傳
   console.log(res_data);
   if (res_data.Code == 200) {
-    notice_popup_sub_result(`加入成功，盤點數量：${END_QTY}`, true);
     remove_localStorage_submit_post_data(new_GUID);
+    if (
+      res_data.Method == "sub_content_add" ||
+      res_data.Method == "sub_contents_delete_by_GUID"
+    ) {
+      if (res_data.Data.IC_SN == current_IC_SN) {
+        console.log("-=-=-=-=-=-=- api回傳調整內容 -=-=-=-=-=-=-=");
+        notice_popup_sub_result(`加入成功，盤點數量：${END_QTY}`, true);
+        Replace_data_by_content(res_data);
+      }
+    } else if (res_data.Method == "creat_delete_by_IC_SN") {
+      // 這邊接收刪除的單據 message
+      console.log("收到刪除訊息");
+      if (res_data.Result.includes("刪除")) {
+        if (current_IC_SN != "" && current_IC_SN != null) {
+          console.log(`盤點單：${res_data.Value}被刪除`);
+          alert("此盤點單被刪除，即將登出該盤點單並重新整理");
+          sessionStorage.removeItem("IC_SN");
+          location.reload();
+        } else {
+          console.log("調整區域資料");
+          await popup_creatSelect_div.Show();
+        }
+      }
+    }
     hideLoadingPopup();
     hide_popup_input();
   } else {
@@ -137,7 +160,32 @@ function notice_control() {
 }
 async function delete_row_popup_input(GUID, Master_GUID) {
   if (confirm("是否刪除?")) {
-    await sub_contents_delete_by_GUID(GUID, Master_GUID);
+    let res_data = await sub_contents_delete_by_GUID(GUID, Master_GUID);
+    if (
+      res_data.Method == "sub_content_add" ||
+      res_data.Method == "sub_contents_delete_by_GUID"
+    ) {
+      if (res_data.Data.IC_SN == current_IC_SN) {
+        console.log("-=-=-=-=-=-=- api回傳調整內容 -=-=-=-=-=-=-=");
+
+        notice_popup_sub_result(`已刪除`, false);
+        Replace_data_by_content(res_data);
+      }
+    } else if (res_data.Method == "creat_delete_by_IC_SN") {
+      // 這邊接收刪除的單據 message
+      console.log("收到刪除訊息");
+      if (res_data.Result.includes("刪除")) {
+        if (current_IC_SN != "" && current_IC_SN != null) {
+          console.log(`盤點單：${res_data.Value}被刪除`);
+          alert("此盤點單被刪除，即將登出該盤點單並重新整理");
+          sessionStorage.removeItem("IC_SN");
+          location.reload();
+        } else {
+          console.log("調整區域資料");
+          await popup_creatSelect_div.Show();
+        }
+      }
+    }
   }
 }
 
