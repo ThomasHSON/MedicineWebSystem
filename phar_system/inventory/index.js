@@ -769,7 +769,7 @@ function get_header() {
     setTimeout(() => {
       header_blur_search_result_container.innerHTML = "";
       header_blur_search_result_container.style.display = "none";
-    }, 100);
+    }, 250);
   });
 
   let header_search_text_img_icon = document.createElement("img");
@@ -836,7 +836,7 @@ function get_header() {
           header_result_card.classList.add("header_result_card");
           header_result_card.setAttribute("GUID", element.GUID);
           header_result_card.addEventListener("click", (e) => {
-            e.preventDefault();
+            console.log(e);
             const GUID = header_result_card.getAttribute("GUID");
             for (var i = 0; i < data.Data[0].Contents.length; i++) {
               if (data.Data[0].Contents[i].GUID == GUID) {
