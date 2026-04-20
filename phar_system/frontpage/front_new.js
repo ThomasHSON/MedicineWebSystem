@@ -1,23 +1,26 @@
 window.onload = load;
 let user_permission_data = [];
 let user_sessecion;
+let permissions_arr = [];
 async function load() {
   const serverName = "";
   const serverType = "網頁";
   sessionStorage.setItem("ServerName", "");
   // sessionStorage.setItem('ServerName', "DS01");
   sessionStorage.setItem("ServerType", "網頁");
-  // sessionStorage.setItem('ServerType', "藥庫");
   APIServer = await LoadAPIServer();
+  // sessionStorage.setItem('ServerType', "藥庫");
   const API01 = serch_APIServer(serverName, serverType, "API01");
   const API02 = serch_APIServer(serverName, serverType, "API02");
-  console.log("API01", API01);
-  console.log("API02", API02);
   await check_ip(API01[0].server, API02[0].server);
   console.log("inventory_url", inventory_url);
 
-  let permissions_arr = await get_permissions_arr();
-  console.log("權限設定陣列", permissions_arr);
+  try {
+    permissions_arr = await get_permissions_arr();
+    console.log("權限設定陣列", permissions_arr);
+  } catch (error) {
+    alert("權限API錯誤", error);
+  }
 
   user_sessecion = JSON.parse(sessionStorage.getItem("user_session"));
   if (user_sessecion == null) {
@@ -38,9 +41,13 @@ async function load() {
   //   }
   // });
 
-  user_permission_data = await get_user_permissions(post_data);
-  user_permission_data = user_permission_data.Data;
-  console.log("權限參數", user_permission_data);
+  try {
+    user_permission_data = await get_user_permissions(post_data);
+    user_permission_data = user_permission_data.Data;
+    console.log("權限參數", user_permission_data);
+  } catch (error) {
+    alert("使用者權限API錯誤", error);
+  }
 
   var loggedID = sessionStorage.getItem("loggedID");
   var loggedName = sessionStorage.getItem("loggedName");
@@ -48,7 +55,6 @@ async function load() {
     id: loggedID,
     name: loggedName,
   };
-
   set_web_info_icon();
   nav_bar_create("frontpage", test_user_data);
   get_pages_container(html_pages, permissions_arr);
@@ -92,7 +98,7 @@ function get_page_section(object, arr) {
         let temp_boolean = user_permission_check(
           user_permission_data,
           element["html_ctName"],
-          user_sessecion.level
+          user_sessecion.level,
         );
         let temp_div = get_page_icon(element, arr, user_sessecion.level);
         if (!front_page_display_logic(element.html_name, arr) && temp_boolean) {
@@ -107,7 +113,7 @@ function get_page_section(object, arr) {
         let temp_boolean = user_permission_check(
           user_permission_data,
           element["html_ctName"],
-          user_sessecion.level
+          user_sessecion.level,
         );
         let temp_div = get_page_icon(element, arr, user_sessecion.level);
         if (front_page_display_logic(element.html_name, arr) || !temp_boolean) {
@@ -187,7 +193,7 @@ function get_page_section(object, arr) {
           let temp_boolean = user_permission_check(
             user_permission_data,
             element["html_ctName"],
-            user_sessecion.level
+            user_sessecion.level,
           );
 
           let temp_div = get_page_icon(element, arr, user_sessecion.level);
@@ -206,7 +212,7 @@ function get_page_section(object, arr) {
           let temp_boolean = user_permission_check(
             user_permission_data,
             element["html_ctName"],
-            user_sessecion.level
+            user_sessecion.level,
           );
 
           let temp_div = get_page_icon(element, arr, user_sessecion.level);
@@ -214,7 +220,7 @@ function get_page_section(object, arr) {
             front_page_display_logic(
               element.html_name,
               arr,
-              user_sessecion.level
+              user_sessecion.level,
             ) ||
             !temp_boolean
           ) {
@@ -320,7 +326,7 @@ function get_page_icon(object, arr, level) {
           user_permission_check(
             user_permission_data,
             object["html_ctName"],
-            level
+            level,
           )
         ) {
           page_card.addEventListener("click", () => {

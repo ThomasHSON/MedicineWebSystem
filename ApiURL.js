@@ -90,7 +90,7 @@ async function Set_ChatHub_url() {
   json.API_Server = is_https_trans_ip(json.API_Server);
 
   const json_return = await getDataFromAPI(
-    `${json.API_Server}/api/ServerSetting`
+    `${json.API_Server}/api/ServerSetting`,
   );
   const json_API_Server = searchJSON(json_return.Data, "type", "網頁");
   const API01 = searchJSON(json_API_Server, "content", "API01");
@@ -114,7 +114,12 @@ async function pingIP(ipAddress, timeout = 100000) {
   const url = `${ipAddress}/api/test`;
   console.log("pingIP", url);
 
-  const controller = new AbortController();
+  try {
+    const controller = new AbortController();
+  } catch (error) {
+    alert(error);
+  }
+  alert(controller);
   const signal = controller.signal;
 
   const timeoutId = setTimeout(() => {
@@ -192,7 +197,7 @@ function is_https_trans_ip(ip) {
         console.log(newStr);
         newStr = newStr.replace(
           /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/,
-          domain
+          domain,
         );
       }
 
