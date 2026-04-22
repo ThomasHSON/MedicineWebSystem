@@ -493,9 +493,9 @@ var l = gu.exports,
     var L = O.length;
     O.push(P);
     e: for (; 0 < L; ) {
-      var B = (L - 1) >>> 1,
-        te = O[B];
-      if (0 < s(te, P)) ((O[B] = P), (O[L] = te), (L = B));
+      var Q = (L - 1) >>> 1,
+        te = O[Q];
+      if (0 < s(te, P)) ((O[Q] = P), (O[L] = te), (L = Q));
       else break e;
     }
   }
@@ -508,16 +508,16 @@ var l = gu.exports,
       L = O.pop();
     if (L !== P) {
       O[0] = L;
-      e: for (var B = 0, te = O.length, ft = te >>> 1; B < ft; ) {
-        var Ke = 2 * (B + 1) - 1,
+      e: for (var Q = 0, te = O.length, ft = te >>> 1; Q < ft; ) {
+        var Ke = 2 * (Q + 1) - 1,
           Yt = O[Ke],
           He = Ke + 1,
           kt = O[He];
         if (0 > s(Yt, L))
           He < te && 0 > s(kt, Yt)
-            ? ((O[B] = kt), (O[He] = L), (B = He))
-            : ((O[B] = Yt), (O[Ke] = L), (B = Ke));
-        else if (He < te && 0 > s(kt, L)) ((O[B] = kt), (O[He] = L), (B = He));
+            ? ((O[Q] = kt), (O[He] = L), (Q = He))
+            : ((O[Q] = Yt), (O[Ke] = L), (Q = Ke));
+        else if (He < te && 0 > s(kt, L)) ((O[Q] = kt), (O[He] = L), (Q = He));
         else break e;
       }
     }
@@ -579,10 +579,10 @@ var l = gu.exports,
         y(P), g = n(u);
         g !== null && (!(g.expirationTime > P) || (O && !M()));
       ) {
-        var B = g.callback;
-        if (typeof B == "function") {
+        var Q = g.callback;
+        if (typeof Q == "function") {
           ((g.callback = null), (d = g.priorityLevel));
-          var te = B(g.expirationTime <= P);
+          var te = Q(g.expirationTime <= P);
           ((P = e.unstable_now()),
             typeof te == "function" ? (g.callback = te) : g === n(u) && r(u),
             y(P));
@@ -708,11 +708,11 @@ var l = gu.exports,
       }
     }),
     (e.unstable_scheduleCallback = function (O, P, L) {
-      var B = e.unstable_now();
+      var Q = e.unstable_now();
       switch (
         (typeof L == "object" && L !== null
-          ? ((L = L.delay), (L = typeof L == "number" && 0 < L ? B + L : B))
-          : (L = B),
+          ? ((L = L.delay), (L = typeof L == "number" && 0 < L ? Q + L : Q))
+          : (L = Q),
         O)
       ) {
         case 1:
@@ -740,12 +740,12 @@ var l = gu.exports,
           expirationTime: te,
           sortIndex: -1,
         }),
-        L > B
+        L > Q
           ? ((O.sortIndex = L),
             t(c, O),
             n(u) === null &&
               O === n(c) &&
-              (N ? (m(C), (C = -1)) : (N = !0), Fe(S, L - B)))
+              (N ? (m(C), (C = -1)) : (N = !0), Fe(S, L - Q)))
           : ((O.sortIndex = te), t(u, O), v || x || ((v = !0), ye(E))),
         O
       );
@@ -9745,52 +9745,14 @@ const $g = (e, t) => {
         }),
       }),
     });
-  },
-  uh = () => {
-    const { t: e } = Ne();
-    return l.jsx("div", {
-      className: "h-[40px] mb-2",
-      children: l.jsx("div", {
-        className: "px-4 sm:px-6 lg:px-8",
-        children: l.jsxs("div", {
-          className: "flex space-x-8 border-b border-gray-200",
-          children: [
-            l.jsx("a", {
-              href: "../inventory_manager",
-              className:
-                "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-              children: e("tabs.manage"),
-            }),
-            l.jsx("a", {
-              href: "../inventory_merge",
-              className:
-                "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-              children: e("tabs.merge"),
-            }),
-            l.jsx("a", {
-              href: "#",
-              className:
-                "px-4 py-2 text-base font-medium border-b-2 border-blue-500 text-blue-600",
-              children: e("tabs.review"),
-            }),
-            l.jsx("a", {
-              href: "../inventory_daily_report",
-              className:
-                "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-              children: e("tabs.daily"),
-            }),
-          ],
-        }),
-      }),
-    });
   };
-async function ch() {
+async function uh() {
   const t = await (await fetch("../config.txt")).text();
   return JSON.parse(t);
 }
 let Uo = null;
-async function dh() {
-  return (Uo || (Uo = await ch()), Uo.domain);
+async function ch() {
+  return (Uo || (Uo = await uh()), Uo.domain);
 }
 const H = {
   LOGIN: "/api/session/login",
@@ -9820,6 +9782,7 @@ const H = {
   GET_SETTINGS_BY_SN: "/api/inv_combinelist/get_setting_by_SN",
   UPDATE_SETTINGS_BY_SN: "/api/inv_combinelist/update_setting_by_SN",
   UPDATE_REPORT: "/api/inv_combinelist/update_report",
+  GET_BY_PAGE_NAME: "/api/settingPage/get_by_page_name",
   SAVE_RECONCILIATION_SETTINGS: "/api/reconciliation/save_settings",
   GET_RECONCILIATION_SETTINGS: "/api/reconciliation/get_settings",
 };
@@ -9840,9 +9803,9 @@ let pt = class {
       console.groupEnd());
   }
 };
-class K {
+class B {
   static async getBaseUrl() {
-    return await dh();
+    return await ch();
   }
   static async fetchApi(t, n = "POST", r) {
     const o = `${await this.getBaseUrl()}${t}`;
@@ -10338,6 +10301,19 @@ class K {
   static async updateReport(t) {
     return await this.fetchApi(H.UPDATE_REPORT, "POST", { Valeu: "", Data: t });
   }
+  static async getSettingByPageName(t) {
+    return this.fetchApi(H.GET_BY_PAGE_NAME, "POST", { ValueAry: t });
+  }
+  static async isDailyReportEnabled() {
+    try {
+      const t = await this.getSettingByPageName(["inventory"]);
+      if (t.Code !== 200 || !t.Data) return !1;
+      const n = t.Data.find((r) => r.name === "daily_report");
+      return (n == null ? void 0 : n.value) === "True";
+    } catch {
+      return !1;
+    }
+  }
   static async getReconciliationSettings() {
     return (
       await new Promise((t) => setTimeout(t, 300)),
@@ -10373,7 +10349,52 @@ class K {
       document.body.removeChild(o));
   }
 }
-const fh = ({ onLoginSuccess: e }) => {
+const dh = () => {
+    const { t: e } = Ne(),
+      [t, n] = k.useState(!1);
+    return (
+      k.useEffect(() => {
+        B.isDailyReportEnabled().then(n);
+      }, []),
+      l.jsx("div", {
+        className: "h-[40px] mb-2",
+        children: l.jsx("div", {
+          className: "px-4 sm:px-6 lg:px-8",
+          children: l.jsxs("div", {
+            className: "flex space-x-8 border-b border-gray-200",
+            children: [
+              l.jsx("a", {
+                href: "../inventory_manager",
+                className:
+                  "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                children: e("tabs.manage"),
+              }),
+              l.jsx("a", {
+                href: "../inventory_merge",
+                className:
+                  "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                children: e("tabs.merge"),
+              }),
+              l.jsx("a", {
+                href: "#",
+                className:
+                  "px-4 py-2 text-base font-medium border-b-2 border-blue-500 text-blue-600",
+                children: e("tabs.review"),
+              }),
+              t &&
+                l.jsx("a", {
+                  href: "../inventory_daily_report",
+                  className:
+                    "px-4 py-2 text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                  children: e("tabs.daily"),
+                }),
+            ],
+          }),
+        }),
+      })
+    );
+  },
+  fh = ({ onLoginSuccess: e }) => {
     const { t } = Ne(),
       [n, r] = k.useState(""),
       [s, o] = k.useState(""),
@@ -10390,7 +10411,7 @@ const fh = ({ onLoginSuccess: e }) => {
     const u = async (c) => {
       c.preventDefault();
       try {
-        const f = await K.login(n, s);
+        const f = await B.login(n, s);
         f.Code === 200
           ? (sessionStorage.setItem("user_session", JSON.stringify(f.Data)),
             e(f.Data))
@@ -10900,9 +10921,9 @@ const fh = ({ onLoginSuccess: e }) => {
       }, [s, Fe, o, i, e.length]),
       P = ye.length,
       L = Math.ceil(P / zo),
-      B = (y - 1) * zo,
-      te = Math.min(B + zo, P),
-      ft = ye.slice(B, te);
+      Q = (y - 1) * zo,
+      te = Math.min(Q + zo, P),
+      ft = ye.slice(Q, te);
     ff.useEffect(() => {
       S(1);
     }, [m]);
@@ -10940,7 +10961,7 @@ const fh = ({ onLoginSuccess: e }) => {
               (h(!1), me(!1));
               return;
             }
-            if ((await K.updateReport(R)).Code === 200) {
+            if ((await B.updateReport(R)).Code === 200) {
               const z = [...e].map((V) => {
                 const xe = V.GUID || V.CODE;
                 return w.hasOwnProperty(xe)
@@ -10969,7 +10990,7 @@ const fh = ({ onLoginSuccess: e }) => {
                   ),
                   console.log("IC_SN:", c[0].IC_SN));
                 try {
-                  const V = await K.getReconciliationByIcSn(c[0].IC_SN);
+                  const V = await B.getReconciliationByIcSn(c[0].IC_SN);
                   if (
                     (console.log("Get reconciliation by IC_SN response:", V),
                     V.Code === 200 && V.Data && V.Data[0])
@@ -11206,7 +11227,7 @@ const fh = ({ onLoginSuccess: e }) => {
                               children: [
                                 d("showing"),
                                 " ",
-                                P > 0 ? B + 1 : 0,
+                                P > 0 ? Q + 1 : 0,
                                 " - ",
                                 te,
                                 " ",
@@ -11549,7 +11570,7 @@ const fh = ({ onLoginSuccess: e }) => {
         if (n)
           try {
             a(!0);
-            const h = await K.getInventory(n);
+            const h = await B.getInventory(n);
             o(h.map((w) => ({ ...w, selected: !1 })));
           } catch (h) {
             (console.error("Failed to load inventory:", h), o([]));
@@ -11582,7 +11603,7 @@ const fh = ({ onLoginSuccess: e }) => {
       p = async () => {
         if (n)
           try {
-            (c(!0), await K.updateInventory(n, s), await v());
+            (c(!0), await B.updateInventory(n, s), await v());
           } catch (h) {
             console.error("Failed to save inventory:", h);
           } finally {
@@ -11602,7 +11623,7 @@ const fh = ({ onLoginSuccess: e }) => {
             const C = (_ = w.target.files) == null ? void 0 : _[0];
             if (C)
               try {
-                (a(!0), await K.importInventoryExcel(n, C), await v());
+                (a(!0), await B.importInventoryExcel(n, C), await v());
               } catch (I) {
                 (console.error("Failed to import inventory:", I),
                   alert("Failed to import inventory file"));
@@ -11618,7 +11639,7 @@ const fh = ({ onLoginSuccess: e }) => {
           return;
         }
         try {
-          await K.exportInventory(n, s);
+          await B.exportInventory(n, s);
         } catch (h) {
           (console.error("Failed to export inventory:", h),
             alert("Failed to export inventory"));
@@ -11821,7 +11842,7 @@ const fh = ({ onLoginSuccess: e }) => {
         if (n)
           try {
             a(!0);
-            const h = await K.getUnitPrices(n);
+            const h = await B.getUnitPrices(n);
             o(h.map((w) => ({ ...w, selected: !1 })));
           } catch (h) {
             (console.error("Failed to load unit prices:", h), o([]));
@@ -11854,7 +11875,7 @@ const fh = ({ onLoginSuccess: e }) => {
       p = async () => {
         if (n)
           try {
-            (c(!0), await K.updateUnitPrices(n, s), await v());
+            (c(!0), await B.updateUnitPrices(n, s), await v());
           } catch (h) {
             console.error("Failed to save unit prices:", h);
           } finally {
@@ -11874,7 +11895,7 @@ const fh = ({ onLoginSuccess: e }) => {
             const C = (_ = w.target.files) == null ? void 0 : _[0];
             if (C)
               try {
-                (a(!0), await K.importUnitPricesExcel(n, C), await v());
+                (a(!0), await B.importUnitPricesExcel(n, C), await v());
               } catch (I) {
                 (console.error("Failed to import unit prices:", I),
                   alert("Failed to import unit prices file"));
@@ -11890,7 +11911,7 @@ const fh = ({ onLoginSuccess: e }) => {
           return;
         }
         try {
-          await K.exportUnitPrices(n, s);
+          await B.exportUnitPrices(n, s);
         } catch (h) {
           (console.error("Failed to export unit prices:", h),
             alert("Failed to export unit prices"));
@@ -12421,7 +12442,7 @@ const fh = ({ onLoginSuccess: e }) => {
         if (n)
           try {
             a(!0);
-            const h = await K.getAliases(n);
+            const h = await B.getAliases(n);
             o(h.map((w) => ({ ...w, selected: !1 })));
           } catch (h) {
             (console.error("Failed to load aliases:", h), o([]));
@@ -12449,7 +12470,7 @@ const fh = ({ onLoginSuccess: e }) => {
       p = async () => {
         if (n)
           try {
-            (c(!0), await K.updateAliases(n, s), await v());
+            (c(!0), await B.updateAliases(n, s), await v());
           } catch (h) {
             console.error("Failed to save aliases:", h);
           } finally {
@@ -12469,7 +12490,7 @@ const fh = ({ onLoginSuccess: e }) => {
             const C = (_ = w.target.files) == null ? void 0 : _[0];
             if (C)
               try {
-                (a(!0), await K.importAliasesExcel(n, C), await v());
+                (a(!0), await B.importAliasesExcel(n, C), await v());
               } catch (I) {
                 (console.error("Failed to import aliases:", I),
                   alert("Failed to import aliases file"));
@@ -12485,7 +12506,7 @@ const fh = ({ onLoginSuccess: e }) => {
           return;
         }
         try {
-          await K.exportAliases(n, s);
+          await B.exportAliases(n, s);
         } catch (h) {
           (console.error("Failed to export aliases:", h),
             alert("Failed to export aliases"));
@@ -12690,7 +12711,7 @@ const fh = ({ onLoginSuccess: e }) => {
         if (n)
           try {
             a(!0);
-            const x = await K.getReconciliationSettingsByRecord(n);
+            const x = await B.getReconciliationSettingsByRecord(n);
             o(x);
           } catch (x) {
             (console.error("Failed to load reconciliation settings:", x),
@@ -12706,7 +12727,7 @@ const fh = ({ onLoginSuccess: e }) => {
       g = async () => {
         if (n)
           try {
-            (c(!0), await K.saveReconciliationSettingsByRecord(n, s), t());
+            (c(!0), await B.saveReconciliationSettingsByRecord(n, s), t());
           } catch (x) {
             (console.error("Failed to save reconciliation settings:", x),
               alert("Failed to save settings. Please try again."));
@@ -13510,7 +13531,7 @@ const fh = ({ onLoginSuccess: e }) => {
             (u(!0),
               console.log("=== LOADING INVENTORY ORDERS FOR LOCKING ==="),
               console.log("Selected Record:", n));
-            const v = await K.getFullInventoryBySN(n);
+            const v = await B.getFullInventoryBySN(n);
             if (
               (console.log("Full Inventory Response:", v),
               v.Code === 200 && v.Data && v.Data.records_Ary)
@@ -13545,7 +13566,7 @@ const fh = ({ onLoginSuccess: e }) => {
               console.log("Orders to lock:", o));
             for (const v of o) {
               console.log(`Locking order: ${v.IC_SN}`);
-              const N = await K.lockInventoryOrder(v.IC_SN);
+              const N = await B.lockInventoryOrder(v.IC_SN);
               if (
                 (console.log(`Lock response for ${v.IC_SN}:`, N),
                 N.Code !== 200)
@@ -13831,7 +13852,7 @@ function Rh() {
     [ue, ye] = k.useState(null),
     [Fe, O] = k.useState(!1),
     [P, L] = k.useState(jh()),
-    [B, te] = k.useState(!1),
+    [Q, te] = k.useState(!1),
     [ft, Ke] = k.useState(!1),
     [Yt, He] = k.useState(!1),
     [kt, dn] = k.useState(!1),
@@ -13845,11 +13866,11 @@ function Rh() {
   }, []),
     k.useEffect(() => {
       const D = new Date(),
-        Q = D.toISOString().split("T")[0],
+        K = D.toISOString().split("T")[0],
         X = new Date(D);
       X.setMonth(X.getMonth() - 1);
       const se = X.toISOString().split("T")[0];
-      (s(se), u(Q));
+      (s(se), u(K));
     }, []),
     k.useEffect(() => {
       $d();
@@ -13857,8 +13878,8 @@ function Rh() {
     k.useEffect(() => {
       if (x.length > 0 && r && a) {
         const D = `${r} ${o}`,
-          Q = `${a} ${c}`,
-          X = K.filterMergedRecordsByTime(x, D, Q);
+          K = `${a} ${c}`,
+          X = B.filterMergedRecordsByTime(x, D, K);
         (b(X), g && !X.find((se) => se.INV_SN === g) && d(""));
       }
     }, [x, r, o, a, c, g]));
@@ -13867,7 +13888,7 @@ function Rh() {
     },
     $d = async () => {
       try {
-        const D = await K.getMergedRecords();
+        const D = await B.getMergedRecords();
         v(D);
       } catch (D) {
         (console.error("Failed to fetch all merged records:", D), v([]));
@@ -13879,20 +13900,20 @@ function Rh() {
         try {
           (console.log("=== CHECKING RECONCILIATION STATE VIA API ==="),
             console.log("Selected Record:", g));
-          const Q = await K.checkReconciliationState(g);
+          const K = await B.checkReconciliationState(g);
           if (
-            (console.log("API Response Code:", Q.Code),
-            console.log("API Response Data:", Q.Data),
-            ye(Q.Data),
-            Q.Code === 200)
+            (console.log("API Response Code:", K.Code),
+            console.log("API Response Data:", K.Data),
+            ye(K.Data),
+            K.Code === 200)
           ) {
-            const X = (D = Q.Data[0]) == null ? void 0 : D.STATE;
+            const X = (D = K.Data[0]) == null ? void 0 : D.STATE;
             (console.log("Review State:", X),
               X === "鎖定"
                 ? (console.log("Setting button state to: locked"), U("locked"))
                 : (console.log("Setting button state to: enter"), U("enter")));
           } else
-            Q.Code === -5
+            K.Code === -5
               ? (console.log("Setting button state to: generate"),
                 U("generate"))
               : (console.log(
@@ -13900,26 +13921,26 @@ function Rh() {
                 ),
                 U("disabled"));
           console.log("=== END RECONCILIATION STATE CHECK ===");
-        } catch (Q) {
-          (console.error("Failed to check reconciliation state:", Q),
+        } catch (K) {
+          (console.error("Failed to check reconciliation state:", K),
             U("disabled"),
             ye(null));
         }
     },
     Ud = async (D) => {
-      var Q;
+      var K;
       if (D)
         try {
           (console.log("=== CHECKING RECONCILIATION STATE VIA API ==="),
             console.log("Selected Record:", D));
-          const X = await K.checkReconciliationState(D);
+          const X = await B.checkReconciliationState(D);
           if (
             (console.log("API Response Code:", X.Code),
             console.log("API Response Data:", X.Data),
             ye(X.Data),
             X.Code === 200)
           ) {
-            const se = (Q = X.Data[0]) == null ? void 0 : Q.STATE;
+            const se = (K = X.Data[0]) == null ? void 0 : K.STATE;
             (console.log("Review State:", se),
               se === "鎖定"
                 ? (console.log("Setting button state to: locked"), U("locked"))
@@ -13952,10 +13973,10 @@ function Rh() {
       )
         try {
           h(!0);
-          const Q = await K.addReportBySN(g);
-          (p(Q), I(!0), await po());
-        } catch (Q) {
-          (console.error("Failed to generate summary:", Q),
+          const K = await B.addReportBySN(g);
+          (p(K), I(!0), await po());
+        } catch (K) {
+          (console.error("Failed to generate summary:", K),
             p([]),
             S(""),
             alert("Failed to generate summary. Please try again."));
@@ -13966,7 +13987,7 @@ function Rh() {
     Dl = async () => {
       if (g)
         try {
-          (C(!0), await K.downloadSummaryReport(g));
+          (C(!0), await B.downloadSummaryReport(g));
         } catch (D) {
           (console.error("Failed to download report:", D),
             alert("Failed to download report. Please try again."));
@@ -13975,16 +13996,16 @@ function Rh() {
         }
     },
     zd = async (D) => {
-      var Q;
+      var K;
       if ((d(D), D)) {
         const X =
-          ((Q = N.find((se) => se.INV_SN === D)) == null
+          ((K = N.find((se) => se.INV_SN === D)) == null
             ? void 0
-            : Q.INV_NAME) || "";
+            : K.INV_NAME) || "";
         S(X);
         try {
           h(!0);
-          const se = await K.getReportBySN(D);
+          const se = await B.getReportBySN(D);
           (se.length > 0 ? (p(se), I(!0)) : (p([]), I(!1)), await Ud(D));
         } catch (se) {
           (console.error("Failed to load existing report:", se), p([]), I(!1));
@@ -14036,12 +14057,12 @@ function Rh() {
             console.log("Selected Record:", g),
             console.log("User Name:", t.Name),
             console.log("Reconciliation Name:", D));
-          const Q = await K.generateReconciliationWithName(g, t.Name, D);
-          (console.log("Create Reconciliation API Response:", Q),
-            await Ml(Q),
+          const K = await B.generateReconciliationWithName(g, t.Name, D);
+          (console.log("Create Reconciliation API Response:", K),
+            await Ml(K),
             console.log("=== END RECONCILIATION CREATION ==="));
-        } catch (Q) {
-          (console.error("🌐 Network error during reconciliation creation:", Q),
+        } catch (K) {
+          (console.error("🌐 Network error during reconciliation creation:", K),
             alert(e("failedToCreateReconciliationRecord")));
         } finally {
           me(!1);
@@ -14067,7 +14088,7 @@ function Rh() {
       )
         try {
           me(!0);
-          const D = await K.generateReconciliation(g);
+          const D = await B.generateReconciliation(g);
           (console.log("Reconciliation API Response after locking:", D),
             await Ml(D));
         } catch (D) {
@@ -14083,18 +14104,18 @@ function Rh() {
         return;
       }
       const D = ue[0].IC_SN,
-        Q = ue[0].STATE,
-        X = Q === "鎖定";
+        K = ue[0].STATE,
+        X = K === "鎖定";
       try {
         (O(!0),
           console.log(`=== ${X ? "UNLOCKING" : "LOCKING"} INVENTORY ORDER ===`),
           console.log("IC_SN:", D),
-          console.log("Current State:", Q));
+          console.log("Current State:", K));
         let se;
         if (
           (X
-            ? (se = await K.unlockInventoryOrder(D))
-            : (se = await K.lockInventoryOrder(D)),
+            ? (se = await B.unlockInventoryOrder(D))
+            : (se = await B.lockInventoryOrder(D)),
           console.log("Lock/Unlock API Response:", se),
           se.Code === 200)
         )
@@ -14127,7 +14148,7 @@ function Rh() {
         className: "min-h-screen",
         children: [
           l.jsx(ah, { user: t, onLogout: Wt }),
-          l.jsx(uh, {}),
+          l.jsx(dh, {}),
           l.jsxs("main", {
             className: "px-4 sm:px-6 lg:px-8 py-8 mb-10",
             children: [
@@ -14198,7 +14219,7 @@ function Rh() {
                   }),
             ],
           }),
-          l.jsx(xh, { isOpen: B, onClose: () => te(!1), selectedRecord: g }),
+          l.jsx(xh, { isOpen: Q, onClose: () => te(!1), selectedRecord: g }),
           l.jsx(vh, { isOpen: ft, onClose: () => Ke(!1), selectedRecord: g }),
           l.jsx(wh, { isOpen: Yt, onClose: () => He(!1), selectedRecord: g }),
           l.jsx(Sh, { isOpen: kt, onClose: () => dn(!1), selectedRecord: g }),
@@ -14810,12 +14831,12 @@ class Hs extends co {
               ))
             : ue.push(n.lng || this.language);
         const Fe = (O, P, L) => {
-          const B = w && L !== d ? L : Z;
+          const Q = w && L !== d ? L : Z;
           (this.options.missingKeyHandler
-            ? this.options.missingKeyHandler(O, u, P, B, me, n)
+            ? this.options.missingKeyHandler(O, u, P, Q, me, n)
             : this.backendConnector &&
               this.backendConnector.saveMissing &&
-              this.backendConnector.saveMissing(O, u, P, B, me, n),
+              this.backendConnector.saveMissing(O, u, P, Q, me, n),
             this.emit("missingKey", O, u, P, d));
         };
         this.options.saveMissing &&

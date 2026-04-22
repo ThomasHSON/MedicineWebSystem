@@ -1297,6 +1297,7 @@ async function allocate_func() {
     cart_content.addEventListener("click", open_cart_list);
     med_table_content.addEventListener("click", open_med_table_list);
     if (current_cart == "" && current_med_table == "") {
+      await init_cart_list_display();
       check_cart_dispense();
       Set_main_div_enable(false);
       return;
@@ -1337,7 +1338,67 @@ async function allocate_func() {
 }
 
 // 清單顯示
-async function init_cart_list_display() {}
+async function init_cart_list_display() {
+  let post_data = {
+    ValueAry: [current_pharmacy.phar],
+  };
+  let dis_data = await get_cart_with_NOdispense(post_data);
+  let chk_data = await get_cart_with_NOcheck(post_data);
+  console.log(dis_data);
+  console.log(chk_data);
+  let function_display_container = document.querySelector(
+    ".function_display_container",
+  );
+  function_display_container.innerHTML = "";
+
+  let cart_list_menu_container = document.createElement("div");
+  cart_list_menu_container.classList.add("d_carts_list_contaienr");
+
+  let cart_content = document.querySelector(".cart_content");
+  cart_list.forEach((element) => {
+    let cart_list_menu_card = document.createElement("div");
+    cart_list_menu_card.classList.add("cart_list_menu_card");
+    cart_list_menu_card.addEventListener("click", () => {
+      cart_content.innerHTML = element.hnursta;
+      current_cart = element;
+      if (last_current_cart == current_cart) {
+        return;
+      } else {
+        console.log(current_cart);
+        let temp_logic = get_func_logic();
+        get_all_select_option_logic(temp_logic);
+        last_current_cart = current_cart;
+      }
+    });
+
+    let clmc_name = document.createElement("div");
+    clmc_name.classList.add("clmc_name");
+    clmc_name.innerHTML = element.hnursta;
+
+    let clmc_dis_note = document.createElement("div");
+    clmc_dis_note.classList.add("clmc_dis_note");
+    if (dis_data.Data.includes(element.hnursta)) {
+      clmc_dis_note.innerHTML = `<span class="clmc_dis_note_undone"></span><span>調劑未完成</span>`;
+    } else {
+      clmc_dis_note.innerHTML = `<span class="clmc_dis_note_done"></span><span>調劑完成</span>`;
+    }
+    let clmc_chk_note = document.createElement("div");
+    clmc_chk_note.classList.add("clmc_chk_note");
+    if (chk_data.Data.includes(element.hnursta)) {
+      clmc_chk_note.innerHTML = `<span class="clmc_dis_note_undone"></span><span>覆核未完成</span>`;
+    } else {
+      clmc_chk_note.innerHTML = `<span class="clmc_dis_note_done"></span><span>覆核完成</span>`;
+    }
+
+    cart_list_menu_card.appendChild(clmc_name);
+    cart_list_menu_card.appendChild(clmc_dis_note);
+    cart_list_menu_card.appendChild(clmc_chk_note);
+
+    cart_list_menu_container.appendChild(cart_list_menu_card);
+  });
+
+  function_display_container.appendChild(cart_list_menu_container);
+}
 // 覆核作業
 // async function review_func() {
 //   await light_off_func();
