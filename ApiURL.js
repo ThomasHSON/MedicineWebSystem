@@ -114,12 +114,7 @@ async function pingIP(ipAddress, timeout = 100000) {
   const url = `${ipAddress}/api/test`;
   console.log("pingIP", url);
 
-  try {
-    const controller = new AbortController();
-  } catch (error) {
-    alert(error);
-  }
-  alert(controller);
+  const controller = new AbortController();
   const signal = controller.signal;
 
   const timeoutId = setTimeout(() => {
