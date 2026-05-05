@@ -116,6 +116,17 @@ function set_main_report_display() {
   ppnmsr_main_container.innerHTML = "";
 
   if (Array.isArray(nearMiss_report)) {
+    nearMiss_report.sort((a, b) => {
+      // 取得兩個項目的床號字串
+      const bedA = a.patientInfo.bednum;
+      const bedB = b.patientInfo.bednum;
+
+      // 使用 localeCompare 進行自然排序
+      return bedA.localeCompare(bedB, undefined, {
+        numeric: true, // 啟用數字排序 (讓 2 小於 10)
+        sensitivity: "base", // 忽略大小寫差異
+      });
+    });
     let temp_cpoe_data = nearMiss_report.filter((item) => item.medCpoe);
     let temp_note_data = nearMiss_report.filter((item) => !item.medCpoe);
     let disp_id = JSON.parse(sessionStorage.getItem("user_session")).ID;
@@ -363,7 +374,7 @@ function set_main_report_display() {
 
           let ppnmsr_card_title = document.createElement("div");
           ppnmsr_card_title.classList.add("ppnmsr_card_title");
-          ppnmsr_card_title.innerHTML = `備注：${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
+          ppnmsr_card_title.innerHTML = `其他：${element.nurnum}-${element.patientInfo.bednum}床 ${element.patientInfo.pnamec}`;
 
           let ppnmsr_note_content = document.createElement("div");
           ppnmsr_note_content.classList.add("ppnmsr_note_content");

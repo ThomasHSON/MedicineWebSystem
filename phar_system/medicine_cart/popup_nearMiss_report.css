@@ -284,3 +284,9 @@
   border-bottom: 1px solid #6f6f6f;
   padding-bottom: 8px;
 }
+.ppnmsr_note_content {
+  padding: 8px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  border: 1px solid #cfcfce;
+}
