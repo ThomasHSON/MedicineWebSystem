@@ -13764,9 +13764,9 @@ function rf(e) {
   var n, r, l, a, i, o, u, c, p, g;
   const t =
     e.id === "R001"
-      ? '1. Fluorouracil "DBL" #* inj 500 mg/10 ml，頻次：QAM&HS，每次1.0 CAP，總量：1 CAP，天數 4 天；Oxalip ##* inj 50 mg/10 ml ，頻次：QAM&HS，每次1.0 CAP，總量：1 CAP，天數 4 天；Leucovorin cal * inj 15 mg/2 ml "DBL"，頻次：QAM&HS，每次1.0 CAP，總量：1 CAP，天數 4 天,FOLFOX regimen（5-FU + Leucovorin + Oxaliplatin），未見大腸直腸癌診斷碼（C18–C20），請醫師確認處方 Regimen 正確性。'
+      ? '1. 處方Fluorouracil  inj 500 mg/10 ml；Leucovorin cal * inj 15 mg/2 ml ，FOLFOX regimen（5-FU + Leucovorin + Oxaliplatin），未見大腸直腸癌診斷碼（C18–C20），請醫師確認處方 Regimen 正確性。'
       : e.id === "R002"
-        ? "1. 化100 Pexeda 100mg，頻次：QAM&HS，每次1.0 CAP，總量：1 CAP，天數 4 天；化 Kemoplat inj. 1mg/ml 50ml，頻次：QAM&HS，每次1.0 CAP，總量：1 CAP，天數 4 天,PC regimen（Pemetrexed + Cisplatin），未見肺癌或惡性胸膜間皮瘤診斷碼（C34 / C45），請醫師確認處方 Regimen 正確性。"
+        ? "2. 處方化100 Pexeda 100mg；化 Kemoplat inj. 1mg/ml 50ml，regimen（Pemetrexed + Cisplatin），未見肺癌或惡性胸膜間皮瘤診斷碼（C34 / C45），請醫師確認處方 Regimen 正確性。"
         : `${e.patientName} 之處方中，${((n = e.drugs[0]) == null ? void 0 : n.drugNameZh) ?? ((r = e.drugs[0]) == null ? void 0 : r.drugName) ?? "標靶藥品"}（${((l = e.drugs[0]) == null ? void 0 : l.drugCode) ?? "A010"}）開立頻次為 ${((a = e.drugs[0]) == null ? void 0 : a.frequency) ?? "BIDPC"}，每次劑量 ${((i = e.drugs[0]) == null ? void 0 : i.dose) ?? "1.0"} ${((o = e.drugs[0]) == null ? void 0 : o.route) ?? "CAP"}，處方總量 ${((u = e.drugs[0]) == null ? void 0 : u.qty) ?? 100} 顆，然依頻次計算應為 ${Math.round((((c = e.drugs[0]) == null ? void 0 : c.qty) ?? 100) / 2)} 天份，與醫囑天數不符。此外，合併使用之 ${((p = e.drugs[1]) == null ? void 0 : p.drugNameZh) ?? ((g = e.drugs[1]) == null ? void 0 : g.drugName) ?? "輔助用藥"} 與前述藥品存在潛在交互作用，可能影響代謝酵素活性，建議電聯 ${e.prescribingDoctor} 醫師確認處方天數、藥品數量及合併用藥之必要性，並依實際治療計畫修正後方可繼續審核。`;
   return {
     pharmacistName: "陳曉明",
