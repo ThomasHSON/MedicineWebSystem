@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <title>藥品亮燈 API 監控</title>
+  <link rel="stylesheet" href="style.css?v=1.0" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <h1>藥品亮燈 API 效能監控</h1>
+        <p class="subtitle">追蹤 light_on_by_code API 效能</p>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" class="btn btn-primary">刷新數據</button>
+        <button id="clearBtn" class="btn btn-danger">清除所有</button>
+      </div>
+    </header>
+
+    <!-- Statistics -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">總調用數</div>
+          <div class="stat-value" id="totalCount">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">成功</div>
+          <div class="stat-value success" id="successCount">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">失敗</div>
+          <div class="stat-value failed" id="failedCount">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">平均前端耗時</div>
+          <div class="stat-value" id="avgFrontendTime">0 ms</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">平均額外耗時</div>
+          <div class="stat-value" id="avgExtraTime">0 ms</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logs List -->
+    <section class="logs-section">
+      <div class="logs-header">
+        <h2>API 調用記錄</h2>
+        <span class="logs-count" id="logsCount">共 0 筆</span>
+      </div>
+
+      <div id="logsList" class="logs-list">
+        <!-- Logs will be inserted here -->
+      </div>
+
+      <div id="emptyState" class="empty-state">
+        <p>暫無監控數據</p>
+        <small>打開藥師操作界面並觸發亮燈功能，數據會自動出現在這裡</small>
+      </div>
+    </section>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">API 調用詳情</h2>
+        <button id="closeModal" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h3>基本信息</h3>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <label>觸發時間:</label>
+              <span id="detailSendTime">-</span>
+            </div>
+            <div class="detail-item">
+              <label>接收時間:</label>
+              <span id="detailReceiveTime">-</span>
+            </div>
+            <div class="detail-item">
+              <label>前端總耗時:</label>
+              <span id="detailFrontendDuration">-</span>
+            </div>
+            <div class="detail-item">
+              <label>API 處理耗時:</label>
+              <span id="detailApiDuration">-</span>
+            </div>
+            <div class="detail-item">
+              <label>前端額外耗時:</label>
+              <span id="detailExtraDuration">-</span>
+            </div>
+            <div class="detail-item">
+              <label>狀態:</label>
+              <span id="detailStatus">-</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>請求 Payload</h3>
+          <pre id="detailPayload" class="code-block">-</pre>
+        </div>
+
+        <div class="detail-section">
+          <h3>回應 Response</h3>
+          <pre id="detailResponse" class="code-block">-</pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeModalBtn" class="btn btn-secondary">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=1.0"></script>
+</body>
+</html>
