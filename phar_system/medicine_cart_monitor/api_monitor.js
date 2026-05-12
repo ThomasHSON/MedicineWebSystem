@@ -85,9 +85,13 @@
   function recordLog(logData) {
     const frontendDuration = logData.receiveTime - logData.sendTime;
     const apiDuration = logData.response?.TimeTaken
-      ? parseFloat(logData.response.TimeTaken)
+      ? parseFloat(logData.response.TimeTaken.toString().replace('ms', ''))
       : 0;
     const extraDuration = frontendDuration - apiDuration;
+
+    // 檢測來源
+    const source = detectSource();
+    const serverName = logData.requestPayload?.ServerName || '-';
 
     const log = {
       id: generateId(),
@@ -96,7 +100,7 @@
       receiveTime: logData.receiveTime,
       sendDate: logData.sendDate,
       duration_frontend: parseFloat(frontendDuration.toFixed(3)),
-      duration_api: apiDuration,
+      duration_api: Math.round(apiDuration),
       duration_extra: parseFloat(Math.max(0, extraDuration).toFixed(3)),
       status: logData.response?.Code === 200 ? 'success' : 'failed',
       code: logData.response?.Code || null,
@@ -104,10 +108,23 @@
       payload: logData.requestPayload,
       response: logData.response,
       url: logData.url,
+      source: source,
+      serverName: serverName,
     };
 
     saveLog(log);
     console.log('[API Monitor] 記錄:', log);
+  }
+
+  // 檢測調用來源
+  function detectSource() {
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('medicine_cart_monitor')) {
+      return '亮燈測試';
+    } else if (currentPath.includes('medicine_cart')) {
+      return '藥車亮燈';
+    }
+    return '未知來源';
   }
 
   // 保存日誌

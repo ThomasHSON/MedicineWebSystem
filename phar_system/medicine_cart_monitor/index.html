@@ -23,6 +23,64 @@
       </div>
     </header>
 
+    <!-- Test Light Panel -->
+    <section class="test-light-section">
+      <div class="test-light-header" id="testLightHeader">
+        <h2>亮燈測試</h2>
+        <span class="collapse-icon" id="collapseIcon">▼</span>
+      </div>
+      <div class="test-light-content" id="testLightContent">
+        <div class="test-light-form">
+          <div class="form-group">
+            <label for="pharmacy">請選擇藥局:</label>
+            <select id="pharmacy">
+              <option value="">-- 請先選擇藥局 --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="serverName">調劑台名稱:</label>
+            <select id="serverName">
+              <option value="">-- 請先選擇藥局 --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lightCodeInput">藥品碼:</label>
+            <div class="light-code-search-container">
+              <input
+                type="text"
+                id="lightCodeInput"
+                placeholder="輸入藥品代碼或名稱搜尋，點擊結果新增"
+                class="light-code-search-input"
+              />
+              <div id="lightCodeSuggestions" class="light-code-suggestions" style="display: none;">
+                <!-- 提示列表會動態插入此處 -->
+              </div>
+            </div>
+            <div id="lightCodeTags" class="light-code-tags">
+              <!-- 已選擇的藥品碼會顯示在此 -->
+            </div>
+          </div>
+          <div class="form-group">
+            <label>亮燈顏色:</label>
+            <div class="color-buttons-group">
+              <button type="button" class="color-btn" data-color="255,0,0" data-name="紅">紅</button>
+              <button type="button" class="color-btn" data-color="0,0,255" data-name="藍">藍</button>
+              <button type="button" class="color-btn" data-color="0,255,0" data-name="綠">綠</button>
+              <button type="button" class="color-btn" data-color="255,255,255" data-name="白">白</button>
+            </div>
+            <input type="hidden" id="lightColor" value="255,0,0" />
+          </div>
+          <div class="form-group">
+            <label for="lightDuration">持續秒數:</label>
+            <input type="number" id="lightDuration" value="180" min="1" />
+          </div>
+          <div class="form-actions">
+            <button id="testLightOnBtn" class="btn btn-success">亮燈</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Statistics -->
     <section class="stats-section">
       <div class="stats-grid">
@@ -121,6 +179,46 @@
     </div>
   </div>
 
+  <script src="../../ApiURL.js?v=1.0"></script>
+  <script src="../../Function/Basic.js?v=1.0"></script>
+  <script src="api_monitor.js?v=1.0"></script>
+  <script src="../api/med_cart_api.js?v=1.0"></script>
   <script src="app.js?v=1.0"></script>
+  <script>
+    window.apiInitialized = false;
+
+    (async function() {
+      try {
+        console.log("[Monitor] 開始初始化 API 配置...");
+
+        APIServer = await LoadAPIServer(true);
+        console.log("[Monitor] LoadAPIServer 完成");
+
+        const serverName = "";
+        const API01 = serch_APIServer(serverName, "網頁", "API01");
+        const API02 = serch_APIServer(serverName, "網頁", "API02");
+        console.log("[Monitor] API01:", API01);
+        console.log("[Monitor] API02:", API02);
+
+        if (API01 && API01.length > 0 && API02 && API02.length > 0) {
+          console.log("[Monitor] 開始檢查 IP 連接...");
+          await check_ip(API01[0].server, API02[0].server);
+          console.log("[Monitor] API 地址已設置，api_ip:", api_ip);
+          console.log("[Monitor] device_url:", device_url);
+        } else {
+          console.warn("[Monitor] 無法找到 API01 或 API02 配置");
+          console.log("[Monitor] 使用預設 api_ip:", api_ip);
+        }
+
+        // 標記初始化完成
+        window.apiInitialized = true;
+        console.log("[Monitor] API 初始化完成");
+      } catch (error) {
+        console.error("[Monitor] API 初始化失敗:", error);
+        console.log("[Monitor] 使用預設 api_ip:", api_ip);
+        window.apiInitialized = true;
+      }
+    })();
+  </script>
 </body>
 </html>
