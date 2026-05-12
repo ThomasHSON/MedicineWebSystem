@@ -234,6 +234,11 @@
               event.key == "*"
             ) {
               calculate_input(event.key);
+            } else if (event.key == "=") {
+              console.log("計算摟");
+              popup_input_END_QTY_input.value = calculateExpression(
+                popup_input_END_QTY_input.value,
+              );
             }
           }
         }

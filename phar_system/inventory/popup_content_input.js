@@ -7,7 +7,7 @@ var popup_input_MaxfPage = 0;
 
 var popup_input_END_QTY_input = null;
 async function show_popup_input(Content, page_Initial, show_all_user) {
-  window.removeEventListener("keydown", get_barcode_input_event);
+  window.addEventListener("keydown", get_barcode_input_event);
 
   if (Content == undefined) return;
   if (popup_input_div == undefined) page_Initial = false;
@@ -49,7 +49,7 @@ async function show_popup_input(Content, page_Initial, show_all_user) {
   // END_QTY_input.focus();
 }
 function hide_popup_input() {
-  window.addEventListener("keydown", get_barcode_input_event);
+  window.removeEventListener("keydown", get_barcode_input_event);
   popup_input_div.Close();
 
   // focus_barcode_input_func();

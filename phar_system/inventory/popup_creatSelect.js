@@ -334,12 +334,28 @@ function popup_creatSelect_content_init() {
     high_priced_button.style.backgroundColor = ""; // 清除背景颜色以恢复默认样式
   });
   high_priced_button.addEventListener("click", async function () {
-    const creat_response = await creat_quick_add("高價藥品");
+    let check_boolean = await check_quick_exist("高價藥品");
+    let creat_response;
+    if (!check_boolean) {
+      console.log("建立快速盤點單");
+      let create_confirmed = confirm("是否建立高價藥品？");
+      if (create_confirmed) {
+        showLoadingPopup();
+        creat_response = await creat_quick_add("高價藥品");
+      } else {
+        return;
+      }
+    } else {
+      console.log("快速盤點單已建立");
+      showLoadingPopup();
+      creat_response = await creat_quick_add("高價藥品");
+    }
     const IC_SN = creat_response.Data.IC_SN;
 
     const temp = await get_creat_Islocked_by_IC_SN(IC_SN);
     if (temp.Data == "鎖定") {
       alert("此盤點單被管理者鎖定,無法進入盤點!");
+      hideLoadingPopup();
       return;
     }
     console.log("IC_SN", IC_SN);
@@ -350,6 +366,7 @@ function popup_creatSelect_content_init() {
         await popup_creatSelect_finishedEvent[i]();
       }
     }
+    hideLoadingPopup();
     popup_creatSelect_div.Close();
   });
   high_priced_button.style.marginLeft = "2px";
@@ -380,12 +397,29 @@ function popup_creatSelect_content_init() {
     controlled_button.style.backgroundColor = ""; // 清除背景颜色以恢复默认样式
   });
   controlled_button.addEventListener("click", async function () {
-    const creat_response = await creat_quick_add("管制藥品");
+    let check_boolean = await check_quick_exist("管制藥品");
+    console.log("===========", check_boolean);
+    let creat_response;
+    if (!check_boolean) {
+      console.log("建立快速盤點單");
+      let create_confirmed = confirm("是否建立管制藥品？");
+      if (create_confirmed) {
+        showLoadingPopup();
+        creat_response = await creat_quick_add("管制藥品");
+      } else {
+        return;
+      }
+    } else {
+      console.log("快速盤點單已建立");
+      showLoadingPopup();
+      creat_response = await creat_quick_add("管制藥品");
+    }
     const IC_SN = creat_response.Data.IC_SN;
 
     const temp = await get_creat_Islocked_by_IC_SN(IC_SN);
     if (temp.Data == "鎖定") {
       alert("此盤點單被管理者鎖定,無法進入盤點!");
+      hideLoadingPopup();
       return;
     }
 
@@ -397,6 +431,7 @@ function popup_creatSelect_content_init() {
         await popup_creatSelect_finishedEvent[i]();
       }
     }
+    hideLoadingPopup();
     popup_creatSelect_div.Close();
   });
   controlled_button.style.marginLeft = "2px";
@@ -427,12 +462,29 @@ function popup_creatSelect_content_init() {
     med_back_button.style.backgroundColor = ""; // 清除背景颜色以恢复默认样式
   });
   med_back_button.addEventListener("click", async function () {
-    const creat_response = await creat_quick_add("退藥");
+    let check_boolean = await check_quick_exist("退藥");
+    console.log("===========", check_boolean);
+    let creat_response;
+    if (!check_boolean) {
+      console.log("建立快速盤點單");
+      let create_confirmed = confirm("是否建立退藥？");
+      if (create_confirmed) {
+        showLoadingPopup();
+        creat_response = await creat_quick_add("退藥");
+      } else {
+        return;
+      }
+    } else {
+      console.log("快速盤點單已建立");
+      showLoadingPopup();
+      creat_response = await creat_quick_add("退藥");
+    }
     const IC_SN = creat_response.Data.IC_SN;
 
     const temp = await get_creat_Islocked_by_IC_SN(IC_SN);
     if (temp.Data == "鎖定") {
       alert("此盤點單被管理者鎖定,無法進入盤點!");
+      hideLoadingPopup();
       return;
     }
 
@@ -444,6 +496,7 @@ function popup_creatSelect_content_init() {
         await popup_creatSelect_finishedEvent[i]();
       }
     }
+    hideLoadingPopup();
     popup_creatSelect_div.Close();
   });
   med_back_button.style.marginLeft = "2px";
@@ -458,4 +511,59 @@ function popup_creatSelect_content_init() {
   }
   content.appendChild(quick_CN);
   return content;
+}
+async function check_quick_exist(name) {
+  try {
+    let start_p = performance.now();
+    const now = new Date();
+    const today =
+      now.getFullYear() +
+      "-" +
+      String(now.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(now.getDate()).padStart(2, "0");
+
+    // --- 明天 ---
+    const next = new Date();
+    next.setDate(now.getDate() + 1); // JS 會自動處理跨月/跨年
+    const tomorrow =
+      next.getFullYear() +
+      "-" +
+      String(next.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(next.getDate()).padStart(2, "0");
+    let temp_data = await fetch(
+      `${inventory_url}/creat_get_by_CT_TIME_ST_END`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Data: {},
+          Code: 0,
+          Result: "",
+          Value: `${today},${tomorrow}`,
+          ServerName: "",
+          ServerType: "網頁",
+          TableName: "medicine_page_firstclass",
+          TimeTaken: "",
+        }),
+      },
+    ).then((response) => {
+      return response.json();
+    });
+
+    let end_p = performance.now();
+    console.log(end_p - start_p);
+    console.log("================================");
+    console.log(temp_data);
+    let boolean = false;
+    if (temp_data.Data.some((item) => item.IC_NAME == name)) {
+      boolean = true;
+    }
+    return boolean;
+  } catch (error) {
+    return false;
+  }
 }
