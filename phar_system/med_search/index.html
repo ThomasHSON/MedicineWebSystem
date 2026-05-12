@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <title>藥品搜尋</title>
+  <link rel="stylesheet" href="style.css?v=1.0" />
+</head>
+<body>
+  <!-- Error Message (Full Width) -->
+  <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <h1>藥品儲位查詢</h1>
+        <p class="subtitle">查詢藥品在存放位置</p>
+      </div>
+    </header>
+
+    <!-- Pharmacy Selection Section -->
+    <section class="selection-section">
+      <div class="pharmacy-section">
+        <label for="pharmacy">請選擇藥局:</label>
+        <select id="pharmacy">
+          <option value="">-- 請先選擇藥局 --</option>
+        </select>
+      </div>
+
+      <!-- Server Selection Section -->
+      <div class="server-section" id="serverSectionContainer" style="display: none;">
+        <label>請選擇調劑台:</label>
+        <div class="server-buttons-container" id="serverButtonsContainer">
+          <!-- 調劑台按鈕將動態插入此處 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Medicine Search Section -->
+    <section class="medicine-search-section" id="medicineSearchContainer" style="display: none;">
+      <div class="search-form">
+        <div class="search-field">
+          <input
+            type="text"
+            id="medicineSearchInput"
+            placeholder="輸入藥品碼、藥名、中文名、學名"
+            class="search-input"
+          />
+          <button id="clearSearchBtn" class="btn btn-secondary">清除篩選</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Medicine Accordion Section -->
+    <section class="medicines-section" id="medicinesSectionContainer" style="display: none;">
+      <h2>調劑台藥品資訊</h2>
+      <div class="medicines-accordion" id="medicinesAccordion">
+        <!-- 藥品收合選單將動態插入此處 -->
+      </div>
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <p>未選擇調劑台或無藥品資訊</p>
+      </div>
+    </section>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+      <div class="spinner"></div>
+      <p>載入中...</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../ApiURL.js?v=1.0"></script>
+  <script src="../../Function/Basic.js?v=1.0"></script>
+  <script src="api_handlers.js?v=1.0"></script>
+  <script src="app.js?v=1.0"></script>
+  <script>
+    window.apiInitialized = false;
+
+    (async function() {
+      try {
+        console.log("[MedSearch] 開始初始化 API 配置...");
+
+        // 從 config.txt 讀取 API 伺服器配置
+        APIServer = await LoadAPIServer(true);
+        console.log("[MedSearch] LoadAPIServer 完成，APIServer:", APIServer);
+
+        // 搜索 API01 和 API02 配置
+        const serverName = "";
+        const API01 = serch_APIServer(serverName, "網頁", "API01");
+        const API02 = serch_APIServer(serverName, "網頁", "API02");
+        console.log("[MedSearch] API01:", API01);
+        console.log("[MedSearch] API02:", API02);
+
+        // 如果找到 API 配置，檢查 IP 連接
+        if (API01 && API01.length > 0 && API02 && API02.length > 0) {
+          console.log("[MedSearch] 開始檢查 IP 連接...");
+          const ipCheckResult = await check_ip(API01[0].server, API02[0].server);
+          console.log("[MedSearch] IP 連接檢查完成，結果:", ipCheckResult);
+          console.log("[MedSearch] API 地址已設置，api_ip:", api_ip);
+          console.log("[MedSearch] device_url:", device_url);
+          console.log("[MedSearch] ServerSetting API:", session_url);
+        } else {
+          console.warn("[MedSearch] 無法找到 API01 或 API02 配置");
+          console.log("[MedSearch] 使用預設 api_ip:", api_ip);
+        }
+
+        // 測試 API 連接
+        console.log("[MedSearch] 開始測試 API 連接...");
+        const testUrl = (window.api_ip || 'http://www.ketech.tw:4435/') + 'api/ServerSetting/type';
+        console.log("[MedSearch] 測試 URL:", testUrl);
+
+        const response = await fetch(testUrl, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+          credentials: 'include',
+        });
+
+        console.log("[MedSearch] ServerSetting/type 回應狀態:", response.status);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("[MedSearch] ServerSetting API 連接成功，回應:", data);
+        } else {
+          console.warn("[MedSearch] ServerSetting API 連接失敗，HTTP", response.status);
+        }
+
+        // 標記初始化完成
+        window.apiInitialized = true;
+        console.log("[MedSearch] API 初始化完成");
+      } catch (error) {
+        console.error("[MedSearch] API 初始化失敗:", error.message);
+        console.log("[MedSearch] 使用預設 api_ip:", api_ip);
+        window.apiInitialized = true;
+      }
+    })();
+  </script>
+</body>
+</html>
