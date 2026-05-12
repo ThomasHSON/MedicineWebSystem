@@ -44,17 +44,20 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="lightCode">藥品碼:</label>
+            <label for="lightCodeInput">藥品碼:</label>
             <div class="light-code-search-container">
               <input
                 type="text"
-                id="lightCode"
-                placeholder="輸入藥品代碼或名稱搜尋"
+                id="lightCodeInput"
+                placeholder="輸入藥品代碼或名稱搜尋，點擊結果新增"
                 class="light-code-search-input"
               />
               <div id="lightCodeSuggestions" class="light-code-suggestions" style="display: none;">
                 <!-- 提示列表會動態插入此處 -->
               </div>
+            </div>
+            <div id="lightCodeTags" class="light-code-tags">
+              <!-- 已選擇的藥品碼會顯示在此 -->
             </div>
           </div>
           <div class="form-group">

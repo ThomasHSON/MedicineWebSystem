@@ -8,6 +8,7 @@ class APIMonitorApp {
     this.pharmacyList = [];
     this.serverList = [];
     this.deviceList = [];
+    this.selectedLightCodes = []; // 存储已选择的药品码
     this.init();
   }
 
@@ -146,22 +147,26 @@ class APIMonitorApp {
       const selectedServer = this.serverList.find((s) => s.name === e.target.value);
       if (selectedServer) {
         console.log('[Monitor] 選擇調劑台:', selectedServer.name, '類型:', selectedServer.type);
+        this.selectedLightCodes = []; // 清空已選擇的藥品碼
+        this.renderLightCodeTags(); // 重新渲染標籤
         this.loadLightCodeOptions(selectedServer.name, selectedServer.type);
       } else {
         // 清空搜尋和提示
-        document.getElementById('lightCode').value = '';
+        document.getElementById('lightCodeInput').value = '';
+        this.selectedLightCodes = [];
+        this.renderLightCodeTags();
         this.deviceList = [];
         this.hideLightCodeSuggestions();
       }
     });
 
     // 藥品位置代碼搜尋輸入框
-    document.getElementById('lightCode').addEventListener('input', (e) => {
+    document.getElementById('lightCodeInput').addEventListener('input', (e) => {
       this.handleLightCodeSearch(e.target.value);
     });
 
     // 點擊搜尋輸入框時顯示所有選項
-    document.getElementById('lightCode').addEventListener('focus', (e) => {
+    document.getElementById('lightCodeInput').addEventListener('focus', (e) => {
       if (this.deviceList.length > 0) {
         this.showLightCodeSuggestions('');
       }
@@ -169,9 +174,10 @@ class APIMonitorApp {
 
     // 點擊頁面其他地方時隱藏提示
     document.addEventListener('click', (e) => {
-      const lightCodeInput = document.getElementById('lightCode');
+      const lightCodeInput = document.getElementById('lightCodeInput');
       const suggestions = document.getElementById('lightCodeSuggestions');
-      if (!lightCodeInput.contains(e.target) && !suggestions.contains(e.target)) {
+      const tags = document.getElementById('lightCodeTags');
+      if (!lightCodeInput.contains(e.target) && !suggestions.contains(e.target) && !tags.contains(e.target)) {
         this.hideLightCodeSuggestions();
       }
     });
@@ -503,8 +509,9 @@ class APIMonitorApp {
       suggestions.querySelectorAll('.light-code-suggestion-item').forEach((item, index) => {
         item.addEventListener('click', () => {
           const device = filteredDevices[index];
-          document.getElementById('lightCode').value = device.Code;
-          this.hideLightCodeSuggestions();
+          this.addLightCode(device.Code);
+          document.getElementById('lightCodeInput').value = '';
+          this.showLightCodeSuggestions(''); // 重新顯示所有選項
         });
       });
     }
@@ -517,6 +524,53 @@ class APIMonitorApp {
     const suggestions = document.getElementById('lightCodeSuggestions');
     suggestions.classList.remove('show');
     suggestions.style.display = 'none';
+  }
+
+  addLightCode(code) {
+    // 檢查是否已經存在
+    if (this.selectedLightCodes.includes(code)) {
+      console.log('[Monitor] 藥品碼已選擇:', code);
+      return;
+    }
+
+    this.selectedLightCodes.push(code);
+    console.log('[Monitor] ✓ 已新增藥品碼:', code);
+    this.renderLightCodeTags();
+  }
+
+  removeLightCode(code) {
+    const index = this.selectedLightCodes.indexOf(code);
+    if (index > -1) {
+      this.selectedLightCodes.splice(index, 1);
+      console.log('[Monitor] ✓ 已移除藥品碼:', code);
+      this.renderLightCodeTags();
+    }
+  }
+
+  renderLightCodeTags() {
+    const tagsContainer = document.getElementById('lightCodeTags');
+
+    if (this.selectedLightCodes.length === 0) {
+      tagsContainer.innerHTML = '';
+      tagsContainer.style.display = 'none';
+      return;
+    }
+
+    tagsContainer.style.display = 'block';
+    tagsContainer.innerHTML = this.selectedLightCodes.map((code) => `
+      <div class="light-code-tag">
+        <span class="tag-code">${this.escapeHtml(code)}</span>
+        <button type="button" class="tag-remove" data-code="${this.escapeHtml(code)}">×</button>
+      </div>
+    `).join('');
+
+    // 添加移除按鈕事件監聽
+    tagsContainer.querySelectorAll('.tag-remove').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const code = btn.getAttribute('data-code');
+        this.removeLightCode(code);
+      });
+    });
   }
 
   highlightMatch(text, searchText) {
@@ -571,12 +625,11 @@ class APIMonitorApp {
 
   async testLightOn() {
     const serverName = document.getElementById('serverName').value.trim();
-    const lightCode = document.getElementById('lightCode').value.trim();
     const lightColor = document.getElementById('lightColor').value.trim();
     const lightDuration = document.getElementById('lightDuration').value.trim();
 
-    if (!serverName || !lightCode || !lightColor) {
-      console.warn('[Monitor] 請填入所有必填項目');
+    if (!serverName || this.selectedLightCodes.length === 0 || !lightColor) {
+      alert('請選擇調劑台、至少一個藥品碼和亮燈顏色');
       return;
     }
 
@@ -586,19 +639,21 @@ class APIMonitorApp {
       return;
     }
 
-    const payload = {
-      ServerName: serverName,
-      ServerType: selectedServer.type,
-      ValueAry: [lightCode, lightColor, lightDuration || '180'],
-    };
-
     try {
       const btn = document.getElementById('testLightOnBtn');
       btn.disabled = true;
-      btn.textContent = '傳送中...';
+      btn.textContent = `傳送中 (${this.selectedLightCodes.length} 個)...`;
 
+      // 組合逗號分隔的藥品碼列表，一次發送
+      const codesString = this.selectedLightCodes.join(',');
+      const payload = {
+        ServerName: serverName,
+        ServerType: selectedServer.type,
+        ValueAry: [codesString, lightColor, lightDuration || '180'],
+      };
+
+      console.log('[Monitor] 發送亮燈指令:', payload);
       const response = await this.callLightOnAPI(payload);
-
       console.log('[Monitor] ✓ 亮燈指令已發送:', response.Result || '完成');
 
       // 刷新日誌顯示（api_monitor.js 會自動記錄）
