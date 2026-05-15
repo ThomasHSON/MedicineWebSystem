@@ -435,7 +435,8 @@ function get_title_popup_input() {
     hide_popup_input();
     let header_serch_text = document.querySelector("#header_serch_text");
     if (!med_map_mode) {
-      header_serch_text.focus();
+      // 返回上層的邏輯點
+      // header_serch_text.focus();
     }
   };
   undo_div.appendChild(undo_SVG);
@@ -769,7 +770,7 @@ function get_underline_popup_input() {
     confirm_popup_input();
     let header_serch_text = document.querySelector("#header_serch_text");
     if (!med_map_mode) {
-      header_serch_text.focus();
+      // header_serch_text.focus();
     }
   });
   END_QTY_input_div.appendChild(END_QTY_input);
