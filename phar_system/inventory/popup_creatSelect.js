@@ -341,7 +341,8 @@ function popup_creatSelect_content_init() {
       let create_confirmed = confirm("是否建立高價藥品？");
       if (create_confirmed) {
         showLoadingPopup();
-        creat_response = await creat_quick_add("高價藥品");
+        let user_data = get_login_session_data();
+        creat_response = await creat_quick_add("高價藥品", user_data.Name);
       } else {
         return;
       }
@@ -405,7 +406,9 @@ function popup_creatSelect_content_init() {
       let create_confirmed = confirm("是否建立管制藥品？");
       if (create_confirmed) {
         showLoadingPopup();
-        creat_response = await creat_quick_add("管制藥品");
+        let user_data = get_login_session_data();
+        console.log("======", user_data, "=======");
+        creat_response = await creat_quick_add("管制藥品", user_data.Name);
       } else {
         return;
       }
@@ -470,7 +473,8 @@ function popup_creatSelect_content_init() {
       let create_confirmed = confirm("是否建立退藥？");
       if (create_confirmed) {
         showLoadingPopup();
-        creat_response = await creat_quick_add("退藥");
+        let user_data = get_login_session_data();
+        creat_response = await creat_quick_add("退藥", user_data.Name);
       } else {
         return;
       }
@@ -565,5 +569,14 @@ async function check_quick_exist(name) {
     return boolean;
   } catch (error) {
     return false;
+  }
+}
+function get_login_session_data() {
+  let user = JSON.parse(sessionStorage.getItem("user_session"));
+
+  if (user) {
+    return user;
+  } else {
+    return null;
   }
 }

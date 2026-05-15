@@ -141,12 +141,12 @@ async function creat_get_by_IC_SN(IC_SN) {
 }
 // 此函式用於依據輸入的名稱快速建立一個盤點單
 // 引數 name: 要建立的盤點單的名稱
-async function creat_quick_add(name) {
+async function creat_quick_add(name, ct) {
   const post_data = {
     Data: {
       GUID: null,
       IC_SN: ``,
-      CT: null,
+      CT: ct,
       CT_TIME: null,
       START_TIME: null,
       END_TIME: null,
