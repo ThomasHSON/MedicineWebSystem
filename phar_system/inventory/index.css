@@ -109,7 +109,16 @@ body {
   left: 0;
   width: 100%;
   background-color: #ffffff; /* 可以根据你的设计修改背景颜色 */
-  z-index: 1000000; /* 使Header显示在其他内容之上 */
+  z-index: 999; /* 使Header显示在其他内容之上 */
+  position: fixed;
+}
+.main_div {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
 }
 .under-line {
   position: fixed;

@@ -7,6 +7,7 @@ var popup_input_MaxfPage = 0;
 
 var popup_input_END_QTY_input = null;
 async function show_popup_input(Content, page_Initial, show_all_user) {
+  console.log("============ 開啟鍵盤輸入 ===========");
   window.addEventListener("keydown", get_barcode_input_event);
 
   if (Content == undefined) return;
@@ -49,6 +50,7 @@ async function show_popup_input(Content, page_Initial, show_all_user) {
   // END_QTY_input.focus();
 }
 function hide_popup_input() {
+  console.log("============ 關閉鍵盤輸入 ===========");
   window.removeEventListener("keydown", get_barcode_input_event);
   popup_input_div.Close();
 
@@ -436,7 +438,7 @@ function get_title_popup_input() {
     let header_serch_text = document.querySelector("#header_serch_text");
     if (!med_map_mode) {
       // 返回上層的邏輯點
-      // header_serch_text.focus();
+      header_serch_text.focus();
     }
   };
   undo_div.appendChild(undo_SVG);
@@ -770,7 +772,7 @@ function get_underline_popup_input() {
     confirm_popup_input();
     let header_serch_text = document.querySelector("#header_serch_text");
     if (!med_map_mode) {
-      // header_serch_text.focus();
+      header_serch_text.focus();
     }
   });
   END_QTY_input_div.appendChild(END_QTY_input);

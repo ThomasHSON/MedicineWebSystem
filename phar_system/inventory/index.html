@@ -13,12 +13,12 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="expires" content="0" />
     <title>盤點操作頁面</title>
-    <link rel="stylesheet" href="index.css?v=2.6" />
+    <link rel="stylesheet" href="index.css?v=2.7" />
     <link rel="stylesheet" href="vision_count.css" />
     <link rel="stylesheet" href="../UI/style/navBar.css" />
     <link rel="stylesheet" href="popup_count_drugs.css?v=2.3" />
     <link rel="stylesheet" href="popup_creatSelect.css?v=1" />
-    <link rel="stylesheet" href="popup_locked_med_info.css?v=1" />
+    <link rel="stylesheet" href="popup_locked_med_info.css?v=1.1" />
     <link rel="stylesheet" href="../lib/qrcodeScanner/qrcodeScanner.css" />
     <link rel="icon" href="../favicon.ico" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="192x192" />
@@ -102,6 +102,7 @@
         document.body.appendChild(header_div);
         const main_div = get_main();
         document.body.appendChild(main_div);
+        Set_rowTotalHeight();
 
         let iframe_container = document.createElement("div");
         iframe_container.classList.add("iframe_container");
