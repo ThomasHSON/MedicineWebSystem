@@ -37,7 +37,7 @@ async function popup_login_init() {
         padding: 20px 32px;
         border-bottom: 1px solid #e5e7eb;
       ">
-        <img class="nav_logo_img" alt="鴻森智能科技logo" src="./hs_logo_shadow.png" style="
+        <img class="nav_logo_img" alt="鴻森智能科技logo" src="../image/hs_logo.png" style="
           max-width: 60px;
           height: auto;
           margin-right: 20px;
