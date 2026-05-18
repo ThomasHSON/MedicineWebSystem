@@ -249,8 +249,8 @@ async function init() {
       `共計 ${temp_shift_contents.length} 項藥品因鎖檔被過濾。`,
     );
   }
-  // let header_serch_text = document.querySelector('#header_serch_text');
-  // header_serch_text.focus();
+  let header_serch_text = document.querySelector("#header_serch_text");
+  header_serch_text.focus();
   set_message_listener();
 
   const header_search_text_img_icon = document.querySelector(
@@ -272,18 +272,18 @@ async function page_Init(data) {
   const header_creat_name = document.querySelector("#header_creat_name");
   header_creat_name.innerText = `區域 : ${data.Data[0].IC_NAME}`;
   const main_div = document.querySelector("#main_div");
-  main_div.innerHTML = "";
-  My_Div.Init(main_div, "main_div", "main_div", "100%", "", "");
-  My_Div.Set_Block(
-    main_div,
-    DisplayEnum.FLEX,
-    FlexDirectionEnum.COLUMN,
-    JustifyContentEnum.CENTER,
-  );
+  // main_div.innerHTML = "";
+  // My_Div.Init(main_div, "main_div", "main_div", "100%", "", "");
+  // My_Div.Set_Block(
+  //   main_div,
+  //   DisplayEnum.FLEX,
+  //   FlexDirectionEnum.COLUMN,
+  //   JustifyContentEnum.CENTER,
+  // );
 
-  main_div.style.flexWrap = "wrap";
-  main_div.style.overflowX = "hidden";
-  main_div.style.overflowY = "hidden";
+  // main_div.style.flexWrap = "wrap";
+  // // main_div.style.overflowX = "hidden";
+  // main_div.style.overflowY = "hidden";
   allrows = [];
   await Refresh_rows();
 }
@@ -974,9 +974,9 @@ function get_main() {
     JustifyContentEnum.CENTER,
   );
 
-  main_div.style.flexWrap = "wrap";
-  main_div.style.overflowX = "hidden";
-  // main_div.style.overflowY = "hidden";
+  // main_div.style.flexWrap = "wrap";
+  // // main_div.style.overflowX = "hidden";
+  // main_div.style.overflowY = "auto";
 
   return main_div;
 }
