@@ -302,14 +302,14 @@ async function handleExport() {
     );
 
     if (success) {
-      alert('新增申請單成功');
+      alert('新增換領單成功');
       drugSelectorState.selectedDrugs = [];
 
       // 重新獲取已申請的醫令列表，使新申請的醫令立即反灰
       await fetchAppliedOrders();
       updateDrugSelectorUI();
     } else {
-      alert('新增申請單失敗，請稍後重試');
+      alert('新增換領單失敗，請稍後重試');
     }
   } catch (error) {
     console.error('Error submitting application:', error);
@@ -3089,7 +3089,7 @@ function createDrugSelector() {
           "
           onmouseover="this.style.backgroundColor='#1d4ed8'"
           onmouseout="this.style.backgroundColor='#2563eb'"
-        >新增申請單</button>
+        >新增換領單</button>
       </div>
 
       <!-- 已選藥品區域 -->

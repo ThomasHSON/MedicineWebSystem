@@ -41,7 +41,7 @@ class APIHandlers {
   async getServerListByPharmacy(pharName) {
     try {
       console.log('[MedSearch] 開始加載調劑台列表，藥局:', pharName);
-      const response = await this.callAPI('ServerSetting', 'get_serversetting_by_department_type', [pharName]);
+      const response = await this.callAPI('ServerSetting', 'get_serversetting_by_type', ['調劑台']);
 
       let data = response;
       let code = response?.Code;
