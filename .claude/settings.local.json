@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "Bash(grep -E \"\\\\.\\(js|cs\\)$\")",
+      "Bash(grep -i \"class\\\\|cs$\")",
+      "Bash(Find-Item *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Project\\\\MedicalManagement\\\\PharSystem\\\\HIS_WebApi\" -Recurse -Include \"order.cs\")",
+      "Bash(Select-Object -First 5 FullName)",
+      "Bash(Find-ChildItem -Path \"C:\\\\Project\\\\MedicalManagement\\\\PharSystem\" -Include \"OrderClass*\" -Recurse -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}

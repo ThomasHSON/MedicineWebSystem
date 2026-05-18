@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <title>新增換領單</title>
+  <link rel="stylesheet" href="index.css?v=4.2">
+  <link rel="stylesheet" href="../UI/style/navBar.css">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="192x192">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-touch-icon.png">
+  <script src="../../Function/Basic.js?v=1.0"></script>
+  <script>
+    (async function() {
+      loadScript("../../ApiURL.js");
+      loadScript("../../ChatHub.js");
+      loadScript("../../session_check.js");
+      loadScript("../../session.js");
+      loadScript("../UI/map.js");
+      loadScript("../svg/mySVG.js");
+      loadScript("../UI/navBar.js");
+      loadScript("../popup/map.js");
+      loadScript("popup_login.js");
+      loadScript("time_display.js");
+      loadScript("station_selector.js");
+      loadScript("drug_selector.js");
+      loadScript("index.js");
+    })();
+  </script>
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <div id="main-container"></div>
+  <div class="under-line">
+    <b>Copyright ©2024 鴻森智能科技</b>
+  </div>
+
+  <script>
+    (async function() {
+      try {
+        document.body.style.overflowY = "scroll";
+        document.body.style.overflowX = "hidden";
+
+        // 等待所有腳本加載完成
+        let maxWait = 50;
+        while (typeof IsLogged === 'undefined' && maxWait > 0) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          maxWait--;
+        }
+
+        console.log("IsLogged:", typeof IsLogged !== 'undefined' ? IsLogged : 'undefined');
+        console.log("popup_login_init:", typeof popup_login_init);
+
+        // 先初始化 popup_login 和 API Server
+        if (typeof popup_login_init === 'function') {
+          await popup_login_init();
+          console.log("popup_login_init completed");
+        }
+
+        if (typeof popup_login_finished === 'function' && typeof popup_login_finishedEvent !== 'undefined') {
+          popup_login_finishedEvent.push(popup_login_finished);
+        }
+
+        // 建立導航欄
+        const navbar_div = create_navbar();
+        document.getElementById('navbar-container').appendChild(navbar_div);
+        console.log("navbar created");
+
+        // 建立主容器（此時 LoadAPIServer 已經完成）
+        console.log("About to call get_main, APIServer:", typeof APIServer !== 'undefined' ? 'defined' : 'undefined');
+        const main_div = await get_main();
+        console.log("get_main completed");
+        document.getElementById('main-container').appendChild(main_div);
+        console.log("main_div appended");
+
+        if(typeof IsLogged === 'undefined' || !IsLogged) {
+          if (typeof popup_login_div !== 'undefined') {
+            await popup_login_div.Show();
+          }
+        } else {
+          if (typeof popup_login_finished === 'function') {
+            popup_login_finished();
+          }
+        }
+      } catch (error) {
+        console.error('初始化错误:', error);
+      }
+    })();
+  </script>
+</body>
+</html>
