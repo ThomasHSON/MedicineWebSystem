@@ -2892,7 +2892,7 @@ function updateDrugSelectorUI() {
 
                 const editRowHtml = isApplied ? `
                 <tr id="edit-row-${item.GUID}" style="display: none; background-color: #f9fafb;">
-                  <td colspan="9" style="padding: 16px;">
+                  <td colspan="10" style="padding: 16px;">
                     <div id="edit-form-${item.GUID}" style="
                       border: 1px solid #e5e7eb;
                       border-radius: 6px;
