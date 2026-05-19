@@ -2441,7 +2441,7 @@ async function check_med_list_change_func(response_data) {
 
   let new_post_data = response_data;
 
-  Set_main_div_enable(false);
+  // Set_main_div_enable(false);
 
   return {
     post_data: new_post_data,
