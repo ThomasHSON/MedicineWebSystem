@@ -539,7 +539,7 @@ async function showEditApplicationModal() {
     const generateTableRows = (applies) => {
       let html = '';
       applies.forEach(order => {
-        const requestNo = order.requestNo || order.cRequestNo || '-';
+        const requestNo = order.requestNo || order.RequestNo || '-';
         const patCode = order.PATCODE || order.病歷號 || '-';
         const patName = order.PATNAME || order.病人姓名 || '-';
         const drugCode = order.CODE || order.藥品碼 || '-';
@@ -778,31 +778,31 @@ async function showEditApplyDetailModal(applyGuid) {
   const fields = [
     {
       label: '處方醫師麻管證號',
-      name: 'cPrescribingDoctorNarcoticLicenseNo',
+      name: 'PrescribingDoctorNarcoticLicenseNo',
       type: 'search',
       placeholder: '搜尋醫師證號'
     },
     {
       label: '施打人 / 銷毀人',
-      name: 'cDrugAdministrator',
+      name: 'DrugAdministrator',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '見證人',
-      name: 'cWitness',
+      name: 'Witness',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '核對藥師',
-      name: 'cCheckingPharmacist',
+      name: 'CheckingPharmacist',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '交班簽名',
-      name: 'cHandoverSignature',
+      name: 'HandoverSignature',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     }
@@ -1115,15 +1115,15 @@ async function showEditApplyDetailModal(applyGuid) {
       if (data && data.Code === 200 && data.Data && Array.isArray(data.Data) && data.Data.length > 0) {
         const applicationData = data.Data[0];
 
-        // 字段名稱映射 (使用 JsonPropertyName 的中文名稱)
+        // 字段名稱映射 (使用實際的 API 返回欄位名稱)
         const nameFieldMap = {
-          'cPrescribingDoctorNarcoticLicenseNo': '處方醫師姓名',
-          'cDrugReceiver': '領藥人姓名',
-          'cDrugAdministrator': '施打者姓名',
-          'cDrugDestroyer': '銷毀人姓名',
-          'cWitness': '見證人姓名',
-          'cCheckingPharmacist': '核對藥師姓名',
-          'cHandoverSignature': '交班簽名人姓名'
+          'PrescribingDoctorNarcoticLicenseNo': 'PrescribingDoctorNarcoticLicenseName',
+          'DrugReceiver': 'DrugReceiverName',
+          'DrugAdministrator': 'DrugAdministratorName',
+          'DrugDestroyer': 'DrugDestroyerName',
+          'Witness': 'WitnessName',
+          'CheckingPharmacist': 'CheckingPharmacistName',
+          'HandoverSignature': 'HandoverSignatureName'
         };
 
         // 對每個 login 類型字段回填已存儲的人員姓名
@@ -1558,7 +1558,7 @@ async function submitApplicationRequests(orderGuids, station) {
     const applications = orderGuids.map(guid => ({
       cGuid: generateGUID(),
       cOrderlistGuid: guid,
-      cRequestNo: '',
+      RequestNo: '',
       cCreatBy: createdBy,
       cCreatAt: dateTimeStr,
       cUpdateTime: dateTimeStr,
@@ -1633,31 +1633,31 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
   const fields = [
     {
       label: '處方醫師麻管證號',
-      name: 'cPrescribingDoctorNarcoticLicenseNo',
+      name: 'PrescribingDoctorNarcoticLicenseNo',
       type: 'search',
       placeholder: '搜尋醫師證號'
     },
     {
       label: '施打人 / 銷毀人',
-      name: 'cDrugAdministrator',
+      name: 'DrugAdministrator',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '見證人',
-      name: 'cWitness',
+      name: 'Witness',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '核對藥師',
-      name: 'cCheckingPharmacist',
+      name: 'CheckingPharmacist',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     },
     {
       label: '交班簽名',
-      name: 'cHandoverSignature',
+      name: 'HandoverSignature',
       type: 'login',
       placeholder: '點擊輸入帳號密碼'
     }
@@ -1796,8 +1796,8 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
   container.innerHTML = formHtml;
 
   // 為搜尋欄位添加功能
-  const searchInput = container.querySelector('#field-cPrescribingDoctorNarcoticLicenseNo');
-  const dropdown = container.querySelector('#dropdown-cPrescribingDoctorNarcoticLicenseNo');
+  const searchInput = container.querySelector('#field-PrescribingDoctorNarcoticLicenseNo');
+  const dropdown = container.querySelector('#dropdown-PrescribingDoctorNarcoticLicenseNo');
 
   if (searchInput && dropdown) {
     const loadPersonData = async () => {
@@ -1930,15 +1930,15 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
       if (data && data.Code === 200 && data.Data && Array.isArray(data.Data) && data.Data.length > 0) {
         const applicationData = data.Data[0];
 
-        // 字段名稱映射 (使用 JsonPropertyName 的中文名稱)
+        // 字段名稱映射 (使用實際的 API 返回欄位名稱)
         const nameFieldMap = {
-          'cPrescribingDoctorNarcoticLicenseNo': '處方醫師姓名',
-          'cDrugReceiver': '領藥人姓名',
-          'cDrugAdministrator': '施打者姓名',
-          'cDrugDestroyer': '銷毀人姓名',
-          'cWitness': '見證人姓名',
-          'cCheckingPharmacist': '核對藥師姓名',
-          'cHandoverSignature': '交班簽名人姓名'
+          'PrescribingDoctorNarcoticLicenseNo': 'PrescribingDoctorNarcoticLicenseName',
+          'DrugReceiver': 'DrugReceiverName',
+          'DrugAdministrator': 'DrugAdministratorName',
+          'DrugDestroyer': 'DrugDestroyerName',
+          'Witness': 'WitnessName',
+          'CheckingPharmacist': 'CheckingPharmacistName',
+          'HandoverSignature': 'HandoverSignatureName'
         };
 
         // 回填 search 類型字段
