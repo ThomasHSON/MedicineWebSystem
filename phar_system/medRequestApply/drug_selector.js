@@ -45,8 +45,8 @@ async function fetchAppliedOrders() {
     if (data && data.Code === 200 && data.Data && Array.isArray(data.Data)) {
       const appliedGuids = [];
       data.Data.forEach(order => {
-        if (order.cOrderlistGuid || order.OrderlistGuid || order.GUID) {
-          const guid = order.cOrderlistGuid || order.OrderlistGuid || order.GUID;
+        if (order.OrderlistGUID || order.OrderlistGuid || order.GUID) {
+          const guid = order.OrderlistGUID || order.OrderlistGuid || order.GUID;
           appliedGuids.push(guid);
         }
       });
@@ -1556,12 +1556,12 @@ async function submitApplicationRequests(orderGuids, station) {
     const dateTimeStr = now.toISOString().replace('T', ' ').substring(0, 19);
 
     const applications = orderGuids.map(guid => ({
-      cGuid: generateGUID(),
-      cOrderlistGuid: guid,
+      Guid: generateGUID(),
+      OrderlistGuid: guid,
       RequestNo: '',
-      cCreatBy: createdBy,
-      cCreatAt: dateTimeStr,
-      cUpdateTime: dateTimeStr,
+      CreatBy: createdBy,
+      CreatAt: dateTimeStr,
+      UpdateTime: dateTimeStr,
       pickupPersonGuid: loggedUserGuid,
       pickupPersonName: loggedUserName,
       pickupPersonId: loggedUserId
