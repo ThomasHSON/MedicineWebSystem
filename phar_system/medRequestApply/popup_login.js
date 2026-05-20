@@ -119,7 +119,7 @@ async function popup_login_init() {
                 "
                 onmouseover="this.style.borderColor='#9ca3af'"
                 onmouseout="this.style.borderColor='#d1d5db'"
-                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                onfocus="this.style.outline='none'; this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
                 onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='0 1px 2px rgba(0, 0, 0, 0.05)'"
               />
             </div>
@@ -151,7 +151,7 @@ async function popup_login_init() {
                 "
                 onmouseover="this.style.borderColor='#9ca3af'"
                 onmouseout="this.style.borderColor='#d1d5db'"
-                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                onfocus="this.style.outline='none'; this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
                 onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='0 1px 2px rgba(0, 0, 0, 0.05)'"
               />
             </div>

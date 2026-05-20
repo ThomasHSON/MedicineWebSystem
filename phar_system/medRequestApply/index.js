@@ -23,7 +23,6 @@ async function popup_login_finished() {
 
         // 如果自動匹配成功，觸發選擇事件
         if (stationSelectorState.matchedStation) {
-          console.log("Auto-selected station:", stationSelectorState.matchedStation.name);
           await selectStation(stationSelectorState.matchedStation.name);
         } else {
           // 否則附加事件監聽
@@ -45,10 +44,6 @@ async function popup_login_finished() {
     }
   }
 
-  if (typeof fetchMedicationGroups === 'function') {
-    await fetchMedicationGroups();
-    updateDrugGroupOptions();
-  }
 }
 
 function create_navbar() {

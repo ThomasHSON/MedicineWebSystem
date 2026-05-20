@@ -40,54 +40,20 @@ async function fetchAppliedOrders() {
     });
 
     const data = await response.json();
-    console.log('Applied orders fetched:', data);
 
     if (data && data.Code === 200 && data.Data && Array.isArray(data.Data)) {
       const appliedGuids = [];
       data.Data.forEach(order => {
-        if (order.OrderlistGUID || order.OrderlistGuid || order.GUID) {
-          const guid = order.OrderlistGUID || order.OrderlistGuid || order.GUID;
-          appliedGuids.push(guid);
+        const orderGuid = order.OrderlistGuid || order.OrderlistGUID || order.GUID;
+        if (orderGuid) {
+          appliedGuids.push(orderGuid);
         }
       });
 
       drugSelectorState.appliedDrugs = appliedGuids;
-      console.log('Applied drug GUIDs:', appliedGuids);
     }
   } catch (error) {
     console.error('Error fetching applied orders:', error);
-  }
-}
-
-async function fetchMedicationGroups() {
-  try {
-    console.log('Fetching medication groups...');
-    const baseUrl = await getBaseUrl();
-
-    if (!baseUrl) {
-      console.error('Could not determine API base URL');
-      return [];
-    }
-
-    console.log('Using API base URL:', baseUrl);
-    const fullUrl = `${baseUrl}api/medGroup/get_all_group`;
-    const response = await fetch(fullUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
-    });
-
-    const data = await response.json();
-    console.log('Medication groups fetched:', data);
-
-    if (data && data.Code === 200 && data.Data) {
-      drugSelectorState.medicationGroups = data.Data;
-      return data.Data;
-    }
-    return [];
-  } catch (error) {
-    console.error('Error fetching medication groups:', error);
-    return [];
   }
 }
 
@@ -98,7 +64,6 @@ async function fetchDeviceItems(stationName) {
       return [];
     }
 
-    console.log('Fetching device items for station:', stationName);
     drugSelectorState.isLoading = true;
 
     const baseUrl = await getBaseUrl();
@@ -116,8 +81,6 @@ async function fetchDeviceItems(stationName) {
     };
 
     const fullUrl = `${baseUrl}api/order/get_by_ward_bagtype_day`;
-    console.log('Request URL:', fullUrl);
-    console.log('Request Payload:', JSON.stringify(requestPayload, null, 2));
 
     const response = await fetch(fullUrl, {
       method: 'POST',
@@ -126,7 +89,6 @@ async function fetchDeviceItems(stationName) {
     });
 
     const data = await response.json();
-    console.log('Device items response:', JSON.stringify(data, null, 2));
 
     if (data && data.Code === 200 && data.Data) {
       const mappedData = data.Data.map(item => ({
@@ -235,55 +197,6 @@ function clearSelection() {
   updateDrugSelectorUI();
 }
 
-function updateDrugGroupOptions() {
-  const selectElement = document.getElementById('drug-group-select');
-  if (!selectElement) return;
-
-  const optionsHTML = `
-    <option value="">選擇藥品分類</option>
-    ${drugSelectorState.medicationGroups.map(group => `
-      <option value="${group.GUID}">${group.NAME}</option>
-    `).join('')}
-  `;
-
-  selectElement.innerHTML = optionsHTML;
-  console.log('Drug group options updated');
-}
-
-async function handleGroupSelection(groupGuid) {
-  if (!groupGuid) return;
-
-  try {
-    console.log('Fetching drugs for group:', groupGuid);
-    const baseUrl = await getBaseUrl();
-    if (!baseUrl) {
-      console.error('Could not determine API base URL');
-      return;
-    }
-
-    const fullUrl = `${baseUrl}api/medGroup/get_group_by_guid`;
-    const response = await fetch(fullUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ValueAry: [groupGuid] })
-    });
-
-    const data = await response.json();
-    console.log('Group data fetched:', data);
-
-    if (data && data.Code === 200 && data.Data && data.Data[0] && data.Data[0].MedClasses) {
-      const groupDrugCodes = data.Data[0].MedClasses.map(drug => drug.CODE);
-      // Add group drugs to selection, avoiding duplicates
-      const newSelection = [...new Set([...drugSelectorState.selectedDrugs, ...groupDrugCodes])];
-      drugSelectorState.selectedDrugs = newSelection;
-      updateDrugSelectorUI();
-      console.log('Added', groupDrugCodes.length, 'drugs from group');
-    }
-  } catch (error) {
-    console.error('Error fetching group details:', error);
-  }
-}
-
 async function handleExport() {
   if (drugSelectorState.selectedDrugs.length === 0) {
     alert('請先選擇醫令');
@@ -329,7 +242,12 @@ async function fetchMedRequestApplies(statusFilter = 'all') {
       return [];
     }
 
-    // 使用 medRequestApply API 的 get_AllRequest 端點獲取所有訂單（不限制狀態）
+    // API: get_AllRequest 返回所有訂單及其申請單信息
+    // 返回對象結構：
+    // - medrequestGuid: medRequestApply 的主鍵（用於編輯詳情）
+    // - OrderlistGuid: order_list 的 GUID
+    // - GUID: order_list 的 GUID
+    // - 其他 order_list 的字段
     const fullUrl = `${baseUrl}api/medRequestApply/get_AllRequest`;
     const response = await fetch(fullUrl, {
       method: 'POST',
@@ -338,7 +256,6 @@ async function fetchMedRequestApplies(statusFilter = 'all') {
     });
 
     const data = await response.json();
-    console.log('All requests fetched:', data);
 
     if (data && data.Code === 200 && data.Data && Array.isArray(data.Data)) {
       // 解析返回的訂單資料，從備註欄提取申請號
@@ -546,9 +463,11 @@ async function showEditApplicationModal() {
         const drugName = order.NAME || order.藥品名稱 || '-';
         const createdTime = order.CT_TIME || order.產出時間 || '-';
         const status = order.狀態 || order.STATE || '-';
-        const orderGuid = order.GUID || '';
-        // medRequestApply 的 cGuid - 用於編輯詳情
+        const orderlistGuid = order.OrderlistGuid || order.GUID;
         const medRequestApplyGuid = order.medrequestGuid;
+        // medrequestGuid: medRequestApply 的主鍵（用於編輯詳情）
+        // orderlistGuid: order_list 的 GUID（用於標記已申請訂單）
+
 
         // Color coding for status
         let statusColor = '#1f2937';
@@ -678,16 +597,25 @@ function selectDoctorOption(fieldName, licenseNo, name) {
   if (dropdown) {
     dropdown.style.display = 'none';
   }
-
-  console.log(`Selected doctor: ${licenseNo} - ${name}`);
 }
 
 function editMedRequestApply(applyGuid) {
-  console.log('Editing apply:', applyGuid);
+  if (!applyGuid || applyGuid === 'undefined') {
+    console.error('無效的 applyGuid');
+    alert('無效的申請單 GUID，無法打開編輯窗口');
+    return;
+  }
+
   showEditApplyDetailModal(applyGuid);
 }
 
 async function showEditApplyDetailModal(applyGuid) {
+  if (!applyGuid) {
+    console.error('缺少 applyGuid，無法打開編輯窗口');
+    alert('無法打開編輯窗口：缺少申請單 GUID');
+    return;
+  }
+
   // 創建模態框
   const modal = document.createElement('div');
   modal.id = 'edit-apply-detail-modal';
@@ -831,9 +759,17 @@ async function showEditApplyDetailModal(applyGuid) {
 
     if (field.type === 'search') {
       // 搜索下拉框
+      const fieldWrapperDiv = document.createElement('div');
+      fieldWrapperDiv.style.cssText = `
+        display: flex;
+        gap: 8px;
+        align-items: stretch;
+      `;
+
       const inputDiv = document.createElement('div');
       inputDiv.style.cssText = `
         position: relative;
+        flex: 1;
       `;
 
       const input = document.createElement('input');
@@ -846,6 +782,7 @@ async function showEditApplyDetailModal(applyGuid) {
         border-radius: 6px;
         font-size: 14px;
         font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+        outline: none;
       `;
       input.setAttribute('data-field', field.name);
       input.setAttribute('data-selected-value', ''); // 儲存選中的值
@@ -868,6 +805,39 @@ async function showEditApplyDetailModal(applyGuid) {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       `;
       inputDiv.appendChild(dropdown);
+
+      // 清空按鈕
+      const clearSearchBtn = document.createElement('button');
+      clearSearchBtn.type = 'button';
+      clearSearchBtn.textContent = '清空';
+      clearSearchBtn.style.cssText = `
+        padding: 10px 16px;
+        border: 1px solid #d1d5db;
+        background-color: white;
+        color: #6b7280;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+        transition: all 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+      `;
+      clearSearchBtn.onmouseover = () => {
+        clearSearchBtn.style.backgroundColor = '#f3f4f6';
+        clearSearchBtn.style.borderColor = '#9ca3af';
+      };
+      clearSearchBtn.onmouseout = () => {
+        clearSearchBtn.style.backgroundColor = 'white';
+        clearSearchBtn.style.borderColor = '#d1d5db';
+      };
+      clearSearchBtn.onclick = () => {
+        input.value = '';
+        input.setAttribute('data-selected-value', '');
+        dropdown.style.display = 'none';
+      };
+      fieldWrapperDiv.appendChild(inputDiv);
+      fieldWrapperDiv.appendChild(clearSearchBtn);
 
       // 異步載入醫師資料
       let personData = [];
@@ -929,7 +899,7 @@ async function showEditApplyDetailModal(applyGuid) {
 
         dropdown.innerHTML = filtered.map((person) => {
           const name = person.name || person.姓名 || '';
-          const personGuid = person.GUID || person.cGuid || person.Guid || '';
+          const personGuid = person.GUID || '';
 
           if (!name) return '';
 
@@ -989,12 +959,12 @@ async function showEditApplyDetailModal(applyGuid) {
 
       // 點擊外部關閉下拉框
       document.addEventListener('click', (e) => {
-        if (!inputDiv.contains(e.target)) {
+        if (!inputDiv.contains(e.target) && !clearSearchBtn.contains(e.target)) {
           dropdown.style.display = 'none';
         }
       });
 
-      fieldDiv.appendChild(inputDiv);
+      fieldDiv.appendChild(fieldWrapperDiv);
     } else if (field.type === 'login') {
       // 改變 fieldDiv 為水平佈局
       fieldDiv.style.cssText = `
@@ -1056,6 +1026,38 @@ async function showEditApplyDetailModal(applyGuid) {
         await showLoginModal(field.name, formData);
       };
       contentDiv.appendChild(button);
+
+      // 清空按鈕
+      const clearBtn = document.createElement('button');
+      clearBtn.type = 'button';
+      clearBtn.textContent = '清空';
+      clearBtn.style.cssText = `
+        padding: 10px 16px;
+        border: 1px solid #d1d5db;
+        background-color: white;
+        color: #6b7280;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+        transition: all 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+      `;
+      clearBtn.onmouseover = () => {
+        clearBtn.style.backgroundColor = '#f3f4f6';
+        clearBtn.style.borderColor = '#9ca3af';
+      };
+      clearBtn.onmouseout = () => {
+        clearBtn.style.backgroundColor = 'white';
+        clearBtn.style.borderColor = '#d1d5db';
+      };
+      clearBtn.onclick = () => {
+        displayDiv.textContent = '未輸入';
+        displayDiv.removeAttribute('data-user-id');
+        delete formData[field.name];
+      };
+      contentDiv.appendChild(clearBtn);
       fieldDiv.appendChild(contentDiv);
     } else if (field.type === 'userid') {
       // 自動帶入用戶ID
@@ -1096,13 +1098,16 @@ async function showEditApplyDetailModal(applyGuid) {
     body.appendChild(fieldDiv);
   });
 
-  // 回填已存儲的數據
+  // 回填已存儲的數據 (showEditApplyDetailModal)
   (async () => {
     try {
       const baseUrl = await getBaseUrl();
-      if (!baseUrl) return;
+      if (!baseUrl) {
+        return;
+      }
 
       const fullUrl = `${baseUrl}api/medRequestApply/get_by_guid`;
+
       const response = await fetch(fullUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1112,15 +1117,14 @@ async function showEditApplyDetailModal(applyGuid) {
       });
 
       const data = await response.json();
+
       if (data && data.Code === 200 && data.Data && Array.isArray(data.Data) && data.Data.length > 0) {
         const applicationData = data.Data[0];
 
-        // 字段名稱映射 (使用實際的 API 返回欄位名稱)
+        // 字段名稱映射 - 後端返回的名字字段
         const nameFieldMap = {
           'PrescribingDoctorNarcoticLicenseNo': 'PrescribingDoctorNarcoticLicenseName',
-          'DrugReceiver': 'DrugReceiverName',
           'DrugAdministrator': 'DrugAdministratorName',
-          'DrugDestroyer': 'DrugDestroyerName',
           'Witness': 'WitnessName',
           'CheckingPharmacist': 'CheckingPharmacistName',
           'HandoverSignature': 'HandoverSignatureName'
@@ -1223,9 +1227,11 @@ async function showEditApplyDetailModal(applyGuid) {
 
     formInputs.forEach(input => {
       const fieldName = input.getAttribute('data-field');
-      // 對於搜索字段，使用 data-selected-value（guid）而不是 input.value（名字）
+      // 對於搜索字段，必須使用 data-selected-value（guid），不能用人名
       const selectedValue = input.getAttribute('data-selected-value');
-      submitData[fieldName] = selectedValue || input.value;
+      if (selectedValue && selectedValue.trim() !== '') {
+        submitData[fieldName] = selectedValue;
+      }
     });
 
     // 添加已設置的登入信息 - 從 data-user-id 屬性讀取 GUID
@@ -1241,12 +1247,10 @@ async function showEditApplyDetailModal(applyGuid) {
       }
     });
 
-    // 處理 "施打人 / 銷毀人" 欄位 - 同時更新 cDrugAdministrator 和 cDrugDestroyer
-    if (submitData.cDrugAdministrator) {
-      submitData.cDrugDestroyer = submitData.cDrugAdministrator;
+    // DrugAdministrator 字段用於施打人和銷毀人 - 自動複製給 DrugDestroyer
+    if (submitData.DrugAdministrator && !submitData.DrugDestroyer) {
+      submitData.DrugDestroyer = submitData.DrugAdministrator;
     }
-
-    console.log('Submit data:', submitData);
 
     // 提交到 API
     submitBtn.disabled = true;
@@ -1256,7 +1260,6 @@ async function showEditApplyDetailModal(applyGuid) {
       const result = await partialUpdateByGuid(applyGuid, submitData);
 
       if (result) {
-        console.log('保存成功:', result);
         alert('保存成功');
         modal.remove();
       } else {
@@ -1350,7 +1353,16 @@ async function showLoginModal(fieldName, formData) {
     font-size: 16px;
     font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
     box-sizing: border-box;
+    outline: none;
   `;
+  usernameInput.onfocus = () => {
+    usernameInput.style.borderColor = '#3b82f6';
+    usernameInput.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+  };
+  usernameInput.onblur = () => {
+    usernameInput.style.borderColor = '#d1d5db';
+    usernameInput.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.05)';
+  };
   usernameDiv.appendChild(usernameLabel);
   usernameDiv.appendChild(usernameInput);
   inputsContainer.appendChild(usernameDiv);
@@ -1379,7 +1391,16 @@ async function showLoginModal(fieldName, formData) {
     font-size: 16px;
     font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
     box-sizing: border-box;
+    outline: none;
   `;
+  passwordInput.onfocus = () => {
+    passwordInput.style.borderColor = '#3b82f6';
+    passwordInput.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+  };
+  passwordInput.onblur = () => {
+    passwordInput.style.borderColor = '#d1d5db';
+    passwordInput.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.05)';
+  };
   passwordDiv.appendChild(passwordLabel);
   passwordDiv.appendChild(passwordInput);
   inputsContainer.appendChild(passwordDiv);
@@ -1478,7 +1499,7 @@ async function showLoginModal(fieldName, formData) {
                 (p.ID === username) || (p.id === username) || (p.帳號 === username)
               );
               if (person) {
-                personGuid = person.GUID || person.cGuid || person.Guid || '';
+                personGuid = person.GUID || '';
               }
             }
           }
@@ -1488,7 +1509,7 @@ async function showLoginModal(fieldName, formData) {
 
         // 如果找不到，使用登入 API 返回的 ID
         if (!personGuid) {
-          personGuid = data.Data.GUID || data.Data.Guid || data.Data.ID;
+          personGuid = data.Data.ID;
         }
 
         formData[fieldName] = personGuid;
@@ -1557,7 +1578,7 @@ async function submitApplicationRequests(orderGuids, station) {
 
     const applications = orderGuids.map(guid => ({
       Guid: generateGUID(),
-      OrderlistGuid: guid,
+      OrderlistGUID: guid,
       RequestNo: '',
       CreatBy: createdBy,
       CreatAt: dateTimeStr,
@@ -1577,16 +1598,12 @@ async function submitApplicationRequests(orderGuids, station) {
     });
 
     const data = await response.json();
-    console.log('Application submission response:', data);
 
     if (data && data.Code === 200) {
       return true;
-    } else {
-      console.error('API Error:', data?.Result);
-      return false;
     }
+    return false;
   } catch (error) {
-    console.error('Error submitting applications:', error);
     throw error;
   }
 }
@@ -1603,26 +1620,26 @@ async function toggleEditRow(guid) {
   const editRow = document.getElementById(`edit-row-${guid}`);
   const editContent = document.getElementById(`edit-content-${guid}`);
 
-  if (!editRow) return;
+  if (!editRow || !editContent) return;
 
   const isVisible = editRow.style.display === 'table-row';
 
   if (isVisible) {
-    // 關閉編輯行
     editRow.style.display = 'none';
+    editContent.innerHTML = '';
   } else {
-    // 打開編輯行
     editRow.style.display = 'table-row';
 
-    // 如果編輯內容還未加載，則加載
     if (!editContent.innerHTML) {
-      // 從已申請的醫令找到對應的 medRequestApplyGuid
       const appliedOrders = await fetchMedRequestApplies('all');
-      const matchingOrder = appliedOrders.find(order => order.GUID === guid);
+      // guid 是訂單 GUID，需要匹配 order.GUID 或 order.OrderlistGuid
+      const matchingOrder = appliedOrders.find(order => order.GUID === guid || order.OrderlistGuid === guid);
 
       if (matchingOrder) {
-        const medRequestApplyGuid = matchingOrder.medrequestGuid;
-        await loadEditFormContent(editContent, medRequestApplyGuid, guid);
+        // applyGuid 應該是 medRequestApply 的 GUID（用於查詢詳情）
+        await loadEditFormContent(editContent, matchingOrder.medrequestGuid, guid);
+      } else {
+        console.error('找不到匹配的訂單，guid:', guid, '可用訂單:', appliedOrders);
       }
     }
   }
@@ -1681,40 +1698,60 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
             color: #4b5563;
             font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
           ">${field.label}</label>
-          <div style="position: relative;">
-            <input
-              id="field-${field.name}"
-              data-field-name="${field.name}"
-              type="text"
-              placeholder="${field.placeholder}"
+          <div style="display: flex; gap: 8px; align-items: stretch;">
+            <div style="position: relative; flex: 1;">
+              <input
+                id="field-${field.name}"
+                data-field-name="${field.name}"
+                type="text"
+                placeholder="${field.placeholder}"
+                style="
+                  width: 100%;
+                  padding: 10px 12px;
+                  border: 1px solid #d1d5db;
+                  border-radius: 6px;
+                  font-size: 14px;
+                  font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+                  box-sizing: border-box;
+                  outline: none;
+                "
+              />
+              <div
+                id="dropdown-${field.name}"
+                style="
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  right: 0;
+                  background: white;
+                  border: 1px solid #d1d5db;
+                  border-top: none;
+                  border-radius: 0 0 6px 6px;
+                  max-height: 300px;
+                  overflow-y: auto;
+                  display: none;
+                  z-index: 1000;
+                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                "
+              ></div>
+            </div>
+            <button
+              id="clear-search-${field.name}"
+              type="button"
               style="
-                width: 100%;
-                padding: 10px 12px;
+                padding: 10px 16px;
                 border: 1px solid #d1d5db;
+                background-color: white;
+                color: #6b7280;
                 border-radius: 6px;
+                cursor: pointer;
                 font-size: 14px;
                 font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
-                box-sizing: border-box;
+                transition: all 0.2s;
+                white-space: nowrap;
+                flex-shrink: 0;
               "
-            />
-            <div
-              id="dropdown-${field.name}"
-              style="
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                border: 1px solid #d1d5db;
-                border-top: none;
-                border-radius: 0 0 6px 6px;
-                max-height: 300px;
-                overflow-y: auto;
-                display: none;
-                z-index: 1000;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              "
-            ></div>
+            >清空</button>
           </div>
         </div>
       `;
@@ -1762,6 +1799,23 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
                 flex-shrink: 0;
               "
             >${field.placeholder}</button>
+            <button
+              id="clear-btn-${field.name}"
+              type="button"
+              style="
+                padding: 10px 16px;
+                border: 1px solid #d1d5db;
+                background-color: white;
+                color: #6b7280;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+                transition: all 0.2s;
+                white-space: nowrap;
+                flex-shrink: 0;
+              "
+            >清空</button>
           </div>
         </div>
       `;
@@ -1798,6 +1852,7 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
   // 為搜尋欄位添加功能
   const searchInput = container.querySelector('#field-PrescribingDoctorNarcoticLicenseNo');
   const dropdown = container.querySelector('#dropdown-PrescribingDoctorNarcoticLicenseNo');
+  const clearSearchBtn = container.querySelector('#clear-search-PrescribingDoctorNarcoticLicenseNo');
 
   if (searchInput && dropdown) {
     const loadPersonData = async () => {
@@ -1886,16 +1941,35 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
     });
 
     document.addEventListener('click', (e) => {
-      if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+      if (!searchInput.contains(e.target) && !dropdown.contains(e.target) && (!clearSearchBtn || !clearSearchBtn.contains(e.target))) {
         dropdown.style.display = 'none';
       }
     });
+
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('mouseover', () => {
+        clearSearchBtn.style.backgroundColor = '#f3f4f6';
+        clearSearchBtn.style.borderColor = '#9ca3af';
+      });
+      clearSearchBtn.addEventListener('mouseout', () => {
+        clearSearchBtn.style.backgroundColor = 'white';
+        clearSearchBtn.style.borderColor = '#d1d5db';
+      });
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.setAttribute('data-selected-value', '');
+        dropdown.style.display = 'none';
+      });
+    }
   }
 
   // 為登入欄位添加點擊事件
   fields.forEach((field, index) => {
     if (field.type === 'login') {
       const btn = container.querySelector(`#btn-${field.name}`);
+      const clearBtn = container.querySelector(`#clear-btn-${field.name}`);
+      const displayDiv = container.querySelector(`#${field.name}-display`);
+
       if (btn) {
         btn.addEventListener('mouseover', () => {
           btn.style.backgroundColor = '#dbeafe';
@@ -1905,7 +1979,22 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
         });
         btn.addEventListener('click', async () => {
           await showLoginModal(field.name, formData);
-          // 登入成功後，login modal會更新displayDiv
+        });
+      }
+
+      if (clearBtn && displayDiv) {
+        clearBtn.addEventListener('mouseover', () => {
+          clearBtn.style.backgroundColor = '#f3f4f6';
+          clearBtn.style.borderColor = '#9ca3af';
+        });
+        clearBtn.addEventListener('mouseout', () => {
+          clearBtn.style.backgroundColor = 'white';
+          clearBtn.style.borderColor = '#d1d5db';
+        });
+        clearBtn.addEventListener('click', () => {
+          displayDiv.textContent = '未輸入';
+          displayDiv.removeAttribute('data-user-id');
+          delete formData[field.name];
         });
       }
     }
@@ -1930,12 +2019,10 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
       if (data && data.Code === 200 && data.Data && Array.isArray(data.Data) && data.Data.length > 0) {
         const applicationData = data.Data[0];
 
-        // 字段名稱映射 (使用實際的 API 返回欄位名稱)
+        // 字段名稱映射 - 後端返回的名字字段
         const nameFieldMap = {
           'PrescribingDoctorNarcoticLicenseNo': 'PrescribingDoctorNarcoticLicenseName',
-          'DrugReceiver': 'DrugReceiverName',
           'DrugAdministrator': 'DrugAdministratorName',
-          'DrugDestroyer': 'DrugDestroyerName',
           'Witness': 'WitnessName',
           'CheckingPharmacist': 'CheckingPharmacistName',
           'HandoverSignature': 'HandoverSignatureName'
@@ -2002,7 +2089,10 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
         const input = container.querySelector(`#field-${field.name}`);
         if (input) {
           const selectedValue = input.getAttribute('data-selected-value');
-          submitData[field.name] = selectedValue || input.value;
+          // 必須使用 GUID，不能用人名
+          if (selectedValue && selectedValue.trim() !== '') {
+            submitData[field.name] = selectedValue;
+          }
         }
       });
 
@@ -2018,12 +2108,10 @@ async function loadEditFormContent(container, applyGuid, orderGuid) {
         }
       });
 
-      // 處理 "施打人 / 銷毀人" 欄位 - 同時更新 cDrugAdministrator 和 cDrugDestroyer
-      if (submitData.cDrugAdministrator) {
-        submitData.cDrugDestroyer = submitData.cDrugAdministrator;
+      // DrugAdministrator 字段用於施打人和銷毀人 - 自動複製給 DrugDestroyer
+      if (submitData.DrugAdministrator && !submitData.DrugDestroyer) {
+        submitData.DrugDestroyer = submitData.DrugAdministrator;
       }
-
-      console.log('Saving form data:', submitData, 'Apply GUID:', applyGuid);
 
       try {
         saveBtn.disabled = true;
@@ -2129,7 +2217,6 @@ async function fetchOrders(startDateTime, endDateTime) {
     });
 
     const data = await response.json();
-    console.log('Orders fetched:', data);
 
     if (data && data.Code === 200 && data.Data) {
       return data.Data;
@@ -2297,8 +2384,6 @@ async function showApplicationModal() {
     drugSelectorState.selectedDrugs.includes(order.CODE) &&
     !appliedOrderGuids.includes(order.GUID)
   );
-
-  console.log('過濾後的訂單:', filteredOrders);
 
   // Group orders by drug code
   const drugGroups = {};
@@ -2936,10 +3021,21 @@ function updateDrugSelectorUI() {
                         transition: all 0.2s;
                         opacity: 1;
                       "
-                      onmouseover="this.style.backgroundColor='#b91c1c'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.15); this.style.transform='translateY(-1px)';"
+                      onmouseover="this.style.backgroundColor='#b91c1c'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.15)'; this.style.transform='translateY(-1px)';"
                       onmouseout="this.style.backgroundColor='#dc2626'; this.style.boxShadow='0 2px 4px rgba(0, 0, 0, 0.1)'; this.style.transform='translateY(0)';"
                       >編輯</button>
-                    ` : ''}
+                    ` : `
+                      <span style="
+                        display: inline-block;
+                        padding: 6px 12px;
+                        background-color: #f3f4f6;
+                        color: #374151;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+                      ">未申請</span>
+                    `}
                   </td>
                 </tr>
                 ${editRowHtml}
@@ -3029,6 +3125,7 @@ function createDrugSelector() {
               font-size: 14px;
               font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
               box-sizing: border-box;
+              outline: none;
             "
             oninput="drugSelectorState.searchTerm = this.value; filterDeviceItems();"
           >
@@ -3140,7 +3237,7 @@ async function getPersonNameByGuid(personGuid) {
 /**
  * 部分更新申請單（按GUID）- 用於編輯詳情彈窗中逐步填入人員資訊
  * @param {string} guid - 申請單GUID
- * @param {object} updateFields - 要更新的欄位對象，例如 { cDrugAdministrator: "名稱", cWitness: "見證人" }
+ * @param {object} updateFields - 要更新的欄位對象，例如 { DrugAdministrator: "GUID", Witness: "GUID" }
  * @returns {Promise<object>} 更新後的申請單資料
  */
 async function partialUpdateByGuid(guid, updateFields) {
@@ -3162,16 +3259,12 @@ async function partialUpdateByGuid(guid, updateFields) {
     });
 
     const data = await response.json();
-    console.log('部分更新申請單(GUID):', data);
 
     if (data && data.Code === 200) {
       return data.Data;
-    } else {
-      console.error('更新失敗:', data?.Result);
-      return null;
     }
+    return null;
   } catch (error) {
-    console.error('部分更新請求出錯:', error);
     return null;
   }
 }

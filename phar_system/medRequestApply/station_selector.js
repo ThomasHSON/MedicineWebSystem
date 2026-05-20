@@ -41,9 +41,7 @@ async function fetchStations() {
       body: JSON.stringify(request)
     });
 
-    console.log('Fetch response status:', response.status);
     const jsonResponse = await response.json();
-    console.log('Fetch response data:', jsonResponse);
 
     if (jsonResponse && jsonResponse.Code === 200 && jsonResponse.Data) {
       console.log('Stations found:', jsonResponse.Data.length);
@@ -51,14 +49,12 @@ async function fetchStations() {
 
       // 自動匹配 Employer 值到護理站 name
       const employer = sessionStorage.getItem('loggedEmployer');
-      console.log('Current Employer:', employer);
 
       if (employer) {
         const matched = jsonResponse.Data.find(station => station.name === employer);
         if (matched) {
           stationSelectorState.matchedStation = matched;
           stationSelectorState.selectedStation = matched.name;
-          console.log('Matched station:', matched.name);
         } else {
           console.warn('No matching station found for Employer:', employer);
         }
